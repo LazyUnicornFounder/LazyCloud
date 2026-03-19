@@ -69,8 +69,9 @@ const Index = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: [0.25, 0.1, 0.25, 1] }}
+          className="inline-block bg-background/40 backdrop-blur-xl rounded-2xl px-8 py-6 border border-foreground/10"
         >
-          <h1 className="font-display text-5xl sm:text-7xl md:text-8xl font-extrabold tracking-tight leading-[0.9] text-foreground drop-shadow-[0_2px_12px_rgba(0,0,0,0.5)]">
+          <h1 className="font-display text-5xl sm:text-7xl md:text-8xl font-extrabold tracking-tight leading-[0.9] text-foreground">
             Never have
             <br />
             to work
