@@ -40,10 +40,23 @@ const Index = () => {
 
       {/* Hero */}
       <header className="relative z-10 text-center px-6 pt-16 pb-12 md:pt-28 md:pb-20">
+        <motion.p
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="font-body text-sm md:text-base font-medium tracking-wide text-accent mb-4"
+        >
+          <motion.span
+            animate={{ opacity: [0.6, 1, 0.6] }}
+            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+          >
+            Built with Lovable by someone who couldn't be bothered.
+          </motion.span>
+        </motion.p>
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: 0.7, delay: 0.15 }}
         >
           <h1 className="font-display text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-extrabold tracking-tight leading-[0.95] text-gradient-hero">
             Lazy Unicorn
@@ -52,10 +65,10 @@ const Index = () => {
         <motion.p
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
           className="font-body text-base md:text-lg text-muted-foreground mt-6 max-w-lg mx-auto leading-relaxed"
         >
-          Built with Lovable by someone who couldn't be bothered. A directory of every company making sure you never have to work again.
+          The world's most exclusive(ish) directory of AI companies that literally start, run, and scale entire businesses while you... nap? Scroll? Touch grass? Whatever.
         </motion.p>
       </header>
 
