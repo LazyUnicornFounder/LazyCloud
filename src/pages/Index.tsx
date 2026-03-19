@@ -105,7 +105,7 @@ const Index = () => {
             <br />
             Capitalism
             <br />
-            <span className="text-foreground/30">is here.</span>
+            <span className="text-foreground/50">is here.</span>
           </h2>
           <p className="font-body text-sm text-foreground/40 mt-6 max-w-sm leading-relaxed">
             The robots are working so you don't have to.
