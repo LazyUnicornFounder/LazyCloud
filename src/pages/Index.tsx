@@ -44,12 +44,12 @@ const Index = () => {
           >
             Directory
           </a>
-          <button
-            onClick={() => setSubmitOpen(true)}
+          <a
+            href="#submit"
             className="font-body text-[11px] tracking-[0.15em] uppercase bg-primary text-primary-foreground px-5 py-1.5 rounded-full font-semibold hover:opacity-90 transition-opacity"
           >
             Submit
-          </button>
+          </a>
         </div>
         <a
           href="https://x.com/SaadSahawneh"
