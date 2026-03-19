@@ -26,7 +26,6 @@ const Index = () => {
       {/* Full-bleed background */}
       <div className="fixed inset-0 z-0">
         <img src={unicornBg} alt="" className="w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-background/50 backdrop-blur-[2px]" />
       </div>
 
       {/* Nav — minimal, floating */}
@@ -70,8 +69,9 @@ const Index = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: [0.25, 0.1, 0.25, 1] }}
+          className="inline-block bg-background/40 backdrop-blur-xl rounded-2xl px-8 py-6 border border-foreground/10"
         >
-          <h1 className="font-display text-5xl sm:text-7xl md:text-8xl font-extrabold tracking-tight leading-[0.9] text-foreground drop-shadow-[0_2px_12px_rgba(0,0,0,0.5)]">
+          <h1 className="font-display text-5xl sm:text-7xl md:text-8xl font-extrabold tracking-tight leading-[0.9] text-foreground">
             Never have
             <br />
             to work
@@ -137,7 +137,7 @@ const Index = () => {
 
       {/* Mission */}
       <section id="mission" className="relative z-10 px-8 md:px-12 py-32 scroll-mt-20">
-        <div className="max-w-2xl">
+        <div className="max-w-2xl bg-background/40 backdrop-blur-xl rounded-2xl px-8 py-10 border border-foreground/10">
           <motion.p
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -160,7 +160,7 @@ const Index = () => {
 
       {/* Directory */}
       <main id="directory" className="relative z-10 px-8 md:px-12 pb-32 scroll-mt-20">
-        <div className="max-w-2xl">
+        <div className="max-w-2xl bg-background/40 backdrop-blur-xl rounded-2xl px-8 py-10 border border-foreground/10">
           <motion.p
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
