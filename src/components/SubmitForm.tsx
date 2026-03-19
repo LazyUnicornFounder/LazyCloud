@@ -91,7 +91,6 @@ const SubmitForm = ({ open, onClose }: SubmitFormProps) => {
             {submitted ? (
               <div className="text-center py-8">
                 <p className="font-body text-foreground text-lg font-medium">Thanks for submitting!</p>
-                <p className="font-body text-muted-foreground text-sm mt-2">We'll review and add it soon.</p>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
