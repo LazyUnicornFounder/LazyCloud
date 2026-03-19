@@ -22,6 +22,12 @@ const Index = () => {
   });
   return (
     <div className="min-h-screen bg-background text-foreground relative overflow-hidden">
+      {/* Hero background image */}
+      <div className="absolute inset-0 z-0">
+        <img src={unicornBg} alt="" className="w-full h-full object-cover opacity-15" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/80 to-background" />
+      </div>
+
       {/* Ambient glow blobs */}
       <div className="pointer-events-none absolute top-[-200px] left-[-100px] w-[600px] h-[600px] rounded-full bg-primary/5 blur-[120px]" />
       <div className="pointer-events-none absolute top-[200px] right-[-150px] w-[500px] h-[500px] rounded-full bg-accent/5 blur-[120px]" />
