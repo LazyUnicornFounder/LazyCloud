@@ -97,7 +97,7 @@ const Index = () => {
         className="relative z-10 px-8 md:px-12 py-24"
       >
         <div className="max-w-2xl">
-          <p className="font-body text-[11px] tracking-[0.2em] uppercase text-foreground/40 mb-4">
+          <p className="font-body text-[11px] tracking-[0.2em] uppercase text-foreground/60 mb-4 drop-shadow-[0_1px_4px_rgba(0,0,0,0.5)]">
             The future is idle
           </p>
           <h2 className="font-display text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-[0.95] text-foreground">
