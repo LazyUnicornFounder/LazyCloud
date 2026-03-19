@@ -70,7 +70,7 @@ const Index = () => {
         >
           A directory of companies making sure you never have to work again.
         </motion.p>
-
+      </header>
       {/* Autonomous Capitalism Banner */}
       <motion.section
         initial={{ opacity: 0, scale: 0.9 }}
