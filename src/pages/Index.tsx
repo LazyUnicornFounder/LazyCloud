@@ -30,7 +30,7 @@ const Index = () => {
           className="font-display text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-medium tracking-wide leading-[0.95]"
           style={{ fontVariant: "small-caps" }}
         >
-          Self-Building<br />Companies.
+          Lazy CEO
         </motion.h1>
         <motion.p
           initial={{ opacity: 0 }}
@@ -79,7 +79,7 @@ const Index = () => {
 
       {/* Footer */}
       <footer className="border-t border-border py-8 text-center font-body text-xs text-muted-foreground tracking-wider uppercase">
-        Autonomous Companies © 2026
+        Lazy CEO © 2026
       </footer>
     </div>
   );
