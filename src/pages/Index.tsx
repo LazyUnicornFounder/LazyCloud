@@ -28,7 +28,7 @@ const Index = () => {
       {/* Nav */}
       <nav className="relative z-10 flex items-center justify-between px-6 md:px-10 py-5">
         <span className="font-display text-lg font-bold tracking-tight text-gradient-primary">
-          Lazy CEO
+          Lazy Unicorn
         </span>
         <button
           onClick={() => setSubmitOpen(true)}
@@ -46,7 +46,7 @@ const Index = () => {
           transition={{ duration: 0.7 }}
         >
           <h1 className="font-display text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-extrabold tracking-tight leading-[0.95] text-gradient-hero">
-            Lazy CEO
+            Lazy Unicorn
           </h1>
         </motion.div>
         <motion.p
@@ -76,7 +76,7 @@ const Index = () => {
 
       {/* Footer */}
       <footer className="relative z-10 border-t border-border py-8 text-center font-body text-xs text-muted-foreground tracking-wider">
-        Lazy CEO © 2026
+        Lazy Unicorn © 2026
       </footer>
 
       {/* Submit Modal */}
