@@ -1,13 +1,11 @@
-import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
 import unicornBg from "@/assets/unicorn-beach.png";
 import CompanyCard from "@/components/CompanyCard";
-import SubmitForm from "@/components/SubmitForm";
+import SubmitSection from "@/components/SubmitSection";
 import { supabase } from "@/integrations/supabase/client";
 
 const Index = () => {
-  const [submitOpen, setSubmitOpen] = useState(false);
 
   const { data: companies = [] } = useQuery({
     queryKey: ["approved-companies"],
