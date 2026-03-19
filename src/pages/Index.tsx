@@ -169,6 +169,15 @@ const Index = () => {
           >
             Directory
           </motion.p>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
+            className="font-display text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight leading-[1] text-foreground mb-8"
+          >
+            Companies accelerating the future of autonomous capitalism.
+          </motion.h2>
           <div className="space-y-px">
             {companies.map((company, i) => (
               <CompanyCard
