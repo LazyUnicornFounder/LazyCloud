@@ -46,7 +46,7 @@ const Index = () => {
           transition={{ duration: 0.7 }}
         >
           <h1 className="font-display text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-extrabold tracking-tight leading-[0.95] text-gradient-hero">
-            Lazy CEO
+            Lazy Unicorn
           </h1>
         </motion.div>
         <motion.p
