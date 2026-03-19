@@ -77,6 +77,44 @@ const Index = () => {
           </div>
         </motion.div>
 
+        {/* Retro sticker */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.6, rotate: -20 }}
+          animate={{ opacity: 1, scale: 1, rotate: -6 }}
+          transition={{ duration: 0.8, delay: 0.6, type: "spring", stiffness: 120 }}
+          className="absolute top-[18%] right-8 md:right-16 lg:right-24"
+        >
+          <div className="relative w-44 h-44 sm:w-56 sm:h-56 md:w-64 md:h-64">
+            {/* Sticker body — starburst shape via SVG */}
+            <svg viewBox="0 0 200 200" className="w-full h-full drop-shadow-[0_4px_20px_rgba(0,0,0,0.4)]">
+              <path
+                d="M100 0 L118 38 L158 18 L144 58 L188 58 L158 82 L188 112 L148 106 L154 148 L118 124 L100 164 L82 124 L46 148 L52 106 L12 112 L42 82 L12 58 L56 58 L42 18 L82 38 Z"
+                fill="hsl(40, 95%, 55%)"
+                stroke="hsl(25, 90%, 45%)"
+                strokeWidth="2"
+              />
+              <circle cx="100" cy="88" r="58" fill="hsl(0, 85%, 55%)" />
+              <circle cx="100" cy="88" r="52" fill="none" stroke="hsl(40, 95%, 55%)" strokeWidth="2" strokeDasharray="4 3" />
+            </svg>
+            {/* Text overlay */}
+            <div className="absolute inset-0 flex flex-col items-center justify-center -mt-2">
+              <span className="font-display text-[10px] sm:text-xs font-bold tracking-[0.15em] uppercase text-background/60 mb-0.5">
+                ★ alert ★
+              </span>
+              <span className="font-display text-base sm:text-lg md:text-xl font-extrabold leading-[1.1] text-center text-background px-6">
+                Autonomous
+                <br />
+                capitalism
+                <br />
+                is here.
+              </span>
+              <span className="font-body text-[8px] sm:text-[9px] tracking-[0.2em] uppercase text-background/50 mt-1">
+                est. 2026
+              </span>
+            </div>
+          </div>
+        </motion.div>
+
         {/* Scroll indicator */}
         <motion.div
           initial={{ opacity: 0 }}
@@ -93,31 +131,6 @@ const Index = () => {
           </motion.div>
         </motion.div>
       </header>
-
-      {/* Banner section */}
-      <motion.section
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
-        className="relative z-10 px-8 md:px-12 py-24"
-      >
-        <div className="max-w-2xl">
-          <p className="font-body text-[11px] tracking-[0.2em] uppercase text-foreground/60 mb-4 drop-shadow-[0_1px_4px_rgba(0,0,0,0.5)]">
-            The future is idle
-          </p>
-          <h2 className="font-display text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-[0.95] text-foreground drop-shadow-[0_2px_12px_rgba(0,0,0,0.5)]">
-            Autonomous
-            <br />
-            Capitalism
-            <br />
-            <span className="text-foreground/50">is here.</span>
-          </h2>
-          <p className="font-body text-sm text-foreground/70 mt-6 max-w-sm leading-relaxed drop-shadow-[0_1px_4px_rgba(0,0,0,0.5)]">
-            The robots are working so you don't have to.
-          </p>
-        </div>
-      </motion.section>
 
       {/* Directory */}
       <main id="directory" className="relative z-10 px-8 md:px-12 pb-32 scroll-mt-20">
