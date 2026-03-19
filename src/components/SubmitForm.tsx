@@ -118,9 +118,11 @@ const SubmitForm = ({ open, onClose }: SubmitFormProps) => {
                 ))}
                 <button
                   type="submit"
-                  className="w-full bg-gradient-primary text-primary-foreground font-body font-medium text-sm py-2.5 rounded-lg hover:opacity-90 transition-opacity mt-2"
+                  disabled={loading}
+                  className="w-full bg-gradient-primary text-primary-foreground font-body font-medium text-sm py-2.5 rounded-lg hover:opacity-90 transition-opacity mt-2 disabled:opacity-50"
                 >
-                  Submit
+                  {loading ? "Submitting…" : "Submit"}
+                </button>
                 </button>
               </form>
             )}
