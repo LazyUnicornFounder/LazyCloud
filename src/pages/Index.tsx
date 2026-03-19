@@ -26,7 +26,7 @@ const Index = () => {
       {/* Full-bleed background */}
       <div className="fixed inset-0 z-0">
         <img src={unicornBg} alt="" className="w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-background/40" />
+        <div className="absolute inset-0 bg-background/50 backdrop-blur-[2px]" />
       </div>
 
       {/* Nav — minimal, floating */}
@@ -59,13 +59,13 @@ const Index = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: [0.25, 0.1, 0.25, 1] }}
         >
-          <h1 className="font-display text-6xl sm:text-8xl md:text-9xl font-extrabold tracking-tight leading-[0.9] text-foreground">
+          <h1 className="font-display text-6xl sm:text-8xl md:text-9xl font-extrabold tracking-tight leading-[0.9] text-foreground drop-shadow-[0_2px_12px_rgba(0,0,0,0.5)]">
             Lazy
             <br />
             Unicorn
           </h1>
           <div className="mt-6 max-w-md">
-            <p className="font-body text-sm md:text-base text-foreground/60 leading-relaxed tracking-wide">
+            <p className="font-body text-sm md:text-base text-foreground/80 leading-relaxed tracking-wide drop-shadow-[0_1px_6px_rgba(0,0,0,0.5)]">
               A directory of companies making sure you never have to work again.
             </p>
           </div>
@@ -97,17 +97,17 @@ const Index = () => {
         className="relative z-10 px-8 md:px-12 py-24"
       >
         <div className="max-w-2xl">
-          <p className="font-body text-[11px] tracking-[0.2em] uppercase text-foreground/40 mb-4">
+          <p className="font-body text-[11px] tracking-[0.2em] uppercase text-foreground/60 mb-4 drop-shadow-[0_1px_4px_rgba(0,0,0,0.5)]">
             The future is idle
           </p>
-          <h2 className="font-display text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-[0.95] text-foreground">
+          <h2 className="font-display text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-[0.95] text-foreground drop-shadow-[0_2px_12px_rgba(0,0,0,0.5)]">
             Autonomous
             <br />
             Capitalism
             <br />
-            <span className="text-foreground/30">is here.</span>
+            <span className="text-foreground/50">is here.</span>
           </h2>
-          <p className="font-body text-sm text-foreground/40 mt-6 max-w-sm leading-relaxed">
+          <p className="font-body text-sm text-foreground/70 mt-6 max-w-sm leading-relaxed drop-shadow-[0_1px_4px_rgba(0,0,0,0.5)]">
             The robots are working so you don't have to.
           </p>
         </div>
@@ -120,7 +120,7 @@ const Index = () => {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="font-body text-[11px] tracking-[0.2em] uppercase text-foreground/40 mb-8"
+            className="font-body text-[11px] tracking-[0.2em] uppercase text-foreground/60 mb-8"
           >
             Directory
           </motion.p>
@@ -140,7 +140,7 @@ const Index = () => {
 
       {/* Footer */}
       <footer className="relative z-10 px-8 md:px-12 py-8 border-t border-foreground/10">
-        <span className="font-body text-[10px] tracking-[0.2em] uppercase text-foreground/30">
+        <span className="font-body text-[10px] tracking-[0.2em] uppercase text-foreground/50">
           Lazy Unicorn © 2026
         </span>
       </footer>
