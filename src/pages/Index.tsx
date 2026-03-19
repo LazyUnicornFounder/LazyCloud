@@ -120,7 +120,7 @@ const Index = () => {
       </motion.section>
 
       {/* Directory */}
-      <main className="relative z-10 px-8 md:px-12 pb-32">
+      <main id="directory" className="relative z-10 px-8 md:px-12 pb-32 scroll-mt-20">
         <div className="max-w-2xl">
           <motion.p
             initial={{ opacity: 0 }}
