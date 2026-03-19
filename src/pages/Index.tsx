@@ -107,7 +107,7 @@ const Index = () => {
             <br />
             <span className="text-foreground/50">is here.</span>
           </h2>
-          <p className="font-body text-sm text-foreground/40 mt-6 max-w-sm leading-relaxed">
+          <p className="font-body text-sm text-foreground/70 mt-6 max-w-sm leading-relaxed drop-shadow-[0_1px_4px_rgba(0,0,0,0.5)]">
             The robots are working so you don't have to.
           </p>
         </div>
