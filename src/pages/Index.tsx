@@ -29,39 +29,38 @@ const Index = () => {
         <div className="absolute inset-0 bg-black/50" />
       </div>
 
-      {/* Nav — minimal, floating */}
-      <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 md:px-12 py-6">
-        <span className="font-display text-sm font-semibold tracking-[0.2em] uppercase text-foreground/90">
+      {/* Nav — centered, frosted pill */}
+      <nav className="fixed top-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-6 bg-background/60 backdrop-blur-2xl border border-foreground/10 rounded-full px-8 py-3 shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
+        <span className="font-display text-sm font-semibold tracking-[0.15em] uppercase text-foreground">
           Lazy Unicorn
         </span>
-        <div className="flex items-center gap-4">
-          <a
-            href="#mission"
-            className="font-body text-[11px] tracking-[0.15em] uppercase text-foreground/70 hover:text-foreground transition-colors"
-          >
-            Mission
-          </a>
-          <a
-            href="#directory"
-            className="font-body text-[11px] tracking-[0.15em] uppercase text-foreground/70 hover:text-foreground transition-colors"
-          >
-            Directory
-          </a>
-          <a
-            href="https://x.com/SaadSahawneh"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-body text-[11px] tracking-[0.15em] uppercase text-foreground/70 hover:text-foreground transition-colors"
-          >
-            Follow on 𝕏
-          </a>
-          <button
-            onClick={() => setSubmitOpen(true)}
-            className="font-body text-[11px] tracking-[0.15em] uppercase text-foreground/90 border border-foreground/20 px-5 py-2 hover:bg-foreground/10 transition-colors"
-          >
-            Submit
-          </button>
-        </div>
+        <span className="w-px h-4 bg-foreground/20" />
+        <a
+          href="#mission"
+          className="font-body text-[11px] tracking-[0.15em] uppercase text-foreground/70 hover:text-primary transition-colors"
+        >
+          Mission
+        </a>
+        <a
+          href="#directory"
+          className="font-body text-[11px] tracking-[0.15em] uppercase text-foreground/70 hover:text-primary transition-colors"
+        >
+          Directory
+        </a>
+        <a
+          href="https://x.com/SaadSahawneh"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-body text-[11px] tracking-[0.15em] uppercase text-foreground/70 hover:text-primary transition-colors"
+        >
+          𝕏
+        </a>
+        <button
+          onClick={() => setSubmitOpen(true)}
+          className="font-body text-[11px] tracking-[0.15em] uppercase bg-primary text-primary-foreground px-5 py-1.5 rounded-full font-semibold hover:opacity-90 transition-opacity"
+        >
+          Submit
+        </button>
       </nav>
 
       {/* Hero — full viewport, architectural feel */}
