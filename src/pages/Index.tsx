@@ -167,6 +167,17 @@ const Index = () => {
               />
             ))}
           </div>
+          <div className="mt-10 pt-8 border-t border-foreground/10 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+            <p className="font-body text-sm text-foreground/60 flex-1">
+              Know a company that belongs here?
+            </p>
+            <button
+              onClick={() => setSubmitOpen(true)}
+              className="font-body text-[11px] tracking-[0.15em] uppercase bg-primary text-primary-foreground px-6 py-2.5 rounded-full font-semibold hover:opacity-90 transition-opacity"
+            >
+              Submit a Company
+            </button>
+          </div>
         </div>
       </main>
 
