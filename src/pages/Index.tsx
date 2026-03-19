@@ -1,13 +1,11 @@
-import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
 import unicornBg from "@/assets/unicorn-beach.png";
 import CompanyCard from "@/components/CompanyCard";
-import SubmitForm from "@/components/SubmitForm";
+import SubmitSection from "@/components/SubmitSection";
 import { supabase } from "@/integrations/supabase/client";
 
 const Index = () => {
-  const [submitOpen, setSubmitOpen] = useState(false);
 
   const { data: companies = [] } = useQuery({
     queryKey: ["approved-companies"],
@@ -46,12 +44,12 @@ const Index = () => {
           >
             Directory
           </a>
-          <button
-            onClick={() => setSubmitOpen(true)}
+          <a
+            href="#submit"
             className="font-body text-[11px] tracking-[0.15em] uppercase bg-primary text-primary-foreground px-5 py-1.5 rounded-full font-semibold hover:opacity-90 transition-opacity"
           >
             Submit
-          </button>
+          </a>
         </div>
         <a
           href="https://x.com/SaadSahawneh"
@@ -167,19 +165,10 @@ const Index = () => {
               />
             ))}
           </div>
-          <div className="mt-10 pt-8 border-t border-foreground/10 flex flex-col sm:flex-row items-start sm:items-center gap-4">
-            <p className="font-body text-sm text-foreground/60 flex-1">
-              Know a company that belongs here?
-            </p>
-            <button
-              onClick={() => setSubmitOpen(true)}
-              className="font-body text-[11px] tracking-[0.15em] uppercase bg-primary text-primary-foreground px-6 py-2.5 rounded-full font-semibold hover:opacity-90 transition-opacity"
-            >
-              Submit a Company
-            </button>
-          </div>
         </div>
       </main>
+
+      <SubmitSection />
 
       {/* Footer */}
       <footer className="relative z-10 px-8 md:px-12 py-8 border-t border-foreground/10">
@@ -187,8 +176,6 @@ const Index = () => {
           Lazy Unicorn © 2026
         </span>
       </footer>
-
-      <SubmitForm open={submitOpen} onClose={() => setSubmitOpen(false)} />
     </div>
   );
 };
