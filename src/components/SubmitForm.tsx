@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { z } from "zod";
 import { X } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
 
 const submitSchema = z.object({
   name: z.string().trim().min(1, "Company name is required").max(100, "Name must be under 100 characters"),
