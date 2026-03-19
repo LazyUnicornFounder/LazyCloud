@@ -55,7 +55,7 @@ const Index = () => {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="font-body text-base md:text-lg text-muted-foreground mt-6 max-w-lg mx-auto leading-relaxed"
         >
-          A curated directory of the companies building AI that starts, runs, and scales businesses autonomously.
+          Lazily built with Lovable for lazy founders who want to build a unicorn without doing much. A curated directory of the companies building AI that starts, runs, and scales businesses autonomously.
         </motion.p>
       </header>
 
