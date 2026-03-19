@@ -1,8 +1,10 @@
 import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
 import CompanyCard from "@/components/CompanyCard";
 import SubmitForm from "@/components/SubmitForm";
-import { companies } from "@/data/companies";
+import { supabase } from "@/integrations/supabase/client";
+import { companies as staticCompanies } from "@/data/companies";
 
 const Index = () => {
   const [submitOpen, setSubmitOpen] = useState(false);
