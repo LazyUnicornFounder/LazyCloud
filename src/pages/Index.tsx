@@ -100,7 +100,7 @@ const Index = () => {
           <p className="font-body text-[11px] tracking-[0.2em] uppercase text-foreground/60 mb-4 drop-shadow-[0_1px_4px_rgba(0,0,0,0.5)]">
             The future is idle
           </p>
-          <h2 className="font-display text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-[0.95] text-foreground">
+          <h2 className="font-display text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-[0.95] text-foreground drop-shadow-[0_2px_12px_rgba(0,0,0,0.5)]">
             Autonomous
             <br />
             Capitalism
