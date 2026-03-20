@@ -6,6 +6,7 @@ import CompanyCard from "@/components/CompanyCard";
 import SubmitSection from "@/components/SubmitSection";
 import SEO from "@/components/SEO";
 import { supabase } from "@/integrations/supabase/client";
+import BlogTicker from "@/components/BlogTicker";
 
 const Index = () => {
 
