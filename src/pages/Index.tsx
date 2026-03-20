@@ -6,6 +6,7 @@ import CompanyCard from "@/components/CompanyCard";
 import SubmitSection from "@/components/SubmitSection";
 import SEO from "@/components/SEO";
 import { supabase } from "@/integrations/supabase/client";
+import BlogTicker from "@/components/BlogTicker";
 
 const Index = () => {
 
@@ -205,20 +206,14 @@ const Index = () => {
           </p>
         </motion.div>
 
-        {/* Scroll indicator */}
+        {/* Blog Ticker */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1.5, duration: 1 }}
-          className="absolute bottom-8 right-8 md:right-12"
+          transition={{ delay: 1.2, duration: 0.8 }}
+          className="absolute bottom-0 left-0 right-0"
         >
-          <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            className="font-body text-[10px] tracking-[0.2em] uppercase text-foreground/40 rotate-90 origin-center"
-          >
-            Scroll
-          </motion.div>
+          <BlogTicker />
         </motion.div>
       </header>
 
