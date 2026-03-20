@@ -1,22 +1,6 @@
-import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 
 const TwitterFeed = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    // Load Twitter widget script
-    const script = document.createElement("script");
-    script.src = "https://platform.twitter.com/widgets.js";
-    script.async = true;
-    script.charset = "utf-8";
-    document.body.appendChild(script);
-
-    return () => {
-      document.body.removeChild(script);
-    };
-  }, []);
-
   return (
     <section className="relative z-10 px-8 md:px-12 pb-16">
       <motion.div
@@ -29,16 +13,14 @@ const TwitterFeed = () => {
         <p className="font-display text-3xl md:text-4xl font-extrabold tracking-[0.1em] uppercase text-foreground/60 mb-6">
           Feed
         </p>
-        <div ref={containerRef} className="rounded-2xl overflow-hidden">
-          <a
-            className="twitter-timeline"
-            data-theme="dark"
-            data-chrome="noheader nofooter noborders transparent"
-            data-height="500"
-            href="https://twitter.com/SaadSahawneh"
-          >
-            Loading tweets…
-          </a>
+        <div className="rounded-2xl overflow-hidden">
+          <iframe
+            src="https://syndication.twitter.com/srv/timeline-profile/screen-name/SaadSahawneh?dnt=true&embedId=twitter-widget-0&frame=false&hideBorder=true&hideFooter=true&hideHeader=true&hideScrollBar=false&lang=en&theme=dark&transparent=true"
+            className="w-full border-0 rounded-2xl"
+            style={{ height: 500, colorScheme: "dark" }}
+            sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
+            title="@SaadSahawneh on X"
+          />
         </div>
       </motion.div>
     </section>
