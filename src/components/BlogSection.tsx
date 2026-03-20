@@ -1,3 +1,4 @@
+import { Pin } from "lucide-react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import unicornBg from "@/assets/unicorn-beach.png";
