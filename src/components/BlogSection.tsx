@@ -70,7 +70,7 @@ export const blogPosts: BlogPost[] = [
 
       "Ideal angels are founders, operators, or investors who have direct experience with the autonomous company space — who have used Polsia, built with Naïve, or watched firsthand as AI agents took over operational functions that used to require a team. People who understand viscerally why this matters and want to help build the resource that the whole ecosystem needs.",
 
-      "What you'd be investing in: The earliest and most honest voice in the autonomous company space. A directory that practices what it preaches. A brand that can own a category that doesn't fully exist yet — and will be enormous when it does. And possibly the only pitch deck in history that was partially written by the AI it's asking you to believe in.",
+      "What you'd be investing in: The earliest and most honest voice in the autonomous company space. A directory that practices what it preaches. A brand that can own a category that doesn't fully exist yet — and will be enormous when it does. And possibly the only fundraise in history that was partially written by the AI it's asking you to believe in.",
 
       "This is early. The autonomous company category is real, growing fast, and underserved — but it's still early. The directory has traction and a clear thesis, but it hasn't yet proven the autonomous business model at scale. That's what this round is for: building the foundation and proving the concept before the category becomes obvious and the competition arrives.",
 
