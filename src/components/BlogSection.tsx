@@ -282,7 +282,7 @@ const BlogSection = () => {
                   <p className="font-body text-sm text-foreground/50 leading-relaxed line-clamp-2">
                     {post.excerpt}
                   </p>
-                  <span className="inline-block mt-4 font-body text-[10px] tracking-[0.2em] uppercase text-primary font-semibold group-hover:translate-x-1 transition-transform">
+                  <span className="inline-block mt-auto pt-4 font-body text-[10px] tracking-[0.2em] uppercase text-primary font-semibold group-hover:translate-x-1 transition-transform">
                     Read article →
                   </span>
                 </div>
