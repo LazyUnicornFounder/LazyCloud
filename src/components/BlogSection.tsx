@@ -272,7 +272,6 @@ export const blogPosts: BlogPost[] = [
       "It's later now. The work is optional. The income doesn't have to be.",
     ],
   },
-  },
   {
     slug: "autonomous-capitalism-for-the-rest-of-us",
     title: "Autonomous Capitalism for the Rest of Us",
