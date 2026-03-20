@@ -75,7 +75,33 @@ const Index = () => {
       </nav>
 
       {/* Hero — full viewport, architectural feel */}
-      <header className="relative z-10 min-h-screen flex flex-col justify-end px-8 md:px-12 pb-16">
+      <header className="relative z-10 min-h-screen flex flex-col justify-end items-start px-8 md:px-12 pb-16">
+        {/* Arc entrance sign */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1.2, delay: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
+          className="mb-[-1rem] ml-2 md:ml-4"
+        >
+          <svg viewBox="0 0 400 120" className="w-[280px] sm:w-[360px] md:w-[440px] h-auto overflow-visible">
+            <defs>
+              <path id="archPath" d="M 30,110 Q 200,-10 370,110" fill="none" />
+            </defs>
+            <path d="M 30,110 Q 200,-10 370,110" fill="none" stroke="hsl(0 0% 95% / 0.15)" strokeWidth="1" />
+            <path d="M 30,110 Q 200,-10 370,110" fill="none" stroke="hsl(0 0% 95% / 0.08)" strokeWidth="1" transform="translate(0, 6)" />
+            <text fill="hsl(0 0% 95% / 0.7)" fontSize="15" fontWeight="800" letterSpacing="0.15em" textAnchor="middle" style={{ fontFamily: "'Syne', system-ui, sans-serif" }}>
+              <textPath href="#archPath" startOffset="50%">
+                AUTONOMOUS CAPITALISM IS HERE
+              </textPath>
+            </text>
+            <text fill="hsl(0 0% 95% / 0.3)" fontSize="8" letterSpacing="0.25em" textAnchor="middle" style={{ fontFamily: "'Space Grotesk', system-ui, sans-serif" }}>
+              <textPath href="#archPath" startOffset="50%" dy="16">
+                ★  EST. 2026  ★
+              </textPath>
+            </text>
+          </svg>
+        </motion.div>
+
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -92,32 +118,6 @@ const Index = () => {
           <p className="font-body text-sm sm:text-base md:text-lg text-foreground/60 mt-4 max-w-md leading-relaxed">
             A directory of AI companies that let you start, run, and scale businesses while you sleep.
           </p>
-        </motion.div>
-
-        {/* Floating badge */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
-          className="absolute top-[20%] right-8 md:right-16 lg:right-24"
-        >
-          <div className="bg-background/60 backdrop-blur-2xl border border-foreground/10 rounded-2xl px-6 py-5 shadow-[0_8px_32px_rgba(0,0,0,0.4)] max-w-[200px]">
-            <motion.div
-              animate={{ opacity: [0.4, 1, 0.4] }}
-              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-              className="w-2 h-2 rounded-full bg-primary mb-3"
-            />
-            <p className="font-display text-sm font-extrabold tracking-[0.1em] uppercase text-foreground leading-tight">
-              Autonomous
-              <br />
-              capitalism
-              <br />
-              is here.
-            </p>
-            <span className="font-body text-[8px] tracking-[0.2em] uppercase text-foreground/30 mt-2 block">
-              est. 2026
-            </span>
-          </div>
         </motion.div>
 
         {/* Scroll indicator */}
