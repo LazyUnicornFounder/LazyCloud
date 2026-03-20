@@ -56,7 +56,7 @@ export const blogPosts: BlogPost[] = [
 
       "800+ companies are already running autonomously on Polsia alone. The monthly cost to run an autonomous company is $49 — the new normal. And there are zero authoritative directories for this space currently existing.",
 
-      "How We'll Use the Capital",
+      "How I'll Use the Capital",
 
       "40% — Product & autonomous infrastructure. Building the technical foundation for a directory that updates, curates, and improves itself — integrating AI agents across content, distribution, and operations.",
 
