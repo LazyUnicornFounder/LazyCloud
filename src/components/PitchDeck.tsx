@@ -149,11 +149,9 @@ const slides = [
         <h3 className="font-display text-3xl md:text-5xl font-extrabold tracking-tight text-foreground leading-[0.95] mb-8">
           Growing fast.
         </h3>
-        <div className="grid grid-cols-3 gap-6 max-w-lg mb-8">
+        <div className="grid grid-cols-1 gap-6 max-w-lg mb-8">
           {[
-            { value: "50+", label: "Builders listed" },
-            { value: "12K", label: "Monthly visitors" },
-            { value: "3.2K", label: "Newsletter subs" },
+            { value: "2", label: "Builders listed" },
           ].map((stat) => (
             <div key={stat.label} className="text-center">
               <p className="font-display text-3xl md:text-4xl font-extrabold text-primary">{stat.value}</p>
