@@ -64,7 +64,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "lazy-founders-build-unicorns",
     title: "The Lazy Founder Thesis: Why Doing Less Is the New Unicorn Playbook",
-    date: "February 2026",
+    date: "March 2026",
     readTime: "5 min read",
     thumbnail: unicornBg,
     excerpt: "The best founders aren't grinding 18-hour days anymore. They're architecting systems that grind for them — and building billion-dollar outcomes in the process.",
