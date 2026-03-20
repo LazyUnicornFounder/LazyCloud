@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import unicornBg from "@/assets/unicorn-beach.png";
 import CompanyCard from "@/components/CompanyCard";
 import SubmitSection from "@/components/SubmitSection";
-import TwitterFeed from "@/components/TwitterFeed";
+
 
 import SEO from "@/components/SEO";
 import { supabase } from "@/integrations/supabase/client";
@@ -288,8 +288,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Twitter Feed */}
-      <TwitterFeed />
+
 
       {/* Mission */}
       <section id="mission" className="relative z-10 px-8 md:px-12 pb-16 scroll-mt-24">
