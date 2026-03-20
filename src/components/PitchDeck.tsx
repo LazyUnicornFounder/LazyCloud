@@ -139,8 +139,36 @@ const slides = [
     ),
   },
   {
-    id: "traction",
+    id: "about",
     label: "06",
+    content: (
+      <div className="flex flex-col justify-center h-full px-10 md:px-16">
+        <p className="font-body text-[10px] tracking-[0.3em] uppercase text-primary/70 mb-4">
+          About Us
+        </p>
+        <h3 className="font-display text-3xl md:text-5xl font-extrabold tracking-tight text-foreground leading-[0.95] mb-6">
+          Self-building by design.
+        </h3>
+        <div className="space-y-3 max-w-lg">
+          <p className="font-body text-sm text-foreground/50 leading-relaxed">
+            We're obsessed with self-building startups — companies that design, ship, and scale themselves with AI agents doing the heavy lifting.
+          </p>
+          <p className="font-body text-sm text-foreground/50 leading-relaxed">
+            Lazy Unicorn is the definitive directory of tools that help anyone become a lazy unicorn — a founder who owns a thriving company without burning out building it.
+          </p>
+          <div className="flex items-center gap-3 bg-primary/5 rounded-xl px-5 py-3 border border-primary/10 mt-4">
+            <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+            <p className="font-body text-xs text-foreground/50">
+              The directory itself is a living experiment in autonomous capitalism with a goal of becoming an autonomous business.
+            </p>
+          </div>
+        </div>
+      </div>
+    ),
+  },
+  {
+    id: "traction",
+    label: "07",
     content: (
       <div className="flex flex-col justify-center h-full px-10 md:px-16">
         <p className="font-body text-[10px] tracking-[0.3em] uppercase text-primary/70 mb-4">
@@ -170,7 +198,7 @@ const slides = [
   },
   {
     id: "ask",
-    label: "07",
+    label: "08",
     content: (
       <div className="flex flex-col items-center justify-center h-full text-center px-8">
         <p className="font-body text-[10px] tracking-[0.3em] uppercase text-primary/70 mb-6">

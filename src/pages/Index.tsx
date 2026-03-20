@@ -92,12 +92,12 @@ const Index = () => {
           >
             Blog
           </a>
-          <a
-            href="#mission"
-            className="font-body text-[11px] tracking-[0.15em] uppercase text-foreground/70 hover:text-primary transition-colors"
-           >
-             Mission
-           </a>
+           <a
+             href="#about"
+             className="font-body text-[11px] tracking-[0.15em] uppercase text-foreground/70 hover:text-primary transition-colors"
+            >
+              About
+            </a>
            <a
              href="#pitch"
              className="font-body text-[11px] tracking-[0.15em] uppercase text-foreground/70 hover:text-primary transition-colors"
@@ -259,7 +259,7 @@ const Index = () => {
               Lazy Unicorn exists to become the definitive, self-building directory of the best tools and platforms that help anyone launch and run a business without the grind. Our mission is simple: make it possible for all of us to become lazy unicorns — founders who own thriving companies without burning out building them.
             </p>
             <p className="font-body text-base text-foreground/50 leading-relaxed">
-              The directory itself is a living experiment in autonomous capitalism. We practice what we preach.
+              The directory itself is a living experiment in autonomous capitalism with a goal of becoming an autonomous business.
             </p>
           </motion.div>
         </div>
