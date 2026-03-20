@@ -43,6 +43,24 @@ const Navbar = ({ activePage = "home" }: NavbarProps) => {
       {/* Desktop nav */}
       {!isMobile ? (
         <>
+          <div className="mb-1.5 flex items-center gap-2">
+            <a
+              href="https://x.com/SaadSahawneh"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-body text-[9px] tracking-[0.2em] uppercase text-foreground/50 hover:text-primary transition-colors bg-background/60 backdrop-blur-2xl border border-foreground/10 rounded-full px-4 py-1 shadow-[0_4px_16px_rgba(0,0,0,0.3)]"
+            >
+              Follow on 𝕏
+            </a>
+            <a
+              href="https://www.linkedin.com/in/saadsahawneh"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-body text-[9px] tracking-[0.2em] uppercase text-foreground/50 hover:text-primary transition-colors bg-background/60 backdrop-blur-2xl border border-foreground/10 rounded-full px-4 py-1 shadow-[0_4px_16px_rgba(0,0,0,0.3)]"
+            >
+              Follow on LinkedIn
+            </a>
+          </div>
           <div className="flex items-center gap-6 bg-background/60 backdrop-blur-2xl border border-foreground/10 rounded-full px-8 py-3 shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
             <a
               href={brandHref}
@@ -83,24 +101,6 @@ const Navbar = ({ activePage = "home" }: NavbarProps) => {
                 </a>
               )
             )}
-          </div>
-          <div className="mt-1.5 flex items-center gap-2">
-            <a
-              href="https://x.com/SaadSahawneh"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-body text-[9px] tracking-[0.2em] uppercase text-foreground/50 hover:text-primary transition-colors bg-background/60 backdrop-blur-2xl border border-foreground/10 rounded-full px-4 py-1 shadow-[0_4px_16px_rgba(0,0,0,0.3)]"
-            >
-              Follow on 𝕏
-            </a>
-            <a
-              href="https://www.linkedin.com/in/saadsahawneh"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-body text-[9px] tracking-[0.2em] uppercase text-foreground/50 hover:text-primary transition-colors bg-background/60 backdrop-blur-2xl border border-foreground/10 rounded-full px-4 py-1 shadow-[0_4px_16px_rgba(0,0,0,0.3)]"
-            >
-              Follow on LinkedIn
-            </a>
           </div>
         </>
       ) : (
