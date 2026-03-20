@@ -2,7 +2,6 @@ import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
 import unicornBg from "@/assets/unicorn-beach.png";
 import CompanyCard from "@/components/CompanyCard";
-import BlogSection from "@/components/BlogSection";
 import SubmitSection from "@/components/SubmitSection";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -52,7 +51,7 @@ const Index = () => {
             Directory
           </a>
           <a
-            href="#blog"
+            href="/blog"
             className="font-body text-[11px] tracking-[0.15em] uppercase text-foreground/70 hover:text-primary transition-colors"
           >
             Blog
@@ -197,7 +196,7 @@ const Index = () => {
         </div>
       </main>
 
-      <BlogSection />
+      
 
       <SubmitSection />
 
