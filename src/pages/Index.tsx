@@ -51,7 +51,7 @@ const Index = () => {
             Directory
           </a>
           <a
-            href="#blog"
+            href="/blog"
             className="font-body text-[11px] tracking-[0.15em] uppercase text-foreground/70 hover:text-primary transition-colors"
           >
             Blog
