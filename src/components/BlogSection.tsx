@@ -10,15 +10,15 @@ export const blogPosts: BlogPost[] = [
     date: "March 2026",
     readTime: "12 min read",
     thumbnail: unicornBg,
-    excerpt: "We're building the world's first self-building directory of autonomous company tools — and we're looking for investors who believe the laziest founders will own the future.",
+    excerpt: "I'm building the world's first self-building directory of autonomous company tools — and I'm looking for investors who believe the laziest founders will own the future.",
     content: [
       "I'll be upfront about something: this fundraising announcement was written, formatted, and published with significant help from AI. The irony is entirely intentional. Lazy Unicorn is a company that practices what it preaches — and what it preaches is that the future belongs to founders who know how to delegate everything except the vision.",
 
       "Today, I'm sharing that vision with people who might want to own a piece of it.",
 
-      "Lazy Unicorn is raising an angel round. Here's the full story — what we're building, why now, and why I think this is one of the most interesting bets in the current AI landscape.",
+      "Lazy Unicorn is raising an angel round. Here's the full story — what I'm building, why now, and why I think this is one of the most interesting bets in the current AI landscape.",
 
-      "Our Mission: Make it possible for anyone to become a lazy unicorn — a founder who owns a thriving company without burning out building it.",
+      "My Mission: Make it possible for anyone to become a lazy unicorn — a founder who owns a thriving company without burning out building it.",
 
       "I've been fascinated with self-building startups for a while now — companies that design, ship, and scale themselves with AI agents doing the heavy lifting. Not \"AI-assisted\" companies where a human still does most of the work. Genuinely autonomous companies where the system decides what to do, does it, measures the result, and improves.",
 
@@ -32,11 +32,11 @@ export const blogPosts: BlogPost[] = [
 
       "But the directory is also something more interesting than a list of tools. It's a living experiment in autonomous capitalism — a business that is itself trying to become the thing it writes about.",
 
-      "Lazy Unicorn isn't just describing autonomous companies. It's attempting to become one. The content is increasingly AI-assisted. The operations are being handed to agents where possible. The distribution is being automated. Every week, the goal is for the directory to require less of the founder's time — not because we're scaling the team, but because we're scaling the autonomy.",
+      "Lazy Unicorn isn't just describing autonomous companies. It's attempting to become one. The content is increasingly AI-assisted. The operations are being handed to agents where possible. The distribution is being automated. Every week, the goal is for the directory to require less of my time — not because I'm scaling a team, but because I'm scaling the autonomy.",
 
-      "The directory is a proof of concept for its own thesis. If Lazy Unicorn can become a genuinely autonomous business, it validates everything it writes about. If it can't, we'll write honestly about why not. Either way, it's the most interesting experiment in the space.",
+      "The directory is a proof of concept for its own thesis. If Lazy Unicorn can become a genuinely autonomous business, it validates everything it writes about. If it can't, I'll write honestly about why not. Either way, it's the most interesting experiment in the space.",
 
-      "The Three Bets We're Making",
+      "The Three Bets I'm Making",
 
       "Bet 01: Autonomous companies are the dominant startup model within 5 years. The cost of operating a company has collapsed. The tools are here, cheap, and improving weekly. Every founder who discovers this model will want a resource that helps them navigate it. Lazy Unicorn is that resource.",
 
@@ -56,7 +56,7 @@ export const blogPosts: BlogPost[] = [
 
       "800+ companies are already running autonomously on Polsia alone. The monthly cost to run an autonomous company is $49 — the new normal. And there are zero authoritative directories for this space currently existing.",
 
-      "How We'll Use the Capital",
+      "How I'll Use the Capital",
 
       "40% — Product & autonomous infrastructure. Building the technical foundation for a directory that updates, curates, and improves itself — integrating AI agents across content, distribution, and operations.",
 
@@ -66,17 +66,17 @@ export const blogPosts: BlogPost[] = [
 
       "15% — Operations & runway. 18 months of operational runway to reach meaningful distribution metrics and prove the autonomous business model before the next round.",
 
-      "We're not looking for a board member or a micromanager. We're looking for believers — people who see the same shift we see and want to be early to the category that captures it.",
+      "I'm not looking for a board member or a micromanager. I'm looking for believers — people who see the same shift I see and want to be early to the category that captures it.",
 
       "Ideal angels are founders, operators, or investors who have direct experience with the autonomous company space — who have used Polsia, built with Naïve, or watched firsthand as AI agents took over operational functions that used to require a team. People who understand viscerally why this matters and want to help build the resource that the whole ecosystem needs.",
 
-      "What you'd be investing in: The earliest and most honest voice in the autonomous company space. A directory that practices what it preaches. A brand that can own a category that doesn't fully exist yet — and will be enormous when it does. And possibly the only pitch deck in history that was partially written by the AI it's asking you to believe in.",
+      "What you'd be investing in: The earliest and most honest voice in the autonomous company space. A directory that practices what it preaches. A brand that can own a category that doesn't fully exist yet — and will be enormous when it does. And possibly the only fundraise in history that was partially written by the AI it's asking you to believe in.",
 
       "This is early. The autonomous company category is real, growing fast, and underserved — but it's still early. The directory has traction and a clear thesis, but it hasn't yet proven the autonomous business model at scale. That's what this round is for: building the foundation and proving the concept before the category becomes obvious and the competition arrives.",
 
-      "The risk is timing. Too early and the market isn't ready. Too late and someone else owns the space. Our bet is that we're sitting at exactly the right moment — early enough to establish authority, late enough that the tools are real and the audience exists.",
+      "The risk is timing. Too early and the market isn't ready. Too late and someone else owns the space. My bet is that I'm sitting at exactly the right moment — early enough to establish authority, late enough that the tools are real and the audience exists.",
 
-      "Polsia is running 800 companies right now. Naïve is deploying AI agents for founders across the world. The audience for Lazy Unicorn is already out there, already using these tools, already looking for a trusted curator. We just need to be the one they find first.",
+      "Polsia is running 800 companies right now. Naïve is deploying AI agents for founders across the world. The audience for Lazy Unicorn is already out there, already using these tools, already looking for a trusted curator. I just need to be the one they find first.",
 
       "\"Every major category has a definitive directory. SaaS has G2. No-code has Nocode.tech. Autonomous companies don't have one yet. That's the opportunity.\"",
 
@@ -84,11 +84,11 @@ export const blogPosts: BlogPost[] = [
 
       "A directory about autonomous companies that is itself an autonomous company. The meta-proof of the thesis. The ultimate lazy unicorn.",
 
-      "We're not there yet. But every product decision, every infrastructure choice, every hire we consider — it all gets evaluated against that north star. If it moves us toward autonomy, we do it. If it makes us more dependent on human labor, we question it hard.",
+      "I'm not there yet. But every product decision, every infrastructure choice — it all gets evaluated against that north star. If it moves toward autonomy, I do it. If it makes the business more dependent on human labor, I question it hard.",
 
       "That discipline is what makes this interesting as an investment. Not just a directory — a directory that is actively becoming a demonstration of the most important idea in entrepreneurship right now.",
 
-      "Interested in the round? We're talking to angels who move fast and think long. If this resonates — if you see the same shift we see — let's talk.",
+      "Interested in the round? I'm talking to angels who move fast and think long. If this resonates — if you see the same shift I see — reach out on <a href=\"https://x.com/SaadSahawneh\" target=\"_blank\" rel=\"noopener noreferrer\">𝕏</a> or <a href=\"https://www.linkedin.com/in/saadsahawneh\" target=\"_blank\" rel=\"noopener noreferrer\">LinkedIn</a>.",
 
       "Written by the founder of Lazy Unicorn. Yes, with AI help. That's the point.",
     ],
