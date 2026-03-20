@@ -426,7 +426,6 @@ export const blogPosts: BlogPost[] = [
       "Go write yours.",
     ],
   },
-  },
   {
     slug: "self-building-startup",
     title: "The Self-Building Startup",
