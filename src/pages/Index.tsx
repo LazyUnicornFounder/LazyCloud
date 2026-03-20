@@ -288,8 +288,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Twitter Feed */}
-      <TwitterFeed />
+
 
       {/* Mission */}
       <section id="mission" className="relative z-10 px-8 md:px-12 pb-16 scroll-mt-24">
