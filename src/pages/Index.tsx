@@ -71,6 +71,11 @@ const Index = () => {
         <div className="absolute inset-0 bg-black/50" />
       </div>
 
+      {/* Blog Ticker at top */}
+      <div className="fixed top-0 left-0 right-0 z-50">
+        <BlogTicker />
+      </div>
+
       <Navbar activePage="home" />
 
       {/* Hero — full viewport, architectural feel */}
@@ -116,15 +121,6 @@ const Index = () => {
           </div>
         </motion.div>
 
-        {/* Blog Ticker */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2, duration: 0.8 }}
-          className="absolute bottom-10 left-0 right-0"
-        >
-          <BlogTicker />
-        </motion.div>
       </header>
 
 
