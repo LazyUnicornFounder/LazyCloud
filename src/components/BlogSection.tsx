@@ -112,7 +112,7 @@ const BlogSection = () => {
         </motion.div>
 
         {/* Post grid */}
-        <div className="grid gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {blogPosts.map((post, i) => (
             <motion.div
               key={post.slug}
