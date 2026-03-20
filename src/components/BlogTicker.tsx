@@ -30,7 +30,7 @@ const BlogTicker = () => {
               alt={post.title}
               className="w-10 h-10 rounded-lg object-cover border border-foreground/10 group-hover:border-primary/50 transition-colors"
             />
-            <span className="font-body text-[11px] tracking-wide text-foreground/60 group-hover:text-primary transition-colors whitespace-nowrap max-w-[220px] truncate">
+            <span className="font-body text-xs font-medium tracking-wide text-foreground/60 group-hover:text-primary transition-colors whitespace-nowrap max-w-[220px] truncate">
               {post.title}
             </span>
             <span className="w-px h-4 bg-foreground/10 shrink-0" />
