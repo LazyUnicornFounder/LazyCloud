@@ -196,7 +196,7 @@ const slides = [
           ))}
         </div>
         <p className="font-body text-xs text-primary/60 mt-10 tracking-[0.15em]">
-          hello@lazyunicorn.ai
+          lazyunicorn.ai
         </p>
       </div>
     ),
