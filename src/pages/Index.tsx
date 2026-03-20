@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import unicornBg from "@/assets/unicorn-beach.png";
 import CompanyCard from "@/components/CompanyCard";
 import SubmitSection from "@/components/SubmitSection";
+import SEO from "@/components/SEO";
 import { supabase } from "@/integrations/supabase/client";
 
 const Index = () => {
@@ -22,6 +23,19 @@ const Index = () => {
 
   return (
     <div className="min-h-screen text-foreground relative">
+      <SEO url="/" />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Lazy Unicorn",
+        "url": "https://lazyunicorn.com",
+        "description": "The definitive directory of AI companies that let you start, run, and scale businesses while you sleep.",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://lazyunicorn.com/?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      })}} />
       {/* Full-bleed background */}
       <div className="fixed inset-0 z-0">
         <img src={unicornBg} alt="" className="w-full h-full object-cover" />

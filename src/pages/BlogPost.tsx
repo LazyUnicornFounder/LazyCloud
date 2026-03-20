@@ -2,6 +2,7 @@ import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import unicornBg from "@/assets/unicorn-beach.png";
 import { blogPosts } from "@/components/BlogSection";
+import SEO from "@/components/SEO";
 
 const BlogPost = () => {
   const { slug } = useParams();
@@ -28,6 +29,23 @@ const BlogPost = () => {
 
   return (
     <div className="min-h-screen text-foreground relative">
+      <SEO
+        title={post.title}
+        description={post.excerpt}
+        url={`/blog/${post.slug}`}
+        type="article"
+        publishedTime="2026-03-01T00:00:00Z"
+      />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": post.title,
+        "description": post.excerpt,
+        "datePublished": "2026-03-01",
+        "author": { "@type": "Organization", "name": "Lazy Unicorn" },
+        "publisher": { "@type": "Organization", "name": "Lazy Unicorn", "url": "https://lazyunicorn.com" },
+        "mainEntityOfPage": `https://lazyunicorn.com/blog/${post.slug}`
+      })}} />
       {/* Background */}
       <div className="fixed inset-0 z-0">
         <img src={unicornBg} alt="" className="w-full h-full object-cover" />
