@@ -266,7 +266,7 @@ const BlogSection = () => {
                 </div>
 
                 {/* Info */}
-                <div className="px-8 py-6">
+                <div className="px-8 py-6 flex flex-col flex-1">
                   <div className="flex items-center gap-3 mb-3">
                     <span className="font-body text-[10px] tracking-[0.2em] uppercase text-primary font-semibold">
                       {post.date}
