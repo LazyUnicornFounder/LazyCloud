@@ -4,6 +4,7 @@ import unicornBg from "@/assets/unicorn-beach.png";
 import { blogPosts } from "@/components/BlogSection";
 import SEO from "@/components/SEO";
 import Navbar from "@/components/Navbar";
+import BlogTicker from "@/components/BlogTicker";
 
 const BlogPost = () => {
   const { slug } = useParams();
