@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import unicornBg from "@/assets/unicorn-beach.png";
 import BlogSection, { blogPosts } from "@/components/BlogSection";
 import SEO from "@/components/SEO";
+import Navbar from "@/components/Navbar";
 
 const Blog = () => {
   const collectionJsonLd = {
