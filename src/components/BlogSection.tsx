@@ -66,7 +66,7 @@ export const blogPosts: BlogPost[] = [
 
       "15% — Operations & runway. 18 months of operational runway to reach meaningful distribution metrics and prove the autonomous business model before the next round.",
 
-      "We're not looking for a board member or a micromanager. We're looking for believers — people who see the same shift we see and want to be early to the category that captures it.",
+      "I'm not looking for a board member or a micromanager. I'm looking for believers — people who see the same shift I see and want to be early to the category that captures it.",
 
       "Ideal angels are founders, operators, or investors who have direct experience with the autonomous company space — who have used Polsia, built with Naïve, or watched firsthand as AI agents took over operational functions that used to require a team. People who understand viscerally why this matters and want to help build the resource that the whole ecosystem needs.",
 
