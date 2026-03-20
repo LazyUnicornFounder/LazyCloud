@@ -298,15 +298,20 @@ const Index = () => {
           >
             Mission
           </motion.p>
-          <motion.p
+          <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
-            className="font-body text-lg md:text-xl text-foreground/70 leading-relaxed"
+            className="space-y-4"
           >
-            Accelerate the future of autonomous capitalism.
-          </motion.p>
+            <p className="font-body text-lg md:text-xl text-foreground/70 leading-relaxed">
+              Accelerate the future of autonomous capitalism.
+            </p>
+            <p className="font-body text-base text-foreground/50 leading-relaxed">
+              I'm trying to build Lazy Unicorn into a $1 billion autonomous startup that runs itself, sell it, and then invest in a new project. For now I'd like to find companies similar to Polsia and Naive to grow the directory, and find cool new ways to grow Lazy Unicorn autonomously.
+            </p>
+          </motion.div>
         </div>
       </section>
 
