@@ -349,6 +349,83 @@ export const blogPosts: BlogPost[] = [
       "The question isn't whether this shift is happening. It's whether you're going to be on the side that owns the autonomous company — or the side that watches someone else build one.",
     ],
   },
+  {
+    slug: "how-to-launch-autonomous-business",
+    title: "How to Launch Your Autonomous Business",
+    date: "March 2026",
+    readTime: "9 min read",
+    thumbnail: unicornBg,
+    excerpt: "A practical, no-fluff guide to going from idea to self-running company — using the two platforms that are actually doing this at scale right now.",
+    content: [
+      "You've read the essays. You believe the thesis. Autonomous companies are real, they're cheap, and they're available to anyone. Now what?",
+
+      "This isn't a think piece. This is the actual guide — what to do, in what order, using which tools, with honest notes on what to expect along the way. By the end of it, you should be able to go from blank page to running autonomous business in under a week. Possibly in an afternoon.",
+
+      "There are two platforms you need to know about. Everything in this guide runs through them.",
+
+      "The Two Platforms Worth Your Time",
+
+      "There are a lot of AI tools claiming to automate your business. Most of them automate a task or two and call it a revolution. These two are different — they're building toward the full stack of autonomous company operation, and they're already doing it for hundreds of real businesses.",
+
+      "Naïve (usenaive.ai) — Best for starting from zero. Naïve is where you go when you have an idea but not yet a company. Describe what you want to build in a single chat message. Naïve creates your company infrastructure — the website, the brand, the operational setup — then deploys specialized AI agents across marketing, sales, content, and operations. Your team is ready before you've written a single line of code or sent a single email.",
+
+      "Polsia (polsia.com) — Best for running what you've built. Polsia is the autonomous company runtime. You give it your business — existing or new — and it runs it. Every day, Polsia's agents wake up, assess what the company needs, and execute: sending outbound, shipping code updates, managing your inbox, running campaigns, handling support. It currently operates 800+ companies simultaneously at $49/month.",
+
+      "Think of Naïve as the launchpad and Polsia as the engine. Many founders will use both — Naïve to get started quickly, Polsia to run it long-term.",
+
+      "Before You Start: The One Thing That Matters",
+
+      "Before you touch either platform, you need one thing: a clear, specific idea. Not a vague category. Not \"something in AI\" or \"an e-commerce business.\" A specific product or service for a specific person with a specific problem.",
+
+      "AI agents are extraordinarily good at executing against a clear direction. They are much worse at inventing the direction from scratch. The founder's job — arguably the only part that still requires a human — is to answer: what are we building, for whom, and why will they pay for it?",
+
+      "The one-sentence test: Can you describe your business in one sentence that a stranger would immediately understand? \"A SaaS tool that helps freelance designers send automated client update emails\" passes. \"An AI-powered platform for creative professionals\" does not. Get to one sentence before you open either platform.",
+
+      "The Step-by-Step Launch Guide",
+
+      "Step 1: Write your founding prompt. This is the single most important thing you'll do. Both platforms take your description as their starting point — and the quality of everything they build flows from the quality of this prompt. Include: what the business does, who it's for, how it makes money, and the tone you want it to have. A good founding prompt is 3–5 sentences. Spend 20 minutes on it.",
+
+      "Step 2: Let Naïve build your foundation. Paste your founding prompt into Naïve. It will create your company HQ — a landing page, brand identity, and initial operational setup. Review everything it produces. You're not micromanaging; you're checking that the direction is right before agents start executing. This review takes 15–30 minutes.",
+
+      "Step 3: Connect Polsia as your operating layer. While Naïve handles the launch, Polsia handles the ongoing operation. Connect your email, social accounts, and any tools your business uses. The more context Polsia has, the better it performs. Then let it run its first autonomous task cycle.",
+
+      "Step 4: Do your first week review. After 7 days, sit down for a proper review. What did the agents do? What worked? What needs adjusting? Your job here is to give feedback to the system, not redo the work yourself. Course-correct the direction and let it run again.",
+
+      "Step 5: Identify your human-required list. Every business has a small set of things that genuinely need a human. High-stakes relationship conversations. Strategic pivots. Decisions that require reading a room. Make a list — everything outside it should be handled by agents. Most founders discover their list is shorter than they expected.",
+
+      "Step 6: Set your check-in rhythm and step back. The final step is the most important and the hardest: actually letting go. Set a check-in schedule — daily for the first month, weekly after that — and stick to it. Trust the system. Adjust through feedback, not through taking over.",
+
+      "Which Platform to Start With",
+
+      "If you're building something from scratch and have no existing assets — start with Naïve. It's designed for the zero-to-one moment. If you have an existing business consuming too much of your time — start with Polsia. Hand it what you have and watch it take over the operational load.",
+
+      "What to Expect in the First 30 Days",
+
+      "Week 1 — More involved than you expected. You'll spend more time than you thought reviewing, calibrating, and course-correcting. This is normal and necessary. Think of it as onboarding a new team — they need context before they can operate independently.",
+
+      "Week 2 — The system starts finding its rhythm. Agents have enough context to start making good decisions autonomously. You'll notice outputs getting more accurate, messaging getting more on-brand, and the daily check-in getting shorter.",
+
+      "Week 3–4 — First real results appear. Outbound campaigns start generating responses. SEO content starts getting indexed. Product updates ship. Maybe the first paying customer arrives. The business is running — not perfectly, but genuinely running — with you checking in rather than operating it.",
+
+      "The mistake to avoid: Jumping back in and doing things manually when the AI makes a mistake. Every autonomous system makes mistakes. The response is to give feedback and let the system correct — not to take the task back. Polsia's own founder sent an apology email after his AI mishandled a VC scheduling situation. He didn't shut the system down. He gave it better guardrails and moved on.",
+
+      "The Mindset Shift That Makes All of This Work",
+
+      "The tactics above are straightforward. The harder part is the mindset — specifically, getting comfortable with being a director rather than an operator.",
+
+      "Most people who've built anything before have a deep instinct to do the work themselves. It feels more in control. It feels safer. When you write the email yourself, you know exactly what it said. When the AI writes it, there's a small anxiety about what might have gone out under your name.",
+
+      "That anxiety is real but worth pushing through. Because on the other side of it is something most founders never experience: a business that earns without demanding your daily presence. A company that's genuinely yours, genuinely running, and genuinely not your job to operate.",
+
+      "\"The goal was never to build a company. The goal was to own one.\"",
+
+      "Naïve and Polsia are the closest anyone has ever gotten to making that distinction accessible. You don't need a trust fund, a VC check, or a co-founder to take advantage of it. You need a clear idea, the right platform, and the willingness to let go of the doing.",
+
+      "The autonomous business is real. It's available. It starts with a single prompt.",
+
+      "Go write yours.",
+    ],
+  },
 ];
 
 const BlogSection = () => {
