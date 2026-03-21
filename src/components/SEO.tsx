@@ -42,7 +42,7 @@ const SEO = ({
 }: SEOProps) => {
   const fullTitle = title ? `${title} — ${SITE_NAME}` : DEFAULT_TITLE;
   const fullUrl = url ? `${BASE_URL}${url}` : BASE_URL;
-  const imageAlt = title ? `${title} — ${SITE_NAME}` : "Lazy Unicorn — Never have to work again. The Autonomous Company Directory.";
+  const imageAlt = title ? `${title} — ${SITE_NAME}` : "Lazy Unicorn — Discover AI tools for solo founders to build autonomous startups.";
   const robotsContent = noindex
     ? "noindex, nofollow"
     : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1";
