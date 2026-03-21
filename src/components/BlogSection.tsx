@@ -1293,6 +1293,117 @@ export const staticBlogPosts: BlogPost[] = [
       "\"A small company that runs itself is worth more than a large one that requires you.\"",
     ],
   },
+  {
+    slug: "autonomous-capitalism",
+    title: "Autonomous Capitalism",
+    date: "March 2026",
+    readTime: "8 min read",
+    thumbnail: unicornBg,
+    excerpt: "A new economic model is forming. Not communism. Not techno-feudalism. Something older than both and stranger than either — capitalism finally delivering on its original promise.",
+    content: [
+      "Capitalism has always had a dirty secret. The system that promised freedom delivered it only to a very specific kind of person.",
+
+      "The person who owned the means of production. The factory owner, not the factory worker. The landlord, not the tenant. The investor, not the employee. The gap between working within the system and owning a piece of it was, for most of the system's history, a gap you were born into or married into or were extraordinarily lucky enough to fall into. You didn't cross it through effort alone. You crossed it through capital — and capital required either starting with it or finding someone who'd give it to you in exchange for a significant portion of what you built.",
+
+      "The system worked. It produced extraordinary wealth. It also produced a world where most of the people doing the work owned almost none of what the work created.",
+
+      "Something is changing. Not the rules of capitalism — those are intact. Private ownership, market incentives, the compounding of returns. All of it still operative. What's changing is who can participate as an owner.",
+
+      "This is autonomous capitalism. And it might be the most significant economic development since the invention of the joint-stock company.",
+
+      "<strong>Chapter One: What Capitalism Actually Promised — and Didn't Deliver</strong>",
+
+      "The original promise of capitalism was individual sovereignty through ownership. Own something productive. Collect the returns it generates. Use those returns to own more. Compound your way to independence. The system rewarded people who could build assets that worked without them — rental income, dividend income, equity appreciation.",
+
+      "The problem was always the barrier to entry. Building a productive asset — a business, a portfolio, a property — required capital before it generated any. And capital required either accumulation over many years of high savings rates, or access to investors willing to take a bet on you.",
+
+      "For most people, neither was realistic. The savings path required high income and low consumption for a decade. The investor path required connections, credentials, and a certain kind of story that most founders couldn't credibly tell. The promise of capitalism was real. The access to it was not.",
+
+      "Each era lowered the barrier slightly. The internet lowered it more than any prior technology — suddenly a small team could build something that reached millions. But the barrier never fell to zero. You still needed a team. You still needed capital. You still needed to show up every day and operate the thing you'd built.",
+
+      "AI removes the last barrier. Not the idea. Not the ownership. The <em>operation</em>. The thing that used to require daily human presence is now handleable by systems that don't sleep, don't dilute your equity, and cost less than a tank of petrol per month.",
+
+      "<strong>Chapter Two: The Tension at the Heart of It</strong>",
+
+      "Autonomous capitalism is not a clean story. It carries the same internal contradictions that all capitalism carries — amplified, accelerated, and made more visible by the speed at which it's spreading.",
+
+      "The promise is genuine. The tension is real. Both deserve to be named.",
+
+      "The genuine promise: Ownership democratised — for the first time in history, anyone with an idea can own a self-running business without inherited capital or a VC check. The operational barrier falls. Geography becomes irrelevant. Compounding becomes available to all. Time is returned to the founder — not deferred until the exit, but available now.",
+
+      "The real tension: Jobs that don't return — the autonomous company that doesn't need a marketing team creates a world with fewer marketing jobs. Who captures the upside — if autonomous companies generate wealth primarily for owners while agents are the workforce, the labour/capital split sharpens. Access isn't universal — a reliable internet connection, basic digital literacy, and the clarity to describe what you want to build are still prerequisites. Direction still requires taste. The winners compound faster.",
+
+      "Holding both sides of this is important. The people who dismiss autonomous capitalism as inevitable doom are wrong — the democratisation of ownership is real and significant. The people who celebrate it as frictionless utopia are also wrong — the disruption to existing labour markets is real and significant. The honest position lives in the tension between the two.",
+
+      "\"Autonomous capitalism is the most <em>democratic</em> form of capitalism ever built. It is also, potentially, the most <em>disruptive.</em> Those aren't contradictions. They're the same thing.\"",
+
+      "<strong>Chapter Three: The Mechanics — How It Actually Works</strong>",
+
+      "Autonomous capitalism isn't a philosophy. It's a set of operational mechanics that are available today and being used by a growing number of founders who have, quietly, opted out of the traditional labour/capital divide.",
+
+      "The mechanics are simple. An individual identifies a valuable problem. They describe a solution to an AI builder — a prompt, a conversation, an idea given direction. The AI builds the infrastructure. Autonomous agents run the operations. The individual owns 100% of what the system produces. The system compounds over time as the agents learn and improve.",
+
+      "There is no team meeting where this is approved. There is no investor presentation where the idea is validated by someone who will own a portion of it. There is no hiring process. There is no payroll. There is the idea, the direction, the system, and the outcome.",
+
+      "<a href='/company/polsia'>Polsia</a> is the clearest demonstration that this is real, not theoretical. One founder, zero employees, $5M annual run rate in under 90 days. Polsia runs 1,000+ companies autonomously — planning, building, marketing, operating. The nightly CEO agent assesses each company, sets priorities, assigns tasks to the other agents. The founder reviews outcomes. The system runs.",
+
+      "<a href='/company/naive'>Naïve</a> takes the concept further: AI employees with their own email addresses, bank accounts, and credentials who show up and start working from a single message. They learn the business recursively — every output analysed, every pattern extracted, performance compounding week over week. Deployed at 500+ companies including Airwallex and HackerRank. Built by two Berkeley dropouts who proved the model on their own company first.",
+
+      "These aren't interesting demos. They're early-stage infrastructure for a different kind of economic participation. The companies using them now are not the large ones with existing capital and teams. They're small, lean, owner-operated entities that would not have been viable five years ago — because the operational cost of running them would have exceeded what they could earn.",
+
+      "The operational cost just fell to near zero. The viability curve just shifted permanently.",
+
+      "<strong>Chapter Four: The New Economic Participant</strong>",
+
+      "Every economic era produces a defining participant — the figure who embodies what success looks like in that system. The industrial era had the factory owner. The internet era had the venture-backed founder. The gig economy had the platform worker.",
+
+      "Autonomous capitalism is producing a new one. Call them the autonomous founder. The owner-operator who has moved one level of abstraction up — no longer operating the business directly, but directing the systems that operate it.",
+
+      "They are not a manager. They have no team to manage. They are not an investor. They built the thing they own. They are not a passive income seeker in the old sense — they are actively engaged in direction, strategy, and the continuous improvement of the system.",
+
+      "What they are not doing — and this is the defining characteristic — is executing the work that used to consume 90% of a founder's time. The outreach. The content. The support tickets. The code reviews. The daily operational decisions that add up to a full-time job running a business that was supposed to give you freedom.",
+
+      "That work is running. Just not with them in the loop.",
+
+      "\"The autonomous founder doesn't work <em>in</em> the business. They work <em>on</em> the direction. <em>Everything else compounds.</em>\"",
+
+      "<strong>Chapter Five: The Principles of Autonomous Capitalism</strong>",
+
+      "If autonomous capitalism is a coherent economic model — and I believe it is — then it operates on a set of principles that distinguish it from what came before. These aren't aspirational. They're descriptive of how the system actually functions for the people already operating within it.",
+
+      "<strong>I. Ownership is the unit of value, not labour.</strong> In the labour economy, you trade time for money. In autonomous capitalism, you build an asset that generates money without your time. The shift from selling hours to owning systems is the fundamental economic transition. Everything else follows from this one change.",
+
+      "<strong>II. Capital requirements have collapsed.</strong> Building a productive asset used to require capital before it generated returns. The autonomous company requires direction before it generates returns. Direction is not a financial instrument. It's a cognitive one. The democratisation is real: the asset class is now open to anyone who can think clearly about what's worth building.",
+
+      "<strong>III. The operational layer is no longer a human layer.</strong> Marketing, sales, support, operations, development — the functions that used to require human presence and human management are now automatable at near-zero marginal cost. The gap between owning a business and operating one has been closed — not by delegating to employees but by delegating to agents.",
+
+      "<strong>IV. Compounding is available without scale.</strong> In the old model, compounding required scale — you needed to be large enough to hire, to systematise, to extract efficiencies from size. In autonomous capitalism, a single-person company compounds from day one as agents learn, improve, and apply the learnings of each cycle to the next. Small and compounding is a viable and attractive destination.",
+
+      "<strong>V. The founder's role is directional, not operational.</strong> The rarest and most valuable skill in autonomous capitalism is not coding, not marketing, not sales. It is judgment — the ability to identify what's worth building, for whom, why it matters, and what better looks like. That judgment is the human contribution. Everything the judgment enables is system contribution.",
+
+      "<strong>VI. Freedom is the output, not the reward.</strong> In the traditional economic model, freedom was what you earned after decades of work — the retirement, the exit, the point at which you'd accumulated enough to stop. In autonomous capitalism, freedom is the structural output of owning something autonomous. Not deferred. Not earned. Built in from the architecture of how the company runs.",
+
+      "<strong>Conclusion: This Is Not the End of Work</strong>",
+
+      "It would be convenient if autonomous capitalism resolved cleanly into either utopia or catastrophe. It doesn't. It's a transition — messy, uneven, faster in some places than others, beneficial to some people more than others.",
+
+      "What it is not is a story about the end of work. The autonomous founder still works. They think about what to build, how to position it, where to point the agents next. They make the high-stakes calls that still require human judgment. They maintain the relationships that can't be delegated. They show up for the things the system can't handle alone.",
+
+      "What ends is the obligation to do work that doesn't need them. The operational treadmill. The daily presence requirement. The founder-as-bottleneck dynamic that turned so many dreams of independence into sophisticated forms of self-employment.",
+
+      "The people who move into autonomous capitalism early will have an advantage that compounds — both in the businesses they build and in the hours they reclaim to think about the next one. The people who stay in the labour economy by choice or by circumstance will still have a functioning economic system to participate in. Both will be true simultaneously, for a long time, which is how transitions work.",
+
+      "What autonomous capitalism offers is not the elimination of economic inequality. It offers a reduction in the barrier to economic ownership — a meaningful, structural, historically unprecedented reduction. The factory used to require a fortune. The autonomous company requires a prompt and a clear enough idea.",
+
+      "That is not nothing. That is, depending on who you are and where you're starting from, very close to everything.",
+
+      "The means of production just got cheaper. Own yours.",
+
+      "Autonomous capitalism isn't coming. It's here. <a href='/company/polsia'>Polsia</a> is running 1,000 companies. <a href='/company/naive'>Naïve</a> is deploying AI employees for founders who couldn't afford a single human one. The economic model that used to require capital, connections, and a team has been replaced by one that requires clarity, direction, and a willingness to let the system run.",
+
+      "The question isn't whether this is happening. The question is whether you're going to participate as an owner or watch it happen as an observer.",
+    ],
+  },
 ];
 
 const BlogSection = () => {
