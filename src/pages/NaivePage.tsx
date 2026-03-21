@@ -73,6 +73,7 @@ const howItWorks = [
 ];
 
 const NaivePage = () => {
+  useEffect(() => { window.scrollTo(0, 0); }, []);
   return (
     <div className="min-h-screen text-foreground relative">
       <SEO
