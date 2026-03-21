@@ -27,7 +27,7 @@ const Navbar = ({ activePage = "home" }: NavbarProps) => {
     { label: "Blog", href: "/blog", highlight: activePage === "blog" },
     { label: "About", href: isHome ? "#about" : "/#about" },
     { label: "Mission", href: isHome ? "#mission" : "/#mission" },
-    { label: "Pitch Deck", href: isHome ? "#pitch" : "/#pitch" },
+    { label: "Pitch\u00A0Deck", href: isHome ? "#pitch" : "/#pitch" },
     { label: "I'm raising!", href: "/blog/lazy-unicorn-raising-angel-round", highlight: true },
     { label: "Launch", href: isHome ? "#launch" : "/#launch", isCta: true },
   ];
