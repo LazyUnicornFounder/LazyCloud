@@ -1,11 +1,15 @@
 import { motion } from "framer-motion";
 import unicornBg from "@/assets/unicorn-beach.png";
-import BlogSection, { blogPosts } from "@/components/BlogSection";
+import BlogSection, { staticBlogPosts } from "@/components/BlogSection";
+import { useDbBlogPosts } from "@/hooks/useDbBlogPosts";
 import SEO from "@/components/SEO";
 import Navbar from "@/components/Navbar";
 import BlogTicker from "@/components/BlogTicker";
 
 const Blog = () => {
+  const { posts: dbPosts } = useDbBlogPosts();
+  const allPosts = [...staticBlogPosts, ...dbPosts];
+
   const collectionJsonLd = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
@@ -15,7 +19,7 @@ const Blog = () => {
     "publisher": { "@type": "Organization", "name": "Lazy Unicorn", "url": "https://www.lazyunicorn.ai" },
     "mainEntity": {
       "@type": "ItemList",
-      "itemListElement": blogPosts.map((post, i) => ({
+      "itemListElement": allPosts.map((post, i) => ({
         "@type": "ListItem",
         "position": i + 1,
         "url": `https://www.lazyunicorn.ai/blog/${post.slug}`,
