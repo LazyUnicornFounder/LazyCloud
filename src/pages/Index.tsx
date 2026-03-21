@@ -7,6 +7,7 @@ import logoNaive from "@/assets/logo-naive.jpg";
 import logoPolsia from "@/assets/logo-polsia.jpg";
 import CompanyCard from "@/components/CompanyCard";
 import SubmitSection from "@/components/SubmitSection";
+import PricingSection from "@/components/PricingSection";
 import PitchDeck from "@/components/PitchDeck";
 
 import SEO from "@/components/SEO";
