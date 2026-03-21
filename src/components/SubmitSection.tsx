@@ -64,7 +64,7 @@ const SubmitSection = () => {
           viewport={{ once: true }}
           className="font-body text-[11px] tracking-[0.2em] uppercase text-foreground/60 mb-4"
         >
-          Submit
+          Launch
         </motion.p>
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
@@ -73,10 +73,10 @@ const SubmitSection = () => {
           transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
           className="font-display text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight leading-[1] text-foreground mb-4"
         >
-          Know a company that belongs here?
+          Launch your autonomous startup.
         </motion.h2>
         <p className="font-body text-sm text-foreground/50 leading-relaxed mb-8">
-          List your AI company that lets founders start, run, and scale their business while they sleep.
+          List your new autonomous startup on Lazy Directory and we'll help you grow.
         </p>
 
         {submitted ? (
@@ -115,7 +115,7 @@ const SubmitSection = () => {
               disabled={loading}
               className="w-full bg-primary text-primary-foreground font-body font-semibold text-sm py-2.5 rounded-full hover:opacity-90 transition-opacity mt-2 disabled:opacity-50"
             >
-              {loading ? "Submitting…" : "Submit Company"}
+              {loading ? "Launching…" : "Launch Company"}
             </button>
           </form>
         )}
