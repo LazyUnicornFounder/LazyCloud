@@ -21,10 +21,10 @@ interface SEOProps {
 
 const SITE_NAME = "Lazy Unicorn";
 const DEFAULT_TITLE = "Lazy Unicorn — Never Work Again";
-const DEFAULT_DESCRIPTION = "A directory of autonomous company builders that let you start, run and scale your startup, while agents handle everything.";
+const DEFAULT_DESCRIPTION = "Discover AI tools for solo founders to build autonomous startups. The definitive directory of autonomous company builders.";
 const DEFAULT_IMAGE = "https://www.lazyunicorn.ai/og-image.png";
 const BASE_URL = "https://www.lazyunicorn.ai";
-const DEFAULT_KEYWORDS = "autonomous companies, AI business, passive income, autonomous capitalism, AI agents, self-running business, Lazy Unicorn, startup directory";
+const DEFAULT_KEYWORDS = "autonomous companies, AI business, passive income, autonomous capitalism, AI agents, self-running business, solo founder, startup directory, autonomous startups, Lazy Unicorn";
 const TWITTER_HANDLE = "@SaadSahawneh";
 
 const SEO = ({
