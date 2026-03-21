@@ -27,11 +27,8 @@ const Navbar = ({ activePage = "home" }: NavbarProps) => {
 
   const links: NavLink[] = [
     { label: "Directory", href: isHome ? "#directory" : "/#directory" },
-    { label: "Pricing", href: isHome ? "#pricing" : "/#pricing" },
     { label: "Blog", href: "/blog", highlight: activePage === "blog" },
     { label: "About", href: isHome ? "#about" : "/#about" },
-    { label: "Pitch\u00A0Deck", href: isHome ? "#pitch" : "/#pitch" },
-    { label: "I'm\u00A0raising!", href: "/blog/lazy-unicorn-raising-angel-round", highlight: true },
     { label: "Submit", href: isHome ? "#launch" : "/#launch", isCta: true },
   ];
 
