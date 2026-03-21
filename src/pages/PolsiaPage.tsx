@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowLeft, ExternalLink, Check, Brain, Rocket, Clock, Eye } from "lucide-react";
@@ -38,6 +39,7 @@ const howItWorks = [
 ];
 
 const PolsiaPage = () => {
+  useEffect(() => { window.scrollTo(0, 0); }, []);
   return (
     <div className="min-h-screen text-foreground relative">
       <SEO

@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowLeft, ExternalLink, Check, Zap, Bot, BarChart3, Plug, DollarSign } from "lucide-react";
@@ -72,6 +73,7 @@ const howItWorks = [
 ];
 
 const NaivePage = () => {
+  useEffect(() => { window.scrollTo(0, 0); }, []);
   return (
     <div className="min-h-screen text-foreground relative">
       <SEO
