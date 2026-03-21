@@ -1096,6 +1096,101 @@ export const staticBlogPosts: BlogPost[] = [
       "\"The goal was never to make founders more efficient. It was always to make founders unnecessary in the day-to-day — free to think, own, and build the next thing.\"",
     ],
   },
+  {
+    slug: "how-im-using-lovable-to-build-autonomous-unicorn",
+    title: "How I'm Using Lovable to Try and Build an Autonomous Unicorn",
+    date: "March 2026",
+    readTime: "7 min read",
+    thumbnail: unicornBg,
+    excerpt: "A honest, messy, work-in-progress account of using an AI builder to build an AI company directory that might one day run itself. Meta? Very. Interesting? Genuinely.",
+    content: [
+      "Let me tell you the most recursive thing I'm currently doing.",
+
+      "I'm building a directory of autonomous companies — companies that build and run themselves with AI — using an AI tool called Lovable to build the thing. And the thing I'm building is supposed to eventually run itself. With AI. Which means I'm using AI to build a platform about AI that will be run by AI.",
+
+      "At some point, the number of layers of recursion becomes either brilliant or deeply embarrassing, and I genuinely haven't decided which yet.",
+
+      "This is the story of that project. What I'm building, why I chose Lovable, what's working, what's not, and what it actually feels like to try and build an autonomous business using tools that are themselves autonomous. Consider it a build-in-public post for a business that exists entirely to document the thing it's trying to become.",
+
+      "\"The directory is a living experiment in the thesis it covers. If it works, it proves the point. If it doesn't, at least the writing is good.\"",
+
+      "<strong>The Project: LazyUnicorn.ai</strong>",
+
+      "The idea is simple. A curated directory of every AI tool and platform that helps founders start, run, and scale a business autonomously — without a team, without burning out, without being the person who has to show up every day to keep the lights on.",
+
+      "The name came from an image: a unicorn in a hammock while robots do all the work. The thesis is that the laziest founders — the ones who refuse to do anything an AI agent can do instead — will own the most valuable companies of the next decade.",
+
+      "The directory itself is supposed to be the proof of concept. Not just a resource about autonomous companies, but an attempt to become one. Every week, the goal is for LazyUnicorn to require less of my time, not more. If I'm still doing everything manually by month six, I've failed at the core premise of the thing I'm writing about.",
+
+      "So: build in public, using AI tools, toward a business that runs on AI tools, while documenting whether it's actually possible. That's the experiment.",
+
+      "<strong>Why Lovable</strong>",
+
+      "There are a lot of AI builders right now. Cursor, Bolt, Replit, v0, and a growing list of things that launched last Tuesday. I chose Lovable for three specific reasons that I think are worth being honest about.",
+
+      "First, Lovable builds full-stack applications — not just front-end prototypes or static sites. For a directory that needs a database, user accounts, submission forms, admin tools, and eventually API integrations with tools like Polsia and Naïve, I needed something that could build the whole thing, not just the interface.",
+
+      "Second, Lovable's interaction model matches how I think about building. You describe what you want in natural language. It builds it. You describe what needs changing. It changes it. There's no context-switching between a design tool, a code editor, and a deployment platform. One conversation. One product.",
+
+      "Third — and most honestly — I wanted to use Lovable because the whole premise of LazyUnicorn is that you can build real things without being a developer, and if I couldn't build the directory itself without writing code, I'd be a hypocrite in print.",
+
+      "Lovable is an AI-powered full-stack builder. You describe your product in a chat interface and it generates working React + Supabase applications — complete with authentication, databases, UI, and deployment. No code required from the user. You ship by describing, not by writing. It's not a website builder like Webflow. It's not a no-code tool like Bubble. It's something newer: a software engineer that takes requirements in plain English and produces production-ready code.",
+
+      "<strong>The Stack I'm Building With</strong>",
+
+      "LazyUnicorn isn't built with Lovable alone. It's built with a specific combination of tools that, between them, are supposed to handle the full lifecycle of a running business. Lovable handles the product — building and iterating the full-stack web application. Claude handles the content — writing blog posts, directory descriptions, and long-form pieces. Supabase handles the database — schema generated automatically by Lovable. And the goal is to eventually plug in Polsia and Naïve for autonomous operations.",
+
+      "The monthly cost of the entire stack so far: about $40. Lines of code written manually: zero. Weekly founder time currently: about five hours.",
+
+      "<strong>The Build Log — What's Actually Happened</strong>",
+
+      "Building in public means being honest about the messy middle, not just the clean retrospective.",
+
+      "Week 1: Got the first version of the directory live. Described the directory concept to Lovable, got a working React app with a homepage, directory listings page, and basic search in about three hours. Not beautiful. Not complete. But real and deployed. The first version would have taken weeks as a non-developer doing it the old way.",
+
+      "Weeks 2–4: Built the content strategy — 18 blog posts, all AI-assisted. The blog is the acquisition engine. Each post targets a specific search query around autonomous companies, solo founding, and AI tools. Organic traffic starting to show up. The SEO flywheel is slow but it is turning.",
+
+      "Now: Monetisation — affiliate setup in progress. Building out the affiliate tracking layer in Lovable. Each tool listing will have tracked referral links. The revenue model is simple and scales with traffic — no sales calls, no invoicing, no human in the loop.",
+
+      "Next: Plug in Polsia — hand over operations. Once the product has traction and the affiliate model is working, the plan is to hand daily operations to Polsia.",
+
+      "Future: Deploy Naïve employees to handle partnership outreach and eventually have the directory discover, research, and list new tools without me doing any of it. That's the autonomous unicorn version.",
+
+      "<strong>What Lovable Is Actually Good For — And Where It Struggles</strong>",
+
+      "Eight weeks in, I have a clear picture of where Lovable genuinely earns its place in this stack and where I have to work around it.",
+
+      "What Lovable does brilliantly: Speed from idea to working product — describe a feature, get a working implementation in minutes. Full-stack without the full-stack knowledge — auth, database, API routes, responsive UI, all generated. Design that doesn't look AI-generated — with the right prompting, the UI is clean and intentional. Supabase integration that just works. And the morale boost of shipping something real, fast.",
+
+      "Where it gets harder: Complex custom logic across multiple database tables gets messy. Third-party API integrations require precise prompting and several iterations. Performance optimisation of generated code isn't always efficient. And you still need taste — Lovable builds what you describe, so if your description is vague, the product is vague.",
+
+      "<strong>The Uncomfortable Honest Part</strong>",
+
+      "I'm still spending about five hours a week on LazyUnicorn. That's not autonomous. That's not the unicorn in the hammock. That's a founder who's genuinely involved, reviewing agent outputs, giving feedback, making product decisions, and writing content strategy.",
+
+      "The honest description of where this is right now: heavily AI-assisted in content, not yet autonomous in operations. Claude writes the posts. Lovable builds the product. But the outreach, the partnerships, the social presence, the inbox — still me.",
+
+      "The thing nobody says about building autonomous companies: The first few months are actually more work than building a conventional one. You're building the product AND configuring the agents AND calibrating the outputs AND writing the content strategy AND doing all the things the agents haven't taken over yet. The payoff is in month 4, 5, 6 — when the agents have enough context, when the content compounds, when the affiliate revenue starts flowing automatically. Autonomy isn't the starting state. It's the destination you build toward.",
+
+      "<strong>What I've Learned That's Actually Useful</strong>",
+
+      "Lovable is genuinely faster than anything else I've tried. The speed from idea to deployed feature is real and it doesn't get old. The iteration loop — describe it, see it, tweak it, ship it — is the single biggest unlock for a non-developer building a real product.",
+
+      "Describe the direction obsessively well at the start. Every agent produces output that reflects the quality of the brief it was given. The most useful thing I did was spend a full day writing LazyUnicorn's brand voice, target audience, content principles, and tone guide — then feeding that to every agent before they produced a single output.",
+
+      "Build the content engine first. SEO content compounds the slowest and pays off the longest. Starting it in week one instead of month three would have been the right call.",
+
+      "Lovable is a multiplier, not a replacement for judgment. The non-developer who uses Lovable doesn't become a developer. They become someone who can ship products without writing code — which is a real and valuable thing to be. But they still need the judgment to know what's worth building.",
+
+      "The meta-lesson: Building an autonomous company with AI tools is genuinely possible and genuinely different from what building a company looked like five years ago. The cost is lower. The speed is higher. The ceiling is higher. The main thing it requires — clear direction, good taste, patience with calibration — is exactly what it always required. The tools changed. The judgment requirement didn't.",
+
+      "LazyUnicorn is an experiment in the thesis it covers. If it works, I'll write the sequel. If it doesn't, I'll write that too. Either way, the recursion continues.",
+
+      "The directory is live at lazyunicorn.ai. The build continues. The agents are learning. The content is compounding. The unicorn is not quite in the hammock yet.",
+
+      "But the hammock is being built.",
+    ],
+  },
 ];
 
 const BlogSection = () => {
