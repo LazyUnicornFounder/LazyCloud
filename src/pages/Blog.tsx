@@ -31,10 +31,10 @@ const Blog = () => {
   return (
     <div className="min-h-screen text-foreground relative">
       <SEO
-        title="Blog"
-        description="Essays on autonomous companies, AI agents, and the future of work. Accelerate the future of autonomous capitalism."
+        title="Blog — Autonomous Capitalism, AI Agents & the Future of Work"
+        description="Essays and insights on autonomous companies, AI agents, and the future of work. Learn how solo founders are building startups that run themselves."
         url="/blog"
-        keywords="autonomous companies blog, AI agents essays, autonomous capitalism, startup insights, AI business articles"
+        keywords="autonomous companies blog, AI agents essays, autonomous capitalism, startup insights, AI business articles, self-building startup, solo founder blog, future of work AI"
         breadcrumbs={[
           { name: "Home", url: "/" },
           { name: "Blog", url: "/blog" },
