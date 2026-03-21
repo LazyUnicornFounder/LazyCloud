@@ -32,7 +32,7 @@ const Navbar = ({ activePage = "home" }: NavbarProps) => {
     { label: "About", href: isHome ? "#about" : "/#about" },
     { label: "Pitch\u00A0Deck", href: isHome ? "#pitch" : "/#pitch" },
     { label: "I'm\u00A0raising!", href: "/blog/lazy-unicorn-raising-angel-round", highlight: true },
-    { label: "Launch", href: isHome ? "#launch" : "/#launch", isCta: true },
+    { label: "Submit", href: isHome ? "#launch" : "/#launch", isCta: true },
   ];
 
   const brandHref = isHome ? "#top" : "/";
