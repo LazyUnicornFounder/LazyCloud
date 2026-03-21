@@ -9,6 +9,7 @@ import CompanyCard from "@/components/CompanyCard";
 import SubmitSection from "@/components/SubmitSection";
 import PricingSection from "@/components/PricingSection";
 import PitchDeck from "@/components/PitchDeck";
+import ValuationBreakdown from "@/components/ValuationBreakdown";
 
 import SEO from "@/components/SEO";
 import { supabase } from "@/integrations/supabase/client";
