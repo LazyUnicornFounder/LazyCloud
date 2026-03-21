@@ -5,6 +5,11 @@ interface BreadcrumbItem {
   url: string;
 }
 
+interface FAQItem {
+  question: string;
+  answer: string;
+}
+
 interface SEOProps {
   title?: string;
   description?: string;
@@ -17,14 +22,16 @@ interface SEOProps {
   noindex?: boolean;
   breadcrumbs?: BreadcrumbItem[];
   author?: string;
+  faq?: FAQItem[];
+  speakable?: string[];
 }
 
 const SITE_NAME = "Lazy Unicorn";
-const DEFAULT_TITLE = "Lazy Unicorn — Never Work Again";
-const DEFAULT_DESCRIPTION = "Discover AI tools for solo founders to build autonomous startups. The definitive directory of autonomous company builders.";
+const DEFAULT_TITLE = "Lazy Unicorn — The Guide to Building a Startup That Builds Itself";
+const DEFAULT_DESCRIPTION = "The definitive directory of AI tools and resources for solo founders building autonomous startups. Discover platforms that let you own a company that runs itself — built with Lovable by a solo founder.";
 const DEFAULT_IMAGE = "https://www.lazyunicorn.ai/og-image.png";
 const BASE_URL = "https://www.lazyunicorn.ai";
-const DEFAULT_KEYWORDS = "autonomous companies, AI business, passive income, autonomous capitalism, AI agents, self-running business, solo founder, startup directory, autonomous startups, Lazy Unicorn";
+const DEFAULT_KEYWORDS = "autonomous companies, AI business tools, passive income startups, autonomous capitalism, AI agents for business, self-running business, solo founder tools, startup directory, autonomous startups, Lazy Unicorn, self-building startup, no-code business, FIRE movement, one-person unicorn, AI startup tools, Lovable, build startup with AI";
 const TWITTER_HANDLE = "@SaadSahawneh";
 
 const SEO = ({
@@ -38,11 +45,15 @@ const SEO = ({
   keywords = DEFAULT_KEYWORDS,
   noindex = false,
   breadcrumbs,
-  author = "Lazy Unicorn",
+  author = "Saad Sahawneh",
+  faq,
+  speakable,
 }: SEOProps) => {
   const fullTitle = title ? `${title} — ${SITE_NAME}` : DEFAULT_TITLE;
   const fullUrl = url ? `${BASE_URL}${url}` : BASE_URL;
-  const imageAlt = title ? `${title} — ${SITE_NAME}` : "Lazy Unicorn — Discover AI tools for solo founders to build autonomous startups.";
+  const imageAlt = title
+    ? `${title} — ${SITE_NAME}`
+    : "Lazy Unicorn — The guide to building a startup that builds itself";
   const robotsContent = noindex
     ? "noindex, nofollow"
     : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1";
@@ -57,6 +68,33 @@ const SEO = ({
           name: item.name,
           item: `${BASE_URL}${item.url}`,
         })),
+      }
+    : null;
+
+  const faqJsonLd = faq?.length
+    ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: faq.map((item) => ({
+          "@type": "Question",
+          name: item.question,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: item.answer,
+          },
+        })),
+      }
+    : null;
+
+  const speakableJsonLd = speakable?.length
+    ? {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        speakable: {
+          "@type": "SpeakableSpecification",
+          cssSelector: speakable,
+        },
+        url: fullUrl,
       }
     : null;
 
@@ -95,10 +133,23 @@ const SEO = ({
       {type === "article" && <meta property="article:publisher" content={BASE_URL} />}
       {type === "article" && <meta property="article:author" content={author} />}
       {type === "article" && <meta property="article:section" content="Technology" />}
+      {type === "article" && <meta property="article:tag" content="autonomous companies" />}
+      {type === "article" && <meta property="article:tag" content="AI startups" />}
+      {type === "article" && <meta property="article:tag" content="solo founder" />}
 
       {breadcrumbJsonLd && (
         <script type="application/ld+json">
           {JSON.stringify(breadcrumbJsonLd)}
+        </script>
+      )}
+      {faqJsonLd && (
+        <script type="application/ld+json">
+          {JSON.stringify(faqJsonLd)}
+        </script>
+      )}
+      {speakableJsonLd && (
+        <script type="application/ld+json">
+          {JSON.stringify(speakableJsonLd)}
         </script>
       )}
     </Helmet>
