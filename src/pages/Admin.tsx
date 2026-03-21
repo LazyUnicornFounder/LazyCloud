@@ -261,6 +261,10 @@ const Admin = () => {
           )}
         </div>
       )}
+
+      {activeTab === "analytics" && (
+        <AdminAnalytics password={password} />
+      )}
     </div>
   );
 };
