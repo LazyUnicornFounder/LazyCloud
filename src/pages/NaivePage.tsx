@@ -5,6 +5,7 @@ import { ArrowLeft, ExternalLink, Check, Zap, Bot, BarChart3, Plug, DollarSign }
 import SEO from "@/components/SEO";
 import Navbar from "@/components/Navbar";
 import BlogTicker from "@/components/BlogTicker";
+import FloatingProductCTA from "@/components/FloatingProductCTA";
 import unicornBg from "@/assets/unicorn-beach.png";
 import logoNaive from "@/assets/logo-naive.jpg";
 import screenshotNaive from "@/assets/screenshot-naive.jpg";
@@ -89,6 +90,7 @@ const NaivePage = () => {
         <BlogTicker />
       </div>
       <Navbar activePage="home" />
+      <FloatingProductCTA />
 
       <main className="relative z-10 pt-28 pb-32 px-6 md:px-12">
         <div className="max-w-3xl">
