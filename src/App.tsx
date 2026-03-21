@@ -9,6 +9,8 @@ import Admin from "./pages/Admin.tsx";
 import Blog from "./pages/Blog.tsx";
 import BlogPost from "./pages/BlogPost.tsx";
 import CompanyDetail from "./pages/CompanyDetail.tsx";
+import NaivePage from "./pages/NaivePage.tsx";
+import PolsiaPage from "./pages/PolsiaPage.tsx";
 import CheckoutSuccess from "./pages/CheckoutSuccess.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
@@ -26,6 +28,8 @@ const App = () => (
             <Route path="/admin" element={<Admin />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:slug" element={<BlogPost />} />
+            <Route path="/company/naive" element={<NaivePage />} />
+            <Route path="/company/polsia" element={<PolsiaPage />} />
             <Route path="/company/:slug" element={<CompanyDetail />} />
             <Route path="/checkout/success" element={<CheckoutSuccess />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
