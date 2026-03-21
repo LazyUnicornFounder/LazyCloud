@@ -46,9 +46,15 @@ const CompanyDetail = () => {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <SEO
-        title={`${company.name} — Lazy Unicorn`}
+        title={`${company.name} — AI Tool for Autonomous Startups`}
         description={company.description || company.tagline}
         url={`/company/${company.slug}`}
+        keywords={`${company.name}, autonomous startup tools, AI business tools, Lazy Unicorn directory`}
+        breadcrumbs={[
+          { name: "Home", url: "/" },
+          { name: "Directory", url: "/#directory" },
+          { name: company.name, url: `/company/${company.slug}` },
+        ]}
       />
       <Navbar activePage="home" />
 

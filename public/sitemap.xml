@@ -7,6 +7,10 @@
     <lastmod>2026-03-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://www.lazyunicorn.ai/og-image.png</image:loc>
+      <image:title>Lazy Unicorn — The Guide to Building a Startup That Builds Itself</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://www.lazyunicorn.ai/blog</loc>
@@ -26,85 +30,89 @@
   </url>
   <url>
     <loc>https://www.lazyunicorn.ai/blog/lazy-unicorn-raising-angel-round</loc>
-    <lastmod>2026-03-20</lastmod>
+    <lastmod>2026-03-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.lazyunicorn.ai/og/lazy-unicorn-raising-angel-round.png</image:loc>
+      <image:title>Lazy Unicorn Is Raising an Angel Round</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://www.lazyunicorn.ai/blog/rise-of-autonomous-companies</loc>
-    <lastmod>2026-03-01</lastmod>
+    <lastmod>2026-03-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.lazyunicorn.ai/blog/lazy-founders-build-unicorns</loc>
-    <lastmod>2026-03-01</lastmod>
+    <lastmod>2026-03-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.lazyunicorn.ai/blog/49-startup</loc>
-    <lastmod>2026-03-01</lastmod>
+    <lastmod>2026-03-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.lazyunicorn.ai/blog/no-cofounder-need-better-agents</loc>
-    <lastmod>2026-03-01</lastmod>
+    <lastmod>2026-03-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.lazyunicorn.ai/blog/last-hire-youll-ever-make</loc>
-    <lastmod>2026-03-01</lastmod>
+    <lastmod>2026-03-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.lazyunicorn.ai/blog/passive-income-finally-real</loc>
-    <lastmod>2026-03-01</lastmod>
+    <lastmod>2026-03-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.lazyunicorn.ai/blog/autonomous-capitalism-for-the-rest-of-us</loc>
-    <lastmod>2026-03-01</lastmod>
+    <lastmod>2026-03-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.lazyunicorn.ai/blog/how-to-launch-autonomous-business</loc>
-    <lastmod>2026-03-01</lastmod>
+    <lastmod>2026-03-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.lazyunicorn.ai/blog/self-building-startup</loc>
-    <lastmod>2026-03-20</lastmod>
+    <lastmod>2026-03-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.lazyunicorn.ai/blog/naive-sean-dennis-profile</loc>
-    <lastmod>2026-03-01</lastmod>
+    <lastmod>2026-03-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.lazyunicorn.ai/blog/polsia-ben-cera-profile</loc>
-    <lastmod>2026-03-01</lastmod>
+    <lastmod>2026-03-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.lazyunicorn.ai/company/naive</loc>
-    <lastmod>2026-03-20</lastmod>
+    <lastmod>2026-03-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://www.lazyunicorn.ai/company/polsia</loc>
-    <lastmod>2026-03-20</lastmod>
+    <lastmod>2026-03-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>

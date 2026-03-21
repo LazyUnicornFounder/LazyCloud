@@ -43,13 +43,15 @@ const BlogPost = () => {
         image={ogImageUrl}
         type="article"
         publishedTime="2026-03-01T00:00:00Z"
-        modifiedTime="2026-03-20T00:00:00Z"
-        keywords={`${post.title}, autonomous companies, AI agents, autonomous capitalism, Lazy Unicorn`}
+        modifiedTime="2026-03-21T00:00:00Z"
+        keywords={`${post.title}, autonomous companies, AI agents, autonomous capitalism, Lazy Unicorn, solo founder, self-building startup`}
+        author="Saad Sahawneh"
         breadcrumbs={[
           { name: "Home", url: "/" },
           { name: "Blog", url: "/blog" },
           { name: post.title, url: `/blog/${post.slug}` },
         ]}
+        speakable={["h1", "article"]}
       />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
         "@context": "https://schema.org",
@@ -58,13 +60,25 @@ const BlogPost = () => {
         "description": post.excerpt,
         "image": ogImageUrl,
         "datePublished": "2026-03-01",
-        "dateModified": "2026-03-20",
-        "author": { "@type": "Organization", "name": "Lazy Unicorn", "url": "https://www.lazyunicorn.ai" },
-        "publisher": { "@type": "Organization", "name": "Lazy Unicorn", "url": "https://www.lazyunicorn.ai", "logo": { "@type": "ImageObject", "url": "https://www.lazyunicorn.ai/og-image.png" } },
+        "dateModified": "2026-03-21",
+        "author": {
+          "@type": "Person",
+          "name": "Saad Sahawneh",
+          "url": "https://x.com/SaadSahawneh",
+          "sameAs": ["https://x.com/SaadSahawneh", "https://www.linkedin.com/in/saadsahawneh"]
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Lazy Unicorn",
+          "url": "https://www.lazyunicorn.ai",
+          "logo": { "@type": "ImageObject", "url": "https://www.lazyunicorn.ai/og-image.png", "width": 1200, "height": 630 }
+        },
         "mainEntityOfPage": { "@type": "WebPage", "@id": `https://www.lazyunicorn.ai/blog/${post.slug}` },
         "wordCount": post.content.join(" ").split(/\s+/).length,
         "articleSection": "Technology",
-        "inLanguage": "en-US"
+        "inLanguage": "en-US",
+        "keywords": `${post.title}, autonomous companies, AI agents, autonomous capitalism`,
+        "isAccessibleForFree": true
       })}} />
       {/* Background */}
       <div className="fixed inset-0 z-0">

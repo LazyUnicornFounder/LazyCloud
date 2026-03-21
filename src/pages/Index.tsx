@@ -64,7 +64,16 @@ const Index = () => {
     <div className="min-h-screen text-foreground relative">
       <SEO
         url="/"
-        breadcrumbs={[{ name: "Home", url: "/" }]} />
+        description="The definitive directory of AI tools and resources for solo founders building autonomous startups. Discover platforms that let you own a company that runs itself — built with Lovable by a solo founder."
+        keywords="autonomous companies, AI business tools, passive income startups, autonomous capitalism, AI agents, self-running business, solo founder tools, startup directory, Lazy Unicorn, self-building startup, one-person unicorn, Lovable, build startup with AI"
+        breadcrumbs={[{ name: "Home", url: "/" }]}
+        faq={[
+          { question: "What is Lazy Unicorn?", answer: "Lazy Unicorn is the definitive directory of AI tools and resources for solo founders building autonomous startups — companies that design, ship, and scale themselves with AI agents." },
+          { question: "What is an autonomous startup?", answer: "An autonomous startup is a company that runs itself using AI agents and automation tools. The founder provides the vision while AI handles operations, content, distribution, and scaling." },
+          { question: "How do I list my startup on Lazy Unicorn?", answer: "You can submit your AI tool or autonomous company platform to the Lazy Unicorn directory for free. Your listing will be manually reviewed and approved." },
+        ]}
+        speakable={["h1", ".hero-description"]}
+      />
       
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
           "@context": "https://schema.org",
@@ -160,7 +169,7 @@ const Index = () => {
                 <br />
                 that builds itself.
               </h1>
-              <p className="font-body text-sm sm:text-base md:text-lg text-foreground/60 mt-4 max-w-xl leading-relaxed">
+              <p className="hero-description font-body text-sm sm:text-base md:text-lg text-foreground/60 mt-4 max-w-xl leading-relaxed">
                 Discover AI tools and resources to build your autonomous startup, and follow my journey as I attempt to build Lazy Unicorn into an autonomous unicorn, using Lovable—as a solo founder.
               </p>
               <div className="flex items-center gap-3 mt-6">
