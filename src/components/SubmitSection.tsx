@@ -89,7 +89,7 @@ const SubmitSection = () => {
           viewport={{ once: true }}
           className="font-body text-[11px] tracking-[0.2em] uppercase text-foreground/60 mb-4"
         >
-          Launch
+          Submit
         </motion.p>
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
@@ -98,10 +98,10 @@ const SubmitSection = () => {
           transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
           className="font-display text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight leading-[1] text-foreground mb-4"
         >
-          Launch your autonomous startup.
+          Feature your autonomous startup.
         </motion.h2>
         <p className="font-body text-sm text-foreground/50 leading-relaxed mb-8">
-          List your new autonomous startup on Lazy Unicorn and we'll help you grow.
+          Are you building a startup that helps people build autonomous startups? Get featured in the Directory.
         </p>
 
         {submitted ? (
