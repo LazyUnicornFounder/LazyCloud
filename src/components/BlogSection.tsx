@@ -101,7 +101,7 @@ export const blogPosts: BlogPost[] = [
     title: "The Berkeley Dropouts Who Built an AI That Hires Itself a Team",
     date: "March 2026",
     readTime: "6 min read",
-    thumbnail: naiveOg,
+    thumbnail: unicornBg,
     excerpt: "Sean Dorje started building computer vision companies at 15. Dennis Zax was building alongside him. Together they dropped out of Berkeley, went through YC twice, and built Naïve — an AI that shows up with its own email, bank account, and identity.",
     ogImage: "naive-sean-dennis-profile.png",
     content: [
