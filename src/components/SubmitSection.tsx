@@ -113,7 +113,7 @@ const SubmitSection = () => {
             <div>
               <p className="font-body text-foreground text-lg font-medium">Thanks for submitting! 🎉</p>
               <p className="font-body text-muted-foreground text-sm mt-1">
-                Your startup will appear after review.
+                Your startup is under review.
               </p>
             </div>
 
