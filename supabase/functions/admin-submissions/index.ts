@@ -121,14 +121,23 @@ Deno.serve(async (req) => {
     }
 
     if (action === "visitor_stats") {
-      // Get country breakdown
-      const { data: all, error } = await supabase
-        .from("visitors")
-        .select("country, country_code, city, region, latitude, longitude, created_at, user_agent, page, referrer")
-        .order("created_at", { ascending: false })
-        .limit(5000);
-      if (error) throw error;
-      return new Response(JSON.stringify(all), {
+      // Paginate to fetch ALL visitors
+      const allVisitors: unknown[] = [];
+      const PAGE_SIZE = 1000;
+      let offset = 0;
+      while (true) {
+        const { data: batch, error } = await supabase
+          .from("visitors")
+          .select("country, country_code, city, region, latitude, longitude, created_at, user_agent, page, referrer")
+          .order("created_at", { ascending: false })
+          .range(offset, offset + PAGE_SIZE - 1);
+        if (error) throw error;
+        if (!batch || batch.length === 0) break;
+        allVisitors.push(...batch);
+        if (batch.length < PAGE_SIZE) break;
+        offset += PAGE_SIZE;
+      }
+      return new Response(JSON.stringify(allVisitors), {
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
