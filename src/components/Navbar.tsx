@@ -72,7 +72,7 @@ const Navbar = ({ activePage = "home" }: NavbarProps) => {
               onClick={handleBrandClick}
               className="font-display text-sm font-semibold tracking-[0.15em] uppercase text-foreground hover:text-primary transition-colors cursor-pointer"
             >
-              Lazy Unicorn
+              Lazy&#160;Unicorn
             </a>
             <span className="w-px h-4 bg-foreground/20" />
             {links.map((link) =>
