@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { z } from "zod";
-import { X } from "lucide-react";
+import { X, Sparkles } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 
 const submitSchema = z.object({
@@ -28,7 +28,9 @@ const SubmitForm = ({ open, onClose }: SubmitFormProps) => {
   const [form, setForm] = useState<FormData>({ name: "", url: "", tagline: "" });
   const [errors, setErrors] = useState<Partial<Record<keyof FormData, string>>>({});
   const [submitted, setSubmitted] = useState(false);
+  const [submissionId, setSubmissionId] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const [checkoutLoading, setCheckoutLoading] = useState(false);
 
   const handleChange = (field: keyof FormData, value: string) => {
     setForm((prev) => ({ ...prev, [field]: value }));
@@ -48,17 +50,37 @@ const SubmitForm = ({ open, onClose }: SubmitFormProps) => {
       return;
     }
     setLoading(true);
-    const { error } = await supabase.from("submissions").insert({
+    const slug = result.data.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+    const { data, error } = await supabase.from("submissions").insert({
       name: result.data.name,
       url: result.data.url,
       tagline: result.data.tagline,
-    });
+      slug: `${slug}-${Date.now()}`,
+    }).select("id").single();
     setLoading(false);
     if (error) {
       setErrors({ name: "Something went wrong. Please try again." });
       return;
     }
+    setSubmissionId(data.id);
     setSubmitted(true);
+  };
+
+  const handleUpgrade = async () => {
+    if (!submissionId) return;
+    setCheckoutLoading(true);
+    try {
+      const { data, error } = await supabase.functions.invoke("polar-checkout", {
+        body: { action: "create_checkout", submission_id: submissionId },
+      });
+      if (error) throw error;
+      if (data?.url) {
+        window.location.href = data.url;
+      }
+    } catch {
+      setErrors({ name: "Failed to start checkout. Please try again." });
+    }
+    setCheckoutLoading(false);
   };
 
   const handleClose = () => {
@@ -67,6 +89,7 @@ const SubmitForm = ({ open, onClose }: SubmitFormProps) => {
       setForm({ name: "", url: "", tagline: "" });
       setErrors({});
       setSubmitted(false);
+      setSubmissionId(null);
     }, 300);
   };
 
@@ -96,8 +119,30 @@ const SubmitForm = ({ open, onClose }: SubmitFormProps) => {
             </div>
 
             {submitted ? (
-              <div className="text-center py-8">
-                <p className="font-body text-foreground text-lg font-medium">Thanks for submitting!</p>
+              <div className="text-center py-4 space-y-6">
+                <div>
+                  <p className="font-body text-foreground text-lg font-medium">Thanks for submitting! 🎉</p>
+                  <p className="font-body text-muted-foreground text-sm mt-1">
+                    Your startup will appear after review.
+                  </p>
+                </div>
+
+                <div className="bg-primary/5 border border-primary/20 rounded-xl p-5 text-left">
+                  <div className="flex items-center gap-2 mb-2">
+                    <Sparkles size={16} className="text-primary" />
+                    <p className="font-display text-sm font-bold text-foreground">Get a Pro Listing — $5/mo</p>
+                  </div>
+                  <p className="font-body text-xs text-muted-foreground leading-relaxed mb-4">
+                    Unlock your own product page with full description, features list, screenshots, and a "Pro" badge in the directory.
+                  </p>
+                  <button
+                    onClick={handleUpgrade}
+                    disabled={checkoutLoading}
+                    className="w-full bg-gradient-primary text-primary-foreground font-body font-medium text-sm py-2.5 rounded-lg hover:opacity-90 transition-opacity disabled:opacity-50"
+                  >
+                    {checkoutLoading ? "Redirecting to checkout…" : "Upgrade to Pro →"}
+                  </button>
+                </div>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
