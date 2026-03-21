@@ -144,7 +144,7 @@ const Index = () => {
                 Directory
               </a>
               <a
-                href="#submit"
+                href="#launch"
                 className="inline-block font-body text-[11px] tracking-[0.15em] uppercase border border-foreground/20 text-foreground/70 hover:text-primary hover:border-primary/40 px-6 py-2.5 rounded-full font-semibold transition-colors active:scale-[0.97]"
               >
                 Launch your startup
