@@ -770,7 +770,6 @@ export const staticBlogPosts: BlogPost[] = [
       "We are at day one of that world. The tools are here. The platforms are running. The companies are building themselves. The only question left is whether you're going to build one — or watch someone else do it first.",
     ],
   },
-  },
   {
     slug: "retire-early-keep-the-company",
     title: "Retire Early. Keep the Company.",
