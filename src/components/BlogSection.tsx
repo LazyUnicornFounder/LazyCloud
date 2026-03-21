@@ -835,7 +835,7 @@ export const staticBlogPosts: BlogPost[] = [
     slug: "what-is-a-recursive-startup",
     title: "What Is a Recursive Startup?",
     date: "March 2026",
-    readTime: "8 min read",
+    readTime: "12 min read",
     thumbnail: unicornBg,
     excerpt: "A startup that improves its own ability to improve itself. Not just autonomous — self-compounding. Here's what it means, how it works, and why the founders building them will look like they have an unfair advantage.",
     content: [
