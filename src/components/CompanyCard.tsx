@@ -5,6 +5,7 @@ interface CompanyCardProps {
   url: string;
   description: string;
   index: number;
+  thumbnail?: string;
 }
 
 const CompanyCard = ({ name, url, description, index }: CompanyCardProps) => {

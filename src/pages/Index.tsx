@@ -3,6 +3,8 @@ import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
 import unicornBg from "@/assets/unicorn-beach.png";
+import logoNaive from "@/assets/logo-naive.jpg";
+import logoPolsia from "@/assets/logo-polsia.jpg";
 import CompanyCard from "@/components/CompanyCard";
 import SubmitSection from "@/components/SubmitSection";
 import PitchDeck from "@/components/PitchDeck";
