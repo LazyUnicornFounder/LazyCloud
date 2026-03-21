@@ -173,20 +173,12 @@ const Index = () => {
                   href="#launch"
                   className="inline-block font-body text-[11px] tracking-[0.15em] uppercase border border-foreground/20 text-foreground/70 hover:text-primary hover:border-primary/40 px-6 py-2.5 rounded-full font-semibold transition-colors active:scale-[0.97]">
                   
-                  Launch your startup
+                  Feature your startup
                 </a>
               </div>
             </div>
           </motion.div>
 
-          {/* Valuation Breakdown */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            className="bg-background/60 backdrop-blur-2xl rounded-2xl px-6 py-6 border border-foreground/10 shadow-[0_8px_32px_rgba(0,0,0,0.4)] mt-4 md:mt-0 md:max-w-[280px] w-full shrink-0">
-            <ValuationBreakdown />
-          </motion.div>
         </div>
 
 
@@ -328,6 +320,18 @@ const Index = () => {
           </motion.div>
         </div>
       </section>
+      {/* Valuation Breakdown */}
+      <section className="relative z-10 px-8 md:px-12 pb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="max-w-sm bg-background/60 backdrop-blur-2xl rounded-2xl px-6 py-6 border border-foreground/10 shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
+          <ValuationBreakdown />
+        </motion.div>
+      </section>
+
       <PitchDeck />
 
 
