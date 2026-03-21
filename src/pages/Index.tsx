@@ -198,7 +198,7 @@ const Index = () => {
             Blog
           </p>
           <p className="font-body text-lg text-foreground/50 leading-relaxed mb-6">
-            Read our latest post on the rise of autonomous capitalism — and why your next startup might run itself.
+            Read our latest posts on the rise of autonomous capitalism — and why your next startup might run itself.
           </p>
           <Link
             to="/blog"
