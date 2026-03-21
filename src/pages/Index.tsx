@@ -11,8 +11,10 @@ import SEO from "@/components/SEO";
 import { supabase } from "@/integrations/supabase/client";
 import BlogTicker from "@/components/BlogTicker";
 import Navbar from "@/components/Navbar";
+import { useTrackVisit } from "@/hooks/useTrackVisit";
 
 const Index = () => {
+  useTrackVisit();
   const location = useLocation();
 
   useEffect(() => {

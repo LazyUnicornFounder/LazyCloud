@@ -1,5 +1,6 @@
 import { useState, useCallback } from "react";
 import { supabase } from "@/integrations/supabase/client";
+import AdminAnalytics from "@/components/AdminAnalytics";
 
 interface Submission {
   id: string;
@@ -27,7 +28,7 @@ const Admin = () => {
   const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [activeTab, setActiveTab] = useState<"submissions" | "blog">("submissions");
+  const [activeTab, setActiveTab] = useState<"submissions" | "blog" | "analytics">("submissions");
   const [generating, setGenerating] = useState(false);
 
   const fetchSubmissions = useCallback(async (pw: string) => {
@@ -124,7 +125,7 @@ const Admin = () => {
   }
 
   return (
-    <div className="min-h-screen bg-background text-foreground px-4 py-8 max-w-3xl mx-auto">
+    <div className="min-h-screen bg-background text-foreground px-4 py-8 max-w-5xl mx-auto">
       {/* Tabs */}
       <div className="flex items-center gap-4 mb-6">
         <button
@@ -142,6 +143,14 @@ const Admin = () => {
           }`}
         >
           Blog Posts
+        </button>
+        <button
+          onClick={() => setActiveTab("analytics")}
+          className={`font-display text-lg font-bold pb-1 border-b-2 transition-colors ${
+            activeTab === "analytics" ? "border-primary text-foreground" : "border-transparent text-muted-foreground hover:text-foreground"
+          }`}
+        >
+          Analytics
         </button>
       </div>
 
@@ -251,6 +260,10 @@ const Admin = () => {
             <p className="font-body text-sm text-muted-foreground text-center py-8">No blog posts yet. Click "Generate New Post" to create one.</p>
           )}
         </div>
+      )}
+
+      {activeTab === "analytics" && (
+        <AdminAnalytics password={password} />
       )}
     </div>
   );
