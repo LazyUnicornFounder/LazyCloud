@@ -87,6 +87,19 @@ const Index = () => {
           transition={{ duration: 1, ease: [0.25, 0.1, 0.25, 1] }}
           className="flex flex-col items-center"
         >
+          <a
+            href="https://www.producthunt.com/products/lazy-unicorn?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-lazy-unicorn"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mb-3"
+          >
+            <img
+              alt="Lazy Unicorn - Discover tools to launch your autonomous startup. | Product Hunt"
+              width="250"
+              height="54"
+              src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1103538&theme=dark&t=1774065246015"
+            />
+          </a>
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -121,25 +134,6 @@ const Index = () => {
           </div>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="mt-6"
-        >
-          <a
-            href="https://www.producthunt.com/products/lazy-unicorn?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-lazy-unicorn"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <img
-              alt="Lazy Unicorn - Discover tools to launch your autonomous startup. | Product Hunt"
-              width="250"
-              height="54"
-              src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1103538&theme=light&t=1774065109737"
-            />
-          </a>
-        </motion.div>
 
       </header>
 
