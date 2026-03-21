@@ -7,6 +7,7 @@ import logoNaive from "@/assets/logo-naive.jpg";
 import logoPolsia from "@/assets/logo-polsia.jpg";
 import CompanyCard from "@/components/CompanyCard";
 import SubmitSection from "@/components/SubmitSection";
+import PricingSection from "@/components/PricingSection";
 import PitchDeck from "@/components/PitchDeck";
 
 import SEO from "@/components/SEO";
@@ -52,6 +53,11 @@ const Index = () => {
       }));
     },
   });
+
+  const scrollToLaunch = () => {
+    const el = document.querySelector("#launch");
+    if (el) el.scrollIntoView({ behavior: "smooth" });
+  };
 
   return (
     <div className="min-h-screen text-foreground relative">
@@ -211,6 +217,8 @@ const Index = () => {
       </main>
 
       <SubmitSection />
+
+      <PricingSection onSubmitClick={scrollToLaunch} />
 
 
       {/* Blog CTA */}
