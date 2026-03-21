@@ -1,5 +1,6 @@
 import { useState, useCallback } from "react";
 import { supabase } from "@/integrations/supabase/client";
+import AdminAnalytics from "@/components/AdminAnalytics";
 
 interface Submission {
   id: string;
