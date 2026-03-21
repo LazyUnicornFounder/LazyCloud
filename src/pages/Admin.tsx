@@ -29,8 +29,10 @@ const Admin = () => {
   const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [activeTab, setActiveTab] = useState<"submissions" | "blog" | "analytics">("analytics");
+  const [activeTab, setActiveTab] = useState<"submissions" | "blog" | "analytics" | "twitter">("analytics");
   const [generating, setGenerating] = useState(false);
+  const [tweetText, setTweetText] = useState("");
+  const [tweeting, setTweeting] = useState(false);
 
   const fetchSubmissions = useCallback(async (pw: string) => {
     setLoading(true);
