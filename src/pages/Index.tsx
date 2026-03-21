@@ -54,6 +54,11 @@ const Index = () => {
     },
   });
 
+  const scrollToLaunch = () => {
+    const el = document.querySelector("#launch");
+    if (el) el.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <div className="min-h-screen text-foreground relative">
       <SEO
