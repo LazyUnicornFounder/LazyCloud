@@ -73,7 +73,7 @@ const LaunchPage = () => {
       <FloatingProductCTA />
 
       <main className="relative z-10 pt-28 pb-32 px-6 md:px-12 flex justify-center">
-        <div className="w-full max-w-2xl">
+        <div className="w-full max-w-4xl">
           {/* Hero */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
