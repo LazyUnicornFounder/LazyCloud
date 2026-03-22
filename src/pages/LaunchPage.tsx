@@ -92,6 +92,12 @@ const LaunchPage = () => {
             </h1>
           </motion.div>
 
+          {/* Step 1 */}
+          <div className="flex items-center gap-3 mb-4">
+            <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-primary text-primary-foreground font-display text-sm font-bold">1</span>
+            <span className="font-display text-sm font-bold tracking-[0.1em] uppercase text-foreground/60">Describe your idea</span>
+          </div>
+
           {/* Chat box */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
