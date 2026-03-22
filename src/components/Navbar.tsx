@@ -86,7 +86,7 @@ const Navbar = ({ activePage = "home" }: NavbarProps) => {
       {!isMobile ? (
         <>
           <div className="mb-1.5 flex items-center gap-2">
-            <div className="bg-background/60 backdrop-blur-2xl border border-foreground/10 rounded-full px-4 py-1 shadow-[0_4px_16px_rgba(0,0,0,0.3)]">
+            <div className="bg-transparent backdrop-blur border border-foreground/10 rounded-full px-4 py-1 shadow-[0_4px_16px_rgba(0,0,0,0.3)]">
               <LiveCounter />
             </div>
           </div>
