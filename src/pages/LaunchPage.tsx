@@ -90,10 +90,13 @@ const LaunchPage = () => {
             <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-[0.95] mb-4">
               What will you build?
             </h1>
-            <p className="font-body text-base text-foreground/50 leading-relaxed max-w-md mx-auto">
-              Describe your idea below, pick a platform, and we'll copy your prompt so you can hit the ground running.
-            </p>
           </motion.div>
+
+          {/* Step 1 */}
+          <div className="flex items-center gap-3 mb-4">
+            <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-primary text-primary-foreground font-display text-sm font-bold">1</span>
+            <span className="font-display text-sm font-bold tracking-[0.1em] uppercase text-foreground/60">Describe your idea</span>
+          </div>
 
           {/* Chat box */}
           <motion.div
@@ -115,6 +118,12 @@ const LaunchPage = () => {
               Be as detailed as you want — the more context, the better.
             </p>
           </motion.div>
+
+          {/* Step 2 */}
+          <div className="flex items-center gap-3 mb-4">
+            <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-primary text-primary-foreground font-display text-sm font-bold">2</span>
+            <span className="font-display text-sm font-bold tracking-[0.1em] uppercase text-foreground/60">Pick a platform</span>
+          </div>
 
           {/* Platform buttons */}
           <motion.div
