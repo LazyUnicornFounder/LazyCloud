@@ -41,7 +41,7 @@ const Navbar = ({ activePage = "home" }: NavbarProps) => {
     { label: "Blog", href: "/blog", highlight: activePage === "blog" },
     { label: "Mission", href: isHome ? "#mission" : "/#mission" },
     { label: "About", href: isHome ? "#about" : "/#about" },
-    { label: "Submit", href: isHome ? "#launch" : "/#launch", isCta: true },
+    { label: "Launch Your Autonomous Startup", href: "/launch", isCta: true },
   ];
 
   const brandHref = isHome ? "#top" : "/";
