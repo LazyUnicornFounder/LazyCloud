@@ -14,19 +14,19 @@ const platforms = [
   {
     name: "Lovable",
     url: "https://lovable.dev",
-    description: "Build your app with AI",
+    description: "Build apps and websites by chatting with AI",
     color: "from-pink-500 to-purple-600",
   },
   {
     name: "Polsia",
     url: "https://polsia.com",
-    description: "AI runs your company 24/7",
+    description: "AI that runs your company while you sleep",
     color: "from-blue-500 to-cyan-500",
   },
   {
     name: "Naïve",
     url: "https://usenaive.ai",
-    description: "Describe it. Naïve builds it.",
+    description: "Describe your company. Naïve builds it.",
     color: "from-emerald-500 to-teal-500",
   },
 ];
