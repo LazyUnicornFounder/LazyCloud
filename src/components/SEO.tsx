@@ -28,7 +28,7 @@ interface SEOProps {
 
 const SITE_NAME = "Lazy Unicorn";
 const DEFAULT_TITLE = "Lazy Unicorn — The Solo Founder's Guide to Building an Autonomous Unicorn";
-const DEFAULT_DESCRIPTION = "The definitive directory of AI tools and resources for solo founders building autonomous startups. Discover platforms that let you own a company that runs itself — built with Lovable by a solo founder.";
+const DEFAULT_DESCRIPTION = "The solo founder's guide to building an autonomous unicorn. Discover AI tools and resources to build a startup that builds itself.";
 const DEFAULT_IMAGE = "https://www.lazyunicorn.ai/og-image.png";
 const BASE_URL = "https://www.lazyunicorn.ai";
 const DEFAULT_KEYWORDS = "autonomous companies, AI business tools, passive income startups, autonomous capitalism, AI agents for business, self-running business, solo founder tools, startup directory, autonomous startups, Lazy Unicorn, self-building startup, no-code business, FIRE movement, one-person unicorn, AI startup tools, Lovable, build startup with AI";
