@@ -36,8 +36,8 @@ const Navbar = ({ activePage = "home" }: NavbarProps) => {
   const isHome = location.pathname === "/";
 
   const links: NavLink[] = [
-    { label: "Directory", href: isHome ? "#directory" : "/#directory" },
     { label: "Guide", href: "/guide", highlight: activePage === "guide" },
+    { label: "Directory", href: isHome ? "#directory" : "/#directory" },
     { label: "Blog", href: "/blog", highlight: activePage === "blog" },
     { label: "Mission", href: isHome ? "#mission" : "/#mission" },
     { label: "About", href: isHome ? "#about" : "/#about" },
