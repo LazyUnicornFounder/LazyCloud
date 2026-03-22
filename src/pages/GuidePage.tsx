@@ -361,14 +361,12 @@ const GuidePage = () => {
               The only missing piece is you.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
-              <a
-                href="https://lovable.dev"
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                to="/launch"
                 className="inline-flex items-center gap-2 font-body text-xs tracking-[0.15em] uppercase bg-primary text-primary-foreground px-6 py-3 rounded-full font-semibold hover:opacity-90 transition-opacity"
               >
-                Start Building <ArrowRight className="w-4 h-4" />
-              </a>
+                Launch Startup <ArrowRight className="w-4 h-4" />
+              </Link>
               <a
                 href="/blog/how-to-build-autonomous-unicorn"
                 className="inline-flex items-center gap-2 font-body text-xs tracking-[0.15em] uppercase border border-foreground/20 text-foreground/70 px-6 py-3 rounded-full font-semibold hover:text-primary hover:border-primary/30 transition-colors"
