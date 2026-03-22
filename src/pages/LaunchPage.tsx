@@ -163,7 +163,40 @@ const LaunchPage = () => {
             )}
           </motion.div>
         </div>
-      </main>
+
+      {/* Redirect overlay */}
+      <AnimatePresence>
+        {redirecting && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 backdrop-blur-md"
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              transition={{ duration: 0.3 }}
+              className="bg-transparent backdrop-blur-xl rounded-3xl px-10 py-10 border border-primary/20 shadow-[0_8px_32px_rgba(0,0,0,0.4),0_0_20px_rgba(var(--primary-rgb),0.08)] text-center max-w-md mx-6"
+            >
+              <Loader2 size={32} className="text-primary animate-spin mx-auto mb-5" />
+              <p className="font-display text-2xl font-extrabold text-foreground mb-2">
+                {copied ? "Prompt copied to clipboard!" : `Heading to ${redirecting.name}`}
+              </p>
+              {copied && (
+                <p className="font-body text-sm text-foreground/50 mb-3">
+                  Paste it into {redirecting.name} to get started.
+                </p>
+              )}
+              <p className="font-body text-sm text-foreground/40">
+                Shortly redirecting you to{" "}
+                <span className="text-primary font-semibold">{redirecting.name}</span>…
+              </p>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
