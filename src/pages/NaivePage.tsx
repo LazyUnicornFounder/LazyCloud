@@ -107,7 +107,7 @@ const NaivePage = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="bg-background/60 backdrop-blur-2xl rounded-3xl px-8 py-10 border border-foreground/10 shadow-[0_8px_32px_rgba(0,0,0,0.4)] mb-8"
+            className="bg-white/10 backdrop-blur-3xl rounded-3xl px-8 py-10 border border-primary/20 shadow-[0_8px_32px_rgba(0,0,0,0.4),0_0_20px_rgba(var(--primary-rgb),0.08)] mb-8"
           >
             <div className="flex items-start gap-5 mb-6">
               <img
@@ -152,7 +152,7 @@ const NaivePage = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="rounded-2xl overflow-hidden border border-foreground/10 shadow-[0_8px_32px_rgba(0,0,0,0.4)] mb-8"
+            className="rounded-2xl overflow-hidden border border-primary/20 shadow-[0_8px_32px_rgba(0,0,0,0.4),0_0_20px_rgba(var(--primary-rgb),0.08)] mb-8"
           >
             <img src={screenshotNaive} alt="Naïve platform dashboard" className="w-full object-cover" />
           </motion.div>
@@ -163,7 +163,7 @@ const NaivePage = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="bg-background/60 backdrop-blur-2xl rounded-3xl px-8 py-10 border border-foreground/10 shadow-[0_8px_32px_rgba(0,0,0,0.4)] mb-8"
+            className="bg-white/10 backdrop-blur-3xl rounded-3xl px-8 py-10 border border-primary/20 shadow-[0_8px_32px_rgba(0,0,0,0.4),0_0_20px_rgba(var(--primary-rgb),0.08)] mb-8"
           >
             <p className="font-display text-2xl md:text-3xl font-extrabold tracking-[0.1em] uppercase text-foreground/60 mb-8">
               How it works
@@ -189,7 +189,7 @@ const NaivePage = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="bg-background/60 backdrop-blur-2xl rounded-3xl px-8 py-10 border border-foreground/10 shadow-[0_8px_32px_rgba(0,0,0,0.4)] mb-8"
+            className="bg-white/10 backdrop-blur-3xl rounded-3xl px-8 py-10 border border-primary/20 shadow-[0_8px_32px_rgba(0,0,0,0.4),0_0_20px_rgba(var(--primary-rgb),0.08)] mb-8"
           >
             <p className="font-display text-2xl md:text-3xl font-extrabold tracking-[0.1em] uppercase text-foreground/60 mb-6">
               Features
@@ -210,7 +210,7 @@ const NaivePage = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="bg-background/60 backdrop-blur-2xl rounded-3xl px-8 py-10 border border-foreground/10 shadow-[0_8px_32px_rgba(0,0,0,0.4)] mb-8"
+            className="bg-white/10 backdrop-blur-3xl rounded-3xl px-8 py-10 border border-primary/20 shadow-[0_8px_32px_rgba(0,0,0,0.4),0_0_20px_rgba(var(--primary-rgb),0.08)] mb-8"
           >
             <div className="flex items-center gap-3 mb-4">
               <Plug size={20} className="text-primary" />
@@ -239,7 +239,7 @@ const NaivePage = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="bg-background/60 backdrop-blur-2xl rounded-3xl px-8 py-10 border border-foreground/10 shadow-[0_8px_32px_rgba(0,0,0,0.4)] mb-8"
+            className="bg-white/10 backdrop-blur-3xl rounded-3xl px-8 py-10 border border-primary/20 shadow-[0_8px_32px_rgba(0,0,0,0.4),0_0_20px_rgba(var(--primary-rgb),0.08)] mb-8"
           >
             <div className="flex items-center gap-3 mb-6">
               <DollarSign size={20} className="text-primary" />
@@ -290,7 +290,7 @@ const NaivePage = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="bg-background/60 backdrop-blur-2xl rounded-3xl px-8 py-8 border border-foreground/10 shadow-[0_8px_32px_rgba(0,0,0,0.4)]"
+            className="bg-white/10 backdrop-blur-3xl rounded-3xl px-8 py-8 border border-primary/20 shadow-[0_8px_32px_rgba(0,0,0,0.4),0_0_20px_rgba(var(--primary-rgb),0.08)]"
           >
             <p className="font-display text-lg font-bold text-foreground/60 mb-4">Links</p>
             <div className="flex flex-wrap gap-3">
