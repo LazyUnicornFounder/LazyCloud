@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
-import { Rocket, Copy, ExternalLink } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Rocket, Copy, ExternalLink, Loader2 } from "lucide-react";
 import SEO from "@/components/SEO";
 import Navbar from "@/components/Navbar";
 import BlogTicker from "@/components/BlogTicker";
@@ -33,21 +33,26 @@ const platforms = [
 
 const LaunchPage = () => {
   const [prompt, setPrompt] = useState("");
+  const [redirecting, setRedirecting] = useState<typeof platforms[number] | null>(null);
+  const [copied, setCopied] = useState(false);
 
   const handleLaunch = async (platform: typeof platforms[number]) => {
+    let didCopy = false;
     if (prompt.trim()) {
       try {
         await navigator.clipboard.writeText(prompt.trim());
-        toast.success("Prompt copied to clipboard!", {
-          description: `Paste it into ${platform.name} to get started.`,
-        });
+        didCopy = true;
       } catch {
-        toast.error("Couldn't copy — please copy your prompt manually.");
+        // silent
       }
     }
+    setCopied(didCopy);
+    setRedirecting(platform);
+
     setTimeout(() => {
       window.open(platform.url, "_blank", "noopener,noreferrer");
-    }, 600);
+      setRedirecting(null);
+    }, 3000);
   };
 
   return (
