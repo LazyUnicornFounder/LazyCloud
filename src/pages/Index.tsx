@@ -341,6 +341,14 @@ const Index = () => {
             <p className="font-body text-base text-foreground/50 leading-relaxed">
               Lazy Unicorn wants to be the first one-person unicorn built on Lovable.
             </p>
+            <a
+              href="https://lovable.dev"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block font-body text-[11px] tracking-[0.15em] uppercase bg-primary text-primary-foreground px-6 py-2.5 rounded-full font-semibold hover:opacity-90 transition-opacity active:scale-[0.97] mt-4"
+            >
+              Start building with Lovable
+            </a>
           </motion.div>
         </div>
       </section>
