@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Menu, X as XIcon, Linkedin } from "lucide-react";
 import { useLocation } from "react-router-dom";
 import { useIsMobile } from "@/hooks/use-mobile";
-import LiveCounter from "@/components/LiveCounter";
+
 
 interface NavLink {
   label: string;
