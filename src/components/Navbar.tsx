@@ -12,7 +12,6 @@ interface NavLink {
 }
 
 interface NavbarProps {
-  /** Which page is active — used to highlight the correct link */
   activePage?: "home" | "blog" | "guide";
 }
 
@@ -21,9 +20,7 @@ const Navbar = ({ activePage = "home" }: NavbarProps) => {
   const [open, setOpen] = useState(false);
   const location = useLocation();
 
-  // Only treat as "home" if we're actually on the root path
   const isHome = location.pathname === "/";
-  const prefix = isHome ? "" : "/#";
 
   const links: NavLink[] = [
     { label: "Directory", href: isHome ? "#directory" : "/#directory" },
@@ -43,8 +40,7 @@ const Navbar = ({ activePage = "home" }: NavbarProps) => {
     : undefined;
 
   return (
-    <nav className="fixed top-6 left-1/2 -translate-x-1/2 z-50 flex flex-col items-center w-[calc(100%-2rem)] sm:w-auto max-w-[95vw]">
-      {/* Desktop nav */}
+    <nav className="fixed top-6 left-0 right-0 z-50 flex flex-col items-center w-full px-8">
       {!isMobile ? (
         <>
           <div className="mb-1.5 flex items-center gap-2">
@@ -68,7 +64,7 @@ const Navbar = ({ activePage = "home" }: NavbarProps) => {
               Follow on LinkedIn
             </a>
           </div>
-          <div className="flex items-center gap-6 bg-background/60 backdrop-blur-2xl border border-foreground/10 rounded-full px-8 py-3 shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
+          <div className="flex items-center justify-between w-full py-3">
             <a
               href={brandHref}
               onClick={handleBrandClick}
@@ -76,34 +72,34 @@ const Navbar = ({ activePage = "home" }: NavbarProps) => {
             >
               Lazy&#160;Unicorn
             </a>
-            <span className="w-px h-4 bg-foreground/20" />
-            {links.map((link) =>
-              link.isCta ? (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  className="font-body text-[11px] tracking-[0.15em] uppercase bg-primary text-primary-foreground px-5 py-1.5 rounded-full font-semibold hover:opacity-90 transition-opacity"
-                >
-                  {link.label}
-                </a>
-              ) : (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  className={`font-body text-[11px] tracking-[0.15em] uppercase transition-colors ${
-                    link.highlight
-                      ? "text-primary"
-                      : "text-foreground/70 hover:text-primary"
-                  }`}
-                >
-                  {link.label}
-                </a>
-              )
-            )}
+            <div className="flex items-center gap-6">
+              {links.map((link) =>
+                link.isCta ? (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    className="font-body text-[11px] tracking-[0.15em] uppercase bg-primary text-primary-foreground px-5 py-1.5 rounded-full font-semibold hover:opacity-90 transition-opacity"
+                  >
+                    {link.label}
+                  </a>
+                ) : (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    className={`font-body text-[11px] tracking-[0.15em] uppercase transition-colors ${
+                      link.highlight
+                        ? "text-primary"
+                        : "text-foreground/70 hover:text-primary"
+                    }`}
+                  >
+                    {link.label}
+                  </a>
+                )
+              )}
+            </div>
           </div>
         </>
       ) : (
-        /* Mobile nav */
         <>
           <div className="flex items-center justify-between w-full bg-background/60 backdrop-blur-2xl border border-foreground/10 rounded-full px-5 py-2.5 shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
             <a
