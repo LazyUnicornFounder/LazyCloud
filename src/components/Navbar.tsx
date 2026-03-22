@@ -128,7 +128,7 @@ const Navbar = ({ activePage = "home" }: NavbarProps) => {
         </>
       ) : (
         <>
-          <div className="flex items-center justify-between w-full bg-background/60 backdrop-blur-xl-2xl border border-foreground/10 rounded-full px-5 py-2.5 shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
+          <div className="flex items-center justify-between w-full bg-transparent backdrop-blur-xl border border-foreground/10 rounded-full px-5 py-2.5 shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
             <a
               href={brandHref}
               onClick={(e) => {
