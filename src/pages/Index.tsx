@@ -319,6 +319,32 @@ const Index = () => {
         </motion.div>
       </section>
 
+      {/* Mission */}
+      <section id="mission" className="relative z-10 px-8 md:px-12 pb-16 scroll-mt-24">
+        <div className="max-w-2xl bg-background/60 backdrop-blur-2xl rounded-3xl px-8 py-10 border border-foreground/10 shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="font-display text-3xl md:text-4xl font-extrabold tracking-[0.1em] uppercase text-foreground/60 mb-4">
+            Mission
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
+            className="space-y-4">
+            <p className="font-body text-lg md:text-xl text-foreground/70 leading-relaxed">
+              Accelerate the future of autonomous capitalism.
+            </p>
+            <p className="font-body text-base text-foreground/50 leading-relaxed">
+              Lazy Unicorn wants to be the first one-person unicorn built on Lovable.
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
       {/* About */}
       <section id="about" className="relative z-10 px-8 md:px-12 pb-16 scroll-mt-24">
         <div className="max-w-2xl bg-background/60 backdrop-blur-2xl rounded-3xl px-8 py-10 border border-foreground/10 shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
@@ -327,7 +353,6 @@ const Index = () => {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             className="font-display text-3xl md:text-4xl font-extrabold tracking-[0.1em] uppercase text-foreground/60 mb-4">
-            
             About
           </motion.p>
           <motion.div
@@ -336,7 +361,6 @@ const Index = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
             className="space-y-4">
-            
             <p className="font-body text-lg md:text-xl text-foreground/70 leading-relaxed">
               I'm obsessed with self-building startups — companies that design, ship, and scale themselves with AI agents doing the heavy lifting.
             </p>
@@ -352,7 +376,6 @@ const Index = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="font-body text-[11px] tracking-[0.15em] uppercase text-foreground/50 hover:text-primary transition-colors border border-foreground/10 rounded-full px-4 py-1.5">
-                
                 Follow me on 𝕏
               </a>
               <a
@@ -360,7 +383,6 @@ const Index = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="font-body text-[11px] tracking-[0.15em] uppercase text-foreground/50 hover:text-primary transition-colors border border-foreground/10 rounded-full px-4 py-1.5">
-                
                 Follow me on LinkedIn
               </a>
             </div>
@@ -380,35 +402,6 @@ const Index = () => {
       </section> */}
 
       {/* <PitchDeck /> */}
-
-
-      {/* Mission */}
-      <section id="mission" className="relative z-10 px-8 md:px-12 pb-16 scroll-mt-24">
-        <div className="max-w-2xl bg-background/60 backdrop-blur-2xl rounded-3xl px-8 py-10 border border-foreground/10 shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="font-display text-3xl md:text-4xl font-extrabold tracking-[0.1em] uppercase text-foreground/60 mb-4">
-            
-            Mission
-          </motion.p>
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
-            className="space-y-4">
-            
-            <p className="font-body text-lg md:text-xl text-foreground/70 leading-relaxed">
-              Accelerate the future of autonomous capitalism.
-            </p>
-            <p className="font-body text-base text-foreground/50 leading-relaxed">
-              Lazy Unicorn wants to be the first one-person unicorn built on Lovable.
-            </p>
-          </motion.div>
-        </div>
-      </section>
 
       {/* Footer */}
       <footer className="relative z-10 px-8 md:px-12 py-8 border-t border-foreground/10">
