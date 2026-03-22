@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X as XIcon, Linkedin } from "lucide-react";
 import { useLocation } from "react-router-dom";
 import { useIsMobile } from "@/hooks/use-mobile";
 import LiveCounter from "@/components/LiveCounter";
@@ -14,6 +14,12 @@ interface NavLink {
 interface NavbarProps {
   activePage?: "home" | "blog" | "guide";
 }
+
+const XLogo = () => (
+  <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+  </svg>
+);
 
 const Navbar = ({ activePage = "home" }: NavbarProps) => {
   const isMobile = useIsMobile();
@@ -39,6 +45,29 @@ const Navbar = ({ activePage = "home" }: NavbarProps) => {
       }
     : undefined;
 
+  const socialIcons = (
+    <>
+      <a
+        href="https://x.com/SaadSahawneh"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-foreground/50 hover:text-primary transition-colors"
+        aria-label="Follow on X"
+      >
+        <XLogo />
+      </a>
+      <a
+        href="https://www.linkedin.com/in/saadsahawneh"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-foreground/50 hover:text-primary transition-colors"
+        aria-label="Follow on LinkedIn"
+      >
+        <Linkedin size={14} />
+      </a>
+    </>
+  );
+
   return (
     <nav className="fixed top-6 left-0 right-0 z-50 flex flex-col items-center w-full px-8">
       {!isMobile ? (
@@ -47,22 +76,6 @@ const Navbar = ({ activePage = "home" }: NavbarProps) => {
             <div className="bg-background/60 backdrop-blur-2xl border border-foreground/10 rounded-full px-4 py-1 shadow-[0_4px_16px_rgba(0,0,0,0.3)]">
               <LiveCounter />
             </div>
-            <a
-              href="https://x.com/SaadSahawneh"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-body text-[9px] tracking-[0.2em] uppercase text-foreground/50 hover:text-primary transition-colors bg-background/60 backdrop-blur-2xl border border-foreground/10 rounded-full px-4 py-1 shadow-[0_4px_16px_rgba(0,0,0,0.3)]"
-            >
-              Follow on 𝕏
-            </a>
-            <a
-              href="https://www.linkedin.com/in/saadsahawneh"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-body text-[9px] tracking-[0.2em] uppercase text-foreground/50 hover:text-primary transition-colors bg-background/60 backdrop-blur-2xl border border-foreground/10 rounded-full px-4 py-1 shadow-[0_4px_16px_rgba(0,0,0,0.3)]"
-            >
-              Follow on LinkedIn
-            </a>
           </div>
           <div className="flex items-center justify-between w-full py-3">
             <a
@@ -96,6 +109,7 @@ const Navbar = ({ activePage = "home" }: NavbarProps) => {
                   </a>
                 )
               )}
+              {socialIcons}
             </div>
           </div>
         </>
@@ -117,7 +131,7 @@ const Navbar = ({ activePage = "home" }: NavbarProps) => {
               className="text-foreground/70 hover:text-primary transition-colors p-1"
               aria-label={open ? "Close menu" : "Open menu"}
             >
-              {open ? <X size={20} /> : <Menu size={20} />}
+              {open ? <XIcon size={20} /> : <Menu size={20} />}
             </button>
           </div>
 
@@ -148,25 +162,8 @@ const Navbar = ({ activePage = "home" }: NavbarProps) => {
                   </a>
                 )
               )}
-              <div className="flex items-center gap-2 pt-2 border-t border-foreground/10">
-                <a
-                  href="https://x.com/SaadSahawneh"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => setOpen(false)}
-                  className="font-body text-[9px] tracking-[0.2em] uppercase text-foreground/50 hover:text-primary transition-colors"
-                >
-                  Follow on 𝕏
-                </a>
-                <a
-                  href="https://www.linkedin.com/in/saadsahawneh"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => setOpen(false)}
-                  className="font-body text-[9px] tracking-[0.2em] uppercase text-foreground/50 hover:text-primary transition-colors"
-                >
-                  Follow on LinkedIn
-                </a>
+              <div className="flex items-center gap-3 pt-2 border-t border-foreground/10">
+                {socialIcons}
               </div>
             </div>
           )}
