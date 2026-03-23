@@ -62,6 +62,22 @@ Deno.serve(async (req) => {
       });
     }
 
+    if (action === "update_submission" && id && updates) {
+      const allowed = ["name", "url", "tagline", "description", "logo_url", "slug"];
+      const sanitized: Record<string, unknown> = {};
+      for (const key of allowed) {
+        if (key in updates) sanitized[key] = updates[key];
+      }
+      const { error } = await supabase
+        .from("submissions")
+        .update(sanitized)
+        .eq("id", id);
+      if (error) throw error;
+      return new Response(JSON.stringify({ success: true }), {
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
     // === Blog post actions ===
     if (action === "list_posts") {
       const { data, error } = await supabase
