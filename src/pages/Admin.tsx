@@ -40,8 +40,6 @@ const Admin = () => {
   const [activeTab, setActiveTab] = useState<"submissions" | "blog" | "queue" | "analytics" | "early_access">("analytics");
   const [queue, setQueue] = useState<BlogPost[]>([]);
   const [generating, setGenerating] = useState(false);
-  const [tweetText, setTweetText] = useState("");
-  const [tweeting, setTweeting] = useState(false);
 
   const fetchSubmissions = useCallback(async (pw: string) => {
     setLoading(true);
