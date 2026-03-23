@@ -1,8 +1,8 @@
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import AdminAnalytics from "@/components/AdminAnalytics";
 import { toast } from "sonner";
-import { Twitter, Pencil, X, Check, Trash2 } from "lucide-react";
+import { Twitter, Pencil, X, Check, Trash2, Upload, Loader2 } from "lucide-react";
 import { staticBlogPosts } from "@/components/BlogSection";
 import logoNaive from "@/assets/logo-naive.jpg";
 import logoPolsia from "@/assets/logo-polsia.jpg";
@@ -52,6 +52,8 @@ const Admin = () => {
   const [customTopic, setCustomTopic] = useState("");
   const [editingId, setEditingId] = useState<string | null>(null);
   const [editForm, setEditForm] = useState({ name: "", url: "", tagline: "", description: "", logo_url: "" });
+  const [uploading, setUploading] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const fetchSubmissions = useCallback(async (pw: string) => {
     setLoading(true);
@@ -262,16 +264,60 @@ const Admin = () => {
                     />
                   </div>
                   <div>
-                    <label className="font-body text-xs text-muted-foreground block mb-1">Thumbnail URL</label>
-                    <input
-                      value={editForm.logo_url}
-                      onChange={(e) => setEditForm({ ...editForm, logo_url: e.target.value })}
-                      placeholder="https://..."
-                      className="w-full font-body text-sm bg-background border border-border rounded-lg px-3 py-2 text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-primary/50"
-                    />
-                    {editForm.logo_url && (
-                      <img src={editForm.logo_url} alt="Preview" className="mt-2 h-12 w-12 rounded-lg object-cover border border-border" />
-                    )}
+                    <label className="font-body text-xs text-muted-foreground block mb-1">Thumbnail</label>
+                    <div className="flex items-center gap-3">
+                      {editForm.logo_url && (
+                        <img src={editForm.logo_url} alt="Preview" className="h-12 w-12 rounded-lg object-cover border border-border shrink-0" />
+                      )}
+                      <input
+                        ref={fileInputRef}
+                        type="file"
+                        accept="image/*"
+                        className="hidden"
+                        onChange={async (e) => {
+                          const file = e.target.files?.[0];
+                          if (!file) return;
+                          setUploading(true);
+                          const ext = file.name.split(".").pop();
+                          const filePath = `${editingId}-${Date.now()}.${ext}`;
+                          const { error: uploadError } = await supabase.storage
+                            .from("logos")
+                            .upload(filePath, file, { upsert: true });
+                          if (uploadError) {
+                            toast.error("Upload failed: " + uploadError.message);
+                            setUploading(false);
+                            return;
+                          }
+                          const { data: urlData } = supabase.storage
+                            .from("logos")
+                            .getPublicUrl(filePath);
+                          setEditForm({ ...editForm, logo_url: urlData.publicUrl });
+                          setUploading(false);
+                          toast.success("Thumbnail uploaded!");
+                        }}
+                      />
+                      <button
+                        type="button"
+                        onClick={() => fileInputRef.current?.click()}
+                        disabled={uploading}
+                        className="font-body text-xs px-3 py-2 rounded-lg border border-border bg-background hover:bg-muted transition-colors flex items-center gap-1.5 disabled:opacity-50"
+                      >
+                        {uploading ? (
+                          <><Loader2 size={12} className="animate-spin" /> Uploading…</>
+                        ) : (
+                          <><Upload size={12} /> {editForm.logo_url ? "Replace" : "Upload"} thumbnail</>
+                        )}
+                      </button>
+                      {editForm.logo_url && (
+                        <button
+                          type="button"
+                          onClick={() => setEditForm({ ...editForm, logo_url: "" })}
+                          className="font-body text-xs px-2 py-1.5 rounded-lg text-destructive hover:bg-destructive/10 transition-colors"
+                        >
+                          Remove
+                        </button>
+                      )}
+                    </div>
                   </div>
                   <div className="flex gap-2">
                     <button
