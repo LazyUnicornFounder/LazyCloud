@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Zap, Clock, FileText, BarChart3, Play, Pause, PenTool, Search, ChevronDown, Mail } from "lucide-react";
+import { Zap, FileText, BarChart3, Play, Pause, PenTool, Search, Mail } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 import SEO from "@/components/SEO";
@@ -25,16 +25,7 @@ const features = [
   { icon: Pause, label: "Pause and resume anytime" },
 ];
 
-const faqs = [
-  { q: "Do I need to know how to code?", a: "No. Clone the template, answer five questions, done." },
-  { q: "What does it cost to run?", a: "You pay Anthropic directly — roughly $2–5 per month at 4 posts per day." },
-  { q: "Will posts sound generic?", a: "You control tone, topics, and brand voice in setup." },
-  { q: "Can I edit posts before they publish?", a: "Not yet — a drafts queue is coming in Pro." },
-  { q: "What if I already have a blog?", a: "Lazy Blogger adds to it. It doesn't replace anything." },
-];
-
 const LazyBloggerPage = () => {
-  const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [email, setEmail] = useState("");
   const [footerEmail, setFooterEmail] = useState("");
   const [submitting, setSubmitting] = useState(false);
@@ -75,7 +66,6 @@ const LazyBloggerPage = () => {
         <BlogTicker />
       </div>
       <Navbar />
-      
 
       <main className="relative z-10 pt-28 pb-32 px-6 md:px-12">
         {/* ── Hero ── */}
@@ -180,115 +170,6 @@ const LazyBloggerPage = () => {
               ))}
             </div>
           </motion.div>
-        </section>
-
-        {/* ── Pricing ── */}
-        <section className="max-w-3xl mx-auto mb-24">
-          <motion.h2
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="font-display text-sm font-bold tracking-[0.2em] uppercase text-primary mb-8 text-center"
-          >
-            Pricing
-          </motion.h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Free */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="bg-transparent backdrop-blur-xl rounded-3xl border border-primary/20 p-8 shadow-[0_8px_32px_rgba(0,0,0,0.4)]"
-            >
-              <h3 className="font-display text-2xl font-extrabold text-foreground mb-1">Free</h3>
-              <p className="font-body text-sm text-foreground/40 mb-6">Clone and self-host</p>
-              <ul className="space-y-3 mb-8">
-                {["Lovable template", "Self-hosted", "Bring your own Anthropic API key", "One-time clone"].map((item) => (
-                  <li key={item} className="flex items-start gap-2">
-                    <span className="text-primary mt-0.5">✓</span>
-                    <span className="font-body text-sm text-foreground/60">{item}</span>
-                  </li>
-                ))}
-              </ul>
-              <button
-                onClick={() => document.querySelector<HTMLInputElement>('#hero-email')?.focus()}
-                className="block w-full text-center bg-primary text-primary-foreground font-display font-bold text-sm tracking-[0.08em] uppercase px-6 py-3 rounded-full hover:opacity-90 transition-opacity"
-              >
-                Get Early Access
-              </button>
-            </motion.div>
-
-            {/* Pro */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="relative bg-transparent backdrop-blur-xl rounded-3xl border-2 border-yellow-500/50 p-8 shadow-[0_8px_32px_rgba(0,0,0,0.4),0_0_20px_rgba(234,179,8,0.1)]"
-            >
-              <div className="absolute -top-3 right-6 bg-yellow-500 text-background font-display text-[10px] font-bold tracking-[0.15em] uppercase px-4 py-1 rounded-full">
-                Coming Soon
-              </div>
-              <h3 className="font-display text-2xl font-extrabold text-foreground mb-1">
-                Pro <span className="text-foreground/40 text-lg font-normal">$29/mo</span>
-              </h3>
-              <p className="font-body text-sm text-foreground/40 mb-6">Fully managed</p>
-              <ul className="space-y-3 mb-8">
-                {["Hosted — no setup needed", "No API key required", "Keyword targeting", "Performance dashboard"].map((item) => (
-                  <li key={item} className="flex items-start gap-2">
-                    <span className="text-yellow-500 mt-0.5">✓</span>
-                    <span className="font-body text-sm text-foreground/60">{item}</span>
-                  </li>
-                ))}
-              </ul>
-              <button
-                disabled
-                className="block w-full text-center bg-foreground/10 text-foreground/30 font-display font-bold text-sm tracking-[0.08em] uppercase px-6 py-3 rounded-full cursor-not-allowed"
-              >
-                Coming Soon
-              </button>
-            </motion.div>
-          </div>
-        </section>
-
-        {/* ── FAQ ── */}
-        <section className="max-w-3xl mx-auto mb-24">
-          <motion.h2
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="font-display text-sm font-bold tracking-[0.2em] uppercase text-primary mb-8 text-center"
-          >
-            FAQ
-          </motion.h2>
-          <div className="space-y-3">
-            {faqs.map((faq, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 12 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.05 }}
-                className="bg-transparent backdrop-blur-xl rounded-2xl border border-primary/20 shadow-[0_8px_32px_rgba(0,0,0,0.4)] overflow-hidden"
-              >
-                <button
-                  onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                  className="w-full flex items-center justify-between px-6 py-5 text-left"
-                >
-                  <span className="font-display text-sm font-bold text-foreground pr-4">{faq.q}</span>
-                  <ChevronDown
-                    size={16}
-                    className={`text-primary shrink-0 transition-transform duration-300 ${openFaq === i ? "rotate-180" : ""}`}
-                  />
-                </button>
-                <div
-                  className={`overflow-hidden transition-all duration-300 ${openFaq === i ? "max-h-40 pb-5" : "max-h-0"}`}
-                >
-                  <p className="font-body text-sm text-foreground/50 px-6 leading-relaxed">{faq.a}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
         </section>
 
         {/* ── Footer CTA ── */}
