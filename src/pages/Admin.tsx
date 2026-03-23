@@ -59,6 +59,8 @@ const Admin = () => {
       return;
     }
     setBlogPosts(data);
+    // Filter drafts for queue (sorted newest first)
+    setQueue((data || []).filter((p: BlogPost) => p.status === "draft"));
   }, []);
 
   const handleLogin = async (e: React.FormEvent) => {
