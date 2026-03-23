@@ -222,7 +222,7 @@ const LazyBloggerPage = () => {
             <p className="font-body text-sm text-muted-foreground max-w-md mx-auto leading-relaxed mb-8">
               Every post builds your SEO. Every day you wait is a day your competitors get ahead.
             </p>
-            <CopyPromptButton />
+            <CopyPromptButton onCopy={handlePromptCopy} />
           </motion.div>
         </section>
       </main>
