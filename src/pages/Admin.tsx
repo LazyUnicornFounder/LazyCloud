@@ -37,8 +37,7 @@ const Admin = () => {
   const [earlyAccess, setEarlyAccess] = useState<EarlyAccessEntry[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [activeTab, setActiveTab] = useState<"submissions" | "blog" | "queue" | "analytics" | "early_access">("analytics");
-  const [queue, setQueue] = useState<BlogPost[]>([]);
+  const [activeTab, setActiveTab] = useState<"submissions" | "blog" | "analytics" | "early_access">("analytics");
   const [generating, setGenerating] = useState(false);
 
   const fetchSubmissions = useCallback(async (pw: string) => {
