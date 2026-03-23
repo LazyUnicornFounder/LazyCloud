@@ -209,9 +209,8 @@ const AdminAnalytics = ({ password }: AdminAnalyticsProps) => {
       copies: data.copies,
     }));
 
-    const conversionRate = pageViews > 0 ? ((promptCopies / pageViews) * 100).toFixed(1) : "0";
 
-    return { pageViews, promptCopies, earlyAccess, conversionRate, tiers, dailyTrend };
+    return { pageViews, promptCopies, tiers, dailyTrend };
   }, [events]);
 
   if (loading) {
