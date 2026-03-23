@@ -16,7 +16,7 @@ Deno.serve(async (req) => {
   );
 
   const body = await req.json();
-  const { action, password, id } = body;
+  const { action, password, id, updates } = body;
 
   // Verify admin password
   const adminPassword = Deno.env.get("ADMIN_PASSWORD");
