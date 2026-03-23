@@ -402,23 +402,69 @@ const Admin = () => {
               .filter(p => p.status === "draft")
               .sort((a, b) => new Date(a.created_at).getTime() - new Date(b.created_at).getTime())
               .slice(0, 10);
-            if (queued.length === 0) return null;
+            
+            // Calculate next publish times (every 30 min from now)
+            const now = new Date();
+            const mins = now.getMinutes();
+            const firstSlot = new Date(now);
+            if (mins < 30) {
+              firstSlot.setMinutes(30, 0, 0);
+            } else {
+              firstSlot.setHours(firstSlot.getHours() + 1);
+              firstSlot.setMinutes(0, 0, 0);
+            }
+
             return (
               <div className="mb-6">
-                <h3 className="font-display text-sm font-bold text-muted-foreground uppercase tracking-wider mb-3">Next Up — Queued for Auto-Publish</h3>
-                <div className="space-y-2">
-                  {queued.map((post, i) => (
-                    <div key={post.id} className="flex items-center gap-3 border border-border/50 rounded-lg bg-card/50 px-3 py-2">
-                      <span className="font-display text-xs font-bold text-primary w-5 shrink-0">{i + 1}</span>
-                      <div className="min-w-0 flex-1">
-                        <p className="font-body text-sm text-foreground truncate">{post.title}</p>
-                        <p className="font-body text-xs text-muted-foreground">
-                          Created {new Date(post.created_at).toLocaleString()}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
+                <div className="flex items-center justify-between mb-3">
+                  <h3 className="font-display text-sm font-bold text-muted-foreground uppercase tracking-wider">
+                    Next Up — Queued for Auto-Publish ({queued.length} drafts)
+                  </h3>
+                  <button
+                    onClick={async () => {
+                      setGenerating(true);
+                      for (let i = 0; i < 10; i++) {
+                        try {
+                          await supabase.functions.invoke("generate-blog-post", {
+                            body: {},
+                          });
+                        } catch { /* continue */ }
+                      }
+                      await fetchBlogPosts(password);
+                      setGenerating(false);
+                      toast.success("Generated 10 posts!");
+                    }}
+                    disabled={generating}
+                    className="font-body text-xs px-3 py-1.5 rounded-lg bg-primary/20 text-primary hover:bg-primary/30 transition-colors disabled:opacity-50"
+                  >
+                    {generating ? "Generating…" : "Generate 10 Posts"}
+                  </button>
                 </div>
+                {queued.length === 0 ? (
+                  <p className="font-body text-sm text-muted-foreground text-center py-4 border border-border/50 rounded-lg bg-card/50">
+                    No queued posts. Generate some to fill the pipeline.
+                  </p>
+                ) : (
+                  <div className="space-y-2">
+                    {queued.map((post, i) => {
+                      const publishTime = new Date(firstSlot.getTime() + i * 30 * 60 * 1000);
+                      return (
+                        <div key={post.id} className="flex items-center gap-3 border border-border/50 rounded-lg bg-card/50 px-3 py-2">
+                          <span className="font-display text-xs font-bold text-primary w-5 shrink-0">{i + 1}</span>
+                          <div className="min-w-0 flex-1">
+                            <p className="font-body text-sm text-foreground truncate">{post.title}</p>
+                            <p className="font-body text-xs text-muted-foreground">
+                              Created {new Date(post.created_at).toLocaleString()}
+                            </p>
+                          </div>
+                          <span className="font-body text-xs text-primary shrink-0">
+                            ~{publishTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                          </span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
               </div>
             );
           })()}
