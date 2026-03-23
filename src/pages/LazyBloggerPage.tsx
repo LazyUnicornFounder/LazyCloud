@@ -1,22 +1,24 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Heart, Copy, Check, Clock, Sparkles, Zap } from "lucide-react";
 import { toast } from "sonner";
 import SEO from "@/components/SEO";
 import Navbar from "@/components/Navbar";
 import { frequencyTiers, buildPrompt, type FrequencyTier } from "@/components/lazy-blogger/frequencyData";
+import { useTrackEvent } from "@/hooks/useTrackEvent";
 
 const fadeUp = { hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0 } };
 
-function FrequencyModal({ open, onClose }: { open: boolean; onClose: () => void }) {
+function FrequencyModal({ open, onClose, onCopy }: { open: boolean; onClose: () => void; onCopy: (tier: FrequencyTier) => void }) {
   const [copied, setCopied] = useState<number | null>(null);
 
   const handleCopy = useCallback(async (tier: FrequencyTier) => {
     await navigator.clipboard.writeText(buildPrompt(tier));
     setCopied(tier.postsPerDay);
+    onCopy(tier);
     toast.success(`Copied! Paste this into your Lovable project chat.`);
     setTimeout(() => setCopied(null), 2500);
-  }, []);
+  }, [onCopy]);
 
   if (!open) return null;
 
@@ -70,7 +72,7 @@ function FrequencyModal({ open, onClose }: { open: boolean; onClose: () => void 
   );
 }
 
-function CopyPromptButton({ className = "" }: { className?: string }) {
+function CopyPromptButton({ className = "", onCopy }: { className?: string; onCopy: (tier: FrequencyTier) => void }) {
   const [open, setOpen] = useState(false);
   return (
     <>
@@ -80,7 +82,7 @@ function CopyPromptButton({ className = "" }: { className?: string }) {
       >
         <Copy size={16} /> Copy the Lovable Prompt
       </button>
-      <FrequencyModal open={open} onClose={() => setOpen(false)} />
+      <FrequencyModal open={open} onClose={() => setOpen(false)} onCopy={onCopy} />
     </>
   );
 }
@@ -93,6 +95,16 @@ const steps = [
 ];
 
 const LazyBloggerPage = () => {
+  const trackEvent = useTrackEvent();
+
+  useEffect(() => {
+    trackEvent("lazy_blogger_page_view");
+  }, [trackEvent]);
+
+  const handlePromptCopy = useCallback((tier: FrequencyTier) => {
+    trackEvent("lazy_blogger_prompt_copy", { postsPerDay: tier.postsPerDay, label: tier.label });
+  }, [trackEvent]);
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       <SEO
@@ -113,7 +125,7 @@ const LazyBloggerPage = () => {
             <p className="font-body text-base md:text-lg text-muted-foreground max-w-xl mx-auto leading-relaxed mb-8">
               Paste one prompt. Answer five questions. Your website publishes blog posts every day — automatically, forever, for free.
             </p>
-            <CopyPromptButton />
+            <CopyPromptButton onCopy={handlePromptCopy} />
             <p className="font-body text-xs text-muted-foreground mt-4">Built for Lovable projects. No API keys needed.</p>
           </motion.div>
         </section>
@@ -210,7 +222,7 @@ const LazyBloggerPage = () => {
             <p className="font-body text-sm text-muted-foreground max-w-md mx-auto leading-relaxed mb-8">
               Every post builds your SEO. Every day you wait is a day your competitors get ahead.
             </p>
-            <CopyPromptButton />
+            <CopyPromptButton onCopy={handlePromptCopy} />
           </motion.div>
         </section>
       </main>

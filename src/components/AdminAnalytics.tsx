@@ -5,10 +5,17 @@ import {
   Geography,
   Marker,
 } from "react-simple-maps";
-import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from "recharts";
+import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid, FunnelChart, Funnel, LabelList } from "recharts";
 import { supabase } from "@/integrations/supabase/client";
 
 const GEO_URL = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
+
+interface AnalyticsEvent {
+  event_name: string;
+  event_data: Record<string, unknown> | null;
+  page: string | null;
+  created_at: string;
+}
 
 interface Visitor {
   country: string | null;
@@ -47,20 +54,29 @@ function parseUA(ua: string | null): { browser: string; os: string } {
 
 const AdminAnalytics = ({ password }: AdminAnalyticsProps) => {
   const [visitors, setVisitors] = useState<Visitor[]>([]);
+  const [events, setEvents] = useState<AnalyticsEvent[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchVisitors = async () => {
+    const fetchData = async () => {
       setLoading(true);
-      const { data, error } = await supabase.functions.invoke("admin-submissions", {
-        body: { action: "visitor_stats", password },
-      });
-      if (!error && data && !data.error) {
-        setVisitors(data);
+      const [visitorsRes, eventsRes] = await Promise.all([
+        supabase.functions.invoke("admin-submissions", {
+          body: { action: "visitor_stats", password },
+        }),
+        supabase.functions.invoke("admin-submissions", {
+          body: { action: "analytics_events", password },
+        }),
+      ]);
+      if (!visitorsRes.error && visitorsRes.data && !visitorsRes.data.error) {
+        setVisitors(visitorsRes.data);
+      }
+      if (!eventsRes.error && eventsRes.data && !eventsRes.data.error) {
+        setEvents(eventsRes.data);
       }
       setLoading(false);
     };
-    fetchVisitors();
+    fetchData();
   }, [password]);
 
   const stats = useMemo(() => {
@@ -159,6 +175,45 @@ const AdminAnalytics = ({ password }: AdminAnalyticsProps) => {
     return { total, today, countries, cities, browsers, operatingSystems, pages, referrers, markers, dailyVisits };
   }, [visitors]);
 
+  const lazyBloggerStats = useMemo(() => {
+    const pageViews = events.filter(e => e.event_name === "lazy_blogger_page_view").length;
+    const promptCopies = events.filter(e => e.event_name === "lazy_blogger_prompt_copy").length;
+    const earlyAccess = events.filter(e => e.event_name === "lazy_blogger_early_access").length;
+
+    // Breakdown by frequency tier
+    const tierBreakdown: Record<string, number> = {};
+    events.filter(e => e.event_name === "lazy_blogger_prompt_copy").forEach(e => {
+      const label = (e.event_data as any)?.label || "Unknown";
+      tierBreakdown[label] = (tierBreakdown[label] || 0) + 1;
+    });
+    const tiers = Object.entries(tierBreakdown).sort((a, b) => b[1] - a[1]);
+
+    // Daily trend (last 14 days)
+    const dailyMap: Record<string, { views: number; copies: number }> = {};
+    const now = new Date();
+    for (let i = 13; i >= 0; i--) {
+      const d = new Date(now);
+      d.setDate(d.getDate() - i);
+      dailyMap[d.toISOString().split("T")[0]] = { views: 0, copies: 0 };
+    }
+    events.forEach(e => {
+      const day = new Date(e.created_at).toISOString().split("T")[0];
+      if (dailyMap[day]) {
+        if (e.event_name === "lazy_blogger_page_view") dailyMap[day].views++;
+        if (e.event_name === "lazy_blogger_prompt_copy") dailyMap[day].copies++;
+      }
+    });
+    const dailyTrend = Object.entries(dailyMap).map(([date, data]) => ({
+      date: new Date(date).toLocaleDateString("en-US", { month: "short", day: "numeric" }),
+      views: data.views,
+      copies: data.copies,
+    }));
+
+    const conversionRate = pageViews > 0 ? ((promptCopies / pageViews) * 100).toFixed(1) : "0";
+
+    return { pageViews, promptCopies, earlyAccess, conversionRate, tiers, dailyTrend };
+  }, [events]);
+
   if (loading) {
     return <p className="font-body text-sm text-muted-foreground py-8 text-center">Loading analytics…</p>;
   }
@@ -175,6 +230,71 @@ const AdminAnalytics = ({ password }: AdminAnalyticsProps) => {
           <p className="font-body text-xs text-muted-foreground uppercase tracking-wider">Today</p>
           <p className="font-display text-3xl font-bold text-primary mt-1">{stats.today}</p>
         </div>
+      </div>
+
+      {/* Lazy Blogger Funnel */}
+      <div className="border border-border rounded-xl bg-card p-4">
+        <h3 className="font-display font-bold text-foreground mb-3">Lazy Blogger — Funnel</h3>
+        <div className="grid grid-cols-4 gap-3 mb-4">
+          <div className="text-center p-3 rounded-lg bg-background/50 border border-border/50">
+            <p className="font-display text-2xl font-bold text-foreground">{lazyBloggerStats.pageViews}</p>
+            <p className="font-body text-xs text-muted-foreground">Page Views</p>
+          </div>
+          <div className="text-center p-3 rounded-lg bg-background/50 border border-border/50">
+            <p className="font-display text-2xl font-bold text-primary">{lazyBloggerStats.promptCopies}</p>
+            <p className="font-body text-xs text-muted-foreground">Prompt Copies</p>
+          </div>
+          <div className="text-center p-3 rounded-lg bg-background/50 border border-border/50">
+            <p className="font-display text-2xl font-bold text-foreground">{lazyBloggerStats.earlyAccess}</p>
+            <p className="font-body text-xs text-muted-foreground">Early Access</p>
+          </div>
+          <div className="text-center p-3 rounded-lg bg-background/50 border border-border/50">
+            <p className="font-display text-2xl font-bold text-primary">{lazyBloggerStats.conversionRate}%</p>
+            <p className="font-body text-xs text-muted-foreground">Conv. Rate</p>
+          </div>
+        </div>
+
+        {/* Daily trend */}
+        <div className="w-full h-48 mb-4">
+          <ResponsiveContainer width="100%" height="100%">
+            <BarChart data={lazyBloggerStats.dailyTrend} margin={{ top: 5, right: 10, left: -10, bottom: 5 }}>
+              <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
+              <XAxis
+                dataKey="date"
+                tick={{ fontSize: 10, fill: "hsl(var(--muted-foreground))" }}
+                interval={Math.floor(lazyBloggerStats.dailyTrend.length / 5)}
+                tickLine={false}
+                axisLine={{ stroke: "hsl(var(--border))" }}
+              />
+              <YAxis tick={{ fontSize: 10, fill: "hsl(var(--muted-foreground))" }} tickLine={false} axisLine={false} allowDecimals={false} />
+              <Tooltip
+                contentStyle={{
+                  backgroundColor: "hsl(var(--card))",
+                  border: "1px solid hsl(var(--border))",
+                  borderRadius: "8px",
+                  fontSize: "12px",
+                }}
+              />
+              <Bar dataKey="views" name="Page Views" fill="hsl(var(--muted-foreground))" radius={[4, 4, 0, 0]} />
+              <Bar dataKey="copies" name="Prompt Copies" fill="hsl(var(--primary))" radius={[4, 4, 0, 0]} />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+
+        {/* Tier breakdown */}
+        {lazyBloggerStats.tiers.length > 0 && (
+          <div>
+            <h4 className="font-display text-sm font-bold text-muted-foreground mb-2">Copies by Frequency</h4>
+            <div className="space-y-1.5">
+              {lazyBloggerStats.tiers.map(([label, count]) => (
+                <div key={label} className="flex items-center justify-between">
+                  <span className="font-body text-sm text-foreground/80">{label}</span>
+                  <span className="font-body text-xs text-muted-foreground">{count}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Daily visits chart */}
