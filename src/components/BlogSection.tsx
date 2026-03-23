@@ -2473,6 +2473,92 @@ export const staticBlogPosts: BlogPost[] = [
   },
 ];
 
+function useCountdown() {
+  const getTimeToNext = () => {
+    const now = new Date();
+    const mins = now.getMinutes();
+    const nextSlot = mins < 30 ? 30 : 60;
+    const target = new Date(now);
+    if (nextSlot === 60) {
+      target.setHours(target.getHours() + 1);
+      target.setMinutes(0);
+    } else {
+      target.setMinutes(30);
+    }
+    target.setSeconds(0);
+    target.setMilliseconds(0);
+    const diff = Math.max(0, Math.floor((target.getTime() - now.getTime()) / 1000));
+    return { minutes: Math.floor(diff / 60), seconds: diff % 60 };
+  };
+
+  const [time, setTime] = useState(getTimeToNext);
+
+  useEffect(() => {
+    const interval = setInterval(() => setTime(getTimeToNext()), 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  return time;
+}
+
+const BlogHeader = () => {
+  const { minutes, seconds } = useCountdown();
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      className="bg-transparent backdrop-blur-xl rounded-3xl border border-primary/20 shadow-[0_8px_32px_rgba(0,0,0,0.4),0_0_20px_rgba(var(--primary-rgb),0.08)] mb-8 overflow-hidden"
+    >
+      <div className="px-8 pt-10 pb-6">
+        <div className="flex items-center gap-2 mb-4">
+          <Zap className="w-4 h-4 text-primary" />
+          <span className="font-body text-[10px] tracking-[0.3em] uppercase text-primary font-semibold">
+            Autonomous Publishing
+          </span>
+        </div>
+        <h1 className="font-display text-4xl md:text-5xl font-extrabold tracking-tight text-foreground mb-3">
+          Blog
+        </h1>
+        <p className="font-body text-lg text-foreground/50 leading-relaxed max-w-xl">
+          Accelerate the future of autonomous capitalism.
+        </p>
+      </div>
+
+      {/* Timer bar */}
+      <div className="px-8 py-4 border-t border-primary/10 bg-primary/[0.03] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div className="flex items-center gap-3">
+          <div className="relative flex items-center justify-center w-8 h-8">
+            <div className="absolute inset-0 rounded-full bg-primary/20 animate-ping" style={{ animationDuration: '3s' }} />
+            <div className="relative w-3 h-3 rounded-full bg-primary shadow-[0_0_8px_hsl(var(--primary))]" />
+          </div>
+          <div>
+            <p className="font-body text-sm text-foreground/70">
+              Next post writes &amp; publishes itself in
+            </p>
+            <div className="flex items-center gap-1.5 mt-0.5">
+              <Clock className="w-3.5 h-3.5 text-primary/70" />
+              <span className="font-display text-lg font-bold text-foreground tabular-nums">
+                {String(minutes).padStart(2, '0')}:{String(seconds).padStart(2, '0')}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <a
+          href="/lazy-blogger"
+          className="group inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-primary/30 bg-primary/10 hover:bg-primary/20 hover:border-primary/50 shadow-[0_0_20px_-6px_hsl(var(--primary)/0.3)] hover:shadow-[0_0_30px_-6px_hsl(var(--primary)/0.5)] transition-all duration-300"
+        >
+          <span className="font-display text-sm font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent group-hover:brightness-125 transition-all whitespace-nowrap">
+            Build your own autonomous blog →
+          </span>
+        </a>
+      </div>
+    </motion.div>
+  );
+};
+
 const BlogSection = () => {
   const { posts: dbPosts } = useDbBlogPosts();
 
