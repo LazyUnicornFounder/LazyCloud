@@ -103,7 +103,7 @@ const LazyBloggerPage = () => {
       <main className="relative z-10 pt-28 pb-32">
         {/* ── Hero ── */}
         <section className="max-w-4xl mx-auto text-center px-6 mb-0">
-          <motion.div initial="hidden" animate="visible" variants={fadeUp} transition={{ duration: 0.7 }}>
+          <motion.div initial="hidden" animate="visible" variants={fadeUp} transition={{ duration: 0.7 }} className="bg-transparent backdrop-blur-xl rounded-3xl px-8 py-10 border border-primary/20 shadow-[0_8px_32px_rgba(0,0,0,0.4),0_0_20px_rgba(var(--primary-rgb),0.08)]">
             <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[0.95] mb-6">
               The autonomous blog engine<br />built for{" "}
               <span className="text-lovable">Lovable.</span>
@@ -115,7 +115,7 @@ const LazyBloggerPage = () => {
               <CopyButton />
               <button
                 onClick={scrollToHowItWorks}
-                className="inline-flex items-center gap-2 font-display font-bold text-sm tracking-[0.08em] uppercase px-8 py-4 rounded-full border border-border text-foreground/70 hover:text-foreground hover:border-foreground/30 transition-colors"
+                className="inline-flex items-center gap-2 font-display font-bold text-sm tracking-[0.08em] uppercase px-8 py-4 rounded-full border border-primary/20 text-foreground/70 hover:text-foreground hover:border-foreground/30 transition-colors"
               >
                 See How It Works <ChevronDown size={16} />
               </button>
