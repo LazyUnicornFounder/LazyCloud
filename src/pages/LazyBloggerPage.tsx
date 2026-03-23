@@ -28,33 +28,33 @@ function FrequencyModal({ open, onClose, onCopy }: { open: boolean; onClose: () 
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="relative bg-card border border-border rounded-2xl p-9 sm:p-12 max-w-2xl w-full shadow-2xl"
+        className="relative bg-card border border-border rounded-3xl p-12 sm:p-16 max-w-3xl w-full shadow-2xl"
       >
-        <h3 className="font-display text-2xl font-bold text-foreground mb-3">How many posts per day?</h3>
-        <p className="font-body text-base text-muted-foreground mb-8">Pick one. The prompt adjusts automatically.</p>
-        <div className="grid grid-cols-2 gap-4">
+        <h3 className="font-display text-3xl sm:text-4xl font-bold text-foreground mb-4">How many posts per day?</h3>
+        <p className="font-body text-lg text-muted-foreground mb-10">Pick one. The prompt adjusts automatically.</p>
+        <div className="grid grid-cols-2 gap-5">
           {frequencyTiers.map((tier) => {
             const isCopied = copied === tier.postsPerDay;
             return (
               <button
                 key={tier.postsPerDay}
                 onClick={() => handleCopy(tier)}
-                className={`rounded-xl border p-6 text-left transition-all cursor-pointer ${
+                className={`rounded-2xl border p-8 text-left transition-all cursor-pointer ${
                   isCopied
                     ? "border-primary bg-primary/10"
                     : "border-border hover:border-primary/40 bg-card"
                 }`}
               >
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="font-display text-3xl font-extrabold text-foreground">{tier.postsPerDay}</span>
-                  <span className="font-body text-sm text-muted-foreground">/ day</span>
+                <div className="flex items-center gap-3 mb-2">
+                  <span className="font-display text-5xl font-extrabold text-foreground">{tier.postsPerDay}</span>
+                  <span className="font-body text-lg text-muted-foreground">/ day</span>
                 </div>
-                <p className="font-body text-sm text-muted-foreground">{tier.description}</p>
-                <div className="mt-4 flex items-center gap-1.5 text-sm font-display font-bold text-primary">
+                <p className="font-body text-base text-muted-foreground">{tier.description}</p>
+                <div className="mt-5 flex items-center gap-2 text-base font-display font-bold text-primary">
                   {isCopied ? (
-                    <><Check size={12} /> Copied!</>
+                    <><Check size={16} /> Copied!</>
                   ) : (
-                    <><Copy size={12} /> Copy prompt</>
+                    <><Copy size={16} /> Copy prompt</>
                   )}
                 </div>
               </button>
@@ -63,7 +63,7 @@ function FrequencyModal({ open, onClose, onCopy }: { open: boolean; onClose: () 
         </div>
         <button
           onClick={onClose}
-          className="mt-6 w-full text-center font-body text-sm text-muted-foreground hover:text-foreground transition-colors"
+          className="mt-8 w-full text-center font-body text-base text-muted-foreground hover:text-foreground transition-colors"
         >
           Close
         </button>
