@@ -298,7 +298,7 @@ const LazyBloggerPage = () => {
 
         {/* ── Bottom CTA ── */}
         <section className="max-w-4xl mx-auto px-6">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="rounded-3xl border border-border bg-card px-8 py-16 text-center">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="bg-transparent backdrop-blur-xl rounded-3xl px-8 py-16 border border-primary/20 shadow-[0_8px_32px_rgba(0,0,0,0.4),0_0_20px_rgba(var(--primary-rgb),0.08)] text-center">
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-foreground mb-6">
               Your Lovable site.<br />Publishing every day.<br /><span className="text-primary">Without you.</span>
             </h2>
