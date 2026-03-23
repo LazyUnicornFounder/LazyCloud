@@ -92,7 +92,7 @@ const BlogPost = () => {
       <Navbar activePage="blog" />
 
       {/* Article */}
-      <div className="relative z-10 pt-32 px-8 md:px-12 pb-16">
+      <div className="relative z-10 pt-32 px-4 sm:px-8 md:px-12 pb-20">
         <div className="max-w-2xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
