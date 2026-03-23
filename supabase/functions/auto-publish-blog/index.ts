@@ -95,6 +95,83 @@ function parseJson(raw: string) {
   return JSON.parse(str);
 }
 
+async function generateDraft(supabase: any, apiKey: string) {
+  const topic = TOPIC_SEEDS[Math.floor(Math.random() * TOPIC_SEEDS.length)];
+
+  let post: { title: string; slug: string; excerpt: string; body: string };
+  let raw = await callAnthropic(apiKey, topic);
+
+  try {
+    post = parseJson(raw);
+  } catch {
+    console.warn("Parse failed, retrying...");
+    raw = await callAnthropic(apiKey, topic);
+    post = parseJson(raw);
+  }
+
+  const paragraphs: string[] = post.body
+    .split(/\n\n+/)
+    .map((p: string) => p.trim())
+    .filter((p: string) => p.length > 0);
+
+  let slug = post.slug;
+  const { data: existing } = await supabase
+    .from("blog_posts")
+    .select("id")
+    .eq("slug", slug)
+    .maybeSingle();
+
+  if (existing) {
+    const rand = Math.floor(1000 + Math.random() * 9000);
+    slug = `${slug}-${rand}`;
+  }
+
+  const wordCount = post.body.split(/\s+/).length;
+  const readTime = `${Math.max(1, Math.round(wordCount / 200))} min read`;
+
+  const { data, error } = await supabase.from("blog_posts").insert({
+    slug,
+    title: post.title,
+    excerpt: post.excerpt,
+    content: paragraphs,
+    read_time: readTime,
+    thumbnail: "https://www.lazyunicorn.ai/og-image.png",
+    status: "draft",
+  }).select().single();
+
+  if (error) throw error;
+  return data;
+}
+
+async function refillQueue(supabase: any) {
+  const ANTHROPIC_API_KEY = Deno.env.get("ANTHROPIC_API_KEY");
+  if (!ANTHROPIC_API_KEY) {
+    console.warn("No ANTHROPIC_API_KEY — cannot refill queue");
+    return 0;
+  }
+
+  console.log("Queue empty — generating 10 new drafts...");
+  let generated = 0;
+
+  for (let i = 0; i < 10; i++) {
+    try {
+      const draft = await generateDraft(supabase, ANTHROPIC_API_KEY);
+      generated++;
+      console.log(`Draft ${generated}/10: ${draft.title}`);
+    } catch (err) {
+      console.error(`Draft generation ${i + 1} failed:`, err.message);
+      try {
+        await supabase.from("blog_errors").insert({
+          error_message: `Refill draft ${i + 1} failed: ${err.message}`,
+        });
+      } catch { /* ignore */ }
+    }
+  }
+
+  console.log(`Refill complete: ${generated}/10 drafts created`);
+  return generated;
+}
+
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
@@ -106,7 +183,7 @@ Deno.serve(async (req) => {
   );
 
   try {
-    // First, check if there are queued drafts to publish
+    // Check for queued drafts to publish
     const { data: nextDraft } = await supabase
       .from("blog_posts")
       .select("*")
@@ -125,73 +202,54 @@ Deno.serve(async (req) => {
 
       console.log(`Published from queue: ${nextDraft.title}`);
 
-      return new Response(JSON.stringify({ success: true, post: nextDraft, source: "queue" }), {
+      // Check remaining drafts — if queue is now empty, refill
+      const { count } = await supabase
+        .from("blog_posts")
+        .select("id", { count: "exact", head: true })
+        .eq("status", "draft");
+
+      let refilled = 0;
+      if ((count ?? 0) === 0) {
+        refilled = await refillQueue(supabase);
+      }
+
+      return new Response(JSON.stringify({ success: true, post: nextDraft, source: "queue", refilled }), {
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
 
-    // No drafts in queue — generate a new post and publish immediately
+    // No drafts at all — generate a batch, then publish the first one
     const ANTHROPIC_API_KEY = Deno.env.get("ANTHROPIC_API_KEY");
     if (!ANTHROPIC_API_KEY) throw new Error("ANTHROPIC_API_KEY is not configured");
 
-    const topic = TOPIC_SEEDS[Math.floor(Math.random() * TOPIC_SEEDS.length)];
+    // Generate 10 drafts
+    const refilled = await refillQueue(supabase);
 
-    let post: { title: string; slug: string; excerpt: string; body: string };
-    let raw = await callAnthropic(ANTHROPIC_API_KEY, topic);
+    if (refilled === 0) throw new Error("Failed to generate any drafts");
 
-    try {
-      post = parseJson(raw);
-    } catch {
-      console.warn("Parse failed, retrying...");
-      raw = await callAnthropic(ANTHROPIC_API_KEY, topic);
-      try {
-        post = parseJson(raw);
-      } catch (secondErr) {
-        await supabase.from("blog_errors").insert({
-          error_message: `Parse failed twice: ${secondErr.message}. Raw: ${raw.slice(0, 500)}`,
-        });
-        throw new Error("JSON parse failed after retry");
-      }
-    }
-
-    const paragraphs: string[] = post.body
-      .split(/\n\n+/)
-      .map((p: string) => p.trim())
-      .filter((p: string) => p.length > 0);
-
-    let slug = post.slug;
-    const { data: existing } = await supabase
+    // Publish the first one immediately
+    const { data: freshDraft } = await supabase
       .from("blog_posts")
-      .select("id")
-      .eq("slug", slug)
+      .select("*")
+      .eq("status", "draft")
+      .order("created_at", { ascending: true })
+      .limit(1)
       .maybeSingle();
 
-    if (existing) {
-      const rand = Math.floor(1000 + Math.random() * 9000);
-      slug = `${slug}-${rand}`;
+    if (freshDraft) {
+      await supabase
+        .from("blog_posts")
+        .update({ status: "published", published_at: new Date().toISOString() })
+        .eq("id", freshDraft.id);
+
+      console.log(`Published (from fresh batch): ${freshDraft.title}`);
+
+      return new Response(JSON.stringify({ success: true, post: freshDraft, source: "generated-batch", refilled }), {
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
     }
 
-    const wordCount = post.body.split(/\s+/).length;
-    const readTime = `${Math.max(1, Math.round(wordCount / 200))} min read`;
-
-    const { data, error } = await supabase.from("blog_posts").insert({
-      slug,
-      title: post.title,
-      excerpt: post.excerpt,
-      content: paragraphs,
-      read_time: readTime,
-      thumbnail: "https://www.lazyunicorn.ai/og-image.png",
-      status: "published",
-      published_at: new Date().toISOString(),
-    }).select().single();
-
-    if (error) throw error;
-
-    console.log(`Published (generated): ${data.title}`);
-
-    return new Response(JSON.stringify({ success: true, post: data, source: "generated" }), {
-      headers: { ...corsHeaders, "Content-Type": "application/json" },
-    });
+    throw new Error("Generated drafts but couldn't find any to publish");
   } catch (err) {
     console.error("auto-publish-blog error:", err);
     try {
