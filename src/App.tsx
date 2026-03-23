@@ -18,6 +18,7 @@ import AutonomyScale from "./pages/AutonomyScale.tsx";
 import LazyBloggerPage from "./pages/LazyBloggerPage.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import ScrollToTop from "./components/ScrollToTop.tsx";
+import LazySeoPage from "./pages/LazySeoPage.tsx";
 import LazySeoSetup from "./pages/LazySeoSetup.tsx";
 import LazySeoDashboard from "./pages/LazySeoDashboard.tsx";
 import SeoBlog from "./pages/SeoBlog.tsx";
