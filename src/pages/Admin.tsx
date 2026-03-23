@@ -231,50 +231,6 @@ const Admin = () => {
         </div>
       )}
 
-      {activeTab === "queue" && (
-        <div className="space-y-3">
-          <p className="font-body text-sm text-muted-foreground mb-4">
-            AI-generated drafts waiting for your approval. Auto-publish runs 4× daily (6am, 12pm, 6pm, 11pm UTC).
-          </p>
-          {queue.length === 0 && !loading && (
-            <p className="font-body text-sm text-muted-foreground text-center py-8">Queue is empty — next batch arrives soon.</p>
-          )}
-          {queue.map((post) => (
-            <div key={post.id} className="border border-border rounded-xl bg-card p-4">
-              <div className="flex items-start justify-between gap-4">
-                <div className="min-w-0 flex-1">
-                  <h2 className="font-display font-bold text-foreground">{post.title}</h2>
-                  <p className="font-body text-sm text-muted-foreground mt-1 line-clamp-2">{post.excerpt}</p>
-                  <span className="font-body text-xs text-muted-foreground mt-2 block">
-                    Generated {new Date(post.created_at).toLocaleString()}
-                  </span>
-                </div>
-                <div className="flex gap-2 shrink-0">
-                  <button
-                    onClick={() => handleBlogAction(post.id, "publish_post")}
-                    className="font-body text-xs px-3 py-1.5 rounded-lg bg-primary/20 text-primary hover:bg-primary/30 transition-colors"
-                  >
-                    Publish
-                  </button>
-                  <button
-                    onClick={() => handleBlogAction(post.id, "reject_post")}
-                    className="font-body text-xs px-3 py-1.5 rounded-lg bg-destructive/20 text-destructive hover:bg-destructive/30 transition-colors"
-                  >
-                    Reject
-                  </button>
-                  <button
-                    onClick={() => handleBlogAction(post.id, "delete_post")}
-                    className="font-body text-xs px-3 py-1.5 rounded-lg bg-destructive/10 text-destructive hover:bg-destructive/20 transition-colors"
-                  >
-                    Delete
-                  </button>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
-
       {activeTab === "blog" && (
         <div className="space-y-3">
           <button
@@ -291,7 +247,7 @@ const Admin = () => {
                 <div className="min-w-0 flex-1">
                   <h2 className="font-display font-bold text-foreground">{post.title}</h2>
                   <p className="font-body text-sm text-muted-foreground mt-1 line-clamp-2">{post.excerpt}</p>
-                  <div className="flex items-center gap-2 mt-2">
+                  <div className="flex items-center gap-3 mt-2 flex-wrap">
                     <span className={`inline-block font-body text-xs px-2 py-0.5 rounded-full ${
                       post.status === "published" ? "bg-primary/20 text-primary" :
                       post.status === "rejected" ? "bg-destructive/20 text-destructive" :
@@ -300,8 +256,13 @@ const Admin = () => {
                       {post.status}
                     </span>
                     <span className="font-body text-xs text-muted-foreground">
-                      {new Date(post.created_at).toLocaleDateString()}
+                      Created {new Date(post.created_at).toLocaleString()}
                     </span>
+                    {post.published_at && (
+                      <span className="font-body text-xs text-primary">
+                        Published {new Date(post.published_at).toLocaleString()}
+                      </span>
+                    )}
                   </div>
                 </div>
                 <div className="flex gap-2 shrink-0">
