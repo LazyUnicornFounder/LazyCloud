@@ -159,10 +159,10 @@ async function refillQueue(supabase: any) {
     return 0;
   }
 
-  console.log("Queue empty — generating 10 new drafts...");
+  console.log("Queue empty — generating 3 new drafts...");
   let generated = 0;
 
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 3; i++) {
     try {
       const draft = await generateDraft(supabase, ANTHROPIC_API_KEY);
       generated++;
@@ -177,7 +177,7 @@ async function refillQueue(supabase: any) {
     }
   }
 
-  console.log(`Refill complete: ${generated}/10 drafts created`);
+  console.log(`Refill complete: ${generated}/3 drafts created`);
   return generated;
 }
 
