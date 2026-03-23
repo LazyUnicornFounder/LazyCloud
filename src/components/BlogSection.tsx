@@ -2585,7 +2585,14 @@ const BlogSection = () => {
   const pinnedSlug = "lazy-unicorn-raising-angel-round";
   const pinned = staticBlogPosts.filter(p => p.slug === pinnedSlug);
   const staticRest = staticBlogPosts.filter(p => p.slug !== pinnedSlug);
-  const allPosts = [...pinned, ...dbPosts, ...staticRest];
+  const mergedPosts = [...pinned, ...dbPosts, ...staticRest];
+  // Deduplicate by slug
+  const seen = new Set<string>();
+  const allPosts = mergedPosts.filter(p => {
+    if (seen.has(p.slug)) return false;
+    seen.add(p.slug);
+    return true;
+  });
 
   // Count posts per tag
   const tagCounts = useMemo(() => {
