@@ -35,6 +35,30 @@ const faqs = [
 
 const LazyBloggerPage = () => {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [email, setEmail] = useState("");
+  const [footerEmail, setFooterEmail] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+
+  const handleEarlyAccess = async (emailValue: string, setter: (v: string) => void) => {
+    if (!emailValue.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailValue.trim())) {
+      toast.error("Please enter a valid email address.");
+      return;
+    }
+    setSubmitting(true);
+    const { error } = await supabase.from("early_access").insert({ email: emailValue.trim().toLowerCase() });
+    setSubmitting(false);
+    if (error?.code === "23505") {
+      toast.info("You're already on the list!");
+      setter("");
+      return;
+    }
+    if (error) {
+      toast.error("Something went wrong. Try again.");
+      return;
+    }
+    toast.success("You're in! We'll notify you when Lazy Blogger launches.");
+    setter("");
+  };
 
   return (
     <div className="min-h-screen text-foreground relative">
