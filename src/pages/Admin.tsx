@@ -76,9 +76,7 @@ const Admin = () => {
       setError(data?.error || "Failed to load");
       return;
     }
-    setBlogPosts(data);
-    // Filter drafts for queue (sorted newest first)
-    setQueue((data || []).filter((p: BlogPost) => p.status === "draft"));
+    setBlogPosts(data || []);
   }, []);
 
   const handleLogin = async (e: React.FormEvent) => {
