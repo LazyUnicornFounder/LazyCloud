@@ -159,12 +159,13 @@ Deno.serve(async (req) => {
       content: paragraphs,
       read_time: readTime,
       thumbnail: "https://www.lazyunicorn.ai/og-image.png",
-      status: "draft",
+      status: "published",
+      published_at: new Date().toISOString(),
     }).select().single();
 
     if (error) throw error;
 
-    console.log(`Queued: ${data.title}`);
+    console.log(`Published: ${data.title}`);
 
     return new Response(JSON.stringify({ success: true, post: data }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
