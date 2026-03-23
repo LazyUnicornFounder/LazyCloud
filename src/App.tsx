@@ -23,6 +23,7 @@ import LazySeoSetup from "./pages/LazySeoSetup.tsx";
 import LazySeoDashboard from "./pages/LazySeoDashboard.tsx";
 import SeoBlog from "./pages/SeoBlog.tsx";
 import SeoBlogPost from "./pages/SeoBlogPost.tsx";
+import LazyGeoPage from "./pages/LazyGeoPage.tsx";
 
 const queryClient = new QueryClient();
 
