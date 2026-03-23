@@ -117,11 +117,21 @@ const LazyBloggerPage = () => {
 
       <main className="relative z-10 pt-28 pb-32">
         {/* ── Hero ── */}
-        <section className="max-w-3xl mx-auto text-center px-6 mb-20">
-          <motion.div initial="hidden" animate="visible" variants={fadeUp} transition={{ duration: 0.7 }}>
-            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-[0.95] mb-6">
-              <span className="whitespace-nowrap">The autonomous blog engine</span><br />
-              <span>for <span className="text-lovable">Lovable.</span></span>
+        <section className="relative max-w-5xl mx-auto text-center px-6 mb-20 min-h-[520px] flex items-center justify-center">
+          <FlyingBlogCards />
+          <motion.div initial="hidden" animate="visible" variants={fadeUp} transition={{ duration: 0.7 }} className="relative z-10">
+            <motion.p
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1, duration: 0.5 }}
+              className="font-display text-sm tracking-[0.2em] uppercase text-primary mb-4 font-bold"
+            >
+              Introducing
+            </motion.p>
+            <h1 className="font-display text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tight leading-[0.92] mb-6">
+              <span>The autonomous</span><br />
+              <span className="text-lovable">@Lovable</span>{" "}
+              <span className="text-gradient-primary">blog engine</span>
             </h1>
             <p className="font-body text-base md:text-lg text-muted-foreground max-w-xl mx-auto leading-relaxed mb-8">
               Paste one prompt into your Lovable project. Your website starts publishing blog posts every day — automatically, forever, for free.
