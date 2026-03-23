@@ -177,6 +177,42 @@ const AdminAnalytics = ({ password }: AdminAnalyticsProps) => {
         </div>
       </div>
 
+      {/* Daily visits chart */}
+      <div className="border border-border rounded-xl bg-card p-4">
+        <h3 className="font-display font-bold text-foreground mb-3">Daily Visits (Last 30 Days)</h3>
+        <div className="w-full h-64">
+          <ResponsiveContainer width="100%" height="100%">
+            <BarChart data={stats.dailyVisits} margin={{ top: 5, right: 10, left: -10, bottom: 5 }}>
+              <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
+              <XAxis
+                dataKey="date"
+                tick={{ fontSize: 10, fill: "hsl(var(--muted-foreground))" }}
+                interval={Math.floor(stats.dailyVisits.length / 7)}
+                tickLine={false}
+                axisLine={{ stroke: "hsl(var(--border))" }}
+              />
+              <YAxis
+                tick={{ fontSize: 10, fill: "hsl(var(--muted-foreground))" }}
+                tickLine={false}
+                axisLine={false}
+                allowDecimals={false}
+              />
+              <Tooltip
+                contentStyle={{
+                  backgroundColor: "hsl(var(--card))",
+                  border: "1px solid hsl(var(--border))",
+                  borderRadius: "8px",
+                  fontSize: "12px",
+                }}
+                labelStyle={{ color: "hsl(var(--foreground))", fontWeight: "bold" }}
+                itemStyle={{ color: "hsl(var(--primary))" }}
+              />
+              <Bar dataKey="visits" fill="hsl(var(--primary))" radius={[4, 4, 0, 0]} />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+      </div>
+
       {/* World map */}
       <div className="border border-border rounded-xl bg-card p-4 overflow-hidden">
         <h3 className="font-display font-bold text-foreground mb-3">Visitor Map</h3>
