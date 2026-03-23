@@ -175,6 +175,45 @@ const AdminAnalytics = ({ password }: AdminAnalyticsProps) => {
     return { total, today, countries, cities, browsers, operatingSystems, pages, referrers, markers, dailyVisits };
   }, [visitors]);
 
+  const lazyBloggerStats = useMemo(() => {
+    const pageViews = events.filter(e => e.event_name === "lazy_blogger_page_view").length;
+    const promptCopies = events.filter(e => e.event_name === "lazy_blogger_prompt_copy").length;
+    const earlyAccess = events.filter(e => e.event_name === "lazy_blogger_early_access").length;
+
+    // Breakdown by frequency tier
+    const tierBreakdown: Record<string, number> = {};
+    events.filter(e => e.event_name === "lazy_blogger_prompt_copy").forEach(e => {
+      const label = (e.event_data as any)?.label || "Unknown";
+      tierBreakdown[label] = (tierBreakdown[label] || 0) + 1;
+    });
+    const tiers = Object.entries(tierBreakdown).sort((a, b) => b[1] - a[1]);
+
+    // Daily trend (last 14 days)
+    const dailyMap: Record<string, { views: number; copies: number }> = {};
+    const now = new Date();
+    for (let i = 13; i >= 0; i--) {
+      const d = new Date(now);
+      d.setDate(d.getDate() - i);
+      dailyMap[d.toISOString().split("T")[0]] = { views: 0, copies: 0 };
+    }
+    events.forEach(e => {
+      const day = new Date(e.created_at).toISOString().split("T")[0];
+      if (dailyMap[day]) {
+        if (e.event_name === "lazy_blogger_page_view") dailyMap[day].views++;
+        if (e.event_name === "lazy_blogger_prompt_copy") dailyMap[day].copies++;
+      }
+    });
+    const dailyTrend = Object.entries(dailyMap).map(([date, data]) => ({
+      date: new Date(date).toLocaleDateString("en-US", { month: "short", day: "numeric" }),
+      views: data.views,
+      copies: data.copies,
+    }));
+
+    const conversionRate = pageViews > 0 ? ((promptCopies / pageViews) * 100).toFixed(1) : "0";
+
+    return { pageViews, promptCopies, earlyAccess, conversionRate, tiers, dailyTrend };
+  }, [events]);
+
   if (loading) {
     return <p className="font-body text-sm text-muted-foreground py-8 text-center">Loading analytics…</p>;
   }
