@@ -146,11 +146,7 @@ const Index = () => {
               transition={{ duration: 1.2, delay: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
               className="mb-[-1px] relative z-10 flex flex-col items-center">
               
-              <div className="mb-[-1px] relative z-10">
-                <div className="bg-transparent backdrop-blur-xl border border-primary/20 border-b-0 rounded-t-full px-4 py-1 inline-block shadow-[0_-4px_16px_rgba(0,0,0,0.3)]">
-                  <LiveCounter />
-                </div>
-              </div>
+              {/* LiveCounter hidden */}
               <div className="bg-transparent backdrop-blur-xl border border-primary/20 border-b-0 rounded-t-2xl px-6 py-2.5 inline-block shadow-[0_-4px_20px_rgba(0,0,0,0.3)]">
                 <p className="font-display text-[10px] sm:text-xs md:text-sm font-extrabold tracking-[0.2em] uppercase text-primary">
                   Autonomous capitalism for the rest of us
