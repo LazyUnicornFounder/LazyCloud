@@ -5,6 +5,7 @@ import { Link, useLocation } from "react-router-dom";
 import unicornBg from "@/assets/unicorn-beach.png";
 import logoNaive from "@/assets/logo-naive.jpg";
 import logoPolsia from "@/assets/logo-polsia.jpg";
+import logoLazyBlogger from "@/assets/logo-lazy-blogger.jpg";
 import CompanyCard from "@/components/CompanyCard";
 import SubmitSection from "@/components/SubmitSection";
 import PricingSection from "@/components/PricingSection";
@@ -33,7 +34,8 @@ const Index = () => {
 
   const logoMap: Record<string, string> = {
     "Naive": logoNaive,
-    "Polsia": logoPolsia
+    "Polsia": logoPolsia,
+    "Lazy Blogger": logoLazyBlogger
   };
 
   const { data: companies = [] } = useQuery({
@@ -275,15 +277,6 @@ const Index = () => {
               slug={company.slug}
               index={i} />
             )}
-            <CompanyCard
-              key="lazy-blogger"
-              name="Lazy Blogger"
-              url="/lazy-blogger"
-              description="The autonomous blog engine built for Lovable. One prompt installs everything."
-              isPaid={false}
-              slug="lazy-blogger"
-              index={companies.length}
-            />
           </div>
           <a
             href="#launch"
