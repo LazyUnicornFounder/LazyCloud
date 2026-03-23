@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Menu, X as XIcon, Linkedin } from "lucide-react";
+import { Menu, X as XIcon, Linkedin, Heart } from "lucide-react";
 import { useLocation } from "react-router-dom";
 import { useIsMobile } from "@/hooks/use-mobile";
 
