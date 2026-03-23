@@ -1,8 +1,8 @@
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import AdminAnalytics from "@/components/AdminAnalytics";
 import { toast } from "sonner";
-import { Twitter, Pencil, X, Check, Trash2 } from "lucide-react";
+import { Twitter, Pencil, X, Check, Trash2, Upload, Loader2 } from "lucide-react";
 import { staticBlogPosts } from "@/components/BlogSection";
 import logoNaive from "@/assets/logo-naive.jpg";
 import logoPolsia from "@/assets/logo-polsia.jpg";
