@@ -164,23 +164,11 @@ Deno.serve(async (req) => {
         .eq("id", id);
       if (error) throw error;
 
-      // Auto-tweet the published post (non-blocking on failure)
+      // Auto-tweet the published post directly
       let tweetResult = null;
       try {
         const tweetText = `${post.title}. 🦄 🤖\nhttps://www.lazyunicorn.ai/blog/${post.slug}`;
-        const baseUrl = Deno.env.get("SUPABASE_URL")!;
-        const anonKey = Deno.env.get("SUPABASE_ANON_KEY")!;
-        const adminPwd = Deno.env.get("ADMIN_PASSWORD")!;
-
-        const tweetRes = await fetch(`${baseUrl}/functions/v1/post-to-twitter`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${anonKey}`,
-          },
-          body: JSON.stringify({ text: tweetText, password: adminPwd }),
-        });
-        tweetResult = await tweetRes.json();
+        tweetResult = await postTweet(tweetText);
         console.log("Auto-tweet result:", JSON.stringify(tweetResult));
       } catch (tweetErr) {
         console.error("Auto-tweet failed (non-blocking):", tweetErr);
