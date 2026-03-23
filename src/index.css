@@ -36,6 +36,8 @@
 
     --radius: 0.75rem;
     --primary-rgb: 230, 120, 30;
+    --lovable: 289 86% 73%;
+    --lovable-foreground: 0 0% 100%;
 
     --font-display: 'Syne', system-ui, sans-serif;
     --font-body: 'Space Grotesk', system-ui, sans-serif;

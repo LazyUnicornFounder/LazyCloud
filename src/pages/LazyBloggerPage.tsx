@@ -1,209 +1,320 @@
+import { useState, useCallback } from "react";
 import { motion } from "framer-motion";
-import { Zap, FileText, BarChart3, Play, Pause, PenTool, Search, Mail } from "lucide-react";
-import { useState } from "react";
+import { Heart, Copy, Check, ChevronDown, Clock, Sparkles, Layout, Settings, BarChart3, Layers } from "lucide-react";
 import { toast } from "sonner";
 import SEO from "@/components/SEO";
 import Navbar from "@/components/Navbar";
 import BlogTicker from "@/components/BlogTicker";
-import { supabase } from "@/integrations/supabase/client";
-import unicornBg from "@/assets/unicorn-beach.png";
+
+const SETUP_PROMPT = `Add an autonomous blog publishing engine called Lazy Blogger to this project.
+
+Build instructions:
+1. Create a "blog_posts" table in Supabase with columns: id (uuid), title (text), slug (text, unique), excerpt (text), content (text[]), read_time (text), status (text, default 'published'), thumbnail (text, nullable), published_at (timestamptz), created_at (timestamptz, default now()). Enable RLS with a public read policy.
+
+2. Create a "blog_config" table: id (uuid), business_description (text), target_reader (text), topics (text[]), tone (text), cta_url (text, nullable), is_publishing (boolean, default false), created_at (timestamptz). Enable RLS — only authenticated users can read/update.
+
+3. Create a "blog_errors" table: id (uuid), error_message (text), created_at (timestamptz, default now()). RLS: authenticated read.
+
+4. Create a Supabase edge function "generate-blog-post" that:
+   - Reads blog_config for the business description, topics, tone, and target reader
+   - Calls the Anthropic API (Claude) to generate a blog post with title, slug, excerpt, and content paragraphs
+   - Inserts the post into blog_posts with status 'published' and published_at = now()
+   - Logs any errors to blog_errors
+   - Uses the ANTHROPIC_API_KEY secret
+
+5. Create a cron schedule that calls generate-blog-post at 6:00, 12:00, 18:00, and 23:00 UTC every day.
+
+6. Create a /blog page showing all published posts (newest first) with title, excerpt, read time, and date. Add a /blog link to the main navigation.
+
+7. Create /blog/:slug pages rendering the full post content with clean typography.
+
+8. Create /lazy-blogger-setup — a settings page where the owner answers five questions:
+   - What does your business do? (textarea)
+   - Who is your target reader? (input)
+   - What topics should posts cover? (comma-separated input, stored as text[])
+   - What tone should posts use? (select: professional, casual, technical, friendly)
+   - What is your CTA URL? (optional input)
+   Include a "Start Publishing" button that sets is_publishing = true.
+
+9. Create /lazy-blogger-dashboard — an owner dashboard showing:
+   - Total posts published count
+   - A list of all posts with title, date, and status
+   - A "Pause Publishing" / "Resume Publishing" toggle
+   - A "Publish Now" button that manually triggers generate-blog-post
+   - Recent errors from blog_errors
+
+10. Add authentication so only the site owner can access /lazy-blogger-setup and /lazy-blogger-dashboard.`;
+
+const fadeUp = { hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0 } };
 
 const steps = [
-  { num: 1, title: "Clone the template", desc: "One click to fork it into your Lovable project." },
-  { num: 2, title: "Answer five questions", desc: "Your niche, tone, audience, topics, and CTA — that's it." },
-  { num: 3, title: "Add your Anthropic API key", desc: "Paste your key. Lazy Blogger handles the rest." },
-  { num: 4, title: "Hit Start Publishing", desc: "Done. Posts start flowing. Walk away." },
+  { num: 1, text: "Copy the setup prompt from this page." },
+  { num: 2, text: "Open your Lovable project and paste it into the chat." },
+  { num: 3, text: "Lovable builds everything — blog pages, database, publishing engine, dashboard." },
+  { num: 4, text: "Visit /lazy-blogger-setup on your site, answer five questions, hit Start Publishing." },
 ];
 
-const features = [
-  { icon: FileText, label: "4 posts published per day" },
-  { icon: Search, label: "SEO-optimised markdown" },
-  { icon: PenTool, label: "Your brand voice and topics" },
-  { icon: BarChart3, label: "Public blog at /blog" },
-  { icon: Zap, label: "Owner dashboard at /dashboard" },
-  { icon: Play, label: "Manual publish trigger" },
-  { icon: Pause, label: "Pause and resume anytime" },
+const buildItems = [
+  { icon: Layout, title: "A public blog at /blog", desc: "All published posts, newest first, linked from your main navigation." },
+  { icon: Layers, title: "Individual post pages at /blog/[slug]", desc: "Full article pages with clean formatted content." },
+  { icon: Sparkles, title: "A publishing engine", desc: "A Supabase edge function that calls the Anthropic API and publishes on schedule." },
+  { icon: Clock, title: "A cron schedule", desc: "Posts publish automatically at 6am, 12pm, 6pm, and 11pm every day." },
+  { icon: BarChart3, title: "An owner dashboard at /lazy-blogger-dashboard", desc: "See all posts, pause publishing, trigger a post manually." },
+  { icon: Settings, title: "A settings page at /lazy-blogger-setup", desc: "Update your business description, topics, and tone anytime." },
 ];
+
+const scheduleMarkers = [
+  { time: "6 AM", label: "Post publishes" },
+  { time: "12 PM", label: "Post publishes" },
+  { time: "6 PM", label: "Post publishes" },
+  { time: "11 PM", label: "Post publishes" },
+];
+
+const faqs = [
+  { q: "Do I need to upgrade my Lovable plan?", a: "No. Lazy Blogger works on any existing Lovable plan. It uses Supabase edge functions and cron jobs which Lovable supports natively." },
+  { q: "Do I need to know how to code?", a: "No. You paste the prompt into Lovable chat exactly as copied. Lovable builds everything. You answer five questions. Done." },
+  { q: "Where do the posts appear?", a: "At /blog on your existing Lovable site. Lovable automatically adds it to your navigation. Everything lives inside your project." },
+  { q: "Will posts sound like me?", a: "You set your business description, target reader, topics, and tone in the five-question setup. The more specific your answers, the sharper the posts." },
+  { q: "What if something breaks?", a: "Errors log automatically to a Supabase table inside your project. Your Lovable dashboard shows everything. Ask Lovable to fix any issue in the chat — it knows the full setup." },
+  { q: "Can I change topics or tone later?", a: "Yes. Visit /lazy-blogger-setup anytime and update your settings. Changes apply from the next scheduled post." },
+];
+
+const costItems = [
+  { label: "Lazy Blogger", value: "Free forever" },
+  { label: "Lovable", value: "Your existing plan" },
+  { label: "Anthropic API", value: "~$2–$5 / month" },
+];
+
+function CopyButton({ className = "" }: { className?: string }) {
+  const [copied, setCopied] = useState(false);
+  const handleCopy = useCallback(async () => {
+    await navigator.clipboard.writeText(SETUP_PROMPT);
+    setCopied(true);
+    toast.success("Copied to clipboard!");
+    setTimeout(() => setCopied(false), 2000);
+  }, []);
+  return (
+    <button
+      onClick={handleCopy}
+      className={`inline-flex items-center gap-2 bg-primary text-primary-foreground font-display font-bold text-sm tracking-[0.08em] uppercase px-8 py-4 rounded-full hover:opacity-90 transition-opacity shadow-[0_0_30px_rgba(var(--primary-rgb),0.3)] ${className}`}
+    >
+      {copied ? <><Check size={16} /> Copied to clipboard ✓</> : <><Copy size={16} /> Copy the Lovable Prompt</>}
+    </button>
+  );
+}
 
 const LazyBloggerPage = () => {
-  const [email, setEmail] = useState("");
-  const [footerEmail, setFooterEmail] = useState("");
-  const [submitting, setSubmitting] = useState(false);
-
-  const handleEarlyAccess = async (emailValue: string, setter: (v: string) => void) => {
-    if (!emailValue.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailValue.trim())) {
-      toast.error("Please enter a valid email address.");
-      return;
-    }
-    setSubmitting(true);
-    const { error } = await supabase.from("early_access").insert({ email: emailValue.trim().toLowerCase() });
-    setSubmitting(false);
-    if (error?.code === "23505") {
-      toast.info("You're already on the list!");
-      setter("");
-      return;
-    }
-    if (error) {
-      toast.error("Something went wrong. Try again.");
-      return;
-    }
-    toast.success("You're in! We'll notify you when Lazy Blogger launches.");
-    setter("");
+  const scrollToHowItWorks = () => {
+    document.getElementById("how-it-works")?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
-    <div className="min-h-screen text-foreground relative">
+    <div className="min-h-screen bg-background text-foreground">
       <SEO
-        title="Lazy Blogger — Autonomous Blog Publishing for Lovable Sites"
-        description="Answer five questions. Lazy Blogger writes and publishes four SEO blog posts a day to your Lovable site — automatically, forever."
+        title="Lazy Blogger — Autonomous Blog Engine for Lovable"
+        description="One prompt installs an autonomous blog publishing engine inside your Lovable project. Four SEO posts a day, zero effort."
         url="/lazy-blogger"
       />
-      <div className="fixed inset-0 z-0">
-        <img src={unicornBg} alt="" className="w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-black/60" />
-      </div>
       <div className="fixed bottom-0 left-0 right-0 z-50">
         <BlogTicker />
       </div>
       <Navbar />
 
-      <main className="relative z-10 pt-28 pb-32 px-6 md:px-12">
+      <main className="relative z-10 pt-28 pb-32">
         {/* ── Hero ── */}
-        <section className="max-w-4xl mx-auto text-center mb-24">
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-          >
-            <div className="inline-flex items-center gap-2 bg-primary/10 backdrop-blur-xl border border-primary/20 rounded-full px-5 py-2 mb-8">
-              <Zap size={14} className="text-primary" />
-              <span className="font-body text-[10px] tracking-[0.2em] uppercase text-primary font-semibold">
-                Built by Lazy Unicorn
-              </span>
-            </div>
-            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[0.92] mb-6">
-              Your Lovable Site.<br />
-              Four Blog Posts a Day.<br />
-              <span className="text-primary">Zero Effort.</span>
+        <section className="max-w-4xl mx-auto text-center px-6 mb-0">
+          <motion.div initial="hidden" animate="visible" variants={fadeUp} transition={{ duration: 0.7 }}>
+            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[0.95] mb-6">
+              The autonomous blog engine<br />built for{" "}
+              <span className="text-lovable">Lovable.</span>
             </h1>
-            <p className="font-body text-lg md:text-xl text-foreground/50 max-w-2xl mx-auto leading-relaxed mb-10">
-              Answer five questions about your business. Lazy Blogger writes and publishes four SEO blog posts a day to your Lovable site — automatically, forever, without you touching anything.
+            <p className="font-body text-base md:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed mb-10">
+              Paste one prompt into your Lovable project. Answer five questions. Lazy Blogger installs itself and starts publishing four SEO blog posts a day to your site — automatically, forever, without you writing a word.
             </p>
-            <div className="flex flex-col sm:flex-row items-center gap-3 max-w-md mx-auto">
-              <div className="relative flex-1 w-full">
-                <Mail size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-foreground/30" />
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  onKeyDown={(e) => e.key === "Enter" && handleEarlyAccess(email, setEmail)}
-                  placeholder="you@example.com"
-                  className="w-full pl-10 pr-4 py-4 rounded-full bg-foreground/5 backdrop-blur-xl border border-primary/20 text-foreground placeholder:text-foreground/30 font-body text-sm focus:outline-none focus:border-primary/50 transition-colors"
-                />
-              </div>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-6">
+              <CopyButton />
               <button
-                onClick={() => handleEarlyAccess(email, setEmail)}
-                disabled={submitting}
-                className="whitespace-nowrap bg-primary text-primary-foreground font-display font-bold text-sm tracking-[0.08em] uppercase px-8 py-4 rounded-full hover:opacity-90 transition-opacity shadow-[0_0_30px_rgba(var(--primary-rgb),0.3)] disabled:opacity-50"
+                onClick={scrollToHowItWorks}
+                className="inline-flex items-center gap-2 font-display font-bold text-sm tracking-[0.08em] uppercase px-8 py-4 rounded-full border border-border text-foreground/70 hover:text-foreground hover:border-foreground/30 transition-colors"
               >
-                {submitting ? "Joining…" : "Get Early Access"}
+                See How It Works <ChevronDown size={16} />
               </button>
             </div>
-            <p className="font-body text-[11px] text-foreground/30 mt-4">No spam. Just a heads-up when it's ready.</p>
+            <div className="inline-flex items-center gap-2 bg-lovable/10 border border-lovable/20 rounded-full px-4 py-1.5">
+              <Heart size={14} className="text-lovable fill-lovable" />
+              <span className="font-body text-xs text-lovable">Built exclusively for Lovable projects.</span>
+            </div>
           </motion.div>
         </section>
 
-        {/* ── How it works ── */}
-        <section className="max-w-5xl mx-auto mb-24">
-          <motion.h2
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="font-display text-sm font-bold tracking-[0.2em] uppercase text-primary mb-8 text-center"
-          >
-            How it works
+        {/* ── Social Proof Bar ── */}
+        <section className="w-full border-y border-border py-4 mt-20 mb-20">
+          <p className="font-body text-xs md:text-sm text-muted-foreground text-center max-w-3xl mx-auto px-6">
+            Works inside any existing Lovable project. No new accounts. No separate tools. No configuration outside of Lovable.
+          </p>
+        </section>
+
+        {/* ── How It Works ── */}
+        <section id="how-it-works" className="max-w-5xl mx-auto px-6 mb-24">
+          <motion.h2 initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="font-display text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-center mb-4">
+            One prompt. Five questions.<br />Then your site writes itself.
           </motion.h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-12">
             {steps.map((step, i) => (
               <motion.div
                 key={step.num}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial="hidden"
+                whileInView="visible"
                 viewport={{ once: true }}
+                variants={fadeUp}
                 transition={{ delay: i * 0.1 }}
-                className="bg-transparent backdrop-blur-xl rounded-2xl border border-primary/20 p-6 shadow-[0_8px_32px_rgba(0,0,0,0.4)]"
+                className="rounded-2xl border border-border bg-card p-6"
               >
                 <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-primary text-primary-foreground font-display text-lg font-bold mb-4">
                   {step.num}
                 </span>
-                <h3 className="font-display text-base font-bold text-foreground mb-2">{step.title}</h3>
-                <p className="font-body text-sm text-foreground/40 leading-relaxed">{step.desc}</p>
+                <p className="font-body text-sm text-foreground/80 leading-relaxed">{step.text}</p>
+              </motion.div>
+            ))}
+          </div>
+          <p className="font-body text-sm text-muted-foreground text-center mt-8">
+            Lovable handles the entire build. You handle five questions. That is the full setup.
+          </p>
+        </section>
+
+        {/* ── What Lovable Builds ── */}
+        <section className="max-w-5xl mx-auto px-6 mb-24">
+          <motion.h2 initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="font-display text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-center mb-4">
+            Everything installs inside your<br />existing <span className="text-lovable">Lovable</span> project.
+          </motion.h2>
+          <p className="font-body text-sm text-muted-foreground text-center mb-12">
+            When you paste the prompt, Lovable builds six things automatically:
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            {buildItems.map((item, i) => (
+              <motion.div
+                key={item.title}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={fadeUp}
+                transition={{ delay: i * 0.08 }}
+                className="rounded-2xl border border-border bg-card p-6 flex gap-4"
+              >
+                <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+                  <item.icon size={18} className="text-primary" />
+                </div>
+                <div>
+                  <h3 className="font-display text-sm font-bold text-foreground mb-1">{item.title}</h3>
+                  <p className="font-body text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+          <p className="font-body text-sm text-muted-foreground text-center mt-8">
+            Nothing lives outside your Lovable project. No third-party dashboards. No separate accounts. Everything is yours.
+          </p>
+        </section>
+
+        {/* ── Publishing Schedule ── */}
+        <section className="max-w-4xl mx-auto px-6 mb-24">
+          <motion.h2 initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="font-display text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-center mb-12">
+            Four posts a day. Every day.<br />While <span className="text-lovable">Lovable</span> runs the engine.
+          </motion.h2>
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="relative">
+            <div className="hidden sm:block absolute top-5 left-[12.5%] right-[12.5%] h-px bg-border" />
+            <div className="grid grid-cols-1 sm:grid-cols-4 gap-6">
+              {scheduleMarkers.map((m) => (
+                <div key={m.time} className="flex flex-col items-center text-center">
+                  <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center mb-3 relative z-10">
+                    <Clock size={16} className="text-primary-foreground" />
+                  </div>
+                  <span className="font-display text-lg font-bold text-foreground">{m.time}</span>
+                  <span className="font-body text-xs text-muted-foreground mt-1">{m.label}</span>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+          <p className="font-body text-sm text-muted-foreground text-center mt-10 max-w-2xl mx-auto">
+            Each post is 800 to 1,200 words of SEO-optimised content written in your brand voice on your chosen topics. Lovable's Supabase edge functions handle the scheduling. The Anthropic API handles the writing. You handle nothing.
+          </p>
+        </section>
+
+        {/* ── The Prompt ── */}
+        <section className="max-w-3xl mx-auto px-6 mb-24">
+          <motion.h2 initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="font-display text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-center mb-8">
+            This is all you paste into <span className="text-lovable">Lovable.</span>
+          </motion.h2>
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="rounded-2xl border border-border bg-card p-6 md:p-8 mb-6">
+            <p className="font-body text-base text-foreground font-medium leading-relaxed">
+              "Add an autonomous blog publishing engine called Lazy Blogger to this project."
+            </p>
+            <p className="font-body text-xs text-muted-foreground mt-3">
+              + complete build instructions for database, edge function, cron schedule, blog pages, and dashboard.
+            </p>
+          </motion.div>
+          <div className="text-center">
+            <CopyButton className="text-base px-10 py-5" />
+            <p className="font-body text-xs text-muted-foreground mt-4 max-w-md mx-auto">
+              Paste it into your Lovable chat exactly as copied. Lovable reads the full instructions and builds everything in one go.
+            </p>
+          </div>
+        </section>
+
+        {/* ── Cost ── */}
+        <section className="max-w-4xl mx-auto px-6 mb-24">
+          <motion.h2 initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="font-display text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-center mb-10">
+            What does it cost?
+          </motion.h2>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+            {costItems.map((item) => (
+              <motion.div key={item.label} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="rounded-2xl border border-border bg-card p-6 text-center">
+                <h3 className="font-display text-sm font-bold text-foreground mb-2">{item.label}</h3>
+                <p className="font-body text-lg font-bold text-primary">{item.value}</p>
+              </motion.div>
+            ))}
+          </div>
+          <p className="font-body text-sm text-muted-foreground text-center mt-6 max-w-2xl mx-auto">
+            No Lazy Blogger subscription. No extra Lovable features required. The only running cost is the Anthropic API calls — billed directly to your Anthropic account at roughly $0.01 per post.
+          </p>
+        </section>
+
+        {/* ── FAQ ── */}
+        <section className="max-w-3xl mx-auto px-6 mb-24">
+          <motion.h2 initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="font-display text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-center mb-10">
+            Questions.
+          </motion.h2>
+          <div className="space-y-4">
+            {faqs.map((faq, i) => (
+              <motion.div
+                key={i}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={fadeUp}
+                transition={{ delay: i * 0.05 }}
+                className="rounded-2xl border border-border bg-card p-6"
+              >
+                <h3 className="font-display text-sm font-bold text-foreground mb-2">{faq.q}</h3>
+                <p className="font-body text-sm text-muted-foreground leading-relaxed">{faq.a}</p>
               </motion.div>
             ))}
           </div>
         </section>
 
-        {/* ── What you get ── */}
-        <section className="max-w-3xl mx-auto mb-24">
-          <motion.h2
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="font-display text-sm font-bold tracking-[0.2em] uppercase text-primary mb-8 text-center"
-          >
-            What you get
-          </motion.h2>
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="bg-transparent backdrop-blur-xl rounded-3xl border border-primary/20 p-8 shadow-[0_8px_32px_rgba(0,0,0,0.4)]"
-          >
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {features.map((f) => (
-                <div key={f.label} className="flex items-center gap-3">
-                  <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-primary/10">
-                    <f.icon size={16} className="text-primary" />
-                  </div>
-                  <span className="font-body text-sm text-foreground/70">{f.label}</span>
-                </div>
-              ))}
-            </div>
-          </motion.div>
-        </section>
-
-        {/* ── Footer CTA ── */}
-        <section className="max-w-4xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="bg-transparent backdrop-blur-xl rounded-3xl border border-primary/20 px-8 py-16 shadow-[0_8px_32px_rgba(0,0,0,0.4),0_0_30px_rgba(var(--primary-rgb),0.08)]"
-          >
+        {/* ── Bottom CTA ── */}
+        <section className="max-w-4xl mx-auto px-6">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="rounded-3xl border border-border bg-card px-8 py-16 text-center">
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-foreground mb-6">
-              Stop Writing.<br />
-              <span className="text-primary">Start Compounding.</span>
+              Your Lovable site.<br />Publishing every day.<br /><span className="text-primary">Without you.</span>
             </h2>
-            <div className="flex flex-col sm:flex-row items-center gap-3 max-w-md mx-auto">
-              <div className="relative flex-1 w-full">
-                <Mail size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-foreground/30" />
-                <input
-                  type="email"
-                  value={footerEmail}
-                  onChange={(e) => setFooterEmail(e.target.value)}
-                  onKeyDown={(e) => e.key === "Enter" && handleEarlyAccess(footerEmail, setFooterEmail)}
-                  placeholder="you@example.com"
-                  className="w-full pl-10 pr-4 py-4 rounded-full bg-foreground/5 backdrop-blur-xl border border-primary/20 text-foreground placeholder:text-foreground/30 font-body text-sm focus:outline-none focus:border-primary/50 transition-colors"
-                />
-              </div>
-              <button
-                onClick={() => handleEarlyAccess(footerEmail, setFooterEmail)}
-                disabled={submitting}
-                className="whitespace-nowrap bg-primary text-primary-foreground font-display font-bold text-sm tracking-[0.08em] uppercase px-8 py-4 rounded-full hover:opacity-90 transition-opacity shadow-[0_0_30px_rgba(var(--primary-rgb),0.3)] disabled:opacity-50"
-              >
-                {submitting ? "Joining…" : "Get Early Access"}
-              </button>
-            </div>
+            <p className="font-body text-base text-muted-foreground max-w-xl mx-auto leading-relaxed mb-10">
+              Every post builds domain authority. Every week that passes makes your site harder to catch. The best time to start was three months ago. The second best time is right now.
+            </p>
+            <CopyButton className="text-base px-10 py-5" />
+            <p className="font-body text-xs text-muted-foreground mt-4 max-w-md mx-auto">
+              Then open your Lovable project, paste it into the chat, and answer five questions. Your site starts publishing today.
+            </p>
           </motion.div>
         </section>
       </main>
