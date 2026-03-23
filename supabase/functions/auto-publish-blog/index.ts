@@ -135,6 +135,7 @@ Deno.serve(async (req) => {
       excerpt: post.excerpt,
       content: paragraphs,
       read_time: readTime,
+      thumbnail: "https://www.lazyunicorn.ai/og-image.png",
       status: "draft",
     }).select().single();
 
