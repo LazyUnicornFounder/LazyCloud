@@ -18,6 +18,10 @@ import AutonomyScale from "./pages/AutonomyScale.tsx";
 import LazyBloggerPage from "./pages/LazyBloggerPage.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import ScrollToTop from "./components/ScrollToTop.tsx";
+import LazySeoSetup from "./pages/LazySeoSetup.tsx";
+import LazySeoDashboard from "./pages/LazySeoDashboard.tsx";
+import SeoBlog from "./pages/SeoBlog.tsx";
+import SeoBlogPost from "./pages/SeoBlogPost.tsx";
 
 const queryClient = new QueryClient();
 
