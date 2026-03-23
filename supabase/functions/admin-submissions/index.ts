@@ -102,12 +102,44 @@ Deno.serve(async (req) => {
     }
 
     if (action === "publish_post" && id) {
+      // Fetch post details for the tweet
+      const { data: post, error: fetchError } = await supabase
+        .from("blog_posts")
+        .select("title, slug")
+        .eq("id", id)
+        .single();
+      if (fetchError) throw fetchError;
+
       const { error } = await supabase
         .from("blog_posts")
         .update({ status: "published", published_at: new Date().toISOString() })
         .eq("id", id);
       if (error) throw error;
-      return new Response(JSON.stringify({ success: true }), {
+
+      // Auto-tweet the published post (non-blocking on failure)
+      let tweetResult = null;
+      try {
+        const tweetText = `${post.title}. 🦄 🤖\nhttps://www.lazyunicorn.ai/blog/${post.slug}`;
+        const baseUrl = Deno.env.get("SUPABASE_URL")!;
+        const anonKey = Deno.env.get("SUPABASE_ANON_KEY")!;
+        const adminPwd = Deno.env.get("ADMIN_PASSWORD")!;
+
+        const tweetRes = await fetch(`${baseUrl}/functions/v1/post-to-twitter`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${anonKey}`,
+          },
+          body: JSON.stringify({ text: tweetText, password: adminPwd }),
+        });
+        tweetResult = await tweetRes.json();
+        console.log("Auto-tweet result:", JSON.stringify(tweetResult));
+      } catch (tweetErr) {
+        console.error("Auto-tweet failed (non-blocking):", tweetErr);
+        tweetResult = { success: false, error: tweetErr.message };
+      }
+
+      return new Response(JSON.stringify({ success: true, tweet: tweetResult }), {
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
