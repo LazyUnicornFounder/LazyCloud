@@ -50,11 +50,11 @@ function FrequencyModal({ open, onClose, onCopy }: { open: boolean; onClose: () 
                   <span className="font-body text-lg text-muted-foreground">/ day</span>
                 </div>
                 <p className="font-body text-base text-muted-foreground">{tier.description}</p>
-                <div className="mt-4 flex items-center gap-1.5 text-sm font-display font-bold text-primary">
+                <div className="mt-5 flex items-center gap-2 text-base font-display font-bold text-primary">
                   {isCopied ? (
-                    <><Check size={12} /> Copied!</>
+                    <><Check size={16} /> Copied!</>
                   ) : (
-                    <><Copy size={12} /> Copy prompt</>
+                    <><Copy size={16} /> Copy prompt</>
                   )}
                 </div>
               </button>
