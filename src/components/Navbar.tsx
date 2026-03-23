@@ -12,7 +12,7 @@ interface NavLink {
 }
 
 interface NavbarProps {
-  activePage?: "home" | "blog" | "guide";
+  activePage?: "home" | "blog" | "guide" | "autonomy";
 }
 
 const XLogo = () => (
