@@ -29,7 +29,8 @@ const Admin = () => {
   const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [activeTab, setActiveTab] = useState<"submissions" | "blog" | "analytics" | "twitter">("analytics");
+  const [activeTab, setActiveTab] = useState<"submissions" | "blog" | "queue" | "analytics" | "twitter">("analytics");
+  const [queue, setQueue] = useState<BlogPost[]>([]);
   const [generating, setGenerating] = useState(false);
   const [tweetText, setTweetText] = useState("");
   const [tweeting, setTweeting] = useState(false);
