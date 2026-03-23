@@ -213,6 +213,14 @@ const Admin = () => {
       {/* Tabs */}
       <div className="flex items-center gap-4 mb-6">
         <button
+          onClick={() => setActiveTab("analytics")}
+          className={`font-display text-lg font-bold pb-1 border-b-2 transition-colors ${
+            activeTab === "analytics" ? "border-primary text-foreground" : "border-transparent text-muted-foreground hover:text-foreground"
+          }`}
+        >
+          Analytics
+        </button>
+        <button
           onClick={() => setActiveTab("submissions")}
           className={`font-display text-lg font-bold pb-1 border-b-2 transition-colors ${
             activeTab === "submissions" ? "border-primary text-foreground" : "border-transparent text-muted-foreground hover:text-foreground"
@@ -227,14 +235,6 @@ const Admin = () => {
           }`}
         >
           Lazy Blogger
-        </button>
-        <button
-          onClick={() => setActiveTab("analytics")}
-          className={`font-display text-lg font-bold pb-1 border-b-2 transition-colors ${
-            activeTab === "analytics" ? "border-primary text-foreground" : "border-transparent text-muted-foreground hover:text-foreground"
-          }`}
-        >
-          Analytics
         </button>
         <button
           onClick={() => setActiveTab("seo")}
