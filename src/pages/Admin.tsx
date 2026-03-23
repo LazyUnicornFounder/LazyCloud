@@ -103,7 +103,10 @@ const Admin = () => {
   const handleGeneratePost = async () => {
     setGenerating(true);
     try {
-      await supabase.functions.invoke("generate-blog-post");
+      await supabase.functions.invoke("generate-blog-post", {
+        body: customTopic.trim() ? { topic: customTopic.trim() } : {},
+      });
+      setCustomTopic("");
       await fetchBlogPosts(password);
     } catch {
       // ignore
