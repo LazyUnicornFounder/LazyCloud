@@ -135,9 +135,13 @@ const Navbar = ({ activePage = "home" }: NavbarProps) => {
             <a
               href={mobileBrandHref}
               onClick={() => setOpen(false)}
-              className="font-display text-xs font-semibold tracking-[0.15em] uppercase text-foreground hover:text-primary transition-colors"
+              className="font-display text-[9px] font-semibold tracking-[0.15em] uppercase text-foreground hover:text-primary transition-colors leading-tight flex items-center gap-1.5"
             >
-              Lazy&#160;Unicorn
+              <Heart size={12} className="text-primary fill-primary shrink-0" />
+              <span className="flex flex-col">
+                <span>Lazy</span>
+                <span>Unicorn</span>
+              </span>
             </a>
             <button
               onClick={() => setOpen(!open)}
