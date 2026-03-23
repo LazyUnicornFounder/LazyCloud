@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Heart, Copy, Check, Clock, Sparkles, Zap } from "lucide-react";
+import { Copy, Check, Clock, Sparkles, Zap } from "lucide-react";
 import { toast } from "sonner";
 import SEO from "@/components/SEO";
 import Navbar from "@/components/Navbar";
