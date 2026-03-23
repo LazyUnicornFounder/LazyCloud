@@ -2559,8 +2559,27 @@ const BlogHeader = () => {
   );
 };
 
+const BLOG_TAGS: { label: string; keywords: string[] }[] = [
+  { label: "Autonomous Companies", keywords: ["autonomous", "self-building", "self-running", "self-growing", "runs itself", "builds itself"] },
+  { label: "AI Agents", keywords: ["agent", "agents", "ai employee", "ai team", "robot", "automation"] },
+  { label: "Solo Founders", keywords: ["solo founder", "one person", "one-person", "solo ceo", "alone", "without a team"] },
+  { label: "Future of Work", keywords: ["future of work", "end of work", "9-to-5", "hiring", "employees", "management"] },
+  { label: "Fundraising", keywords: ["raising", "angel", "investor", "pitch", "fundrais", "venture", "capital"] },
+  { label: "Monetization", keywords: ["revenue", "monetiz", "pricing", "passive income", "arr", "business model"] },
+  { label: "Content & SEO", keywords: ["blog", "content", "seo", "writing", "publish"] },
+  { label: "Philosophy", keywords: ["capitalism", "recursive", "philosophy", "freedom", "lazy", "unicorn"] },
+];
+
+function getPostTags(post: BlogPost): string[] {
+  const text = `${post.title} ${post.excerpt} ${(post.content || []).join(" ")}`.toLowerCase();
+  return BLOG_TAGS
+    .filter(tag => tag.keywords.some(kw => text.includes(kw)))
+    .map(tag => tag.label);
+}
+
 const BlogSection = () => {
   const { posts: dbPosts } = useDbBlogPosts();
+  const [activeTag, setActiveTag] = useState<string | null>(null);
 
   // Merge: pinned post first, then DB posts (newest first), then remaining static posts
   const pinnedSlug = "lazy-unicorn-raising-angel-round";
@@ -2568,69 +2587,159 @@ const BlogSection = () => {
   const staticRest = staticBlogPosts.filter(p => p.slug !== pinnedSlug);
   const allPosts = [...pinned, ...dbPosts, ...staticRest];
 
+  // Count posts per tag
+  const tagCounts = useMemo(() => {
+    const counts: Record<string, number> = {};
+    BLOG_TAGS.forEach(tag => { counts[tag.label] = 0; });
+    allPosts.forEach(post => {
+      getPostTags(post).forEach(t => { counts[t] = (counts[t] || 0) + 1; });
+    });
+    return counts;
+  }, [allPosts]);
+
+  const filteredPosts = activeTag
+    ? allPosts.filter(post => getPostTags(post).includes(activeTag))
+    : allPosts;
+
   return (
     <section id="blog" className="relative z-10 px-8 md:px-12 pb-16 scroll-mt-24">
-      <div className="max-w-5xl">
+      <div className="max-w-7xl">
         {/* Page header */}
         <BlogHeader />
 
-        {/* Post grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {allPosts.map((post, i) => (
-            <motion.div
-              key={post.slug}
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: i * 0.1 }}
-            >
-              <Link
-                to={`/blog/${post.slug}`}
-                className="group flex flex-col h-full bg-transparent backdrop-blur-xl rounded-3xl border border-primary/20 shadow-[0_8px_32px_rgba(0,0,0,0.4),0_0_20px_rgba(var(--primary-rgb),0.08)] overflow-hidden hover:border-primary/40 hover:shadow-[0_8px_32px_rgba(0,0,0,0.5),0_0_30px_rgba(var(--primary-rgb),0.15)] transition-all duration-300"
+        <div className="flex gap-8">
+          {/* Post grid */}
+          <div className="flex-1 min-w-0">
+            {/* Mobile tag pills */}
+            <div className="lg:hidden flex flex-wrap gap-2 mb-6">
+              <button
+                onClick={() => setActiveTag(null)}
+                className={`font-body text-[10px] tracking-[0.12em] uppercase px-3 py-1.5 rounded-full border transition-all duration-200 ${
+                  !activeTag
+                    ? "bg-primary text-primary-foreground border-primary"
+                    : "border-foreground/10 text-foreground/50 hover:border-primary/30 hover:text-foreground/70"
+                }`}
               >
-                {/* Thumbnail */}
-                <div className="relative h-44 overflow-hidden">
-                  {post.thumbnail ? (
-                    <img
-                      src={post.thumbnail}
-                      alt={post.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                  ) : (
-                    <div className="w-full h-full bg-primary/10" />
-                  )}
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
-                  {post.slug === "lazy-unicorn-raising-angel-round" && (
-                    <div className="absolute top-3 right-3 flex items-center gap-1.5 bg-orange-400/90 backdrop-blur-xl text-background text-[9px] font-semibold tracking-[0.15em] uppercase rounded-full px-3 py-1 shadow-lg">
-                      <Pin className="w-3 h-3" />
-                      Pinned
-                    </div>
-                  )}
-                </div>
+                All ({allPosts.length})
+              </button>
+              {BLOG_TAGS.filter(t => tagCounts[t.label] > 0).map(tag => (
+                <button
+                  key={tag.label}
+                  onClick={() => setActiveTag(activeTag === tag.label ? null : tag.label)}
+                  className={`font-body text-[10px] tracking-[0.12em] uppercase px-3 py-1.5 rounded-full border transition-all duration-200 ${
+                    activeTag === tag.label
+                      ? "bg-primary text-primary-foreground border-primary"
+                      : "border-foreground/10 text-foreground/50 hover:border-primary/30 hover:text-foreground/70"
+                  }`}
+                >
+                  {tag.label} ({tagCounts[tag.label]})
+                </button>
+              ))}
+            </div>
 
-                {/* Info */}
-                <div className="px-8 py-6 flex flex-col flex-1">
-                  <div className="flex items-center gap-3 mb-3">
-                    <span className="font-body text-[10px] tracking-[0.2em] uppercase text-primary font-semibold">
-                      {post.date}
-                    </span>
-                    <span className="w-1 h-1 rounded-full bg-foreground/20" />
-                    <span className="font-body text-[10px] tracking-[0.2em] uppercase text-foreground/40">
-                      {post.readTime}
-                    </span>
-                  </div>
-                  <h2 className="font-display text-xl font-extrabold text-foreground group-hover:text-primary transition-colors leading-tight mb-2 line-clamp-3">
-                    {post.title}
-                  </h2>
-                  <p className="font-body text-sm text-foreground/50 leading-relaxed line-clamp-2">
-                    {post.excerpt}
-                  </p>
-                  <span className="inline-block mt-auto pt-4 font-body text-[10px] tracking-[0.2em] uppercase text-primary font-semibold group-hover:translate-x-1 transition-transform">
-                    Read article →
-                  </span>
-                </div>
-              </Link>
-            </motion.div>
-          ))}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {filteredPosts.map((post, i) => (
+                <motion.div
+                  key={post.slug}
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: i * 0.1 }}
+                >
+                  <Link
+                    to={`/blog/${post.slug}`}
+                    className="group flex flex-col h-full bg-transparent backdrop-blur-xl rounded-3xl border border-primary/20 shadow-[0_8px_32px_rgba(0,0,0,0.4),0_0_20px_rgba(var(--primary-rgb),0.08)] overflow-hidden hover:border-primary/40 hover:shadow-[0_8px_32px_rgba(0,0,0,0.5),0_0_30px_rgba(var(--primary-rgb),0.15)] transition-all duration-300"
+                  >
+                    {/* Thumbnail */}
+                    <div className="relative h-44 overflow-hidden">
+                      {post.thumbnail ? (
+                        <img
+                          src={post.thumbnail}
+                          alt={post.title}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
+                      ) : (
+                        <div className="w-full h-full bg-primary/10" />
+                      )}
+                      <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
+                      {post.slug === "lazy-unicorn-raising-angel-round" && (
+                        <div className="absolute top-3 right-3 flex items-center gap-1.5 bg-orange-400/90 backdrop-blur-xl text-background text-[9px] font-semibold tracking-[0.15em] uppercase rounded-full px-3 py-1 shadow-lg">
+                          <Pin className="w-3 h-3" />
+                          Pinned
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Info */}
+                    <div className="px-8 py-6 flex flex-col flex-1">
+                      <div className="flex items-center gap-3 mb-3">
+                        <span className="font-body text-[10px] tracking-[0.2em] uppercase text-primary font-semibold">
+                          {post.date}
+                        </span>
+                        <span className="w-1 h-1 rounded-full bg-foreground/20" />
+                        <span className="font-body text-[10px] tracking-[0.2em] uppercase text-foreground/40">
+                          {post.readTime}
+                        </span>
+                      </div>
+                      <h2 className="font-display text-xl font-extrabold text-foreground group-hover:text-primary transition-colors leading-tight mb-2 line-clamp-3">
+                        {post.title}
+                      </h2>
+                      <p className="font-body text-sm text-foreground/50 leading-relaxed line-clamp-2">
+                        {post.excerpt}
+                      </p>
+                      <span className="inline-block mt-auto pt-4 font-body text-[10px] tracking-[0.2em] uppercase text-primary font-semibold group-hover:translate-x-1 transition-transform">
+                        Read article →
+                      </span>
+                    </div>
+                  </Link>
+                </motion.div>
+              ))}
+            </div>
+
+            {filteredPosts.length === 0 && (
+              <p className="font-body text-sm text-foreground/40 text-center py-12">
+                No posts found for this tag.
+              </p>
+            )}
+          </div>
+
+          {/* Desktop sidebar tags */}
+          <aside className="hidden lg:block w-56 shrink-0">
+            <div className="sticky top-28 bg-transparent backdrop-blur-xl rounded-2xl border border-primary/20 shadow-[0_8px_32px_rgba(0,0,0,0.4),0_0_20px_rgba(var(--primary-rgb),0.08)] p-5">
+              <div className="flex items-center gap-2 mb-4">
+                <Tag className="w-3.5 h-3.5 text-primary" />
+                <p className="font-display text-xs font-bold tracking-[0.15em] uppercase text-foreground/60">
+                  Topics
+                </p>
+              </div>
+              <div className="space-y-1">
+                <button
+                  onClick={() => setActiveTag(null)}
+                  className={`w-full text-left px-3 py-2 rounded-lg font-body text-xs transition-all duration-200 ${
+                    !activeTag
+                      ? "bg-primary/15 text-primary font-semibold"
+                      : "text-foreground/50 hover:bg-foreground/5 hover:text-foreground/70"
+                  }`}
+                >
+                  All posts
+                  <span className="float-right text-foreground/30">{allPosts.length}</span>
+                </button>
+                {BLOG_TAGS.filter(t => tagCounts[t.label] > 0).map(tag => (
+                  <button
+                    key={tag.label}
+                    onClick={() => setActiveTag(activeTag === tag.label ? null : tag.label)}
+                    className={`w-full text-left px-3 py-2 rounded-lg font-body text-xs transition-all duration-200 ${
+                      activeTag === tag.label
+                        ? "bg-primary/15 text-primary font-semibold"
+                        : "text-foreground/50 hover:bg-foreground/5 hover:text-foreground/70"
+                    }`}
+                  >
+                    {tag.label}
+                    <span className="float-right text-foreground/30">{tagCounts[tag.label]}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          </aside>
         </div>
       </div>
     </section>
