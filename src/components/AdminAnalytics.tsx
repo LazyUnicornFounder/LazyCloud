@@ -178,7 +178,7 @@ const AdminAnalytics = ({ password }: AdminAnalyticsProps) => {
   const lazyBloggerStats = useMemo(() => {
     const pageViews = events.filter(e => e.event_name === "lazy_blogger_page_view").length;
     const promptCopies = events.filter(e => e.event_name === "lazy_blogger_prompt_copy").length;
-    const earlyAccess = events.filter(e => e.event_name === "lazy_blogger_early_access").length;
+    
 
     // Breakdown by frequency tier
     const tierBreakdown: Record<string, number> = {};
