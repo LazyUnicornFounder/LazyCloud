@@ -163,7 +163,7 @@ const Index = () => {
             </motion.div>
 
             <div className="bg-transparent backdrop-blur-xl rounded-3xl px-5 sm:px-8 md:px-10 py-8 border border-primary/20 shadow-[0_8px_32px_rgba(0,0,0,0.4),0_0_20px_rgba(var(--primary-rgb),0.08)]">
-              <h1 className="font-display text-5xl sm:text-7xl md:text-8xl font-extrabold tracking-tight leading-[0.95] text-foreground">
+              <h1 className="font-display text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tight leading-[0.95] text-foreground">
                 The solo founder's
                 <br />
                 guide to building an
