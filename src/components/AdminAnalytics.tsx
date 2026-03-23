@@ -235,7 +235,7 @@ const AdminAnalytics = ({ password }: AdminAnalyticsProps) => {
       {/* Lazy Blogger Funnel */}
       <div className="border border-border rounded-xl bg-card p-4">
         <h3 className="font-display font-bold text-foreground mb-3">Lazy Blogger — Funnel</h3>
-        <div className="grid grid-cols-4 gap-3 mb-4">
+        <div className="grid grid-cols-2 gap-3 mb-4">
           <div className="text-center p-3 rounded-lg bg-background/50 border border-border/50">
             <p className="font-display text-2xl font-bold text-foreground">{lazyBloggerStats.pageViews}</p>
             <p className="font-body text-xs text-muted-foreground">Page Views</p>
@@ -243,14 +243,6 @@ const AdminAnalytics = ({ password }: AdminAnalyticsProps) => {
           <div className="text-center p-3 rounded-lg bg-background/50 border border-border/50">
             <p className="font-display text-2xl font-bold text-primary">{lazyBloggerStats.promptCopies}</p>
             <p className="font-body text-xs text-muted-foreground">Prompt Copies</p>
-          </div>
-          <div className="text-center p-3 rounded-lg bg-background/50 border border-border/50">
-            <p className="font-display text-2xl font-bold text-foreground">{lazyBloggerStats.earlyAccess}</p>
-            <p className="font-body text-xs text-muted-foreground">Early Access</p>
-          </div>
-          <div className="text-center p-3 rounded-lg bg-background/50 border border-border/50">
-            <p className="font-display text-2xl font-bold text-primary">{lazyBloggerStats.conversionRate}%</p>
-            <p className="font-body text-xs text-muted-foreground">Conv. Rate</p>
           </div>
         </div>
 
