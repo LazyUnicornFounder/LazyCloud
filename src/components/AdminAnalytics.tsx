@@ -233,7 +233,9 @@ const AdminAnalytics = ({ password }: AdminAnalyticsProps) => {
   const blogStats = useMemo(() => {
     const published = blogPosts.filter(p => p.status === "published");
     const drafts = blogPosts.filter(p => p.status === "draft");
-    const totalPublished = published.length;
+    const staticSlugs = new Set(staticBlogPosts.map(p => p.slug));
+    const uniqueDbPublished = published.filter(p => !staticSlugs.has(p.slug));
+    const totalPublished = uniqueDbPublished.length + staticBlogPosts.length;
     const totalDrafts = drafts.length;
 
     const todayStr = new Date().toDateString();
