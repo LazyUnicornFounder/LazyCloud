@@ -178,7 +178,7 @@ const AdminAnalytics = ({ password }: AdminAnalyticsProps) => {
   const lazyBloggerStats = useMemo(() => {
     const pageViews = events.filter(e => e.event_name === "lazy_blogger_page_view").length;
     const promptCopies = events.filter(e => e.event_name === "lazy_blogger_prompt_copy").length;
-    const earlyAccess = events.filter(e => e.event_name === "lazy_blogger_early_access").length;
+    
 
     // Breakdown by frequency tier
     const tierBreakdown: Record<string, number> = {};
@@ -209,9 +209,8 @@ const AdminAnalytics = ({ password }: AdminAnalyticsProps) => {
       copies: data.copies,
     }));
 
-    const conversionRate = pageViews > 0 ? ((promptCopies / pageViews) * 100).toFixed(1) : "0";
 
-    return { pageViews, promptCopies, earlyAccess, conversionRate, tiers, dailyTrend };
+    return { pageViews, promptCopies, tiers, dailyTrend };
   }, [events]);
 
   if (loading) {
@@ -235,7 +234,7 @@ const AdminAnalytics = ({ password }: AdminAnalyticsProps) => {
       {/* Lazy Blogger Funnel */}
       <div className="border border-border rounded-xl bg-card p-4">
         <h3 className="font-display font-bold text-foreground mb-3">Lazy Blogger — Funnel</h3>
-        <div className="grid grid-cols-4 gap-3 mb-4">
+        <div className="grid grid-cols-2 gap-3 mb-4">
           <div className="text-center p-3 rounded-lg bg-background/50 border border-border/50">
             <p className="font-display text-2xl font-bold text-foreground">{lazyBloggerStats.pageViews}</p>
             <p className="font-body text-xs text-muted-foreground">Page Views</p>
@@ -243,14 +242,6 @@ const AdminAnalytics = ({ password }: AdminAnalyticsProps) => {
           <div className="text-center p-3 rounded-lg bg-background/50 border border-border/50">
             <p className="font-display text-2xl font-bold text-primary">{lazyBloggerStats.promptCopies}</p>
             <p className="font-body text-xs text-muted-foreground">Prompt Copies</p>
-          </div>
-          <div className="text-center p-3 rounded-lg bg-background/50 border border-border/50">
-            <p className="font-display text-2xl font-bold text-foreground">{lazyBloggerStats.earlyAccess}</p>
-            <p className="font-body text-xs text-muted-foreground">Early Access</p>
-          </div>
-          <div className="text-center p-3 rounded-lg bg-background/50 border border-border/50">
-            <p className="font-display text-2xl font-bold text-primary">{lazyBloggerStats.conversionRate}%</p>
-            <p className="font-body text-xs text-muted-foreground">Conv. Rate</p>
           </div>
         </div>
 
