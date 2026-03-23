@@ -36,7 +36,11 @@ const Admin = () => {
   
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [activeTab, setActiveTab] = useState<"submissions" | "blog" | "analytics">("analytics");
+  const [activeTab, setActiveTab] = useState<"submissions" | "blog" | "analytics">(() => {
+    const saved = sessionStorage.getItem("admin_tab");
+    return (saved === "submissions" || saved === "blog" || saved === "analytics") ? saved : "analytics";
+  });
+  useEffect(() => { sessionStorage.setItem("admin_tab", activeTab); }, [activeTab]);
   const [generating, setGenerating] = useState(false);
   const [customTopic, setCustomTopic] = useState("");
   const [editingId, setEditingId] = useState<string | null>(null);
