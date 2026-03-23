@@ -5,6 +5,7 @@ import { toast } from "sonner";
 import SEO from "@/components/SEO";
 import Navbar from "@/components/Navbar";
 import BlogTicker from "@/components/BlogTicker";
+import unicornBg from "@/assets/unicorn-beach.png";
 
 const SETUP_PROMPT = `Add an autonomous blog publishing engine called Lazy Blogger to this project. Use the built-in Lovable AI integration for all AI calls — no external API key required from the user.
 
@@ -85,6 +86,10 @@ const LazyBloggerPage = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <div className="fixed inset-0 z-0">
+        <img src={unicornBg} alt="" className="w-full h-full object-cover" />
+        <div className="absolute inset-0 bg-black/50" />
+      </div>
       <SEO
         title="Lazy Blogger — Autonomous Blog Engine for Lovable"
         description="One prompt installs an autonomous blog publishing engine inside your Lovable project. Four SEO posts a day, zero effort."
