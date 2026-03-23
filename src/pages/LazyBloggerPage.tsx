@@ -204,26 +204,28 @@ const LazyBloggerPage = () => {
 
         {/* ── Publishing Schedule ── */}
         <section className="max-w-4xl mx-auto px-6 mb-24">
-          <motion.h2 initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="font-display text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-center mb-12">
-            Four posts a day. Every day.<br />While <span className="text-lovable">Lovable</span> runs the engine.
-          </motion.h2>
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="relative">
-            <div className="hidden sm:block absolute top-5 left-[12.5%] right-[12.5%] h-px bg-border" />
-            <div className="grid grid-cols-1 sm:grid-cols-4 gap-6">
-              {scheduleMarkers.map((m) => (
-                <div key={m.time} className="flex flex-col items-center text-center">
-                  <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center mb-3 relative z-10">
-                    <Clock size={16} className="text-primary-foreground" />
+          <div className="bg-transparent backdrop-blur-xl rounded-3xl px-8 py-10 border border-primary/20 shadow-[0_8px_32px_rgba(0,0,0,0.4),0_0_20px_rgba(var(--primary-rgb),0.08)]">
+            <motion.h2 initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="font-display text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-center mb-12">
+              Four posts a day. Every day.<br />While <span className="text-lovable">Lovable</span> runs the engine.
+            </motion.h2>
+            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="relative">
+              <div className="hidden sm:block absolute top-5 left-[12.5%] right-[12.5%] h-px bg-primary/20" />
+              <div className="grid grid-cols-1 sm:grid-cols-4 gap-6">
+                {scheduleMarkers.map((m) => (
+                  <div key={m.time} className="flex flex-col items-center text-center">
+                    <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center mb-3 relative z-10">
+                      <Clock size={16} className="text-primary-foreground" />
+                    </div>
+                    <span className="font-display text-lg font-bold text-foreground">{m.time}</span>
+                    <span className="font-body text-xs text-muted-foreground mt-1">{m.label}</span>
                   </div>
-                  <span className="font-display text-lg font-bold text-foreground">{m.time}</span>
-                  <span className="font-body text-xs text-muted-foreground mt-1">{m.label}</span>
-                </div>
-              ))}
-            </div>
-          </motion.div>
-          <p className="font-body text-sm text-muted-foreground text-center mt-10 max-w-2xl mx-auto">
-            Each post is 800 to 1,200 words of SEO-optimised content written in your brand voice on your chosen topics. Lovable handles the scheduling and the writing. You handle nothing.
-          </p>
+                ))}
+              </div>
+            </motion.div>
+            <p className="font-body text-sm text-muted-foreground text-center mt-10 max-w-2xl mx-auto">
+              Each post is 800 to 1,200 words of SEO-optimised content written in your brand voice on your chosen topics. Lovable handles the scheduling and the writing. You handle nothing.
+            </p>
+          </div>
         </section>
 
         {/* ── The Prompt ── */}
