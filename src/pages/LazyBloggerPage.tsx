@@ -99,12 +99,27 @@ const LazyBloggerPage = () => {
             <p className="font-body text-lg md:text-xl text-foreground/50 max-w-2xl mx-auto leading-relaxed mb-10">
               Answer five questions about your business. Lazy Blogger writes and publishes four SEO blog posts a day to your Lovable site — automatically, forever, without you touching anything.
             </p>
-            <a
-              href={TEMPLATE_URL}
-              className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-display font-bold text-sm tracking-[0.08em] uppercase px-8 py-4 rounded-full hover:opacity-90 transition-opacity shadow-[0_0_30px_rgba(var(--primary-rgb),0.3)]"
-            >
-              Get the Template →
-            </a>
+            <div className="flex flex-col sm:flex-row items-center gap-3 max-w-md mx-auto">
+              <div className="relative flex-1 w-full">
+                <Mail size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-foreground/30" />
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  onKeyDown={(e) => e.key === "Enter" && handleEarlyAccess(email, setEmail)}
+                  placeholder="you@example.com"
+                  className="w-full pl-10 pr-4 py-4 rounded-full bg-foreground/5 backdrop-blur-xl border border-primary/20 text-foreground placeholder:text-foreground/30 font-body text-sm focus:outline-none focus:border-primary/50 transition-colors"
+                />
+              </div>
+              <button
+                onClick={() => handleEarlyAccess(email, setEmail)}
+                disabled={submitting}
+                className="whitespace-nowrap bg-primary text-primary-foreground font-display font-bold text-sm tracking-[0.08em] uppercase px-8 py-4 rounded-full hover:opacity-90 transition-opacity shadow-[0_0_30px_rgba(var(--primary-rgb),0.3)] disabled:opacity-50"
+              >
+                {submitting ? "Joining…" : "Get Early Access"}
+              </button>
+            </div>
+            <p className="font-body text-[11px] text-foreground/30 mt-4">No spam. Just a heads-up when it's ready.</p>
           </motion.div>
         </section>
 
