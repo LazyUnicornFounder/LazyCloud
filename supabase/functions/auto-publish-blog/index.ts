@@ -106,12 +106,36 @@ Deno.serve(async (req) => {
   );
 
   try {
+    // First, check if there are queued drafts to publish
+    const { data: nextDraft } = await supabase
+      .from("blog_posts")
+      .select("*")
+      .eq("status", "draft")
+      .order("created_at", { ascending: true })
+      .limit(1)
+      .maybeSingle();
+
+    if (nextDraft) {
+      // Publish the oldest draft
+      const { error: updateErr } = await supabase
+        .from("blog_posts")
+        .update({ status: "published", published_at: new Date().toISOString() })
+        .eq("id", nextDraft.id);
+      if (updateErr) throw updateErr;
+
+      console.log(`Published from queue: ${nextDraft.title}`);
+
+      return new Response(JSON.stringify({ success: true, post: nextDraft, source: "queue" }), {
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
+    // No drafts in queue — generate a new post and publish immediately
     const ANTHROPIC_API_KEY = Deno.env.get("ANTHROPIC_API_KEY");
     if (!ANTHROPIC_API_KEY) throw new Error("ANTHROPIC_API_KEY is not configured");
 
     const topic = TOPIC_SEEDS[Math.floor(Math.random() * TOPIC_SEEDS.length)];
 
-    // Call Anthropic with one retry on parse failure
     let post: { title: string; slug: string; excerpt: string; body: string };
     let raw = await callAnthropic(ANTHROPIC_API_KEY, topic);
 
@@ -130,13 +154,11 @@ Deno.serve(async (req) => {
       }
     }
 
-    // Split body into paragraphs for content text[] column
     const paragraphs: string[] = post.body
       .split(/\n\n+/)
       .map((p: string) => p.trim())
       .filter((p: string) => p.length > 0);
 
-    // Deduplicate slug
     let slug = post.slug;
     const { data: existing } = await supabase
       .from("blog_posts")
@@ -165,9 +187,9 @@ Deno.serve(async (req) => {
 
     if (error) throw error;
 
-    console.log(`Published: ${data.title}`);
+    console.log(`Published (generated): ${data.title}`);
 
-    return new Response(JSON.stringify({ success: true, post: data }), {
+    return new Response(JSON.stringify({ success: true, post: data, source: "generated" }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
   } catch (err) {
