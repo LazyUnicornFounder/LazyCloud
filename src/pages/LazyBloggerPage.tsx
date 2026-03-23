@@ -125,7 +125,7 @@ const LazyBloggerPage = () => {
             <p className="font-body text-base md:text-lg text-muted-foreground max-w-xl mx-auto leading-relaxed mb-8">
               Paste one prompt. Answer five questions. Your website publishes blog posts every day — automatically, forever, for free.
             </p>
-            <CopyPromptButton />
+            <CopyPromptButton onCopy={handlePromptCopy} />
             <p className="font-body text-xs text-muted-foreground mt-4">Built for Lovable projects. No API keys needed.</p>
           </motion.div>
         </section>
