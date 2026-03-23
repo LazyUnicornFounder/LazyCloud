@@ -5,11 +5,11 @@ export function useTrackEvent() {
   const trackEvent = useCallback(
     async (eventName: string, eventData: Record<string, unknown> = {}, page?: string) => {
       try {
-        await supabase.from("analytics_events").insert({
+        await supabase.from("analytics_events").insert([{
           event_name: eventName,
-          event_data: eventData,
+          event_data: eventData as any,
           page: page || window.location.pathname,
-        });
+        }]);
       } catch {
         // silent — analytics should never break the app
       }
