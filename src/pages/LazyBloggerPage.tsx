@@ -32,7 +32,7 @@ const steps = [
 const buildItems = [
   { icon: Layout, title: "A public blog at /blog", desc: "All published posts, newest first, linked from your main navigation." },
   { icon: Layers, title: "Individual post pages at /blog/[slug]", desc: "Full article pages with clean formatted content." },
-  { icon: Sparkles, title: "A publishing engine", desc: "A Supabase edge function that calls the Anthropic API and publishes on schedule." },
+  { icon: Sparkles, title: "A publishing engine", desc: "A Supabase edge function that uses Lovable AI to generate and publish on schedule." },
   { icon: Clock, title: "A cron schedule", desc: "Posts publish automatically at 6am, 12pm, 6pm, and 11pm every day." },
   { icon: BarChart3, title: "An owner dashboard at /lazy-blogger-dashboard", desc: "See all posts, pause publishing, trigger a post manually." },
   { icon: Settings, title: "A settings page at /lazy-blogger-setup", desc: "Update your business description, topics, and tone anytime." },
