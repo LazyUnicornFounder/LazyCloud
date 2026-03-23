@@ -521,9 +521,20 @@ const Admin = () => {
                               Created {new Date(post.created_at).toLocaleString()}
                             </p>
                           </div>
-                          <span className="font-body text-xs text-primary shrink-0">
-                            ~{publishTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                          </span>
+                          <div className="flex items-center gap-2 shrink-0">
+                            <button
+                              onClick={async () => {
+                                await handleBlogAction(post.id, "publish_post");
+                                toast.success(`"${post.title}" published!`);
+                              }}
+                              className="font-body text-xs px-2.5 py-1 rounded-lg bg-primary/20 text-primary hover:bg-primary/30 transition-colors"
+                            >
+                              Publish Now
+                            </button>
+                            <span className="font-body text-xs text-muted-foreground">
+                              ~{publishTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                            </span>
+                          </div>
                         </div>
                       );
                     })}
