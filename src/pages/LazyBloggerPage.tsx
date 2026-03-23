@@ -63,7 +63,7 @@ function FrequencyModal({ open, onClose, onCopy }: { open: boolean; onClose: () 
         </div>
         <button
           onClick={onClose}
-          className="mt-4 w-full text-center font-body text-xs text-muted-foreground hover:text-foreground transition-colors"
+          className="mt-6 w-full text-center font-body text-sm text-muted-foreground hover:text-foreground transition-colors"
         >
           Close
         </button>
