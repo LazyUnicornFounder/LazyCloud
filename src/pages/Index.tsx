@@ -6,6 +6,8 @@ import unicornBg from "@/assets/unicorn-beach.png";
 import logoNaive from "@/assets/logo-naive.jpg";
 import logoPolsia from "@/assets/logo-polsia.jpg";
 import logoLazyBlogger from "@/assets/logo-lazy-blogger.jpg";
+import logoLazySeo from "@/assets/logo-lazy-seo.jpg";
+import logoLazyGeo from "@/assets/logo-lazy-geo.jpg";
 import CompanyCard from "@/components/CompanyCard";
 import SubmitSection from "@/components/SubmitSection";
 import PricingSection from "@/components/PricingSection";

@@ -16,6 +16,8 @@ const CUSTOM_PAGES: Record<string, string> = {
   naive: "/company/naive",
   polsia: "/company/polsia",
   "lazy-blogger": "/lazy-blogger",
+  "lazy-seo": "/lazy-seo",
+  "lazy-geo": "/lazy-geo",
 };
 
 const CompanyCard = ({ name, url, description, index, thumbnail, isPaid, slug }: CompanyCardProps) => {
