@@ -251,6 +251,14 @@ const Admin = () => {
         >
           Lazy GEO
         </button>
+        <button
+          onClick={() => setActiveTab("prompts")}
+          className={`font-display text-lg font-bold pb-1 border-b-2 transition-colors ${
+            activeTab === "prompts" ? "border-primary text-foreground" : "border-transparent text-muted-foreground hover:text-foreground"
+          }`}
+        >
+          Prompts
+        </button>
       </div>
 
       {loading && <p className="font-body text-sm text-muted-foreground">Loading…</p>}
