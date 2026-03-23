@@ -47,12 +47,14 @@ const Navbar = ({ activePage = "home" }: NavbarProps) => {
   ];
 
   const brandHref = isHome ? "#top" : "/";
-  const handleBrandClick = isHome
+  const handleBrandClick = isHome && !isMobile
     ? (e: React.MouseEvent) => {
         e.preventDefault();
         window.scrollTo({ top: 0, behavior: "smooth" });
       }
     : undefined;
+
+  const mobileBrandHref = "/";
 
   const socialIcons = (
     <>
