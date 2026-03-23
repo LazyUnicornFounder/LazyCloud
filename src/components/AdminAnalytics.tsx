@@ -52,20 +52,33 @@ function parseUA(ua: string | null): { browser: string; os: string } {
   return { browser, os };
 }
 
+interface BlogPost {
+  id: string;
+  title: string;
+  slug: string;
+  status: string;
+  created_at: string;
+  published_at: string | null;
+}
+
 const AdminAnalytics = ({ password }: AdminAnalyticsProps) => {
   const [visitors, setVisitors] = useState<Visitor[]>([]);
   const [events, setEvents] = useState<AnalyticsEvent[]>([]);
+  const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
-      const [visitorsRes, eventsRes] = await Promise.all([
+      const [visitorsRes, eventsRes, postsRes] = await Promise.all([
         supabase.functions.invoke("admin-submissions", {
           body: { action: "visitor_stats", password },
         }),
         supabase.functions.invoke("admin-submissions", {
           body: { action: "analytics_events", password },
+        }),
+        supabase.functions.invoke("admin-submissions", {
+          body: { action: "list_posts", password },
         }),
       ]);
       if (!visitorsRes.error && visitorsRes.data && !visitorsRes.data.error) {
@@ -73,6 +86,9 @@ const AdminAnalytics = ({ password }: AdminAnalyticsProps) => {
       }
       if (!eventsRes.error && eventsRes.data && !eventsRes.data.error) {
         setEvents(eventsRes.data);
+      }
+      if (!postsRes.error && postsRes.data && !postsRes.data.error) {
+        setBlogPosts(postsRes.data);
       }
       setLoading(false);
     };
