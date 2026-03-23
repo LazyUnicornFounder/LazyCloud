@@ -168,36 +168,38 @@ const LazyBloggerPage = () => {
 
         {/* ── What Lovable Builds ── */}
         <section className="max-w-5xl mx-auto px-6 mb-24">
-          <motion.h2 initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="font-display text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-center mb-4">
-            Everything installs inside your<br />existing <span className="text-lovable">Lovable</span> project.
-          </motion.h2>
-          <p className="font-body text-sm text-muted-foreground text-center mb-12">
-            When you paste the prompt, Lovable builds six things automatically:
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-            {buildItems.map((item, i) => (
-              <motion.div
-                key={item.title}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={fadeUp}
-                transition={{ delay: i * 0.08 }}
-                className="rounded-2xl border border-border bg-card p-6 flex gap-4"
-              >
-                <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
-                  <item.icon size={18} className="text-primary" />
-                </div>
-                <div>
-                  <h3 className="font-display text-sm font-bold text-foreground mb-1">{item.title}</h3>
-                  <p className="font-body text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
-                </div>
-              </motion.div>
-            ))}
+          <div className="bg-transparent backdrop-blur-xl rounded-3xl px-8 py-10 border border-primary/20 shadow-[0_8px_32px_rgba(0,0,0,0.4),0_0_20px_rgba(var(--primary-rgb),0.08)]">
+            <motion.h2 initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="font-display text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-center mb-4">
+              Everything installs inside your<br />existing <span className="text-lovable">Lovable</span> project.
+            </motion.h2>
+            <p className="font-body text-sm text-muted-foreground text-center mb-12">
+              When you paste the prompt, Lovable builds six things automatically:
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              {buildItems.map((item, i) => (
+                <motion.div
+                  key={item.title}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  variants={fadeUp}
+                  transition={{ delay: i * 0.08 }}
+                  className="rounded-2xl border border-primary/20 bg-black/20 p-6 flex gap-4"
+                >
+                  <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+                    <item.icon size={18} className="text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-display text-sm font-bold text-foreground mb-1">{item.title}</h3>
+                    <p className="font-body text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+            <p className="font-body text-sm text-muted-foreground text-center mt-8">
+              Nothing lives outside your Lovable project. No third-party dashboards. No separate accounts. Everything is yours.
+            </p>
           </div>
-          <p className="font-body text-sm text-muted-foreground text-center mt-8">
-            Nothing lives outside your Lovable project. No third-party dashboards. No separate accounts. Everything is yours.
-          </p>
         </section>
 
         {/* ── Publishing Schedule ── */}
