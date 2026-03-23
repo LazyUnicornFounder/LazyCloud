@@ -668,6 +668,8 @@ const Admin = () => {
 
       {activeTab === "geo" && <AdminGeo />}
 
+      {activeTab === "prompts" && <AdminPrompts />}
+
     </div>
   );
 };
