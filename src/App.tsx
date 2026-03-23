@@ -18,6 +18,7 @@ import AutonomyScale from "./pages/AutonomyScale.tsx";
 import LazyBloggerPage from "./pages/LazyBloggerPage.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import ScrollToTop from "./components/ScrollToTop.tsx";
+import LazySeoPage from "./pages/LazySeoPage.tsx";
 import LazySeoSetup from "./pages/LazySeoSetup.tsx";
 import LazySeoDashboard from "./pages/LazySeoDashboard.tsx";
 import SeoBlog from "./pages/SeoBlog.tsx";
@@ -46,6 +47,7 @@ const App = () => (
             <Route path="/company/polsia" element={<PolsiaPage />} />
             <Route path="/company/:slug" element={<CompanyDetail />} />
             <Route path="/checkout/success" element={<CheckoutSuccess />} />
+            <Route path="/lazy-seo" element={<LazySeoPage />} />
             <Route path="/lazy-seo-setup" element={<LazySeoSetup />} />
             <Route path="/lazy-seo-dashboard" element={<LazySeoDashboard />} />
             <Route path="/seo-blog" element={<SeoBlog />} />
