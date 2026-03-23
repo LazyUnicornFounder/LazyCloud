@@ -2486,30 +2486,7 @@ const BlogSection = () => {
     <section id="blog" className="relative z-10 px-8 md:px-12 pb-16 scroll-mt-24">
       <div className="max-w-5xl">
         {/* Page header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="bg-transparent backdrop-blur-xl rounded-3xl px-8 py-10 border border-primary/20 shadow-[0_8px_32px_rgba(0,0,0,0.4),0_0_20px_rgba(var(--primary-rgb),0.08)] mb-8"
-        >
-          <h1 className="font-display text-4xl md:text-5xl font-extrabold tracking-tight text-foreground mb-3">
-            Blog
-          </h1>
-          <p className="font-body text-lg text-foreground/50 leading-relaxed mb-3">
-            Accelerate the future of autonomous capitalism.
-          </p>
-          <a
-            href="/lazy-blogger"
-            className="group inline-flex items-center gap-2 mt-2 px-5 py-2.5 rounded-xl border border-primary/30 bg-primary/10 hover:bg-primary/20 hover:border-primary/50 shadow-[0_0_20px_-6px_hsl(var(--primary)/0.3)] hover:shadow-[0_0_30px_-6px_hsl(var(--primary)/0.5)] transition-all duration-300"
-          >
-            <span className="font-body text-sm text-foreground/70">
-              This entire blog writes &amp; publishes itself.
-            </span>
-            <span className="font-display text-sm font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent group-hover:brightness-125 transition-all whitespace-nowrap">
-              Build your own autonomous blog →
-            </span>
-          </a>
-        </motion.div>
+        <BlogHeader />
 
         {/* Post grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
