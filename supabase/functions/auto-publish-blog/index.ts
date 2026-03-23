@@ -177,7 +177,7 @@ async function refillQueue(supabase: any) {
     }
   }
 
-  console.log(`Refill complete: ${generated}/10 drafts created`);
+  console.log(`Refill complete: ${generated}/3 drafts created`);
   return generated;
 }
 
