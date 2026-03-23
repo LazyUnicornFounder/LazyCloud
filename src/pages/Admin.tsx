@@ -24,6 +24,7 @@ interface Submission {
   logo_url: string | null;
   status: string;
   created_at: string;
+  display_order: number;
 }
 
 interface BlogPost {
