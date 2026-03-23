@@ -211,7 +211,7 @@ const LazyBloggerPage = () => {
             </div>
           </motion.div>
           <p className="font-body text-sm text-muted-foreground text-center mt-10 max-w-2xl mx-auto">
-            Each post is 800 to 1,200 words of SEO-optimised content written in your brand voice on your chosen topics. Lovable's Supabase edge functions handle the scheduling. The Anthropic API handles the writing. You handle nothing.
+            Each post is 800 to 1,200 words of SEO-optimised content written in your brand voice on your chosen topics. Lovable handles the scheduling and the writing. You handle nothing.
           </p>
         </section>
 
