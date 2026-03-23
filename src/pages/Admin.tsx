@@ -82,9 +82,18 @@ const Admin = () => {
       return;
     }
     setAuthenticated(true);
+    sessionStorage.setItem("admin_pw", password);
     setSubmissions(data);
     fetchBlogPosts(password);
   };
+
+  // Auto-fetch data on mount if already authenticated from sessionStorage
+  useEffect(() => {
+    if (authenticated && password) {
+      fetchSubmissions(password);
+      fetchBlogPosts(password);
+    }
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleAction = async (id: string, action: "approve" | "reject") => {
     await supabase.functions.invoke("admin-submissions", {
