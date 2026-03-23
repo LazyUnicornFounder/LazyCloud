@@ -4,6 +4,13 @@ import AdminAnalytics from "@/components/AdminAnalytics";
 import { toast } from "sonner";
 import { Twitter, Pencil, X, Check, Trash2 } from "lucide-react";
 import { staticBlogPosts } from "@/components/BlogSection";
+import logoNaive from "@/assets/logo-naive.jpg";
+import logoPolsia from "@/assets/logo-polsia.jpg";
+
+const FALLBACK_LOGOS: Record<string, string> = {
+  "Naive": logoNaive,
+  "Polsia": logoPolsia,
+};
 
 interface Submission {
   id: string;
