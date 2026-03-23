@@ -4,7 +4,7 @@ import { useState } from "react";
 import SEO from "@/components/SEO";
 import Navbar from "@/components/Navbar";
 import BlogTicker from "@/components/BlogTicker";
-import FloatingProductCTA from "@/components/FloatingProductCTA";
+
 import unicornBg from "@/assets/unicorn-beach.png";
 
 const TEMPLATE_URL = "#"; // TODO: replace with actual template URL
@@ -52,7 +52,7 @@ const LazyBloggerPage = () => {
         <BlogTicker />
       </div>
       <Navbar />
-      <FloatingProductCTA />
+      
 
       <main className="relative z-10 pt-28 pb-32 px-6 md:px-12">
         {/* ── Hero ── */}
