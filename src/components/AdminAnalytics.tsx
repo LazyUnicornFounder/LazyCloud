@@ -7,6 +7,7 @@ import {
 } from "react-simple-maps";
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid, FunnelChart, Funnel, LabelList } from "recharts";
 import { supabase } from "@/integrations/supabase/client";
+import { staticBlogPosts } from "@/components/BlogSection";
 
 const GEO_URL = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
 
