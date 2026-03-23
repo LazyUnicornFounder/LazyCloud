@@ -68,7 +68,7 @@ const Admin = () => {
     setEarlyAccess(data);
   }, []);
 
-
+  const fetchBlogPosts = useCallback(async (pw: string) => {
     setLoading(true);
     const { data, error } = await supabase.functions.invoke("admin-submissions", {
       body: { action: "list_posts", password: pw },
