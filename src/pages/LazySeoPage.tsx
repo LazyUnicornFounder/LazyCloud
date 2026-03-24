@@ -43,6 +43,8 @@ function CopyPromptButton({ className = "", onCopy, promptText }: { className?: 
 
 const LazySeoPage = () => {
   const trackEvent = useTrackEvent();
+  const { prompt: dbPrompt } = useCurrentPrompt("lazy-seo");
+  const promptText = dbPrompt?.prompt_text || FALLBACK_SEO_PROMPT;
 
   useEffect(() => {
     trackEvent("lazy_seo_page_view");
