@@ -265,7 +265,7 @@ export default function LazyAlertPage() {
                   <p className="font-display text-sm font-bold text-foreground">{card.engine}</p>
                   <p className="font-body text-xs text-foreground/30">{card.trigger}</p>
                 </div>
-                <SlackMessage avatar={card.avatar} name="LazyUnicorn" time="just now">
+                <SlackMessage avatar={card.avatar} name="Lazy Unicorn" time="just now">
                   {card.example}
                 </SlackMessage>
               </motion.div>
