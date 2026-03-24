@@ -77,10 +77,6 @@ const App = () => (
                 <Route path="settings" element={<AdminSettingsPage />} />
               </Route>
               <Route path="/blog" element={<Blog />} />
-              <Route path="/guide" element={<GuidePage />} />
-              <Route path="/autonomy-scale" element={<AutonomyScale />} />
-              <Route path="/blog/:slug" element={<BlogPost />} />
-              <Route path="/launch" element={<LaunchPage />} />
               <Route path="/about" element={<AboutPage />} />
               <Route path="/lazy-blogger" element={<LazyBloggerPage />} />
               <Route path="/checkout/success" element={<CheckoutSuccess />} />

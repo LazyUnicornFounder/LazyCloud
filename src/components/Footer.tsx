@@ -51,9 +51,6 @@ const resources = [
   { name: "Pricing", href: "/pricing" },
   { name: "Blog", href: "/blog" },
   { name: "About", href: "/about" },
-  { name: "Guide", href: "/guide" },
-  { name: "Autonomy Scale", href: "/autonomy-scale" },
-  { name: "Launch Your Startup", href: "/launch" },
 ];
 
 export default function Footer() {
