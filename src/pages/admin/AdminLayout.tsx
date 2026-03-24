@@ -71,6 +71,7 @@ export default function AdminLayout() {
       status.store = { running: false, hasErrors: false };
       status.pay = { running: false, hasErrors: false };
       status.sms = { running: false, hasErrors: false };
+      status.code = { running: false, hasErrors: false };
 
       return status;
     },
