@@ -637,25 +637,6 @@ const Admin = () => {
                   <h3 className="font-display text-sm font-bold text-muted-foreground uppercase tracking-wider">
                     Next Up — Queued for Auto-Publish ({queued.length} drafts)
                   </h3>
-                  <button
-                    onClick={async () => {
-                      setGenerating(true);
-                      for (let i = 0; i < 3; i++) {
-                        try {
-                          await supabase.functions.invoke("generate-blog-post", {
-                            body: {},
-                          });
-                        } catch { /* continue */ }
-                      }
-                      await fetchBlogPosts(password);
-                      setGenerating(false);
-                      toast.success("Generated 3 posts!");
-                    }}
-                    disabled={generating}
-                    className="font-body text-xs px-3 py-1.5 rounded-lg bg-primary/20 text-primary hover:bg-primary/30 transition-colors disabled:opacity-50"
-                  >
-                    {generating ? "Generating…" : "Generate 3 Posts"}
-                  </button>
                 </div>
                 {queued.length === 0 ? (
                   <p className="font-body text-sm text-muted-foreground text-center py-4 border border-border/50 rounded-lg bg-card/50">
