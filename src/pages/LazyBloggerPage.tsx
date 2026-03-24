@@ -150,7 +150,7 @@ const LazyBloggerPage = () => {
         </section>
 
         {/* How It Works */}
-        <section className="max-w-2xl mx-auto px-6 mb-20">
+        <section id="how-it-works" className="max-w-2xl mx-auto px-6 mb-20">
           <motion.h2 initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="font-display text-2xl sm:text-3xl font-extrabold tracking-tight text-center mb-8">
             How it works
           </motion.h2>
