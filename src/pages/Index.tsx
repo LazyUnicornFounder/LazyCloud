@@ -10,15 +10,15 @@ const NEW_TITLE = "Drive Traffic Automatically to Your Lovable Website or App";
 const NEW_DESCRIPTION = "We build autonomous engines for Lovable that turn your website into a self-growing asset.";
 
 const products = [
-  { cursive: "Lazy", name: "Blogger", link: "/lazy-blogger" },
-  { cursive: "Lazy", name: "SEO", link: "/lazy-seo" },
-  { cursive: "Lazy", name: "GEO", link: "/lazy-geo" },
-  { cursive: "Lazy", name: "Store", link: "/lazy-store" },
-  { cursive: "Lazy", name: "Voice", link: "/lazy-voice" },
-  { cursive: "Lazy", name: "Pay", link: "/lazy-pay" },
-  { cursive: "Lazy", name: "SMS", link: "/lazy-sms" },
-  { cursive: "Lazy", name: "Stream", link: "/lazy-stream" },
-  { cursive: "Lazy", name: "Coming Soon", link: "" },
+  { cursive: "Lazy", name: "Blogger", link: "/lazy-blogger", tagline: "Your blog writes itself." },
+  { cursive: "Lazy", name: "SEO", link: "/lazy-seo", tagline: "Rankings on autopilot." },
+  { cursive: "Lazy", name: "GEO", link: "/lazy-geo", tagline: "Get cited by AI." },
+  { cursive: "Lazy", name: "Store", link: "/lazy-store", tagline: "A store that runs itself." },
+  { cursive: "Lazy", name: "Voice", link: "/lazy-voice", tagline: "Every post, narrated." },
+  { cursive: "Lazy", name: "Pay", link: "/lazy-pay", tagline: "Payments that optimise." },
+  { cursive: "Lazy", name: "SMS", link: "/lazy-sms", tagline: "Texts that convert." },
+  { cursive: "Lazy", name: "Stream", link: "/lazy-stream", tagline: "Streams become content." },
+  { cursive: "Lazy", name: "Coming Soon", link: "", tagline: "More engines loading." },
 ];
 
 /* ── Sketch SVG icons ── */
@@ -203,7 +203,10 @@ const Index = () => {
                     {product.name}
                   </p>
                 </div>
-                <p style={{ fontFamily: "'Playfair Display', serif", fontSize: "0.65rem", color: "#f0ead6", opacity: 0.3, letterSpacing: "0.15em", textTransform: "uppercase", marginTop: "1.5rem" }}>
+                <p style={{ fontFamily: "'Playfair Display', serif", fontSize: "0.85rem", color: "#f0ead6", opacity: 0.4, marginTop: "0.5rem" }}>
+                  {product.tagline}
+                </p>
+                <p style={{ fontFamily: "'Playfair Display', serif", fontSize: "0.65rem", color: "#f0ead6", opacity: 0.2, letterSpacing: "0.15em", textTransform: "uppercase", marginTop: "1.5rem" }}>
                   Made for Lovable
                 </p>
               </motion.div>
