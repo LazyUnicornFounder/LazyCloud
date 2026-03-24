@@ -188,12 +188,50 @@ const Index = () => {
       {/* Product Grid */}
       <section id="engines" className="relative z-10 scroll-mt-20">
         <div className="grid grid-cols-1 md:grid-cols-2">
+          {/* Lazy Run — double width hero block */}
+          <Link to="/lazy-run" className="block md:col-span-2">
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="aspect-[1/1] md:aspect-[2/1] flex flex-col items-center justify-center gap-6 transition-all duration-300 hover:brightness-[1.15] cursor-pointer"
+              style={{ backgroundColor: "#0a0a08" }}
+            >
+              <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="#f0ead6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="60" cy="55" r="30" />
+                <path d="M45 45 L55 55 L45 65" />
+                <path d="M75 45 L65 55 L75 65" />
+                <line x1="58" y1="40" x2="62" y2="70" />
+                <circle cx="60" cy="55" r="8" />
+                <circle cx="60" cy="55" r="3" fill="#f0ead6" stroke="none" />
+                <path d="M35 88 Q60 95 85 88" strokeDasharray="3 3" />
+              </svg>
+              <div className="text-center">
+                <p style={{ fontFamily: "'Dancing Script', cursive", fontSize: "2.5rem", color: "#f0ead6", lineHeight: 1.1 }}>
+                  Lazy
+                </p>
+                <p style={{ fontFamily: "'Playfair Display', serif", fontSize: "2.5rem", color: "#f0ead6", lineHeight: 1.1 }}>
+                  Run
+                </p>
+              </div>
+              <p style={{ fontFamily: "'Playfair Display', serif", fontSize: "0.85rem", color: "#f0ead6", opacity: 0.4, marginTop: "0.5rem" }}>
+                Every engine. One prompt.
+              </p>
+              <p className="max-w-lg text-center" style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "0.7rem", color: "#f0ead6", opacity: 0.25, lineHeight: 1.6, letterSpacing: "0.08em", textTransform: "uppercase" }}>
+                Blogger · SEO · GEO · Store · Voice · Pay · SMS · Stream · Code
+              </p>
+              <p style={{ fontFamily: "'Playfair Display', serif", fontSize: "0.65rem", color: "#f0ead6", opacity: 0.2, letterSpacing: "0.15em", textTransform: "uppercase", marginTop: "1rem" }}>
+                Made for Lovable
+              </p>
+            </motion.div>
+          </Link>
+
           {products.map((product, i) => {
-            const isDark = i % 2 === 0;
             const bgEven = "#0a0a08";
             const bgOdd = "#111110";
-            // Checkerboard: alternate per row on desktop
-            const row = Math.floor(i / 2);
+            // Offset checkerboard by 1 since Lazy Run takes the first row
+            const row = Math.floor(i / 2) + 1;
             const col = i % 2;
             const bg = (row + col) % 2 === 0 ? bgEven : bgOdd;
             const isComingSoon = product.name === "Coming Soon";
