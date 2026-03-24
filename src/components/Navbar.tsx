@@ -148,6 +148,12 @@ const categories: { label: string; items: { label: string; href: string; tagline
       { label: "Lazy Supabase", href: "/lazy-supabase", tagline: "Database tells its story.", icon: icons.supabase },
     ],
   },
+  {
+    label: "Security",
+    items: [
+      { label: "Lazy Security", href: "/lazy-security", tagline: "Autonomous pentesting.", icon: icons.security },
+    ],
+  },
 ];
 
 /* ── Simple dropdown for Resources ── */

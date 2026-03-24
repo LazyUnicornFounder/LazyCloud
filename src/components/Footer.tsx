@@ -49,6 +49,12 @@ const engineCategories = [
       { name: "Lazy Supabase", href: "/lazy-supabase" },
     ],
   },
+  {
+    label: "Security",
+    items: [
+      { name: "Lazy Security", href: "/lazy-security" },
+    ],
+  },
 ];
 
 const resources = [
