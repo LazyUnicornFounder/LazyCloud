@@ -74,7 +74,7 @@ function FrequencyModal({ open, onClose, onCopy, template }: { open: boolean; on
   );
 }
 
-function CopyPromptButton({ className = "", onCopy }: { className?: string; onCopy: (tier: FrequencyTier) => void }) {
+function CopyPromptButton({ className = "", onCopy, template }: { className?: string; onCopy: (tier: FrequencyTier) => void; template?: string }) {
   const [open, setOpen] = useState(false);
   return (
     <>
@@ -84,7 +84,7 @@ function CopyPromptButton({ className = "", onCopy }: { className?: string; onCo
       >
         <Copy size={16} /> Copy the Lovable Prompt
       </button>
-      <FrequencyModal open={open} onClose={() => setOpen(false)} onCopy={onCopy} />
+      <FrequencyModal open={open} onClose={() => setOpen(false)} onCopy={onCopy} template={template} />
     </>
   );
 }
