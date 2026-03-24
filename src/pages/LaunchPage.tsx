@@ -9,6 +9,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import unicornBg from "@/assets/unicorn-beach.png";
+import ProductPromoBanner from "@/components/ProductPromoBanner";
 
 const platforms = [
   {
