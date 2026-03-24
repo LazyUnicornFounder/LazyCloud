@@ -34,6 +34,7 @@ import LazyStreamSetup from "./pages/LazyStreamSetup.tsx";
 import LazyStreamDashboard from "./pages/LazyStreamDashboard.tsx";
 import LazyCodePage from "./pages/LazyCodePage.tsx";
 import LazyRunPage from "./pages/LazyRunPage.tsx";
+import LazyAlertPage from "./pages/LazyAlertPage.tsx";
 import PricingPage from "./pages/PricingPage.tsx";
 
 import AdminLayout from "./pages/admin/AdminLayout.tsx";
@@ -99,6 +100,7 @@ const App = () => (
             <Route path="/lazy-stream-dashboard" element={<LazyStreamDashboard />} />
             <Route path="/lazy-code" element={<LazyCodePage />} />
             <Route path="/lazy-run" element={<LazyRunPage />} />
+            <Route path="/lazy-alert" element={<LazyAlertPage />} />
             <Route path="/pricing" element={<PricingPage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />

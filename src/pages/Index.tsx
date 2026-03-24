@@ -19,6 +19,7 @@ const products = [
   { cursive: "Lazy", name: "SMS", link: "/lazy-sms", tagline: "Texts that convert." },
   { cursive: "Lazy", name: "Stream", link: "/lazy-stream", tagline: "Streams become content." },
   { cursive: "Lazy", name: "Code", link: "/lazy-code", tagline: "Commits become changelogs." },
+  { cursive: "Lazy", name: "Alert", link: "/lazy-alert", tagline: "Your business in your Slack." },
   { cursive: "Lazy", name: "Coming Soon", link: "", tagline: "More engines loading." },
 ];
 
@@ -109,6 +110,15 @@ const sketches: Record<string, JSX.Element> = {
       <path d="M75 40 L95 60 L75 80" />
       <line x1="65" y1="30" x2="55" y2="90" />
       <circle cx="60" cy="60" r="30" strokeDasharray="4 4" />
+    </svg>
+  ),
+  Alert: (
+    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="#f0ead6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="28" y="30" width="64" height="50" rx="5" />
+      <path d="M28 40 L60 62 L92 40" />
+      <circle cx="85" cy="35" r="10" fill="#f0ead6" stroke="none" />
+      <path d="M85 30 L85 37" stroke="#0a0a08" strokeWidth="2" />
+      <circle cx="85" cy="40" r="1.5" fill="#0a0a08" stroke="none" />
     </svg>
   ),
   "Coming Soon": (
