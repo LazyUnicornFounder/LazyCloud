@@ -36,6 +36,7 @@ import LazyCodePage from "./pages/LazyCodePage.tsx";
 import LazyRunPage from "./pages/LazyRunPage.tsx";
 import LazyAlertPage from "./pages/LazyAlertPage.tsx";
 import PricingPage from "./pages/PricingPage.tsx";
+import PublicLayout from "./components/PublicLayout.tsx";
 
 import AdminLayout from "./pages/admin/AdminLayout.tsx";
 import AdminOverview from "./pages/admin/AdminOverview.tsx";
@@ -58,53 +59,55 @@ const App = () => (
         <Sonner />
         <BrowserRouter>
           <ScrollToTop />
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/admin" element={<AdminLayout />}>
-              <Route index element={<AdminOverview />} />
-              <Route path="analytics" element={<AdminAnalyticsPage />} />
-              <Route path="blogger" element={<AdminBloggerPage />} />
-              <Route path="seo" element={<AdminSeoPage />} />
-              <Route path="geo" element={<AdminGeoPage />} />
-              <Route path="store" element={<AdminPlaceholderPage name="Lazy Store" />} />
-              <Route path="voice" element={<AdminVoicePage />} />
-              <Route path="pay" element={<AdminPlaceholderPage name="Lazy Pay" />} />
-              <Route path="sms" element={<AdminPlaceholderPage name="Lazy SMS" />} />
-              <Route path="stream" element={<AdminStreamPage />} />
-              <Route path="code" element={<AdminPlaceholderPage name="Lazy Code" />} />
-              <Route path="settings" element={<AdminSettingsPage />} />
-            </Route>
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/guide" element={<GuidePage />} />
-            <Route path="/autonomy-scale" element={<AutonomyScale />} />
-            <Route path="/blog/:slug" element={<BlogPost />} />
-            <Route path="/launch" element={<LaunchPage />} />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="/lazy-blogger" element={<LazyBloggerPage />} />
-            <Route path="/company/naive" element={<NaivePage />} />
-            <Route path="/company/polsia" element={<PolsiaPage />} />
-            <Route path="/company/:slug" element={<CompanyDetail />} />
-            <Route path="/checkout/success" element={<CheckoutSuccess />} />
-            <Route path="/lazy-seo" element={<LazySeoPage />} />
-            <Route path="/lazy-seo-setup" element={<LazySeoSetup />} />
-            <Route path="/lazy-seo-dashboard" element={<LazySeoDashboard />} />
-            <Route path="/lazy-geo" element={<LazyGeoPage />} />
-            <Route path="/lazy-store" element={<LazyStorePage />} />
-            <Route path="/lazy-voice" element={<LazyVoicePage />} />
-            <Route path="/lazy-voice-setup" element={<LazyVoiceSetup />} />
-            <Route path="/lazy-voice-dashboard" element={<LazyVoiceDashboard />} />
-            <Route path="/lazy-pay" element={<LazyPayPage />} />
-            <Route path="/lazy-sms" element={<LazySmsPage />} />
-            <Route path="/lazy-stream" element={<LazyStreamPage />} />
-            <Route path="/lazy-stream-setup" element={<LazyStreamSetup />} />
-            <Route path="/lazy-stream-dashboard" element={<LazyStreamDashboard />} />
-            <Route path="/lazy-code" element={<LazyCodePage />} />
-            <Route path="/lazy-run" element={<LazyRunPage />} />
-            <Route path="/lazy-alert" element={<LazyAlertPage />} />
-            <Route path="/pricing" element={<PricingPage />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+          <PublicLayout>
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/admin" element={<AdminLayout />}>
+                <Route index element={<AdminOverview />} />
+                <Route path="analytics" element={<AdminAnalyticsPage />} />
+                <Route path="blogger" element={<AdminBloggerPage />} />
+                <Route path="seo" element={<AdminSeoPage />} />
+                <Route path="geo" element={<AdminGeoPage />} />
+                <Route path="store" element={<AdminPlaceholderPage name="Lazy Store" />} />
+                <Route path="voice" element={<AdminVoicePage />} />
+                <Route path="pay" element={<AdminPlaceholderPage name="Lazy Pay" />} />
+                <Route path="sms" element={<AdminPlaceholderPage name="Lazy SMS" />} />
+                <Route path="stream" element={<AdminStreamPage />} />
+                <Route path="code" element={<AdminPlaceholderPage name="Lazy Code" />} />
+                <Route path="settings" element={<AdminSettingsPage />} />
+              </Route>
+              <Route path="/blog" element={<Blog />} />
+              <Route path="/guide" element={<GuidePage />} />
+              <Route path="/autonomy-scale" element={<AutonomyScale />} />
+              <Route path="/blog/:slug" element={<BlogPost />} />
+              <Route path="/launch" element={<LaunchPage />} />
+              <Route path="/about" element={<AboutPage />} />
+              <Route path="/lazy-blogger" element={<LazyBloggerPage />} />
+              <Route path="/company/naive" element={<NaivePage />} />
+              <Route path="/company/polsia" element={<PolsiaPage />} />
+              <Route path="/company/:slug" element={<CompanyDetail />} />
+              <Route path="/checkout/success" element={<CheckoutSuccess />} />
+              <Route path="/lazy-seo" element={<LazySeoPage />} />
+              <Route path="/lazy-seo-setup" element={<LazySeoSetup />} />
+              <Route path="/lazy-seo-dashboard" element={<LazySeoDashboard />} />
+              <Route path="/lazy-geo" element={<LazyGeoPage />} />
+              <Route path="/lazy-store" element={<LazyStorePage />} />
+              <Route path="/lazy-voice" element={<LazyVoicePage />} />
+              <Route path="/lazy-voice-setup" element={<LazyVoiceSetup />} />
+              <Route path="/lazy-voice-dashboard" element={<LazyVoiceDashboard />} />
+              <Route path="/lazy-pay" element={<LazyPayPage />} />
+              <Route path="/lazy-sms" element={<LazySmsPage />} />
+              <Route path="/lazy-stream" element={<LazyStreamPage />} />
+              <Route path="/lazy-stream-setup" element={<LazyStreamSetup />} />
+              <Route path="/lazy-stream-dashboard" element={<LazyStreamDashboard />} />
+              <Route path="/lazy-code" element={<LazyCodePage />} />
+              <Route path="/lazy-run" element={<LazyRunPage />} />
+              <Route path="/lazy-alert" element={<LazyAlertPage />} />
+              <Route path="/pricing" element={<PricingPage />} />
+              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </PublicLayout>
         </BrowserRouter>
       </TooltipProvider>
     </QueryClientProvider>
