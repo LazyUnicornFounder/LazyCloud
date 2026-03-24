@@ -42,6 +42,8 @@ function CopyPromptButton({ className = "", onCopy, promptText }: { className?: 
 
 const LazyGeoPage = () => {
   const trackEvent = useTrackEvent();
+  const { prompt: dbPrompt } = useCurrentPrompt("lazy-geo");
+  const promptText = dbPrompt?.prompt_text || FALLBACK_GEO_PROMPT;
 
   useEffect(() => {
     trackEvent("lazy_geo_page_view");
