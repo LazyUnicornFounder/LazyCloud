@@ -57,6 +57,9 @@ const App = () => (
             <Route path="/lazy-geo" element={<LazyGeoPage />} />
             <Route path="/lazy-store" element={<LazyStorePage />} />
             <Route path="/lazy-voice" element={<LazyVoicePage />} />
+            <Route path="/lazy-voice-setup" element={<LazyVoiceSetup />} />
+            <Route path="/lazy-voice-dashboard" element={<LazyVoiceDashboard />} />
+            <Route path="/listen" element={<ListenPage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
