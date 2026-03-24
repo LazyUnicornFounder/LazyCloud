@@ -1,4 +1,5 @@
 import { useEffect, useState, useCallback, useRef } from "react";
+import LazyPricingSection from "@/components/LazyPricingSection";
 import { motion } from "framer-motion";
 import {
   Copy, Check, Heart, Search, FileText, DollarSign,
