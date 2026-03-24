@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { Copy, Check, ChevronDown, ChevronRight } from "lucide-react";
 import { toast } from "sonner";
-import { buildPrompt, frequencyTiers } from "@/components/lazy-blogger/frequencyData";
+import { buildPrompt, frequencyTiers, BLOGGER_VERSION, BLOGGER_VERSION_DATE } from "@/components/lazy-blogger/frequencyData";
+import { SEO_VERSION, SEO_VERSION_DATE } from "@/pages/LazySeoPage";
+import { GEO_VERSION, GEO_VERSION_DATE } from "@/pages/LazyGeoPage";
 
 /* ── Prompt definitions ── */
 
