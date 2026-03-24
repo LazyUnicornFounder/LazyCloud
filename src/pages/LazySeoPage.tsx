@@ -182,7 +182,7 @@ const LazySeoPage = () => {
             <p className="font-body text-sm text-muted-foreground max-w-md mx-auto leading-relaxed mb-8">
               Every day you wait is a day your competitors publish content that outranks you.
             </p>
-            <CopyPromptButton onCopy={handlePromptCopy} />
+            <CopyPromptButton onCopy={handlePromptCopy} promptText={promptText} />
           </motion.div>
         </section>
       </main>
