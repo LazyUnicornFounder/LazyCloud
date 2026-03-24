@@ -7,8 +7,8 @@ export default function AboutPage() {
   return (
     <>
       <SEO
-        title="About LazyUnicorn — One Founder. Zero Employees."
-        description="LazyUnicorn is a company that builds itself. Autonomous engines replace teams, run operations, and grow the business — all without manual input."
+        title="About Lazy Unicorn — One Founder. Zero Employees."
+        description="Lazy Unicorn is a company that builds itself. Autonomous engines replace teams, run operations, and grow the business — all without manual input."
       />
       <Navbar />
       <div className="min-h-screen bg-background text-foreground pt-32 pb-20 px-8">
