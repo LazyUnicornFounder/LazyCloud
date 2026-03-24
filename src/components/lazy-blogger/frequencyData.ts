@@ -62,7 +62,7 @@ export const frequencyTiers: FrequencyTier[] = [
   },
 ];
 
-export const BLOGGER_VERSION = "v2.1";
+export const BLOGGER_VERSION = "v0.0.1";
 export const BLOGGER_VERSION_DATE = "24 March 2026";
 
 export function buildPrompt(tier: FrequencyTier, template?: string): string {
