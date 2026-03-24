@@ -32,6 +32,13 @@ const PRODUCT_INFO: Record<string, { name: string; url: string; description: str
   "lazy-code": { name: "Lazy Code", url: "https://lazyunicorn.ai/lazy-code", description: "autonomous GitHub content publishing engine" },
   "lazy-sms": { name: "Lazy SMS", url: "https://lazyunicorn.ai/lazy-sms", description: "autonomous SMS marketing engine" },
   "lazy-pay": { name: "Lazy Pay", url: "https://lazyunicorn.ai/lazy-pay", description: "autonomous payment and billing engine" },
+  "lazy-alert": { name: "Lazy Alert", url: "https://lazyunicorn.ai/lazy-alert", description: "autonomous Slack notification engine" },
+  "lazy-gitlab": { name: "Lazy GitLab", url: "https://lazyunicorn.ai/lazy-gitlab", description: "autonomous GitLab changelog engine" },
+  "lazy-supabase": { name: "Lazy Supabase", url: "https://lazyunicorn.ai/lazy-supabase", description: "autonomous database changelog engine" },
+  "lazy-telegram": { name: "Lazy Telegram", url: "https://lazyunicorn.ai/lazy-telegram", description: "autonomous Telegram notification engine" },
+  "lazy-linear": { name: "Lazy Linear", url: "https://lazyunicorn.ai/lazy-linear", description: "autonomous Linear issue changelog engine" },
+  "lazy-contentful": { name: "Lazy Contentful", url: "https://lazyunicorn.ai/lazy-contentful", description: "autonomous two-way CMS sync engine" },
+  "lazy-perplexity": { name: "Lazy Perplexity", url: "https://lazyunicorn.ai/lazy-perplexity", description: "autonomous research-backed content engine" },
 };
 
 serve(async (req) => {
