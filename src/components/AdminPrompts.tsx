@@ -128,7 +128,7 @@ const AdminPrompts = () => {
       <div>
         <h3 className="font-display text-base font-bold text-foreground mb-3">🧠 Lazy GEO</h3>
         <div className="space-y-2">
-          <PromptBlock title="Lazy GEO — Full Prompt" version="v2 — Current" prompt={GEO_PROMPT} defaultOpen />
+          <PromptBlock title="Lazy GEO — Full Prompt" version={`${GEO_VERSION} — ${GEO_VERSION_DATE}`} prompt={GEO_PROMPT} defaultOpen />
         </div>
       </div>
     </div>
