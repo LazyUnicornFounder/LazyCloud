@@ -247,10 +247,10 @@ const Index = () => {
           {/* CTA */}
           <a
             href="#engines"
-            className="mt-6 inline-block text-[11px] tracking-[0.15em] uppercase hover:opacity-70 transition-opacity"
-            style={{ fontFamily: "'Playfair Display', serif", color: "#f0ead6", opacity: 0.4, borderBottom: "1px solid rgba(240,234,214,0.2)", paddingBottom: "2px" }}
+            className="mt-6 inline-block text-[10px] tracking-[0.15em] uppercase px-4 py-1.5 font-semibold hover:opacity-80 transition-opacity active:scale-[0.97]"
+            style={{ fontFamily: "'Playfair Display', serif", backgroundColor: "#f0ead6", color: "#0a0a08", borderRadius: 0 }}
           >
-            ↓ See the Engines
+            See the Engines
           </a>
 
           {/* Footer label */}
