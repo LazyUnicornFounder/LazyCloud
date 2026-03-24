@@ -61,7 +61,7 @@ const App = () => (
             <Route path="/lazy-voice" element={<LazyVoicePage />} />
             <Route path="/lazy-voice-setup" element={<LazyVoiceSetup />} />
             <Route path="/lazy-voice-dashboard" element={<LazyVoiceDashboard />} />
-            <Route path="/listen" element={<ListenPage />} />
+            
             <Route path="/lazy-pay" element={<LazyPayPage />} />
             <Route path="/lazy-sms" element={<LazySmsPage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
