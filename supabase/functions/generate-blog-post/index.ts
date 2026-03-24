@@ -42,7 +42,7 @@ const TOPIC_PROMPTS = [
   "Write about the concept of recursive startups — companies that improve their own ability to improve themselves.",
   "Explore what venture capital looks like when any founder can run a company with zero employees.",
   "Write about the trust problem — when should you let AI agents make real business decisions?",
-  "Analyze the competitive dynamics between autonomous company platforms like Polsia and Naïve.",
+  "Analyze the competitive dynamics between autonomous company platforms and what sets the best apart.",
   "Write about the founder who only works 2 hours a week — and why that's becoming normal.",
   "Explore what 'company culture' means when your entire team is AI agents.",
   "Write about the dark side of autonomous capitalism — what could go wrong?",
