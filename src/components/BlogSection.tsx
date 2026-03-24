@@ -1,4 +1,4 @@
-import { Pin, Zap, Clock, Tag } from "lucide-react";
+import { Zap, Clock, Tag } from "lucide-react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useState, useEffect, useMemo } from "react";
@@ -2581,11 +2581,8 @@ const BlogSection = () => {
   const { posts: dbPosts } = useDbBlogPosts();
   const [activeTag, setActiveTag] = useState<string | null>(null);
 
-  // Merge: pinned post first, then DB posts (newest first), then remaining static posts
-  const pinnedSlug = "lazy-unicorn-raising-angel-round";
-  const pinned = staticBlogPosts.filter(p => p.slug === pinnedSlug);
-  const staticRest = staticBlogPosts.filter(p => p.slug !== pinnedSlug);
-  const mergedPosts = [...pinned, ...dbPosts, ...staticRest];
+  // Merge: DB posts (newest first), then static posts
+  const mergedPosts = [...dbPosts, ...staticBlogPosts];
   // Deduplicate by slug
   const seen = new Set<string>();
   const allPosts = mergedPosts.filter(p => {
@@ -2668,12 +2665,6 @@ const BlogSection = () => {
                         <div className="w-full h-full bg-primary/10" />
                       )}
                       <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
-                      {post.slug === "lazy-unicorn-raising-angel-round" && (
-                        <div className="absolute top-3 right-3 flex items-center gap-1.5 bg-orange-400/90 backdrop-blur-xl text-background text-[9px] font-semibold tracking-[0.15em] uppercase rounded-full px-3 py-1 shadow-lg">
-                          <Pin className="w-3 h-3" />
-                          Pinned
-                        </div>
-                      )}
                     </div>
 
                     {/* Info */}
