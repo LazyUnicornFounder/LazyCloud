@@ -21,11 +21,7 @@ import ScrollToTop from "./components/ScrollToTop.tsx";
 import LazySeoPage from "./pages/LazySeoPage.tsx";
 import LazySeoSetup from "./pages/LazySeoSetup.tsx";
 import LazySeoDashboard from "./pages/LazySeoDashboard.tsx";
-import SeoBlog from "./pages/SeoBlog.tsx";
-import SeoBlogPost from "./pages/SeoBlogPost.tsx";
 import LazyGeoPage from "./pages/LazyGeoPage.tsx";
-import GeoBlog from "./pages/GeoBlog.tsx";
-import GeoBlogPost from "./pages/GeoBlogPost.tsx";
 
 const queryClient = new QueryClient();
 
@@ -53,11 +49,7 @@ const App = () => (
             <Route path="/lazy-seo" element={<LazySeoPage />} />
             <Route path="/lazy-seo-setup" element={<LazySeoSetup />} />
             <Route path="/lazy-seo-dashboard" element={<LazySeoDashboard />} />
-            <Route path="/seo-blog" element={<SeoBlog />} />
-            <Route path="/seo-blog/:slug" element={<SeoBlogPost />} />
             <Route path="/lazy-geo" element={<LazyGeoPage />} />
-            <Route path="/geo" element={<GeoBlog />} />
-            <Route path="/geo/:slug" element={<GeoBlogPost />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
