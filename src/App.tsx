@@ -32,6 +32,7 @@ import LazySmsPage from "./pages/LazySmsPage.tsx";
 import LazyStreamPage from "./pages/LazyStreamPage.tsx";
 import LazyStreamSetup from "./pages/LazyStreamSetup.tsx";
 import LazyStreamDashboard from "./pages/LazyStreamDashboard.tsx";
+import PricingPage from "./pages/PricingPage.tsx";
 import StreamsPage from "./pages/StreamsPage.tsx";
 import StreamContentPage from "./pages/StreamContentPage.tsx";
 import StreamHighlightsPage from "./pages/StreamHighlightsPage.tsx";
@@ -78,6 +79,7 @@ const App = () => (
             <Route path="/streams/highlights" element={<StreamHighlightsPage />} />
             <Route path="/streams/:slug" element={<StreamContentPage />} />
             <Route path="/live" element={<LivePage />} />
+            <Route path="/pricing" element={<PricingPage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
