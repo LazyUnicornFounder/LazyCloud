@@ -5,6 +5,7 @@ import { useDbBlogPosts } from "@/hooks/useDbBlogPosts";
 import SEO from "@/components/SEO";
 import Navbar from "@/components/Navbar";
 import BlogTicker from "@/components/BlogTicker";
+import ProductPromoBanner from "@/components/ProductPromoBanner";
 
 const Blog = () => {
   const { posts: dbPosts } = useDbBlogPosts();
