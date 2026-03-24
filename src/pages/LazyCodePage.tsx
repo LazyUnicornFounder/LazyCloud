@@ -480,7 +480,7 @@ const LazyCodePage = () => {
       <section className="py-24 px-6 md:px-12" style={{ backgroundColor: "#111110" }}>
         <div className="max-w-3xl mx-auto text-center">
           <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(1.5rem, 3vw, 2.5rem)", color: "#f0ead6", lineHeight: 1.2 }}>
-            Your commits are content. Lazy Code publishes them.
+            Your commits are content. Lazy GitHub publishes them.
           </h2>
           <p className="mt-6 font-body text-sm text-foreground/50 leading-relaxed max-w-xl mx-auto">
             Every feature you ship, every bug you fix, every release you tag is a changelog entry, a blog post, and an SEO article waiting to be written. One prompt installs the entire pipeline into your existing Lovable project.
