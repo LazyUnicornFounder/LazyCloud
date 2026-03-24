@@ -298,7 +298,7 @@ const LazyCodePage = () => {
             </div>
             <div className="flex items-center gap-4 flex-wrap">
               <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(2.5rem, 5vw, 4.5rem)", color: "#f0ead6", lineHeight: 0.95, letterSpacing: "-0.01em" }}>
-                Lazy Code
+                Lazy GitHub
               </h1>
               <div className="inline-flex items-center gap-2 px-4 py-1.5 border border-border text-foreground/25 text-xs font-body tracking-wide">
                 <GitBranch size={14} />
