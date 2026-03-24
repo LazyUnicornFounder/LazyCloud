@@ -305,6 +305,18 @@ const LazyCodePage = () => {
                 Powered by GitHub
               </div>
             </div>
+            <p className="mt-6 font-body text-base md:text-lg text-foreground/45 max-w-xl leading-relaxed">
+              Lazy Code monitors your GitHub repository, reads your commits and releases, and publishes plain-English changelogs, release notes, SEO developer posts, and a public roadmap to your Lovable site — every time you push.
+            </p>
+            <div className="flex flex-col sm:flex-row items-start gap-4 mt-10">
+              <CopyPromptButton />
+              <button
+                onClick={(e) => { e.preventDefault(); document.getElementById("how-it-works")?.scrollIntoView({ behavior: "smooth" }); }}
+                className="inline-flex items-center gap-2 font-body text-[11px] tracking-[0.15em] uppercase px-6 py-2.5 font-semibold border border-border text-foreground/50 hover:text-foreground transition-colors"
+              >
+                See How It Works
+              </button>
+            </div>
           </motion.div>
         </div>
       </section>
