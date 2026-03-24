@@ -36,6 +36,7 @@ import LazyCodePage from "./pages/LazyCodePage.tsx";
 import LazyRunPage from "./pages/LazyRunPage.tsx";
 import LazyAlertPage from "./pages/LazyAlertPage.tsx";
 import PricingPage from "./pages/PricingPage.tsx";
+import PublicLayout from "./components/PublicLayout.tsx";
 
 import AdminLayout from "./pages/admin/AdminLayout.tsx";
 import AdminOverview from "./pages/admin/AdminOverview.tsx";
