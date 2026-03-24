@@ -123,24 +123,16 @@ const LazyStreamPage = () => {
       </section>
 
       {/* How it works */}
-      <section id="how-it-works" className="py-24 px-6 md:px-12 scroll-mt-20" style={{ backgroundColor: "#111110" }}>
-        <div className="max-w-3xl mx-auto">
-          <p style={{ fontFamily: "'Dancing Script', cursive", fontSize: "1.5rem", color: "#f0ead6", opacity: 0.4 }}>How it works</p>
-          <h2 className="mt-2" style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(1.5rem, 3vw, 2.5rem)", color: "#f0ead6", lineHeight: 1.2 }}>
+      <section id="how-it-works" className="py-20 md:py-28 px-6 border-t border-border">
+        <div className="max-w-5xl mx-auto">
+          <motion.h2 variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="font-display text-2xl md:text-3xl font-bold tracking-tight text-center mb-14">
             Stream. Then do nothing. Lazy Stream handles the rest.
-          </h2>
-          <div className="mt-12 space-y-0">
+          </motion.h2>
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
             {steps.map((step, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.08 }}
-                className="flex gap-4 py-5 border-b border-border"
-              >
-                <span className="font-display text-2xl font-bold text-foreground/20 shrink-0 w-8">{i + 1}</span>
-                <p className="font-body text-sm text-foreground/60 leading-relaxed">{step}</p>
+              <motion.div key={i} variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="flex flex-col items-center text-center gap-3">
+                <span className="w-10 h-10 bg-primary/10 text-primary font-display font-bold text-sm flex items-center justify-center">{i + 1}</span>
+                <p className="font-body text-sm text-muted-foreground leading-relaxed">{step}</p>
               </motion.div>
             ))}
           </div>
