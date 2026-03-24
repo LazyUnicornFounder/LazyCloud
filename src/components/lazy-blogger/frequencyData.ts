@@ -65,7 +65,11 @@ export const frequencyTiers: FrequencyTier[] = [
 export const BLOGGER_VERSION = "v2.1";
 export const BLOGGER_VERSION_DATE = "24 March 2026";
 
-export function buildPrompt(tier: FrequencyTier): string {
+export function buildPrompt(tier: FrequencyTier, template?: string): string {
+  if (template) {
+    return template.replace("{{FREQUENCY_SCHEDULE}}", tier.cronSchedule);
+  }
+  // Fallback hardcoded prompt
   return `[Lazy Blogger Prompt — ${BLOGGER_VERSION} — ${BLOGGER_VERSION_DATE}]
 
 Add an autonomous blog publishing engine called Lazy Blogger to this project. Use the built-in Lovable AI integration for all AI calls — no external API key required from the user.

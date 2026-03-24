@@ -7,19 +7,20 @@ import SEO from "@/components/SEO";
 import Navbar from "@/components/Navbar";
 import { frequencyTiers, buildPrompt, type FrequencyTier } from "@/components/lazy-blogger/frequencyData";
 import { useTrackEvent } from "@/hooks/useTrackEvent";
+import { useCurrentPrompt } from "@/hooks/usePrompt";
 
 const fadeUp = { hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0 } };
 
-function FrequencyModal({ open, onClose, onCopy }: { open: boolean; onClose: () => void; onCopy: (tier: FrequencyTier) => void }) {
+function FrequencyModal({ open, onClose, onCopy, template }: { open: boolean; onClose: () => void; onCopy: (tier: FrequencyTier) => void; template?: string }) {
   const [copied, setCopied] = useState<number | null>(null);
 
   const handleCopy = useCallback(async (tier: FrequencyTier) => {
-    await navigator.clipboard.writeText(buildPrompt(tier));
+    await navigator.clipboard.writeText(buildPrompt(tier, template));
     setCopied(tier.postsPerDay);
     onCopy(tier);
     toast.success(`Copied! Paste this into your Lovable project chat.`);
     setTimeout(() => setCopied(null), 2500);
-  }, [onCopy]);
+  }, [onCopy, template]);
 
   if (!open) return null;
 
@@ -73,7 +74,7 @@ function FrequencyModal({ open, onClose, onCopy }: { open: boolean; onClose: () 
   );
 }
 
-function CopyPromptButton({ className = "", onCopy }: { className?: string; onCopy: (tier: FrequencyTier) => void }) {
+function CopyPromptButton({ className = "", onCopy, template }: { className?: string; onCopy: (tier: FrequencyTier) => void; template?: string }) {
   const [open, setOpen] = useState(false);
   return (
     <>
@@ -83,7 +84,7 @@ function CopyPromptButton({ className = "", onCopy }: { className?: string; onCo
       >
         <Copy size={16} /> Copy the Lovable Prompt
       </button>
-      <FrequencyModal open={open} onClose={() => setOpen(false)} onCopy={onCopy} />
+      <FrequencyModal open={open} onClose={() => setOpen(false)} onCopy={onCopy} template={template} />
     </>
   );
 }
@@ -97,6 +98,8 @@ const steps = [
 
 const LazyBloggerPage = () => {
   const trackEvent = useTrackEvent();
+  const { prompt: dbPrompt } = useCurrentPrompt("lazy-blogger");
+  const template = dbPrompt?.prompt_text || undefined;
 
   useEffect(() => {
     trackEvent("lazy_blogger_page_view");
@@ -137,7 +140,7 @@ const LazyBloggerPage = () => {
             <p className="font-body text-base md:text-lg text-muted-foreground max-w-xl mx-auto leading-relaxed mb-8">
               Paste one prompt into your Lovable project. Your website starts publishing blog posts every day — automatically, forever, for free.
             </p>
-            <CopyPromptButton onCopy={handlePromptCopy} />
+            <CopyPromptButton onCopy={handlePromptCopy} template={template} />
             <p className="font-body text-xs text-muted-foreground mt-4">Built for Lovable projects. No API keys needed.</p>
           </motion.div>
         </section>
@@ -234,7 +237,7 @@ const LazyBloggerPage = () => {
             <p className="font-body text-sm text-muted-foreground max-w-md mx-auto leading-relaxed mb-8">
               Every post builds your SEO. Every day you wait is a day your competitors get ahead.
             </p>
-            <CopyPromptButton onCopy={handlePromptCopy} />
+            <CopyPromptButton onCopy={handlePromptCopy} template={template} />
           </motion.div>
         </section>
       </main>
