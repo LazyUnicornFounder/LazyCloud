@@ -1,15 +1,10 @@
 import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
-import { Star } from "lucide-react";
 
 import SEO from "@/components/SEO";
 import Navbar from "@/components/Navbar";
 import { useTrackVisit } from "@/hooks/useTrackVisit";
-import { supabase } from "@/integrations/supabase/client";
-import CompanyCard from "@/components/CompanyCard";
-import SubmitSection from "@/components/SubmitSection";
 
 const NEW_TITLE = "Drive Traffic Automatically to Your Lovable Website or App";
 const NEW_DESCRIPTION = "We build autonomous engines for Lovable that turn your website into a self-growing asset.";
@@ -122,19 +117,6 @@ const Index = () => {
   useTrackVisit();
   const location = useLocation();
 
-  const { data: companies = [] } = useQuery({
-    queryKey: ["directory-companies"],
-    queryFn: async () => {
-      const { data, error } = await supabase
-        .from("submissions")
-        .select("*")
-        .eq("status", "approved")
-        .order("display_order", { ascending: true });
-      if (error) throw error;
-      return data || [];
-    },
-  });
-
   useEffect(() => {
     if (location.hash) {
       const el = document.querySelector(location.hash);
@@ -238,76 +220,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Directory */}
-      <section id="directory" className="relative z-10 py-24 px-6 md:px-12 scroll-mt-20" style={{ backgroundColor: "#111110" }}>
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-16">
-            <p style={{ fontFamily: "'Dancing Script', cursive", fontSize: "2rem", color: "#f0ead6", opacity: 0.4 }}>
-              Directory
-            </p>
-            <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(1.5rem, 3vw, 2.5rem)", color: "#f0ead6", lineHeight: 1.2, marginTop: "0.5rem" }}>
-              Tools for autonomous startups.
-            </h2>
-          </div>
-
-          {companies.length > 0 && (
-            <div className="mb-16">
-              {companies.map((company, i) => (
-                <CompanyCard
-                  key={company.id}
-                  name={company.name}
-                  url={company.url}
-                  description={company.tagline}
-                  index={i}
-                  thumbnail={company.logo_url || undefined}
-                  isPaid={company.is_paid}
-                  slug={company.slug || undefined}
-                />
-              ))}
-            </div>
-          )}
-
-          <SubmitSection />
-        </div>
-      </section>
-
-      {/* About */}
-      <section id="about" className="relative z-10 py-24 px-6" style={{ backgroundColor: "#0a0a08" }}>
-        <div className="max-w-2xl mx-auto text-center">
-          <p style={{ fontFamily: "'Dancing Script', cursive", fontSize: "2rem", color: "#f0ead6", opacity: 0.4 }}>
-            About
-          </p>
-          <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(1.5rem, 3vw, 2.5rem)", color: "#f0ead6", lineHeight: 1.2, marginTop: "0.5rem" }}>
-            One founder. Zero employees.
-            <br />
-            A company that builds itself.
-          </h2>
-          <div className="mt-10 space-y-6 text-sm sm:text-base leading-relaxed" style={{ color: "#f0ead6", opacity: 0.55 }}>
-            <p>
-              Lazy Unicorn is an experiment in autonomous capitalism — a company designed to discover what people need, build the tools to solve it, grow its own audience, and generate its own revenue. No team. No investors. Just engines.
-            </p>
-            <p>
-              Every product runs as an autonomous engine inside your Lovable project. Lazy Blogger writes and publishes your blog. Lazy SEO finds keywords and creates content that compounds. Lazy GEO gets your brand cited by AI assistants. Lazy Store, Voice, Pay, SMS — each one handles a layer of your business so you don't have to.
-            </p>
-            <p>
-              Built by{" "}
-              <a
-                href="https://x.com/saaborz"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="underline underline-offset-4 hover:opacity-80 transition-opacity"
-                style={{ color: "#f0ead6", opacity: 1 }}
-              >
-                Saad
-              </a>
-              . One prompt at a time.
-            </p>
-          </div>
-          <p style={{ fontFamily: "'Playfair Display', serif", fontSize: "0.65rem", color: "#f0ead6", opacity: 0.2, letterSpacing: "0.15em", textTransform: "uppercase", marginTop: "3rem" }}>
-            Made for Lovable
-          </p>
-        </div>
-      </section>
     </div>
   );
 };
