@@ -281,6 +281,33 @@ export type Database = {
         }
         Relationships: []
       }
+      prompt_versions: {
+        Row: {
+          created_at: string
+          id: string
+          is_current: boolean
+          product: string
+          prompt_text: string
+          version: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          is_current?: boolean
+          product: string
+          prompt_text: string
+          version: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          is_current?: boolean
+          product?: string
+          prompt_text?: string
+          version?: string
+        }
+        Relationships: []
+      }
       seo_errors: {
         Row: {
           created_at: string
