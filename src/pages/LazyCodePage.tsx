@@ -379,7 +379,7 @@ const LazyCodePage = () => {
             </div>
             <div className="bg-[#111110] p-8">
               <p className="font-body text-sm text-foreground/50 leading-relaxed">
-                Lazy Code makes the documentation automatic. Push to GitHub and the content engine starts. By the time you have opened your next task the changelog is updated, the release notes are written, and a developer blog post targeting your technical keywords is published and indexed. The work you were already doing becomes a compounding public record of your progress.
+                Lazy GitHub makes the documentation automatic. Push to GitHub and the content engine starts. By the time you have opened your next task the changelog is updated, the release notes are written, and a developer blog post targeting your technical keywords is published and indexed. The work you were already doing becomes a compounding public record of your progress.
               </p>
             </div>
           </div>
