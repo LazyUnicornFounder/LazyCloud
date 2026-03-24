@@ -84,7 +84,7 @@ const LazyGeoPage = () => {
             <p className="font-body text-base md:text-lg text-muted-foreground max-w-xl mx-auto leading-relaxed mb-8">
               Get cited by ChatGPT, Claude, and Perplexity. Lazy GEO discovers what people ask AI engines, publishes content structured to be cited, and monitors your brand mentions — on autopilot.
             </p>
-            <CopyPromptButton onCopy={handlePromptCopy} />
+            <CopyPromptButton onCopy={handlePromptCopy} promptText={promptText} />
             <p className="font-body text-xs text-muted-foreground mt-4">Built for Lovable projects. No API keys needed.</p>
           </motion.div>
         </section>
