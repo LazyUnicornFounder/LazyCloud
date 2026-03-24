@@ -194,7 +194,7 @@ const LazyGeoPage = () => {
             <p className="font-body text-sm text-muted-foreground max-w-md mx-auto leading-relaxed mb-8">
               AI engines are replacing search. If your brand isn't being cited, you're invisible to the next generation of users.
             </p>
-            <CopyPromptButton onCopy={handlePromptCopy} />
+            <CopyPromptButton onCopy={handlePromptCopy} promptText={promptText} />
           </motion.div>
         </section>
       </main>
