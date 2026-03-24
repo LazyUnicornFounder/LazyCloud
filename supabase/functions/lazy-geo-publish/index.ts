@@ -57,6 +57,18 @@ serve(async (req) => {
     await supabase.from("geo_posts").insert({ title: postData.title, slug, body: postData.body, excerpt: postData.excerpt, target_query: nextQuery.query, status: "published" });
     await supabase.from("geo_queries").update({ has_content: true }).eq("id", nextQuery.id);
 
+    // Also add to the Lazy Blogger queue as a draft
+    const paragraphs = postData.body.split(/\n\n+/).map((p: string) => p.trim()).filter((p: string) => p.length > 0);
+    const wordCount = postData.body.split(/\s+/).length;
+    const readTime = `${Math.max(1, Math.round(wordCount / 200))} min read`;
+    let blogSlug = `geo-${slug}`;
+    const { data: existingBlogSlug } = await supabase.from("blog_posts").select("slug").eq("slug", blogSlug).maybeSingle();
+    if (existingBlogSlug) blogSlug = `${blogSlug}-${Math.floor(1000 + Math.random() * 9000)}`;
+    await supabase.from("blog_posts").insert({
+      title: postData.title, slug: blogSlug, excerpt: postData.excerpt || postData.title,
+      content: paragraphs, read_time: readTime, thumbnail: "https://www.lazyunicorn.ai/og-image.png", status: "draft",
+    });
+
     return new Response(JSON.stringify({ success: true, title: postData.title, slug }), { headers: { ...corsHeaders, "Content-Type": "application/json" } });
   } catch (e) {
     return new Response(JSON.stringify({ error: e.message }), { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } });

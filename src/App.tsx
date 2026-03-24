@@ -50,11 +50,7 @@ const App = () => (
             <Route path="/lazy-seo" element={<LazySeoPage />} />
             <Route path="/lazy-seo-setup" element={<LazySeoSetup />} />
             <Route path="/lazy-seo-dashboard" element={<LazySeoDashboard />} />
-            <Route path="/seo-blog" element={<SeoBlog />} />
-            <Route path="/seo-blog/:slug" element={<SeoBlogPost />} />
             <Route path="/lazy-geo" element={<LazyGeoPage />} />
-            <Route path="/geo" element={<GeoBlog />} />
-            <Route path="/geo/:slug" element={<GeoBlogPost />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
