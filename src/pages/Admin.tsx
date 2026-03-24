@@ -640,15 +640,22 @@ const Admin = () => {
                 </div>
                 {queued.length === 0 ? (
                   <p className="font-body text-sm text-muted-foreground text-center py-4 border border-border/50 rounded-lg bg-card/50">
-                    No queued posts. Generate some to fill the pipeline.
+                    No queued posts. Waiting for SEO & GEO engines to generate drafts.
                   </p>
                 ) : (
                   <div className="space-y-2">
-                    {queued.map((post, i) => {
+                    {queued.slice(0, 3).map((post, i) => {
                       const publishTime = new Date(firstSlot.getTime() + i * 30 * 60 * 1000);
+                      const isSeo = post.slug.startsWith("seo-");
+                      const isGeo = post.slug.startsWith("geo-");
+                      const sourceLabel = isSeo ? "SEO" : isGeo ? "GEO" : "Blog";
+                      const sourceBg = isSeo ? "bg-blue-500/15 text-blue-400" : isGeo ? "bg-emerald-500/15 text-emerald-400" : "bg-muted text-muted-foreground";
                       return (
                         <div key={post.id} className="flex items-center gap-3 border border-border/50 rounded-lg bg-card/50 px-3 py-2">
                           <span className="font-display text-xs font-bold text-primary w-5 shrink-0">{i + 1}</span>
+                          <span className={`font-display text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full shrink-0 ${sourceBg}`}>
+                            {sourceLabel}
+                          </span>
                           <div className="min-w-0 flex-1">
                             <p className="font-body text-sm text-foreground truncate">{post.title}</p>
                             <p className="font-body text-xs text-muted-foreground">
