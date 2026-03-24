@@ -263,7 +263,7 @@ const Index = () => {
           </div>
 
           {/* Headline */}
-          <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(2.5rem, 5vw, 3.5rem)", color: "#f0ead6", lineHeight: 1.1 }}>
+          <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(3rem, 7vw, 5rem)", color: "#f0ead6", lineHeight: 1.1 }}>
             The autonomous🤖
             <br />
             half of Lovable❤️
