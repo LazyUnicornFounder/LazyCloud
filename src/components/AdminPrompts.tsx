@@ -1,11 +1,15 @@
 import { useState } from "react";
 import { Copy, Check, ChevronDown, ChevronRight } from "lucide-react";
 import { toast } from "sonner";
-import { buildPrompt, frequencyTiers } from "@/components/lazy-blogger/frequencyData";
+import { buildPrompt, frequencyTiers, BLOGGER_VERSION, BLOGGER_VERSION_DATE } from "@/components/lazy-blogger/frequencyData";
+import { SEO_VERSION, SEO_VERSION_DATE } from "@/pages/LazySeoPage";
+import { GEO_VERSION, GEO_VERSION_DATE } from "@/pages/LazyGeoPage";
 
 /* ── Prompt definitions ── */
 
-const SEO_PROMPT = `Add a Lazy SEO engine to this project. It automatically discovers keyword opportunities and publishes SEO-optimised blog posts. All pages are admin-only — nothing is added to the public site navigation.
+const SEO_PROMPT = `[Lazy SEO Prompt — ${SEO_VERSION} — ${SEO_VERSION_DATE}]
+
+Add a Lazy SEO engine to this project. It automatically discovers keyword opportunities and publishes SEO-optimised blog posts. All pages are admin-only — nothing is added to the public site navigation.
 
 1. Database Create a Supabase table called seo_settings with fields: id (uuid, primary key), site_url (text), business_description (text), target_keywords (text), competitors (text), posts_per_day (integer, default 2), is_running (boolean, default true). Create a Supabase table called seo_posts with fields: id (uuid, primary key, default gen_random_uuid()), title (text), slug (text, unique), body (text), target_keyword (text), published_at (timestamptz, default now()), status (text, default 'published'). Create a Supabase table called seo_keywords with fields: id (uuid, primary key, default gen_random_uuid()), keyword (text), has_content (boolean, default false), priority (integer, default 0), created_at (timestamptz, default now()). Create a Supabase table called seo_errors with fields: id (uuid, primary key, default gen_random_uuid()), error_message (text), created_at (timestamptz, default now()).
 
@@ -21,7 +25,9 @@ Create a Supabase edge function called lazy-seo-publish that runs based on posts
 
 4. Public blog The generated posts are stored in seo_posts and are available at /blog/[slug] if a blog already exists on this project. If no blog exists do not create one — just store posts in the database. Do not add anything to the public navigation.`;
 
-const GEO_PROMPT = `Add a Lazy GEO engine to this project. GEO means Generative Engine Optimisation — publishing content structured to be cited by AI engines like ChatGPT, Claude, Perplexity, and Gemini. It automatically discovers AI queries, publishes citation-optimised content, and monitors brand mentions. All pages are admin-only — nothing is added to the public site navigation.
+const GEO_PROMPT = `[Lazy GEO Prompt — ${GEO_VERSION} — ${GEO_VERSION_DATE}]
+
+Add a Lazy GEO engine to this project. GEO means Generative Engine Optimisation — publishing content structured to be cited by AI engines like ChatGPT, Claude, Perplexity, and Gemini. It automatically discovers AI queries, publishes citation-optimised content, and monitors brand mentions. All pages are admin-only — nothing is added to the public site navigation.
 
 1. Database Create a Supabase table called geo_settings with fields: id (uuid, primary key), brand_name (text), site_url (text), business_description (text), target_audience (text), niche_topics (text), competitors (text), posts_per_day (integer, default 2), is_running (boolean, default true). Create a Supabase table called geo_queries with fields: id (uuid, primary key, default gen_random_uuid()), query (text), query_type (text), has_content (boolean, default false), brand_cited (boolean, default false), priority (integer, default 0), last_tested (timestamptz), created_at (timestamptz, default now()). Create a Supabase table called geo_posts with fields: id (uuid, primary key, default gen_random_uuid()), title (text), slug (text, unique), body (text), target_query (text), published_at (timestamptz, default now()), status (text, default 'published'). Create a Supabase table called geo_citations with fields: id (uuid, primary key, default gen_random_uuid()), query (text), brand_mentioned (boolean), confidence (text), reason (text), tested_at (timestamptz, default now()). Create a Supabase table called geo_errors with fields: id (uuid, primary key, default gen_random_uuid()), error_message (text), created_at (timestamptz, default now()).
 
@@ -90,7 +96,7 @@ function PromptBlock({ title, version, prompt, defaultOpen = false }: { title: s
 const AdminPrompts = () => {
   const bloggerPrompts = frequencyTiers.map((tier) => ({
     title: `Lazy Blogger — ${tier.postsPerDay} posts/day`,
-    version: "v1 — Current",
+    version: `${BLOGGER_VERSION} — ${BLOGGER_VERSION_DATE}`,
     prompt: buildPrompt(tier),
   }));
 
@@ -114,7 +120,7 @@ const AdminPrompts = () => {
       <div>
         <h3 className="font-display text-base font-bold text-foreground mb-3">🔍 Lazy SEO</h3>
         <div className="space-y-2">
-          <PromptBlock title="Lazy SEO — Full Prompt" version="v2 — Current" prompt={SEO_PROMPT} defaultOpen />
+          <PromptBlock title="Lazy SEO — Full Prompt" version={`${SEO_VERSION} — ${SEO_VERSION_DATE}`} prompt={SEO_PROMPT} defaultOpen />
         </div>
       </div>
 
@@ -122,7 +128,7 @@ const AdminPrompts = () => {
       <div>
         <h3 className="font-display text-base font-bold text-foreground mb-3">🧠 Lazy GEO</h3>
         <div className="space-y-2">
-          <PromptBlock title="Lazy GEO — Full Prompt" version="v2 — Current" prompt={GEO_PROMPT} defaultOpen />
+          <PromptBlock title="Lazy GEO — Full Prompt" version={`${GEO_VERSION} — ${GEO_VERSION_DATE}`} prompt={GEO_PROMPT} defaultOpen />
         </div>
       </div>
     </div>
