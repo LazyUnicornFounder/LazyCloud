@@ -191,6 +191,9 @@ const Index = () => {
                     {product.name}
                   </p>
                 </div>
+                <p style={{ fontFamily: "'Playfair Display', serif", fontSize: "0.65rem", color: "#f0ead6", opacity: 0.3, letterSpacing: "0.15em", textTransform: "uppercase", marginTop: "1.5rem" }}>
+                  Made for Lovable
+                </p>
               </motion.div>
             );
 
