@@ -35,7 +35,7 @@ export default function AboutPage() {
 
             <div className="space-y-6 font-body text-sm text-foreground/50 leading-relaxed">
               <p>
-                LazyUnicorn is an experiment in autonomous capitalism. The idea is simple: what happens when you replace every human role in a company with an AI engine?
+                Lazy Unicorn is an experiment in autonomous capitalism. The idea is simple: what happens when you replace every human role in a company with an AI engine?
               </p>
               <p>
                 No content team. No SEO specialist. No social media manager. No podcast producer. No customer support agents. No employees at all. Just a single founder and a growing ecosystem of autonomous engines that handle everything — from writing and publishing to optimisation and distribution.
