@@ -27,6 +27,7 @@ import LazyVoicePage from "./pages/LazyVoicePage.tsx";
 import LazyVoiceSetup from "./pages/LazyVoiceSetup.tsx";
 import LazyVoiceDashboard from "./pages/LazyVoiceDashboard.tsx";
 import ListenPage from "./pages/ListenPage.tsx";
+import LazyPayPage from "./pages/LazyPayPage.tsx";
 
 const queryClient = new QueryClient();
 
@@ -60,6 +61,7 @@ const App = () => (
             <Route path="/lazy-voice-setup" element={<LazyVoiceSetup />} />
             <Route path="/lazy-voice-dashboard" element={<LazyVoiceDashboard />} />
             <Route path="/listen" element={<ListenPage />} />
+            <Route path="/lazy-pay" element={<LazyPayPage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
