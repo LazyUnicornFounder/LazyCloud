@@ -11,26 +11,33 @@ import {
   type EngineData,
 } from "@/data/autonomyData";
 
-/* ── Sticky Level Legend ── */
-function LevelLegend() {
+/* ── Level Scale ── */
+function LevelScale() {
   return (
-    <div
-      className="sticky top-0 z-40 w-full border-b border-border"
-      style={{ backgroundColor: "#0a0a08" }}
-    >
-      <div className="max-w-6xl mx-auto px-4 py-3 flex flex-wrap gap-2 justify-center">
+    <div className="max-w-3xl mx-auto mt-10">
+      <p className="text-[10px] font-mono uppercase tracking-widest text-foreground/25 mb-3 text-center">
+        The Autonomy Scale
+      </p>
+      <div className="grid grid-cols-3 sm:grid-cols-6 gap-0 border border-border">
         {LEVEL_LABELS.map((label, i) => (
-          <span
+          <div
             key={i}
-            className="text-[11px] font-mono px-3 py-1 border"
-            style={{
-              color: LEVEL_COLORS[i],
-              borderColor: LEVEL_COLORS[i] + "44",
-              backgroundColor: LEVEL_BG_TINTS[i],
-            }}
+            className="p-3 border-b sm:border-b-0 sm:border-r last:border-r-0 text-center"
+            style={{ backgroundColor: LEVEL_BG_TINTS[i] }}
           >
-            {i} — {label}
-          </span>
+            <span
+              className="text-lg font-bold font-display block"
+              style={{ color: LEVEL_COLORS[i] }}
+            >
+              {i}
+            </span>
+            <span
+              className="text-[10px] font-mono block mt-1"
+              style={{ color: LEVEL_COLORS[i], opacity: 0.8 }}
+            >
+              {label}
+            </span>
+          </div>
         ))}
       </div>
     </div>
@@ -195,7 +202,6 @@ export default function AutonomyPage() {
         description="Explore what each Lazy engine does at every level of autonomy — from fully manual to self-improving."
       />
       <Navbar />
-      <LevelLegend />
 
       {/* Hero */}
       <section
@@ -220,6 +226,7 @@ export default function AutonomyPage() {
           Drag the slider on any engine to see what autonomy looks like at each
           level — and where each engine sits today.
         </motion.p>
+        <LevelScale />
       </section>
 
       {/* Engine Cards by Category */}
