@@ -150,7 +150,7 @@ serve(async (req) => {
     }
 
     await supabase.from("blog_posts").insert({
-      title: postData.title,
+      title: formattedTitle,
       slug: blogSlug,
       excerpt: postData.excerpt || postData.title,
       content: paragraphs,
