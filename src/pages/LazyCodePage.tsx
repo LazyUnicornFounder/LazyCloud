@@ -409,7 +409,7 @@ const LazyCodePage = () => {
               <h3 className="font-display text-2xl font-bold text-foreground">Free</h3>
               <ul className="mt-6 space-y-3 flex-1">
                 {[
-                  "Lazy Code setup prompt",
+                  "Lazy GitHub setup prompt",
                   "Self-hosted in your existing Lovable project",
                   "Works with any public or private GitHub repository",
                   "Bring your own GitHub account",
