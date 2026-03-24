@@ -316,8 +316,8 @@ const LazyStorePage = () => {
               </ul>
             </motion.div>
             {/* Pro */}
-            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} transition={{ delay: 0.08 }} className="rounded-2xl border-2 border-yellow-500/50 bg-card p-6 relative overflow-hidden">
-              <span className="absolute top-3 right-3 bg-yellow-500/20 text-yellow-400 text-[10px] tracking-[0.15em] uppercase font-extrabold px-3 py-1 rounded-full">
+            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} transition={{ delay: 0.08 }} className="rounded-2xl border-2 border-primary/50 bg-card p-6 relative overflow-hidden">
+              <span className="absolute top-3 right-3 bg-primary/20 text-primary text-[10px] tracking-[0.15em] uppercase font-extrabold px-3 py-1 rounded-full">
                 Coming Soon
               </span>
               <h3 className="font-display text-lg font-bold text-foreground mb-1">Pro</h3>
