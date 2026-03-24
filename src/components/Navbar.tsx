@@ -217,11 +217,6 @@ const Navbar = ({ activePage = "home" }: NavbarProps) => {
       }
     : undefined;
 
-  const resourceLinks = [
-    { label: "Guide", href: "/guide" },
-    { label: "Autonomy Scale", href: "/autonomy-scale" },
-    { label: "Launch Your Startup", href: "/launch" },
-  ];
 
   const toggleMobileDropdown = (label: string) => {
     setMobileDropdowns(prev => ({ ...prev, [label]: !prev[label] }));
@@ -280,7 +275,7 @@ const Navbar = ({ activePage = "home" }: NavbarProps) => {
               About
             </a>
 
-            <SimpleDropdown label="More" children={resourceLinks} />
+            
 
             {socialIcons}
           </div>
@@ -348,24 +343,6 @@ const Navbar = ({ activePage = "home" }: NavbarProps) => {
                 </a>
               ))}
 
-              <div>
-                <button
-                  onClick={() => toggleMobileDropdown("more")}
-                  className="font-body text-[13px] tracking-[0.12em] uppercase text-foreground/50 hover:text-foreground transition-colors flex items-center gap-1 w-full font-semibold"
-                >
-                  More
-                  <ChevronDown size={12} className={`transition-transform ${mobileDropdowns["more"] ? "rotate-180" : ""}`} />
-                </button>
-                {mobileDropdowns["more"] && (
-                  <div className="pl-4 mt-2 flex flex-col gap-2">
-                    {resourceLinks.map((r) => (
-                      <a key={r.label} href={r.href} onClick={() => setOpen(false)} className="font-body text-[12px] tracking-[0.1em] uppercase text-foreground/35 hover:text-foreground transition-colors">
-                        {r.label}
-                      </a>
-                    ))}
-                  </div>
-                )}
-              </div>
 
               <div className="flex items-center gap-3 pt-2 border-t border-border">
                 {socialIcons}

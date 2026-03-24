@@ -9,9 +9,6 @@ import AboutPage from "./pages/AboutPage.tsx";
 import Blog from "./pages/Blog.tsx";
 import BlogPost from "./pages/BlogPost.tsx";
 import CheckoutSuccess from "./pages/CheckoutSuccess.tsx";
-import GuidePage from "./pages/GuidePage.tsx";
-import LaunchPage from "./pages/LaunchPage.tsx";
-import AutonomyScale from "./pages/AutonomyScale.tsx";
 import LazyBloggerPage from "./pages/LazyBloggerPage.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import ScrollToTop from "./components/ScrollToTop.tsx";
@@ -80,10 +77,7 @@ const App = () => (
                 <Route path="settings" element={<AdminSettingsPage />} />
               </Route>
               <Route path="/blog" element={<Blog />} />
-              <Route path="/guide" element={<GuidePage />} />
-              <Route path="/autonomy-scale" element={<AutonomyScale />} />
               <Route path="/blog/:slug" element={<BlogPost />} />
-              <Route path="/launch" element={<LaunchPage />} />
               <Route path="/about" element={<AboutPage />} />
               <Route path="/lazy-blogger" element={<LazyBloggerPage />} />
               <Route path="/checkout/success" element={<CheckoutSuccess />} />
