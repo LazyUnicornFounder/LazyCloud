@@ -146,6 +146,23 @@ const LazySeoPage = () => {
           </div>
         </section>
 
+        {/* ── PRICING ── */}
+        <LazyPricingSection
+          lazyFeatures={[
+            "Lazy SEO setup prompt",
+            "Self-hosted in your Lovable project",
+            "Autonomous keyword discovery",
+            "No API keys needed",
+          ]}
+          proFeatures={[
+            "Hosted version",
+            "Google Search Console integration",
+            "Advanced ranking analytics",
+            "Multi-site support",
+          ]}
+          ctaButton={<CopyPromptButton onCopy={handlePromptCopy} promptText={promptText} className="w-full justify-center" />}
+        />
+
         {/* ── FAQ ── */}
         <section className="max-w-2xl mx-auto px-6 mb-20">
           <motion.h2 initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="font-display text-2xl sm:text-3xl font-extrabold tracking-tight text-center mb-8">

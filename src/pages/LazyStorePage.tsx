@@ -417,6 +417,23 @@ const LazyStorePage = () => {
 
 
 
+        {/* ── PRICING ── */}
+        <LazyPricingSection
+          lazyFeatures={[
+            "Lazy Store setup prompt",
+            "Self-hosted in your Lovable project",
+            "Product discovery & AI listings",
+            "Bring your own Shopify or custom store",
+          ]}
+          proFeatures={[
+            "Hosted version",
+            "Multi-store management",
+            "Advanced conversion analytics",
+            "Automatic inventory sync",
+          ]}
+          ctaButton={<CopyPromptButton onCopy={handlePromptCopy} promptText={promptText} className="w-full justify-center" />}
+        />
+
         {/* ── FAQ ── */}
         <section className="max-w-2xl mx-auto px-6 mb-24">
           <motion.h2 initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="font-display text-2xl sm:text-3xl font-extrabold tracking-tight text-center mb-8">
