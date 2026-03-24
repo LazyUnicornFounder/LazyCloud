@@ -29,7 +29,7 @@ const engines = [
   {
     emoji: "✍️",
     name: "Lazy Blogger",
-    tagline: "The Autonomous Lovable Blog Engine",
+    tagline: "Lazy Blogger — Autonomous Blog Engine for Lovable",
     description: "Publishes high-quality blog posts every day—forever, for free.",
     link: "/lazy-blogger",
     color: "from-pink-500/20 to-purple-600/20",
@@ -37,7 +37,7 @@ const engines = [
   {
     emoji: "🔍",
     name: "Lazy SEO",
-    tagline: "The Autonomous Lovable SEO Engine",
+    tagline: "Lazy SEO — Autonomous SEO Engine for Lovable",
     description: "Discovers keyword opportunities, creates SEO-optimized content, and improves your rankings on autopilot.",
     link: "/lazy-seo",
     color: "from-blue-500/20 to-cyan-500/20",
@@ -45,7 +45,7 @@ const engines = [
   {
     emoji: "🌐",
     name: "Lazy GEO",
-    tagline: "The Autonomous Lovable GEO Engine",
+    tagline: "Lazy GEO — Autonomous GEO Engine for Lovable",
     description: "Gets your brand cited by AI engines like ChatGPT, Claude, and Perplexity by creating citation-ready content and tracking your visibility.",
     link: "/lazy-geo",
     color: "from-emerald-500/20 to-teal-500/20",
