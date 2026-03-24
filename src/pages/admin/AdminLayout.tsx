@@ -12,6 +12,7 @@ const db = supabase as any;
 
 const navItems = [
   { label: "Overview", path: "/admin", icon: LayoutDashboard, engine: null },
+  { label: "Analytics", path: "/admin/analytics", icon: BarChart3, engine: null },
   { label: "Lazy Blogger", path: "/admin/blogger", icon: PenTool, engine: "blogger" },
   { label: "Lazy SEO", path: "/admin/seo", icon: Search, engine: "seo" },
   { label: "Lazy GEO", path: "/admin/geo", icon: Brain, engine: "geo" },
