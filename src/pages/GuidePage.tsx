@@ -5,6 +5,7 @@ import { Lightbulb, Hammer, Bot, TrendingUp, Compass, Rocket, ChevronDown, Arrow
 import unicornBg from "@/assets/unicorn-beach.png";
 import Navbar from "@/components/Navbar";
 import SEO from "@/components/SEO";
+import ProductPromoBanner from "@/components/ProductPromoBanner";
 
 /* ─── step data ─── */
 const steps = [
