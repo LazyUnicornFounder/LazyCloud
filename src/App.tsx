@@ -30,6 +30,12 @@ import ListenPage from "./pages/ListenPage.tsx";
 import LazyPayPage from "./pages/LazyPayPage.tsx";
 import LazySmsPage from "./pages/LazySmsPage.tsx";
 import LazyStreamPage from "./pages/LazyStreamPage.tsx";
+import LazyStreamSetup from "./pages/LazyStreamSetup.tsx";
+import LazyStreamDashboard from "./pages/LazyStreamDashboard.tsx";
+import StreamsPage from "./pages/StreamsPage.tsx";
+import StreamContentPage from "./pages/StreamContentPage.tsx";
+import StreamHighlightsPage from "./pages/StreamHighlightsPage.tsx";
+import LivePage from "./pages/LivePage.tsx";
 
 const queryClient = new QueryClient();
 
@@ -66,6 +72,12 @@ const App = () => (
             <Route path="/lazy-pay" element={<LazyPayPage />} />
             <Route path="/lazy-sms" element={<LazySmsPage />} />
             <Route path="/lazy-stream" element={<LazyStreamPage />} />
+            <Route path="/lazy-stream-setup" element={<LazyStreamSetup />} />
+            <Route path="/lazy-stream-dashboard" element={<LazyStreamDashboard />} />
+            <Route path="/streams" element={<StreamsPage />} />
+            <Route path="/streams/highlights" element={<StreamHighlightsPage />} />
+            <Route path="/streams/:slug" element={<StreamContentPage />} />
+            <Route path="/live" element={<LivePage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
