@@ -134,6 +134,13 @@ const products: Product[] = [
     free: ["Setup prompt included", "Real-time event alerts", "Daily morning briefing", "Bot commands for engine control", "Telegram bots are free"],
     pro: { price: "$9", features: ["Hosted version", "Group chat support", "Multiple recipient routing", "Custom bot branding"], comingSoon: true },
   },
+  {
+    name: "Lazy Security",
+    tagline: "Autonomous security monitoring engine",
+    link: "/lazy-security",
+    free: ["Setup prompt included", "Automated Aikido pentesting", "Continuous vulnerability monitoring", "Security score tracking", "Audit-ready report generation"],
+    pro: { price: "$19", features: ["Hosted version", "Automated report delivery before meetings", "Multi-project security dashboard", "Slack and Telegram alerts included"], comingSoon: true },
+  },
 ];
 
 const PricingPage = () => {
