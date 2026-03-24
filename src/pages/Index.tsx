@@ -203,7 +203,10 @@ const Index = () => {
                     {product.name}
                   </p>
                 </div>
-                <p style={{ fontFamily: "'Playfair Display', serif", fontSize: "0.65rem", color: "#f0ead6", opacity: 0.3, letterSpacing: "0.15em", textTransform: "uppercase", marginTop: "1.5rem" }}>
+                <p style={{ fontFamily: "'Playfair Display', serif", fontSize: "0.85rem", color: "#f0ead6", opacity: 0.4, marginTop: "0.5rem" }}>
+                  {product.tagline}
+                </p>
+                <p style={{ fontFamily: "'Playfair Display', serif", fontSize: "0.65rem", color: "#f0ead6", opacity: 0.2, letterSpacing: "0.15em", textTransform: "uppercase", marginTop: "1.5rem" }}>
                   Made for Lovable
                 </p>
               </motion.div>
