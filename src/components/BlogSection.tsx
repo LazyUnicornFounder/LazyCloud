@@ -1,4 +1,4 @@
-import { Pin, Zap, Clock, Tag } from "lucide-react";
+import { Zap, Clock, Tag } from "lucide-react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useState, useEffect, useMemo } from "react";
