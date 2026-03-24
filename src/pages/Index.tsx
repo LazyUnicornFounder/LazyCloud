@@ -117,19 +117,6 @@ const Index = () => {
   useTrackVisit();
   const location = useLocation();
 
-  const { data: companies = [] } = useQuery({
-    queryKey: ["directory-companies"],
-    queryFn: async () => {
-      const { data, error } = await supabase
-        .from("submissions")
-        .select("*")
-        .eq("status", "approved")
-        .order("display_order", { ascending: true });
-      if (error) throw error;
-      return data || [];
-    },
-  });
-
   useEffect(() => {
     if (location.hash) {
       const el = document.querySelector(location.hash);
