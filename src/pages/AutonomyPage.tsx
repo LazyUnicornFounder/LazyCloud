@@ -216,7 +216,7 @@ export default function AutonomyPage() {
           transition={{ delay: 0.1 }}
           className="text-sm md:text-base text-muted-foreground max-w-2xl mx-auto leading-relaxed"
         >
-          Most tools automate tasks. LazyUnicorn engines automate outcomes.
+          Most tools automate tasks. Lazy Unicorn engines automate outcomes.
           Drag the slider on any engine to see what autonomy looks like at each
           level — and where each engine sits today.
         </motion.p>
