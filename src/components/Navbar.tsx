@@ -120,7 +120,6 @@ const categories: { label: string; items: { label: string; href: string; tagline
     items: [
       { label: "Store", href: "/lazy-store", tagline: "A store that runs itself.", icon: icons.store },
       { label: "Pay", href: "/lazy-pay", tagline: "Payments that optimise.", icon: icons.pay },
-      { label: "SMS", href: "/lazy-sms", tagline: "Texts that convert.", icon: icons.sms },
     ],
   },
   {
@@ -128,6 +127,14 @@ const categories: { label: string; items: { label: string; href: string; tagline
     items: [
       { label: "GitHub", href: "/lazy-code", tagline: "Commits become changelogs.", icon: icons.code },
       { label: "GitLab", href: "/lazy-gitlab", tagline: "GitLab commits → content.", icon: icons.gitlab },
+    ],
+  },
+  {
+    label: "Messaging",
+    items: [
+      { label: "SMS", href: "/lazy-sms", tagline: "Texts that convert.", icon: icons.sms },
+      { label: "Alert", href: "/lazy-alert", tagline: "Your business in Slack.", icon: icons.alert },
+      { label: "Telegram", href: "/lazy-telegram", tagline: "Your business in Telegram.", icon: icons.telegram },
     ],
   },
   {
@@ -143,8 +150,6 @@ const categories: { label: string; items: { label: string; href: string; tagline
     items: [
       { label: "Perplexity", href: "/lazy-perplexity", tagline: "Research-backed content.", icon: icons.perplexity },
       { label: "Supabase", href: "/lazy-supabase", tagline: "Database tells its story.", icon: icons.supabase },
-      { label: "Alert", href: "/lazy-alert", tagline: "Your business in Slack.", icon: icons.alert },
-      { label: "Telegram", href: "/lazy-telegram", tagline: "Your business in Telegram.", icon: icons.telegram },
     ],
   },
 ];

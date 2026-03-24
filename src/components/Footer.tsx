@@ -22,7 +22,6 @@ const engineCategories = [
     items: [
       { name: "Store", href: "/lazy-store" },
       { name: "Pay", href: "/lazy-pay" },
-      { name: "SMS", href: "/lazy-sms" },
     ],
   },
   {
@@ -30,6 +29,14 @@ const engineCategories = [
     items: [
       { name: "GitHub", href: "/lazy-code" },
       { name: "GitLab", href: "/lazy-gitlab" },
+    ],
+  },
+  {
+    label: "Messaging",
+    items: [
+      { name: "SMS", href: "/lazy-sms" },
+      { name: "Alert", href: "/lazy-alert" },
+      { name: "Telegram", href: "/lazy-telegram" },
     ],
   },
   {
@@ -45,8 +52,6 @@ const engineCategories = [
     items: [
       { name: "Perplexity", href: "/lazy-perplexity" },
       { name: "Supabase", href: "/lazy-supabase" },
-      { name: "Alert", href: "/lazy-alert" },
-      { name: "Telegram", href: "/lazy-telegram" },
     ],
   },
 ];

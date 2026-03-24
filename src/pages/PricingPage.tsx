@@ -65,13 +65,6 @@ const products: Product[] = [
     pro: { price: "$19", features: ["Hosted version", "Multi-gateway support", "Revenue dashboards", "Churn prediction", "Automated dunning"], comingSoon: true },
   },
   {
-    name: "Lazy SMS",
-    tagline: "Autonomous SMS engine",
-    link: "/lazy-sms",
-    free: ["Setup prompt included", "Twilio integration", "Automated SMS campaigns", "Contact management", "Conversion tracking"],
-    pro: { price: "$19", features: ["Hosted version", "Advanced segmentation", "A/B testing", "Multi-channel messaging", "Compliance automation"], comingSoon: true },
-  },
-  {
     name: "Lazy GitHub",
     tagline: "Autonomous GitHub content engine",
     link: "/lazy-code",
@@ -84,6 +77,13 @@ const products: Product[] = [
     link: "/lazy-gitlab",
     free: ["Setup prompt included", "Changelog generation", "Release notes automation", "Developer blog publishing", "GitLab webhook integration"],
     pro: { price: "$19", features: ["Hosted version", "Multi-repo support", "Advanced changelog formatting", "Custom templates"], comingSoon: true },
+  },
+  {
+    name: "Lazy SMS",
+    tagline: "Autonomous SMS engine",
+    link: "/lazy-sms",
+    free: ["Setup prompt included", "Twilio integration", "Automated SMS campaigns", "Contact management", "Conversion tracking"],
+    pro: { price: "$19", features: ["Hosted version", "Advanced segmentation", "A/B testing", "Multi-channel messaging", "Compliance automation"], comingSoon: true },
   },
   {
     name: "Lazy Stream",
