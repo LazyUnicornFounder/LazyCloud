@@ -115,8 +115,10 @@ serve(async (req) => {
       slug = `${slug}-${Math.floor(1000 + Math.random() * 9000)}`;
     }
 
+    const formattedTitle = toTitleCase(postData.title);
+
     const { error: insertErr } = await supabase.from("seo_posts").insert({
-      title: postData.title,
+      title: formattedTitle,
       slug,
       body: postData.body,
       excerpt: postData.excerpt || null,
