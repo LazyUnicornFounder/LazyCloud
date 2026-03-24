@@ -7,42 +7,63 @@ const XLogo = () => (
   </svg>
 );
 
-const engines = [
-  { name: "Lazy Run", href: "/lazy-run" },
-  { name: "Lazy Blogger", href: "/lazy-blogger" },
-  { name: "Lazy SEO", href: "/lazy-seo" },
-  { name: "Lazy GEO", href: "/lazy-geo" },
-  { name: "Lazy Store", href: "/lazy-store" },
-  { name: "Lazy Voice", href: "/lazy-voice" },
-  { name: "Lazy Pay", href: "/lazy-pay" },
-  { name: "Lazy SMS", href: "/lazy-sms" },
-  { name: "Lazy Stream", href: "/lazy-stream" },
-  { name: "Lazy Code", href: "/lazy-code" },
-  { name: "Lazy Alert", href: "/lazy-alert" },
-  { name: "Lazy GitLab", href: "/lazy-gitlab" },
-  { name: "Lazy Supabase", href: "/lazy-supabase" },
-  { name: "Lazy Telegram", href: "/lazy-telegram" },
-  { name: "Lazy Linear", href: "/lazy-linear" },
-  { name: "Lazy Contentful", href: "/lazy-contentful" },
-  { name: "Lazy Perplexity", href: "/lazy-perplexity" },
+const engineCategories = [
+  {
+    label: "Content",
+    items: [
+      { name: "Blogger", href: "/lazy-blogger" },
+      { name: "SEO", href: "/lazy-seo" },
+      { name: "GEO", href: "/lazy-geo" },
+      { name: "Voice", href: "/lazy-voice" },
+    ],
+  },
+  {
+    label: "Commerce",
+    items: [
+      { name: "Store", href: "/lazy-store" },
+      { name: "Pay", href: "/lazy-pay" },
+      { name: "SMS", href: "/lazy-sms" },
+    ],
+  },
+  {
+    label: "Platforms",
+    items: [
+      { name: "Stream", href: "/lazy-stream" },
+      { name: "Code", href: "/lazy-code" },
+      { name: "GitLab", href: "/lazy-gitlab" },
+      { name: "Linear", href: "/lazy-linear" },
+      { name: "Contentful", href: "/lazy-contentful" },
+    ],
+  },
+  {
+    label: "Intelligence",
+    items: [
+      { name: "Perplexity", href: "/lazy-perplexity" },
+      { name: "Supabase", href: "/lazy-supabase" },
+      { name: "Alert", href: "/lazy-alert" },
+      { name: "Telegram", href: "/lazy-telegram" },
+    ],
+  },
 ];
 
 const resources = [
+  { name: "Lazy Run", href: "/lazy-run" },
   { name: "Pricing", href: "/pricing" },
   { name: "Blog", href: "/blog" },
   { name: "About", href: "/about" },
   { name: "Guide", href: "/guide" },
   { name: "Autonomy Scale", href: "/autonomy-scale" },
   { name: "Directory", href: "/#directory" },
+  { name: "Launch Your Startup", href: "/launch" },
 ];
 
 export default function Footer() {
   return (
     <footer className="border-t border-border bg-background">
       <div className="max-w-6xl mx-auto px-6 md:px-12 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-6 gap-10 md:gap-6">
           {/* Brand */}
-          <div className="md:col-span-1">
+          <div className="col-span-2 md:col-span-1">
             <Link to="/" className="inline-block">
               <p className="font-display text-[10px] font-semibold tracking-[0.15em] uppercase text-foreground leading-tight">
                 <span className="block">Lazy</span>
@@ -53,45 +74,32 @@ export default function Footer() {
               The autonomous layer for Lovable. One prompt, everything runs itself.
             </p>
             <div className="flex items-center gap-3 mt-5">
-              <a
-                href="https://x.com/SaadSahawneh"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-foreground/20 hover:text-foreground/50 transition-colors"
-                aria-label="Follow on X"
-              >
+              <a href="https://x.com/SaadSahawneh" target="_blank" rel="noopener noreferrer" className="text-foreground/20 hover:text-foreground/50 transition-colors" aria-label="Follow on X">
                 <XLogo />
               </a>
-              <a
-                href="https://www.linkedin.com/in/saadsahawneh"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-foreground/20 hover:text-foreground/50 transition-colors"
-                aria-label="Follow on LinkedIn"
-              >
+              <a href="https://www.linkedin.com/in/saadsahawneh" target="_blank" rel="noopener noreferrer" className="text-foreground/20 hover:text-foreground/50 transition-colors" aria-label="Follow on LinkedIn">
                 <Linkedin size={12} />
               </a>
             </div>
           </div>
 
-          {/* Engines */}
-          <div>
-            <p className="font-body text-[10px] tracking-[0.2em] uppercase text-foreground/40 font-semibold mb-4">
-              Engines
-            </p>
-            <ul className="space-y-2">
-              {engines.map((e) => (
-                <li key={e.name}>
-                  <Link
-                    to={e.href}
-                    className="font-body text-xs text-foreground/25 hover:text-foreground/50 transition-colors"
-                  >
-                    {e.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {/* Engine categories */}
+          {engineCategories.map((cat) => (
+            <div key={cat.label}>
+              <p className="font-body text-[10px] tracking-[0.2em] uppercase text-foreground/40 font-semibold mb-4">
+                {cat.label}
+              </p>
+              <ul className="space-y-2">
+                {cat.items.map((e) => (
+                  <li key={e.name}>
+                    <Link to={e.href} className="font-body text-xs text-foreground/25 hover:text-foreground/50 transition-colors">
+                      {e.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
 
           {/* Resources */}
           <div>
@@ -101,33 +109,12 @@ export default function Footer() {
             <ul className="space-y-2">
               {resources.map((r) => (
                 <li key={r.name}>
-                  <Link
-                    to={r.href}
-                    className="font-body text-xs text-foreground/25 hover:text-foreground/50 transition-colors"
-                  >
+                  <Link to={r.href} className="font-body text-xs text-foreground/25 hover:text-foreground/50 transition-colors">
                     {r.name}
                   </Link>
                 </li>
               ))}
             </ul>
-          </div>
-
-          {/* Made for Lovable */}
-          <div>
-            <p className="font-body text-[10px] tracking-[0.2em] uppercase text-foreground/40 font-semibold mb-4">
-              Built for
-            </p>
-            <a
-              href="https://lovable.dev"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-body text-xs text-foreground/25 hover:text-foreground/50 transition-colors"
-            >
-              lovable.dev
-            </a>
-            <p className="mt-6 font-body text-[10px] text-foreground/15 leading-relaxed">
-              All engines are self-hosted in your own Lovable project. You own the code, the data, and the content.
-            </p>
           </div>
         </div>
 
@@ -136,9 +123,9 @@ export default function Footer() {
           <p className="font-body text-[10px] text-foreground/15 tracking-wider">
             © {new Date().getFullYear()} Lazy Unicorn. All rights reserved.
           </p>
-          <p style={{ fontFamily: "'Playfair Display', serif", fontSize: "0.6rem", color: "#f0ead6", opacity: 0.15, letterSpacing: "0.15em", textTransform: "uppercase" }}>
-            Made for Lovable
-          </p>
+          <a href="https://lovable.dev" target="_blank" rel="noopener noreferrer" className="font-body text-[10px] text-foreground/15 tracking-wider hover:text-foreground/30 transition-colors">
+            Built for Lovable
+          </a>
         </div>
       </div>
     </footer>
