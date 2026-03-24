@@ -22,6 +22,7 @@ const products = [
   { cursive: "Lazy", name: "Voice", link: "/lazy-voice" },
   { cursive: "Lazy", name: "Pay", link: "/lazy-pay" },
   { cursive: "Lazy", name: "SMS", link: "/lazy-sms" },
+  { cursive: "Lazy", name: "Stream", link: "/lazy-stream" },
   { cursive: "Lazy", name: "Coming Soon", link: "" },
 ];
 
