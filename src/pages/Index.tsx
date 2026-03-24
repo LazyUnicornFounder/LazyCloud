@@ -50,6 +50,14 @@ const engines = [
     link: "/lazy-geo",
     color: "from-emerald-500/20 to-teal-500/20",
   },
+  {
+    emoji: "🛒",
+    name: "Lazy Store",
+    tagline: "Lazy Store — Autonomous E-Commerce Engine for Lovable",
+    description: "One prompt installs a self-running store. Product discovery, AI listings, pricing, promotions, and conversion optimisation — automatically, forever.",
+    link: "/lazy-store",
+    color: "from-amber-500/20 to-orange-500/20",
+  },
 ];
 
 const Index = () => {
