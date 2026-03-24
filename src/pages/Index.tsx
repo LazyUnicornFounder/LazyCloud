@@ -45,7 +45,7 @@ const engines = [
   {
     emoji: "🌐",
     name: "Lazy GEO",
-    tagline: "The Autonomous Lovable GEO Engine",
+    tagline: "Lazy GEO — Autonomous GEO Engine for Lovable",
     description: "Gets your brand cited by AI engines like ChatGPT, Claude, and Perplexity by creating citation-ready content and tracking your visibility.",
     link: "/lazy-geo",
     color: "from-emerald-500/20 to-teal-500/20",
