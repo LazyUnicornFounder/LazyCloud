@@ -98,6 +98,8 @@ const steps = [
 
 const LazyBloggerPage = () => {
   const trackEvent = useTrackEvent();
+  const { prompt: dbPrompt } = useCurrentPrompt("lazy-blogger");
+  const template = dbPrompt?.prompt_text || undefined;
 
   useEffect(() => {
     trackEvent("lazy_blogger_page_view");
