@@ -252,7 +252,7 @@ const faqs = [
   { q: "What counts as a significant feature for a blog post?", a: "Lazy GitHub uses AI to classify commits by significance. Commits touching more than 3 files or tagged with certain labels trigger a blog post. You can configure the threshold in settings." },
   { q: "Can I edit the content before it publishes?", a: "Not in the current version. Content publishes automatically. A drafts mode is coming in the Pro version." },
   { q: "Does it work with monorepos?", a: "Yes. You can configure which directories or packages to monitor so only relevant commits trigger content." },
-  { q: "What if I push many small commits?", a: "Lazy Code batches commits within a 1-hour window and produces one changelog entry per batch rather than one per commit." },
+  { q: "What if I push many small commits?", a: "Lazy GitHub batches commits within a 1-hour window and produces one changelog entry per batch rather than one per commit." },
 ];
 
 function CopyPromptButton({ className = "" }: { className?: string }) {
