@@ -2560,14 +2560,23 @@ const BlogHeader = () => {
 };
 
 const BLOG_TAGS: { label: string; keywords: string[] }[] = [
-  { label: "Autonomous Companies", keywords: ["autonomous", "self-building", "self-running", "self-growing", "runs itself", "builds itself"] },
-  { label: "AI Agents", keywords: ["agent", "agents", "ai employee", "ai team", "robot", "automation"] },
-  { label: "Solo Founders", keywords: ["solo founder", "one person", "one-person", "solo ceo", "alone", "without a team"] },
-  { label: "Future of Work", keywords: ["future of work", "end of work", "9-to-5", "hiring", "employees", "management"] },
-  { label: "Fundraising", keywords: ["raising", "angel", "investor", "pitch", "fundrais", "venture", "capital"] },
-  { label: "Monetization", keywords: ["revenue", "monetiz", "pricing", "passive income", "arr", "business model"] },
-  { label: "Content & SEO", keywords: ["blog", "content", "seo", "writing", "publish"] },
-  { label: "Philosophy", keywords: ["capitalism", "recursive", "philosophy", "freedom", "lazy", "unicorn"] },
+  { label: "Blogger", keywords: ["lazy blogger", "blog engine", "blog publishing", "auto-publish"] },
+  { label: "SEO", keywords: ["lazy seo", "seo engine", "keyword", "search engine optimis", "search ranking"] },
+  { label: "GEO", keywords: ["lazy geo", "generative engine", "citation", "cited by ai", "chatgpt cite", "perplexity cite"] },
+  { label: "Voice", keywords: ["lazy voice", "narrat", "podcast", "audio", "elevenlabs", "text-to-speech"] },
+  { label: "Stream", keywords: ["lazy stream", "twitch", "stream recap", "vod", "clip"] },
+  { label: "Store", keywords: ["lazy store", "shopify", "ecommerce", "e-commerce", "autonomous store"] },
+  { label: "Pay", keywords: ["lazy pay", "payment", "checkout", "stripe", "polar", "subscription"] },
+  { label: "Security", keywords: ["lazy security", "aikido", "pentest", "vulnerability", "security scan", "security monitor"] },
+  { label: "GitHub", keywords: ["lazy github", "changelog", "commit", "release notes"] },
+  { label: "Alert", keywords: ["lazy alert", "slack alert", "slack notif"] },
+  { label: "Telegram", keywords: ["lazy telegram", "telegram bot", "telegram alert"] },
+  { label: "Linear", keywords: ["lazy linear", "linear", "roadmap", "issue tracker"] },
+  { label: "Contentful", keywords: ["lazy contentful", "contentful", "cms sync"] },
+  { label: "Perplexity", keywords: ["lazy perplexity", "perplexity", "research-backed"] },
+  { label: "Supabase", keywords: ["lazy supabase", "database monitor", "row milestone"] },
+  { label: "SMS", keywords: ["lazy sms", "twilio", "sms campaign", "text message"] },
+  { label: "Run", keywords: ["lazy run", "orchestrat", "all engines", "master toggle"] },
 ];
 
 function getPostTags(post: BlogPost): string[] {
