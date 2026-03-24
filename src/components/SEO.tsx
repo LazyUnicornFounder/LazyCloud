@@ -27,11 +27,11 @@ interface SEOProps {
 }
 
 const SITE_NAME = "Lazy Unicorn";
-const DEFAULT_TITLE = "Lazy Unicorn — The Solo Founder's Guide to Building an Autonomous Unicorn";
-const DEFAULT_DESCRIPTION = "The solo founder's guide to building an autonomous unicorn. Discover AI tools and resources to build a startup that builds itself.";
+const DEFAULT_TITLE = "The Autonomous Growth Engines for Lovable Websites — Lazy Unicorn";
+const DEFAULT_DESCRIPTION = "We build autonomous engines for Lovable that turn your website into a self-growing asset. Blog, SEO, and GEO engines that run themselves.";
 const DEFAULT_IMAGE = "https://www.lazyunicorn.ai/og-image.png";
 const BASE_URL = "https://www.lazyunicorn.ai";
-const DEFAULT_KEYWORDS = "autonomous business, autonomous company, self-building startup, solo founder, one person business, AI agents for business, autonomous unicorn, build a business with AI, run a business with AI, no code business, AI startup tools, solo founder tools, passive income AI, autonomous SaaS, self-running business, AI business automation, one person startup, solo founder unicorn, build without a team, AI powered business, autonomous company tools, no employee startup, AI operations, business that runs itself, solo entrepreneur AI, autonomous business software, vibe coding business, Lovable startup, build on Lovable, autonomous content, AI blog writing, self-growing business, recursive startup, passive business income, AI company builder, solo CEO, no code startup, AI team replacement, autonomous marketing, AI outbound, business automation tools, solo founder stack, AI founder tools, replace your team with AI, one founder company, AI business tools 2026, autonomous business platform, self-operating business, AI employees";
+const DEFAULT_KEYWORDS = "autonomous blog engine, autonomous SEO engine, autonomous GEO engine, Lovable website growth, AI blog writer, AI SEO tool, AI citation engine, self-growing website, autonomous content, Lovable startup, solo founder tools, AI business automation, autonomous marketing, self-building startup, autonomous business, AI agents for business";
 const TWITTER_HANDLE = "@SaadSahawneh";
 
 const SEO = ({
