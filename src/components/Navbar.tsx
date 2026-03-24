@@ -342,6 +342,7 @@ const Navbar = ({ activePage = "home" }: NavbarProps) => {
               ))}
 
               {[
+                { label: "Autonomy", href: "/autonomy" },
                 { label: "Pricing", href: "/pricing" },
                 { label: "Blog", href: "/blog" },
                 { label: "About", href: "/about" },
