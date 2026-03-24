@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import {
   LayoutDashboard, PenTool, Search, Brain, ShoppingCart,
-  Mic, CreditCard, MessageSquare, Tv, Settings, Menu, X,
+  Mic, CreditCard, MessageSquare, Tv, Code, Settings, Menu, X,
 } from "lucide-react";
 
 const db = supabase as any;
