@@ -73,7 +73,7 @@ export default function LazyRunPage() {
       <SEO
         title="Lazy Run — The Autonomous Runtime for Lovable"
         description="One prompt installs the complete autonomous operations layer into your Lovable project. Nine engines. One dashboard. Everything runs itself."
-        path="/lazy-run"
+        url="/lazy-run"
       />
       <Navbar />
 
