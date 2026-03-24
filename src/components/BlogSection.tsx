@@ -2581,11 +2581,8 @@ const BlogSection = () => {
   const { posts: dbPosts } = useDbBlogPosts();
   const [activeTag, setActiveTag] = useState<string | null>(null);
 
-  // Merge: pinned post first, then DB posts (newest first), then remaining static posts
-  const pinnedSlug = "lazy-unicorn-raising-angel-round";
-  const pinned = staticBlogPosts.filter(p => p.slug === pinnedSlug);
-  const staticRest = staticBlogPosts.filter(p => p.slug !== pinnedSlug);
-  const mergedPosts = [...pinned, ...dbPosts, ...staticRest];
+  // Merge: DB posts (newest first), then static posts
+  const mergedPosts = [...dbPosts, ...staticBlogPosts];
   // Deduplicate by slug
   const seen = new Set<string>();
   const allPosts = mergedPosts.filter(p => {
