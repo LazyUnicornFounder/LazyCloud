@@ -227,16 +227,6 @@ const Index = () => {
           transition={{ duration: 0.8 }}
           className="min-h-screen flex flex-col items-center justify-center gap-6 px-6 text-center"
         >
-          {/* Sketch icon — unicorn */}
-          <svg width="140" height="140" viewBox="0 0 120 120" fill="none" stroke="#f0ead6" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" className="opacity-30">
-            <circle cx="60" cy="55" r="35" />
-            <path d="M45 50 Q60 25 75 50" />
-            <line x1="60" y1="55" x2="60" y2="85" />
-            <path d="M50 85 L60 95 L70 85" />
-            <circle cx="50" cy="52" r="2" fill="#f0ead6" stroke="none" />
-            <circle cx="70" cy="52" r="2" fill="#f0ead6" stroke="none" />
-          </svg>
-
           {/* Headline */}
           <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(2.5rem, 5vw, 3.5rem)", color: "#f0ead6", lineHeight: 1.1 }}>
             The autonomous🤖
