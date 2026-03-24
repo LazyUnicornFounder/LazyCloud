@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { format } from "date-fns";
 import SEO from "@/components/SEO";
 import { ArrowLeft } from "lucide-react";
+import ProductPromoBanner from "@/components/ProductPromoBanner";
 
 const SeoBlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -71,6 +72,9 @@ const SeoBlogPost = () => {
           <a href="https://lazyunicorn.ai" className="text-primary underline hover:text-primary/80">
             LazyUnicorn.ai
           </a>
+        </div>
+        <div className="mt-10">
+          <ProductPromoBanner excludeProduct="seo" glass={false} />
         </div>
       </div>
     </div>

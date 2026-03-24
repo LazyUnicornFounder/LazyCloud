@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import unicornBg from "@/assets/unicorn-beach.png";
 import SEO from "@/components/SEO";
 import Navbar from "@/components/Navbar";
+import ProductPromoBanner from "@/components/ProductPromoBanner";
 
 const levels = [
   {
@@ -258,6 +259,11 @@ const AutonomyScale = () => {
             </a>
           </div>
         </motion.div>
+      </div>
+
+      {/* Product Promo */}
+      <div className="relative z-10 px-6 md:px-12 pb-12 max-w-4xl mx-auto">
+        <ProductPromoBanner />
       </div>
 
       {/* Footer */}

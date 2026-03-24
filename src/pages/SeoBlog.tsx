@@ -4,6 +4,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Badge } from "@/components/ui/badge";
 import { format } from "date-fns";
 import SEO from "@/components/SEO";
+import ProductPromoBanner from "@/components/ProductPromoBanner";
 
 const SeoBlog = () => {
   const [posts, setPosts] = useState<any[]>([]);
@@ -53,6 +54,9 @@ const SeoBlog = () => {
             ))}
           </div>
         )}
+        <div className="mt-12">
+          <ProductPromoBanner excludeProduct="seo" glass={false} />
+        </div>
       </div>
     </div>
   );

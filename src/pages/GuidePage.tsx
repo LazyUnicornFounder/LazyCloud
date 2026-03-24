@@ -5,6 +5,7 @@ import { Lightbulb, Hammer, Bot, TrendingUp, Compass, Rocket, ChevronDown, Arrow
 import unicornBg from "@/assets/unicorn-beach.png";
 import Navbar from "@/components/Navbar";
 import SEO from "@/components/SEO";
+import ProductPromoBanner from "@/components/ProductPromoBanner";
 
 /* ─── step data ─── */
 const steps = [
@@ -387,6 +388,11 @@ const GuidePage = () => {
             </div>
           </div>
         </motion.div>
+      </div>
+
+      {/* Product Promo */}
+      <div className="relative z-10 px-4 md:px-6 pb-12 max-w-lg mx-auto">
+        <ProductPromoBanner />
       </div>
 
       {/* footer */}

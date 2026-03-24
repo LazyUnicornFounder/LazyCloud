@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { format } from "date-fns";
 import SEO from "@/components/SEO";
 import { ArrowLeft } from "lucide-react";
+import ProductPromoBanner from "@/components/ProductPromoBanner";
 
 const GeoBlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -55,6 +56,9 @@ const GeoBlogPost = () => {
           <a href="https://lazyunicorn.ai/lazy-geo" className="text-primary underline hover:text-primary/80">Lazy GEO</a>
           {" "}— autonomous GEO for Lovable sites. Discover more at{" "}
           <a href="https://lazyunicorn.ai" className="text-primary underline hover:text-primary/80">LazyUnicorn.ai</a>
+        </div>
+        <div className="mt-10">
+          <ProductPromoBanner excludeProduct="geo" glass={false} />
         </div>
       </div>
     </div>

@@ -5,6 +5,7 @@ import { useDbBlogPosts } from "@/hooks/useDbBlogPosts";
 import SEO from "@/components/SEO";
 import Navbar from "@/components/Navbar";
 import BlogTicker from "@/components/BlogTicker";
+import ProductPromoBanner from "@/components/ProductPromoBanner";
 
 const Blog = () => {
   const { posts: dbPosts } = useDbBlogPosts();
@@ -55,6 +56,11 @@ const Blog = () => {
       {/* Content */}
       <div className="pt-32">
         <BlogSection />
+      </div>
+
+      {/* Product Promo */}
+      <div className="relative z-10 px-6 md:px-12 pb-12 max-w-4xl mx-auto">
+        <ProductPromoBanner />
       </div>
 
       {/* Footer */}
