@@ -120,7 +120,7 @@ const AdminPrompts = () => {
       <div>
         <h3 className="font-display text-base font-bold text-foreground mb-3">🔍 Lazy SEO</h3>
         <div className="space-y-2">
-          <PromptBlock title="Lazy SEO — Full Prompt" version="v2 — Current" prompt={SEO_PROMPT} defaultOpen />
+          <PromptBlock title="Lazy SEO — Full Prompt" version={`${SEO_VERSION} — ${SEO_VERSION_DATE}`} prompt={SEO_PROMPT} defaultOpen />
         </div>
       </div>
 
