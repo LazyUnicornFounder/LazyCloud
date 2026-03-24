@@ -69,8 +69,8 @@ function PromptEditor({
     const today = new Date().toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
     // Update the version header in the prompt text
     let updatedText = draft.replace(
-      /\[.*?Prompt — v[\d.]+ — .*?\]/,
-      `[${product.label.replace(/^[^\w]*/, "").trim()} Prompt — ${newVersion} — ${today}]`
+      /\[.*?Prompt — v?[\d.]+ — .*?\]/,
+      `[${product.label.replace(/^[^\w]*/, "").trim()} Prompt — v${newVersion} — ${today}]`
     );
     const { error } = await savePromptVersion(product.key, updatedText, newVersion);
     setSaving(false);
