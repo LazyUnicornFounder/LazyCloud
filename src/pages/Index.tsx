@@ -6,8 +6,8 @@ import SEO from "@/components/SEO";
 import Navbar from "@/components/Navbar";
 import { useTrackVisit } from "@/hooks/useTrackVisit";
 
-const NEW_TITLE = "Drive Traffic Automatically to Your Lovable Website or App";
-const NEW_DESCRIPTION = "We build autonomous engines for Lovable that turn your website into a self-growing asset.";
+const NEW_TITLE = "The Autonomous Layer for Lovable — One Prompt, Everything Runs Itself";
+const NEW_DESCRIPTION = "The autonomous layer for Lovable. One prompt, everything runs itself.";
 
 const products = [
   { cursive: "Lazy", name: "Blogger", link: "/lazy-blogger", tagline: "Your blog writes itself." },
@@ -162,10 +162,13 @@ const Index = () => {
           className="text-center px-6 max-w-3xl"
         >
           <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(2rem, 5vw, 4rem)", color: "#f0ead6", lineHeight: 1.1 }}>
-            Your Lovable site.
+            The Autonomous Layer
             <br />
-            <span style={{ fontFamily: "'Dancing Script', cursive" }}>Running itself.</span>
+            <span style={{ fontFamily: "'Dancing Script', cursive" }}>for Lovable.</span>
           </h1>
+          <p className="mt-4 font-body text-base sm:text-lg tracking-wide" style={{ color: "#f0ead6", opacity: 0.5 }}>
+            One prompt, everything runs itself.
+          </p>
           <p className="hero-description mt-6 text-sm sm:text-base md:text-lg leading-relaxed" style={{ color: "#f0ead6", opacity: 0.6 }}>
             Lazy Unicorn builds the autonomous layer for Lovable. One prompt installs the engine you need — blog posts that publish themselves, SEO that compounds, payments that optimise, SMS that converts, audio that narrates, stores that grow. Everything your site needs to run and grow without you doing it manually.
           </p>
