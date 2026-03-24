@@ -275,7 +275,7 @@ const Navbar = ({ activePage = "home" }: NavbarProps) => {
               About
             </a>
 
-            <SimpleDropdown label="More" children={resourceLinks} />
+            
 
             {socialIcons}
           </div>
