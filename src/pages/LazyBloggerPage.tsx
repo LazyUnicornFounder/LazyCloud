@@ -1,4 +1,5 @@
 import { useState, useCallback, useEffect } from "react";
+import LazyPricingSection from "@/components/LazyPricingSection";
 import { motion } from "framer-motion";
 import { Copy, Check, Clock, Sparkles, Zap } from "lucide-react";
 import FlyingBlogCards from "@/components/lazy-blogger/FlyingBlogCards";
