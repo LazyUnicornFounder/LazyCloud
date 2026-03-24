@@ -7,7 +7,7 @@ import SEO from "@/components/SEO";
 import Navbar from "@/components/Navbar";
 import BlogTicker from "@/components/BlogTicker";
 import ProductPromoBanner from "@/components/ProductPromoBanner";
-
+import BlogAudioPlayer from "@/components/BlogAudioPlayer";
 const BlogPost = () => {
   const { slug } = useParams();
   const { posts: dbPosts } = useDbBlogPosts();
