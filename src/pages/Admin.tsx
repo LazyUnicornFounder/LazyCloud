@@ -48,9 +48,9 @@ const Admin = () => {
   
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [activeTab, setActiveTab] = useState<"submissions" | "blog" | "analytics" | "seo" | "geo" | "prompts">(() => {
+  const [activeTab, setActiveTab] = useState<"submissions" | "blog" | "analytics" | "seo" | "geo" | "prompts" | "agent">(() => {
     const saved = sessionStorage.getItem("admin_tab");
-    return (saved === "submissions" || saved === "blog" || saved === "analytics" || saved === "seo" || saved === "geo" || saved === "prompts") ? saved : "analytics";
+    return (saved === "submissions" || saved === "blog" || saved === "analytics" || saved === "seo" || saved === "geo" || saved === "prompts" || saved === "agent") ? saved : "analytics";
   });
   useEffect(() => { sessionStorage.setItem("admin_tab", activeTab); }, [activeTab]);
   const [generating, setGenerating] = useState(false);
