@@ -298,7 +298,7 @@ const AdminGeo = () => {
                     <p className="font-body text-sm text-foreground truncate">{post.title}</p>
                     <p className="font-body text-xs text-muted-foreground">{post.target_query} · {new Date(post.published_at).toLocaleDateString()}</p>
                   </div>
-                  <a href={`/geo/${post.slug}`} target="_blank" rel="noopener noreferrer" className="font-body text-xs text-primary hover:underline flex items-center gap-1 shrink-0">
+                  <a href={`/blog/geo-${post.slug}`} target="_blank" rel="noopener noreferrer" className="font-body text-xs text-primary hover:underline flex items-center gap-1 shrink-0">
                     <ExternalLink size={12} /> View
                   </a>
                 </div>
