@@ -35,6 +35,12 @@ import LazyStreamDashboard from "./pages/LazyStreamDashboard.tsx";
 import LazyCodePage from "./pages/LazyCodePage.tsx";
 import LazyRunPage from "./pages/LazyRunPage.tsx";
 import LazyAlertPage from "./pages/LazyAlertPage.tsx";
+import LazyGitLabPage from "./pages/LazyGitLabPage.tsx";
+import LazySupabasePage from "./pages/LazySupabasePage.tsx";
+import LazyTelegramPage from "./pages/LazyTelegramPage.tsx";
+import LazyLinearPage from "./pages/LazyLinearPage.tsx";
+import LazyContentfulPage from "./pages/LazyContentfulPage.tsx";
+import LazyPerplexityPage from "./pages/LazyPerplexityPage.tsx";
 import PricingPage from "./pages/PricingPage.tsx";
 import PublicLayout from "./components/PublicLayout.tsx";
 
