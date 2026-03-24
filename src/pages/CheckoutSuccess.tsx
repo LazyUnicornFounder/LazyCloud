@@ -103,7 +103,7 @@ const CheckoutSuccess = () => {
               to="/"
               className="inline-block font-body text-[11px] tracking-[0.15em] uppercase bg-primary text-primary-foreground px-6 py-2.5 font-semibold hover:opacity-90 transition-opacity"
             >
-              Back to directory
+              Back to home
             </Link>
           </div>
         ) : (
