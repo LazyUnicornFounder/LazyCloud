@@ -1,4 +1,5 @@
 import { useState, useCallback, useEffect } from "react";
+import LazyPricingSection from "@/components/LazyPricingSection";
 import { motion } from "framer-motion";
 import { Copy, Check, Clock, Sparkles, Zap } from "lucide-react";
 import FlyingBlogCards from "@/components/lazy-blogger/FlyingBlogCards";
@@ -199,6 +200,23 @@ const LazyBloggerPage = () => {
             ))}
           </div>
         </section>
+
+        {/* ── PRICING ── */}
+        <LazyPricingSection
+          lazyFeatures={[
+            "Lazy Blogger setup prompt",
+            "Self-hosted in your Lovable project",
+            "Up to 32 posts per day",
+            "No API keys needed",
+          ]}
+          proFeatures={[
+            "Hosted version",
+            "Advanced analytics dashboard",
+            "Custom brand voice training",
+            "Priority content generation",
+          ]}
+          ctaButton={<CopyPromptButton onCopy={handlePromptCopy} template={template} className="w-full justify-center" />}
+        />
 
         {/* ── FAQ — only the essentials ── */}
         <section className="max-w-2xl mx-auto px-6 mb-20">

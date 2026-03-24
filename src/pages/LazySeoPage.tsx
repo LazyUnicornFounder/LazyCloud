@@ -1,4 +1,5 @@
 import { useEffect, useState, useCallback } from "react";
+import LazyPricingSection from "@/components/LazyPricingSection";
 import { motion } from "framer-motion";
 import { Search, TrendingUp, Zap, BarChart3, Copy, Check } from "lucide-react";
 import FlyingSeoCards from "@/components/lazy-seo/FlyingSeoCards";
@@ -144,6 +145,23 @@ const LazySeoPage = () => {
             ))}
           </div>
         </section>
+
+        {/* ── PRICING ── */}
+        <LazyPricingSection
+          lazyFeatures={[
+            "Lazy SEO setup prompt",
+            "Self-hosted in your Lovable project",
+            "Autonomous keyword discovery",
+            "No API keys needed",
+          ]}
+          proFeatures={[
+            "Hosted version",
+            "Google Search Console integration",
+            "Advanced ranking analytics",
+            "Multi-site support",
+          ]}
+          ctaButton={<CopyPromptButton onCopy={handlePromptCopy} promptText={promptText} className="w-full justify-center" />}
+        />
 
         {/* ── FAQ ── */}
         <section className="max-w-2xl mx-auto px-6 mb-20">

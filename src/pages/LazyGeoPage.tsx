@@ -1,4 +1,5 @@
 import { useEffect, useState, useCallback } from "react";
+import LazyPricingSection from "@/components/LazyPricingSection";
 import { motion } from "framer-motion";
 import { Brain, TrendingUp, Zap, Eye, Copy, Check } from "lucide-react";
 import FlyingGeoCards from "@/components/lazy-geo/FlyingGeoCards";
@@ -156,6 +157,23 @@ const LazyGeoPage = () => {
             </p>
           </motion.div>
         </section>
+
+        {/* ── PRICING ── */}
+        <LazyPricingSection
+          lazyFeatures={[
+            "Lazy GEO setup prompt",
+            "Self-hosted in your Lovable project",
+            "AI citation monitoring",
+            "No API keys needed",
+          ]}
+          proFeatures={[
+            "Hosted version",
+            "Multi-model citation tracking",
+            "Competitor citation analysis",
+            "Priority content generation",
+          ]}
+          ctaButton={<CopyPromptButton onCopy={handlePromptCopy} promptText={promptText} className="w-full justify-center" />}
+        />
 
         {/* ── FAQ ── */}
         <section className="max-w-2xl mx-auto px-6 mb-20">

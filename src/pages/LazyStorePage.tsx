@@ -1,4 +1,5 @@
 import { useEffect, useState, useCallback, useRef } from "react";
+import LazyPricingSection from "@/components/LazyPricingSection";
 import { motion } from "framer-motion";
 import {
   Copy, Check, Heart, Search, FileText, DollarSign,
@@ -415,6 +416,23 @@ const LazyStorePage = () => {
 
 
 
+
+        {/* ── PRICING ── */}
+        <LazyPricingSection
+          lazyFeatures={[
+            "Lazy Store setup prompt",
+            "Self-hosted in your Lovable project",
+            "Product discovery & AI listings",
+            "Bring your own Shopify or custom store",
+          ]}
+          proFeatures={[
+            "Hosted version",
+            "Multi-store management",
+            "Advanced conversion analytics",
+            "Automatic inventory sync",
+          ]}
+          ctaButton={<CopyPromptButton onCopy={handlePromptCopy} promptText={promptText} className="w-full justify-center" />}
+        />
 
         {/* ── FAQ ── */}
         <section className="max-w-2xl mx-auto px-6 mb-24">
