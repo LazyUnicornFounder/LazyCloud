@@ -2665,12 +2665,6 @@ const BlogSection = () => {
                         <div className="w-full h-full bg-primary/10" />
                       )}
                       <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
-                      {post.slug === "lazy-unicorn-raising-angel-round" && (
-                        <div className="absolute top-3 right-3 flex items-center gap-1.5 bg-orange-400/90 backdrop-blur-xl text-background text-[9px] font-semibold tracking-[0.15em] uppercase rounded-full px-3 py-1 shadow-lg">
-                          <Pin className="w-3 h-3" />
-                          Pinned
-                        </div>
-                      )}
                     </div>
 
                     {/* Info */}
