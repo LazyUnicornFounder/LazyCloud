@@ -230,13 +230,13 @@ export default function AutonomyPage() {
       </section>
 
       {/* Engine Cards by Category */}
-      <section className="max-w-6xl mx-auto px-4 pb-24 space-y-12">
+      <section className="max-w-6xl mx-auto px-4 pb-24 space-y-20">
         {ENGINE_CATEGORIES.map((cat) => (
           <div key={cat.label}>
-            <h2 className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground mb-4">
+            <h2 className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground mb-6">
               {cat.label}
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
               {cat.engines.map((engine) => (
                 <EngineCard key={engine.name} engine={engine} />
               ))}
