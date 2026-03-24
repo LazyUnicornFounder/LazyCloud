@@ -284,9 +284,6 @@ const Index = () => {
               <p style={{ fontFamily: "'Playfair Display', serif", fontSize: "0.85rem", color: "#f0ead6", opacity: 0.4, marginTop: "0.5rem" }}>
                 Every engine. One prompt.
               </p>
-              <p className="max-w-lg text-center" style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "0.7rem", color: "#f0ead6", opacity: 0.25, lineHeight: 1.6, letterSpacing: "0.08em", textTransform: "uppercase" }}>
-                Blogger · SEO · GEO · Voice · Store · Pay · SMS · GitHub · GitLab · Stream · Linear · Contentful · Perplexity · Supabase · Alert · Telegram
-              </p>
               <p style={{ fontFamily: "'Playfair Display', serif", fontSize: "0.65rem", color: "#f0ead6", opacity: 0.2, letterSpacing: "0.15em", textTransform: "uppercase", marginTop: "1rem" }}>
                 Made for Lovable
               </p>
