@@ -50,7 +50,6 @@ const engineCategories = [
     label: "Platforms",
     items: [
       { name: "Stream", href: "/lazy-stream" },
-      { name: "Contentful", href: "/lazy-contentful" },
     ],
   },
   {

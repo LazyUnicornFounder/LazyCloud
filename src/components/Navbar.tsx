@@ -148,7 +148,6 @@ const categories: { label: string; items: { label: string; href: string; tagline
     label: "Platforms",
     items: [
       { label: "Stream", href: "/lazy-stream", tagline: "Streams become content.", icon: icons.stream },
-      { label: "Contentful", href: "/lazy-contentful", tagline: "Two-way CMS sync.", icon: icons.contentful },
     ],
   },
   {
