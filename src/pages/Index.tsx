@@ -167,8 +167,47 @@ const Index = () => {
             <span style={{ fontFamily: "'Dancing Script', cursive" }}>Running itself.</span>
           </h1>
           <p className="hero-description mt-6 text-sm sm:text-base md:text-lg leading-relaxed" style={{ color: "#f0ead6", opacity: 0.6 }}>
-            Lazy Unicorn builds autonomous engines for Lovable. Lazy Blogger publishes your blog. Lazy SEO writes keyword-targeted articles and climbs the rankings. Lazy GEO gets your brand cited by ChatGPT, Claude, and Perplexity. Lazy Store runs your Shopify storefront. Lazy Voice turns every post into a podcast episode. Lazy Code converts GitHub commits into changelogs, release notes, and developer blog posts. Lazy Stream repurposes your Twitch streams into written content. Lazy Pay handles payments. Lazy SMS sends campaigns that convert. One prompt installs any engine — it runs and grows your site without you.
+            Lazy Unicorn builds the autonomous layer for Lovable. One prompt installs the engine you need — blog posts that publish themselves, SEO that compounds, payments that optimise, SMS that converts, audio that narrates, stores that grow. Everything your site needs to run and grow without you doing it manually.
           </p>
+
+          {/* Integration logos */}
+          <div className="flex items-center justify-center gap-6 mt-10 opacity-30">
+            {/* Lovable */}
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+              <path d="M14 4L4 14l10 10 10-10L14 4z" stroke="#f0ead6" strokeWidth="1.2" fill="none"/>
+              <path d="M14 9l-5 5 5 5 5-5-5-5z" fill="#f0ead6" opacity="0.4"/>
+            </svg>
+            {/* GitHub */}
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="#f0ead6">
+              <path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.161 22 16.416 22 12c0-5.523-4.477-10-10-10z"/>
+            </svg>
+            {/* Shopify */}
+            <svg width="22" height="26" viewBox="0 0 22 26" fill="#f0ead6">
+              <path d="M15.5 5.2s-.3-.1-.7-.1c-.4 0-.9.1-.9.1s-1.3-1.3-1.5-1.5c-.2-.2-.5-.1-.6-.1l-.4.1S10.1 1 8 1c-.2 0-2.4.1-3.7 2.5C3 5.8 2 8.5 2 8.5L8 10l.1-.3s.4-1.5.5-1.8c.2-.5.5-.7.8-.7.3 0 .5.2.5.6v8.7L15.5 5.2zM12 7.5l-2 .6s.5-2 1.3-2.8c.3.4.7 1.3.7 2.2zM10 3.5c.2 0 .5.1.7.3-.9.9-1.4 2.3-1.6 3.1l-1.8.6S8 5 10 3.5zM8.4 24.5l6.9-1.7s-3-20-3-20.1c0-.1-.1-.2-.3-.2s-3.5.8-3.5.8L8.4 24.5z"/>
+            </svg>
+            {/* Twitch */}
+            <svg width="22" height="24" viewBox="0 0 22 24" fill="#f0ead6">
+              <path d="M2 0L0 5v17h6v3h3l3-3h4l6-6V0H2zm17 14l-3 3h-5l-3 3v-3H4V2h15v12z"/>
+              <path d="M14 6h2v6h-2V6zM9 6h2v6H9V6z"/>
+            </svg>
+            {/* Stripe/Payments */}
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f0ead6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+              <rect x="2" y="5" width="20" height="14" rx="2"/>
+              <line x1="2" y1="10" x2="22" y2="10"/>
+            </svg>
+            {/* ElevenLabs / Audio */}
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f0ead6" strokeWidth="1.5" strokeLinecap="round">
+              <line x1="4" y1="8" x2="4" y2="16"/>
+              <line x1="8" y1="5" x2="8" y2="19"/>
+              <line x1="12" y1="3" x2="12" y2="21"/>
+              <line x1="16" y1="5" x2="16" y2="19"/>
+              <line x1="20" y1="8" x2="20" y2="16"/>
+            </svg>
+          </div>
+          <p className="mt-3 font-body text-[9px] tracking-[0.2em] uppercase" style={{ color: "#f0ead6", opacity: 0.15 }}>
+            Works with Lovable · GitHub · Shopify · Twitch · Stripe · ElevenLabs
+          </p>
+
           <div className="flex items-center justify-center gap-3 mt-8">
             <a
               href="#engines"
