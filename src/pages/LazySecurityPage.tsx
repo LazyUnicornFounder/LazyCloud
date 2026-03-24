@@ -6,37 +6,59 @@ import SEO from "@/components/SEO";
 import Navbar from "@/components/Navbar";
 import { toast } from "sonner";
 
-const LAZY_SECURITY_PROMPT = `You are adding Lazy Security to this Lovable project — an autonomous security monitoring engine powered by Aikido.
+const LAZY_SECURITY_PROMPT = `Add a complete autonomous security monitoring engine called Lazy Security to this project. It connects to Aikido to run automated pentests, tracks vulnerability history, monitors security score over time, generates audit-ready reports, and sends instant alerts for critical findings — all automatically with no manual security work required after setup.
 
-## What to build
+Note: Store the Aikido API key as Supabase secret AIKIDO_API_KEY. Never store in the database.
 
-### Database tables (via migration)
+1. Database Create these Supabase tables with RLS enabled:
 
-1. security_settings — id uuid PK, aikido_api_key text, scan_schedule text default 'monthly', slack_webhook_url text, telegram_chat_id text, is_running boolean default false, setup_complete boolean default false, created_at timestamptz default now()
-2. security_scans — id uuid PK, scan_type text (pentest | static), status text default 'pending', security_score integer, critical_count integer default 0, high_count integer default 0, medium_count integer default 0, low_count integer default 0, info_count integer default 0, report_url text, started_at timestamptz, completed_at timestamptz, created_at timestamptz default now()
-3. security_vulnerabilities — id uuid PK, scan_id uuid FK→security_scans, severity text, title text, description text, remediation text, status text default 'open', fixed_at timestamptz, created_at timestamptz default now()
-4. security_errors — id uuid PK, error_message text, created_at timestamptz default now()
+security_settings: id (uuid, primary key, default gen_random_uuid()), brand_name (text), site_url (text), aikido_project_id (text), pentest_frequency (text, default 'monthly' — one of weekly, monthly, quarterly, manual), alert_critical (boolean, default true), alert_high (boolean, default true), alert_medium (boolean, default false), slack_webhook_url (text), telegram_chat_id (text), next_pentest_at (timestamptz), is_running (boolean, default true), setup_complete (boolean, default false), created_at (timestamptz, default now()).
 
-All tables: enable RLS, add permissive select/insert policies for anon and authenticated.
+security_scans: id (uuid, primary key, default gen_random_uuid()), aikido_scan_id (text, unique), scan_type (text — one of pentest, static, continuous), status (text — one of queued, running, completed, failed), score (integer), critical_count (integer, default 0), high_count (integer, default 0), medium_count (integer, default 0), low_count (integer, default 0), info_count (integer, default 0), started_at (timestamptz), completed_at (timestamptz), report_url (text), created_at (timestamptz, default now()).
 
-### Edge functions
+security_vulnerabilities: id (uuid, primary key, default gen_random_uuid()), scan_id (uuid), aikido_vuln_id (text), title (text), severity (text — one of critical, high, medium, low, informational), category (text), description (text), remediation (text), status (text, default 'open' — one of open, fixed, accepted, regression), first_found_at (timestamptz, default now()), fixed_at (timestamptz), alerted (boolean, default false).
 
-1. security-scan — triggers an Aikido pentest via their API, stores results in security_scans and security_vulnerabilities, sends Slack/Telegram alert for critical/high findings
-2. security-report — generates a formatted pentest report from the latest scan data, returns PDF-ready JSON
-3. security-schedule — cron-compatible function that checks scan_schedule and triggers security-scan when due
+security_reports: id (uuid, primary key, default gen_random_uuid()), scan_id (uuid), title (text), generated_at (timestamptz, default now()), score (integer), summary (text), methodology (text), findings_count (integer), pdf_url (text), public (boolean, default false).
 
-### Pages
+security_errors: id (uuid, primary key, default gen_random_uuid()), function_name (text), error_message (text), created_at (timestamptz, default now()).
 
-1. /lazy-security-setup — setup wizard: enter Aikido API key, configure scan schedule, optional Slack webhook, test connection, save settings
-2. /lazy-security-dashboard — shows current security score, scan history chart, vulnerability list with severity badges, fix tracking, trigger manual scan button, download report button
+2. Setup page Create a page at /lazy-security-setup.
 
-### Admin
+Show a welcome message: Your Lovable site ships fast. Lazy Security makes sure it ships safe. Connect Aikido and your first pentest runs automatically.
 
-Add Lazy Security to /admin with route /admin/security showing scan history, error log, and settings.
+Form fields: Brand name. Site URL (the live URL of your Lovable project — this is what Aikido will pentest). Aikido API key (password) — instructions: create a free account at aikido.dev, go to Settings then API keys, create a new key. Stored as Supabase secret AIKIDO_API_KEY. Aikido Project ID (text) — instructions: after connecting your Lovable project in Aikido go to the project settings and copy the project ID. Pentest frequency (select: Weekly — recommended for active development / Monthly — recommended for stable products / Quarterly — minimum for compliance / Manual only — I will trigger pentests myself). Alert on Critical findings (toggle, default on). Alert on High findings (toggle, default on). Alert on Medium findings (toggle, default off). Slack webhook URL for alerts (text, optional) — if provided critical and high findings send a Slack message immediately. Telegram chat ID for alerts (text, optional) — if provided critical and high findings send a Telegram message immediately. Requires Lazy Telegram to be installed.
 
-### Navigation
+Submit button: Activate Lazy Security
 
-Add Lazy Security to the Security nav group and footer.`;
+On submit: Store AIKIDO_API_KEY as Supabase secret. Save all other values to security_settings. Set setup_complete to true. Set next_pentest_at to now plus 5 minutes to trigger an immediate first pentest. Immediately call security-scan. Redirect to /lazy-security-dashboard with message: Lazy Security is active. Your first pentest is queued. Results will appear here within the next hour.
+
+3. Core scan edge function Create a Supabase edge function called security-scan. Cron: every hour — 0 * * * * (checks if a pentest is due, does not run one every hour).
+
+Read security_settings. If is_running is false or setup_complete is false exit. Check if now is past next_pentest_at. If not exit. Call the Aikido API to trigger a new pentest for the configured project. Use AIKIDO_API_KEY secret. POST to https://app.aikido.dev/api/v1/scans with project_id set to aikido_project_id. Request a full pentest including static and dynamic analysis. Insert into security_scans with the returned aikido_scan_id and status queued. Calculate and set next_pentest_at based on pentest_frequency — weekly adds 7 days, monthly adds 30 days, quarterly adds 90 days, manual sets to null. Call security-poll to begin polling for results. Log errors to security_errors with function_name security-scan.
+
+4. Results polling edge function Create a Supabase edge function called security-poll. Cron: every 10 minutes — */10 * * * *
+
+Read security_settings. Query security_scans where status is queued or running ordered by created_at descending. For each active scan call the Aikido API to check status: GET https://app.aikido.dev/api/v1/scans/[aikido_scan_id] using AIKIDO_API_KEY secret. If status is still running update the security_scans row status to running and exit. If status is completed: Extract overall score, vulnerability counts by severity, list of all findings. Update the security_scans row with score, counts, completed_at, status completed, and report_url if provided. For each vulnerability in the findings: check if it already exists in security_vulnerabilities by aikido_vuln_id. If new insert it. If it existed as fixed update status to regression. For each new critical or high vulnerability where alerted is false: call security-alert. Mark as alerted true. Call security-generate-report with the scan id. If status is failed: update security_scans status to failed. Log to security_errors. Log errors to security_errors with function_name security-poll.
+
+5. Alert edge function Create a Supabase edge function called security-alert handling POST requests with a vulnerability_id.
+
+Read security_settings and the matching security_vulnerabilities row. If slack_webhook_url is set: POST a Slack Block Kit message to the webhook. Header: 🚨 Security Alert — [severity] vulnerability found. Body: [title]. Details: Category, Severity, Remediation summary. Action: View in dashboard at [site_url]/lazy-security-dashboard. If telegram_chat_id is set and TELEGRAM_BOT_TOKEN secret exists: POST a Telegram message via the bot API. Format with MarkdownV2: bold severity header, vulnerability title, one-line remediation hint, dashboard link. Insert into security_errors if sending fails so the alert attempt is logged. Log errors to security_errors with function_name security-alert.
+
+6. Report generation edge function Create a Supabase edge function called security-generate-report handling POST requests with a scan_id.
+
+Read security_settings and the matching security_scans row and all security_vulnerabilities for that scan. Call the built-in Lovable AI: 'You are a security report writer for [brand_name]. Write a professional pentest report executive summary for this security scan. Scan date: [completed_at]. Overall security score: [score] out of 100. Findings: [critical_count] critical, [high_count] high, [medium_count] medium, [low_count] low, [info_count] informational. Top findings: [list of top 5 vulnerability titles and severities]. Write a 150 to 200 word professional executive summary suitable for sharing with enterprise prospects and compliance auditors. Cover: what was tested, the overall security posture, the most significant findings, and the recommended next steps. Do not be alarmist. Be factual and professional. Return only the summary text. No preamble.' Insert into security_reports with: scan_id, title set to Security Assessment Report — [brand_name] — [date], score, summary from AI, methodology set to Automated penetration test combining static analysis and dynamic testing powered by Aikido, findings_count as total vulnerability count, public set to false. Log errors to security_errors with function_name security-generate-report.
+
+7. Continuous monitoring edge function Create a Supabase edge function called security-monitor. Cron: daily at 3am UTC — 0 3 * * *
+
+Read security_settings. If is_running is false exit. Call the Aikido API to run a lightweight static scan — faster and cheaper than a full pentest, checks for new vulnerabilities introduced since the last full scan: GET https://app.aikido.dev/api/v1/projects/[aikido_project_id]/issues using AIKIDO_API_KEY. Compare returned issues to existing security_vulnerabilities. For any new issue not previously seen: insert into security_vulnerabilities. If severity is critical or high call security-alert. For any issue previously open that no longer appears in the results: update status to fixed and set fixed_at to now. Log errors to security_errors with function_name security-monitor.
+
+8. Public security page Create a public page at /security showing a professional security posture page for the site. Show: current security score as a large number with a colour indicator (green above 80, amber 60 to 79, red below 60), last pentest date, a brief statement about the security testing methodology, open vulnerability counts by severity (only show medium, low, and informational publicly — never expose critical or high counts publicly), and a link to request the full pentest report. This page builds enterprise trust and can be linked from pricing pages and sales materials. At the bottom add: 🦄 Security monitored by Lazy Security — autonomous security for Lovable sites. Powered by Aikido. Built by LazyUnicorn.ai — link to https://lazyunicorn.ai.
+
+9. Admin dashboard Create a page at /lazy-security-dashboard. Show at top: a prominent red banner if any critical or high vulnerabilities have status open — showing the count and a Fix These Now button. Green banner if all critical and high issues are resolved. Six sections: Security score overview with current score as a large gauge or number, score trend as a line chart showing the last 10 scans, next scheduled pentest date and time, a Run Pentest Now button that immediately calls security-scan, a Run Quick Scan button that calls security-monitor. Open vulnerabilities showing all security_vulnerabilities where status is open ordered by severity descending with columns for severity badge, title, category, first found date, remediation hint, and a Mark Fixed button grouped by severity with expandable sections. Scan history showing all security_scans ordered by created_at descending with columns for date, type, status, score, critical count, high count, medium count, and a View Report button. Reports showing all security_reports ordered by generated_at descending with title, date, score, findings count, Download Report button, and a Make Public toggle. Fix tracker showing a timeline view of fixed vulnerabilities with title, severity, first found date, fixed date, and days to fix. Controls with pause/resume toggle, pentest frequency select, alert toggles, Slack webhook URL field, error log showing last 10 security_errors rows, and link to /lazy-security-setup labelled Edit Settings.
+
+10. Slash command support If Lazy Alert is installed add these commands to the alert-command edge function: /lazy pentest — triggers security-scan immediately. Reply: Pentest queued. Results will appear in your dashboard within the next hour. /lazy security — shows current security score, open critical and high counts, and next scheduled pentest date. If Lazy Telegram is installed add the same commands to the telegram-command edge function.
+
+11. Navigation Add a Security link to the main site navigation pointing to /security (the public page). Do not add /lazy-security-setup or /lazy-security-dashboard to public navigation.`;
 
 const fadeUp = {
   initial: { opacity: 0, y: 16 },
