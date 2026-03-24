@@ -394,7 +394,7 @@ const LazyCodePage = () => {
             A public roadmap that maintains itself.
           </h2>
           <p className="font-body text-sm text-foreground/50 leading-relaxed">
-            Lazy Code reads your GitHub issues and milestones and publishes a public roadmap to your Lovable site automatically. When you open a new issue it appears in the roadmap. When you close one it moves to done. When you create a milestone it becomes a roadmap section. No Notion page to maintain. No Trello board to update. Your GitHub is the source of truth and the roadmap reflects it in real time.
+            Lazy GitHub reads your GitHub issues and milestones and publishes a public roadmap to your Lovable site automatically. When you open a new issue it appears in the roadmap. When you close one it moves to done. When you create a milestone it becomes a roadmap section. No Notion page to maintain. No Trello board to update. Your GitHub is the source of truth and the roadmap reflects it in real time.
           </p>
         </div>
       </section>
