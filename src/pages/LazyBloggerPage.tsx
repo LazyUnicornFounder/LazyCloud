@@ -11,16 +11,16 @@ import { useCurrentPrompt } from "@/hooks/usePrompt";
 
 const fadeUp = { hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0 } };
 
-function FrequencyModal({ open, onClose, onCopy }: { open: boolean; onClose: () => void; onCopy: (tier: FrequencyTier) => void }) {
+function FrequencyModal({ open, onClose, onCopy, template }: { open: boolean; onClose: () => void; onCopy: (tier: FrequencyTier) => void; template?: string }) {
   const [copied, setCopied] = useState<number | null>(null);
 
   const handleCopy = useCallback(async (tier: FrequencyTier) => {
-    await navigator.clipboard.writeText(buildPrompt(tier));
+    await navigator.clipboard.writeText(buildPrompt(tier, template));
     setCopied(tier.postsPerDay);
     onCopy(tier);
     toast.success(`Copied! Paste this into your Lovable project chat.`);
     setTimeout(() => setCopied(null), 2500);
-  }, [onCopy]);
+  }, [onCopy, template]);
 
   if (!open) return null;
 
