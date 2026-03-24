@@ -191,7 +191,7 @@ export default function AutonomyPage() {
   return (
     <>
       <SEO
-        title="Autonomy Levels — LazyUnicorn"
+        title="Autonomy Levels — Lazy Unicorn"
         description="Explore what each Lazy engine does at every level of autonomy — from fully manual to self-improving."
       />
       <Navbar />
