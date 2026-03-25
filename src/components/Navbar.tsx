@@ -323,12 +323,24 @@ const Navbar = ({ activePage = "home" }: NavbarProps) => {
               <a href="/how-it-works" onClick={() => setOpen(false)} className="font-body text-[13px] tracking-[0.12em] uppercase text-foreground/50 hover:text-foreground transition-colors font-semibold">
                 How It Works
               </a>
-              <a href="/use-cases" onClick={() => setOpen(false)} className="font-body text-[13px] tracking-[0.12em] uppercase text-foreground/50 hover:text-foreground transition-colors font-semibold">
-                Use Cases
-              </a>
-              <a href="/lazy-run" onClick={() => setOpen(false)} className="font-body text-[13px] tracking-[0.12em] uppercase text-foreground/50 hover:text-foreground transition-colors font-semibold">
-                Lazy Run
-              </a>
+            <div>
+                <button
+                  onClick={() => toggleMobileDropdown("Lazy Unicorn")}
+                  className="font-body text-[13px] tracking-[0.12em] uppercase text-foreground/50 hover:text-foreground transition-colors flex items-center gap-1 w-full font-semibold"
+                >
+                  Lazy Unicorn
+                  <ChevronDown size={12} className={`transition-transform ${mobileDropdowns["Lazy Unicorn"] ? "rotate-180" : ""}`} />
+                </button>
+                {mobileDropdowns["Lazy Unicorn"] && (
+                  <div className="mt-2 space-y-1 pl-2">
+                    {[{ label: "Lazy Run", href: "/lazy-run" }, { label: "Lazy Admin", href: "/lazy-admin" }].map((item) => (
+                      <a key={item.label} href={item.href} onClick={() => setOpen(false)} className="block py-2 font-body text-[12px] tracking-[0.1em] uppercase text-foreground/35 hover:text-foreground transition-colors">
+                        {item.label}
+                      </a>
+                    ))}
+                  </div>
+                )}
+              </div>
 
               {categories.map((cat) => (
                 <div key={cat.label}>
@@ -358,7 +370,7 @@ const Navbar = ({ activePage = "home" }: NavbarProps) => {
               ))}
 
               {[
-                { label: "Lazy Admin", href: "/lazy-admin" },
+                { label: "Pricing", href: "/pricing" },
                 { label: "Pricing", href: "/pricing" },
                 { label: "Autonomy", href: "/autonomy" },
                 { label: "Blog", href: "/blog" },
