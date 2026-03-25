@@ -391,7 +391,6 @@ const Navbar = ({ activePage = "home" }: NavbarProps) => {
 
 
               <div className="flex items-center gap-3 pt-2 border-t border-border">
-                
                 {socialIcons}
               </div>
             </div>
