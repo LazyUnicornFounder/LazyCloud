@@ -1,8 +1,57 @@
-import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight, FileText, BookOpen } from "lucide-react";
 import SEO from "@/components/SEO";
 import Navbar from "@/components/Navbar";
+
+const rotatingWords = [
+  { word: "blogs", emoji: "✍️" },
+  { word: "SEO", emoji: "🔍" },
+  { word: "stores", emoji: "🛒" },
+  { word: "GEO", emoji: "🌐" },
+  { word: "streams", emoji: "🎬" },
+  { word: "voice", emoji: "🎙️" },
+  { word: "security", emoji: "🛡️" },
+  { word: "payments", emoji: "💳" },
+  { word: "alerts", emoji: "🔔" },
+  { word: "devlogs", emoji: "👨‍💻" },
+];
+
+function RotatingHeadline() {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((prev) => (prev + 1) % rotatingWords.length);
+    }, 2000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const current = rotatingWords[index];
+
+  return (
+    <p className="font-display text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight text-foreground/80 mb-4">
+      Lovable<span className="mx-1">❤️</span>
+      <span className="inline-flex items-center min-w-[140px] md:min-w-[180px] justify-center relative">
+        <AnimatePresence mode="wait">
+          <motion.span
+            key={current.word}
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: -20, opacity: 0 }}
+            transition={{ duration: 0.35 }}
+            className="inline-flex items-center gap-1 text-primary"
+          >
+            {current.word}<span>{current.emoji}</span>
+          </motion.span>
+        </AnimatePresence>
+      </span>
+      <br className="sm:hidden" />
+      on autopilot<span className="ml-1">🤖</span>
+    </p>
+  );
+}
 
 const fade = { initial: { opacity: 0, y: 20 }, whileInView: { opacity: 1, y: 0 }, viewport: { once: true }, transition: { duration: 0.5 } };
 
@@ -88,6 +137,7 @@ export default function HowItWorksPage() {
               <span className="font-body text-[10px] tracking-[0.2em] uppercase text-[#c8a961]/60 mb-6 block">
                 The autonomous layer for Lovable
               </span>
+              <RotatingHeadline />
               <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 leading-[1.1]">
                 Lovable gave everyone a website. Lazy Unicorn makes it work while you sleep.
               </h1>
