@@ -266,7 +266,7 @@ const Index = () => {
             <br />
             website autonomous🤖
           </h1>
-          <p className="tracking-[0.2em] uppercase" style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(0.7rem, 1.2vw, 0.9rem)", color: "#f0ead6", opacity: 0.45, letterSpacing: "0.2em" }}>
+          <p className="tracking-[0.2em] uppercase" style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(1rem, 1.8vw, 1.3rem)", color: "#f0ead6", opacity: 0.45, letterSpacing: "0.2em" }}>
             One prompt, everything runs itself.
           </p>
 
