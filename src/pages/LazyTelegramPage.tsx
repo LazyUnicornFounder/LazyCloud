@@ -248,6 +248,8 @@ const LazyTelegramPage = () => {
               { q: "Is it different from Lazy Alert?", a: "Lazy Alert sends to Slack. Lazy Telegram sends to Telegram. Both install with one prompt and can run simultaneously." },
               { q: "Can I send to a Telegram group?", a: "Yes. Add your bot to a group and use the group chat ID. Multi-group routing is coming in Pro." },
               { q: "Do the bot commands work?", a: "Yes. Commands like /status, /publish, /pause, and /errors work in any chat where your bot is present." },
+              { q: "How do I know when there's an update?", a: "Check the changelog at /changelog. Every engine update is versioned and documented with upgrade instructions." },
+              { q: "How do I upgrade to a new prompt version?", a: "Visit the upgrade guide at /upgrade-guide. Copy the latest prompt and paste it into your Lovable project. Your existing data and settings are preserved." },
             ].map((faq, i) => (
               <motion.div key={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} transition={{ delay: i * 0.05 }} className="border-b last:border-b-0 border-border bg-card p-5">
                 <h3 className="font-display text-sm font-bold text-foreground mb-1">{faq.q}</h3>

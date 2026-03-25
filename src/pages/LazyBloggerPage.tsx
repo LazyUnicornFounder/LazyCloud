@@ -208,6 +208,8 @@ const LazyBloggerPage = () => {
               { q: "Do I need to know how to code?", a: "No. Paste the prompt, answer five questions, done." },
               { q: "Will the posts sound like me?", a: "You tell it your business, your audience, your topics, and your tone. The more specific you are, the better it writes." },
               { q: "Can I change settings later?", a: "Yes. Visit /lazy-blogger-setup on your site anytime to update topics, tone, or frequency." },
+              { q: "How do I know when there's an update?", a: "Check the changelog at /changelog. Every engine update is versioned and documented with upgrade instructions." },
+              { q: "How do I upgrade to a new prompt version?", a: "Visit the upgrade guide at /upgrade-guide. Copy the latest prompt and paste it into your Lovable project. Your existing data and settings are preserved." },
             ].map((faq, i) => (
               <motion.div key={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} transition={{ delay: i * 0.05 }} className="border-b last:border-b-0 border-border bg-card p-5">
                 <h3 className="font-display text-sm font-bold text-foreground mb-1">{faq.q}</h3>
