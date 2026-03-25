@@ -362,6 +362,8 @@ const LazyStorePage = () => {
     { q: "Will the listings sound generic?", a: "You set the brand voice, niche, and tone in the five-question setup. The AI writes every listing in your brand voice." },
     { q: "What if a product page is not converting?", a: "The conversion optimiser detects underperforming pages weekly and rewrites them automatically. You do not need to identify or fix them manually." },
     { q: "Can I add my own products?", a: "Yes. Manually added products get the same AI-written listings, pricing monitoring, and conversion optimisation as auto-discovered ones." },
+    { q: "How do I know when there's an update?", a: "Check the changelog at /changelog. Every engine update is versioned and documented with upgrade instructions." },
+    { q: "How do I upgrade to a new prompt version?", a: "Visit the upgrade guide at /upgrade-guide. Copy the latest prompt and paste it into your Lovable project. Your existing data and settings are preserved." },
   ];
 
   return (

@@ -252,6 +252,8 @@ const LazyGitLabPage = () => {
               { q: "What is a merge request summary?", a: "When a merge request is merged, Lazy GitLab writes a plain-English explanation of what changed and why." },
               { q: "Does it work with private repositories?", a: "Yes. Your GitLab token authenticates access to private repos. No code is ever exposed publicly." },
               { q: "Is it different from Lazy Code?", a: "Lazy Code is for GitHub. Lazy GitLab is for GitLab. Identical features, different platform." },
+              { q: "How do I know when there's an update?", a: "Check the changelog at /changelog. Every engine update is versioned and documented with upgrade instructions." },
+              { q: "How do I upgrade to a new prompt version?", a: "Visit the upgrade guide at /upgrade-guide. Copy the latest prompt and paste it into your Lovable project. Your existing data and settings are preserved." },
             ].map((faq, i) => (
               <motion.div key={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} transition={{ delay: i * 0.05 }} className="border-b last:border-b-0 border-border bg-card p-5">
                 <h3 className="font-display text-sm font-bold text-foreground mb-1">{faq.q}</h3>

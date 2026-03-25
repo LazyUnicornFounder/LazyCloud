@@ -299,6 +299,8 @@ const faqs = [
   { q: "What happens to abandoned checkouts?", a: "When a Stripe checkout session expires without completing, Lazy Pay logs it and sends a single recovery email 24 hours later with a fresh checkout link. You never see it happen." },
   { q: "Does it work with Lazy Store?", a: "Yes. Products listed by Lazy Store automatically get Stripe checkout attached when Lazy Pay is installed in the same project." },
   { q: "Is this PCI compliant?", a: "Yes. Stripe handles all card data. Lazy Pay never stores card numbers or sensitive payment information." },
+  { q: "How do I know when there's an update?", a: "Check the changelog at /changelog. Every engine update is versioned and documented with upgrade instructions." },
+  { q: "How do I upgrade to a new prompt version?", a: "Visit the upgrade guide at /upgrade-guide. Copy the latest prompt and paste it into your Lovable project. Your existing data and settings are preserved." },
 ];
 
 export default function LazyPayPage() {
