@@ -12,9 +12,9 @@ import { Badge } from "@/components/ui/badge";
 
 const fade = { hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0, transition: { duration: 0.5 } } };
 
-type Category = "All" | "Payments" | "Communication" | "Lazy Media" | "Lazy Content" | "Lazy Dev" | "Lazy Commerce" | "Lazy Shield";
+type Category = "All" | "Lazy Content" | "Lazy Commerce" | "Lazy Media" | "Lazy Dev" | "Lazy Channels" | "Lazy Shield";
 
-const filters: Category[] = ["All", "Lazy Content", "Lazy Commerce", "Payments", "Communication", "Lazy Dev", "Lazy Media", "Lazy Shield"];
+const filters: Category[] = ["All", "Lazy Content", "Lazy Commerce", "Lazy Media", "Lazy Dev", "Lazy Channels", "Lazy Shield"];
 
 interface Integration {
   name: string;
@@ -30,7 +30,7 @@ interface Integration {
 const integrations: Integration[] = [
   {
     name: "Stripe",
-    category: "Payments",
+    category: "Lazy Commerce",
     description: "Handle one-time payments and subscriptions in your Lovable site using chat-driven setup with no manual coding.",
     unlocks: [
       "Accept payments for products, services, or digital downloads.",
@@ -45,7 +45,7 @@ const integrations: Integration[] = [
   },
   {
     name: "Twilio",
-    category: "Communication",
+    category: "Lazy Commerce",
     description: "Send SMS and MMS messages, make voice calls, and add phone-based communication to your Lovable site.",
     unlocks: [
       "Send payment confirmation texts instantly when a customer pays.",
@@ -137,7 +137,7 @@ const integrations: Integration[] = [
   },
   {
     name: "Slack",
-    category: "Communication",
+    category: "Lazy Channels",
     description: "Send alerts, read channels, and post updates from your Lovable site to any Slack workspace.",
     unlocks: [
       "Get an instant Slack message every time a payment comes in.",
@@ -152,7 +152,7 @@ const integrations: Integration[] = [
   },
   {
     name: "Telegram",
-    category: "Communication",
+    category: "Lazy Channels",
     description: "Send messages and receive commands through bots — connecting your Lovable site to Telegram.",
     unlocks: [
       "Get real-time Telegram messages for every significant engine event.",
@@ -182,7 +182,7 @@ const integrations: Integration[] = [
   },
   {
     name: "Supabase",
-    category: "Lazy Dev",
+    category: "Lazy Channels",
     description: "Authenticate users and store data — the backbone of every Lovable project, now with autonomous milestone monitoring.",
     unlocks: [
       "Publish a celebration post automatically when you hit 100, 500, or 1,000 users.",
@@ -197,7 +197,7 @@ const integrations: Integration[] = [
   },
   {
     name: "Contentful",
-    category: "Lazy Content",
+    category: "Lazy Channels",
     description: "Sync content between your Lovable site and Contentful in both directions — automatically, continuously.",
     unlocks: [
       "Pull published Contentful entries into your Lovable site automatically.",
