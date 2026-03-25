@@ -137,6 +137,7 @@ export default function HowItWorksPage() {
               <span className="font-body text-[10px] tracking-[0.2em] uppercase text-[#c8a961]/60 mb-6 block">
                 The autonomous layer for Lovable
               </span>
+              <RotatingHeadline />
               <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 leading-[1.1]">
                 Lovable gave everyone a website. Lazy Unicorn makes it work while you sleep.
               </h1>
