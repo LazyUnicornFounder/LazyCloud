@@ -386,7 +386,7 @@ export default function LazyRunPage() {
             variants={fadeUp} initial="hidden" animate="visible" transition={{ delay: 0.1 }}
             className="font-display text-4xl md:text-6xl font-bold tracking-tight leading-[1.1] mb-6"
           >
-            The missing half of Lovable.
+            The autonomous half of Lovable.
             <br />
             In one prompt.
           </motion.h1>
