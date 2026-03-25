@@ -185,6 +185,21 @@ const sketches: Record<string, JSX.Element> = {
       <path d="M48 58 L56 66 L74 48" />
     </svg>
   ),
+  Admin: (
+    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="#f0ead6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="25" y="25" width="70" height="70" rx="5" />
+      <line x1="25" y1="45" x2="95" y2="45" />
+      <line x1="55" y1="45" x2="55" y2="95" />
+      <circle cx="40" cy="35" r="3" fill="#f0ead6" stroke="none" />
+      <circle cx="50" cy="35" r="3" fill="#f0ead6" stroke="none" />
+      <rect x="32" y="55" width="16" height="12" rx="1" />
+      <rect x="32" y="75" width="16" height="12" rx="1" />
+      <line x1="62" y1="60" x2="88" y2="60" />
+      <line x1="62" y1="68" x2="80" y2="68" />
+      <line x1="62" y1="80" x2="88" y2="80" />
+      <line x1="62" y1="88" x2="75" y2="88" />
+    </svg>
+  ),
   "Coming Soon": (
     <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="#f0ead6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       <circle cx="60" cy="55" r="25" />
