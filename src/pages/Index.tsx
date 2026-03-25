@@ -362,9 +362,9 @@ const Index = () => {
           {products.map((product, i) => {
             const bgEven = "#0a0a08";
             const bgOdd = "#111110";
-            // Offset checkerboard by 1 since Lazy Run takes the first row
-            const row = Math.floor(i / 2) + 1;
-            const col = i % 2;
+            // Offset by 2 since Lazy Run + Lazy Admin take the first row
+            const row = Math.floor((i + 2) / 2);
+            const col = (i + 2) % 2;
             const bg = (row + col) % 2 === 0 ? bgEven : bgOdd;
             const isComingSoon = product.name === "Coming Soon";
 
