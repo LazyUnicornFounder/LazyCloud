@@ -59,9 +59,9 @@ const engineCategories = [
 ];
 
 const resources = [
-  { name: "Autonomy", href: "/autonomy" },
   { name: "Pricing", href: "/pricing" },
   { name: "Blog", href: "/blog" },
+  { name: "Autonomy", href: "/autonomy" },
   { name: "About", href: "/about" },
 ];
 
