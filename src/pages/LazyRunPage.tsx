@@ -114,7 +114,7 @@ Show a welcome screen: "Welcome to Lazy Run. In the next 5 minutes you will set 
 Show a Next button.
 
 **Step 2 — Choose engines**
-Show nine engine cards in a grid — one per engine. Each card shows: engine name, one-line description, and an on/off toggle. Default all content engines to on (Blogger, SEO, GEO). Default commerce and media engines to off.
+Show eighteen engine cards in a grid — one per engine. Each card shows: engine name, one-line description, and an on/off toggle. Default all content engines to on (Blogger, SEO, GEO). Default commerce and media engines to off.
 
 Engine descriptions:
 - Lazy Blogger: Publishes blog posts automatically every 15 minutes
