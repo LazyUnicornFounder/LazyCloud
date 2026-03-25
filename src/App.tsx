@@ -127,6 +127,7 @@ const App = () => (
               <Route path="/lazy-security" element={<LazySecurityPage />} />
               <Route path="/changelog" element={<ChangelogPage />} />
               <Route path="/upgrade-guide" element={<UpgradeGuidePage />} />
+              <Route path="/how-it-works" element={<HowItWorksPage />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
