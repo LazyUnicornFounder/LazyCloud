@@ -12,9 +12,9 @@ import { Badge } from "@/components/ui/badge";
 
 const fade = { hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0, transition: { duration: 0.5 } } };
 
-type Category = "All" | "Payments" | "Communication" | "Lazy Media" | "Lazy Content" | "Lazy Dev" | "Lazy Commerce" | "Lazy Shield";
+type Category = "All" | "Lazy Content" | "Lazy Commerce" | "Lazy Media" | "Lazy Dev" | "Lazy Channels" | "Lazy Shield";
 
-const filters: Category[] = ["All", "Lazy Content", "Lazy Commerce", "Payments", "Communication", "Lazy Dev", "Lazy Media", "Lazy Shield"];
+const filters: Category[] = ["All", "Lazy Content", "Lazy Commerce", "Lazy Media", "Lazy Dev", "Lazy Channels", "Lazy Shield"];
 
 interface Integration {
   name: string;
