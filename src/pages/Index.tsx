@@ -280,7 +280,7 @@ const Index = () => {
           {/* CTA */}
           <a
             href="#engines"
-            className="mt-6 inline-block text-[10px] tracking-[0.15em] uppercase px-4 py-1.5 font-semibold hover:opacity-80 transition-opacity active:scale-[0.97]"
+            className="mt-6 inline-block text-sm tracking-[0.15em] uppercase px-8 py-3 font-semibold hover:opacity-80 transition-opacity active:scale-[0.97]"
             style={{ fontFamily: "'Playfair Display', serif", backgroundColor: "#f0ead6", color: "#0a0a08", borderRadius: 0 }}
           >
             See the Engines
