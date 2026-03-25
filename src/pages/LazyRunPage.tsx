@@ -328,6 +328,7 @@ const engines = [
   { name: "Lazy Supabase", desc: "Narrates your database growth story automatically.", icon: Database, href: "/lazy-supabase" },
   { name: "Lazy Alert", desc: "Every engine event reported to Slack in real time.", icon: Bell, href: "/lazy-alert" },
   { name: "Lazy Telegram", desc: "Real-time engine reporting via Telegram bot.", icon: Send, href: "/lazy-telegram" },
+  { name: "Lazy Security", desc: "Autonomous pentesting and vulnerability monitoring via Aikido.", icon: Shield, href: "/lazy-security" },
 ];
 
 const faqs = [
