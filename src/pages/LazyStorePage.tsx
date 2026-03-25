@@ -14,7 +14,7 @@ import { toast } from "sonner";
 
 const fadeUp = { hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0 } };
 
-const FALLBACK_PROMPT = `[Lazy Store Prompt — v0.0.3 — LazyUnicorn.ai]
+const FALLBACK_PROMPT = `[Lazy Store Prompt — v0.0.4 — LazyUnicorn.ai]
 
 Add an autonomous e-commerce engine called Lazy Store to this project. It automatically discovers products, writes listings, monitors pricing, runs promotions, optimises conversion, and publishes SEO content — with no manual input required after setup. Payments are handled by Stripe checkout. All management pages are admin-only.
 
@@ -118,7 +118,7 @@ On submit:
 3. Set setup_complete to true
 4. Immediately call store-discover once
 5. Show loading: "Discovering products for your store..."
-6. Redirect to /lazy-store-dashboard with message: "Your store is live. Products are being discovered and listed automatically."
+6. Redirect to /admin with message: "Your store is live. Products are being discovered and listed automatically."
 
 ---
 
@@ -219,24 +219,17 @@ Show payment success message and link to /store.
 
 ---
 
-## 6. Admin dashboard
+## 6. Admin
 
-Create a page at /lazy-store-dashboard.
+Do not build a standalone dashboard page for this engine. The dashboard lives at /admin/store as part of the unified LazyUnicorn admin panel, which is built separately using the LazyUnicorn Admin Dashboard prompt. This engine only needs its setup page, database tables, edge functions, and public pages.
 
-Show at top: red error banner if store_errors has rows from the last 24 hours.
-
-Four sections:
-- Overview: total products, active promotions, total content pieces, average conversion rate
-- Products table: all store_products with name, price, views, sales, conversion_rate, last_optimised, active promotion badge. Inline add product form: name, category, suggested_price — inserts and triggers store-listings.
-- Content table: all store_content with title, type, target_keyword, published date, view link
-- Controls: pause/resume toggle, Discover Products Now button, Optimise Listings Now button, Run Promotions Now button, Publish Content Now button, error log showing last 10 store_errors, link to /lazy-store-setup
-
----
+If /admin does not yet exist on this project add a simple placeholder at /admin with the text: "Install the LazyUnicorn Admin Dashboard to manage all engines in one place." and a link to /lazy-store-setup.
 
 ## 7. Navigation
 
 Add a Shop link to the main site navigation pointing to /store.
-Do not add /lazy-store-setup or /lazy-store-dashboard to public navigation.`;
+Add an Admin link to the main site navigation pointing to /admin.
+Do not add /lazy-store-setup to public navigation.`;
 
 /* ── Reusable copy button ── */
 function CopyPromptButton({
