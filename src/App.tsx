@@ -1,5 +1,5 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
@@ -38,6 +38,9 @@ import LazyPerplexityPage from "./pages/LazyPerplexityPage.tsx";
 import PricingPage from "./pages/PricingPage.tsx";
 import AutonomyPage from "./pages/AutonomyPage.tsx";
 import LazySecurityPage from "./pages/LazySecurityPage.tsx";
+import LazyAdminPage from "./pages/LazyAdminPage.tsx";
+import ChangelogPage from "./pages/ChangelogPage.tsx";
+import UpgradeGuidePage from "./pages/UpgradeGuidePage.tsx";
 import PublicLayout from "./components/PublicLayout.tsx";
 
 import AdminLayout from "./pages/admin/AdminLayout.tsx";
@@ -50,6 +53,7 @@ import AdminVoicePage from "./pages/admin/AdminVoicePage.tsx";
 import AdminSettingsPage from "./pages/admin/AdminSettingsPage.tsx";
 import AdminPlaceholderPage from "./pages/admin/AdminPlaceholderPage.tsx";
 import AdminAnalyticsPage from "./pages/admin/AdminAnalyticsPage.tsx";
+import AdminChangelogPage from "./pages/admin/AdminChangelogPage.tsx";
 
 const queryClient = new QueryClient();
 
@@ -65,17 +69,28 @@ const App = () => (
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/admin" element={<AdminLayout />}>
-                <Route index element={<AdminOverview />} />
+                <Route index element={<Navigate to="/admin/overview" replace />} />
+                <Route path="overview" element={<AdminOverview />} />
                 <Route path="analytics" element={<AdminAnalyticsPage />} />
                 <Route path="blogger" element={<AdminBloggerPage />} />
                 <Route path="seo" element={<AdminSeoPage />} />
                 <Route path="geo" element={<AdminGeoPage />} />
+                <Route path="crawl" element={<AdminPlaceholderPage name="Lazy Crawl" />} />
+                <Route path="perplexity" element={<AdminPlaceholderPage name="Lazy Perplexity" />} />
                 <Route path="store" element={<AdminPlaceholderPage name="Lazy Store" />} />
                 <Route path="voice" element={<AdminVoicePage />} />
                 <Route path="pay" element={<AdminPlaceholderPage name="Lazy Pay" />} />
                 <Route path="sms" element={<AdminPlaceholderPage name="Lazy SMS" />} />
                 <Route path="stream" element={<AdminStreamPage />} />
                 <Route path="code" element={<AdminPlaceholderPage name="Lazy Code" />} />
+                <Route path="gitlab" element={<AdminPlaceholderPage name="Lazy GitLab" />} />
+                <Route path="linear" element={<AdminPlaceholderPage name="Lazy Linear" />} />
+                <Route path="alert" element={<AdminPlaceholderPage name="Lazy Alert" />} />
+                <Route path="telegram" element={<AdminPlaceholderPage name="Lazy Telegram" />} />
+                <Route path="contentful" element={<AdminPlaceholderPage name="Lazy Contentful" />} />
+                <Route path="supabase-monitor" element={<AdminPlaceholderPage name="Lazy Supabase" />} />
+                <Route path="security" element={<AdminPlaceholderPage name="Lazy Security" />} />
+                <Route path="changelog" element={<AdminChangelogPage />} />
                 <Route path="settings" element={<AdminSettingsPage />} />
               </Route>
               <Route path="/blog" element={<Blog />} />
@@ -105,10 +120,12 @@ const App = () => (
               <Route path="/lazy-linear" element={<LazyLinearPage />} />
               <Route path="/lazy-contentful" element={<LazyContentfulPage />} />
               <Route path="/lazy-perplexity" element={<LazyPerplexityPage />} />
+              <Route path="/lazy-admin" element={<LazyAdminPage />} />
               <Route path="/pricing" element={<PricingPage />} />
               <Route path="/autonomy" element={<AutonomyPage />} />
               <Route path="/lazy-security" element={<LazySecurityPage />} />
-              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+              <Route path="/changelog" element={<ChangelogPage />} />
+              <Route path="/upgrade-guide" element={<UpgradeGuidePage />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
