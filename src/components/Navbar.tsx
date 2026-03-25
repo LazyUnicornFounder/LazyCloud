@@ -268,15 +268,13 @@ const Navbar = ({ activePage = "home" }: NavbarProps) => {
             <a href="/how-it-works" className="font-body text-[11px] tracking-[0.15em] uppercase font-bold text-foreground/50 hover:text-foreground transition-colors">
               How It Works
             </a>
-            <a href="/use-cases" className="font-body text-[11px] tracking-[0.15em] uppercase font-bold text-foreground/50 hover:text-foreground transition-colors">
-              Use Cases
-            </a>
-            <a href="/lazy-run" className="font-body text-[11px] tracking-[0.15em] uppercase font-bold text-foreground/50 hover:text-foreground transition-colors">
-              Lazy Run
-            </a>
-            <a href="/lazy-admin" className="font-body text-[11px] tracking-[0.15em] uppercase font-bold text-foreground/50 hover:text-foreground transition-colors">
-              Lazy Admin
-            </a>
+            <SimpleDropdown
+              label="Lazy Unicorn"
+              children={[
+                { label: "Lazy Run", href: "/lazy-run" },
+                { label: "Lazy Admin", href: "/lazy-admin" },
+              ]}
+            />
 
             {categories.map((cat) => (
               <CategoryDropdown key={cat.label} label={cat.label} items={cat.items} />
