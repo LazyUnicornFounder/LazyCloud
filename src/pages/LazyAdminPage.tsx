@@ -31,7 +31,7 @@ const engineGroups = [
   { label: "Lazy Content", color: "text-[#c8a961]", engines: ["Blogger", "SEO", "GEO", "Crawl", "Perplexity"] },
   { label: "Lazy Commerce", color: "text-emerald-400", engines: ["Store", "Pay", "SMS"] },
   { label: "Lazy Media", color: "text-blue-400", engines: ["Voice", "Stream"] },
-  { label: "Lazy Dev", color: "text-purple-400", engines: ["Code", "GitLab", "Linear"] },
+  { label: "Lazy Dev", color: "text-purple-400", engines: ["GitHub", "GitLab", "Linear"] },
   { label: "Lazy Channels", color: "text-foreground/50", engines: ["Alert", "Telegram", "Contentful", "Supabase"] },
   { label: "Lazy Shield", color: "text-red-400", engines: ["Security"] },
 ];
