@@ -66,7 +66,7 @@ function EngineCard({ engine }: { engine: EngineData }) {
       {/* Header */}
       <div className="flex items-start justify-between gap-2">
         <div>
-          <h3 className="text-sm font-semibold text-foreground">
+          <h3 className="text-lg md:text-xl font-bold text-foreground">
             {engine.link ? (
               <Link to={engine.link} className="hover:underline">
                 {engine.name}
