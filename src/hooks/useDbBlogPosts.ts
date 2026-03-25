@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import type { BlogPost } from "@/data/blogPosts";
+import unicornBg from "@/assets/unicorn-beach.png";
 
 export interface DbBlogPost {
   id: string;
