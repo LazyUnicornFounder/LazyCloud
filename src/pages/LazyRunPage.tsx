@@ -345,7 +345,7 @@ const dashboardFeatures = [
   { icon: Clock, title: "Smart scheduling", desc: "Engines are staggered automatically so they never compete for resources or API limits." },
 ];
 
-function CopyPromptButton({ label = "Copy the Lovable Prompt" }: { label?: string }) {
+function CopyPromptButton({ label = "COPY THE LOVABLE PROMPT" }: { label?: string }) {
   const [copied, setCopied] = useState(false);
   const handleCopy = useCallback(() => {
     navigator.clipboard.writeText(LAZY_RUN_PROMPT);
