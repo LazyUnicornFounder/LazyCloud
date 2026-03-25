@@ -308,6 +308,51 @@ export type Database = {
         }
         Relationships: []
       }
+      prompt_releases: {
+        Row: {
+          change_type: string
+          changes: string | null
+          created_at: string
+          download_url: string | null
+          engine_name: string
+          id: string
+          published: boolean
+          release_date: string
+          summary: string
+          upgrade_complexity: string
+          upgrade_instructions: string | null
+          version: string
+        }
+        Insert: {
+          change_type: string
+          changes?: string | null
+          created_at?: string
+          download_url?: string | null
+          engine_name: string
+          id?: string
+          published?: boolean
+          release_date: string
+          summary: string
+          upgrade_complexity?: string
+          upgrade_instructions?: string | null
+          version: string
+        }
+        Update: {
+          change_type?: string
+          changes?: string | null
+          created_at?: string
+          download_url?: string | null
+          engine_name?: string
+          id?: string
+          published?: boolean
+          release_date?: string
+          summary?: string
+          upgrade_complexity?: string
+          upgrade_instructions?: string | null
+          version?: string
+        }
+        Relationships: []
+      }
       prompt_versions: {
         Row: {
           created_at: string
