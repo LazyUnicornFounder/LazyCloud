@@ -14,7 +14,7 @@ const fade = { hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0, transiti
 
 type Category = "All" | "Payments" | "Communication" | "Media" | "Content" | "Developer" | "Commerce" | "Security";
 
-const filters: Category[] = ["All", "Content", "Commerce", "Payments", "Communication", "Developer", "Media", "Security"];
+const filters: Category[] = ["All", "Lazy Content", "Lazy Commerce", "Payments", "Communication", "Lazy Dev", "Lazy Media", "Lazy Shield"];
 
 interface Integration {
   name: string;

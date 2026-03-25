@@ -110,21 +110,6 @@ export const ENGINE_CATEGORIES: EngineCategory[] = [
           "It publishes citation-rich content from live trends. Coming soon.",
           "It tracks your citation rate and optimises for it. Coming soon.",
         ],
-      },
-      {
-        name: "Lazy Contentful",
-        description: "Two-way content sync with Contentful",
-        currentLevel: 3,
-        link: "/lazy-contentful",
-        levels: [
-          "You copy content between systems by hand.",
-          "CSV export/import. Always behind.",
-          "Nightly sync job. One-directional and fragile.",
-          "Two-way sync. Every post appears in both systems automatically.",
-          "It adapts content format per Contentful content type. Coming soon.",
-          "It prioritises what syncs based on performance. Coming soon.",
-        ],
-      },
     ],
   },
   {
