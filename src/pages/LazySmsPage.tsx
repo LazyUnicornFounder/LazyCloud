@@ -251,6 +251,8 @@ const faqs = [
   { q: "Does it work without Lazy Pay?", a: "Yes. Lazy SMS works standalone. You can trigger messages from any event in your Supabase database. But combined with Lazy Pay it covers the full customer payment journey automatically." },
   { q: "How does the self-improvement work?", a: "Lazy SMS tracks response rates per message weekly. When a message falls below a response rate threshold it uses AI to rewrite it and replaces it in the sequence." },
   { q: "What countries does it support?", a: "Twilio supports SMS in 180+ countries. Phone number availability and pricing varies by country." },
+  { q: "How do I know when there's an update?", a: "Check the changelog at /changelog. Every engine update is versioned and documented with upgrade instructions." },
+  { q: "How do I upgrade to a new prompt version?", a: "Visit the upgrade guide at /upgrade-guide. Copy the latest prompt and paste it into your Lovable project. Your existing data and settings are preserved." },
 ];
 
 export default function LazySmsPage() {

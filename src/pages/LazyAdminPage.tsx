@@ -40,6 +40,8 @@ const faqs = [
   { q: "Can I trigger engine runs from the dashboard?", a: "Yes. Every engine panel has a Run Now button that calls that engine's primary function immediately without leaving the dashboard." },
   { q: "Does it work if I do not use Lazy Run?", a: "Yes. Lazy Admin works independently of Lazy Run. Lazy Run provides the run_activity and run_performance tables that power some charts, but the dashboard detects and works without them." },
   { q: "What if I install a new engine after setting up Lazy Admin?", a: "Lazy Admin detects installed engines dynamically. Install a new engine and its panel appears in the sidebar automatically on the next page load. No prompt needed." },
+  { q: "How do I know when there's an update?", a: "Check the changelog at /changelog. Every engine update is versioned and documented with upgrade instructions." },
+  { q: "How do I upgrade to a new prompt version?", a: "Visit the upgrade guide at /upgrade-guide. Copy the latest prompt and paste it into your Lovable project. Your existing data and settings are preserved." },
 ];
 
 export default function LazyAdminPage() {
