@@ -1,5 +1,5 @@
-import { useEffect } from "react";
-import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
 
 import SEO from "@/components/SEO";
@@ -8,6 +8,54 @@ import { useTrackVisit } from "@/hooks/useTrackVisit";
 
 const NEW_TITLE = "The Autonomous Layer for Lovable — One Prompt, Everything Runs Itself";
 const NEW_DESCRIPTION = "The autonomous layer for Lovable. One prompt installs the engine you need — blog posts, SEO, GEO, payments, voice, stores, streams, and more. Everything runs itself.";
+
+const rotatingWords = [
+  { word: "blogs", emoji: "✍️" },
+  { word: "SEO", emoji: "🔍" },
+  { word: "stores", emoji: "🛒" },
+  { word: "GEO", emoji: "🌐" },
+  { word: "streams", emoji: "🎬" },
+  { word: "voice", emoji: "🎙️" },
+  { word: "security", emoji: "🛡️" },
+  { word: "payments", emoji: "💳" },
+  { word: "alerts", emoji: "🔔" },
+  { word: "devlogs", emoji: "👨‍💻" },
+];
+
+function RotatingHeadline() {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((prev) => (prev + 1) % rotatingWords.length);
+    }, 2000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const current = rotatingWords[index];
+
+  return (
+    <p style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(1.4rem, 3vw, 2.2rem)", color: "#f0ead6", opacity: 0.7 }} className="mb-2">
+      Lovable<span className="mx-1">❤️</span>
+      <span className="inline-flex items-center min-w-[100px] md:min-w-[140px] justify-center relative">
+        <AnimatePresence mode="wait">
+          <motion.span
+            key={current.word}
+            initial={{ y: 16, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: -16, opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="inline-flex items-center gap-1"
+            style={{ color: "#c8a961" }}
+          >
+            {current.word}<span>{current.emoji}</span>
+          </motion.span>
+        </AnimatePresence>
+      </span>
+      {" "}on autopilot<span className="ml-1">🤖</span>
+    </p>
+  );
+}
 
 const products = [
   { cursive: "Lazy", name: "Blogger", link: "/lazy-blogger", tagline: "Your blog writes itself." },
@@ -261,6 +309,7 @@ const Index = () => {
           transition={{ duration: 0.8 }}
           className="min-h-screen flex flex-col items-center justify-center gap-6 px-6 pt-32 pb-16 text-center"
         >
+          <RotatingHeadline />
           <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(3rem, 7vw, 5rem)", color: "#f0ead6", lineHeight: 1.1 }}>
             Make your Lovable❤️
             <br />
