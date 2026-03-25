@@ -295,14 +295,14 @@ const Index = () => {
       {/* Product Grid */}
       <section id="engines" className="relative z-10 scroll-mt-20">
         <div className="grid grid-cols-1 md:grid-cols-2">
-          {/* Lazy Run — double width hero block */}
-          <Link to="/lazy-run" className="block md:col-span-2">
+          {/* Lazy Run */}
+          <Link to="/lazy-run" className="block">
             <motion.div
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="aspect-[1/1] md:aspect-[2/1] flex flex-col items-center justify-center gap-6 transition-all duration-300 hover:brightness-[1.15] cursor-pointer"
+              className="aspect-square flex flex-col items-center justify-center gap-6 transition-all duration-300 hover:brightness-[1.15] cursor-pointer"
               style={{ backgroundColor: "#0a0a08" }}
             >
               <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="#f0ead6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -324,6 +324,34 @@ const Index = () => {
               </div>
               <p style={{ fontFamily: "'Playfair Display', serif", fontSize: "0.85rem", color: "#f0ead6", opacity: 0.4, marginTop: "0.5rem" }}>
                 Every engine. One prompt.
+              </p>
+              <p style={{ fontFamily: "'Playfair Display', serif", fontSize: "0.65rem", color: "#f0ead6", opacity: 0.2, letterSpacing: "0.15em", textTransform: "uppercase", marginTop: "1rem" }}>
+                Made for Lovable
+              </p>
+            </motion.div>
+          </Link>
+
+          {/* Lazy Admin */}
+          <Link to="/lazy-admin" className="block">
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.08 }}
+              className="aspect-square flex flex-col items-center justify-center gap-6 transition-all duration-300 hover:brightness-[1.15] cursor-pointer"
+              style={{ backgroundColor: "#111110" }}
+            >
+              {sketches["Admin"]}
+              <div className="text-center">
+                <p style={{ fontFamily: "'Dancing Script', cursive", fontSize: "2.5rem", color: "#f0ead6", lineHeight: 1.1 }}>
+                  Lazy
+                </p>
+                <p style={{ fontFamily: "'Playfair Display', serif", fontSize: "2.5rem", color: "#f0ead6", lineHeight: 1.1 }}>
+                  Admin
+                </p>
+              </div>
+              <p style={{ fontFamily: "'Playfair Display', serif", fontSize: "0.85rem", color: "#f0ead6", opacity: 0.4, marginTop: "0.5rem" }}>
+                One dashboard for everything.
               </p>
               <p style={{ fontFamily: "'Playfair Display', serif", fontSize: "0.65rem", color: "#f0ead6", opacity: 0.2, letterSpacing: "0.15em", textTransform: "uppercase", marginTop: "1rem" }}>
                 Made for Lovable
