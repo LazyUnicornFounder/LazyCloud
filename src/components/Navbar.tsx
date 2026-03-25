@@ -348,9 +348,12 @@ const Navbar = ({ activePage = "home" }: NavbarProps) => {
               ))}
 
               {[
+                { label: "Lazy Admin", href: "/lazy-admin" },
                 { label: "Autonomy", href: "/autonomy" },
                 { label: "Pricing", href: "/pricing" },
                 { label: "Blog", href: "/blog" },
+                { label: "Changelog", href: "/changelog" },
+                { label: "Upgrade Guide", href: "/upgrade-guide" },
                 { label: "About", href: "/about" },
               ].map((item) => (
                 <a key={item.label} href={item.href} onClick={() => setOpen(false)} className="font-body text-[13px] tracking-[0.12em] uppercase text-foreground/50 hover:text-foreground transition-colors font-semibold">
