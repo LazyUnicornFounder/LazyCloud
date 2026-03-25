@@ -379,7 +379,7 @@ export default function LazyRunPage() {
         <div className="max-w-3xl mx-auto">
           <motion.div variants={fadeUp} initial="hidden" animate="visible" transition={{ duration: 0.5 }}>
             <span className="inline-block font-display text-[10px] font-bold tracking-[0.2em] uppercase px-3 py-1 border border-foreground/20 text-foreground/50 mb-6">
-              Includes all Lazy engines
+              INCLUDES ALL LAZY ENGINES
             </span>
           </motion.div>
           <motion.h1
