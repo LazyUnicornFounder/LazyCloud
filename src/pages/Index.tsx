@@ -273,13 +273,13 @@ const Index = () => {
           {/* Body */}
 
           {/* CTA */}
-          <a
-            href="#engines"
+          <Link
+            to="/lazy-run"
             className="mt-6 inline-block text-sm tracking-[0.15em] uppercase px-8 py-3 font-semibold hover:opacity-80 transition-opacity active:scale-[0.97]"
             style={{ fontFamily: "'Playfair Display', serif", backgroundColor: "#f0ead6", color: "#0a0a08", borderRadius: 0 }}
           >
             Get the Free Prompt
-          </a>
+          </Link>
 
           {/* Integrations */}
           <div className="mt-8">
