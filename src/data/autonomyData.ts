@@ -40,7 +40,7 @@ export interface EngineCategory {
 
 export const ENGINE_CATEGORIES: EngineCategory[] = [
   {
-    label: "Content Engines",
+    label: "Lazy Content",
     engines: [
       {
         name: "Lazy Blogger",
@@ -128,7 +128,7 @@ export const ENGINE_CATEGORIES: EngineCategory[] = [
     ],
   },
   {
-    label: "Commerce Engines",
+    label: "Lazy Commerce",
     engines: [
       {
         name: "Lazy Store",
@@ -161,7 +161,7 @@ export const ENGINE_CATEGORIES: EngineCategory[] = [
     ],
   },
   {
-    label: "Media Engines",
+    label: "Lazy Media",
     engines: [
       {
         name: "Lazy Voice",
@@ -208,7 +208,7 @@ export const ENGINE_CATEGORIES: EngineCategory[] = [
     ],
   },
   {
-    label: "Developer Engines",
+    label: "Lazy Dev",
     engines: [
       {
         name: "Lazy Code",
@@ -269,7 +269,7 @@ export const ENGINE_CATEGORIES: EngineCategory[] = [
     ],
   },
   {
-    label: "Channels",
+    label: "Lazy Channels",
     engines: [
       {
         name: "Lazy Alert",
@@ -302,7 +302,7 @@ export const ENGINE_CATEGORIES: EngineCategory[] = [
     ],
   },
   {
-    label: "Security",
+    label: "Lazy Shield",
     engines: [
       {
         name: "Lazy Security",
