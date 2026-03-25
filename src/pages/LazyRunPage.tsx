@@ -313,13 +313,21 @@ const fadeUp = { hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0 } };
 const engines = [
   { name: "Lazy Blogger", desc: "Publishes four blog posts per day automatically.", icon: FileText, href: "/lazy-blogger" },
   { name: "Lazy SEO", desc: "Discovers keywords and publishes ranking articles.", icon: Search, href: "/lazy-seo" },
-  { name: "Lazy GEO", desc: "Publishes content structured to be cited by ChatGPT and Perplexity.", icon: Globe, href: "/lazy-geo" },
+  { name: "Lazy GEO", desc: "Gets your brand cited by ChatGPT and Perplexity.", icon: Globe, href: "/lazy-geo" },
+  { name: "Lazy Crawl", desc: "Monitors competitors and feeds intelligence to your engines.", icon: Radar },
+  { name: "Lazy Perplexity", desc: "Queries Perplexity for trends and feeds your content engines.", icon: Compass, href: "/lazy-perplexity" },
+  { name: "Lazy Contentful", desc: "Two-way content sync with Contentful.", icon: Layers, href: "/lazy-contentful" },
   { name: "Lazy Store", desc: "Discovers products, writes listings, optimises conversion.", icon: ShoppingCart, href: "/lazy-store" },
   { name: "Lazy Voice", desc: "Narrates every blog post in your voice via ElevenLabs.", icon: Mic, href: "/lazy-voice" },
   { name: "Lazy Pay", desc: "Installs Stripe with self-improving conversion optimisation.", icon: CreditCard, href: "/lazy-pay" },
   { name: "Lazy SMS", desc: "Sends automated texts via Twilio that improve themselves.", icon: MessageSquare, href: "/lazy-sms" },
   { name: "Lazy Stream", desc: "Turns every Twitch stream into blog posts and SEO content.", icon: Video, href: "/lazy-stream" },
   { name: "Lazy GitHub", desc: "Turns every GitHub commit into a changelog and developer post.", icon: Code, href: "/lazy-github" },
+  { name: "Lazy GitLab", desc: "Turns GitLab activity into public content.", icon: Code, href: "/lazy-gitlab" },
+  { name: "Lazy Linear", desc: "Turns Linear cycles into product update content.", icon: BarChart3, href: "/lazy-linear" },
+  { name: "Lazy Supabase", desc: "Narrates your database growth story automatically.", icon: Database, href: "/lazy-supabase" },
+  { name: "Lazy Alert", desc: "Every engine event reported to Slack in real time.", icon: Bell, href: "/lazy-alert" },
+  { name: "Lazy Telegram", desc: "Real-time engine reporting via Telegram bot.", icon: Send, href: "/lazy-telegram" },
 ];
 
 const faqs = [
