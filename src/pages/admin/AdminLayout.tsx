@@ -3,7 +3,7 @@ import { Link, Outlet, useLocation } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import {
-  LayoutDashboard, PenTool, Search, Brain, Radar, Compass,
+  LayoutDashboard, BarChart3, PenTool, Search, Brain, Radar, Compass,
   ShoppingCart, CreditCard, MessageSquare, Mic, Tv,
   Code, GitBranch, CheckCircle, Bell, Send, Database as DbIcon,
   Shield, Settings, Menu, X, ChevronDown,
