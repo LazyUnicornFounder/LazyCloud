@@ -119,7 +119,7 @@ export default function LazyLaunchPage() {
       <SEO
         title="Lazy Launch — Free Lovable Landing Page Prompt Generator"
         description="Describe your business. Get a Lovable prompt that builds a beautiful landing page — free, instantly, no account needed."
-        path="/lazy-launch"
+        url="https://auto-directory-showcase.lovable.app/lazy-launch"
       />
       <Navbar />
 
