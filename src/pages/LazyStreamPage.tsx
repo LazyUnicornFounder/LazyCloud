@@ -275,7 +275,7 @@ const LazyStreamPage = () => {
 
         <div className="max-w-5xl mx-auto relative z-10">
           <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-12">
-            <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(1.6rem, 3.5vw, 2.8rem)", color: "#f0ead6", lineHeight: 1.15 }} className="font-bold tracking-tight">
+            <h2 style={{ fontFamily: "'Dancing Script', cursive", fontSize: "clamp(4rem, 10vw, 8rem)", lineHeight: 1.05, background: "linear-gradient(135deg, #ff6b6b, #fdcb6e, #00cec9, #a29bfe, #fd79a8)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }} className="font-bold">
               Automate your Twitch Business on Lovable
             </h2>
             <p className="mt-3 font-body text-sm md:text-base max-w-xl mx-auto" style={{ color: "#f0ead6", opacity: 0.4 }}>
