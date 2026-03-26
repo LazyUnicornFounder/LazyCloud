@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 import LazyPricingSection from "@/components/LazyPricingSection";
 import LazyFaqSection from "@/components/LazyFaqSection";
 import { motion } from "framer-motion";
@@ -7,6 +7,7 @@ import SEO from "@/components/SEO";
 import Navbar from "@/components/Navbar";
 import { useTrackEvent } from "@/hooks/useTrackEvent";
 import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
 
 const fadeUp = { hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0 } };
 
@@ -228,6 +229,139 @@ const faqs = [
   { q: "How do I upgrade to a new prompt version?", a: "Visit the upgrade guide at /upgrade-guide. Copy the latest prompt and paste it into your Lovable project. Your existing data and settings are preserved." },
 ];
 
+/* ── Manifesto Audio Player ── */
+function ManifestoPlayer() {
+  const [audioUrl, setAudioUrl] = useState<string | null>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [duration, setDuration] = useState(0);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const trackEvent = useTrackEvent();
+
+  const loadAudio = useCallback(async () => {
+    if (audioUrl) return;
+    setIsLoading(true);
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/manifesto-tts`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            apikey: import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY,
+            Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
+          },
+        }
+      );
+      const data = await response.json();
+      if (data.error) throw new Error(data.error);
+      setAudioUrl(data.audioUrl);
+      return data.audioUrl;
+    } catch (err) {
+      console.error("Failed to load manifesto audio:", err);
+      toast.error("Failed to load audio. Please try again.");
+      return null;
+    } finally {
+      setIsLoading(false);
+    }
+  }, [audioUrl]);
+
+  const togglePlay = useCallback(async () => {
+    if (!audioRef.current) {
+      const url = audioUrl || await loadAudio();
+      if (!url) return;
+      const audio = new Audio(url);
+      audioRef.current = audio;
+      audio.addEventListener("timeupdate", () => {
+        setProgress(audio.currentTime);
+        setDuration(audio.duration || 0);
+      });
+      audio.addEventListener("ended", () => setIsPlaying(false));
+      audio.addEventListener("loadedmetadata", () => setDuration(audio.duration));
+    }
+
+    if (isPlaying) {
+      audioRef.current.pause();
+      setIsPlaying(false);
+    } else {
+      await audioRef.current.play();
+      setIsPlaying(true);
+      trackEvent("manifesto_audio_play");
+    }
+  }, [audioUrl, isPlaying, loadAudio, trackEvent]);
+
+  const formatTime = (s: number) => {
+    const m = Math.floor(s / 60);
+    const sec = Math.floor(s % 60);
+    return `${m}:${sec.toString().padStart(2, "0")}`;
+  };
+
+  return (
+    <section className="py-16 px-6 border-t border-border" style={{ backgroundColor: "#0a0a08" }}>
+      <div className="max-w-2xl mx-auto">
+        <motion.div
+          initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
+          className="border border-border bg-card p-8"
+        >
+          <p className="font-display text-[10px] tracking-[0.15em] uppercase font-bold text-foreground/30 mb-4">
+            Listen — Narrated by AI
+          </p>
+          <h3
+            style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(1.3rem, 2.5vw, 1.8rem)", color: "#f0ead6", lineHeight: 1.2 }}
+            className="mb-6"
+          >
+            Here's to the lazy ones.
+          </h3>
+
+          <div className="flex items-center gap-4">
+            <button
+              onClick={togglePlay}
+              disabled={isLoading}
+              className="flex-shrink-0 w-12 h-12 bg-foreground text-background flex items-center justify-center hover:opacity-90 transition-opacity disabled:opacity-50"
+            >
+              {isLoading ? (
+                <motion.div animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 1, ease: "linear" }}>
+                  <Radio size={18} />
+                </motion.div>
+              ) : isPlaying ? (
+                <Volume2 size={18} />
+              ) : (
+                <Play size={18} />
+              )}
+            </button>
+
+            <div className="flex-1 min-w-0">
+              {duration > 0 ? (
+                <>
+                  <div className="w-full h-1 bg-border overflow-hidden mb-2">
+                    <div
+                      className="h-full bg-foreground/60 transition-all duration-300"
+                      style={{ width: `${(progress / duration) * 100}%` }}
+                    />
+                  </div>
+                  <div className="flex justify-between font-body text-[10px] text-foreground/25">
+                    <span>{formatTime(progress)}</span>
+                    <span>{formatTime(duration)}</span>
+                  </div>
+                </>
+              ) : (
+                <p className="font-body text-xs text-foreground/30">
+                  {isLoading ? "Generating audio..." : "Press play to hear the Lazy Unicorn manifesto"}
+                </p>
+              )}
+            </div>
+          </div>
+
+          <p className="mt-4 font-body text-[10px] text-foreground/20">
+            Generated with ElevenLabs · George voice · Lazy Voice engine
+          </p>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
 export default function LazyVoicePage() {
   const trackEvent = useTrackEvent();
 
@@ -280,6 +414,9 @@ export default function LazyVoicePage() {
             </motion.div>
           </div>
         </section>
+
+        {/* ── MANIFESTO AUDIO ── */}
+        <ManifestoPlayer />
 
         {/* ── HOW IT WORKS ── */}
         <section id="how-it-works" className="py-20 md:py-28 px-6 border-t border-border">
