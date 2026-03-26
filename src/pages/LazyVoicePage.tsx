@@ -282,6 +282,9 @@ export default function LazyVoicePage() {
           </div>
         </section>
 
+        {/* ── MANIFESTO AUDIO ── */}
+        <ManifestoPlayer />
+
         {/* ── HOW IT WORKS ── */}
         <section id="how-it-works" className="py-20 md:py-28 px-6 border-t border-border">
           <div className="max-w-5xl mx-auto">
