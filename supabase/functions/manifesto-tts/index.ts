@@ -103,7 +103,7 @@ serve(async (req) => {
     if (!musicExists) {
       console.log("Generating classical background music...");
       const musicResponse = await fetch(
-        "https://api.elevenlabs.io/v1/music",
+        "https://api.elevenlabs.io/v1/sound-generation",
         {
           method: "POST",
           headers: {
@@ -111,8 +111,9 @@ serve(async (req) => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            prompt: "Gentle, contemplative solo piano. Minimalist classical composition in the style of Erik Satie Gymnopédies. Slow tempo, soft dynamics, melancholic yet hopeful. Clean recording, no reverb. Suitable as quiet background music behind a spoken word narration.",
-            duration_seconds: 120,
+            text: "Gentle contemplative solo piano, minimalist classical composition, slow tempo, soft dynamics, melancholic yet hopeful, clean recording, suitable as quiet background music behind spoken word narration",
+            duration_seconds: 22,
+            prompt_influence: 0.5,
           }),
         }
       );
