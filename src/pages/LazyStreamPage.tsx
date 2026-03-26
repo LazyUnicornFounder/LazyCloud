@@ -271,27 +271,7 @@ const LazyStreamPage = () => {
       <Navbar />
 
       {/* TV Frame Section — Mid-Century Modern */}
-      <section className="relative px-6 md:px-12 pt-32 pb-20 md:pb-28 overflow-hidden" style={{ backgroundColor: "#c4956a" }}>
-        {/* Mid-century geometric wallpaper pattern */}
-        <div className="absolute inset-0 pointer-events-none" style={{ opacity: 0.08 }}>
-          <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <pattern id="mcm" x="0" y="0" width="80" height="80" patternUnits="userSpaceOnUse">
-                <circle cx="40" cy="40" r="18" fill="none" stroke="#3a2a1a" strokeWidth="1.5" />
-                <line x1="0" y1="40" x2="22" y2="40" stroke="#3a2a1a" strokeWidth="1" />
-                <line x1="58" y1="40" x2="80" y2="40" stroke="#3a2a1a" strokeWidth="1" />
-                <line x1="40" y1="0" x2="40" y2="22" stroke="#3a2a1a" strokeWidth="1" />
-                <line x1="40" y1="58" x2="40" y2="80" stroke="#3a2a1a" strokeWidth="1" />
-                
-                <rect x="36" y="36" width="8" height="8" rx="1" fill="#3a2a1a" opacity="0.5" />
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#mcm)" />
-          </svg>
-        </div>
-
-        {/* Subtle warm gradient overlay */}
-        <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse at 50% 30%, rgba(210,170,120,0.3) 0%, transparent 70%)" }} />
+      <section className="relative px-6 md:px-12 pt-32 pb-20 md:pb-28 overflow-hidden" style={{ backgroundColor: "#0a0a08" }}>
 
         <div className="max-w-5xl mx-auto relative z-10">
           <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-12">
