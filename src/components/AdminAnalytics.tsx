@@ -389,7 +389,7 @@ const AdminAnalytics = ({ password }: AdminAnalyticsProps) => {
           <div className="border border-border rounded-xl bg-card p-4">
             <h3 className="font-display font-bold text-foreground mb-3">Product Leaderboard</h3>
             <div className="space-y-2">
-              {productStats.filter((p) => p.pageVisits > 0 || p.promptCopies > 0).slice(0, 10).map((p, i) => (
+              {productStats.map((p, i) => (
                 <div key={p.key} className="flex items-center gap-3">
                   <span className="font-display text-xs font-bold text-foreground/20 w-5 text-right">{i + 1}</span>
                   <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: p.color }} />
