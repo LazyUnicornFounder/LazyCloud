@@ -59,7 +59,7 @@ const ProductPromoBanner = ({ excludeProduct, glass = true }: ProductPromoBanner
       <p className="font-display text-sm font-bold tracking-[0.1em] uppercase text-foreground/60 mb-2 text-center">
         Autonomous Growth Engines for Lovable
       </p>
-      <p className="font-body text-xs text-foreground/40 text-center mb-6 max-w-md mx-auto">
+      <p className="font-body text-sm text-foreground/65 text-center mb-6 max-w-md mx-auto">
         Turn your Lovable website into a self-growing asset with a single prompt.
       </p>
       <div className={`grid grid-cols-1 ${filtered.length === 3 ? "sm:grid-cols-3" : "sm:grid-cols-2"} gap-4`}>
@@ -79,10 +79,10 @@ const ProductPromoBanner = ({ excludeProduct, glass = true }: ProductPromoBanner
                     {product.name}
                   </p>
                 </div>
-                <p className="font-body text-xs text-foreground/40 leading-relaxed mb-3">
+                <p className="font-body text-sm text-foreground/65 leading-relaxed mb-3">
                   {product.tagline}
                 </p>
-                <span className="font-body text-[12px] tracking-[0.15em] uppercase text-primary/70 group-hover:text-primary transition-colors font-semibold">
+                <span className="font-body text-[14px] tracking-[0.15em] uppercase text-primary/70 group-hover:text-primary transition-colors font-semibold">
                   Learn more →
                 </span>
               </div>

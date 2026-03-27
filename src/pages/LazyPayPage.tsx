@@ -261,7 +261,7 @@ function CopyPromptButton({
 /* ── Stripe badge ── */
 function StripeBadge() {
   return (
-    <span className="inline-flex items-center gap-1.5 font-body text-[12px] tracking-[0.12em] uppercase text-foreground/45 border border-border px-3 py-1">
+    <span className="inline-flex items-center gap-1.5 font-body text-[14px] tracking-[0.12em] uppercase text-foreground/70 border border-border px-3 py-1">
       Powered by Stripe
     </span>
   );
@@ -338,7 +338,7 @@ export default function LazyPayPage() {
             <motion.div initial="hidden" animate="visible" variants={fadeUp} transition={{ duration: 0.7 }}>
               <div className="flex items-center gap-3 mb-6">
                 <p style={{ fontFamily: "'Dancing Script', cursive", fontSize: "1.5rem", color: "#f0ead6", opacity: 0.5 }}>Introducing</p>
-                <span className="bg-foreground text-background text-[12px] tracking-[0.15em] uppercase font-extrabold px-3 py-1 font-display">BETA</span>
+                <span className="bg-foreground text-background text-[14px] tracking-[0.15em] uppercase font-extrabold px-3 py-1 font-display">BETA</span>
               </div>
               <AutopilotHeadline product="lazy-pay" />
 
@@ -348,14 +348,14 @@ export default function LazyPayPage() {
                 </h1>
                 <StripeBadge />
               </div>
-              <p className="mt-6 font-body text-base md:text-lg text-foreground/45 max-w-xl leading-relaxed">
+              <p className="mt-6 font-body text-base md:text-lg text-foreground/70 max-w-xl leading-relaxed">
                 One prompt installs Stripe payments, subscriptions, and a revenue dashboard that improves its own conversion rate — automatically.
               </p>
               <div className="flex flex-col sm:flex-row items-start gap-4 mt-10">
                 <CopyPromptButton text={promptText} onCopy={handleCopy} />
                 <button
                   onClick={scrollToHowItWorks}
-                  className="inline-flex items-center gap-2 font-body text-[11px] tracking-[0.15em] uppercase px-6 py-2.5 font-semibold border border-border text-foreground/50 hover:text-foreground transition-colors"
+                  className="inline-flex items-center gap-2 font-body text-[13px] tracking-[0.15em] uppercase px-6 py-2.5 font-semibold border border-border text-foreground/50 hover:text-foreground transition-colors"
                 >
                   See How It Works
                 </button>
@@ -467,7 +467,7 @@ export default function LazyPayPage() {
                   transition={{ delay: i * 0.1 }}
                   className="flex items-center gap-3"
                 >
-                  <span className="inline-block px-4 py-2 border border-border bg-card font-body text-xs text-foreground whitespace-nowrap">
+                  <span className="inline-block px-4 py-2 border border-border bg-card font-body text-sm text-foreground whitespace-nowrap">
                     {step}
                   </span>
                   {i < loopSteps.length - 1 && (
@@ -564,7 +564,7 @@ export default function LazyPayPage() {
               className="flex flex-col items-center gap-3"
             >
               <CopyPromptButton text={promptText} onCopy={handleCopy} />
-              <p className="font-body text-xs text-muted-foreground/60 max-w-sm">
+              <p className="font-body text-sm text-muted-foreground/60 max-w-sm">
                 Open your Lovable project, paste it into the chat, add your Stripe keys. Your site takes payments within minutes and starts improving within the first week.
               </p>
             </motion.div>

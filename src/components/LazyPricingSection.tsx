@@ -57,7 +57,7 @@ export default function LazyPricingSection({
             transition={{ delay: 0.1 }}
             className="border-2 border-foreground/30 p-8 bg-card flex flex-col relative"
           >
-            <span className="absolute top-4 right-4 bg-foreground/10 text-foreground/50 text-[10px] font-display font-bold uppercase tracking-wider px-3 py-1">
+            <span className="absolute top-4 right-4 bg-foreground/20 text-foreground/50 text-[13px] font-display font-bold uppercase tracking-wider px-3 py-1">
               Coming Soon
             </span>
             <h3 className="font-display text-lg font-bold mb-1">Pro</h3>

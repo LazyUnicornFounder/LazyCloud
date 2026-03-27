@@ -67,7 +67,7 @@ function CopyPromptButton({ className = "", onCopy, text }: { className?: string
 
 function ServiceBadge() {
   return (
-    <span className="inline-flex items-center gap-1.5 font-body text-[12px] tracking-[0.12em] uppercase text-foreground/45 border border-border px-3 py-1">
+    <span className="inline-flex items-center gap-1.5 font-body text-[14px] tracking-[0.12em] uppercase text-foreground/70 border border-border px-3 py-1">
       Powered by Firecrawl
     </span>
   );
@@ -93,7 +93,7 @@ const LazyCrawlPage = () => {
             <motion.div initial="hidden" animate="visible" variants={fadeUp} transition={{ duration: 0.7 }}>
               <div className="flex items-center gap-3 mb-6">
                 <p style={{ fontFamily: "'Dancing Script', cursive", fontSize: "1.5rem", color: "#f0ead6", opacity: 0.5 }}>Introducing</p>
-                <span className="bg-foreground text-background text-[12px] tracking-[0.15em] uppercase font-extrabold px-3 py-1 font-display">BETA</span>
+                <span className="bg-foreground text-background text-[14px] tracking-[0.15em] uppercase font-extrabold px-3 py-1 font-display">BETA</span>
               </div>
               <AutopilotHeadline product="lazy-crawl" />
 
@@ -103,14 +103,14 @@ const LazyCrawlPage = () => {
                 </h1>
                 <ServiceBadge />
               </div>
-              <p className="mt-6 font-body text-base md:text-lg text-foreground/45 max-w-xl leading-relaxed">
+              <p className="mt-6 font-body text-base md:text-lg text-foreground/70 max-w-xl leading-relaxed">
                 Lazy Crawl uses the Firecrawl API to monitor competitor websites, extract trending topics, discover keyword opportunities, and feed real current data into your content engines — automatically, forever.
               </p>
               <div className="flex flex-col sm:flex-row items-start gap-4 mt-10">
                 <CopyPromptButton text={promptText} onCopy={handlePromptCopy} />
                 <button
                   onClick={(e) => { e.preventDefault(); document.getElementById("how-it-works")?.scrollIntoView({ behavior: "smooth" }); }}
-                  className="inline-flex items-center gap-2 font-body text-[11px] tracking-[0.15em] uppercase px-6 py-2.5 font-semibold border border-border text-foreground/50 hover:text-foreground transition-colors"
+                  className="inline-flex items-center gap-2 font-body text-[13px] tracking-[0.15em] uppercase px-6 py-2.5 font-semibold border border-border text-foreground/50 hover:text-foreground transition-colors"
                 >
                   See How It Works
                 </button>
@@ -147,9 +147,9 @@ const LazyCrawlPage = () => {
               { icon: Zap, title: "Engine Integration", desc: "Extracted intel flows automatically into Lazy Blogger, Lazy SEO, and Lazy GEO." },
             ].map((item, i) => (
               <motion.div key={item.title} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} transition={{ delay: i * 0.06 }} className="border-b sm:odd:border-r last:border-b-0 border-border bg-card p-6">
-                <item.icon size={18} className="text-foreground/40 mb-3" />
+                <item.icon size={18} className="text-foreground/65 mb-3" />
                 <h3 className="font-display text-sm font-bold text-foreground mb-1">{item.title}</h3>
-                <p className="font-body text-xs text-muted-foreground leading-relaxed">{item.desc}</p>
+                <p className="font-body text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -176,7 +176,7 @@ const LazyCrawlPage = () => {
             <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-foreground mb-4">Stop guessing. Start knowing.</h2>
             <p className="font-body text-sm text-muted-foreground max-w-md mx-auto leading-relaxed mb-8">Competitor monitoring, trend extraction, lead discovery — all feeding real data into your content engines.</p>
             <CopyPromptButton text={promptText} onCopy={handlePromptCopy} />
-            <p className="font-body text-xs text-foreground/35 mt-4">Open your Lovable project, paste it into the chat, add your API key. Done.</p>
+            <p className="font-body text-sm text-foreground/60 mt-4">Open your Lovable project, paste it into the chat, add your API key. Done.</p>
           </motion.div>
         </section>
       </main>

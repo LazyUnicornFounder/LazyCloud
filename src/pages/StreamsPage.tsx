@@ -46,9 +46,9 @@ const StreamsPage = () => {
         </h1>
 
         {isLoading ? (
-          <p className="font-body text-sm text-foreground/30">Loading…</p>
+          <p className="font-body text-sm text-foreground/55">Loading…</p>
         ) : sessions.length === 0 ? (
-          <p className="font-body text-sm text-foreground/30">No streams published yet.</p>
+          <p className="font-body text-sm text-foreground/55">No streams published yet.</p>
         ) : (
           <div className="space-y-0">
             {sessions.map((s: any, i: number) => {
@@ -65,30 +65,30 @@ const StreamsPage = () => {
                     <div>
                       <h2 className="font-display text-lg font-bold text-foreground">{s.title}</h2>
                       <div className="flex items-center gap-3 mt-1">
-                        <span className="font-body text-xs text-foreground/30">{s.game_name || "—"}</span>
-                        <span className="font-body text-xs text-foreground/20">•</span>
-                        <span className="font-body text-xs text-foreground/30">{new Date(s.started_at || s.created_at).toLocaleDateString()}</span>
+                        <span className="font-body text-sm text-foreground/55">{s.game_name || "—"}</span>
+                        <span className="font-body text-sm text-foreground/70">•</span>
+                        <span className="font-body text-sm text-foreground/55">{new Date(s.started_at || s.created_at).toLocaleDateString()}</span>
                         {s.duration_minutes && (
                           <>
-                            <span className="font-body text-xs text-foreground/20">•</span>
-                            <span className="font-body text-xs text-foreground/30">{s.duration_minutes}m</span>
+                            <span className="font-body text-sm text-foreground/70">•</span>
+                            <span className="font-body text-sm text-foreground/55">{s.duration_minutes}m</span>
                           </>
                         )}
                       </div>
                     </div>
                     <div className="flex items-center gap-3">
                       {links.recap && (
-                        <Link to={`/streams/${links.recap.slug}`} className="inline-flex items-center gap-1 font-body text-[10px] uppercase tracking-wider text-foreground/40 hover:text-foreground transition-colors">
+                        <Link to={`/streams/${links.recap.slug}`} className="inline-flex items-center gap-1 font-body text-[13px] uppercase tracking-wider text-foreground/65 hover:text-foreground transition-colors">
                           <FileText size={12} /> Recap
                         </Link>
                       )}
                       {links.seo && (
-                        <Link to={`/streams/${links.seo.slug}`} className="inline-flex items-center gap-1 font-body text-[10px] uppercase tracking-wider text-foreground/40 hover:text-foreground transition-colors">
+                        <Link to={`/streams/${links.seo.slug}`} className="inline-flex items-center gap-1 font-body text-[13px] uppercase tracking-wider text-foreground/65 hover:text-foreground transition-colors">
                           <Zap size={12} /> SEO
                         </Link>
                       )}
                       {links.highlights && (
-                        <Link to={`/streams/${links.highlights.slug}`} className="inline-flex items-center gap-1 font-body text-[10px] uppercase tracking-wider text-foreground/40 hover:text-foreground transition-colors">
+                        <Link to={`/streams/${links.highlights.slug}`} className="inline-flex items-center gap-1 font-body text-[13px] uppercase tracking-wider text-foreground/65 hover:text-foreground transition-colors">
                           <Film size={12} /> Highlights
                         </Link>
                       )}
@@ -100,8 +100,8 @@ const StreamsPage = () => {
           </div>
         )}
 
-        <p className="mt-16 font-body text-xs text-foreground/15 text-center">
-          🦄 Content by Lazy Stream — autonomous Twitch content publishing for Lovable sites. Built by <a href="https://lazyunicorn.ai" className="underline hover:text-foreground/30">LazyUnicorn.ai</a>
+        <p className="mt-16 font-body text-sm text-foreground/15 text-center">
+          🦄 Content by Lazy Stream — autonomous Twitch content publishing for Lovable sites. Built by <a href="https://lazyunicorn.ai" className="underline hover:text-foreground/55">LazyUnicorn.ai</a>
         </p>
       </main>
     </div>

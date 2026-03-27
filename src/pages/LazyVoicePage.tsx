@@ -197,7 +197,7 @@ function CopyPromptButton({
 /* ── ElevenLabs badge ── */
 function ElevenLabsBadge() {
   return (
-    <span className="inline-flex items-center gap-1.5 font-body text-[12px] tracking-[0.12em] uppercase text-foreground/45 border border-border px-3 py-1">
+    <span className="inline-flex items-center gap-1.5 font-body text-[14px] tracking-[0.12em] uppercase text-foreground/70 border border-border px-3 py-1">
       Powered by ElevenLabs
     </span>
   );
@@ -349,7 +349,7 @@ function ManifestoPlayer() {
           initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
           className="border border-border bg-card p-8"
         >
-          <p className="font-display text-[12px] tracking-[0.15em] uppercase font-bold text-foreground/45 mb-4">
+          <p className="font-display text-[14px] tracking-[0.15em] uppercase font-bold text-foreground/70 mb-4">
             Listen — Narrated by AI
           </p>
           <h3
@@ -385,20 +385,20 @@ function ManifestoPlayer() {
                       style={{ width: `${(progress / duration) * 100}%` }}
                     />
                   </div>
-                  <div className="flex justify-between font-body text-[12px] text-foreground/40">
+                  <div className="flex justify-between font-body text-[14px] text-foreground/65">
                     <span>{formatTime(progress)}</span>
                     <span>{formatTime(duration)}</span>
                   </div>
                 </>
               ) : (
-                <p className="font-body text-xs text-foreground/45">
+                <p className="font-body text-sm text-foreground/70">
                   {isLoading ? "Preparing audio..." : audioReady ? "Ready to play" : "Press play to hear the Lazy Unicorn manifesto"}
                 </p>
               )}
             </div>
           </div>
 
-          <p className="mt-4 font-body text-[12px] text-foreground/35">
+          <p className="mt-4 font-body text-[14px] text-foreground/60">
             Generated with ElevenLabs · George voice · Classical piano accompaniment · Lazy Voice engine
           </p>
         </motion.div>
@@ -438,7 +438,7 @@ export default function LazyVoicePage() {
             <motion.div initial="hidden" animate="visible" variants={fadeUp} transition={{ duration: 0.7 }}>
               <div className="flex items-center gap-3 mb-6">
                 <p style={{ fontFamily: "'Dancing Script', cursive", fontSize: "1.5rem", color: "#f0ead6", opacity: 0.5 }}>Introducing</p>
-                <span className="bg-foreground text-background text-[12px] tracking-[0.15em] uppercase font-extrabold px-3 py-1 font-display">BETA</span>
+                <span className="bg-foreground text-background text-[14px] tracking-[0.15em] uppercase font-extrabold px-3 py-1 font-display">BETA</span>
               </div>
               <AutopilotHeadline product="lazy-voice" />
 
@@ -448,14 +448,14 @@ export default function LazyVoicePage() {
                 </h1>
                 <ElevenLabsBadge />
               </div>
-              <p className="mt-6 font-body text-base md:text-lg text-foreground/45 max-w-xl leading-relaxed">
+              <p className="mt-6 font-body text-base md:text-lg text-foreground/70 max-w-xl leading-relaxed">
                 Lazy Voice monitors every post Lazy Blogger and Lazy SEO publish, sends them to ElevenLabs, and embeds an audio player on every article — automatically. Your site becomes a blog and a podcast at the same time.
               </p>
               <div className="flex flex-col sm:flex-row items-start gap-4 mt-10">
                 <CopyPromptButton text={promptText} onCopy={handleCopy} />
                 <button
                   onClick={scrollToHowItWorks}
-                  className="inline-flex items-center gap-2 font-body text-[11px] tracking-[0.15em] uppercase px-6 py-2.5 font-semibold border border-border text-foreground/50 hover:text-foreground transition-colors"
+                  className="inline-flex items-center gap-2 font-body text-[13px] tracking-[0.15em] uppercase px-6 py-2.5 font-semibold border border-border text-foreground/50 hover:text-foreground transition-colors"
                 >
                   See How It Works
                 </button>
@@ -562,7 +562,7 @@ export default function LazyVoicePage() {
             <motion.p
               variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}
               transition={{ delay: 0.15 }}
-              className="font-body text-xs text-muted-foreground/60"
+              className="font-body text-sm text-muted-foreground/60"
             >
               Voice cloning requires an ElevenLabs paid plan. See{" "}
               <a href="https://elevenlabs.io" target="_blank" rel="noopener noreferrer" className="underline hover:text-primary transition-colors">
@@ -613,7 +613,7 @@ export default function LazyVoicePage() {
               className="flex flex-col items-center gap-3"
             >
               <CopyPromptButton text={promptText} onCopy={handleCopy} />
-              <p className="font-body text-xs text-muted-foreground/60 max-w-sm">
+              <p className="font-body text-sm text-muted-foreground/60 max-w-sm">
                 Then open your Lovable project, paste it in, add your ElevenLabs API key, and your site starts narrating itself.
               </p>
             </motion.div>

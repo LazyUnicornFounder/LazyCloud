@@ -90,14 +90,14 @@ const BlogPost = () => {
             transition={{ duration: 0.8 }}
             className="border border-border bg-card px-8 py-10"
           >
-            <Link to="/blog" className="font-body text-[10px] tracking-[0.2em] uppercase text-foreground/30 hover:text-foreground transition-colors mb-6 inline-block">
+            <Link to="/blog" className="font-body text-[13px] tracking-[0.2em] uppercase text-foreground/55 hover:text-foreground transition-colors mb-6 inline-block">
               ← Back to blog
             </Link>
 
             <div className="flex items-center gap-3 mb-4">
-              <span className="font-body text-[10px] tracking-[0.2em] uppercase text-foreground/50 font-semibold">{post.date}</span>
-              <span className="w-1 h-1 bg-foreground/20" />
-              <span className="font-body text-[10px] tracking-[0.2em] uppercase text-foreground/30">{post.readTime}</span>
+              <span className="font-body text-[13px] tracking-[0.2em] uppercase text-foreground/50 font-semibold">{post.date}</span>
+              <span className="w-1 h-1 bg-foreground/35" />
+              <span className="font-body text-[13px] tracking-[0.2em] uppercase text-foreground/55">{post.readTime}</span>
             </div>
 
             <h1 className="font-display text-2xl md:text-4xl font-extrabold text-foreground leading-tight mb-8">{post.title}</h1>
@@ -127,7 +127,7 @@ const BlogPost = () => {
               })}
             </div>
 
-            <div className="mt-16 pt-8 border-t border-border space-y-4 text-sm text-foreground/40 leading-relaxed">
+            <div className="mt-16 pt-8 border-t border-border space-y-4 text-sm text-foreground/65 leading-relaxed">
               <p>
                 <a href="https://lazyunicorn.ai" className="text-foreground underline hover:opacity-80 font-semibold">Lazy Unicorn</a> builds autonomous growth tools for Lovable.
               </p>
@@ -138,7 +138,7 @@ const BlogPost = () => {
       </div>
 
       <footer className="px-8 md:px-12 py-8 border-t border-border">
-        <span className="font-body text-[10px] tracking-[0.2em] uppercase text-foreground/30">Lazy Unicorn © 2026</span>
+        <span className="font-body text-[13px] tracking-[0.2em] uppercase text-foreground/55">Lazy Unicorn © 2026</span>
       </footer>
     </div>
   );

@@ -216,7 +216,7 @@ const PricingPage = () => {
                       {product.name}
                     </h2>
                   </Link>
-                  <p className="font-body text-xs text-foreground/45 uppercase tracking-wider mt-1">{product.tagline}</p>
+                  <p className="font-body text-sm text-foreground/70 uppercase tracking-wider mt-1">{product.tagline}</p>
                 </div>
 
                 {/* Two-column pricing */}
@@ -229,15 +229,15 @@ const PricingPage = () => {
                     </div>
                     <ul className="space-y-2.5 flex-1">
                       {product.free.map((f, i) => (
-                        <li key={i} className="font-body text-sm text-foreground/40 flex items-start gap-2">
-                          <Check size={14} className="text-foreground/40 mt-0.5 shrink-0" />
+                        <li key={i} className="font-body text-sm text-foreground/65 flex items-start gap-2">
+                          <Check size={14} className="text-foreground/65 mt-0.5 shrink-0" />
                           {f}
                         </li>
                       ))}
                     </ul>
                     <Link
                       to={product.link}
-                      className="mt-6 w-full inline-flex items-center justify-center font-body text-[11px] tracking-[0.15em] uppercase px-6 py-2.5 font-semibold bg-foreground text-background hover:opacity-90 transition-opacity"
+                      className="mt-6 w-full inline-flex items-center justify-center font-body text-[13px] tracking-[0.15em] uppercase px-6 py-2.5 font-semibold bg-foreground text-background hover:opacity-90 transition-opacity"
                     >
                       Get the Prompt
                     </Link>
@@ -246,27 +246,27 @@ const PricingPage = () => {
                   {/* Pro */}
                   <div className="bg-card p-8 flex flex-col relative">
                     {product.pro.comingSoon && (
-                      <span className="absolute top-4 right-4 font-body text-[12px] tracking-[0.15em] uppercase px-2 py-0.5 border border-yellow-600/30 text-yellow-600/60">
+                      <span className="absolute top-4 right-4 font-body text-[14px] tracking-[0.15em] uppercase px-2 py-0.5 border border-yellow-600/30 text-yellow-600/60">
                         Coming Soon
                       </span>
                     )}
                     <div className="mb-6">
                       <h3 className="font-display text-base font-bold text-foreground">Pro</h3>
                       <p className="font-display text-3xl font-bold text-foreground mt-1">
-                        {product.pro.price}<span className="text-sm font-normal text-foreground/45">/mo</span>
+                        {product.pro.price}<span className="text-sm font-normal text-foreground/70">/mo</span>
                       </p>
                     </div>
                     <ul className="space-y-2.5 flex-1">
                       {product.pro.features.map((f, i) => (
-                        <li key={i} className="font-body text-sm text-foreground/40 flex items-start gap-2">
-                          <Check size={14} className="text-foreground/40 mt-0.5 shrink-0" />
+                        <li key={i} className="font-body text-sm text-foreground/65 flex items-start gap-2">
+                          <Check size={14} className="text-foreground/65 mt-0.5 shrink-0" />
                           {f}
                         </li>
                       ))}
                     </ul>
                     <button
                       disabled
-                      className="mt-6 w-full font-body text-[11px] tracking-[0.15em] uppercase px-6 py-2.5 font-semibold border border-border text-foreground/40 cursor-not-allowed"
+                      className="mt-6 w-full font-body text-[13px] tracking-[0.15em] uppercase px-6 py-2.5 font-semibold border border-border text-foreground/65 cursor-not-allowed"
                     >
                       Coming Soon
                     </button>
@@ -279,7 +279,7 @@ const PricingPage = () => {
 
         {/* Bottom */}
         <section className="mt-24 px-6 md:px-12 max-w-3xl mx-auto text-center">
-          <p className="font-body text-sm text-foreground/40 leading-relaxed">
+          <p className="font-body text-sm text-foreground/65 leading-relaxed">
             All engines are self-hosted in your own Lovable project. You own the code, the data, and the content. Pro tiers will offer a fully managed hosted experience — no API keys, no setup, just results.
           </p>
           <p style={{ fontFamily: "'Playfair Display', serif", fontSize: "0.65rem", color: "#f0ead6", opacity: 0.4, letterSpacing: "0.15em", textTransform: "uppercase", marginTop: "3rem" }}>

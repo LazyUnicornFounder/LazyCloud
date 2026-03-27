@@ -447,10 +447,10 @@ export default function LazyRunPage() {
         <div className="max-w-3xl mx-auto">
           <motion.div variants={fadeUp} initial="hidden" animate="visible" transition={{ duration: 0.5 }}>
             <div className="flex items-center gap-3 mb-6">
-              <span className="inline-block font-display text-[12px] font-bold tracking-[0.2em] uppercase px-3 py-1 border border-foreground/20 text-foreground/50">
+              <span className="inline-block font-display text-[14px] font-bold tracking-[0.2em] uppercase px-3 py-1 border border-foreground/20 text-foreground/50">
                 INCLUDES ALL LAZY ENGINES
               </span>
-              <span className="bg-foreground text-background text-[12px] tracking-[0.15em] uppercase font-extrabold px-3 py-1 font-display">BETA</span>
+              <span className="bg-foreground text-background text-[14px] tracking-[0.15em] uppercase font-extrabold px-3 py-1 font-display">BETA</span>
             </div>
           </motion.div>
           <AutopilotHeadline product="lazy-run" />
@@ -462,7 +462,7 @@ export default function LazyRunPage() {
           </motion.h1>
           <motion.p
             variants={fadeUp} initial="hidden" animate="visible" transition={{ delay: 0.2 }}
-            className="font-body text-base md:text-lg text-foreground/45 max-w-2xl leading-relaxed mb-10"
+            className="font-body text-base md:text-lg text-foreground/70 max-w-2xl leading-relaxed mb-10"
           >
             Lazy Run is the one prompt that installs everything. Paste it into your Lovable project, and walk away. Your blog writes itself. Your SEO compounds. ChatGPT and Perplexity start citing you. Your store runs its own promotions. Your checkout rewrites copy that is not converting. Your customers get texted back automatically. Every post gets narrated. Every stream becomes an article. Every commit becomes a changelog. Your site gets pentested on a schedule. Everything reports to one dashboard. Nothing requires you after setup.
           </motion.p>
@@ -491,7 +491,7 @@ export default function LazyRunPage() {
             Then what?
           </motion.h2>
           <motion.p variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} transition={{ delay: 0.1 }}
-            className="font-body text-base md:text-lg text-foreground/45 leading-relaxed">
+            className="font-body text-base md:text-lg text-foreground/70 leading-relaxed">
             Lovable is the best way to build a product. It is not the operations layer. It does not publish your blog. It does not target your SEO keywords. It does not send SMS confirmations. It does not narrate your posts. It does not optimise your payments. It does not process your GitHub commits. Those things require a second layer — the autonomous operations layer that runs your site after Lovable has built it. Lazy Run is that layer.
           </motion.p>
         </div>
@@ -513,14 +513,14 @@ export default function LazyRunPage() {
                 transition={{ delay: i * 0.05 }}
                 className="border border-border p-6 bg-card hover:border-foreground/20 transition-colors group"
               >
-                <e.icon size={20} className="text-foreground/45 mb-3 group-hover:text-foreground/60 transition-colors" />
+                <e.icon size={20} className="text-foreground/70 mb-3 group-hover:text-foreground/60 transition-colors" />
                 <h3 className="font-display text-sm font-bold mb-1">{e.name}</h3>
-                <p className="font-body text-xs text-foreground/40 leading-relaxed">{e.desc}</p>
+                <p className="font-body text-sm text-foreground/65 leading-relaxed">{e.desc}</p>
               </motion.a>
             ))}
           </div>
           <motion.p variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}
-            className="font-body text-sm text-foreground/45 text-center mt-10 max-w-lg mx-auto">
+            className="font-body text-sm text-foreground/70 text-center mt-10 max-w-lg mx-auto">
             All twenty-two engines install in one prompt. All run automatically. All managed from one dashboard.
           </motion.p>
         </div>
@@ -539,9 +539,9 @@ export default function LazyRunPage() {
                 transition={{ delay: i * 0.1 }}
                 className="border border-border p-6 bg-card"
               >
-                <f.icon size={20} className="text-foreground/45 mb-3" />
+                <f.icon size={20} className="text-foreground/70 mb-3" />
                 <h3 className="font-display text-sm font-bold mb-2">{f.title}</h3>
-                <p className="font-body text-xs text-foreground/40 leading-relaxed">{f.desc}</p>
+                <p className="font-body text-sm text-foreground/65 leading-relaxed">{f.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -556,7 +556,7 @@ export default function LazyRunPage() {
             Twenty-two engines compounding simultaneously.
           </motion.h2>
           <motion.p variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} transition={{ delay: 0.1 }}
-            className="font-body text-base md:text-lg text-foreground/45 leading-relaxed">
+            className="font-body text-base md:text-lg text-foreground/70 leading-relaxed">
             Each Lazy engine compounds on its own. Lazy Blogger builds domain authority. Lazy SEO captures keyword traffic. Lazy GEO earns AI citations. Lazy Store grows revenue. Together they compound on each other. The blog posts support the SEO. The SEO drives traffic to the store. The store triggers the SMS sequences. The SMS drives repeat purchases. The payments data improves the copy. Lazy Run coordinates the whole system so every engine feeds every other one. One prompt. Twenty compounding loops. Running forever.
           </motion.p>
         </div>
@@ -581,14 +581,14 @@ export default function LazyRunPage() {
             Lazy Run runs it.
           </motion.h2>
           <motion.p variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} transition={{ delay: 0.1 }}
-            className="font-body text-base md:text-lg text-foreground/45 max-w-2xl mx-auto leading-relaxed mb-10">
+            className="font-body text-base md:text-lg text-foreground/70 max-w-2xl mx-auto leading-relaxed mb-10">
             One prompt installs the complete autonomous operations layer — publishing, SEO, GEO, payments, SMS, audio, e-commerce, streams, and code — all managed from one dashboard, all running without you.
           </motion.p>
           <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} transition={{ delay: 0.2 }}>
             <CopyPromptButton text={promptText} />
           </motion.div>
           <motion.p variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} transition={{ delay: 0.3 }}
-            className="font-body text-xs text-foreground/40 mt-6 max-w-md mx-auto">
+            className="font-body text-sm text-foreground/65 mt-6 max-w-md mx-auto">
             Open your Lovable project, paste it into the chat, choose your engines, add your API keys. Your site starts running itself today.
           </motion.p>
         </div>
@@ -596,7 +596,7 @@ export default function LazyRunPage() {
 
       {/* Footer */}
       <footer className="py-10 px-6 border-t border-border text-center">
-        <p className="font-display text-[12px] tracking-[0.15em] uppercase text-foreground/35">
+        <p className="font-display text-[14px] tracking-[0.15em] uppercase text-foreground/60">
           Lazy Unicorn — Autonomous growth engines for Lovable
         </p>
       </footer>

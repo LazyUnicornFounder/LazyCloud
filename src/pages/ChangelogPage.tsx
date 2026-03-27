@@ -135,14 +135,14 @@ export default function ChangelogPage() {
             <p className="font-body text-foreground/50 text-lg max-w-2xl mb-3">
               Every version of every Lazy prompt. What changed, when it changed, and how to upgrade.
             </p>
-            <p className="font-body text-foreground/45 text-sm mb-4">
+            <p className="font-body text-foreground/70 text-sm mb-4">
               Prompts are updated when Lovable's platform evolves, new integrations are added, or bugs are found. Check here before pasting a prompt you have not used recently.
             </p>
             <a
               href={`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/changelog-rss`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 font-body text-[11px] tracking-[0.12em] uppercase text-[#c8a961]/70 hover:text-[#c8a961] transition-colors"
+              className="inline-flex items-center gap-1.5 font-body text-[13px] tracking-[0.12em] uppercase text-[#c8a961]/70 hover:text-[#c8a961] transition-colors"
             >
               <Rss size={12} /> Subscribe to updates
             </a>
@@ -153,7 +153,7 @@ export default function ChangelogPage() {
             <h2 className="font-display text-sm tracking-[0.15em] uppercase font-bold text-foreground/60 mb-4">Are you on the latest version?</h2>
             <div className="flex flex-col sm:flex-row gap-3">
               <div className="flex-1">
-                <label className="font-body text-[12px] tracking-[0.12em] uppercase text-foreground/45 mb-1 block">Engine</label>
+                <label className="font-body text-[14px] tracking-[0.12em] uppercase text-foreground/70 mb-1 block">Engine</label>
                 <select
                   value={checkerEngine}
                   onChange={e => { setCheckerEngine(e.target.value); setCheckerResult(null); }}
@@ -164,7 +164,7 @@ export default function ChangelogPage() {
                 </select>
               </div>
               <div className="flex-1">
-                <label className="font-body text-[12px] tracking-[0.12em] uppercase text-foreground/45 mb-1 block">Your current version</label>
+                <label className="font-body text-[14px] tracking-[0.12em] uppercase text-foreground/70 mb-1 block">Your current version</label>
                 <input
                   type="text"
                   value={checkerVersion}
@@ -174,7 +174,7 @@ export default function ChangelogPage() {
                 />
               </div>
               <div className="flex items-end">
-                <button onClick={handleCheck} className="bg-foreground text-background font-display text-[11px] tracking-[0.12em] uppercase font-bold px-5 py-2 hover:opacity-90 transition-opacity">
+                <button onClick={handleCheck} className="bg-foreground text-background font-display text-[13px] tracking-[0.12em] uppercase font-bold px-5 py-2 hover:opacity-90 transition-opacity">
                   Check
                 </button>
               </div>
@@ -194,10 +194,10 @@ export default function ChangelogPage() {
                     <div className="space-y-2">
                       {checkerResult.updates.map(u => (
                         <div key={u.id} className="flex items-center gap-3 font-body text-sm text-foreground/60">
-                          <code className="text-[11px] bg-foreground/5 px-1.5 py-0.5">{u.version}</code>
+                          <code className="text-[13px] bg-foreground/5 px-1.5 py-0.5">{u.version}</code>
                           <span>{formatDate(u.release_date)}</span>
-                          <span className={`text-[12px] px-1.5 py-0.5 uppercase tracking-wider ${changeTypeBadge(u.change_type)}`}>{u.change_type}</span>
-                          <span className="text-foreground/40">{u.summary}</span>
+                          <span className={`text-[14px] px-1.5 py-0.5 uppercase tracking-wider ${changeTypeBadge(u.change_type)}`}>{u.change_type}</span>
+                          <span className="text-foreground/65">{u.summary}</span>
                         </div>
                       ))}
                     </div>
@@ -213,8 +213,8 @@ export default function ChangelogPage() {
               <button
                 key={f}
                 onClick={() => setCategoryFilter(f)}
-                className={`font-body text-[12px] tracking-[0.12em] uppercase px-3 py-1.5 border transition-colors ${
-                  categoryFilter === f ? "border-[#c8a961] text-[#c8a961] bg-[#c8a961]/10" : "border-border text-foreground/40 hover:text-foreground/60"
+                className={`font-body text-[14px] tracking-[0.12em] uppercase px-3 py-1.5 border transition-colors ${
+                  categoryFilter === f ? "border-[#c8a961] text-[#c8a961] bg-[#c8a961]/10" : "border-border text-foreground/65 hover:text-foreground/60"
                 }`}
               >
                 {f}
@@ -226,8 +226,8 @@ export default function ChangelogPage() {
               <button
                 key={f}
                 onClick={() => setTypeFilter(f)}
-                className={`font-body text-[12px] tracking-[0.12em] uppercase px-3 py-1.5 border transition-colors ${
-                  typeFilter === f ? "border-foreground/40 text-foreground bg-foreground/5" : "border-border text-foreground/40 hover:text-foreground/60"
+                className={`font-body text-[14px] tracking-[0.12em] uppercase px-3 py-1.5 border transition-colors ${
+                  typeFilter === f ? "border-foreground/40 text-foreground bg-foreground/5" : "border-border text-foreground/65 hover:text-foreground/60"
                 }`}
               >
                 {f}
@@ -240,18 +240,18 @@ export default function ChangelogPage() {
             <div key={date} className="mb-12">
               <div className="flex items-baseline gap-3 mb-4">
                 <h3 className="font-display text-xl font-bold">{formatDate(date)}</h3>
-                <span className="font-body text-[11px] text-foreground/45">{items.length} release{items.length > 1 ? "s" : ""}</span>
+                <span className="font-body text-[13px] text-foreground/70">{items.length} release{items.length > 1 ? "s" : ""}</span>
               </div>
               <div className="space-y-3">
                 {items.map(r => (
                   <div key={r.id} className="border border-border p-4">
                     <div className="flex flex-wrap items-center gap-2 mb-2">
                       <span className="font-display text-sm font-bold">{r.engine_name}</span>
-                      <code className="text-[11px] bg-foreground/5 px-1.5 py-0.5 text-foreground/60">{r.version}</code>
-                      <span className={`text-[12px] px-1.5 py-0.5 uppercase tracking-wider ${changeTypeBadge(r.change_type)}`}>{r.change_type}</span>
-                      <span className={`text-[12px] px-1.5 py-0.5 uppercase tracking-wider ${complexityBadge(r.upgrade_complexity)}`}>{r.upgrade_complexity}</span>
+                      <code className="text-[13px] bg-foreground/5 px-1.5 py-0.5 text-foreground/60">{r.version}</code>
+                      <span className={`text-[14px] px-1.5 py-0.5 uppercase tracking-wider ${changeTypeBadge(r.change_type)}`}>{r.change_type}</span>
+                      <span className={`text-[14px] px-1.5 py-0.5 uppercase tracking-wider ${complexityBadge(r.upgrade_complexity)}`}>{r.upgrade_complexity}</span>
                       {r.download_url && (
-                        <a href={r.download_url} target="_blank" rel="noopener noreferrer" className="ml-auto font-body text-[12px] tracking-[0.1em] uppercase text-[#c8a961] hover:text-[#c8a961]/70 transition-colors">
+                        <a href={r.download_url} target="_blank" rel="noopener noreferrer" className="ml-auto font-body text-[14px] tracking-[0.1em] uppercase text-[#c8a961] hover:text-[#c8a961]/70 transition-colors">
                           Get Latest Version →
                         </a>
                       )}
@@ -260,7 +260,7 @@ export default function ChangelogPage() {
                     {r.changes && (
                       <button
                         onClick={() => toggleSet(expandedChanges, r.id, setExpandedChanges)}
-                        className="font-body text-[11px] tracking-[0.1em] uppercase text-foreground/45 hover:text-foreground/50 transition-colors flex items-center gap-1"
+                        className="font-body text-[13px] tracking-[0.1em] uppercase text-foreground/70 hover:text-foreground/50 transition-colors flex items-center gap-1"
                       >
                         <ChevronDown size={12} className={expandedChanges.has(r.id) ? "rotate-180" : ""} />
                         Show all changes
@@ -275,7 +275,7 @@ export default function ChangelogPage() {
                       <>
                         <button
                           onClick={() => toggleSet(expandedUpgrade, r.id, setExpandedUpgrade)}
-                          className="mt-2 font-body text-[11px] tracking-[0.1em] uppercase text-amber-400/60 hover:text-amber-400 transition-colors flex items-center gap-1"
+                          className="mt-2 font-body text-[13px] tracking-[0.1em] uppercase text-amber-400/60 hover:text-amber-400 transition-colors flex items-center gap-1"
                         >
                           <ChevronDown size={12} className={expandedUpgrade.has(r.id) ? "rotate-180" : ""} />
                           Upgrade instructions
@@ -294,7 +294,7 @@ export default function ChangelogPage() {
           ))}
 
           {grouped.length === 0 && (
-            <p className="font-body text-foreground/45 text-center py-12">No releases match your filters.</p>
+            <p className="font-body text-foreground/70 text-center py-12">No releases match your filters.</p>
           )}
         </div>
       </main>
