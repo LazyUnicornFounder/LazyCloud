@@ -128,7 +128,7 @@ export default function AdminSeoPage() {
               filteredKeywords.map((kw: any) => {
                 const delta = positionDelta(kw);
                 return (
-                  <div key={kw.id} className="flex items-center justify-between py-2 px-2 border-b border-[#f0ead6]/5 hover:bg-[#f0ead6]/3 transition-colors">
+                  <div key={kw.id} className="flex items-center justify-between py-2 px-2 border-b border-[#f0ead6]/15 hover:bg-[#f0ead6]/8 transition-colors">
                     <div className="flex-1 min-w-0">
                       <p className="font-body text-xs text-[#f0ead6]/95 truncate">{kw.keyword}</p>
                       <div className="flex items-center gap-2 mt-0.5">
@@ -171,7 +171,7 @@ export default function AdminSeoPage() {
               <p className="font-body text-xs text-[#f0ead6]/68 py-4 text-center">No posts published yet</p>
             ) : (
               published.map((post: any) => (
-                <div key={post.id} className="flex items-start justify-between py-2.5 px-2 border-b border-[#f0ead6]/5 hover:bg-[#f0ead6]/3 transition-colors">
+                <div key={post.id} className="flex items-start justify-between py-2.5 px-2 border-b border-[#f0ead6]/15 hover:bg-[#f0ead6]/8 transition-colors">
                   <div className="flex-1 min-w-0">
                     <p className="font-body text-xs text-[#f0ead6]/92 truncate">{post.title}</p>
                     <div className="flex items-center gap-2 mt-1">
@@ -202,7 +202,7 @@ export default function AdminSeoPage() {
               <p className="font-body text-xs text-[#f0ead6]/68 py-4 text-center">No SEO drafts in the blog queue</p>
             ) : (
               queuedDrafts.map((draft: any, i: number) => (
-                <div key={draft.id} className="flex items-start gap-3 py-2.5 px-2 border-b border-[#f0ead6]/5 hover:bg-[#f0ead6]/3 transition-colors">
+                <div key={draft.id} className="flex items-start gap-3 py-2.5 px-2 border-b border-[#f0ead6]/15 hover:bg-[#f0ead6]/8 transition-colors">
                   <span className="font-display text-[13px] font-bold text-[#f0ead6]/68 mt-0.5 shrink-0 w-4 text-right">{i + 1}</span>
                   <div className="flex-1 min-w-0">
                     <p className="font-body text-xs text-[#f0ead6]/92 truncate">{draft.title}</p>

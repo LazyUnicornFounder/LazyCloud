@@ -188,7 +188,7 @@ export default function AdminLayout() {
                     className={`flex items-center gap-3 px-5 py-2 font-body text-[14px] tracking-[0.08em] transition-colors relative ${
                       active
                         ? "text-[#c8a961] bg-[#c8a961]/8 border-l-2 border-[#c8a961]"
-                        : "text-[#f0ead6]/82 hover:text-[#f0ead6]/95 hover:bg-[#f0ead6]/3 border-l-2 border-transparent"
+                        : "text-[#f0ead6]/82 hover:text-[#f0ead6]/95 hover:bg-[#f0ead6]/8 border-l-2 border-transparent"
                     }`}
                   >
                     <item.icon size={13} />

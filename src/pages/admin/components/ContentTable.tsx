@@ -56,7 +56,7 @@ export default function ContentTable({ title, data, columns, searchKey, emptyMes
               <tr><td colSpan={columns.length} className="px-4 py-6 text-center font-body text-xs text-[#f0ead6]/68">{emptyMessage}</td></tr>
             ) : (
               paged.map((row, i) => (
-                <tr key={row.id || i} className="hover:bg-[#f0ead6]/3 transition-colors">
+                <tr key={row.id || i} className="hover:bg-[#f0ead6]/8 transition-colors">
                   {columns.map((col) => (
                     <td key={col.key} className="px-4 py-2.5 font-body text-xs text-[#f0ead6]/92">
                       {col.render ? col.render(row) : String(row[col.key] ?? "—")}

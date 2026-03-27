@@ -164,7 +164,7 @@ export default function AdminChangelogPage() {
           </thead>
           <tbody>
             {releases.map(r => (
-              <tr key={r.id} className="border-b border-[#f0ead6]/5 last:border-0">
+              <tr key={r.id} className="border-b border-[#f0ead6]/15 last:border-0">
                 <td className="px-3 py-2 font-body text-[14px] text-[#f0ead6]/92">{r.engine_name}</td>
                 <td className="px-3 py-2"><code className="text-[13px] bg-[#f0ead6]/5 px-1 py-0.5 text-[#f0ead6]/88">{r.version}</code></td>
                 <td className="px-3 py-2 font-body text-[14px] text-[#f0ead6]/82">{r.release_date}</td>
