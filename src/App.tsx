@@ -41,6 +41,7 @@ import PricingPage from "./pages/PricingPage.tsx";
 import AutonomyPage from "./pages/AutonomyPage.tsx";
 import LazySecurityPage from "./pages/LazySecurityPage.tsx";
 import LazyAdminPage from "./pages/LazyAdminPage.tsx";
+import LazyLaunchPage from "./pages/LazyLaunchPage.tsx";
 import ChangelogPage from "./pages/ChangelogPage.tsx";
 import UpgradeGuidePage from "./pages/UpgradeGuidePage.tsx";
 import HowItWorksPage from "./pages/HowItWorksPage.tsx";
@@ -127,6 +128,7 @@ const App = () => (
               <Route path="/lazy-perplexity" element={<LazyPerplexityPage />} />
               <Route path="/lazy-crawl" element={<LazyCrawlPage />} />
               <Route path="/lazy-admin" element={<LazyAdminPage />} />
+              <Route path="/lazy-launch" element={<LazyLaunchPage />} />
               <Route path="/pricing" element={<PricingPage />} />
               <Route path="/autonomy" element={<AutonomyPage />} />
               <Route path="/lazy-security" element={<LazySecurityPage />} />
