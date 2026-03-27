@@ -183,6 +183,7 @@ const LazyShopPage = () => {
           <ShopIcon />
 
           {/* Main headline */}
+          <AutopilotHeadline product="lazy-shop" />
           <div className="space-y-2 mt-4">
             <p style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(1.8rem, 4.5vw, 3.5rem)", color: cream, lineHeight: 1.15 }}>
               Lovable builds your store.
