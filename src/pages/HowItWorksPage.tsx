@@ -65,9 +65,15 @@ const engineGroups = [
   },
   {
     label: "Lazy Shield",
-    description: "Autonomous pentesting, vulnerability monitoring, and design upgrades.",
+    description: "Autonomous pentesting and vulnerability monitoring.",
     engines: [
       { name: "Lazy Security", tagline: "Autonomous pentesting and vulnerability monitoring via Aikido.", href: "/lazy-security" },
+    ],
+  },
+  {
+    label: "Lazy Design",
+    description: "Autonomous UI upgrades matched to your brand.",
+    engines: [
       { name: "Lazy Design", tagline: "Upgrades your site with 21st.dev components matched to your brand.", href: "/lazy-design" },
     ],
   },

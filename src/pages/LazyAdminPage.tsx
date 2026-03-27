@@ -35,6 +35,7 @@ const engineGroups = [
   { label: "Lazy Dev", color: "text-purple-400", engines: ["GitHub", "GitLab", "Linear"] },
   { label: "Lazy Channels", color: "text-foreground/50", engines: ["Alert", "Telegram", "Contentful", "Supabase"] },
   { label: "Lazy Shield", color: "text-red-400", engines: ["Security"] },
+  { label: "Lazy Design", color: "text-pink-400", engines: ["Design"] },
 ];
 
 const faqs = [

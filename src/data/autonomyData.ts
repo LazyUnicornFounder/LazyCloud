@@ -318,6 +318,11 @@ export const ENGINE_CATEGORIES: EngineCategory[] = [
           "It learns your attack surface and prioritises what matters. Coming soon.",
         ],
       },
+    ],
+  },
+  {
+    label: "Lazy Design",
+    engines: [
       {
         name: "Lazy Design",
         description: "Upgrades your site with 21st.dev components matched to your brand",
@@ -330,20 +335,6 @@ export const ENGINE_CATEGORIES: EngineCategory[] = [
           "New pages detected. Component suggestions generated automatically.",
           "It applies upgrades matched to your brand without asking. Coming soon.",
           "It learns which component styles convert best and optimises. Coming soon.",
-        ],
-      },
-      {
-        name: "Lazy Mail",
-        description: "Subscriber capture, welcome sequences, and AI newsletters via Resend",
-        currentLevel: 3,
-        link: "/lazy-mail",
-        levels: [
-          "You write and send every email manually. Subscribers? What subscribers.",
-          "Mailchimp helps. You still write every newsletter.",
-          "Drip sequences exist. You wrote them once and forgot.",
-          "New post publishes → newsletter written and sent automatically. Subject lines rewrite themselves.",
-          "It segments audiences and personalises content per reader. Coming soon.",
-          "It predicts churn and re-engages subscribers before they leave. Coming soon.",
         ],
       },
     ],
