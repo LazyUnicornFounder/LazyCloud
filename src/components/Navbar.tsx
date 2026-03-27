@@ -40,12 +40,6 @@ const icons = {
 /* ── All products organised by category ── */
 const productCategories = [
   {
-    label: "Lazy Launch",
-    items: [
-      { label: "Lazy Launch", href: "/lazy-launch", tagline: "Idea → autonomous business prompt.", icon: icons.launch, badge: "Free" },
-    ],
-  },
-  {
     label: "Lazy Unicorn",
     items: [
       { label: "Lazy Run", href: "/lazy-run", tagline: "All 20 engines. One prompt.", icon: icons.run },
@@ -173,8 +167,8 @@ function MegaDropdown({ onNavigate }: { onNavigate?: () => void }) {
                   <div className="min-w-0">
                     <p className="font-display text-[13px] font-bold tracking-[0.06em] uppercase text-foreground/60 group-hover:text-foreground transition-colors leading-tight flex items-center gap-2">
                       {item.label}
-                      {"badge" in item && item.badge && (
-                        <span className="text-[9px] tracking-[0.15em] uppercase border border-green-500/40 text-green-400 px-1.5 py-0.5 font-semibold leading-none">{item.badge}</span>
+                      {"badge" in item && (item as any).badge && (
+                        <span className="text-[9px] tracking-[0.15em] uppercase border border-green-500/40 text-green-400 px-1.5 py-0.5 font-semibold leading-none">{(item as any).badge}</span>
                       )}
                     </p>
                     <p className="font-body text-[11px] text-foreground/30 group-hover:text-foreground/45 transition-colors leading-snug mt-0.5">
