@@ -246,13 +246,44 @@ const AdminPrompts = () => {
 
   useEffect(() => { fetchAll(); }, [fetchAll]);
 
+  const [syncing, setSyncing] = useState(false);
+
+  const handlePushAll = async () => {
+    setSyncing(true);
+    const currentPrompts = allVersions
+      .filter(v => v.is_current)
+      .map(v => ({ product: v.product, version: v.version, prompt_text: v.prompt_text }));
+    if (currentPrompts.length === 0) {
+      toast.error("No prompts to sync");
+      setSyncing(false);
+      return;
+    }
+    const result = await syncToGitHub(currentPrompts[0].product, currentPrompts[0].version, currentPrompts[0].prompt_text, currentPrompts);
+    setSyncing(false);
+    if (result.success) {
+      toast.success("All prompts pushed to GitHub ✓");
+    } else {
+      toast.error("GitHub sync failed");
+    }
+  };
+
   if (loading) return <p className="font-body text-sm text-muted-foreground py-8 text-center">Loading prompts…</p>;
 
   return (
     <div className="space-y-6">
-      <p className="font-body text-sm text-muted-foreground">
-        Current prompts shipped on each product page. Edit here → changes go live instantly. Full version history tracked.
-      </p>
+      <div className="flex items-center justify-between">
+        <p className="font-body text-sm text-muted-foreground">
+          Current prompts shipped on each product page. Edit here → changes go live instantly. Full version history tracked.
+        </p>
+        <button
+          onClick={handlePushAll}
+          disabled={syncing}
+          className="inline-flex items-center gap-2 font-body text-xs px-4 py-2 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors disabled:opacity-50 shrink-0"
+        >
+          <Github size={14} />
+          {syncing ? "Pushing…" : "Push All to GitHub"}
+        </button>
+      </div>
 
       {PRODUCTS.map((product) => {
         const productVersions = allVersions.filter(v => v.product === product.key);
