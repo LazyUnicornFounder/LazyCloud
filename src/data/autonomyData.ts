@@ -299,6 +299,20 @@ export const ENGINE_CATEGORIES: EngineCategory[] = [
           "It detects anomalies before they become problems. Coming soon.",
         ],
       },
+      {
+        name: "Lazy Mail",
+        description: "Subscriber capture, welcome sequences, and AI newsletters via Resend",
+        currentLevel: 3,
+        link: "/lazy-mail",
+        levels: [
+          "You write and send every email manually. Subscribers? What subscribers.",
+          "Mailchimp helps. You still write every newsletter.",
+          "Drip sequences exist. You wrote them once and forgot.",
+          "New post publishes → newsletter written and sent automatically. Subject lines rewrite themselves.",
+          "It segments audiences and personalises content per reader. Coming soon.",
+          "It predicts churn and re-engages subscribers before they leave. Coming soon.",
+        ],
+      },
     ],
   },
   {
