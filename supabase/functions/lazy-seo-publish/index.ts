@@ -39,6 +39,9 @@ const PRODUCT_INFO: Record<string, { name: string; url: string; description: str
   "lazy-linear": { name: "Lazy Linear", url: "https://lazyunicorn.ai/lazy-linear", description: "autonomous Linear issue changelog engine" },
   "lazy-contentful": { name: "Lazy Contentful", url: "https://lazyunicorn.ai/lazy-contentful", description: "autonomous two-way CMS sync engine" },
   "lazy-perplexity": { name: "Lazy Perplexity", url: "https://lazyunicorn.ai/lazy-perplexity", description: "autonomous research-backed content engine" },
+  "lazy-security": { name: "Lazy Security", url: "https://lazyunicorn.ai/lazy-security", description: "autonomous pentesting and vulnerability monitoring engine" },
+  "lazy-mail": { name: "Lazy Mail", url: "https://lazyunicorn.ai/lazy-mail", description: "autonomous email marketing and newsletter engine via Resend" },
+  "lazy-design": { name: "Lazy Design", url: "https://lazyunicorn.ai/lazy-design", description: "autonomous UI upgrade engine via 21st.dev components" },
 };
 
 serve(async (req) => {
