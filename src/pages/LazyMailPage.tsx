@@ -9,6 +9,7 @@ import LazyPricingSection from "@/components/LazyPricingSection";
 import LazyFaqSection from "@/components/LazyFaqSection";
 import { useTrackEvent } from "@/hooks/useTrackEvent";
 import { useCurrentPrompt } from "@/hooks/usePrompt";
+import AutopilotHeadline from "@/components/AutopilotHeadline";
 
 const fadeUp = { hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0 } };
 
@@ -101,6 +102,8 @@ export default function LazyMailPage() {
                 <ResendBadge />
               </div>
               <div className="flex items-center gap-4 flex-wrap">
+                <AutopilotHeadline product="lazy-mail" />
+
                 <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(2.5rem, 5vw, 4.5rem)", color: "#f0ead6", lineHeight: 0.95, letterSpacing: "-0.01em" }}>
                   Lazy Mail
                 </h1>

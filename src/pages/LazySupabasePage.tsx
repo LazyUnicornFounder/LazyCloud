@@ -9,6 +9,7 @@ import { useTrackEvent } from "@/hooks/useTrackEvent";
 import { useCurrentPrompt } from "@/hooks/usePrompt";
 import { toast } from "sonner";
 import { useState } from "react";
+import AutopilotHeadline from "@/components/AutopilotHeadline";
 
 const fadeUp = { hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0 } };
 
@@ -193,6 +194,8 @@ const LazySupabasePage = () => {
                 <span className="bg-foreground text-background text-[10px] tracking-[0.15em] uppercase font-extrabold px-3 py-1 font-display">BETA</span>
               </div>
               <div className="flex items-center gap-4 flex-wrap">
+                <AutopilotHeadline product="lazy-supabase" />
+
                 <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(2.5rem, 5vw, 4.5rem)", color: "#f0ead6", lineHeight: 0.95, letterSpacing: "-0.01em" }}>
                   Lazy Supabase
                 </h1>
