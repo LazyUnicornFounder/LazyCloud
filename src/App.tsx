@@ -128,6 +128,7 @@ const App = () => (
               <Route path="/lazy-perplexity" element={<LazyPerplexityPage />} />
               <Route path="/lazy-crawl" element={<LazyCrawlPage />} />
               <Route path="/lazy-admin" element={<LazyAdminPage />} />
+              <Route path="/lazy-launch" element={<LazyLaunchPage />} />
               <Route path="/pricing" element={<PricingPage />} />
               <Route path="/autonomy" element={<AutonomyPage />} />
               <Route path="/lazy-security" element={<LazySecurityPage />} />
