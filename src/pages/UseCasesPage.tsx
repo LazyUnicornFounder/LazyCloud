@@ -12,9 +12,9 @@ import { Badge } from "@/components/ui/badge";
 
 const fade = { hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0, transition: { duration: 0.5 } } };
 
-type Category = "All" | "Lazy Content" | "Lazy Commerce" | "Lazy Media" | "Lazy Dev" | "Lazy Channels" | "Lazy Shield";
+type Category = "All" | "Lazy Content" | "Lazy Commerce" | "Lazy Media" | "Lazy Dev" | "Lazy Channels" | "Lazy Shield" | "Lazy Design";
 
-const filters: Category[] = ["All", "Lazy Content", "Lazy Commerce", "Lazy Media", "Lazy Dev", "Lazy Channels", "Lazy Shield"];
+const filters: Category[] = ["All", "Lazy Content", "Lazy Commerce", "Lazy Media", "Lazy Dev", "Lazy Channels", "Lazy Shield", "Lazy Design"];
 
 interface Integration {
   name: string;
@@ -259,7 +259,7 @@ const integrations: Integration[] = [
   },
   {
     name: "21st.dev",
-    category: "Lazy Shield",
+    category: "Lazy Design",
     description: "Browse and install pre-built UI components into your Lovable project — heroes, navbars, testimonials, CTAs, and more.",
     unlocks: [
       "Audit every page and detect which sections can be upgraded with a premium component.",

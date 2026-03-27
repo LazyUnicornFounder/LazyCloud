@@ -94,6 +94,11 @@ const productCategories = [
     label: "Lazy Shield",
     items: [
       { label: "Lazy Security", href: "/lazy-security", tagline: "Autonomous pentesting.", icon: icons.security },
+    ],
+  },
+  {
+    label: "Lazy Design",
+    items: [
       { label: "Lazy Design", href: "/lazy-design", tagline: "21st.dev upgrades on autopilot.", icon: icons.admin },
     ],
   },
