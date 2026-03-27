@@ -42,7 +42,7 @@ const productCategories = [
   {
     label: "Lazy Unicorn",
     items: [
-      { label: "Lazy Run", href: "/lazy-run", tagline: "All 20 engines. One prompt.", icon: icons.run },
+      { label: "Lazy Run", href: "/lazy-run", tagline: "All 21 engines. One prompt.", icon: icons.run },
       { label: "Lazy Admin", href: "/lazy-admin", tagline: "Your autonomous dashboard.", icon: icons.admin },
     ],
   },
