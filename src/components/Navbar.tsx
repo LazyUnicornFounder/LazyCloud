@@ -40,12 +40,6 @@ const icons = {
 /* ── All products organised by category ── */
 const productCategories = [
   {
-    label: "Lazy Launch",
-    items: [
-      { label: "Lazy Launch", href: "/lazy-launch", tagline: "Idea → autonomous business prompt.", icon: icons.launch, badge: "Free" },
-    ],
-  },
-  {
     label: "Lazy Unicorn",
     items: [
       { label: "Lazy Run", href: "/lazy-run", tagline: "All 20 engines. One prompt.", icon: icons.run },
