@@ -145,18 +145,20 @@ export default function LazyMailPage() {
         </section>
 
         {/* Features */}
-        <section className="mt-28 px-6 md:px-12 max-w-5xl mx-auto">
-          <motion.h2 initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} transition={{ duration: 0.6 }} style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.6rem", color: "#f0ead6", textAlign: "center", marginBottom: "2.5rem" }}>
-            What it does
-          </motion.h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-border">
-            {features.map((f, i) => (
-              <motion.div key={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} transition={{ duration: 0.5, delay: i * 0.06 }} className="bg-card p-8">
-                <f.icon size={20} className="text-foreground/20 mb-4" />
-                <h3 className="font-display text-sm font-bold text-foreground mb-2">{f.title}</h3>
-                <p className="font-body text-xs text-foreground/40 leading-relaxed">{f.desc}</p>
-              </motion.div>
-            ))}
+        <section className="py-20 md:py-28 px-6 border-t border-border">
+          <div className="max-w-4xl mx-auto">
+            <motion.h2 initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} transition={{ duration: 0.6 }} className="font-display text-2xl md:text-3xl font-bold tracking-tight text-center mb-14">
+              What it does
+            </motion.h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {features.map((f, i) => (
+                <motion.div key={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} transition={{ duration: 0.5, delay: i * 0.08 }} className="border border-border p-6">
+                  <f.icon size={20} className="text-foreground/20 mb-4" />
+                  <h3 className="font-display text-sm font-bold text-foreground mb-2">{f.title}</h3>
+                  <p className="font-body text-xs text-foreground/40 leading-relaxed">{f.desc}</p>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </section>
 
