@@ -9,6 +9,23 @@ const PRODUCTS = [
   { key: "lazy-blogger", label: "🤖 Lazy Blogger" },
   { key: "lazy-seo", label: "🔍 Lazy SEO" },
   { key: "lazy-geo", label: "🧠 Lazy GEO" },
+  { key: "lazy-crawl", label: "🕷️ Lazy Crawl" },
+  { key: "lazy-perplexity", label: "🔬 Lazy Perplexity" },
+  { key: "lazy-store", label: "🏪 Lazy Store" },
+  { key: "lazy-pay", label: "💳 Lazy Pay" },
+  { key: "lazy-sms", label: "💬 Lazy SMS" },
+  { key: "lazy-voice", label: "🎙️ Lazy Voice" },
+  { key: "lazy-stream", label: "🎮 Lazy Stream" },
+  { key: "lazy-code", label: "🐙 Lazy GitHub" },
+  { key: "lazy-gitlab", label: "🦊 Lazy GitLab" },
+  { key: "lazy-linear", label: "📋 Lazy Linear" },
+  { key: "lazy-alert", label: "🔔 Lazy Alert" },
+  { key: "lazy-telegram", label: "✈️ Lazy Telegram" },
+  { key: "lazy-contentful", label: "📦 Lazy Contentful" },
+  { key: "lazy-supabase", label: "⚡ Lazy Supabase" },
+  { key: "lazy-security", label: "🛡️ Lazy Security" },
+  { key: "lazy-run", label: "🚀 Lazy Run" },
+  { key: "lazy-admin", label: "📊 Lazy Admin" },
 ] as const;
 
 /* ── Helpers ── */
