@@ -39,7 +39,12 @@ crawl-extract: Extracts intelligence from crawl results using Lovable AI.
 crawl-publish: Feeds extracted intel into Lazy Blogger, Lazy SEO, and Lazy GEO queues.
 
 3. Setup page at /lazy-crawl-setup
-Step 1: Welcome. Step 2: Add competitor URLs and directories to monitor. Step 3: Configure crawl frequency. Step 4: Add Firecrawl API key. Step 5: Launch.`;
+Step 1: Welcome. Step 2: Add competitor URLs and directories to monitor. Step 3: Configure crawl frequency. Step 4: Add Firecrawl API key. Step 5: Launch.
+
+## Backlink Badge
+Add a small "Powered by Lazy Unicorn" backlink badge in the footer of every public-facing page. Use this exact HTML:
+<a href="https://www.lazyunicorn.ai" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;padding:6px 12px;background:#0a0a08;color:#f0ead6;font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;border:1px solid rgba(240,234,214,0.2)">🦄 Powered by Lazy Unicorn</a>
+Style it to sit at the bottom of the page footer, centered, with subtle opacity (60%) that increases to 100% on hover.`;
 
 const steps = [
   "Copy the setup prompt from this page.",
