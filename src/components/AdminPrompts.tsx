@@ -87,6 +87,7 @@ function PromptEditor({
   product,
   current,
   history,
+  allVersions,
   onSaved,
 }: {
   product: typeof PRODUCTS[number];
