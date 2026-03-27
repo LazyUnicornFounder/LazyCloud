@@ -8,6 +8,7 @@ import SEO from "@/components/SEO";
 import Navbar from "@/components/Navbar";
 import { useTrackEvent } from "@/hooks/useTrackEvent";
 import { useCurrentPrompt } from "@/hooks/usePrompt";
+import AutopilotHeadline from "@/components/AutopilotHeadline";
 
 const SETUP_PROMPT = `[Lazy GitHub Prompt — v0.0.4 — LazyUnicorn.ai]
 
@@ -296,6 +297,8 @@ const LazyGitHubPage = () => {
               <span className="bg-foreground text-background text-[10px] tracking-[0.15em] uppercase font-extrabold px-3 py-1 font-display">BETA</span>
             </div>
             <div className="flex items-center gap-4 flex-wrap">
+              <AutopilotHeadline product="lazy-github" />
+
               <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(2.5rem, 5vw, 4.5rem)", color: "#f0ead6", lineHeight: 0.95, letterSpacing: "-0.01em" }}>
                 Lazy GitHub
               </h1>

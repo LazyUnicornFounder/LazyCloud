@@ -7,6 +7,7 @@ import LazyPricingSection from "@/components/LazyPricingSection";
 import LazyFaqSection from "@/components/LazyFaqSection";
 import { toast } from "sonner";
 import { useCurrentPrompt } from "@/hooks/usePrompt";
+import AutopilotHeadline from "@/components/AutopilotHeadline";
 
 const LAZY_SECURITY_PROMPT = `[Lazy Security Prompt — v0.0.5 — LazyUnicorn.ai]
 
@@ -284,6 +285,8 @@ export default function LazySecurityPage() {
                 <span className="bg-foreground text-background text-[10px] tracking-[0.15em] uppercase font-extrabold px-3 py-1 font-display">BETA</span>
               </div>
               <div className="flex items-center gap-4 flex-wrap">
+                <AutopilotHeadline product="lazy-security" />
+
                 <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(2.5rem, 5vw, 4.5rem)", color: "#f0ead6", lineHeight: 0.95, letterSpacing: "-0.01em" }}>
                   Lazy Security
                 </h1>

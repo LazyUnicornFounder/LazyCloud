@@ -9,6 +9,7 @@ import Navbar from "@/components/Navbar";
 import { useTrackEvent } from "@/hooks/useTrackEvent";
 import { useCurrentPrompt } from "@/hooks/usePrompt";
 import { Link } from "react-router-dom";
+import AutopilotHeadline from "@/components/AutopilotHeadline";
 
 const fadeUp = { hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0 } };
 
@@ -212,6 +213,8 @@ const LazyStreamPage = () => {
                 <p style={{ fontFamily: "'Dancing Script', cursive", fontSize: "1.5rem", color: "#f0ead6", opacity: 0.4 }}>Introducing</p>
                 <span className="bg-foreground text-background text-[10px] tracking-[0.15em] uppercase font-extrabold px-3 py-1 font-display">BETA</span>
               </div>
+              <AutopilotHeadline product="lazy-stream" />
+
               <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(2.5rem, 5vw, 4.5rem)", color: "#f0ead6", lineHeight: 0.95, letterSpacing: "-0.01em" }}>
                 Lazy Stream
               </h1>
