@@ -65,9 +65,10 @@ const engineGroups = [
   },
   {
     label: "Lazy Shield",
-    description: "Autonomous pentesting and vulnerability monitoring.",
+    description: "Autonomous pentesting, vulnerability monitoring, and design upgrades.",
     engines: [
       { name: "Lazy Security", tagline: "Autonomous pentesting and vulnerability monitoring via Aikido.", href: "/lazy-security" },
+      { name: "Lazy Design", tagline: "Upgrades your site with 21st.dev components matched to your brand.", href: "/lazy-design" },
     ],
   },
 ];
@@ -96,7 +97,7 @@ export default function HowItWorksPage() {
                 Every engine is a self-contained prompt you paste into your Lovable project. Each one installs its own database tables, edge functions, and UI — then runs itself autonomously.
               </p>
               <p className="font-body text-foreground/30 text-sm max-w-xl mx-auto leading-relaxed">
-                Integrates with <strong className="text-foreground/50">Stripe</strong>, <strong className="text-foreground/50">Twilio</strong>, <strong className="text-foreground/50">ElevenLabs</strong>, <strong className="text-foreground/50">Twitch</strong>, <strong className="text-foreground/50">GitHub</strong>, <strong className="text-foreground/50">GitLab</strong>, <strong className="text-foreground/50">Linear</strong>, <strong className="text-foreground/50">Slack</strong>, <strong className="text-foreground/50">Telegram</strong>, <strong className="text-foreground/50">Supabase</strong>, <strong className="text-foreground/50">Contentful</strong>, <strong className="text-foreground/50">Firecrawl</strong>, and <strong className="text-foreground/50">Perplexity</strong>.
+                Integrates with <strong className="text-foreground/50">Stripe</strong>, <strong className="text-foreground/50">Twilio</strong>, <strong className="text-foreground/50">ElevenLabs</strong>, <strong className="text-foreground/50">Twitch</strong>, <strong className="text-foreground/50">GitHub</strong>, <strong className="text-foreground/50">GitLab</strong>, <strong className="text-foreground/50">Linear</strong>, <strong className="text-foreground/50">Slack</strong>, <strong className="text-foreground/50">Telegram</strong>, <strong className="text-foreground/50">Supabase</strong>, <strong className="text-foreground/50">Contentful</strong>, <strong className="text-foreground/50">Firecrawl</strong>, <strong className="text-foreground/50">Perplexity</strong>, <strong className="text-foreground/50">Resend</strong>, and <strong className="text-foreground/50">21st.dev</strong>.
               </p>
             </motion.div>
           </div>

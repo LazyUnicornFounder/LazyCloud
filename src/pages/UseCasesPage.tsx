@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import {
   CreditCard, MessageSquare, Mic, Globe, GitBranch, Search,
   Hash, Send, Tv, Database, FileText, Shield, Code, Zap,
-  ArrowRight, CheckCircle2,
+  ArrowRight, CheckCircle2, Palette,
 } from "lucide-react";
 import SEO from "@/components/SEO";
 import Navbar from "@/components/Navbar";
@@ -256,6 +256,22 @@ const integrations: Integration[] = [
     engine: "Lazy Mail",
     engineHref: "/lazy-mail",
     icon: <Send size={20} />,
+  },
+  {
+    name: "21st.dev",
+    category: "Lazy Shield",
+    description: "Browse and install pre-built UI components into your Lovable project — heroes, navbars, testimonials, CTAs, and more.",
+    unlocks: [
+      "Audit every page and detect which sections can be upgraded with a premium component.",
+      "Get brand-matched component suggestions based on your colour scheme and typography.",
+      "Apply upgrades with one click using ready-to-paste Lovable prompts.",
+      "Schedule weekly or monthly design reviews that upgrade one section at a time.",
+      "Fall back to AI-generated Tailwind + Framer Motion components when no library match exists.",
+    ],
+    engine: "Lazy Design",
+    engineHref: "/lazy-design",
+    icon: <Palette size={20} />,
+    note: "Uses the 21st.dev component library — no API key required",
   },
 ];
 
