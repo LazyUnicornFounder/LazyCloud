@@ -44,14 +44,14 @@ export const ENGINE_CATEGORIES: EngineCategory[] = [
     engines: [
       {
         name: "Lazy Run",
-        description: "Installs all twenty-two engines in one prompt",
+        description: "Installs all twenty-three engines in one prompt",
         currentLevel: 4,
         link: "/lazy-run",
         levels: [
           "You install each tool manually. Days per integration.",
           "Copy-paste guides speed things up. Still hours per engine.",
           "You batch-install a few engines at a time.",
-          "One prompt. Twenty-two engines. Everything wired in minutes.",
+          "One prompt. Twenty-three engines. Everything wired in minutes.",
           "It detects what you're missing and suggests engines automatically. Coming soon.",
           "It benchmarks your stack against similar businesses and optimises. Coming soon.",
         ],
