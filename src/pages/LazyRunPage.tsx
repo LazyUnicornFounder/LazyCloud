@@ -156,11 +156,13 @@ Group: Content Engines
 - Lazy GEO: Publishes content cited by ChatGPT and Perplexity
 - Lazy Crawl: Monitors competitors and feeds real intelligence into your content engines
 - Lazy Perplexity: Researches your niche with live web data and tests brand citation rates
+- Lazy Contentful: Two-way content sync between your Lovable site and Contentful
 
 Group: Commerce Engines
 - Lazy Store: Discovers products, writes listings, optimises conversion
 - Lazy Pay: Installs Stripe with self-improving conversion optimisation
 - Lazy SMS: Sends automated texts via Twilio that improve themselves
+- Lazy Mail: Subscriber capture, welcome sequences, and AI newsletters via Resend
 
 Group: Media Engines
 - Lazy Voice: Narrates every post in your voice via ElevenLabs
@@ -170,16 +172,14 @@ Group: Developer Engines
 - Lazy GitHub: Turns every GitHub commit into a changelog and developer post
 - Lazy GitLab: Turns every GitLab commit into a changelog and developer post
 - Lazy Linear: Turns Linear issues and cycles into changelogs and product updates
+- Lazy Design: Upgrades your site with 21st.dev components matched to your brand
+- Lazy Auth: Installs Google OAuth, email login, protected routes, and user management automatically
 
-Group: Channels
+Group: Ops Engines
 - Lazy Alert: Real-time Slack alerts for every engine event
 - Lazy Telegram: Real-time Telegram alerts and bot commands for every engine
-- Lazy Contentful: Two-way content sync between your Lovable site and Contentful
 - Lazy Supabase: Monitors database milestones and publishes product update posts
-
-Group: Security
 - Lazy Security: Runs automated Aikido pentests, tracks vulnerabilities, and generates audit-ready reports
-- Lazy Auth: Installs Google OAuth, email login, protected routes, and user management automatically
 
 Below the cards show which API keys each selected engine requires.
 Next button.
@@ -381,27 +381,32 @@ Do not expose any setup routes in public navigation.`;
 const fadeUp = { hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0 } };
 
 const engines = [
+  // Content
   { name: "Lazy Blogger", desc: "Publishes four blog posts per day automatically.", icon: FileText, href: "/lazy-blogger" },
   { name: "Lazy SEO", desc: "Discovers keywords and publishes ranking articles.", icon: Search, href: "/lazy-seo" },
   { name: "Lazy GEO", desc: "Gets your brand cited by ChatGPT and Perplexity.", icon: Globe, href: "/lazy-geo" },
   { name: "Lazy Crawl", desc: "Monitors competitors and feeds intelligence to your engines.", icon: Radar, href: "/lazy-crawl" },
   { name: "Lazy Perplexity", desc: "Queries Perplexity for trends and feeds your content engines.", icon: Compass, href: "/lazy-perplexity" },
   { name: "Lazy Contentful", desc: "Two-way content sync with Contentful.", icon: Layers, href: "/lazy-contentful" },
+  // Commerce
   { name: "Lazy Store", desc: "Discovers products, writes listings, optimises conversion.", icon: ShoppingCart, href: "/lazy-store" },
-  { name: "Lazy Voice", desc: "Narrates every blog post in your voice via ElevenLabs.", icon: Mic, href: "/lazy-voice" },
   { name: "Lazy Pay", desc: "Installs Stripe with self-improving conversion optimisation.", icon: CreditCard, href: "/lazy-pay" },
   { name: "Lazy SMS", desc: "Sends automated texts via Twilio that improve themselves.", icon: MessageSquare, href: "/lazy-sms" },
+  { name: "Lazy Mail", desc: "Subscriber capture, welcome sequences, and AI newsletters via Resend.", icon: MessageSquare, href: "/lazy-mail" },
+  // Media
+  { name: "Lazy Voice", desc: "Narrates every blog post in your voice via ElevenLabs.", icon: Mic, href: "/lazy-voice" },
   { name: "Lazy Stream", desc: "Turns every Twitch stream into blog posts and SEO content.", icon: Video, href: "/lazy-stream" },
+  // Dev
   { name: "Lazy GitHub", desc: "Turns every GitHub commit into a changelog and developer post.", icon: Code, href: "/lazy-github" },
   { name: "Lazy GitLab", desc: "Turns GitLab activity into public content.", icon: Code, href: "/lazy-gitlab" },
   { name: "Lazy Linear", desc: "Turns Linear cycles into product update content.", icon: BarChart3, href: "/lazy-linear" },
-  { name: "Lazy Supabase", desc: "Narrates your database growth story automatically.", icon: Database, href: "/lazy-supabase" },
-  { name: "Lazy Alert", desc: "Every engine event reported to Slack in real time.", icon: Bell, href: "/lazy-alert" },
-  { name: "Lazy Telegram", desc: "Real-time engine reporting via Telegram bot.", icon: Send, href: "/lazy-telegram" },
-  { name: "Lazy Security", desc: "Autonomous pentesting and vulnerability monitoring via Aikido.", icon: Shield, href: "/lazy-security" },
-  { name: "Lazy Mail", desc: "Subscriber capture, welcome sequences, and AI newsletters via Resend.", icon: MessageSquare, href: "/lazy-mail" },
   { name: "Lazy Design", desc: "Upgrades your site with 21st.dev components matched to your brand.", icon: Layers, href: "/lazy-design" },
   { name: "Lazy Auth", desc: "Google Sign-In, email login, protected routes, and user management.", icon: Shield, href: "/lazy-auth" },
+  // Ops
+  { name: "Lazy Alert", desc: "Every engine event reported to Slack in real time.", icon: Bell, href: "/lazy-alert" },
+  { name: "Lazy Telegram", desc: "Real-time engine reporting via Telegram bot.", icon: Send, href: "/lazy-telegram" },
+  { name: "Lazy Supabase", desc: "Narrates your database growth story automatically.", icon: Database, href: "/lazy-supabase" },
+  { name: "Lazy Security", desc: "Autonomous pentesting and vulnerability monitoring via Aikido.", icon: Shield, href: "/lazy-security" },
 ];
 
 const faqs = [
