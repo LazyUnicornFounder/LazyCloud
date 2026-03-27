@@ -82,6 +82,7 @@ const productCategories = [
       { label: "Lazy Linear", href: "/lazy-linear", tagline: "Launch autonomous issue content.", icon: icons.linear },
       { label: "Lazy Design", href: "/lazy-design", tagline: "Launch autonomous UI upgrades.", icon: icons.admin },
       { label: "Lazy Auth", href: "/lazy-auth", tagline: "Launch autonomous login flows.", icon: icons.auth },
+      { label: "Lazy Granola", href: "/lazy-granola", tagline: "Launch autonomous meeting content.", icon: icons.code },
     ],
   },
   {

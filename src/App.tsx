@@ -44,6 +44,8 @@ import LazyMailPage from "./pages/LazyMailPage.tsx";
 import LazyDesignPage from "./pages/LazyDesignPage.tsx";
 import LazyAuthPage from "./pages/LazyAuthPage.tsx";
 import LazyAdminPage from "./pages/LazyAdminPage.tsx";
+import LazyGranolaPage from "./pages/LazyGranolaPage.tsx";
+import LazyGranolaSetup from "./pages/LazyGranolaSetup.tsx";
 
 import ChangelogPage from "./pages/ChangelogPage.tsx";
 import UpgradeGuidePage from "./pages/UpgradeGuidePage.tsx";
@@ -63,6 +65,7 @@ import AdminPlaceholderPage from "./pages/admin/AdminPlaceholderPage.tsx";
 import AdminAnalyticsPage from "./pages/admin/AdminAnalyticsPage.tsx";
 import AdminChangelogPage from "./pages/admin/AdminChangelogPage.tsx";
 import AdminPromptsPage from "./pages/admin/AdminPromptsPage.tsx";
+import AdminGranolaPage from "./pages/admin/AdminGranolaPage.tsx";
 
 const queryClient = new QueryClient();
 
