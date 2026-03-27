@@ -96,7 +96,7 @@ const stackConnections = [
 export default function LazyGranolaPage() {
   const trackEvent = useTrackEvent();
   const { prompt: dbPrompt } = useCurrentPrompt("lazy-granola");
-  const promptText = dbPrompt || LAZY_GRANOLA_FALLBACK;
+  const promptText = dbPrompt?.prompt_text || LAZY_GRANOLA_FALLBACK;
 
   const handleCopy = useCallback(() => {
     trackEvent("granola_prompt_copied");
@@ -116,7 +116,7 @@ export default function LazyGranolaPage() {
         <section className="pt-32 pb-20 px-6">
           <div className="max-w-4xl mx-auto text-center">
             <motion.div initial="hidden" animate="visible" variants={fadeUp} transition={{ duration: 0.6 }}>
-              <AutopilotHeadline />
+              <AutopilotHeadline product="lazy-granola" />
               <h1
                 style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(2rem, 4.5vw, 3.5rem)", color: "#f0ead6", lineHeight: 1.1 }}
                 className="mb-6"
