@@ -96,6 +96,7 @@ const App = () => (
                 <Route path="contentful" element={<AdminPlaceholderPage name="Lazy Contentful" />} />
                 <Route path="supabase-monitor" element={<AdminPlaceholderPage name="Lazy Supabase" />} />
               <Route path="security" element={<AdminPlaceholderPage name="Lazy Security" />} />
+              <Route path="design" element={<AdminPlaceholderPage name="Lazy Design" />} />
               <Route path="mail" element={<AdminPlaceholderPage name="Lazy Mail" />} />
                 <Route path="changelog" element={<AdminChangelogPage />} />
                 <Route path="settings" element={<AdminSettingsPage />} />
