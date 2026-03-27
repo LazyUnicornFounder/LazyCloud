@@ -10,21 +10,28 @@ const NEW_TITLE = "Launch your Autonomous Business on Lovable.";
 const NEW_DESCRIPTION = "The autonomous layer for Lovable. One prompt installs the engine you need — blog posts, SEO, GEO, payments, voice, stores, streams, and more. Everything runs itself.";
 
 const rotatingWords = [
-  { word: "blogs", emoji: "✍️" },
-  { word: "SEO", emoji: "🔍" },
-  { word: "stores", emoji: "🛒" },
-  { word: "GEO", emoji: "🌐" },
-  { word: "streams", emoji: "🎬" },
-  { word: "voice", emoji: "🎙️" },
-  { word: "security", emoji: "🛡️" },
-  { word: "payments", emoji: "💳" },
-  { word: "alerts", emoji: "🔔" },
-  { word: "devlogs", emoji: "👨‍💻" },
-  { word: "admin", emoji: "⚙️" },
-  { word: "video", emoji: "🎥" },
-  { word: "SMS", emoji: "📱" },
-  { word: "emails", emoji: "📧" },
-  { word: "design", emoji: "🎨" },
+  { word: "everything", emoji: "🦄" },       // Lazy Run
+  { word: "dashboards", emoji: "⚙️" },       // Lazy Admin
+  { word: "design", emoji: "🎨" },            // Lazy Design
+  { word: "blogs", emoji: "✍️" },             // Lazy Blogger
+  { word: "SEO", emoji: "🔍" },               // Lazy SEO
+  { word: "GEO", emoji: "🌐" },               // Lazy GEO
+  { word: "crawling", emoji: "🕷️" },          // Lazy Crawl
+  { word: "CMS sync", emoji: "🔄" },          // Lazy Contentful
+  { word: "podcasts", emoji: "🎙️" },          // Lazy Voice
+  { word: "streams", emoji: "🎬" },           // Lazy Stream
+  { word: "research", emoji: "🔮" },          // Lazy Perplexity
+  { word: "stores", emoji: "🛒" },            // Lazy Store
+  { word: "payments", emoji: "💳" },           // Lazy Pay
+  { word: "SMS", emoji: "📱" },               // Lazy SMS
+  { word: "commits", emoji: "👨‍💻" },          // Lazy GitHub
+  { word: "merges", emoji: "🔀" },            // Lazy GitLab
+  { word: "databases", emoji: "🗄️" },         // Lazy Supabase
+  { word: "sprints", emoji: "✅" },            // Lazy Linear
+  { word: "emails", emoji: "📧" },            // Lazy Mail
+  { word: "alerts", emoji: "🔔" },            // Lazy Alert
+  { word: "Telegram", emoji: "✈️" },          // Lazy Telegram
+  { word: "security", emoji: "🛡️" },          // Lazy Security
 ];
 
 function RotatingHeadline() {
