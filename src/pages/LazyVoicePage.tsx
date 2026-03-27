@@ -279,7 +279,7 @@ export default function LazyVoicePage() {
                 <ElevenLabsBadge />
               </div>
               <p className="mt-6 font-body text-base md:text-lg text-foreground/70 max-w-xl leading-relaxed">
-                Lazy Voice monitors every post Lazy Blogger and Lazy SEO publish, sends them to ElevenLabs, and embeds an audio player on every article — automatically. Your site becomes a blog and a podcast at the same time.
+                Lazy Voice monitors every post Lazy Blogger and Lazy SEO publish, sends them to ElevenLabs, and embeds an audio player on every article — automatically. Your <a href="https://lovable.dev" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground/90 transition-colors">Lovable</a> site becomes a blog and a podcast at the same time.
               </p>
               <div className="flex flex-col sm:flex-row items-start gap-4 mt-10">
                 <CopyPromptButton text={promptText} onCopy={handleCopy} />
