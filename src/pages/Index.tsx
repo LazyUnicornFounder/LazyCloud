@@ -106,31 +106,31 @@ function RotatingHeadline() {
 
 const products = [
   // Lazy Content
-  { cursive: "Lazy", name: "Blogger", link: "/lazy-blogger", tagline: "Your blog writes itself." },
-  { cursive: "Lazy", name: "SEO", link: "/lazy-seo", tagline: "Rankings on autopilot." },
-  { cursive: "Lazy", name: "GEO", link: "/lazy-geo", tagline: "Get cited by AI." },
-  { cursive: "Lazy", name: "Crawl", link: "/lazy-crawl", tagline: "Web intelligence on autopilot." },
-  { cursive: "Lazy", name: "Perplexity", link: "/lazy-perplexity", tagline: "Research-backed content." },
-  { cursive: "Lazy", name: "Contentful", link: "/lazy-contentful", tagline: "Two-way CMS sync." },
+  { cursive: "Lazy", name: "Blogger", link: "/lazy-blogger", tagline: "Launch autonomous blog posts." },
+  { cursive: "Lazy", name: "SEO", link: "/lazy-seo", tagline: "Launch autonomous SEO content." },
+  { cursive: "Lazy", name: "GEO", link: "/lazy-geo", tagline: "Launch autonomous AI citations." },
+  { cursive: "Lazy", name: "Crawl", link: "/lazy-crawl", tagline: "Launch autonomous web research." },
+  { cursive: "Lazy", name: "Perplexity", link: "/lazy-perplexity", tagline: "Launch autonomous deep research." },
+  { cursive: "Lazy", name: "Contentful", link: "/lazy-contentful", tagline: "Launch autonomous CMS sync." },
   // Lazy Commerce
-  { cursive: "Lazy", name: "Store", link: "/lazy-store", tagline: "A store that runs itself." },
-  { cursive: "Lazy", name: "Pay", link: "/lazy-pay", tagline: "Payments that optimise." },
-  { cursive: "Lazy", name: "SMS", link: "/lazy-sms", tagline: "Texts that convert." },
-  { cursive: "Lazy", name: "Mail", link: "/lazy-mail", tagline: "Emails send themselves." },
+  { cursive: "Lazy", name: "Store", link: "/lazy-store", tagline: "Launch autonomous storefronts." },
+  { cursive: "Lazy", name: "Pay", link: "/lazy-pay", tagline: "Launch autonomous payments." },
+  { cursive: "Lazy", name: "SMS", link: "/lazy-sms", tagline: "Launch autonomous text campaigns." },
+  { cursive: "Lazy", name: "Mail", link: "/lazy-mail", tagline: "Launch autonomous email flows." },
   // Lazy Media
-  { cursive: "Lazy", name: "Voice", link: "/lazy-voice", tagline: "Every post, narrated." },
-  { cursive: "Lazy", name: "Stream", link: "/lazy-stream", tagline: "Streams become content." },
+  { cursive: "Lazy", name: "Voice", link: "/lazy-voice", tagline: "Launch autonomous podcasts." },
+  { cursive: "Lazy", name: "Stream", link: "/lazy-stream", tagline: "Launch autonomous stream content." },
   // Lazy Dev
-  { cursive: "Lazy", name: "GitHub", link: "/lazy-github", tagline: "Commits become changelogs." },
-  { cursive: "Lazy", name: "GitLab", link: "/lazy-gitlab", tagline: "Commits become changelogs." },
-  { cursive: "Lazy", name: "Linear", link: "/lazy-linear", tagline: "Issues become changelogs." },
-  { cursive: "Lazy", name: "Design", link: "/lazy-design", tagline: "21st.dev upgrades on autopilot." },
-  { cursive: "Lazy", name: "Auth", link: "/lazy-auth", tagline: "Login that builds itself." },
+  { cursive: "Lazy", name: "GitHub", link: "/lazy-github", tagline: "Launch autonomous changelogs." },
+  { cursive: "Lazy", name: "GitLab", link: "/lazy-gitlab", tagline: "Launch autonomous GitLab docs." },
+  { cursive: "Lazy", name: "Linear", link: "/lazy-linear", tagline: "Launch autonomous issue content." },
+  { cursive: "Lazy", name: "Design", link: "/lazy-design", tagline: "Launch autonomous UI upgrades." },
+  { cursive: "Lazy", name: "Auth", link: "/lazy-auth", tagline: "Launch autonomous login flows." },
   // Lazy Ops
-  { cursive: "Lazy", name: "Alert", link: "/lazy-alert", tagline: "Your business in your Slack." },
-  { cursive: "Lazy", name: "Telegram", link: "/lazy-telegram", tagline: "Your business in Telegram." },
-  { cursive: "Lazy", name: "Supabase", link: "/lazy-supabase", tagline: "Your database tells its story." },
-  { cursive: "Lazy", name: "Security", link: "/lazy-security", tagline: "Ship safe, stay safe." },
+  { cursive: "Lazy", name: "Alert", link: "/lazy-alert", tagline: "Launch autonomous Slack alerts." },
+  { cursive: "Lazy", name: "Telegram", link: "/lazy-telegram", tagline: "Launch autonomous Telegram updates." },
+  { cursive: "Lazy", name: "Supabase", link: "/lazy-supabase", tagline: "Launch autonomous database reports." },
+  { cursive: "Lazy", name: "Security", link: "/lazy-security", tagline: "Launch autonomous pentesting." },
 
   { cursive: "Lazy", name: "Coming Soon", link: "", tagline: "More engines loading." },
 ];

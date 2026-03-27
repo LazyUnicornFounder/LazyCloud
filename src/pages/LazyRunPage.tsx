@@ -387,35 +387,35 @@ const fadeUp = { hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0 } };
 
 const engines = [
   // Content
-  { name: "Lazy Blogger", desc: "Publishes four blog posts per day automatically.", icon: FileText, href: "/lazy-blogger" },
-  { name: "Lazy SEO", desc: "Discovers keywords and publishes ranking articles.", icon: Search, href: "/lazy-seo" },
-  { name: "Lazy GEO", desc: "Gets your brand cited by ChatGPT and Perplexity.", icon: Globe, href: "/lazy-geo" },
-  { name: "Lazy Crawl", desc: "Monitors competitors and feeds intelligence to your engines.", icon: Radar, href: "/lazy-crawl" },
-  { name: "Lazy Perplexity", desc: "Queries Perplexity for trends and feeds your content engines.", icon: Compass, href: "/lazy-perplexity" },
-  { name: "Lazy Contentful", desc: "Two-way content sync with Contentful.", icon: Layers, href: "/lazy-contentful" },
+  { name: "Lazy Blogger", desc: "Launch autonomous blog posts.", icon: FileText, href: "/lazy-blogger" },
+  { name: "Lazy SEO", desc: "Launch autonomous SEO content.", icon: Search, href: "/lazy-seo" },
+  { name: "Lazy GEO", desc: "Launch autonomous AI citations.", icon: Globe, href: "/lazy-geo" },
+  { name: "Lazy Crawl", desc: "Launch autonomous web research.", icon: Radar, href: "/lazy-crawl" },
+  { name: "Lazy Perplexity", desc: "Launch autonomous deep research.", icon: Compass, href: "/lazy-perplexity" },
+  { name: "Lazy Contentful", desc: "Launch autonomous CMS sync.", icon: Layers, href: "/lazy-contentful" },
   // Commerce
-  { name: "Lazy Store", desc: "Discovers products, writes listings, optimises conversion.", icon: ShoppingCart, href: "/lazy-store" },
-  { name: "Lazy Pay", desc: "Installs Stripe with self-improving conversion optimisation.", icon: CreditCard, href: "/lazy-pay" },
-  { name: "Lazy SMS", desc: "Sends automated texts via Twilio that improve themselves.", icon: MessageSquare, href: "/lazy-sms" },
-  { name: "Lazy Mail", desc: "Subscriber capture, welcome sequences, and AI newsletters via Resend.", icon: MessageSquare, href: "/lazy-mail" },
+  { name: "Lazy Store", desc: "Launch autonomous storefronts.", icon: ShoppingCart, href: "/lazy-store" },
+  { name: "Lazy Pay", desc: "Launch autonomous payments.", icon: CreditCard, href: "/lazy-pay" },
+  { name: "Lazy SMS", desc: "Launch autonomous text campaigns.", icon: MessageSquare, href: "/lazy-sms" },
+  { name: "Lazy Mail", desc: "Launch autonomous email flows.", icon: MessageSquare, href: "/lazy-mail" },
   // Media
-  { name: "Lazy Voice", desc: "Narrates every blog post in your voice via ElevenLabs.", icon: Mic, href: "/lazy-voice" },
-  { name: "Lazy Stream", desc: "Turns every Twitch stream into blog posts and SEO content.", icon: Video, href: "/lazy-stream" },
+  { name: "Lazy Voice", desc: "Launch autonomous podcasts.", icon: Mic, href: "/lazy-voice" },
+  { name: "Lazy Stream", desc: "Launch autonomous stream content.", icon: Video, href: "/lazy-stream" },
   // Dev
-  { name: "Lazy GitHub", desc: "Turns every GitHub commit into a changelog and developer post.", icon: Code, href: "/lazy-github" },
-  { name: "Lazy GitLab", desc: "Turns GitLab activity into public content.", icon: Code, href: "/lazy-gitlab" },
-  { name: "Lazy Linear", desc: "Turns Linear cycles into product update content.", icon: BarChart3, href: "/lazy-linear" },
-  { name: "Lazy Design", desc: "Upgrades your site with 21st.dev components matched to your brand.", icon: Layers, href: "/lazy-design" },
-  { name: "Lazy Auth", desc: "Google Sign-In, email login, protected routes, and user management.", icon: Shield, href: "/lazy-auth" },
+  { name: "Lazy GitHub", desc: "Launch autonomous changelogs.", icon: Code, href: "/lazy-github" },
+  { name: "Lazy GitLab", desc: "Launch autonomous GitLab docs.", icon: Code, href: "/lazy-gitlab" },
+  { name: "Lazy Linear", desc: "Launch autonomous issue content.", icon: BarChart3, href: "/lazy-linear" },
+  { name: "Lazy Design", desc: "Launch autonomous UI upgrades.", icon: Layers, href: "/lazy-design" },
+  { name: "Lazy Auth", desc: "Launch autonomous login flows.", icon: Shield, href: "/lazy-auth" },
   // Ops
-  { name: "Lazy Alert", desc: "Every engine event reported to Slack in real time.", icon: Bell, href: "/lazy-alert" },
-  { name: "Lazy Telegram", desc: "Real-time engine reporting via Telegram bot.", icon: Send, href: "/lazy-telegram" },
-  { name: "Lazy Supabase", desc: "Narrates your database growth story automatically.", icon: Database, href: "/lazy-supabase" },
-  { name: "Lazy Security", desc: "Autonomous pentesting and vulnerability monitoring via Aikido.", icon: Shield, href: "/lazy-security" },
+  { name: "Lazy Alert", desc: "Launch autonomous Slack alerts.", icon: Bell, href: "/lazy-alert" },
+  { name: "Lazy Telegram", desc: "Launch autonomous Telegram updates.", icon: Send, href: "/lazy-telegram" },
+  { name: "Lazy Supabase", desc: "Launch autonomous database reports.", icon: Database, href: "/lazy-supabase" },
+  { name: "Lazy Security", desc: "Launch autonomous pentesting.", icon: Shield, href: "/lazy-security" },
 ];
 
 const faqs = [
-  { q: "Do I need all twenty-three engines?", a: "No. The setup screen lets you choose which engines to activate. You can start with two or three and add more later without reinstalling." },
+  { q: "Do I need all twenty-one engines?", a: "No. The setup screen lets you choose which engines to activate. You can start with two or three and add more later without reinstalling." },
   { q: "Does it replace the individual Lazy prompts?", a: "Yes. If you install Lazy Run you do not need to paste the individual prompts. Lazy Run includes all of them." },
   { q: "What API keys do I need?", a: "Only the ones for the engines you activate. Content engines like Lazy Blogger, Lazy SEO, and Lazy GEO use Lovable's built-in AI — no API key required. Lazy Pay needs Stripe. Lazy SMS needs Twilio. Lazy Voice needs ElevenLabs. Lazy Stream needs Twitch. Lazy Mail needs Resend. Lazy Design needs nothing — it uses 21st.dev and built-in AI." },
   { q: "Can I still use individual engines if I have them installed?", a: "Yes. Lazy Run is additive. If you already have Lazy Blogger installed it will detect it and manage it alongside the others." },
@@ -477,7 +477,7 @@ export default function LazyRunPage() {
             variants={fadeUp} initial="hidden" animate="visible" transition={{ delay: 0.1 }}
             className="font-display text-4xl md:text-6xl font-bold tracking-tight leading-[1.1] mb-6"
           >
-            <span>All 23 engines in the Lazy Stack. One prompt.</span>
+            <span>All 21 engines in the Lazy Stack. One prompt.</span>
           </motion.h1>
           <motion.p
             variants={fadeUp} initial="hidden" animate="visible" transition={{ delay: 0.2 }}
