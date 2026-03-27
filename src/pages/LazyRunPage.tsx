@@ -44,6 +44,7 @@ All edge functions must use these exact names. Lazy Run calls them by these name
 | Contentful | contentful-pull, contentful-webhook, contentful-push |
 | Supabase | supabase-monitor, supabase-publish-milestone, supabase-weekly-report |
 | Security | security-scan, security-poll, security-alert, security-generate-report, security-monitor |
+| Auth | auth-setup, auth-sync-providers, auth-monitor |
 | Run | run-orchestrator, run-weekly-report, run-health-check |
 
 ---
@@ -69,6 +70,7 @@ Required secrets by engine:
 - Contentful: CONTENTFUL_DELIVERY_TOKEN, CONTENTFUL_MANAGEMENT_TOKEN, CONTENTFUL_WEBHOOK_SECRET
 - Supabase monitoring: SUPABASE_SERVICE_ROLE_KEY
 - Security: AIKIDO_API_KEY
+- Auth: none (uses Lovable Cloud auth)
 
 ---
 
@@ -131,6 +133,7 @@ Telegram: telegram_settings, telegram_log, telegram_errors
 Contentful: contentful_settings, contentful_entries, contentful_sync_log, contentful_errors
 Supabase monitoring: supabase_settings, supabase_snapshots, supabase_milestones, supabase_content, supabase_errors
 Security: security_settings, security_scans, security_vulnerabilities, security_reports, security_errors
+Auth: auth_settings, auth_providers, auth_sessions_log, auth_errors
 
 Create only the tables for engines the user activates.
 
@@ -176,6 +179,7 @@ Group: Channels
 
 Group: Security
 - Lazy Security: Runs automated Aikido pentests, tracks vulnerabilities, and generates audit-ready reports
+- Lazy Auth: Installs Google OAuth, email login, protected routes, and user management automatically
 
 Below the cards show which API keys each selected engine requires.
 Next button.
@@ -288,6 +292,7 @@ Channels:
 - Contentful: contentful-pull every hour, contentful-push every 30 min
 - Supabase: supabase-monitor every hour, supabase-weekly-report Monday
 - Security: security-scan every hour (checks if pentest is due), security-poll every 10 min (checks scan status), security-monitor daily 3am
+- Auth: auth-sync-providers daily 6am, auth-monitor every hour
 
 6. Log each execution to run_activity: engine, action, result, details.
 7. Log failures to run_errors.
@@ -315,6 +320,7 @@ Cron: every Monday at 7am UTC — 0 7 * * 1
 - Contentful: contentful_entries synced, contentful_sync_log push count
 - Supabase: supabase_milestones reached, supabase_content count
 - Security: current security score from latest security_scans, open critical count, open high count from security_vulnerabilities, last pentest date
+- Auth: auth_sessions_log count, active providers from auth_providers, auth_errors count
 
 3. Call the built-in Lovable AI:
 "Write a weekly performance report for [brand_name]. Metrics from the last 7 days: [metrics list]. Write a friendly report under 300 words. Cover what the engines accomplished, the best performing engine, any areas for improvement, projection for next week. Write in second person. Return only the report text."
@@ -340,6 +346,8 @@ Log errors to run_errors.
 
 Install all edge functions for each active engine using these exact function names:
 blog-publish, seo-discover, seo-publish, geo-discover, geo-publish, geo-test, store-discover, store-listings, store-prices, store-promote, store-optimise, store-content, voice-narrate, voice-rss, pay-checkout, pay-webhook, pay-optimise, pay-recover, pay-portal, sms-send, sms-receive, sms-status, sms-sequences-run, sms-optimise, stream-monitor, stream-process, stream-write-content, stream-optimise, github-webhook, code-sync-roadmap, code-write-content, code-optimise, gitlab-webhook, gitlab-sync-roadmap, gitlab-write-content, gitlab-optimise, linear-sync-all, linear-write-content, linear-velocity-report, linear-optimise, crawl-run, crawl-extract, crawl-publish, perplexity-research, perplexity-feed-engines, perplexity-test-citations, perplexity-improve-content, alert-send, alert-monitor, alert-briefing, alert-command, telegram-send, telegram-monitor, telegram-briefing, telegram-command, contentful-pull, contentful-webhook, contentful-push, supabase-monitor, supabase-publish-milestone, supabase-weekly-report, security-scan, security-poll, security-alert, security-generate-report, security-monitor.
+
+Also install: auth-setup, auth-sync-providers, auth-monitor.
 
 Only install functions for active engines.
 
