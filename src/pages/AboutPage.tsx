@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import SEO from "@/components/SEO";
 import Navbar from "@/components/Navbar";
-import BacklinkBadge from "@/components/BacklinkBadge";
+
 
 export default function AboutPage() {
   return (
@@ -71,9 +71,6 @@ export default function AboutPage() {
               </div>
             </div>
 
-            <div className="mt-12">
-              <BacklinkBadge />
-            </div>
 
             <div className="mt-8">
               <Link
