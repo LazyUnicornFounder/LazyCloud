@@ -119,6 +119,18 @@ function PromptEditor({
     toast.success(`${product.label} prompt updated to ${newVersion}`);
     setEditing(false);
     onSaved();
+
+    // Auto-sync to GitHub
+    const currentPrompts = allVersions
+      .filter(v => v.is_current && v.product !== product.key)
+      .map(v => ({ product: v.product, version: v.version, prompt_text: v.prompt_text }));
+    currentPrompts.push({ product: product.key, version: newVersion, prompt_text: updatedText });
+    const syncResult = await syncToGitHub(product.key, newVersion, updatedText, currentPrompts);
+    if (syncResult.success) {
+      toast.success("Synced to GitHub ✓");
+    } else {
+      toast.error("GitHub sync failed — prompt saved locally");
+    }
   };
 
   // For blogger, show frequency variants
@@ -251,6 +263,7 @@ const AdminPrompts = () => {
             product={product}
             current={current}
             history={productVersions}
+            allVersions={allVersions}
             onSaved={fetchAll}
           />
         );
