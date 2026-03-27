@@ -505,7 +505,7 @@ const Index = () => {
                 </p>
               </div>
               <p style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "0.85rem", color: "#f0ead6", opacity: 0.4, marginTop: "0.5rem" }}>
-                Every engine. One prompt.
+                Launch autonomous everything.
               </p>
               <p style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "0.65rem", color: "#f0ead6", opacity: 0.4, letterSpacing: "0.15em", textTransform: "uppercase", marginTop: "1rem" }}>
                 Made for Lovable
@@ -533,7 +533,7 @@ const Index = () => {
                 </p>
               </div>
               <p style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "0.85rem", color: "#f0ead6", opacity: 0.4, marginTop: "0.5rem" }}>
-                One dashboard to manage your entire Lazy stack.
+                Launch autonomous ops control.
               </p>
               <p style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "0.65rem", color: "#f0ead6", opacity: 0.4, letterSpacing: "0.15em", textTransform: "uppercase", marginTop: "1rem" }}>
                 Made for Lovable
