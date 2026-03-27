@@ -55,6 +55,7 @@ const engineCategories = [
     label: "Lazy Shield",
     items: [
       { name: "Lazy Security", href: "/lazy-security" },
+      { name: "Lazy Design", href: "/lazy-design" },
     ],
   },
 ];
