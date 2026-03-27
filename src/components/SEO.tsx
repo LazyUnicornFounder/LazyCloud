@@ -10,6 +10,18 @@ interface FAQItem {
   answer: string;
 }
 
+interface SoftwareAppSchema {
+  name: string;
+  description: string;
+  category?: string;
+  offers?: { price: string; priceCurrency?: string };
+}
+
+interface HowToStep {
+  name: string;
+  text: string;
+}
+
 interface SEOProps {
   title?: string;
   description?: string;
@@ -24,6 +36,9 @@ interface SEOProps {
   author?: string;
   faq?: FAQItem[];
   speakable?: string[];
+  softwareApp?: SoftwareAppSchema;
+  howToSteps?: HowToStep[];
+  howToName?: string;
 }
 
 const SITE_NAME = "Lazy Unicorn";
@@ -48,6 +63,9 @@ const SEO = ({
   author = "Saad Sahawneh",
   faq,
   speakable,
+  softwareApp,
+  howToSteps,
+  howToName,
 }: SEOProps) => {
   const fullTitle = title ? `${title} — ${SITE_NAME}` : DEFAULT_TITLE;
   const fullUrl = url ? `${BASE_URL}${url}` : BASE_URL;
@@ -95,6 +113,42 @@ const SEO = ({
           cssSelector: speakable,
         },
         url: fullUrl,
+      }
+    : null;
+
+  const softwareAppJsonLd = softwareApp
+    ? {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        name: softwareApp.name,
+        description: softwareApp.description,
+        applicationCategory: softwareApp.category || "BusinessApplication",
+        operatingSystem: "Web",
+        url: fullUrl,
+        author: { "@type": "Organization", name: SITE_NAME, url: BASE_URL },
+        ...(softwareApp.offers
+          ? {
+              offers: {
+                "@type": "Offer",
+                price: softwareApp.offers.price,
+                priceCurrency: softwareApp.offers.priceCurrency || "USD",
+              },
+            }
+          : {}),
+      }
+    : null;
+
+  const howToJsonLd = howToSteps?.length
+    ? {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        name: howToName || `How to use ${title}`,
+        step: howToSteps.map((s, i) => ({
+          "@type": "HowToStep",
+          position: i + 1,
+          name: s.name,
+          text: s.text,
+        })),
       }
     : null;
 
@@ -150,6 +204,16 @@ const SEO = ({
       {speakableJsonLd && (
         <script type="application/ld+json">
           {JSON.stringify(speakableJsonLd)}
+        </script>
+      )}
+      {softwareAppJsonLd && (
+        <script type="application/ld+json">
+          {JSON.stringify(softwareAppJsonLd)}
+        </script>
+      )}
+      {howToJsonLd && (
+        <script type="application/ld+json">
+          {JSON.stringify(howToJsonLd)}
         </script>
       )}
     </Helmet>
