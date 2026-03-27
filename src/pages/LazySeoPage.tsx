@@ -63,7 +63,7 @@ const LazySeoPage = () => {
                 Lazy SEO
               </h1>
               <p className="mt-6 font-body text-base md:text-lg text-foreground/70 max-w-xl leading-relaxed">
-                Paste one prompt into your Lovable project. It discovers keyword opportunities, writes SEO-optimised content, and publishes daily — on autopilot. No API keys needed.
+                Paste one prompt into your <a href="https://lovable.dev" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground/90 transition-colors">Lovable</a> project. It discovers keyword opportunities, writes SEO-optimised content, and publishes daily — on autopilot. No API keys needed.
               </p>
               <div className="flex flex-col sm:flex-row items-start gap-4 mt-10">
                 <CopyPromptButton onCopy={handlePromptCopy} promptText={promptText} />

@@ -342,7 +342,9 @@ export default function UseCasesPage() {
           transition={{ delay: 0.1 }}
           className="mt-6 font-body text-base md:text-lg text-foreground/50 max-w-3xl mx-auto leading-relaxed"
         >
-          Every Lazy engine connects your Lovable site to a real service. Here is what each connection makes possible — based on what Lovable's integrations actually support.
+          Every Lazy engine connects your{" "}
+          <a href="https://lovable.dev" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground/70 transition-colors">Lovable</a>{" "}
+          site to a real service. Here is what each connection makes possible — based on what Lovable's integrations actually support.
         </motion.p>
         <motion.p
           variants={fade}
@@ -351,7 +353,9 @@ export default function UseCasesPage() {
           transition={{ delay: 0.2 }}
           className="mt-4 font-body text-sm text-foreground/70 max-w-2xl mx-auto"
         >
-          All integrations on this page are official Lovable shared connectors. Each one installs into your existing Lovable project with one Lazy prompt.
+          All integrations on this page are official{" "}
+          <a href="https://lovable.dev" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground/90 transition-colors">Lovable</a>{" "}
+          shared connectors. Each one installs into your existing Lovable project with one Lazy prompt.
         </motion.p>
       </section>
 
