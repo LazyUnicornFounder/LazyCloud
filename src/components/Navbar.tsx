@@ -104,10 +104,9 @@ const productCategories = [
   },
 ];
 
-/* ── Mega dropdown with left categories + right products ── */
+/* ── Mega dropdown — flat grid showing all products ── */
 function MegaDropdown({ onNavigate }: { onNavigate?: () => void }) {
   const [open, setOpen] = useState(false);
-  const [activeCategory, setActiveCategory] = useState(0);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const handleEnter = () => {
@@ -122,8 +121,6 @@ function MegaDropdown({ onNavigate }: { onNavigate?: () => void }) {
     return () => { if (timeoutRef.current) clearTimeout(timeoutRef.current); };
   }, []);
 
-  const activeCat = productCategories[activeCategory];
-
   return (
     <div className="relative" onMouseEnter={handleEnter} onMouseLeave={handleLeave}>
       <button
@@ -135,57 +132,37 @@ function MegaDropdown({ onNavigate }: { onNavigate?: () => void }) {
       </button>
       {open && (
         <div
-          className="absolute top-full left-1/2 -translate-x-1/2 mt-3 bg-card border border-border z-50 flex"
-          style={{ minWidth: 560 }}
+          className="absolute top-full left-1/2 -translate-x-1/2 mt-3 bg-card border border-border z-50 p-5"
+          style={{ width: 720 }}
         >
-          {/* Left: categories */}
-          <div className="w-[180px] border-r border-border py-3">
-            {productCategories.map((cat, i) => (
-              <button
-                key={cat.label}
-                onMouseEnter={() => setActiveCategory(i)}
-                className={`w-full flex items-center justify-between px-4 py-2.5 text-left font-body text-[11px] tracking-[0.12em] uppercase transition-colors ${
-                  activeCategory === i
-                    ? "text-foreground bg-secondary/50 font-bold"
-                    : "text-foreground/40 hover:text-foreground/70"
-                }`}
-              >
-                {cat.label}
-                <ChevronRight size={10} className={activeCategory === i ? "opacity-60" : "opacity-0"} />
-              </button>
+          <div className="grid grid-cols-3 gap-x-6 gap-y-1">
+            {productCategories.map((cat) => (
+              <div key={cat.label}>
+                <p className="font-body text-[9px] tracking-[0.2em] uppercase text-foreground/20 font-semibold mb-1.5 mt-2 first:mt-0">
+                  {cat.label}
+                </p>
+                {cat.items.map((item) => (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    onClick={() => { setOpen(false); onNavigate?.(); }}
+                    className="group flex items-center gap-2.5 px-2 py-1.5 -mx-1 hover:bg-secondary/50 transition-colors"
+                  >
+                    <span className="text-foreground/20 group-hover:text-foreground/50 transition-colors flex-shrink-0">
+                      {item.icon}
+                    </span>
+                    <div className="min-w-0">
+                      <p className="font-display text-[11px] font-bold tracking-[0.06em] uppercase text-foreground/60 group-hover:text-foreground transition-colors leading-tight">
+                        {item.label}
+                      </p>
+                      <p className="font-body text-[9px] text-foreground/25 group-hover:text-foreground/40 transition-colors leading-snug">
+                        {item.tagline}
+                      </p>
+                    </div>
+                  </a>
+                ))}
+              </div>
             ))}
-          </div>
-
-          {/* Right: products */}
-          <div className="flex-1 p-4 min-w-[360px]">
-            <p className="font-body text-[9px] tracking-[0.2em] uppercase text-foreground/20 font-semibold mb-3">
-              {activeCat.label}
-            </p>
-            <div className="space-y-1">
-              {activeCat.items.map((item) => (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  onClick={() => { setOpen(false); onNavigate?.(); }}
-                  className="group flex items-center gap-3 px-3 py-2.5 -mx-1 hover:bg-secondary/50 transition-colors"
-                >
-                  <span className="text-foreground/20 group-hover:text-foreground/50 transition-colors flex-shrink-0">
-                    {item.icon}
-                  </span>
-                  <div className="min-w-0">
-                    <p className="font-display text-[13px] font-bold tracking-[0.06em] uppercase text-foreground/60 group-hover:text-foreground transition-colors leading-tight flex items-center gap-2">
-                      {item.label}
-                      {"badge" in item && (item as any).badge && (
-                        <span className="text-[9px] tracking-[0.15em] uppercase border border-green-500/40 text-green-400 px-1.5 py-0.5 font-semibold leading-none">{(item as any).badge}</span>
-                      )}
-                    </p>
-                    <p className="font-body text-[11px] text-foreground/30 group-hover:text-foreground/45 transition-colors leading-snug mt-0.5">
-                      {item.tagline}
-                    </p>
-                  </div>
-                </a>
-              ))}
-            </div>
           </div>
         </div>
       )}
