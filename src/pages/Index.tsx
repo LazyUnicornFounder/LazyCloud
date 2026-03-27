@@ -293,6 +293,18 @@ const sketches: Record<string, JSX.Element> = {
       <line x1="95" y1="82" x2="75" y2="62" />
     </svg>
   ),
+  Design: (
+    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="#f0ead6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="30" y="25" width="60" height="70" rx="4" />
+      <line x1="30" y1="45" x2="90" y2="45" />
+      <rect x="38" y="55" width="20" height="15" rx="2" />
+      <rect x="62" y="55" width="20" height="15" rx="2" />
+      <rect x="38" y="75" width="44" height="10" rx="2" />
+      <circle cx="40" cy="35" r="3" fill="#f0ead6" stroke="none" />
+      <circle cx="50" cy="35" r="3" fill="#f0ead6" stroke="none" />
+      <circle cx="60" cy="35" r="3" fill="#f0ead6" stroke="none" />
+    </svg>
+  ),
   Admin: (
     <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="#f0ead6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       <rect x="25" y="25" width="70" height="70" rx="5" />
