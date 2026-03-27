@@ -168,7 +168,7 @@ function MegaDropdown({ onNavigate }: { onNavigate?: () => void }) {
             <div className="flex-1 min-w-0">
               {[productCategories[4], productCategories[5]].map(renderCategory)}
             </div>
-            {/* Column 4: Lazy Channels + Lazy Shield */}
+            {/* Column 4: Lazy Dev + Lazy Ops */}
             <div className="flex-1 min-w-0">
               {[productCategories[6], productCategories[7]].map(renderCategory)}
             </div>
