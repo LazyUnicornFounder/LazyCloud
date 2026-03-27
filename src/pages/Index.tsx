@@ -283,6 +283,14 @@ const sketches: Record<string, JSX.Element> = {
       <path d="M48 58 L56 66 L74 48" />
     </svg>
   ),
+  Mail: (
+    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="#f0ead6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="25" y="35" width="70" height="50" rx="3" />
+      <path d="M25 40 L60 65 L95 40" />
+      <line x1="25" y1="82" x2="45" y2="62" />
+      <line x1="95" y1="82" x2="75" y2="62" />
+    </svg>
+  ),
   Admin: (
     <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="#f0ead6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       <rect x="25" y="25" width="70" height="70" rx="5" />
