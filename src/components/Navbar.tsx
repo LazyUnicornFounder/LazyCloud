@@ -50,50 +50,50 @@ const productCategories = [
   {
     label: "Lazy Design",
     items: [
-      { label: "Lazy Design", href: "/lazy-design", tagline: "21st.dev upgrades on autopilot.", icon: icons.admin },
+      { label: "Lazy Design", href: "/lazy-design", tagline: "UI upgrades on autopilot.", icon: icons.admin },
     ],
   },
   {
     label: "Lazy Content",
     items: [
       { label: "Lazy Blogger", href: "/lazy-blogger", tagline: "Your blog writes itself.", icon: icons.blogger },
-      { label: "Lazy SEO", href: "/lazy-seo", tagline: "Rankings on autopilot.", icon: icons.seo },
-      { label: "Lazy GEO", href: "/lazy-geo", tagline: "Get cited by AI.", icon: icons.geo },
-      { label: "Lazy Crawl", href: "/lazy-crawl", tagline: "Web intelligence on autopilot.", icon: icons.perplexity },
-      { label: "Lazy Perplexity", href: "/lazy-perplexity", tagline: "Research-backed content.", icon: icons.perplexity },
+      { label: "Lazy SEO", href: "/lazy-seo", tagline: "Rankings climb while you sleep.", icon: icons.seo },
+      { label: "Lazy GEO", href: "/lazy-geo", tagline: "Get cited by every AI.", icon: icons.geo },
+      { label: "Lazy Crawl", href: "/lazy-crawl", tagline: "The web, distilled for you.", icon: icons.perplexity },
+      { label: "Lazy Perplexity", href: "/lazy-perplexity", tagline: "Research that writes itself.", icon: icons.perplexity },
     ],
   },
   {
     label: "Lazy Commerce",
     items: [
-      { label: "Lazy Store", href: "/lazy-store", tagline: "A store that runs itself.", icon: icons.store },
+      { label: "Lazy Store", href: "/lazy-store", tagline: "A store that never sleeps.", icon: icons.store },
       { label: "Lazy Pay", href: "/lazy-pay", tagline: "Payments that optimise.", icon: icons.pay },
-      { label: "Lazy SMS", href: "/lazy-sms", tagline: "Texts that convert.", icon: icons.sms },
+      { label: "Lazy SMS", href: "/lazy-sms", tagline: "Texts that actually convert.", icon: icons.sms },
     ],
   },
   {
     label: "Lazy Media",
     items: [
-      { label: "Lazy Voice", href: "/lazy-voice", tagline: "Every post, narrated.", icon: icons.voice },
-      { label: "Lazy Stream", href: "/lazy-stream", tagline: "Streams become content.", icon: icons.stream },
+      { label: "Lazy Voice", href: "/lazy-voice", tagline: "Every post, narrated live.", icon: icons.voice },
+      { label: "Lazy Stream", href: "/lazy-stream", tagline: "Streams become SEO gold.", icon: icons.stream },
     ],
   },
   {
     label: "Lazy Dev",
     items: [
       { label: "Lazy GitHub", href: "/lazy-github", tagline: "Commits become changelogs.", icon: icons.code },
-      { label: "Lazy GitLab", href: "/lazy-gitlab", tagline: "GitLab commits → content.", icon: icons.gitlab },
-      { label: "Lazy Linear", href: "/lazy-linear", tagline: "Issues become changelogs.", icon: icons.linear },
+      { label: "Lazy GitLab", href: "/lazy-gitlab", tagline: "GitLab on autopilot.", icon: icons.gitlab },
+      { label: "Lazy Linear", href: "/lazy-linear", tagline: "Issues become content.", icon: icons.linear },
     ],
   },
   {
     label: "Lazy Channels",
     items: [
       { label: "Lazy Mail", href: "/lazy-mail", tagline: "Emails send themselves.", icon: icons.mail },
-      { label: "Lazy Alert", href: "/lazy-alert", tagline: "Your business in Slack.", icon: icons.alert },
-      { label: "Lazy Telegram", href: "/lazy-telegram", tagline: "Your business in Telegram.", icon: icons.telegram },
+      { label: "Lazy Alert", href: "/lazy-alert", tagline: "Your biz, piped to Slack.", icon: icons.alert },
+      { label: "Lazy Telegram", href: "/lazy-telegram", tagline: "Updates, zero effort.", icon: icons.telegram },
       { label: "Lazy Contentful", href: "/lazy-contentful", tagline: "Two-way CMS sync.", icon: icons.contentful },
-      { label: "Lazy Supabase", href: "/lazy-supabase", tagline: "Database tells its story.", icon: icons.supabase },
+      { label: "Lazy Supabase", href: "/lazy-supabase", tagline: "Your database tells stories.", icon: icons.supabase },
     ],
   },
   {
@@ -122,8 +122,8 @@ function MegaDropdown({ onNavigate }: { onNavigate?: () => void }) {
   }, []);
 
   const renderCategory = (cat: typeof productCategories[number]) => (
-    <div key={cat.label} className="mb-3">
-      <p className="font-body text-[11px] tracking-[0.2em] uppercase text-foreground/35 font-semibold mb-1.5">
+    <div key={cat.label} className="mb-5">
+      <p className="font-body text-[11px] tracking-[0.2em] uppercase text-foreground/40 font-semibold mb-2">
         {cat.label}
       </p>
       {cat.items.map((item) => (
@@ -131,14 +131,17 @@ function MegaDropdown({ onNavigate }: { onNavigate?: () => void }) {
           key={item.label}
           href={item.href}
           onClick={() => { setOpen(false); onNavigate?.(); }}
-          className="group flex items-center gap-2 px-2 py-1.5 -mx-1 hover:bg-secondary/50 transition-colors"
+          className="group flex items-center gap-3 px-2.5 py-2 -mx-1 hover:bg-secondary/50 transition-colors"
         >
-          <span className="text-foreground/35 group-hover:text-foreground/50 transition-colors flex-shrink-0">
+          <span className="text-foreground/40 group-hover:text-foreground/60 transition-colors flex-shrink-0">
             {item.icon}
           </span>
           <div className="min-w-0">
-            <p className="font-display text-[13px] font-bold tracking-[0.06em] uppercase text-foreground/60 group-hover:text-foreground transition-colors leading-tight">
+            <p className="font-display text-[14px] font-bold tracking-[0.04em] uppercase text-foreground/70 group-hover:text-foreground transition-colors leading-tight">
               {item.label}
+            </p>
+            <p className="font-body text-[11px] text-foreground/35 group-hover:text-foreground/50 transition-colors leading-tight mt-0.5">
+              {item.tagline}
             </p>
           </div>
         </a>
@@ -150,17 +153,17 @@ function MegaDropdown({ onNavigate }: { onNavigate?: () => void }) {
     <div className="relative" onMouseEnter={handleEnter} onMouseLeave={handleLeave}>
       <button
         onClick={() => setOpen(!open)}
-        className="font-body text-[12px] tracking-[0.12em] uppercase font-bold text-foreground/60 hover:text-foreground transition-colors flex items-center gap-1"
+        className="font-body text-[13px] tracking-[0.1em] uppercase font-bold text-foreground/70 hover:text-foreground transition-colors flex items-center gap-1"
       >
         Products
         <ChevronDown size={11} className={`transition-transform ${open ? "rotate-180" : ""}`} />
       </button>
       {open && (
         <div
-          className="absolute top-full left-1/2 -translate-x-1/2 mt-3 bg-card border border-border z-50 p-5"
-          style={{ width: 780 }}
+          className="absolute top-full left-1/2 -translate-x-1/2 mt-3 bg-card border border-border z-50 p-6"
+          style={{ width: 920 }}
         >
-          <div className="flex gap-6">
+          <div className="flex gap-8">
             {/* Column 1: Lazy Unicorn + Lazy Design + Lazy Commerce */}
             <div className="flex-1 min-w-0">
               {[productCategories[0], productCategories[1], productCategories[3]].map(renderCategory)}
@@ -211,7 +214,7 @@ function SimpleDropdown({
     <div className="relative" onMouseEnter={handleEnter} onMouseLeave={handleLeave}>
       <button
         onClick={() => setOpen(!open)}
-        className="font-body text-[12px] tracking-[0.12em] uppercase font-bold text-foreground/60 hover:text-foreground transition-colors flex items-center gap-1"
+        className="font-body text-[13px] tracking-[0.1em] uppercase font-bold text-foreground/70 hover:text-foreground transition-colors flex items-center gap-1"
       >
         {label}
         <ChevronDown size={11} className={`transition-transform ${open ? "rotate-180" : ""}`} />
@@ -223,7 +226,7 @@ function SimpleDropdown({
               key={child.label}
               href={child.href}
               onClick={() => setOpen(false)}
-              className="block px-4 py-2.5 font-body text-[12px] tracking-[0.1em] uppercase text-foreground/50 hover:text-foreground hover:bg-secondary transition-colors"
+              className="block px-4 py-2.5 font-body text-[13px] tracking-[0.1em] uppercase text-foreground/60 hover:text-foreground hover:bg-secondary transition-colors"
             >
               {child.label}
             </a>
@@ -290,14 +293,14 @@ const Navbar = ({ activePage = "home" }: NavbarProps) => {
             <span>Unicorn</span>
           </a>
           <div className="flex items-center gap-5 mx-auto">
-            <a href="/how-it-works" className="font-body text-[12px] tracking-[0.12em] uppercase font-bold text-foreground/60 hover:text-foreground transition-colors">
+            <a href="/how-it-works" className="font-body text-[13px] tracking-[0.1em] uppercase font-bold text-foreground/70 hover:text-foreground transition-colors">
               How It Works
             </a>
-            <a href="/use-cases" className="font-body text-[12px] tracking-[0.12em] uppercase font-bold text-foreground/60 hover:text-foreground transition-colors">
+            <a href="/use-cases" className="font-body text-[13px] tracking-[0.1em] uppercase font-bold text-foreground/70 hover:text-foreground transition-colors">
               Use Cases
             </a>
             <MegaDropdown />
-            <a href="/pricing" className="font-body text-[12px] tracking-[0.12em] uppercase font-bold text-foreground/60 hover:text-foreground transition-colors">
+            <a href="/pricing" className="font-body text-[13px] tracking-[0.1em] uppercase font-bold text-foreground/70 hover:text-foreground transition-colors">
               Pricing
             </a>
             <SimpleDropdown
