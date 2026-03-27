@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import SEO from "@/components/SEO";
 import Navbar from "@/components/Navbar";
-import BacklinkBadge from "@/components/BacklinkBadge";
+
 
 export default function AboutPage() {
   return (
