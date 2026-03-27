@@ -173,6 +173,11 @@ function MegaDropdown({ onNavigate }: { onNavigate?: () => void }) {
               {[productCategories[5]].map(renderCategory)}
             </div>
           </div>
+          <div className="mt-6 pt-5 border-t border-border/50 flex items-center justify-center">
+            <span className="font-body text-[12px] tracking-[0.15em] uppercase text-foreground/30 font-semibold">
+              Made for Lovable ❤️
+            </span>
+          </div>
         </div>
       )}
     </div>
