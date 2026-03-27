@@ -150,7 +150,7 @@ function MegaDropdown({ onNavigate }: { onNavigate?: () => void }) {
     <div className="relative" onMouseEnter={handleEnter} onMouseLeave={handleLeave}>
       <button
         onClick={() => setOpen(!open)}
-        className="font-body text-[11px] tracking-[0.15em] uppercase font-bold text-foreground/50 hover:text-foreground transition-colors flex items-center gap-1"
+        className="font-body text-[12px] tracking-[0.12em] uppercase font-bold text-foreground/60 hover:text-foreground transition-colors flex items-center gap-1"
       >
         Products
         <ChevronDown size={11} className={`transition-transform ${open ? "rotate-180" : ""}`} />
@@ -211,7 +211,7 @@ function SimpleDropdown({
     <div className="relative" onMouseEnter={handleEnter} onMouseLeave={handleLeave}>
       <button
         onClick={() => setOpen(!open)}
-        className="font-body text-[11px] tracking-[0.15em] uppercase font-bold text-foreground/50 hover:text-foreground transition-colors flex items-center gap-1"
+        className="font-body text-[12px] tracking-[0.12em] uppercase font-bold text-foreground/60 hover:text-foreground transition-colors flex items-center gap-1"
       >
         {label}
         <ChevronDown size={11} className={`transition-transform ${open ? "rotate-180" : ""}`} />
@@ -290,14 +290,14 @@ const Navbar = ({ activePage = "home" }: NavbarProps) => {
             <span>Unicorn</span>
           </a>
           <div className="flex items-center gap-5 mx-auto">
-            <a href="/how-it-works" className="font-body text-[11px] tracking-[0.15em] uppercase font-bold text-foreground/50 hover:text-foreground transition-colors">
+            <a href="/how-it-works" className="font-body text-[12px] tracking-[0.12em] uppercase font-bold text-foreground/60 hover:text-foreground transition-colors">
               How It Works
             </a>
-            <a href="/use-cases" className="font-body text-[11px] tracking-[0.15em] uppercase font-bold text-foreground/50 hover:text-foreground transition-colors">
+            <a href="/use-cases" className="font-body text-[12px] tracking-[0.12em] uppercase font-bold text-foreground/60 hover:text-foreground transition-colors">
               Use Cases
             </a>
             <MegaDropdown />
-            <a href="/pricing" className="font-body text-[11px] tracking-[0.15em] uppercase font-bold text-foreground/50 hover:text-foreground transition-colors">
+            <a href="/pricing" className="font-body text-[12px] tracking-[0.12em] uppercase font-bold text-foreground/60 hover:text-foreground transition-colors">
               Pricing
             </a>
             <SimpleDropdown
