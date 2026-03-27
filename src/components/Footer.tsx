@@ -7,9 +7,19 @@ const XLogo = () => (
   </svg>
 );
 
-const engineCategories = [
+const columns = [
   {
-    label: "Lazy Content",
+    label: "Get Started",
+    items: [
+      { name: "How It Works", href: "/how-it-works" },
+      { name: "Use Cases", href: "/use-cases" },
+      { name: "Lazy Run", href: "/lazy-run" },
+      { name: "Lazy Admin", href: "/lazy-admin" },
+      { name: "Pricing", href: "/pricing" },
+    ],
+  },
+  {
+    label: "Content",
     items: [
       { name: "Lazy Blogger", href: "/lazy-blogger" },
       { name: "Lazy SEO", href: "/lazy-seo" },
@@ -19,31 +29,21 @@ const engineCategories = [
     ],
   },
   {
-    label: "Lazy Commerce",
+    label: "Commerce & Media",
     items: [
       { name: "Lazy Store", href: "/lazy-store" },
       { name: "Lazy Pay", href: "/lazy-pay" },
       { name: "Lazy SMS", href: "/lazy-sms" },
-    ],
-  },
-  {
-    label: "Lazy Media",
-    items: [
       { name: "Lazy Voice", href: "/lazy-voice" },
       { name: "Lazy Stream", href: "/lazy-stream" },
     ],
   },
   {
-    label: "Lazy Dev",
+    label: "Dev & Channels",
     items: [
       { name: "Lazy GitHub", href: "/lazy-github" },
       { name: "Lazy GitLab", href: "/lazy-gitlab" },
       { name: "Lazy Linear", href: "/lazy-linear" },
-    ],
-  },
-  {
-    label: "Lazy Channels",
-    items: [
       { name: "Lazy Mail", href: "/lazy-mail" },
       { name: "Lazy Alert", href: "/lazy-alert" },
       { name: "Lazy Telegram", href: "/lazy-telegram" },
@@ -52,42 +52,33 @@ const engineCategories = [
     ],
   },
   {
-    label: "Lazy Shield",
+    label: "More",
     items: [
       { name: "Lazy Security", href: "/lazy-security" },
-    ],
-  },
-  {
-    label: "Lazy Design",
-    items: [
       { name: "Lazy Design", href: "/lazy-design" },
+      { name: "Blog", href: "/blog" },
+      { name: "Autonomy", href: "/autonomy" },
+      { name: "Changelog", href: "/changelog" },
+      { name: "Upgrade Guide", href: "/upgrade-guide" },
+      { name: "About", href: "/about" },
     ],
   },
-];
-
-const resources = [
-  { name: "Pricing", href: "/pricing" },
-  { name: "Blog", href: "/blog" },
-  { name: "Autonomy", href: "/autonomy" },
-  { name: "Changelog", href: "/changelog" },
-  { name: "Upgrade Guide", href: "/upgrade-guide" },
-  { name: "About", href: "/about" },
 ];
 
 export default function Footer() {
   return (
     <footer className="border-t border-border bg-background">
       <div className="max-w-7xl mx-auto px-6 md:px-12 py-16">
-        <div className="grid grid-cols-2 md:grid-cols-10 gap-10 md:gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-10 md:gap-8">
           {/* Brand */}
-          <div className="col-span-2 md:col-span-1">
+          <div className="col-span-2 sm:col-span-3 md:col-span-1">
             <Link to="/" className="inline-block">
               <p className="font-display text-[14px] font-semibold tracking-[0.15em] uppercase text-foreground leading-tight">
                 <span className="block">Lazy</span>
                 <span className="block">Unicorn</span>
               </p>
             </Link>
-            <p className="mt-4 font-body text-sm text-foreground/70 leading-relaxed max-w-[200px]">
+            <p className="mt-4 font-body text-sm text-foreground/70 leading-relaxed max-w-[220px]">
               The autonomous layer for Lovable. One prompt, everything runs itself.
             </p>
             <div className="flex items-center gap-3 mt-4">
@@ -100,77 +91,23 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Get started — prominent left column */}
-          <div className="col-span-1 md:col-span-1">
-            <p className="font-body text-[14px] tracking-[0.2em] uppercase text-foreground/65 font-semibold mb-4 max-w-[60px]">
-              Get Started
-            </p>
-            <ul className="space-y-2">
-              <li>
-                <Link to="/how-it-works" className="font-body text-sm text-foreground/65 hover:text-foreground/50 transition-colors">
-                  How It Works
-                </Link>
-              </li>
-              <li>
-                <Link to="/use-cases" className="font-body text-sm text-foreground/65 hover:text-foreground/50 transition-colors">
-                  Use Cases
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Lazy Unicorn */}
-          <div className="col-span-1 md:col-span-1">
-            <p className="font-body text-[14px] tracking-[0.2em] uppercase text-foreground/65 font-semibold mb-4">
-              Lazy Unicorn
-            </p>
-            <ul className="space-y-2">
-              <li>
-                <Link to="/lazy-run" className="font-body text-sm text-foreground/65 hover:text-foreground/50 transition-colors">
-                  Lazy Run
-                </Link>
-              </li>
-              <li>
-                <Link to="/lazy-admin" className="font-body text-sm text-foreground/65 hover:text-foreground/50 transition-colors">
-                  Lazy Admin
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Engine categories */}
-          {engineCategories.map((cat) => (
-            <div key={cat.label} className="min-w-0">
-              <p className="font-body text-[14px] tracking-[0.2em] uppercase text-foreground/65 font-semibold mb-4 max-w-[60px]">
-                {cat.label}
+          {/* Link columns */}
+          {columns.map((col) => (
+            <div key={col.label}>
+              <p className="font-body text-xs tracking-[0.2em] uppercase text-foreground/50 font-semibold mb-4">
+                {col.label}
               </p>
               <ul className="space-y-2">
-                {cat.items.map((e) => (
-                  <li key={e.name}>
-                    <Link to={e.href} className="font-body text-sm text-foreground/65 hover:text-foreground/50 transition-colors">
-                      {e.name}
+                {col.items.map((item) => (
+                  <li key={item.name}>
+                    <Link to={item.href} className="font-body text-sm text-foreground/65 hover:text-foreground/50 transition-colors">
+                      {item.name}
                     </Link>
                   </li>
                 ))}
               </ul>
             </div>
           ))}
-
-          {/* Resources */}
-          <div>
-            <p className="font-body text-[14px] tracking-[0.2em] uppercase text-foreground/65 font-semibold mb-4">
-              Resources
-            </p>
-            <ul className="space-y-2">
-              {resources.map((r) => (
-                <li key={r.name}>
-                  <Link to={r.href} className="font-body text-sm text-foreground/65 hover:text-foreground/50 transition-colors">
-                    {r.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
         </div>
 
         {/* Bottom bar */}
