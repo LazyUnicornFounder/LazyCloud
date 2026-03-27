@@ -91,133 +91,146 @@ export default function LazyMailPage() {
       />
       <Navbar />
 
-      <main className="pt-32 pb-20">
+      <main className="min-h-screen bg-background text-foreground overflow-x-hidden">
         {/* Hero */}
-        <section className="px-6 md:px-12 max-w-4xl mx-auto text-center">
-          <motion.div initial="hidden" animate="visible" variants={{ visible: { transition: { staggerChildren: 0.1 } } }}>
-            <motion.div variants={fadeUp} transition={{ duration: 0.5 }} className="flex justify-center mb-6">
-              <ResendBadge />
-            </motion.div>
-            <motion.p variants={fadeUp} transition={{ duration: 0.6 }} style={{ fontFamily: "'Dancing Script', cursive", fontSize: "2rem", color: "#f0ead6", opacity: 0.4 }}>
-              Lazy Mail
-            </motion.p>
-            <motion.h1 variants={fadeUp} transition={{ duration: 0.8 }} className="mt-2" style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(1.8rem, 4vw, 3.2rem)", color: "#f0ead6", lineHeight: 1.1 }}>
-              Your emails send themselves.
-            </motion.h1>
-            <motion.p variants={fadeUp} transition={{ duration: 0.6 }} className="mt-6 font-body text-sm text-foreground/50 max-w-xl mx-auto leading-relaxed">
-              One prompt adds subscriber capture, welcome sequences, and AI-written newsletters to your Lovable project. Powered by Resend. No emails to write. No campaigns to schedule. Ever.
-            </motion.p>
+        <section className="relative px-6 md:px-12 pt-32 pb-24 md:pb-32" style={{ backgroundColor: "#0a0a08" }}>
+          <div className="max-w-4xl mx-auto">
+            <motion.div initial="hidden" animate="visible" variants={fadeUp} transition={{ duration: 0.7 }}>
+              <div className="flex items-center gap-3 mb-6">
+                <p style={{ fontFamily: "'Dancing Script', cursive", fontSize: "1.5rem", color: "#f0ead6", opacity: 0.4 }}>Introducing</p>
+                <ResendBadge />
+              </div>
+              <div className="flex items-center gap-4 flex-wrap">
+                <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(2.5rem, 5vw, 4.5rem)", color: "#f0ead6", lineHeight: 0.95, letterSpacing: "-0.01em" }}>
+                  Lazy Mail
+                </h1>
+              </div>
+              <p className="mt-6 font-body text-base md:text-lg text-foreground/45 max-w-xl leading-relaxed">
+                Subscriber capture, welcome sequences, and AI-written newsletters — running automatically. Lazy Mail handles the entire Resend integration with no code required.
+              </p>
+              <div className="flex flex-col sm:flex-row items-start gap-4 mt-10">
+                <CopyPromptButton text={promptText} />
+                <a href="#how-it-works" onClick={(e) => { e.preventDefault(); document.getElementById("how-it-works")?.scrollIntoView({ behavior: "smooth" }); }} className="inline-flex items-center gap-2 font-body text-[11px] tracking-[0.15em] uppercase px-6 py-2.5 font-semibold border border-border text-foreground/50 hover:text-foreground transition-colors">
+                  See How It Works
+                </a>
+              </div>
 
-            <motion.div variants={fadeUp} transition={{ duration: 0.6 }} className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
-              <CopyPromptButton text={promptText} />
-              <a href="/pricing" className="font-body text-[11px] tracking-[0.15em] uppercase text-foreground/30 hover:text-foreground/60 transition-colors">
-                See pricing →
-              </a>
+              {/* Works with tags */}
+              <div className="mt-8 flex flex-wrap gap-2">
+                {["Lazy Blogger", "Lazy SEO", "Lazy GEO", "Lazy Alert"].map(tag => (
+                  <span key={tag} className="font-body text-[9px] tracking-[0.2em] uppercase text-foreground/20 border border-border px-3 py-1">
+                    {tag}
+                  </span>
+                ))}
+              </div>
             </motion.div>
-
-            {/* Works with tags */}
-            <motion.div variants={fadeUp} transition={{ duration: 0.5 }} className="mt-8 flex flex-wrap justify-center gap-2">
-              {["Lazy Blogger", "Lazy SEO", "Lazy GEO", "Lazy Alert"].map(tag => (
-                <span key={tag} className="font-body text-[9px] tracking-[0.2em] uppercase text-foreground/20 border border-border px-3 py-1">
-                  {tag}
-                </span>
-              ))}
-            </motion.div>
-          </motion.div>
+          </div>
         </section>
 
         {/* How it works */}
-        <section className="mt-28 px-6 md:px-12 max-w-4xl mx-auto">
-          <motion.h2 initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} transition={{ duration: 0.6 }} style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.6rem", color: "#f0ead6", textAlign: "center", marginBottom: "2.5rem" }}>
-            Four steps. Then it runs forever.
-          </motion.h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-border">
-            {steps.map((s, i) => (
-              <motion.div key={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} transition={{ duration: 0.5, delay: i * 0.08 }} className="bg-card p-8">
-                <span className="font-display text-2xl font-bold text-foreground/10">{s.num}</span>
-                <p className="mt-2 font-body text-sm text-foreground/60 leading-relaxed">{s.title}</p>
-              </motion.div>
-            ))}
+        <section id="how-it-works" className="py-20 md:py-28 px-6 border-t border-border">
+          <div className="max-w-5xl mx-auto">
+            <motion.h2 initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} transition={{ duration: 0.6 }} className="font-display text-2xl md:text-3xl font-bold tracking-tight text-center mb-14">
+              Four steps. Then it runs forever.
+            </motion.h2>
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+              {steps.map((s, i) => (
+                <motion.div key={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} transition={{ duration: 0.5, delay: i * 0.1 }} className="flex flex-col items-center text-center gap-3">
+                  <span className="w-10 h-10 bg-primary/10 text-primary font-display font-bold text-sm flex items-center justify-center">{i + 1}</span>
+                  <p className="font-body text-sm text-muted-foreground leading-relaxed">{s.title}</p>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </section>
 
         {/* Features */}
-        <section className="mt-28 px-6 md:px-12 max-w-5xl mx-auto">
-          <motion.h2 initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} transition={{ duration: 0.6 }} style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.6rem", color: "#f0ead6", textAlign: "center", marginBottom: "2.5rem" }}>
-            What it does
-          </motion.h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-border">
-            {features.map((f, i) => (
-              <motion.div key={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} transition={{ duration: 0.5, delay: i * 0.06 }} className="bg-card p-8">
-                <f.icon size={20} className="text-foreground/20 mb-4" />
-                <h3 className="font-display text-sm font-bold text-foreground mb-2">{f.title}</h3>
-                <p className="font-body text-xs text-foreground/40 leading-relaxed">{f.desc}</p>
-              </motion.div>
-            ))}
+        <section className="py-20 md:py-28 px-6 border-t border-border">
+          <div className="max-w-4xl mx-auto">
+            <motion.h2 initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} transition={{ duration: 0.6 }} className="font-display text-2xl md:text-3xl font-bold tracking-tight text-center mb-14">
+              What it does
+            </motion.h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {features.map((f, i) => (
+                <motion.div key={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} transition={{ duration: 0.5, delay: i * 0.08 }} className="border border-border p-6">
+                  <f.icon size={20} className="text-foreground/20 mb-4" />
+                  <h3 className="font-display text-sm font-bold text-foreground mb-2">{f.title}</h3>
+                  <p className="font-body text-xs text-foreground/40 leading-relaxed">{f.desc}</p>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </section>
 
         {/* Email lifecycle */}
-        <section className="mt-28 px-6 md:px-12 max-w-3xl mx-auto text-center">
-          <motion.h2 initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} transition={{ duration: 0.6 }} style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.6rem", color: "#f0ead6", marginBottom: "1.5rem" }}>
-            The full email lifecycle, automated.
-          </motion.h2>
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} transition={{ duration: 0.6 }} className="space-y-4">
-            {[
-              "Visitor lands on your site → subscribe form captures their email",
-              "Double opt-in confirmation email sent automatically",
-              "Welcome sequence triggers on confirmation — AI writes it for your brand",
-              "New blog post publishes → newsletter written and sent to all subscribers",
-              "Open rates drop below 20% → AI rewrites subject lines automatically",
-            ].map((line, i) => (
-              <div key={i} className="flex items-start gap-3 text-left">
-                <Check size={14} className="text-foreground/20 mt-1 shrink-0" />
-                <p className="font-body text-sm text-foreground/50 leading-relaxed">{line}</p>
-              </div>
-            ))}
-          </motion.div>
+        <section className="py-20 md:py-28 px-6 border-t border-border">
+          <div className="max-w-3xl mx-auto">
+            <motion.h2 initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} transition={{ duration: 0.6 }} className="font-display text-2xl md:text-3xl font-bold tracking-tight text-center mb-14">
+              The full email lifecycle, automated.
+            </motion.h2>
+            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} transition={{ duration: 0.6 }} className="space-y-4">
+              {[
+                "Visitor lands on your site → subscribe form captures their email",
+                "Double opt-in confirmation email sent automatically",
+                "Welcome sequence triggers on confirmation — AI writes it for your brand",
+                "New blog post publishes → newsletter written and sent to all subscribers",
+                "Open rates drop below 20% → AI rewrites subject lines automatically",
+              ].map((line, i) => (
+                <div key={i} className="flex items-start gap-3 text-left">
+                  <Check size={14} className="text-foreground/20 mt-1 shrink-0" />
+                  <p className="font-body text-sm text-muted-foreground leading-relaxed">{line}</p>
+                </div>
+              ))}
+            </motion.div>
+          </div>
         </section>
 
         {/* Pricing */}
-        <section className="mt-28 px-6 md:px-12 max-w-4xl mx-auto">
-          <LazyPricingSection
-            lazyFeatures={[
-              "Setup prompt included",
-              "Subscriber capture with double opt-in",
-              "AI-written welcome sequences",
-              "Automated newsletter broadcasts",
-              "Self-improving subject lines",
-            ]}
-            proFeatures={[
-              "Hosted version — zero config",
-              "Multi-list segmentation",
-              "A/B testing on subject lines",
-              "Advanced open & click analytics",
-              "Priority Resend API access",
-            ]}
-            proPrice="$19"
-            ctaButton={<CopyPromptButton text={promptText} />}
-          />
+        <section className="py-20 md:py-28 px-6 border-t border-border">
+          <div className="max-w-4xl mx-auto">
+            <LazyPricingSection
+              lazyFeatures={[
+                "Setup prompt included",
+                "Subscriber capture with double opt-in",
+                "AI-written welcome sequences",
+                "Automated newsletter broadcasts",
+                "Self-improving subject lines",
+              ]}
+              proFeatures={[
+                "Hosted version — zero config",
+                "Multi-list segmentation",
+                "A/B testing on subject lines",
+                "Advanced open & click analytics",
+                "Priority Resend API access",
+              ]}
+              proPrice="$19"
+              ctaButton={<CopyPromptButton text={promptText} />}
+            />
+          </div>
         </section>
 
         {/* FAQ */}
-        <section className="mt-28 px-6 md:px-12 max-w-3xl mx-auto">
-          <LazyFaqSection faqs={faqs} />
+        <section className="py-20 md:py-28 px-6 border-t border-border">
+          <div className="max-w-3xl mx-auto">
+            <LazyFaqSection faqs={faqs} />
+          </div>
         </section>
 
         {/* Bottom CTA */}
-        <section className="mt-28 px-6 md:px-12 max-w-3xl mx-auto text-center">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} transition={{ duration: 0.6 }}>
-            <p style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.4rem", color: "#f0ead6", lineHeight: 1.2 }}>
-              Your blog publishes itself. Now your emails send themselves too.
-            </p>
-            <div className="mt-6">
-              <CopyPromptButton text={promptText} />
-            </div>
-            <p className="mt-4 font-body text-xs text-foreground/25">
-              Works with any Lovable project. Bring your own Resend API key.
-            </p>
-          </motion.div>
+        <section className="py-20 md:py-28 px-6 border-t border-border">
+          <div className="max-w-3xl mx-auto text-center">
+            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} transition={{ duration: 0.6 }}>
+              <h2 className="font-display text-2xl md:text-3xl font-bold tracking-tight">
+                Your blog publishes itself. Now your emails send themselves too.
+              </h2>
+              <div className="mt-8">
+                <CopyPromptButton text={promptText} />
+              </div>
+              <p className="mt-4 font-body text-xs text-muted-foreground">
+                Works with any Lovable project. Bring your own Resend API key.
+              </p>
+            </motion.div>
+          </div>
         </section>
       </main>
     </div>
