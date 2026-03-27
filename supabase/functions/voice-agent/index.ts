@@ -28,6 +28,7 @@ The engines:
 - Lazy Pay — Stripe payment integration
 - Lazy SMS — Twilio SMS automation
 - Lazy Alert — Slack notifications
+- Lazy Mail — subscriber capture, welcome sequences, and AI newsletters via Resend
 - Lazy Telegram — Telegram bot integration
 - Lazy GitHub / Lazy GitLab — auto-generates devlogs from commits
 - Lazy Linear — syncs with Linear project management
