@@ -65,8 +65,8 @@ const columns = [
 export default function Footer() {
   return (
     <footer className="border-t border-border bg-background">
-      <div className="max-w-[1400px] mx-auto px-6 md:px-12 py-16">
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-7 gap-10 md:gap-6">
+      <div className="max-w-[1520px] mx-auto px-6 md:px-12 py-16">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-8 gap-10 md:gap-6">
           {/* Brand */}
           <div className="col-span-2 sm:col-span-3 md:col-span-1">
             <Link to="/" className="inline-block">
@@ -111,6 +111,33 @@ export default function Footer() {
               </ul>
             </div>
           ))}
+
+          {/* Resources */}
+          <div>
+            <p className="font-body text-xs tracking-[0.2em] uppercase text-foreground/50 font-semibold mb-4">
+              Resources
+            </p>
+            <ul className="space-y-2">
+              {[
+                { name: "How It Works", href: "/how-it-works" },
+                { name: "Use Cases", href: "/use-cases" },
+                { name: "Pricing", href: "/pricing" },
+                { name: "Blog", href: "/blog" },
+                { name: "Autonomy", href: "/autonomy" },
+                { name: "Changelog", href: "/changelog" },
+                { name: "Upgrade Guide", href: "/upgrade-guide" },
+                { name: "About", href: "/about" },
+                { name: "Lazy Launch", href: "/lazy-launch" },
+                { name: "Lazy Shop", href: "/lazy-shop" },
+              ].map((item) => (
+                <li key={item.name}>
+                  <Link to={item.href} className="font-body text-sm text-foreground/65 hover:text-foreground/50 transition-colors">
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
 
         {/* Bottom bar */}
