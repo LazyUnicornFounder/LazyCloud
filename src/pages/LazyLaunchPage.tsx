@@ -1,361 +1,249 @@
 import { useState, useRef } from "react";
-import { motion } from "framer-motion";
-import { Rocket, Copy, Check, Loader2, Store, Briefcase, Camera, Globe, ShoppingBag, Calendar, PenLine, Newspaper, Music, LayoutDashboard, Code, Heart } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
+import { motion, AnimatePresence } from "framer-motion";
+import { toast } from "sonner";
+import {
+  Copy, Check, ExternalLink, RotateCcw, ChevronLeft,
+  Loader2, AlertCircle, Sparkles, X
+} from "lucide-react";
 import SEO from "@/components/SEO";
 import Navbar from "@/components/Navbar";
-import { useTrackEvent } from "@/hooks/useTrackEvent";
-import { toast } from "sonner";
+import { Button } from "@/components/ui/button";
+import { Textarea } from "@/components/ui/textarea";
+import { Input } from "@/components/ui/input";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Progress } from "@/components/ui/progress";
+import { supabase } from "@/integrations/supabase/client";
 
-const TEMPLATES = [
-  {
-    icon: Briefcase,
-    name: "SaaS Platform",
-    idea: "A B2B SaaS platform that helps small businesses automate their invoicing and expense tracking with AI-powered categorisation, recurring billing, and financial reports.",
-    category: "SaaS",
-  },
-  {
-    icon: ShoppingBag,
-    name: "E-Commerce Store",
-    idea: "An artisan home goods e-commerce store selling handcrafted ceramics, candles, and textiles with a refined editorial aesthetic, product filtering, and Stripe checkout.",
-    category: "E-commerce",
-  },
-  {
-    icon: Camera,
-    name: "Portfolio & Resume",
-    idea: "A minimalist photography portfolio for a wedding photographer, featuring full-bleed image galleries, client testimonials, a booking inquiry form, and an about page.",
-    category: "Portfolio",
-  },
-  {
-    icon: Globe,
-    name: "Landing Page",
-    idea: "A dark, polished product launch landing page for a new AI writing tool — featuring a hero with animated demo, feature grid, pricing table, FAQ accordion, and email waitlist.",
-    category: "Websites",
-  },
-  {
-    icon: Calendar,
-    name: "Event Site",
-    idea: "A professional tech conference website with speaker lineup, multi-track schedule, ticket tiers with Stripe integration, venue info with embedded map, and sponsor logos.",
-    category: "Events",
-  },
-  {
-    icon: PenLine,
-    name: "Blog / Newsletter",
-    idea: "A magazine-style lifestyle blog with featured articles, category filtering, author bios, newsletter signup, and a clean reading experience optimised for long-form content.",
-    category: "Blog",
-  },
-  {
-    icon: Newspaper,
-    name: "Editorial / News",
-    idea: "A subscription-ready digital news publication with breaking news ticker, section-based navigation, premium content paywalling, and a professional editorial layout.",
-    category: "Editorial",
-  },
-  {
-    icon: Music,
-    name: "Music / Artist",
-    idea: "A cinematic one-page website for an indie musician — featuring an embedded music player, tour dates, merch store link, press kit download, and social media integration.",
-    category: "Music",
-  },
-  {
-    icon: LayoutDashboard,
-    name: "Internal Tool",
-    idea: "An internal expense reporting and approval tool with submission forms, manager approval workflows, reimbursement tracking, CSV export, and role-based access control.",
-    category: "Internal Tools",
-  },
-  {
-    icon: Store,
-    name: "Local Business",
-    idea: "A premium barbershop website with online booking system, service menu with pricing, staff profiles, gallery of work, Google Maps embed, and customer reviews.",
-    category: "Local Business",
-  },
-  {
-    icon: Heart,
-    name: "Wedding Site",
-    idea: "An elegant wedding invitation website with the couple's story timeline, event details, venue directions, RSVP form with meal preferences, photo gallery, and registry links.",
-    category: "Wedding",
-  },
-  {
-    icon: Code,
-    name: "Developer Tool",
-    idea: "A developer-focused micro-SaaS landing page for an API monitoring service — with live status dashboard demo, code snippets, pricing tiers, documentation link, and GitHub integration badge.",
-    category: "Dev Tools",
-  },
-];
+interface EngineResult {
+  engine_name: string;
+  relevance: string;
+  headline: string;
+  description: string;
+  questions: string[];
+}
 
-export default function LazyLaunchPage() {
-  const trackEvent = useTrackEvent();
+const fadeUp = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5 } } };
+
+const LazyLaunchPage = () => {
+  const [step, setStep] = useState(1);
   const [idea, setIdea] = useState("");
-  const [prompt, setPrompt] = useState("");
+  const [engines, setEngines] = useState<EngineResult[]>([]);
+  const [selected, setSelected] = useState<Set<string>>(new Set());
+  const [answers, setAnswers] = useState<Record<string, Record<string, string>>>({});
+  const [brandName, setBrandName] = useState("");
+  const [audience, setAudience] = useState("");
+  const [siteUrl, setSiteUrl] = useState("");
+  const [generatedPrompt, setGeneratedPrompt] = useState("");
   const [loading, setLoading] = useState(false);
+  const [loadingText, setLoadingText] = useState("");
+  const [error, setError] = useState("");
   const [copied, setCopied] = useState(false);
-  const [activeTemplate, setActiveTemplate] = useState<string | null>(null);
   const resultRef = useRef<HTMLDivElement>(null);
-  const inputRef = useRef<HTMLTextAreaElement>(null);
 
-  const selectTemplate = (template: typeof TEMPLATES[0]) => {
-    setIdea(template.idea);
-    setActiveTemplate(template.name);
-    trackEvent("lazy_launch_template", { template: template.name });
-    setTimeout(() => inputRef.current?.scrollIntoView({ behavior: "smooth", block: "center" }), 200);
+  const analyse = async () => {
+    if (!idea.trim()) { toast.error("Describe your business idea first."); return; }
+    setLoading(true); setLoadingText("Analysing your business idea..."); setError("");
+    try {
+      const { data, error: fnError } = await supabase.functions.invoke("lazy-launch", { body: { mode: "analyse", idea: idea.trim() } });
+      if (fnError) throw fnError;
+      if (data?.error) throw new Error(data.error);
+      setEngines(data.engines || []);
+      setSelected(new Set((data.engines || []).filter((e: EngineResult) => e.relevance === "high").map((e: EngineResult) => e.engine_name)));
+      setStep(2);
+    } catch (e: any) { setError(e?.message || "Something went wrong. Please try again."); }
+    finally { setLoading(false); }
   };
 
   const generate = async () => {
-    if (!idea.trim()) return;
-    setLoading(true);
-    setPrompt("");
-    trackEvent("lazy_launch_generate", { idea: idea.slice(0, 80) });
-
+    setLoading(true); setLoadingText("Building your autonomous business prompt..."); setError(""); setStep(4);
     try {
-      const { data, error } = await supabase.functions.invoke("lazy-launch", {
-        body: { idea: idea.trim() },
+      const { data, error: fnError } = await supabase.functions.invoke("lazy-launch", {
+        body: { mode: "generate", idea: idea.trim(), brandName, audience, siteUrl, engines: Array.from(selected), answers },
       });
-
-      if (error) throw error;
+      if (fnError) throw fnError;
       if (data?.error) throw new Error(data.error);
-
-      setPrompt(data.prompt);
+      setGeneratedPrompt(data.prompt || "");
       setTimeout(() => resultRef.current?.scrollIntoView({ behavior: "smooth" }), 200);
-    } catch (e: any) {
-      console.error(e);
-      toast.error(e.message || "Failed to generate prompt");
-    } finally {
-      setLoading(false);
-    }
+    } catch (e: any) { setError(e?.message || "Something went wrong. Please try again."); }
+    finally { setLoading(false); }
   };
 
-  const copyPrompt = async () => {
-    await navigator.clipboard.writeText(prompt);
-    setCopied(true);
-    toast.success("Prompt copied — paste it into Lovable!");
-    trackEvent("lazy_launch_copy");
-    setTimeout(() => setCopied(false), 2000);
+  const toggleEngine = (name: string) => {
+    setSelected(prev => { const next = new Set(prev); if (next.has(name)) next.delete(name); else next.add(name); return next; });
   };
+  const selectAll = () => setSelected(new Set(engines.map(e => e.engine_name)));
+  const clearAll = () => setSelected(new Set());
+  const setAnswer = (engine: string, question: string, value: string) => {
+    setAnswers(prev => ({ ...prev, [engine]: { ...(prev[engine] || {}), [question]: value } }));
+  };
+  const copyPrompt = () => { navigator.clipboard.writeText(generatedPrompt); setCopied(true); toast.success("Prompt copied to clipboard"); setTimeout(() => setCopied(false), 2000); };
+  const startOver = () => { setStep(1); setIdea(""); setEngines([]); setSelected(new Set()); setAnswers({}); setBrandName(""); setAudience(""); setSiteUrl(""); setGeneratedPrompt(""); setError(""); };
+  const selectedEngines = engines.filter(e => selected.has(e.engine_name));
 
   return (
-    <div className="min-h-screen text-foreground relative" style={{ backgroundColor: "#0a0a08" }}>
-      <SEO
-        title="Lazy Launch — Generate Your Landing Page Prompt"
-        url="/lazy-launch"
-        description="Pick a template or describe your business idea and get a production-ready Lovable prompt for a stunning landing page in the Lazy Unicorn style."
-      />
-      <Navbar activePage="home" />
-
-      {/* Hero */}
-      <header className="relative z-10" style={{ backgroundColor: "#0a0a08" }}>
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8 }}
-          className="flex flex-col items-center gap-6 px-6 pt-32 pb-16 text-center"
-        >
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.6 }}
-          >
-            <Rocket className="w-8 h-8 mx-auto mb-4" style={{ color: "#f0ead6", opacity: 0.4 }} />
-          </motion.div>
-
-          <h1
-            style={{
-              fontFamily: "'Playfair Display', serif",
-              fontSize: "clamp(2.5rem, 6vw, 4.5rem)",
-              color: "#f0ead6",
-              lineHeight: 1.1,
-            }}
-          >
-            Launch Your Idea.
-          </h1>
-
-          <p
-            className="tracking-[0.2em] uppercase max-w-xl"
-            style={{
-              fontFamily: "'Playfair Display', serif",
-              fontSize: "clamp(0.85rem, 1.5vw, 1.1rem)",
-              color: "#f0ead6",
-              opacity: 0.45,
-            }}
-          >
-            Pick a template or describe your own. Get a Lovable prompt.
-          </p>
-
-          {/* Template Grid */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.6 }}
-            className="w-full max-w-4xl mt-10"
-          >
-            <p
-              className="text-[10px] tracking-[0.2em] uppercase font-semibold mb-6"
-              style={{ color: "#f0ead6", opacity: 0.25 }}
-            >
-              Choose a Template
-            </p>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
-              {TEMPLATES.map((t, i) => {
-                const Icon = t.icon;
-                const isActive = activeTemplate === t.name;
-                return (
-                  <motion.button
-                    key={t.name}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.5 + i * 0.04, duration: 0.4 }}
-                    onClick={() => selectTemplate(t)}
-                    className="flex flex-col items-center gap-2 px-4 py-5 border text-center transition-all duration-200 hover:border-[rgba(240,234,214,0.35)]"
-                    style={{
-                      backgroundColor: isActive ? "rgba(240,234,214,0.08)" : "#111110",
-                      borderColor: isActive ? "rgba(240,234,214,0.35)" : "rgba(240,234,214,0.08)",
-                      borderRadius: 0,
-                    }}
-                  >
-                    <Icon
-                      className="w-5 h-5"
-                      style={{ color: "#f0ead6", opacity: isActive ? 0.9 : 0.4 }}
-                    />
-                    <span
-                      className="text-[11px] tracking-[0.1em] uppercase font-medium"
-                      style={{ color: "#f0ead6", opacity: isActive ? 0.9 : 0.5 }}
-                    >
-                      {t.name}
-                    </span>
-                    <span
-                      className="text-[9px] tracking-[0.05em] uppercase"
-                      style={{ color: "#f0ead6", opacity: 0.2 }}
-                    >
-                      {t.category}
-                    </span>
-                  </motion.button>
-                );
-              })}
-            </div>
-          </motion.div>
-
-          {/* Divider */}
-          <div className="w-full max-w-2xl mt-10 flex items-center gap-4">
-            <div className="flex-1 h-px" style={{ backgroundColor: "rgba(240,234,214,0.08)" }} />
-            <span
-              className="text-[10px] tracking-[0.2em] uppercase font-semibold"
-              style={{ color: "#f0ead6", opacity: 0.2 }}
-            >
-              or describe your own
-            </span>
-            <div className="flex-1 h-px" style={{ backgroundColor: "rgba(240,234,214,0.08)" }} />
-          </div>
-
-          {/* Input area */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6, duration: 0.6 }}
-            className="w-full max-w-2xl mt-4"
-          >
-            <textarea
-              ref={inputRef}
-              value={idea}
-              onChange={(e) => {
-                setIdea(e.target.value);
-                setActiveTemplate(null);
-              }}
-              placeholder="e.g. An AI-powered resume builder for junior developers that creates tailored CVs in seconds…"
-              rows={4}
-              disabled={loading}
-              className="w-full px-5 py-4 text-base resize-none focus:outline-none focus:ring-1 transition-colors disabled:opacity-50"
-              style={{
-                fontFamily: "'Space Grotesk', sans-serif",
-                backgroundColor: "#111110",
-                color: "#f0ead6",
-                border: "1px solid rgba(240,234,214,0.12)",
-                borderRadius: 0,
-              }}
-            />
-
-            <button
-              onClick={generate}
-              disabled={loading || !idea.trim()}
-              className="mt-4 w-full text-sm tracking-[0.15em] uppercase px-8 py-3 font-semibold hover:opacity-80 transition-opacity active:scale-[0.97] disabled:opacity-30 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-              style={{
-                fontFamily: "'Playfair Display', serif",
-                backgroundColor: "#f0ead6",
-                color: "#0a0a08",
-                borderRadius: 0,
-              }}
-            >
-              {loading ? (
-                <>
-                  <Loader2 className="w-4 h-4 animate-spin" />
-                  Generating…
-                </>
-              ) : (
-                "Generate Prompt"
-              )}
-            </button>
-          </motion.div>
-
-          {/* Result */}
-          {prompt && (
-            <motion.div
-              ref={resultRef}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="w-full max-w-2xl mt-12 text-left"
-            >
-              <div className="flex items-center justify-between mb-3">
-                <p
-                  className="text-[10px] tracking-[0.2em] uppercase font-semibold"
-                  style={{ color: "#f0ead6", opacity: 0.4 }}
-                >
-                  Your Lovable Prompt
-                </p>
-                <button
-                  onClick={copyPrompt}
-                  className="flex items-center gap-1.5 text-[10px] tracking-[0.15em] uppercase font-semibold px-3 py-1.5 border hover:opacity-80 transition-opacity"
-                  style={{
-                    color: "#f0ead6",
-                    borderColor: "rgba(240,234,214,0.2)",
-                    borderRadius: 0,
-                  }}
-                >
-                  {copied ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
-                  {copied ? "Copied" : "Copy"}
-                </button>
+    <>
+      <SEO title="Lazy Launch — Free Autonomous Business Prompt Generator" description="Describe your business idea and get a complete Lovable prompt that installs autonomous engines." canonical="https://lazyunicorn.ai/lazy-launch" />
+      <Navbar />
+      <main className="min-h-screen bg-[#0a0a08] text-[#f0ead6] pt-24 pb-16">
+        <AnimatePresence mode="wait">
+          {step === 1 && (
+            <motion.section key="step1" initial="hidden" animate="visible" exit="hidden" variants={fadeUp} className="max-w-3xl mx-auto px-6">
+              <div className="text-center mb-10">
+                <div className="inline-flex items-center gap-2 border border-[#f0ead6]/20 px-4 py-1.5 text-xs uppercase tracking-[0.2em] mb-6">
+                  <Sparkles className="w-3.5 h-3.5" />Free Tool
+                </div>
+                <h1 className="font-display text-4xl md:text-6xl font-bold mb-4" style={{ fontFamily: "'Playfair Display', serif" }}>What are you building?</h1>
+                <p className="text-[#f0ead6]/60 text-lg max-w-xl mx-auto" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>Describe your business idea and we will show you every way to make it autonomous.</p>
               </div>
-              <pre
-                className="whitespace-pre-wrap text-sm leading-relaxed p-6 overflow-auto max-h-[60vh]"
-                style={{
-                  fontFamily: "'Space Grotesk', sans-serif",
-                  backgroundColor: "#111110",
-                  color: "#f0ead6",
-                  opacity: 0.85,
-                  border: "1px solid rgba(240,234,214,0.08)",
-                  borderRadius: 0,
-                }}
-              >
-                {prompt}
-              </pre>
+              <Textarea value={idea} onChange={e => setIdea(e.target.value)} placeholder="e.g. A newsletter about AI tools for designers. A Twitch channel about extraction games. A SaaS tool for freelance developers. A dropshipping store selling eco-friendly products." className="bg-[#0a0a08] border-[#f0ead6]/20 text-[#f0ead6] placeholder:text-[#f0ead6]/30 min-h-[160px] rounded-none text-base focus:border-[#f0ead6]/50 resize-none" style={{ fontFamily: "'Space Grotesk', sans-serif" }} />
+              {error && (
+                <div className="flex items-center gap-2 mt-4 text-red-400 text-sm">
+                  <AlertCircle className="w-4 h-4" /><span>{error}</span>
+                  <button onClick={analyse} className="underline ml-2">Retry</button>
+                </div>
+              )}
+              <Button onClick={analyse} disabled={loading} className="w-full mt-6 h-14 bg-[#f0ead6] text-[#0a0a08] hover:bg-[#f0ead6]/90 rounded-none text-base font-semibold uppercase tracking-wider" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+                {loading ? <span className="flex items-center gap-2"><Loader2 className="w-5 h-5 animate-spin" />{loadingText}</span> : "Show me how to automate this →"}
+              </Button>
+            </motion.section>
+          )}
+          {step === 4 && (
+            <motion.section key="step4" ref={resultRef} initial="hidden" animate="visible" exit="hidden" variants={fadeUp} className="max-w-4xl mx-auto px-6">
+              {loading ? (
+                <div className="flex flex-col items-center justify-center py-32 gap-4">
+                  <Loader2 className="w-8 h-8 animate-spin text-[#f0ead6]/60" />
+                  <p className="text-[#f0ead6]/60 text-lg" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>{loadingText}</p>
+                </div>
+              ) : error ? (
+                <div className="text-center py-32">
+                  <AlertCircle className="w-8 h-8 text-red-400 mx-auto mb-4" />
+                  <p className="text-red-400 mb-4">{error}</p>
+                  <Button onClick={generate} variant="outline" className="rounded-none border-[#f0ead6]/20 text-[#f0ead6] hover:bg-[#f0ead6]/10">Retry</Button>
+                </div>
+              ) : (
+                <>
+                  <div className="text-center mb-8">
+                    <p className="text-xs uppercase tracking-[0.2em] text-[#f0ead6]/40 mb-2" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>Your autonomous business prompt — ready to paste into Lovable</p>
+                    <h2 className="font-display text-3xl font-bold" style={{ fontFamily: "'Playfair Display', serif" }}>Prompt Generated</h2>
+                  </div>
+                  <div className="border border-[#f0ead6]/20 bg-[#0a0a08] p-6 max-h-[60vh] overflow-y-auto">
+                    <pre className="whitespace-pre-wrap text-sm text-[#f0ead6]/80 select-all" style={{ fontFamily: "'Space Grotesk', monospace" }}>{generatedPrompt}</pre>
+                  </div>
+                  <div className="flex flex-wrap gap-3 mt-6 justify-center">
+                    <Button onClick={copyPrompt} className="rounded-none bg-[#f0ead6] text-[#0a0a08] hover:bg-[#f0ead6]/90 gap-2">
+                      {copied ? <><Check className="w-4 h-4" />Copied ✓</> : <><Copy className="w-4 h-4" />Copy Prompt</>}
+                    </Button>
+                    <Button asChild variant="outline" className="rounded-none border-[#f0ead6]/20 text-[#f0ead6] hover:bg-[#f0ead6]/10 gap-2">
+                      <a href="https://lovable.dev" target="_blank" rel="noopener noreferrer"><ExternalLink className="w-4 h-4" />Open Lovable</a>
+                    </Button>
+                    <Button onClick={startOver} variant="outline" className="rounded-none border-[#f0ead6]/20 text-[#f0ead6] hover:bg-[#f0ead6]/10 gap-2">
+                      <RotateCcw className="w-4 h-4" />Start Over
+                    </Button>
+                  </div>
+                  <p className="text-center text-[#f0ead6]/40 text-sm mt-6" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>Paste this into your existing Lovable project. Each engine installs independently — you can add more later.</p>
+                </>
+              )}
+            </motion.section>
+          )}
+        </AnimatePresence>
 
-              <div className="mt-6 text-center">
-                <a
-                  href="https://lovable.dev/projects/create"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block text-sm tracking-[0.15em] uppercase px-8 py-3 font-semibold hover:opacity-80 transition-opacity active:scale-[0.97]"
-                  style={{
-                    fontFamily: "'Playfair Display', serif",
-                    backgroundColor: "#f0ead6",
-                    color: "#0a0a08",
-                    borderRadius: 0,
-                  }}
-                >
-                  Open Lovable & Paste
-                </a>
+        {/* Modal for steps 2 & 3 */}
+        <AnimatePresence>
+          {(step === 2 || step === 3) && (
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-50 bg-[#0a0a08]/95 backdrop-blur-sm flex items-start justify-center overflow-y-auto">
+              <div className="w-full max-w-4xl px-6 py-12">
+                <div className="flex items-center justify-between mb-8">
+                  <p className="text-xs uppercase tracking-[0.2em] text-[#f0ead6]/40" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>Step {step} of 4 — {step === 2 ? "Select your engines" : "Configure your engines"}</p>
+                  <button onClick={() => { setStep(1); setError(""); }} className="text-[#f0ead6]/40 hover:text-[#f0ead6]"><X className="w-5 h-5" /></button>
+                </div>
+                <Progress value={step === 2 ? 50 : 75} className="mb-8 h-1 bg-[#f0ead6]/10 rounded-none [&>div]:bg-[#f0ead6] [&>div]:rounded-none" />
+
+                {step === 2 && (
+                  <motion.div initial="hidden" animate="visible" variants={fadeUp}>
+                    <div className="text-center mb-8">
+                      <h2 className="font-display text-3xl md:text-4xl font-bold mb-2" style={{ fontFamily: "'Playfair Display', serif" }}>Here is how to make your business autonomous.</h2>
+                      <p className="text-[#f0ead6]/60" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>Select everything you want to automate. We will build the prompt for you.</p>
+                    </div>
+                    <div className="flex gap-3 mb-6">
+                      <button onClick={selectAll} className="text-xs uppercase tracking-[0.15em] border border-[#f0ead6]/20 px-3 py-1.5 text-[#f0ead6]/60 hover:text-[#f0ead6] hover:border-[#f0ead6]/40 transition-colors" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>Select All</button>
+                      <button onClick={clearAll} className="text-xs uppercase tracking-[0.15em] border border-[#f0ead6]/20 px-3 py-1.5 text-[#f0ead6]/60 hover:text-[#f0ead6] hover:border-[#f0ead6]/40 transition-colors" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>Clear All</button>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-24">
+                      {engines.map(engine => {
+                        const isSelected = selected.has(engine.engine_name);
+                        return (
+                          <button key={engine.engine_name} onClick={() => toggleEngine(engine.engine_name)} className={`text-left border p-5 transition-all ${isSelected ? "border-[#f0ead6] bg-[#f0ead6]/5" : "border-[#f0ead6]/15 hover:border-[#f0ead6]/30"}`}>
+                            <div className="flex items-start justify-between mb-2">
+                              <div>
+                                <span className={`text-xs uppercase tracking-[0.15em] px-2 py-0.5 border ${engine.relevance === "high" ? "border-green-500/40 text-green-400" : "border-yellow-500/40 text-yellow-400"}`} style={{ fontFamily: "'Space Grotesk', sans-serif" }}>{engine.relevance}</span>
+                                <h3 className="text-lg font-bold mt-2" style={{ fontFamily: "'Playfair Display', serif" }}>{engine.engine_name}</h3>
+                              </div>
+                              <Checkbox checked={isSelected} onCheckedChange={() => toggleEngine(engine.engine_name)} className="border-[#f0ead6]/30 data-[state=checked]:bg-[#f0ead6] data-[state=checked]:text-[#0a0a08] rounded-none mt-1" />
+                            </div>
+                            <p className="text-[#f0ead6]/80 text-sm font-semibold mb-1" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>{engine.headline}</p>
+                            <p className="text-[#f0ead6]/50 text-sm" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>{engine.description}</p>
+                          </button>
+                        );
+                      })}
+                    </div>
+                    <div className="fixed bottom-0 left-0 right-0 bg-[#0a0a08] border-t border-[#f0ead6]/10 p-4 z-50">
+                      <div className="max-w-4xl mx-auto flex items-center justify-between">
+                        <p className="text-sm text-[#f0ead6]/60" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>{selected.size} engine{selected.size !== 1 ? "s" : ""} selected</p>
+                        <Button onClick={() => setStep(3)} disabled={selected.size === 0} className="rounded-none bg-[#f0ead6] text-[#0a0a08] hover:bg-[#f0ead6]/90 disabled:opacity-30" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>Configure my automation →</Button>
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+
+                {step === 3 && (
+                  <motion.div initial="hidden" animate="visible" variants={fadeUp}>
+                    <div className="text-center mb-8">
+                      <h2 className="font-display text-3xl font-bold mb-2" style={{ fontFamily: "'Playfair Display', serif" }}>Configure your engines</h2>
+                      <p className="text-[#f0ead6]/60" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>Answer a few questions so we can generate a precise prompt.</p>
+                    </div>
+                    <div className="border border-[#f0ead6]/20 p-6 mb-6">
+                      <h3 className="text-lg font-bold mb-4" style={{ fontFamily: "'Playfair Display', serif" }}>General</h3>
+                      <div className="space-y-4">
+                        <div>
+                          <label className="text-xs uppercase tracking-[0.15em] text-[#f0ead6]/50 block mb-1.5" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>What is your brand name?</label>
+                          <Input value={brandName} onChange={e => setBrandName(e.target.value)} placeholder="e.g. Acme Labs" className="bg-[#0a0a08] border-[#f0ead6]/20 text-[#f0ead6] placeholder:text-[#f0ead6]/30 rounded-none focus:border-[#f0ead6]/50" />
+                        </div>
+                        <div>
+                          <label className="text-xs uppercase tracking-[0.15em] text-[#f0ead6]/50 block mb-1.5" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>What is your target audience?</label>
+                          <Input value={audience} onChange={e => setAudience(e.target.value)} placeholder="e.g. Solo developers shipping SaaS products" className="bg-[#0a0a08] border-[#f0ead6]/20 text-[#f0ead6] placeholder:text-[#f0ead6]/30 rounded-none focus:border-[#f0ead6]/50" />
+                        </div>
+                        <div>
+                          <label className="text-xs uppercase tracking-[0.15em] text-[#f0ead6]/50 block mb-1.5" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>What is the URL of your Lovable project or site?</label>
+                          <Input value={siteUrl} onChange={e => setSiteUrl(e.target.value)} placeholder="e.g. https://my-app.lovable.app" className="bg-[#0a0a08] border-[#f0ead6]/20 text-[#f0ead6] placeholder:text-[#f0ead6]/30 rounded-none focus:border-[#f0ead6]/50" />
+                        </div>
+                      </div>
+                    </div>
+                    {selectedEngines.map(engine => (
+                      <div key={engine.engine_name} className="border border-[#f0ead6]/20 p-6 mb-4">
+                        <h3 className="text-lg font-bold mb-4" style={{ fontFamily: "'Playfair Display', serif" }}>{engine.engine_name}</h3>
+                        <div className="space-y-4">
+                          {engine.questions.map((q, i) => (
+                            <div key={i}>
+                              <label className="text-xs uppercase tracking-[0.15em] text-[#f0ead6]/50 block mb-1.5" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>{q}</label>
+                              <Input value={answers[engine.engine_name]?.[q] || ""} onChange={e => setAnswer(engine.engine_name, q, e.target.value)} placeholder="Your answer..." className="bg-[#0a0a08] border-[#f0ead6]/20 text-[#f0ead6] placeholder:text-[#f0ead6]/30 rounded-none focus:border-[#f0ead6]/50" />
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                    <div className="flex gap-3 mt-8 mb-16">
+                      <Button onClick={() => setStep(2)} variant="outline" className="rounded-none border-[#f0ead6]/20 text-[#f0ead6] hover:bg-[#f0ead6]/10 gap-2"><ChevronLeft className="w-4 h-4" />Back</Button>
+                      <Button onClick={generate} className="flex-1 rounded-none bg-[#f0ead6] text-[#0a0a08] hover:bg-[#f0ead6]/90" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>Generate my prompt →</Button>
+                    </div>
+                  </motion.div>
+                )}
               </div>
             </motion.div>
           )}
-        </motion.div>
-      </header>
-    </div>
+        </AnimatePresence>
+      </main>
+    </>
   );
-}
+};
+
+export default LazyLaunchPage;
