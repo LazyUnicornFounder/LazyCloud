@@ -6,6 +6,7 @@ import { BarChart3, Check, Copy, Database, Eye, Globe, Search, TrendingUp, Users
 import SEO from "@/components/SEO";
 import Navbar from "@/components/Navbar";
 import { useTrackEvent } from "@/hooks/useTrackEvent";
+import { useCurrentPrompt } from "@/hooks/usePrompt";
 import { toast } from "sonner";
 
 const fadeUp = { hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0 } };
@@ -46,15 +47,15 @@ const steps = [
   "Competitor intelligence flows into your content engines automatically.",
 ];
 
-function CopyPromptButton({ className = "", onCopy }: { className?: string; onCopy: () => void }) {
+function CopyPromptButton({ className = "", onCopy, text }: { className?: string; onCopy: () => void; text: string }) {
   const [copied, setCopied] = useState(false);
   const handleCopy = useCallback(async () => {
-    await navigator.clipboard.writeText(SETUP_PROMPT);
+    await navigator.clipboard.writeText(text);
     setCopied(true);
     onCopy();
     toast.success("Copied! Paste this into your Lovable project chat.");
     setTimeout(() => setCopied(false), 2500);
-  }, [onCopy]);
+  }, [onCopy, text]);
 
   return (
     <button onClick={handleCopy} className={`inline-flex items-center gap-2 bg-foreground text-background font-display font-bold text-sm tracking-[0.08em] uppercase px-8 py-4 hover:opacity-90 transition-opacity ${className}`}>
@@ -73,6 +74,8 @@ function ServiceBadge() {
 
 const LazyCrawlPage = () => {
   const trackEvent = useTrackEvent();
+  const { prompt: dbPrompt } = useCurrentPrompt("lazy-crawl");
+  const promptText = dbPrompt?.prompt_text || SETUP_PROMPT;
 
   const handlePromptCopy = useCallback(() => {
     trackEvent("lazy_crawl_prompt_copy");
@@ -101,7 +104,7 @@ const LazyCrawlPage = () => {
                 Lazy Crawl uses the Firecrawl API to monitor competitor websites, extract trending topics, discover keyword opportunities, and feed real current data into your content engines — automatically, forever.
               </p>
               <div className="flex flex-col sm:flex-row items-start gap-4 mt-10">
-                <CopyPromptButton onCopy={handlePromptCopy} />
+                <CopyPromptButton text={promptText} onCopy={handlePromptCopy} />
                 <button
                   onClick={(e) => { e.preventDefault(); document.getElementById("how-it-works")?.scrollIntoView({ behavior: "smooth" }); }}
                   className="inline-flex items-center gap-2 font-body text-[11px] tracking-[0.15em] uppercase px-6 py-2.5 font-semibold border border-border text-foreground/50 hover:text-foreground transition-colors"
@@ -152,7 +155,7 @@ const LazyCrawlPage = () => {
         <LazyPricingSection
           lazyFeatures={["Lazy Crawl setup prompt", "Self-hosted in your Lovable project", "Feeds into Lazy Blogger, SEO, and GEO", "Bring your own Firecrawl API key"]}
           proFeatures={["Hosted version", "Firecrawl API costs included", "Daily competitor reports", "Priority processing"]}
-          ctaButton={<CopyPromptButton onCopy={handlePromptCopy} className="w-full justify-center" />}
+          ctaButton={<CopyPromptButton text={promptText} onCopy={handlePromptCopy} className="w-full justify-center" />}
         />
 
         <LazyFaqSection faqs={[
@@ -169,7 +172,7 @@ const LazyCrawlPage = () => {
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="border border-border bg-card px-8 py-14 text-center">
             <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-foreground mb-4">Stop guessing. Start knowing.</h2>
             <p className="font-body text-sm text-muted-foreground max-w-md mx-auto leading-relaxed mb-8">Competitor monitoring, trend extraction, lead discovery — all feeding real data into your content engines.</p>
-            <CopyPromptButton onCopy={handlePromptCopy} />
+            <CopyPromptButton text={promptText} onCopy={handlePromptCopy} />
             <p className="font-body text-xs text-foreground/20 mt-4">Open your Lovable project, paste it into the chat, add your API key. Done.</p>
           </motion.div>
         </section>

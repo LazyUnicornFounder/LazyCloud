@@ -6,6 +6,7 @@ import { Copy, Check, Mic, Headphones, Rss, Radio, Volume2, Play } from "lucide-
 import SEO from "@/components/SEO";
 import Navbar from "@/components/Navbar";
 import { useTrackEvent } from "@/hooks/useTrackEvent";
+import { useCurrentPrompt } from "@/hooks/usePrompt";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -156,20 +157,22 @@ function CopyPromptButton({
   className = "",
   onCopy,
   variant = "primary",
+  text,
 }: {
   className?: string;
   onCopy: () => void;
   variant?: "primary" | "ghost";
+  text: string;
 }) {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = useCallback(async () => {
-    await navigator.clipboard.writeText(LAZY_VOICE_PROMPT);
+    await navigator.clipboard.writeText(text);
     setCopied(true);
     onCopy();
     toast.success("Copied! Paste this into your Lovable project chat.");
     setTimeout(() => setCopied(false), 2500);
-  }, [onCopy]);
+  }, [onCopy, text]);
 
   const base =
     variant === "primary"
@@ -405,6 +408,8 @@ function ManifestoPlayer() {
 
 export default function LazyVoicePage() {
   const trackEvent = useTrackEvent();
+  const { prompt: dbPrompt } = useCurrentPrompt("lazy-voice");
+  const promptText = dbPrompt?.prompt_text || LAZY_VOICE_PROMPT;
 
   useEffect(() => {
     trackEvent("page_view", { page: "/lazy-voice" });
@@ -444,7 +449,7 @@ export default function LazyVoicePage() {
                 Lazy Voice monitors every post Lazy Blogger and Lazy SEO publish, sends them to ElevenLabs, and embeds an audio player on every article — automatically. Your site becomes a blog and a podcast at the same time.
               </p>
               <div className="flex flex-col sm:flex-row items-start gap-4 mt-10">
-                <CopyPromptButton onCopy={handleCopy} />
+                <CopyPromptButton text={promptText} onCopy={handleCopy} />
                 <button
                   onClick={scrollToHowItWorks}
                   className="inline-flex items-center gap-2 font-body text-[11px] tracking-[0.15em] uppercase px-6 py-2.5 font-semibold border border-border text-foreground/50 hover:text-foreground transition-colors"
@@ -578,7 +583,7 @@ export default function LazyVoicePage() {
             "Priority audio processing",
             "Automatic podcast submission to Apple & Spotify",
           ]}
-          ctaButton={<CopyPromptButton onCopy={handleCopy} className="w-full justify-center" />}
+          ctaButton={<CopyPromptButton text={promptText} onCopy={handleCopy} className="w-full justify-center" />}
         />
 
         <LazyFaqSection faqs={faqs} />
@@ -604,7 +609,7 @@ export default function LazyVoicePage() {
               transition={{ delay: 0.2 }}
               className="flex flex-col items-center gap-3"
             >
-              <CopyPromptButton onCopy={handleCopy} />
+              <CopyPromptButton text={promptText} onCopy={handleCopy} />
               <p className="font-body text-xs text-muted-foreground/60 max-w-sm">
                 Then open your Lovable project, paste it in, add your ElevenLabs API key, and your site starts narrating itself.
               </p>

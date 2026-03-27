@@ -7,6 +7,7 @@ import { toast } from "sonner";
 import SEO from "@/components/SEO";
 import Navbar from "@/components/Navbar";
 import { useTrackEvent } from "@/hooks/useTrackEvent";
+import { useCurrentPrompt } from "@/hooks/usePrompt";
 
 const SETUP_PROMPT = `[Lazy GitHub Prompt — v0.0.4 — LazyUnicorn.ai]
 
@@ -251,17 +252,17 @@ const faqs = [
   { q: "How do I upgrade to a new prompt version?", a: "Visit the upgrade guide at /upgrade-guide. Copy the latest prompt and paste it into your Lovable project. Your existing data and settings are preserved." },
 ];
 
-function CopyPromptButton({ className = "" }: { className?: string }) {
+function CopyPromptButton({ className = "", text }: { className?: string; text: string }) {
   const [copied, setCopied] = useState(false);
   const trackEvent = useTrackEvent();
 
   const handleCopy = useCallback(async () => {
-    await navigator.clipboard.writeText(SETUP_PROMPT);
+    await navigator.clipboard.writeText(text);
     setCopied(true);
     trackEvent("copy_prompt", { product: "lazy-github" });
     toast.success("Copied! Paste this into your Lovable project chat.");
     setTimeout(() => setCopied(false), 2000);
-  }, [trackEvent]);
+  }, [trackEvent, text]);
 
   return (
     <button
@@ -274,6 +275,8 @@ function CopyPromptButton({ className = "" }: { className?: string }) {
 }
 
 const LazyGitHubPage = () => {
+  const { prompt: dbPrompt } = useCurrentPrompt("lazy-code");
+  const promptText = dbPrompt?.prompt_text || SETUP_PROMPT;
   return (
     <div className="min-h-screen bg-background text-foreground">
       <SEO
@@ -304,7 +307,7 @@ const LazyGitHubPage = () => {
               Lazy GitHub monitors your GitHub repository, reads your commits and releases, and publishes plain-English changelogs, release notes, SEO developer posts, and a public roadmap to your Lovable site — every time you push.
             </p>
             <div className="flex flex-col sm:flex-row items-start gap-4 mt-10">
-              <CopyPromptButton />
+              <CopyPromptButton text={promptText} />
               <button
                 onClick={(e) => { e.preventDefault(); document.getElementById("how-it-works")?.scrollIntoView({ behavior: "smooth" }); }}
                 className="inline-flex items-center gap-2 font-body text-[11px] tracking-[0.15em] uppercase px-6 py-2.5 font-semibold border border-border text-foreground/50 hover:text-foreground transition-colors"
@@ -398,7 +401,7 @@ const LazyGitHubPage = () => {
         lazyFeatures={["Lazy GitHub setup prompt", "Self-hosted in your existing Lovable project", "Works with any public or private GitHub repository", "Bring your own GitHub account"]}
         proFeatures={["Hosted version", "Automatic contributor attribution", "Multi-repository support", "Advanced SEO targeting"]}
         proPrice="$19"
-        ctaButton={<CopyPromptButton className="w-full justify-center" />}
+        ctaButton={<CopyPromptButton text={promptText} className="w-full justify-center" />}
       />
 
       <LazyFaqSection faqs={faqs} />
@@ -413,7 +416,7 @@ const LazyGitHubPage = () => {
             Every feature you ship, every bug you fix, every release you tag is a changelog entry, a blog post, and an SEO article waiting to be written. One prompt installs the entire pipeline into your existing Lovable project.
           </p>
           <div className="mt-8">
-            <CopyPromptButton />
+            <CopyPromptButton text={promptText} />
           </div>
           <p className="mt-4 font-body text-xs text-foreground/25 max-w-md mx-auto leading-relaxed">
             Open your Lovable project, paste it into the chat, add your GitHub credentials. Your next commit will be published automatically.

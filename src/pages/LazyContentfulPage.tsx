@@ -6,6 +6,7 @@ import { Brain, Check, Copy, Download, Image, Layers, Search, Upload, Webhook, Z
 import SEO from "@/components/SEO";
 import Navbar from "@/components/Navbar";
 import { useTrackEvent } from "@/hooks/useTrackEvent";
+import { useCurrentPrompt } from "@/hooks/usePrompt";
 import { toast } from "sonner";
 import { useState } from "react";
 
@@ -131,15 +132,15 @@ Do not add the setup page to public navigation.`;
 
 const steps = ["Copy the setup prompt from this page.", "Paste it into your existing Lovable project.", "Add your Contentful API keys.", "Content flows in both directions automatically."];
 
-function CopyPromptButton({ className = "", onCopy }: { className?: string; onCopy: () => void }) {
+function CopyPromptButton({ className = "", onCopy, text }: { className?: string; onCopy: () => void; text: string }) {
   const [copied, setCopied] = useState(false);
   const handleCopy = useCallback(async () => {
-    await navigator.clipboard.writeText(SETUP_PROMPT);
+    await navigator.clipboard.writeText(text);
     setCopied(true);
     onCopy();
     toast.success("Copied! Paste this into your Lovable project chat.");
     setTimeout(() => setCopied(false), 2500);
-  }, [onCopy]);
+  }, [onCopy, text]);
 
   return (
     <button onClick={handleCopy} className={`inline-flex items-center gap-2 bg-foreground text-background font-display font-bold text-sm tracking-[0.08em] uppercase px-8 py-4 hover:opacity-90 transition-opacity ${className}`}>
@@ -158,6 +159,8 @@ function ServiceBadge() {
 
 const LazyContentfulPage = () => {
   const trackEvent = useTrackEvent();
+  const { prompt: dbPrompt } = useCurrentPrompt("lazy-contentful");
+  const promptText = dbPrompt?.prompt_text || SETUP_PROMPT;
 
   const handlePromptCopy = useCallback(() => {
     trackEvent("lazy_contentful_prompt_copy");
@@ -186,7 +189,7 @@ const LazyContentfulPage = () => {
                 Lazy Contentful pulls content from Contentful into your Lovable site and pushes AI-generated blog posts, SEO articles, and GEO content back into Contentful — keeping every channel in sync without any manual publishing.
               </p>
               <div className="flex flex-col sm:flex-row items-start gap-4 mt-10">
-                <CopyPromptButton onCopy={handlePromptCopy} />
+                <CopyPromptButton text={promptText} onCopy={handlePromptCopy} />
                 <button
                   onClick={(e) => { e.preventDefault(); document.getElementById("how-it-works")?.scrollIntoView({ behavior: "smooth" }); }}
                   className="inline-flex items-center gap-2 font-body text-[11px] tracking-[0.15em] uppercase px-6 py-2.5 font-semibold border border-border text-foreground/50 hover:text-foreground transition-colors"
@@ -234,7 +237,7 @@ const LazyContentfulPage = () => {
           </div>
         </section>
 
-        <LazyPricingSection lazyFeatures={["Lazy Contentful setup prompt", "Self-hosted in your Lovable project", "Two-way content sync", "Works with free Contentful tier"]} proFeatures={["Hosted version", "Multi-space support", "Advanced content type mapping", "Scheduled sync windows"]} ctaButton={<CopyPromptButton onCopy={handlePromptCopy} className="w-full justify-center" />} />
+        <LazyPricingSection lazyFeatures={["Lazy Contentful setup prompt", "Self-hosted in your Lovable project", "Two-way content sync", "Works with free Contentful tier"]} proFeatures={["Hosted version", "Multi-space support", "Advanced content type mapping", "Scheduled sync windows"]} ctaButton={<CopyPromptButton text={promptText} onCopy={handlePromptCopy} className="w-full justify-center" />} />
 
         <LazyFaqSection faqs={[
           { q: "Do I need a paid Contentful plan?", a: "The free tier works for basic sync. Heavy usage may require a paid Contentful plan." },
@@ -251,7 +254,7 @@ const LazyContentfulPage = () => {
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="border border-border bg-card px-8 py-14 text-center">
             <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-foreground mb-4">Your Contentful CMS. Filling itself.</h2>
             <p className="font-body text-sm text-muted-foreground max-w-md mx-auto leading-relaxed mb-8">Content flows in both directions — Contentful to Lovable, Lazy engines to Contentful — all on autopilot.</p>
-            <CopyPromptButton onCopy={handlePromptCopy} />
+            <CopyPromptButton text={promptText} onCopy={handlePromptCopy} />
             <p className="font-body text-xs text-foreground/20 mt-4">Open your Lovable project, paste it into the chat, add your API key. Done.</p>
           </motion.div>
         </section>

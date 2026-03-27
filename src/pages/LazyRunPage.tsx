@@ -11,6 +11,7 @@ import SEO from "@/components/SEO";
 import Navbar from "@/components/Navbar";
 import LazyPricingSection from "@/components/LazyPricingSection";
 import LazyFaqSection from "@/components/LazyFaqSection";
+import { useCurrentPrompt } from "@/hooks/usePrompt";
 
 const LAZY_RUN_PROMPT = `[Lazy Run Prompt — v0.0.4 — LazyUnicorn.ai]
 
@@ -408,14 +409,14 @@ const dashboardFeatures = [
   { icon: Clock, title: "Smart scheduling", desc: "Engines are staggered automatically so they never compete for resources or API limits." },
 ];
 
-function CopyPromptButton({ label = "COPY THE LOVABLE PROMPT" }: { label?: string }) {
+function CopyPromptButton({ label = "COPY THE LOVABLE PROMPT", text }: { label?: string; text: string }) {
   const [copied, setCopied] = useState(false);
   const handleCopy = useCallback(() => {
-    navigator.clipboard.writeText(LAZY_RUN_PROMPT);
+    navigator.clipboard.writeText(text);
     setCopied(true);
     toast.success("Prompt copied to clipboard");
     setTimeout(() => setCopied(false), 2000);
-  }, []);
+  }, [text]);
 
   return (
     <button
@@ -428,6 +429,8 @@ function CopyPromptButton({ label = "COPY THE LOVABLE PROMPT" }: { label?: strin
 }
 
 export default function LazyRunPage() {
+  const { prompt: dbPrompt } = useCurrentPrompt("lazy-run");
+  const promptText = dbPrompt?.prompt_text || LAZY_RUN_PROMPT;
   return (
     <div className="min-h-screen bg-background text-foreground">
       <SEO
@@ -464,7 +467,7 @@ export default function LazyRunPage() {
             variants={fadeUp} initial="hidden" animate="visible" transition={{ delay: 0.3 }}
             className="flex flex-wrap gap-4"
           >
-            <CopyPromptButton />
+            <CopyPromptButton text={promptText} />
             <button
               onClick={() => document.getElementById("what-it-installs")?.scrollIntoView({ behavior: "smooth" })}
               className="inline-flex items-center justify-center gap-2 font-display font-bold text-sm tracking-[0.08em] uppercase px-8 py-4 border border-border text-foreground/50 hover:text-foreground hover:border-foreground/30 transition-colors"
@@ -560,7 +563,7 @@ export default function LazyRunPage() {
         lazyFeatures={["Lazy Run setup prompt", "Self-hosted in your existing Lovable project", "Installs all twenty engines", "Bring your own API keys for each service"]}
         proFeatures={["Hosted version", "All API costs included", "Priority processing", "Weekly performance email", "Dedicated support"]}
         proPrice="$99"
-        ctaButton={<CopyPromptButton label="Get the Prompt" />}
+        ctaButton={<CopyPromptButton text={promptText} label="Get the Prompt" />}
       />
 
       <LazyFaqSection faqs={faqs} />
@@ -579,7 +582,7 @@ export default function LazyRunPage() {
             One prompt installs the complete autonomous operations layer — publishing, SEO, GEO, payments, SMS, audio, e-commerce, streams, and code — all managed from one dashboard, all running without you.
           </motion.p>
           <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} transition={{ delay: 0.2 }}>
-            <CopyPromptButton />
+            <CopyPromptButton text={promptText} />
           </motion.div>
           <motion.p variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} transition={{ delay: 0.3 }}
             className="font-body text-xs text-foreground/25 mt-6 max-w-md mx-auto">

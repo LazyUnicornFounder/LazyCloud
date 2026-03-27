@@ -6,6 +6,7 @@ import { Copy, Check, CreditCard, RefreshCw, BarChart3, Mail, ShieldCheck, Users
 import SEO from "@/components/SEO";
 import Navbar from "@/components/Navbar";
 import { useTrackEvent } from "@/hooks/useTrackEvent";
+import { useCurrentPrompt } from "@/hooks/usePrompt";
 import { toast } from "sonner";
 
 const fadeUp = { hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0 } };
@@ -220,20 +221,22 @@ function CopyPromptButton({
   className = "",
   onCopy,
   variant = "primary",
+  text,
 }: {
   className?: string;
   onCopy: () => void;
   variant?: "primary" | "ghost";
+  text: string;
 }) {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = useCallback(async () => {
-    await navigator.clipboard.writeText(LAZY_PAY_PROMPT);
+    await navigator.clipboard.writeText(text);
     setCopied(true);
     onCopy();
     toast.success("Copied! Paste this into your Lovable project chat.");
     setTimeout(() => setCopied(false), 2500);
-  }, [onCopy]);
+  }, [onCopy, text]);
 
   const base =
     variant === "primary"
@@ -305,6 +308,8 @@ const faqs = [
 
 export default function LazyPayPage() {
   const trackEvent = useTrackEvent();
+  const { prompt: dbPrompt } = useCurrentPrompt("lazy-pay");
+  const promptText = dbPrompt?.prompt_text || LAZY_PAY_PROMPT;
 
   useEffect(() => {
     trackEvent("page_view", { page: "/lazy-pay" });
@@ -344,7 +349,7 @@ export default function LazyPayPage() {
                 One prompt installs Stripe payments, subscriptions, and a revenue dashboard that improves its own conversion rate — automatically.
               </p>
               <div className="flex flex-col sm:flex-row items-start gap-4 mt-10">
-                <CopyPromptButton onCopy={handleCopy} />
+                <CopyPromptButton text={promptText} onCopy={handleCopy} />
                 <button
                   onClick={scrollToHowItWorks}
                   className="inline-flex items-center gap-2 font-body text-[11px] tracking-[0.15em] uppercase px-6 py-2.5 font-semibold border border-border text-foreground/50 hover:text-foreground transition-colors"
@@ -529,7 +534,7 @@ export default function LazyPayPage() {
             "Multi-currency",
             "Automatic tax handling",
           ]}
-          ctaButton={<CopyPromptButton onCopy={handleCopy} className="w-full justify-center" />}
+          ctaButton={<CopyPromptButton text={promptText} onCopy={handleCopy} className="w-full justify-center" />}
         />
 
         <LazyFaqSection faqs={faqs} />
@@ -555,7 +560,7 @@ export default function LazyPayPage() {
               transition={{ delay: 0.2 }}
               className="flex flex-col items-center gap-3"
             >
-              <CopyPromptButton onCopy={handleCopy} />
+              <CopyPromptButton text={promptText} onCopy={handleCopy} />
               <p className="font-body text-xs text-muted-foreground/60 max-w-sm">
                 Open your Lovable project, paste it into the chat, add your Stripe keys. Your site takes payments within minutes and starts improving within the first week.
               </p>

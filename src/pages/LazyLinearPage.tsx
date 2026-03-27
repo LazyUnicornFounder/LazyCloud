@@ -6,6 +6,7 @@ import { BarChart3, BookOpen, Bug, Check, CheckCircle, Copy, FileText, Map, Rock
 import SEO from "@/components/SEO";
 import Navbar from "@/components/Navbar";
 import { useTrackEvent } from "@/hooks/useTrackEvent";
+import { useCurrentPrompt } from "@/hooks/usePrompt";
 import { toast } from "sonner";
 import { useState } from "react";
 
@@ -145,15 +146,15 @@ Do not add the setup page to public navigation.`;
 
 const steps = ["Copy the setup prompt from this page.", "Paste it into your existing Lovable project.", "Add your Linear API key.", "Issues and cycles automatically become public content."];
 
-function CopyPromptButton({ className = "", onCopy }: { className?: string; onCopy: () => void }) {
+function CopyPromptButton({ className = "", onCopy, text }: { className?: string; onCopy: () => void; text: string }) {
   const [copied, setCopied] = useState(false);
   const handleCopy = useCallback(async () => {
-    await navigator.clipboard.writeText(SETUP_PROMPT);
+    await navigator.clipboard.writeText(text);
     setCopied(true);
     onCopy();
     toast.success("Copied! Paste this into your Lovable project chat.");
     setTimeout(() => setCopied(false), 2500);
-  }, [onCopy]);
+  }, [onCopy, text]);
 
   return (
     <button onClick={handleCopy} className={`inline-flex items-center gap-2 bg-foreground text-background font-display font-bold text-sm tracking-[0.08em] uppercase px-8 py-4 hover:opacity-90 transition-opacity ${className}`}>
@@ -172,6 +173,8 @@ function ServiceBadge() {
 
 const LazyLinearPage = () => {
   const trackEvent = useTrackEvent();
+  const { prompt: dbPrompt } = useCurrentPrompt("lazy-linear");
+  const promptText = dbPrompt?.prompt_text || SETUP_PROMPT;
 
   const handlePromptCopy = useCallback(() => {
     trackEvent("lazy_linear_prompt_copy");
@@ -200,7 +203,7 @@ const LazyLinearPage = () => {
                 Lazy Linear monitors your Linear issues and cycles, and automatically publishes changelogs, a public roadmap, release notes, and product updates — without anyone writing a word.
               </p>
               <div className="flex flex-col sm:flex-row items-start gap-4 mt-10">
-                <CopyPromptButton onCopy={handlePromptCopy} />
+                <CopyPromptButton text={promptText} onCopy={handlePromptCopy} />
                 <button
                   onClick={(e) => { e.preventDefault(); document.getElementById("how-it-works")?.scrollIntoView({ behavior: "smooth" }); }}
                   className="inline-flex items-center gap-2 font-body text-[11px] tracking-[0.15em] uppercase px-6 py-2.5 font-semibold border border-border text-foreground/50 hover:text-foreground transition-colors"
@@ -248,7 +251,7 @@ const LazyLinearPage = () => {
           </div>
         </section>
 
-        <LazyPricingSection lazyFeatures={["Lazy Linear setup prompt", "Self-hosted in your Lovable project", "Autonomous changelog generation", "Works with any Linear plan"]} proFeatures={["Hosted version", "Multi-team support", "Advanced content formatting", "Custom publishing rules"]} ctaButton={<CopyPromptButton onCopy={handlePromptCopy} className="w-full justify-center" />} />
+        <LazyPricingSection lazyFeatures={["Lazy Linear setup prompt", "Self-hosted in your Lovable project", "Autonomous changelog generation", "Works with any Linear plan"]} proFeatures={["Hosted version", "Multi-team support", "Advanced content formatting", "Custom publishing rules"]} ctaButton={<CopyPromptButton text={promptText} onCopy={handlePromptCopy} className="w-full justify-center" />} />
 
         <LazyFaqSection faqs={[
           { q: "Do I need a Linear paid plan?", a: "No. The Linear API is available on all plans including free." },
@@ -265,7 +268,7 @@ const LazyLinearPage = () => {
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="border border-border bg-card px-8 py-14 text-center">
             <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-foreground mb-4">Your Linear issues are your changelog. Start publishing them.</h2>
             <p className="font-body text-sm text-muted-foreground max-w-md mx-auto leading-relaxed mb-8">Every cycle, every shipped feature, every bug fix — turned into content your users actually want to read.</p>
-            <CopyPromptButton onCopy={handlePromptCopy} />
+            <CopyPromptButton text={promptText} onCopy={handlePromptCopy} />
             <p className="font-body text-xs text-foreground/20 mt-4">Open your Lovable project, paste it into the chat, add your API key. Done.</p>
           </motion.div>
         </section>

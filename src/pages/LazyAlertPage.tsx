@@ -8,6 +8,7 @@ import Navbar from "@/components/Navbar";
 import LazyPricingSection from "@/components/LazyPricingSection";
 import LazyFaqSection from "@/components/LazyFaqSection";
 import { useTrackEvent } from "@/hooks/useTrackEvent";
+import { useCurrentPrompt } from "@/hooks/usePrompt";
 
 const fadeUp = { hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0 } };
 
@@ -215,17 +216,17 @@ const SlackBadge = () => (
   </span>
 );
 
-function CopyPromptButton() {
+function CopyPromptButton({ text }: { text: string }) {
   const [copied, setCopied] = useState(false);
   const trackEvent = useTrackEvent();
 
   const handleCopy = useCallback(() => {
-    navigator.clipboard.writeText(LAZY_ALERT_PROMPT);
+    navigator.clipboard.writeText(text);
     setCopied(true);
     toast.success("Prompt copied — paste it into your Lovable project");
     trackEvent("copy_prompt", { product: "lazy-alert" });
     setTimeout(() => setCopied(false), 2000);
-  }, [trackEvent]);
+  }, [trackEvent, text]);
 
   return (
     <button
@@ -308,6 +309,8 @@ const steps = [
 
 export default function LazyAlertPage() {
   const trackEvent = useTrackEvent();
+  const { prompt: dbPrompt } = useCurrentPrompt("lazy-alert");
+  const promptText = dbPrompt?.prompt_text || LAZY_ALERT_PROMPT;
 
   useEffect(() => {
     trackEvent("page_view", { page: "lazy-alert" });
@@ -341,7 +344,7 @@ export default function LazyAlertPage() {
               Lazy Alert connects every Lazy engine to your Slack workspace. Payments, posts, citations, customer replies, errors, and live events — all delivered as Slack messages the moment they happen. One prompt. Your business in your pocket.
             </p>
             <div className="flex flex-col sm:flex-row items-start gap-4 mt-10">
-              <CopyPromptButton />
+              <CopyPromptButton text={promptText} />
               <button
                 onClick={() => document.getElementById("events")?.scrollIntoView({ behavior: "smooth" })}
                 className="inline-flex items-center gap-2 font-body text-[11px] tracking-[0.15em] uppercase px-6 py-2.5 font-semibold border border-border text-foreground/50 hover:text-foreground transition-colors"
@@ -459,7 +462,7 @@ export default function LazyAlertPage() {
           "Multiple channel routing by event type",
         ]}
         proPrice="$9"
-        ctaButton={<CopyPromptButton />}
+        ctaButton={<CopyPromptButton text={promptText} />}
       />
 
       <LazyFaqSection faqs={faqs} />
@@ -478,7 +481,7 @@ export default function LazyAlertPage() {
           </motion.p>
 
           <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="mt-10">
-            <CopyPromptButton />
+            <CopyPromptButton text={promptText} />
           </motion.div>
 
           <motion.p variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="mt-4 font-body text-xs text-foreground/25 max-w-md mx-auto">

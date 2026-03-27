@@ -6,6 +6,7 @@ import Navbar from "@/components/Navbar";
 import LazyPricingSection from "@/components/LazyPricingSection";
 import LazyFaqSection from "@/components/LazyFaqSection";
 import { toast } from "sonner";
+import { useCurrentPrompt } from "@/hooks/usePrompt";
 
 const LAZY_SECURITY_PROMPT = `[Lazy Security Prompt — v0.0.5 — LazyUnicorn.ai]
 
@@ -214,14 +215,14 @@ Do not add /lazy-security-setup to public navigation.`;
 
 const fadeUp = { hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0 } };
 
-function CopyPromptButton({ className = "" }: { className?: string }) {
+function CopyPromptButton({ className = "", text }: { className?: string; text: string }) {
   const [copied, setCopied] = useState(false);
   const handleCopy = useCallback(() => {
-    navigator.clipboard.writeText(LAZY_SECURITY_PROMPT);
+    navigator.clipboard.writeText(text);
     setCopied(true);
     toast.success("Prompt copied — paste it into your Lovable project");
     setTimeout(() => setCopied(false), 2000);
-  }, []);
+  }, [text]);
   return (
     <button
       onClick={handleCopy}
@@ -262,6 +263,8 @@ const faqs = [
 ];
 
 export default function LazySecurityPage() {
+  const { prompt: dbPrompt } = useCurrentPrompt("lazy-security");
+  const promptText = dbPrompt?.prompt_text || LAZY_SECURITY_PROMPT;
   return (
     <div className="min-h-screen bg-background text-foreground">
       <SEO
@@ -290,7 +293,7 @@ export default function LazySecurityPage() {
                 Your Lovable site ships fast. Lazy Security makes sure it ships safe. One prompt connects Aikido pentesting, vulnerability tracking, security score monitoring, and audit-ready reports to your existing project. Security that never sleeps.
               </p>
               <div className="flex flex-col sm:flex-row items-start gap-4 mt-10">
-                <CopyPromptButton />
+                <CopyPromptButton text={promptText} />
                 <button
                   onClick={() => document.getElementById("how-it-works")?.scrollIntoView({ behavior: "smooth" })}
                   className="inline-flex items-center gap-2 font-body text-[11px] tracking-[0.15em] uppercase px-6 py-2.5 font-semibold border border-border text-foreground/50 hover:text-foreground transition-colors"
@@ -434,7 +437,7 @@ export default function LazySecurityPage() {
         <LazyPricingSection
           lazyFeatures={["Lazy Security setup prompt", "Self-hosted in your Lovable project", "Bring your own Aikido account", "Automated scheduling and reporting"]}
           proFeatures={["Hosted version", "Automated report delivery before meetings", "Multi-project security dashboard", "Slack and Telegram alerts included"]}
-          ctaButton={<CopyPromptButton className="w-full justify-center" />}
+          ctaButton={<CopyPromptButton text={promptText} className="w-full justify-center" />}
         />
 
         <LazyFaqSection faqs={faqs} />
@@ -448,7 +451,7 @@ export default function LazySecurityPage() {
             <p className="font-body text-sm text-muted-foreground max-w-md mx-auto leading-relaxed mb-8">
               You built it fast. Lazy Security makes sure it stays safe — continuous scanning, automated pentests, instant alerts, and audit-ready reports that close enterprise deals.
             </p>
-            <CopyPromptButton />
+            <CopyPromptButton text={promptText} />
             <p className="font-body text-[10px] text-muted-foreground/50 max-w-sm mx-auto mt-4">
               Open your Lovable project, paste it into the chat, connect your Aikido account. Your first pentest runs automatically within minutes.
             </p>
