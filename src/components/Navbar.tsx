@@ -42,7 +42,7 @@ const productCategories = [
   {
     label: "Lazy Launch",
     items: [
-      { label: "Lazy Launch", href: "/lazy-launch", tagline: "Idea → landing page prompt.", icon: icons.launch },
+      { label: "Lazy Launch", href: "/lazy-launch", tagline: "Idea → autonomous business prompt.", icon: icons.launch, badge: "Free" },
     ],
   },
   {
