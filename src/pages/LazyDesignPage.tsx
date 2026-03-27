@@ -20,7 +20,7 @@ Add a design upgrade engine called Lazy Design to this project. It automatically
 Note: Lazy Design uses the 21st.dev component library and the built-in Lovable AI. No API keys required.`;
 
 const TwentyFirstBadge = () => (
-  <span className="inline-flex items-center gap-1.5 font-body text-[12px] tracking-[0.12em] uppercase text-foreground/45 border border-border px-3 py-1">
+  <span className="inline-flex items-center gap-1.5 font-body text-[14px] tracking-[0.12em] uppercase text-foreground/70 border border-border px-3 py-1">
     Powered by 21st.dev
   </span>
 );
@@ -40,7 +40,7 @@ function CopyPromptButton({ text }: { text: string }) {
   return (
     <button
       onClick={handleCopy}
-      className="inline-flex items-center justify-center gap-2 font-body text-[11px] tracking-[0.15em] uppercase px-8 py-4 font-semibold transition-opacity hover:opacity-90 active:scale-[0.97]"
+      className="inline-flex items-center justify-center gap-2 font-body text-[13px] tracking-[0.15em] uppercase px-8 py-4 font-semibold transition-opacity hover:opacity-90 active:scale-[0.97]"
       style={{ backgroundColor: "#f0ead6", color: "#0a0a08" }}
     >
       {copied ? "Copied ✓" : "Copy the Lovable Prompt"}
@@ -100,7 +100,7 @@ export default function LazyDesignPage() {
               <div className="flex items-center gap-3 mb-6">
                 <p style={{ fontFamily: "'Dancing Script', cursive", fontSize: "1.5rem", color: "#f0ead6", opacity: 0.5 }}>Introducing</p>
                 <TwentyFirstBadge />
-                <span className="bg-foreground text-background text-[12px] tracking-[0.15em] uppercase font-extrabold px-3 py-1 font-display">BETA</span>
+                <span className="bg-foreground text-background text-[14px] tracking-[0.15em] uppercase font-extrabold px-3 py-1 font-display">BETA</span>
               </div>
               <AutopilotHeadline product="lazy-design" />
 
@@ -109,12 +109,12 @@ export default function LazyDesignPage() {
                   Lazy Design
                 </h1>
               </div>
-              <p className="mt-6 font-body text-base md:text-lg text-foreground/45 max-w-xl leading-relaxed">
+              <p className="mt-6 font-body text-base md:text-lg text-foreground/70 max-w-xl leading-relaxed">
                 Lovable builds your site. 21st.dev makes it beautiful. Lazy Design connects the two — automatically upgrading your hero, navigation, testimonials, and more with pre-built components that match your brand.
               </p>
               <div className="flex flex-col sm:flex-row items-start gap-4 mt-10">
                 <CopyPromptButton text={promptText} />
-                <a href="#how-it-works" onClick={(e) => { e.preventDefault(); document.getElementById("how-it-works")?.scrollIntoView({ behavior: "smooth" }); }} className="inline-flex items-center gap-2 font-body text-[11px] tracking-[0.15em] uppercase px-6 py-2.5 font-semibold border border-border text-foreground/50 hover:text-foreground transition-colors">
+                <a href="#how-it-works" onClick={(e) => { e.preventDefault(); document.getElementById("how-it-works")?.scrollIntoView({ behavior: "smooth" }); }} className="inline-flex items-center gap-2 font-body text-[13px] tracking-[0.15em] uppercase px-6 py-2.5 font-semibold border border-border text-foreground/50 hover:text-foreground transition-colors">
                   See How It Works
                 </a>
               </div>
@@ -122,7 +122,7 @@ export default function LazyDesignPage() {
               {/* Works with tags */}
               <div className="mt-8 flex flex-wrap gap-2">
                 {["21st.dev", "Lovable AI", "Tailwind CSS", "Framer Motion"].map(tag => (
-                  <span key={tag} className="font-body text-[11px] tracking-[0.2em] uppercase text-foreground/35 border border-border px-3 py-1">
+                  <span key={tag} className="font-body text-[13px] tracking-[0.2em] uppercase text-foreground/60 border border-border px-3 py-1">
                     {tag}
                   </span>
                 ))}
@@ -157,9 +157,9 @@ export default function LazyDesignPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {features.map((f, i) => (
                 <motion.div key={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} transition={{ duration: 0.5, delay: i * 0.08 }} className="border border-border p-6">
-                  <f.icon size={20} className="text-foreground/35 mb-4" />
+                  <f.icon size={20} className="text-foreground/60 mb-4" />
                   <h3 className="font-display text-sm font-bold text-foreground mb-2">{f.title}</h3>
-                  <p className="font-body text-xs text-foreground/40 leading-relaxed">{f.desc}</p>
+                  <p className="font-body text-sm text-foreground/65 leading-relaxed">{f.desc}</p>
                 </motion.div>
               ))}
             </div>
@@ -181,7 +181,7 @@ export default function LazyDesignPage() {
                 "If no component fits, a full Tailwind + Framer Motion fallback prompt is generated",
               ].map((line, i) => (
                 <div key={i} className="flex items-start gap-3 text-left">
-                  <Sparkles size={14} className="text-foreground/35 mt-1 shrink-0" />
+                  <Sparkles size={14} className="text-foreground/60 mt-1 shrink-0" />
                   <p className="font-body text-sm text-muted-foreground leading-relaxed">{line}</p>
                 </div>
               ))}
@@ -229,7 +229,7 @@ export default function LazyDesignPage() {
               <div className="mt-8">
                 <CopyPromptButton text={promptText} />
               </div>
-              <p className="mt-4 font-body text-xs text-muted-foreground">
+              <p className="mt-4 font-body text-sm text-muted-foreground">
                 Works with any Lovable project. No API key required.
               </p>
             </motion.div>

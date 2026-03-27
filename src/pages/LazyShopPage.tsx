@@ -214,7 +214,7 @@ const LazyShopPage = () => {
 
           {/* Integration pills */}
           <div className="mt-8">
-            <p className="text-[12px] tracking-[0.2em] uppercase font-semibold mb-4" style={{ color: cream, opacity: 0.25 }}>
+            <p className="text-[14px] tracking-[0.2em] uppercase font-semibold mb-4" style={{ color: cream, opacity: 0.25 }}>
               Powered by
             </p>
             <div className="flex flex-wrap justify-center gap-2">
@@ -224,7 +224,7 @@ const LazyShopPage = () => {
                   initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 1 + i * 0.08, duration: 0.4 }}
-                  className="inline-block text-[12px] tracking-[0.1em] uppercase font-medium px-3 py-1.5 border"
+                  className="inline-block text-[14px] tracking-[0.1em] uppercase font-medium px-3 py-1.5 border"
                   style={{ color: cream, opacity: 0.4, borderColor: "rgba(240,234,214,0.12)" }}
                 >
                   {name}
@@ -295,7 +295,7 @@ const LazyShopPage = () => {
                 style={{ borderColor: "rgba(240,234,214,0.08)" }}
               >
                 <span style={{ fontFamily: "'Playfair Display', serif", color: gold, opacity: 0.25, fontSize: "2rem" }} className="font-bold block mb-3">{s.step}</span>
-                <h3 className="text-xs tracking-[0.12em] uppercase font-bold mb-2" style={{ fontFamily: "'Playfair Display', serif", color: cream }}>{s.title}</h3>
+                <h3 className="text-sm tracking-[0.12em] uppercase font-bold mb-2" style={{ fontFamily: "'Playfair Display', serif", color: cream }}>{s.title}</h3>
                 <p className="text-[13px] leading-relaxed" style={{ color: cream, opacity: 0.35 }}>{s.desc}</p>
               </motion.div>
             ))}
@@ -361,12 +361,12 @@ const LazyShopPage = () => {
                   style={{ left: `${x}%`, top: `${y}%`, transform: "translate(-50%,-50%)" }}
                 >
                   <span
-                    className="inline-flex items-center justify-center w-8 h-8 text-xs font-bold mb-1"
+                    className="inline-flex items-center justify-center w-8 h-8 text-sm font-bold mb-1"
                     style={{ fontFamily: "'Playfair Display', serif", backgroundColor: cream, color: bgDark }}
                   >
                     {i + 1}
                   </span>
-                  <p className="text-xs leading-tight" style={{ color: cream, opacity: 0.6 }}>{step}</p>
+                  <p className="text-sm leading-tight" style={{ color: cream, opacity: 0.6 }}>{step}</p>
                 </motion.div>
               );
             })}

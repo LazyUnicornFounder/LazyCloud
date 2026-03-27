@@ -27,9 +27,9 @@ const StreamHighlightsPage = () => {
         </h1>
 
         {isLoading ? (
-          <p className="font-body text-sm text-foreground/30">Loading…</p>
+          <p className="font-body text-sm text-foreground/55">Loading…</p>
         ) : clips.length === 0 ? (
-          <p className="font-body text-sm text-foreground/30">No clips saved yet.</p>
+          <p className="font-body text-sm text-foreground/55">No clips saved yet.</p>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-border">
             {clips.map((clip: any, i: number) => (
@@ -49,23 +49,23 @@ const StreamHighlightsPage = () => {
                 <div className="p-5">
                   <h3 className="font-display text-sm font-bold text-foreground group-hover:text-foreground/80 transition-colors">{clip.title}</h3>
                   <div className="flex items-center gap-3 mt-2">
-                    <span className="font-body text-xs text-foreground/30">{clip.view_count} views</span>
+                    <span className="font-body text-sm text-foreground/55">{clip.view_count} views</span>
                     {clip.duration_seconds && (
                       <>
-                        <span className="font-body text-xs text-foreground/15">•</span>
-                        <span className="font-body text-xs text-foreground/30">{Math.round(clip.duration_seconds)}s</span>
+                        <span className="font-body text-sm text-foreground/15">•</span>
+                        <span className="font-body text-sm text-foreground/55">{Math.round(clip.duration_seconds)}s</span>
                       </>
                     )}
                   </div>
-                  <p className="font-body text-[10px] uppercase tracking-wider text-foreground/20 mt-3">Watch on Twitch →</p>
+                  <p className="font-body text-[13px] uppercase tracking-wider text-foreground/70 mt-3">Watch on Twitch →</p>
                 </div>
               </motion.a>
             ))}
           </div>
         )}
 
-        <p className="mt-16 font-body text-xs text-foreground/15 text-center">
-          🦄 Content by Lazy Stream — autonomous Twitch content publishing for Lovable sites. Built by <a href="https://lazyunicorn.ai" className="underline hover:text-foreground/30">LazyUnicorn.ai</a>
+        <p className="mt-16 font-body text-sm text-foreground/15 text-center">
+          🦄 Content by Lazy Stream — autonomous Twitch content publishing for Lovable sites. Built by <a href="https://lazyunicorn.ai" className="underline hover:text-foreground/55">LazyUnicorn.ai</a>
         </p>
       </main>
     </div>

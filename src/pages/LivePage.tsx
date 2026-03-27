@@ -37,17 +37,17 @@ const LivePage = () => {
         {isLive ? (
           <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5 }}>
             <div className="inline-block px-4 py-1 border border-red-500/40 mb-6">
-              <span className="font-body text-xs text-red-400 uppercase tracking-wider">● Live Now</span>
+              <span className="font-body text-sm text-red-400 uppercase tracking-wider">● Live Now</span>
             </div>
             <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(1.5rem, 4vw, 3rem)", color: "#f0ead6", lineHeight: 1.1 }}>
               {latestSession.title}
             </h1>
-            <p className="font-body text-sm text-foreground/40 mt-3">{latestSession.game_name || "Streaming now"}</p>
+            <p className="font-body text-sm text-foreground/65 mt-3">{latestSession.game_name || "Streaming now"}</p>
             <a
               href={twitchUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 mt-8 font-body text-[11px] tracking-[0.15em] uppercase px-6 py-2.5 font-semibold bg-red-500 text-white hover:bg-red-600 transition-colors"
+              className="inline-flex items-center gap-2 mt-8 font-body text-[13px] tracking-[0.15em] uppercase px-6 py-2.5 font-semibold bg-red-500 text-white hover:bg-red-600 transition-colors"
             >
               Watch Live <ExternalLink size={14} />
             </a>
@@ -59,7 +59,7 @@ const LivePage = () => {
               Not streaming right now.
             </h1>
             {latestSession && (
-              <p className="font-body text-sm text-foreground/30 mt-4">
+              <p className="font-body text-sm text-foreground/55 mt-4">
                 Last stream: {new Date(latestSession.started_at || latestSession.created_at).toLocaleDateString()}
               </p>
             )}
@@ -67,15 +67,15 @@ const LivePage = () => {
               href={twitchUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 mt-8 font-body text-[11px] tracking-[0.15em] uppercase px-6 py-2.5 font-semibold border border-border text-foreground/50 hover:text-foreground hover:border-foreground/30 transition-all"
+              className="inline-flex items-center gap-2 mt-8 font-body text-[13px] tracking-[0.15em] uppercase px-6 py-2.5 font-semibold border border-border text-foreground/50 hover:text-foreground hover:border-foreground/30 transition-all"
             >
               Follow on Twitch <ExternalLink size={14} />
             </a>
           </motion.div>
         )}
 
-        <p className="mt-20 font-body text-xs text-foreground/15">
-          🦄 Content by Lazy Stream — autonomous Twitch content publishing for Lovable sites. Built by <a href="https://lazyunicorn.ai" className="underline hover:text-foreground/30">Lazy Unicorn</a>
+        <p className="mt-20 font-body text-sm text-foreground/15">
+          🦄 Content by Lazy Stream — autonomous Twitch content publishing for Lovable sites. Built by <a href="https://lazyunicorn.ai" className="underline hover:text-foreground/55">Lazy Unicorn</a>
         </p>
       </main>
     </div>

@@ -36,7 +36,7 @@ const StreamContentPage = () => {
   if (isLoading) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
-        <p className="font-body text-sm text-foreground/30">Loading…</p>
+        <p className="font-body text-sm text-foreground/55">Loading…</p>
       </div>
     );
   }
@@ -45,7 +45,7 @@ const StreamContentPage = () => {
     return (
       <div className="min-h-screen bg-background flex flex-col items-center justify-center gap-4">
         <p className="font-display text-2xl font-bold text-foreground">Content not found</p>
-        <a href="/streams" className="font-body text-sm text-foreground/40 hover:text-foreground transition-colors">← Back to streams</a>
+        <a href="/streams" className="font-body text-sm text-foreground/65 hover:text-foreground transition-colors">← Back to streams</a>
       </div>
     );
   }
@@ -65,19 +65,19 @@ const StreamContentPage = () => {
       <main className="pt-32 pb-20 px-6 md:px-12 max-w-3xl mx-auto">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
           <div className="mb-8">
-            <span className="font-body text-[10px] uppercase tracking-[0.2em] px-2 py-1 border border-border text-foreground/30">{typeLabel}</span>
+            <span className="font-body text-[13px] uppercase tracking-[0.2em] px-2 py-1 border border-border text-foreground/55">{typeLabel}</span>
             <h1 className="mt-4" style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(1.5rem, 3vw, 2.5rem)", color: "#f0ead6", lineHeight: 1.2 }}>
               {content.title}
             </h1>
-            <p className="font-body text-xs text-foreground/30 mt-2">{new Date(content.published_at).toLocaleDateString()}</p>
+            <p className="font-body text-sm text-foreground/55 mt-2">{new Date(content.published_at).toLocaleDateString()}</p>
           </div>
 
           <div className="prose prose-invert prose-sm max-w-none font-body text-foreground/60 leading-relaxed">
             <ReactMarkdown>{content.body}</ReactMarkdown>
           </div>
 
-          <p className="mt-16 font-body text-xs text-foreground/15 text-center">
-            🦄 Content by Lazy Stream — autonomous Twitch content publishing for Lovable sites. Built by <a href="https://lazyunicorn.ai" className="underline hover:text-foreground/30">Lazy Unicorn</a>
+          <p className="mt-16 font-body text-sm text-foreground/15 text-center">
+            🦄 Content by Lazy Stream — autonomous Twitch content publishing for Lovable sites. Built by <a href="https://lazyunicorn.ai" className="underline hover:text-foreground/55">Lazy Unicorn</a>
           </p>
         </motion.div>
       </main>

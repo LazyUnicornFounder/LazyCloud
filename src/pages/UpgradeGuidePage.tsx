@@ -51,8 +51,8 @@ export default function UpgradeGuidePage() {
           key={s.id}
           href={`#${s.id}`}
           onClick={() => setTocOpen(false)}
-          className={`block font-body text-[11px] tracking-[0.08em] py-1.5 transition-colors ${
-            activeSection === s.id ? "text-[#c8a961]" : "text-foreground/45 hover:text-foreground/50"
+          className={`block font-body text-[13px] tracking-[0.08em] py-1.5 transition-colors ${
+            activeSection === s.id ? "text-[#c8a961]" : "text-foreground/70 hover:text-foreground/50"
           }`}
         >
           {s.title}
@@ -78,7 +78,7 @@ export default function UpgradeGuidePage() {
           <div className="lg:hidden mb-8">
             <button
               onClick={() => setTocOpen(!tocOpen)}
-              className="font-body text-[11px] tracking-[0.12em] uppercase text-foreground/40 border border-border px-4 py-2 w-full text-left"
+              className="font-body text-[13px] tracking-[0.12em] uppercase text-foreground/65 border border-border px-4 py-2 w-full text-left"
             >
               On this page ▾
             </button>
@@ -89,7 +89,7 @@ export default function UpgradeGuidePage() {
             {/* Desktop TOC */}
             <aside className="hidden lg:block w-48 flex-shrink-0">
               <div className="sticky top-32">
-                <p className="font-display text-[12px] tracking-[0.15em] uppercase text-foreground/35 mb-3">On this page</p>
+                <p className="font-display text-[14px] tracking-[0.15em] uppercase text-foreground/60 mb-3">On this page</p>
                 {toc}
               </div>
             </aside>
@@ -113,7 +113,7 @@ export default function UpgradeGuidePage() {
 
               <Section id="general-process" title="The general upgrade process">
                 <p>Before upgrading anything, do three things.</p>
-                <p><strong className="text-foreground/80">First</strong>, note your current version. The version number is at the top of every Lazy prompt as a comment in square brackets — for example <code className="text-[11px] bg-foreground/5 px-1.5 py-0.5">[Lazy Blogger Prompt — v0.0.3 — LazyUnicorn.ai]</code>. If you do not know which version you installed, check the <a href="/changelog" className="text-[#c8a961] hover:underline">/changelog</a> page and use the Version Checker to find out.</p>
+                <p><strong className="text-foreground/80">First</strong>, note your current version. The version number is at the top of every Lazy prompt as a comment in square brackets — for example <code className="text-[13px] bg-foreground/5 px-1.5 py-0.5">[Lazy Blogger Prompt — v0.0.3 — LazyUnicorn.ai]</code>. If you do not know which version you installed, check the <a href="/changelog" className="text-[#c8a961] hover:underline">/changelog</a> page and use the Version Checker to find out.</p>
                 <p><strong className="text-foreground/80">Second</strong>, read the changelog entry for the new version. Understand what changed and check the upgrade complexity. If it is drop-in you can proceed immediately. If it is setup-required set aside five minutes. If it is breaking read the full upgrade instructions first.</p>
                 <p><strong className="text-foreground/80">Third</strong>, download the latest prompt from the changelog. Never paste a prompt you copied weeks ago — always get the latest file.</p>
               </Section>

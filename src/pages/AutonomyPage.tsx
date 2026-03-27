@@ -15,7 +15,7 @@ import {
 function LevelScale() {
   return (
     <div className="max-w-3xl mx-auto mt-10">
-      <p className="text-[12px] font-mono uppercase tracking-widest text-foreground/40 mb-3 text-center">
+      <p className="text-[14px] font-mono uppercase tracking-widest text-foreground/65 mb-3 text-center">
         The Autonomy Scale
       </p>
       <div className="grid grid-cols-3 sm:grid-cols-6 gap-0 border border-border">
@@ -32,7 +32,7 @@ function LevelScale() {
               {i}
             </span>
             <span
-              className="text-[12px] font-mono block mt-1"
+              className="text-[14px] font-mono block mt-1"
               style={{ color: LEVEL_COLORS[i], opacity: 0.8 }}
             >
               {label}
@@ -75,12 +75,12 @@ function EngineCard({ engine }: { engine: EngineData }) {
               engine.name
             )}
           </h3>
-          <p className="text-xs text-muted-foreground mt-0.5">
+          <p className="text-sm text-muted-foreground mt-0.5">
             {engine.description}
           </p>
         </div>
         <span
-          className="text-[12px] font-mono whitespace-nowrap px-2 py-0.5 border"
+          className="text-[14px] font-mono whitespace-nowrap px-2 py-0.5 border"
           style={{
             color: currentColor,
             borderColor: currentColor + "44",
@@ -152,7 +152,7 @@ function EngineCard({ engine }: { engine: EngineData }) {
           {LEVEL_LABELS.map((_, i) => (
             <span
               key={i}
-              className="text-[11px] font-mono cursor-pointer"
+              className="text-[13px] font-mono cursor-pointer"
               style={{
                 color: i === selectedLevel ? LEVEL_COLORS[i] : "rgba(240,234,214,0.2)",
               }}
@@ -179,7 +179,7 @@ function EngineCard({ engine }: { engine: EngineData }) {
           }}
         >
           <span
-            className="text-xs font-mono block mb-2 tracking-wide"
+            className="text-sm font-mono block mb-2 tracking-wide"
             style={{ color }}
           >
             Level {selectedLevel} — {LEVEL_LABELS[selectedLevel]}
@@ -237,7 +237,7 @@ export default function AutonomyPage() {
       <section className="max-w-6xl mx-auto px-4 pb-24 space-y-20">
         {ENGINE_CATEGORIES.map((cat) => (
           <div key={cat.label}>
-            <h2 className="text-[12px] font-mono uppercase tracking-widest text-muted-foreground mb-6">
+            <h2 className="text-[14px] font-mono uppercase tracking-widest text-muted-foreground mb-6">
               {cat.label}
             </h2>
             <div className="grid grid-cols-1 gap-6 md:gap-8">
@@ -271,7 +271,7 @@ export default function AutonomyPage() {
           </p>
           <Link
             to="/lazy-run"
-            className="inline-block text-xs font-mono px-5 py-2 border border-foreground text-foreground hover:bg-foreground hover:text-background transition-colors"
+            className="inline-block text-sm font-mono px-5 py-2 border border-foreground text-foreground hover:bg-foreground hover:text-background transition-colors"
           >
             Install Lazy Run — all twenty-two engines in one prompt
           </Link>

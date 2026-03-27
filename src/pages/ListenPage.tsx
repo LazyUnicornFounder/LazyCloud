@@ -42,7 +42,7 @@ export default function ListenPage() {
         <div className="max-w-2xl mx-auto">
           {/* Header */}
           <motion.div variants={fadeUp} initial="hidden" animate="visible" className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-border bg-muted/40 text-muted-foreground text-xs font-body tracking-wide mb-4">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-border bg-muted/40 text-muted-foreground text-sm font-body tracking-wide mb-4">
               <Headphones size={14} /> Podcast
             </div>
             <h1 className="font-display text-2xl md:text-4xl font-bold tracking-tight mb-3">
@@ -57,10 +57,10 @@ export default function ListenPage() {
           <motion.div variants={fadeUp} initial="hidden" animate="visible" transition={{ delay: 0.05 }} className="border border-border rounded-2xl p-6 bg-card/40 mb-10">
             <div className="flex items-center gap-2 mb-3">
               <Rss size={16} className="text-primary" />
-              <h2 className="font-display text-xs font-bold uppercase tracking-wider">Subscribe via RSS</h2>
+              <h2 className="font-display text-sm font-bold uppercase tracking-wider">Subscribe via RSS</h2>
             </div>
             <div className="flex items-center gap-2">
-              <code className="flex-1 bg-background border border-border rounded-xl px-4 py-2.5 font-body text-xs text-muted-foreground overflow-x-auto whitespace-nowrap">
+              <code className="flex-1 bg-background border border-border rounded-xl px-4 py-2.5 font-body text-sm text-muted-foreground overflow-x-auto whitespace-nowrap">
                 {rssUrl}
               </code>
               <button
@@ -70,7 +70,7 @@ export default function ListenPage() {
                 {copiedRss ? <Check size={14} className="text-primary" /> : <Copy size={14} className="text-muted-foreground" />}
               </button>
             </div>
-            <p className="font-body text-[11px] text-muted-foreground/60 mt-3">
+            <p className="font-body text-[13px] text-muted-foreground/60 mt-3">
               Copy this RSS URL and paste it into Apple Podcasts, Spotify for Podcasters, or Google Podcasts to subscribe.
             </p>
           </motion.div>
@@ -90,7 +90,7 @@ export default function ListenPage() {
                   className="border border-border rounded-2xl p-6 bg-card/40"
                 >
                   <h3 className="font-display text-sm font-bold mb-1">{ep.post_title}</h3>
-                  <p className="font-body text-[11px] text-muted-foreground mb-4">
+                  <p className="font-body text-[13px] text-muted-foreground mb-4">
                     {ep.published_at ? new Date(ep.published_at).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" }) : ""}
                     {ep.duration_seconds ? ` · ${Math.floor(ep.duration_seconds / 60)}:${String(ep.duration_seconds % 60).padStart(2, "0")}` : ""}
                   </p>
@@ -104,7 +104,7 @@ export default function ListenPage() {
 
           {/* Footer */}
           <div className="mt-16 text-center">
-            <p className="font-body text-xs text-muted-foreground/50">
+            <p className="font-body text-sm text-muted-foreground/50">
               🦄 Powered by Lazy Voice — autonomous audio narration for Lovable sites. Built by{" "}
               <a href="https://lazyunicorn.ai" className="underline hover:text-primary transition-colors">Lazy Unicorn</a>
             </p>

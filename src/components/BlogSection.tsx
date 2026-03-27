@@ -2425,7 +2425,7 @@ const BlogHeader = () => {
       <div className="px-8 pt-10 pb-6">
         <div className="flex items-center gap-2 mb-4">
           <Zap className="w-4 h-4 text-primary" />
-          <span className="font-body text-[12px] tracking-[0.3em] uppercase text-primary font-semibold">
+          <span className="font-body text-[14px] tracking-[0.3em] uppercase text-primary font-semibold">
             Autonomous Publishing
           </span>
         </div>
@@ -2538,7 +2538,7 @@ const BlogSection = () => {
             <div className="lg:hidden flex flex-wrap gap-2 mb-6">
               <button
                 onClick={() => setActiveTag(null)}
-                className={`font-body text-[12px] tracking-[0.12em] uppercase px-3 py-1.5 rounded-full border transition-all duration-200 ${
+                className={`font-body text-[14px] tracking-[0.12em] uppercase px-3 py-1.5 rounded-full border transition-all duration-200 ${
                   !activeTag
                     ? "bg-primary text-primary-foreground border-primary"
                     : "border-foreground/10 text-foreground/50 hover:border-primary/30 hover:text-foreground/70"
@@ -2550,7 +2550,7 @@ const BlogSection = () => {
                 <button
                   key={tag.label}
                   onClick={() => setActiveTag(activeTag === tag.label ? null : tag.label)}
-                  className={`font-body text-[12px] tracking-[0.12em] uppercase px-3 py-1.5 rounded-full border transition-all duration-200 ${
+                  className={`font-body text-[14px] tracking-[0.12em] uppercase px-3 py-1.5 rounded-full border transition-all duration-200 ${
                     activeTag === tag.label
                       ? "bg-primary text-primary-foreground border-primary"
                       : "border-foreground/10 text-foreground/50 hover:border-primary/30 hover:text-foreground/70"
@@ -2604,11 +2604,11 @@ const BlogSection = () => {
                     {/* Info */}
                     <div className="px-8 py-6 flex flex-col flex-1">
                       <div className="flex items-center gap-3 mb-3">
-                        <span className="font-body text-[12px] tracking-[0.2em] uppercase text-primary font-semibold">
+                        <span className="font-body text-[14px] tracking-[0.2em] uppercase text-primary font-semibold">
                           {post.date}
                         </span>
-                        <span className="w-1 h-1 rounded-full bg-foreground/20" />
-                        <span className="font-body text-[12px] tracking-[0.2em] uppercase text-foreground/40">
+                        <span className="w-1 h-1 rounded-full bg-foreground/35" />
+                        <span className="font-body text-[14px] tracking-[0.2em] uppercase text-foreground/65">
                           {post.readTime}
                         </span>
                       </div>
@@ -2618,7 +2618,7 @@ const BlogSection = () => {
                       <p className="font-body text-sm text-foreground/50 leading-relaxed line-clamp-2">
                         {post.excerpt}
                       </p>
-                      <span className="inline-block mt-auto pt-4 font-body text-[12px] tracking-[0.2em] uppercase text-primary font-semibold group-hover:translate-x-1 transition-transform">
+                      <span className="inline-block mt-auto pt-4 font-body text-[14px] tracking-[0.2em] uppercase text-primary font-semibold group-hover:translate-x-1 transition-transform">
                         Read article →
                       </span>
                     </div>
@@ -2629,7 +2629,7 @@ const BlogSection = () => {
             )}
 
             {filteredPosts.length === 0 && (
-              <p className="font-body text-sm text-foreground/40 text-center py-12">
+              <p className="font-body text-sm text-foreground/65 text-center py-12">
                 No posts found for this tag.
               </p>
             )}
@@ -2640,34 +2640,34 @@ const BlogSection = () => {
             <div className="sticky top-28 bg-transparent backdrop-blur-xl rounded-2xl border border-primary/20 shadow-[0_8px_32px_rgba(0,0,0,0.4),0_0_20px_rgba(var(--primary-rgb),0.08)] p-5">
               <div className="flex items-center gap-2 mb-4">
                 <Tag className="w-3.5 h-3.5 text-primary" />
-                <p className="font-display text-xs font-bold tracking-[0.15em] uppercase text-foreground/60">
+                <p className="font-display text-sm font-bold tracking-[0.15em] uppercase text-foreground/60">
                   Topics
                 </p>
               </div>
               <div className="space-y-1">
                 <button
                   onClick={() => setActiveTag(null)}
-                  className={`w-full text-left px-3 py-2 rounded-lg font-body text-xs transition-all duration-200 ${
+                  className={`w-full text-left px-3 py-2 rounded-lg font-body text-sm transition-all duration-200 ${
                     !activeTag
                       ? "bg-primary/15 text-primary font-semibold"
                       : "text-foreground/50 hover:bg-foreground/5 hover:text-foreground/70"
                   }`}
                 >
                   All posts
-                  <span className="float-right text-foreground/45">{allPosts.length}</span>
+                  <span className="float-right text-foreground/70">{allPosts.length}</span>
                 </button>
                 {BLOG_TAGS.filter(t => tagCounts[t.label] > 0).map(tag => (
                   <button
                     key={tag.label}
                     onClick={() => setActiveTag(activeTag === tag.label ? null : tag.label)}
-                    className={`w-full text-left px-3 py-2 rounded-lg font-body text-xs transition-all duration-200 ${
+                    className={`w-full text-left px-3 py-2 rounded-lg font-body text-sm transition-all duration-200 ${
                       activeTag === tag.label
                         ? "bg-primary/15 text-primary font-semibold"
                         : "text-foreground/50 hover:bg-foreground/5 hover:text-foreground/70"
                     }`}
                   >
                     {tag.label}
-                    <span className="float-right text-foreground/45">{tagCounts[tag.label]}</span>
+                    <span className="float-right text-foreground/70">{tagCounts[tag.label]}</span>
                   </button>
                 ))}
               </div>

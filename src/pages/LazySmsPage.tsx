@@ -217,7 +217,7 @@ function CopyPromptButton({ className = "", onCopy, text }: { className?: string
 
 function TwilioBadge() {
   return (
-    <span className="inline-flex items-center gap-1.5 font-body text-[12px] tracking-[0.12em] uppercase text-foreground/45 border border-border px-3 py-1">
+    <span className="inline-flex items-center gap-1.5 font-body text-[14px] tracking-[0.12em] uppercase text-foreground/70 border border-border px-3 py-1">
       Powered by Twilio
     </span>
   );
@@ -283,7 +283,7 @@ export default function LazySmsPage() {
             <motion.div initial="hidden" animate="visible" variants={fadeUp} transition={{ duration: 0.7 }}>
               <div className="flex items-center gap-3 mb-6">
                 <p style={{ fontFamily: "'Dancing Script', cursive", fontSize: "1.5rem", color: "#f0ead6", opacity: 0.5 }}>Introducing</p>
-                <span className="bg-foreground text-background text-[12px] tracking-[0.15em] uppercase font-extrabold px-3 py-1 font-display">BETA</span>
+                <span className="bg-foreground text-background text-[14px] tracking-[0.15em] uppercase font-extrabold px-3 py-1 font-display">BETA</span>
               </div>
               <AutopilotHeadline product="lazy-sms" />
 
@@ -293,12 +293,12 @@ export default function LazySmsPage() {
                 </h1>
                 <TwilioBadge />
               </div>
-              <p className="mt-6 font-body text-base md:text-lg text-foreground/45 max-w-xl leading-relaxed">
+              <p className="mt-6 font-body text-base md:text-lg text-foreground/70 max-w-xl leading-relaxed">
                 SMS confirmations, drip sequences, and abandoned checkout recovery — running automatically. Lazy SMS handles the entire Twilio integration with no code required.
               </p>
               <div className="flex flex-col sm:flex-row items-start gap-4 mt-10">
                 <CopyPromptButton text={promptText} onCopy={handleCopy} />
-                <button onClick={scrollToHowItWorks} className="inline-flex items-center gap-2 font-body text-[11px] tracking-[0.15em] uppercase px-6 py-2.5 font-semibold border border-border text-foreground/50 hover:text-foreground transition-colors">
+                <button onClick={scrollToHowItWorks} className="inline-flex items-center gap-2 font-body text-[13px] tracking-[0.15em] uppercase px-6 py-2.5 font-semibold border border-border text-foreground/50 hover:text-foreground transition-colors">
                   See How It Works
                 </button>
               </div>
@@ -417,7 +417,7 @@ export default function LazySmsPage() {
             </motion.p>
             <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} transition={{ delay: 0.2 }} className="flex flex-col items-center gap-3">
               <CopyPromptButton text={promptText} onCopy={handleCopy} />
-              <p className="font-body text-xs text-muted-foreground/60 max-w-sm">
+              <p className="font-body text-sm text-muted-foreground/60 max-w-sm">
                 Open your Lovable project, paste it into the chat, add your Twilio credentials. Your site starts texting customers within minutes.
               </p>
             </motion.div>

@@ -37,8 +37,8 @@ const GeoBlog = () => {
               <Link key={post.id} to={`/geo/${post.slug}`} className="block bg-card border border-border rounded-xl p-5 hover:border-primary/50 transition-colors space-y-2">
                 <h2 className="text-xl font-semibold">{post.title}</h2>
                 {post.excerpt && <p className="text-muted-foreground text-sm">{post.excerpt}</p>}
-                <div className="flex items-center gap-3 text-xs text-muted-foreground">
-                  {post.target_query && <Badge variant="secondary" className="text-xs">{post.target_query}</Badge>}
+                <div className="flex items-center gap-3 text-sm text-muted-foreground">
+                  {post.target_query && <Badge variant="secondary" className="text-sm">{post.target_query}</Badge>}
                   <span>{format(new Date(post.published_at), "MMM d, yyyy")}</span>
                 </div>
               </Link>

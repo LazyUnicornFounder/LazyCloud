@@ -268,7 +268,7 @@ function CopyPromptButton({ className = "", text }: { className?: string; text: 
   return (
     <button
       onClick={handleCopy}
-      className={`inline-flex items-center gap-2 font-body text-[11px] tracking-[0.15em] uppercase px-6 py-2.5 font-semibold transition-opacity hover:opacity-90 active:scale-[0.97] bg-foreground text-background ${className}`}
+      className={`inline-flex items-center gap-2 font-body text-[13px] tracking-[0.15em] uppercase px-6 py-2.5 font-semibold transition-opacity hover:opacity-90 active:scale-[0.97] bg-foreground text-background ${className}`}
     >
       {copied ? <><Check size={14} /> Copied ✓</> : <><Copy size={14} /> Copy the Lovable Prompt</>}
     </button>
@@ -294,7 +294,7 @@ const LazyGitHubPage = () => {
           <motion.div initial="hidden" animate="visible" variants={fadeUp} transition={{ duration: 0.7 }}>
             <div className="flex items-center gap-3 mb-6">
               <p style={{ fontFamily: "'Dancing Script', cursive", fontSize: "1.5rem", color: "#f0ead6", opacity: 0.5 }}>Introducing</p>
-              <span className="bg-foreground text-background text-[12px] tracking-[0.15em] uppercase font-extrabold px-3 py-1 font-display">BETA</span>
+              <span className="bg-foreground text-background text-[14px] tracking-[0.15em] uppercase font-extrabold px-3 py-1 font-display">BETA</span>
             </div>
             <AutopilotHeadline product="lazy-github" />
 
@@ -302,18 +302,18 @@ const LazyGitHubPage = () => {
               <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(2.5rem, 5vw, 4.5rem)", color: "#f0ead6", lineHeight: 0.95, letterSpacing: "-0.01em" }}>
                 Lazy GitHub
               </h1>
-              <span className="inline-flex items-center gap-1.5 font-body text-[12px] tracking-[0.12em] uppercase text-foreground/45 border border-border px-3 py-1">
+              <span className="inline-flex items-center gap-1.5 font-body text-[14px] tracking-[0.12em] uppercase text-foreground/70 border border-border px-3 py-1">
                 Powered by GitHub
               </span>
             </div>
-            <p className="mt-6 font-body text-base md:text-lg text-foreground/45 max-w-xl leading-relaxed">
+            <p className="mt-6 font-body text-base md:text-lg text-foreground/70 max-w-xl leading-relaxed">
               Lazy GitHub monitors your GitHub repository, reads your commits and releases, and publishes plain-English changelogs, release notes, SEO developer posts, and a public roadmap to your Lovable site — every time you push.
             </p>
             <div className="flex flex-col sm:flex-row items-start gap-4 mt-10">
               <CopyPromptButton text={promptText} />
               <button
                 onClick={(e) => { e.preventDefault(); document.getElementById("how-it-works")?.scrollIntoView({ behavior: "smooth" }); }}
-                className="inline-flex items-center gap-2 font-body text-[11px] tracking-[0.15em] uppercase px-6 py-2.5 font-semibold border border-border text-foreground/50 hover:text-foreground transition-colors"
+                className="inline-flex items-center gap-2 font-body text-[13px] tracking-[0.15em] uppercase px-6 py-2.5 font-semibold border border-border text-foreground/50 hover:text-foreground transition-colors"
               >
                 See How It Works
               </button>
@@ -356,9 +356,9 @@ const LazyGitHubPage = () => {
                 transition={{ duration: 0.5, delay: i * 0.06 }}
                 className="bg-card p-8"
               >
-                <f.icon size={20} className="text-foreground/45 mb-4" />
+                <f.icon size={20} className="text-foreground/70 mb-4" />
                 <h3 className="font-display text-lg font-bold text-foreground mb-2">{f.title}</h3>
-                <p className="font-body text-sm text-foreground/40 leading-relaxed">{f.desc}</p>
+                <p className="font-body text-sm text-foreground/65 leading-relaxed">{f.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -421,7 +421,7 @@ const LazyGitHubPage = () => {
           <div className="mt-8">
             <CopyPromptButton text={promptText} />
           </div>
-          <p className="mt-4 font-body text-xs text-foreground/40 max-w-md mx-auto leading-relaxed">
+          <p className="mt-4 font-body text-sm text-foreground/65 max-w-md mx-auto leading-relaxed">
             Open your Lovable project, paste it into the chat, add your GitHub credentials. Your next commit will be published automatically.
           </p>
           <p style={{ fontFamily: "'Playfair Display', serif", fontSize: "0.65rem", color: "#f0ead6", opacity: 0.4, letterSpacing: "0.15em", textTransform: "uppercase", marginTop: "3rem" }}>

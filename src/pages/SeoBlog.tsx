@@ -46,8 +46,8 @@ const SeoBlog = () => {
               >
                 <h2 className="text-xl font-semibold">{post.title}</h2>
                 {post.excerpt && <p className="text-muted-foreground text-sm">{post.excerpt}</p>}
-                <div className="flex items-center gap-3 text-xs text-muted-foreground">
-                  {post.target_keyword && <Badge variant="secondary" className="text-xs">{post.target_keyword}</Badge>}
+                <div className="flex items-center gap-3 text-sm text-muted-foreground">
+                  {post.target_keyword && <Badge variant="secondary" className="text-sm">{post.target_keyword}</Badge>}
                   <span>{format(new Date(post.published_at), "MMM d, yyyy")}</span>
                 </div>
               </Link>
