@@ -171,8 +171,11 @@ function MegaDropdown({ onNavigate }: { onNavigate?: () => void }) {
                     {item.icon}
                   </span>
                   <div className="min-w-0">
-                    <p className="font-display text-[13px] font-bold tracking-[0.06em] uppercase text-foreground/60 group-hover:text-foreground transition-colors leading-tight">
+                    <p className="font-display text-[13px] font-bold tracking-[0.06em] uppercase text-foreground/60 group-hover:text-foreground transition-colors leading-tight flex items-center gap-2">
                       {item.label}
+                      {"badge" in item && item.badge && (
+                        <span className="text-[9px] tracking-[0.15em] uppercase border border-green-500/40 text-green-400 px-1.5 py-0.5 font-semibold leading-none">{item.badge}</span>
+                      )}
                     </p>
                     <p className="font-body text-[11px] text-foreground/30 group-hover:text-foreground/45 transition-colors leading-snug mt-0.5">
                       {item.tagline}
