@@ -44,6 +44,8 @@ import LazyMailPage from "./pages/LazyMailPage.tsx";
 import LazyDesignPage from "./pages/LazyDesignPage.tsx";
 import LazyAuthPage from "./pages/LazyAuthPage.tsx";
 import LazyAdminPage from "./pages/LazyAdminPage.tsx";
+import LazyGranolaPage from "./pages/LazyGranolaPage.tsx";
+import LazyGranolaSetup from "./pages/LazyGranolaSetup.tsx";
 
 import ChangelogPage from "./pages/ChangelogPage.tsx";
 import UpgradeGuidePage from "./pages/UpgradeGuidePage.tsx";
@@ -63,6 +65,7 @@ import AdminPlaceholderPage from "./pages/admin/AdminPlaceholderPage.tsx";
 import AdminAnalyticsPage from "./pages/admin/AdminAnalyticsPage.tsx";
 import AdminChangelogPage from "./pages/admin/AdminChangelogPage.tsx";
 import AdminPromptsPage from "./pages/admin/AdminPromptsPage.tsx";
+import AdminGranolaPage from "./pages/admin/AdminGranolaPage.tsx";
 
 const queryClient = new QueryClient();
 
@@ -102,6 +105,7 @@ const App = () => (
               <Route path="auth" element={<AdminPlaceholderPage name="Lazy Auth" />} />
               <Route path="design" element={<AdminPlaceholderPage name="Lazy Design" />} />
               <Route path="mail" element={<AdminPlaceholderPage name="Lazy Mail" />} />
+              <Route path="granola" element={<AdminGranolaPage />} />
                 <Route path="prompts" element={<AdminPromptsPage />} />
                 <Route path="changelog" element={<AdminChangelogPage />} />
                 <Route path="settings" element={<AdminSettingsPage />} />
@@ -136,6 +140,8 @@ const App = () => (
               <Route path="/lazy-perplexity" element={<LazyPerplexityPage />} />
               <Route path="/lazy-crawl" element={<LazyCrawlPage />} />
               <Route path="/lazy-admin" element={<LazyAdminPage />} />
+              <Route path="/lazy-granola" element={<LazyGranolaPage />} />
+              <Route path="/lazy-granola-setup" element={<LazyGranolaSetup />} />
               
               <Route path="/pricing" element={<PricingPage />} />
               <Route path="/autonomy" element={<AutonomyPage />} />

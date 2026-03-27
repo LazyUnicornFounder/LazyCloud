@@ -22,6 +22,7 @@ const PRODUCT_WORDS: Record<string, { word: string; emoji: string; tagline: stri
   "lazy-telegram": { word: "Telegram", emoji: "✈️", tagline: "Launch autonomous Telegram updates." },
   "lazy-security": { word: "security", emoji: "🛡️", tagline: "Launch autonomous pentesting." },
   "lazy-auth": { word: "auth", emoji: "🔐", tagline: "Launch autonomous login flows." },
+  "lazy-granola": { word: "meetings", emoji: "📝", tagline: "Launch autonomous meeting content." },
 };
 
 interface AutopilotHeadlineProps {
