@@ -438,7 +438,7 @@ export default function LazyRunPage() {
     <div className="min-h-screen bg-background text-foreground">
       <SEO
         title="Lazy Run — The Autonomous Runtime for Lovable"
-        description="One prompt installs the complete autonomous operations layer into your Lovable project. Twenty-two engines. One dashboard. Everything runs itself."
+        description="One prompt installs the complete autonomous operations layer into your Lovable project. Twenty-three engines. One dashboard. Everything runs itself."
         url="/lazy-run"
       />
       <Navbar />
@@ -459,7 +459,7 @@ export default function LazyRunPage() {
             variants={fadeUp} initial="hidden" animate="visible" transition={{ delay: 0.1 }}
             className="font-display text-4xl md:text-6xl font-bold tracking-tight leading-[1.1] mb-6"
           >
-            <span>All 22 engines in the Lazy Stack. One prompt.</span>
+            <span>All 23 engines in the Lazy Stack. One prompt.</span>
           </motion.h1>
           <motion.p
             variants={fadeUp} initial="hidden" animate="visible" transition={{ delay: 0.2 }}
@@ -522,7 +522,7 @@ export default function LazyRunPage() {
           </div>
           <motion.p variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}
             className="font-body text-sm text-foreground/70 text-center mt-10 max-w-lg mx-auto">
-            All twenty-two engines install in one prompt. All run automatically. All managed from one dashboard.
+            All twenty-three engines install in one prompt. All run automatically. All managed from one dashboard.
           </motion.p>
         </div>
       </section>
@@ -554,7 +554,7 @@ export default function LazyRunPage() {
         <div className="max-w-3xl mx-auto">
           <motion.h2 variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}
             className="font-display text-2xl md:text-4xl font-bold tracking-tight mb-8">
-            Twenty-two engines compounding simultaneously.
+            Twenty-three engines compounding simultaneously.
           </motion.h2>
           <motion.p variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} transition={{ delay: 0.1 }}
             className="font-body text-base md:text-lg text-foreground/70 leading-relaxed">
@@ -564,7 +564,7 @@ export default function LazyRunPage() {
       </section>
 
       <LazyPricingSection
-        lazyFeatures={["Lazy Run setup prompt", "Self-hosted in your existing Lovable project", "Installs all twenty-two engines", "Bring your own API keys for each service"]}
+        lazyFeatures={["Lazy Run setup prompt", "Self-hosted in your existing Lovable project", "Installs all twenty-three engines", "Bring your own API keys for each service"]}
         proFeatures={["Hosted version", "All API costs included", "Priority processing", "Weekly performance email", "Dedicated support"]}
         proPrice="$99"
         ctaButton={<CopyPromptButton text={promptText} label="Get the Prompt" />}
