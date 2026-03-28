@@ -284,6 +284,30 @@ const AdminAnalytics = ({ password }: AdminAnalyticsProps) => {
     }).sort((a, b) => b.promptCopies - a.promptCopies);
   }, [visitors, events]);
 
+  /* ── Agent stats ── */
+  const agentStats = useMemo(() => {
+    return AGENTS.map((agent) => {
+      const pageVisits = visitors.filter((v) => v.page === agent.path).length;
+      const agentKey = agent.key.replace("-", "_");
+
+      const pageViewEvents = events.filter((e) => {
+        if (e.event_name === `${agentKey}_page_view`) return true;
+        if (e.event_name === "page_view" && (e.event_data as any)?.page === agent.path) return true;
+        return false;
+      }).length;
+
+      const promptCopies = events.filter((e) => {
+        if (e.event_name === `${agentKey}_prompt_copy`) return true;
+        if (e.event_name === "copy_prompt" && (e.event_data as any)?.product === agent.key) return true;
+        return false;
+      }).length;
+
+      const totalViews = Math.max(pageVisits, pageViewEvents);
+
+      return { ...agent, pageVisits: totalViews, promptCopies };
+    }).sort((a, b) => b.promptCopies - a.promptCopies);
+  }, [visitors, events]);
+
   /* ── Blog stats ── */
   const blogStats = useMemo(() => {
     const published = blogPosts.filter((p) => p.status === "published");
