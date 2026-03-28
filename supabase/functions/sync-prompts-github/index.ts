@@ -227,6 +227,8 @@ function buildReadme(prompts: PromptPayload[]) {
     "| ------ | -------- | ------ |",
   ];
 
+  const AGENT_KEYS = new Set(["lazy-watch", "lazy-fix", "lazy-build", "lazy-intel", "lazy-repurpose", "lazy-trend", "lazy-churn"]);
+
   // Sort by canonical order
   const sorted = [...prompts].sort((a, b) => {
     const idxA = CANONICAL_ORDER.indexOf(a.product);
@@ -234,11 +236,43 @@ function buildReadme(prompts: PromptPayload[]) {
     return (idxA === -1 ? 999 : idxA) - (idxB === -1 ? 999 : idxB);
   });
 
-  for (const p of sorted) {
+  const engines = sorted.filter(p => !AGENT_KEYS.has(p.product));
+  const agents = sorted.filter(p => AGENT_KEYS.has(p.product));
+
+  for (const p of engines) {
     const label = PRODUCT_LABELS[p.product] || p.product;
     const cat = CATEGORY_MAP[p.product] || "Other";
     const file = `prompts/${p.product}.md`;
     lines.push(`| ${label} | ${cat} | [View prompt](${file}) |`);
+  }
+
+  if (agents.length > 0) {
+    lines.push(
+      "",
+      "## 🤖 Agents",
+      "",
+      "Autonomous agents that monitor, fix, and improve your engine stack.",
+      "",
+      "| Agent | What it does | Prompt |",
+      "| ----- | ------------ | ------ |",
+    );
+
+    const AGENT_DESCRIPTIONS: Record<string, string> = {
+      "lazy-watch": "Monitors errors across all engines every hour",
+      "lazy-fix": "Auto-fixes broken prompts and creates GitHub PRs",
+      "lazy-build": "Generates new engine prompts from a brief",
+      "lazy-intel": "Weekly strategy reports and keyword fuelling",
+      "lazy-repurpose": "Recycles top content into new formats",
+      "lazy-trend": "Scans for trending topics every 6 hours",
+      "lazy-churn": "Detects at-risk users and triggers retention flows",
+    };
+
+    for (const p of agents) {
+      const label = PRODUCT_LABELS[p.product] || p.product;
+      const desc = AGENT_DESCRIPTIONS[p.product] || "Autonomous agent";
+      const file = `prompts/${p.product}.md`;
+      lines.push(`| ${label} | ${desc} | [View prompt](${file}) |`);
+    }
   }
 
   lines.push(
