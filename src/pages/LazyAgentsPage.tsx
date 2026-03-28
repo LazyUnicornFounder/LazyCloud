@@ -67,7 +67,7 @@ export default function LazyAgentsPage() {
                 transition={{ delay: i * 0.08 }}
                 className="border-b sm:odd:border-r last:border-b-0 sm:[&:nth-child(3)]:border-b-0 border-border bg-card p-8 flex flex-col"
               >
-                <p className="text-2xl mb-3">{agent.emoji}</p>
+                <p className="text-2xl leading-[1.2] mb-3 pt-1">{agent.emoji}</p>
                 <h3 className="font-display text-lg font-bold text-foreground mb-1">{agent.name}</h3>
                 <p className="font-body text-sm font-semibold text-[#c8a961] mb-2">{agent.tagline}</p>
                 <p className="font-body text-sm text-foreground/50 leading-relaxed mb-6 flex-1">{agent.desc}</p>

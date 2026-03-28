@@ -131,7 +131,7 @@ export default function LazyEnginesPage() {
               { label: "Integrations", value: String(integrations.length) },
             ].map((stat, i) => (
               <div key={stat.label} className={`bg-card p-6 text-center ${i < 2 ? "border-r border-border" : ""}`}>
-                <p className="font-display text-3xl font-extrabold text-foreground mb-1">{stat.value}</p>
+                <p className="font-display text-3xl font-extrabold leading-[1.15] text-foreground mb-1 pt-1">{stat.value}</p>
                 <p className="font-body text-xs tracking-[0.15em] uppercase text-foreground/40 font-semibold">{stat.label}</p>
               </div>
             ))}
