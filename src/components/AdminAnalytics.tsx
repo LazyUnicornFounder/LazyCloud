@@ -445,6 +445,33 @@ const AdminAnalytics = ({ password }: AdminAnalyticsProps) => {
             </div>
           </div>
 
+          {/* Agents leaderboard */}
+          <div className="border border-border rounded-xl bg-card p-4">
+            <h3 className="font-display font-bold text-foreground mb-3">Agents Leaderboard</h3>
+            <div className="space-y-2">
+              {agentStats.map((a, i) => (
+                <div key={a.key} className="flex items-center gap-3">
+                  <span className="font-display text-xs font-bold text-foreground/20 w-5 text-right">{i + 1}</span>
+                  <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: a.color }} />
+                  <span className="font-body text-sm text-foreground/70 flex-1 min-w-0 truncate">{a.label}</span>
+                  <div className="flex items-center gap-4 flex-shrink-0">
+                    <div className="text-right">
+                      <span className="font-display text-sm font-bold text-foreground">{a.pageVisits}</span>
+                      <span className="font-body text-[13px] text-muted-foreground ml-1">views</span>
+                    </div>
+                    <div className="text-right">
+                      <span className="font-display text-sm font-bold text-primary">{a.promptCopies}</span>
+                      <span className="font-body text-[13px] text-muted-foreground ml-1">copies</span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+              {agentStats.every((a) => a.pageVisits === 0 && a.promptCopies === 0) && (
+                <p className="font-body text-xs text-muted-foreground">No agent data yet</p>
+              )}
+            </div>
+          </div>
+
           {/* Blog stats */}
           <div className="border border-border rounded-xl bg-card p-4">
             <h3 className="font-display font-bold text-foreground mb-3">Blog Posts</h3>
