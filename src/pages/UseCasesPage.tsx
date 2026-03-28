@@ -402,6 +402,12 @@ export default function UseCasesPage() {
 
   const filtered = active === "All" ? integrations : integrations.filter((i) => i.category === active);
 
+  const engineItems = filtered.filter((i) => i.category !== "Lazy Agents");
+  const agentItems = filtered.filter((i) => i.category === "Lazy Agents");
+
+  const showEngines = engineItems.length > 0;
+  const showAgents = agentItems.length > 0;
+
   return (
     <main className="min-h-screen bg-background text-foreground">
       <SEO
