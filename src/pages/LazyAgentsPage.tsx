@@ -55,7 +55,7 @@ export default function LazyAgentsPage() {
         </section>
 
         {/* Agent cards */}
-        <section className="max-w-4xl mx-auto px-6 -mt-12 mb-20">
+        <section className="max-w-4xl mx-auto px-6 mt-8 mb-20">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-0 border border-border">
             {agents.map((agent, i) => (
               <motion.div
