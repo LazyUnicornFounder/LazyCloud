@@ -650,7 +650,10 @@ const Index = () => {
       <section className="relative z-10" style={{ backgroundColor: "#0a0a08" }}>
         <div className="px-6 pt-20 pb-8">
           <h2 style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(2.5rem, 6vw, 5rem)", color: "#f0ead6", fontWeight: 800, lineHeight: 1 }}>
-            Agents
+            Engines run your Lovable business.
+          </h2>
+          <h2 style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(2.5rem, 6vw, 5rem)", color: "#f0ead6", fontWeight: 800, lineHeight: 1 }}>
+            Agents run your engines.
           </h2>
         </div>
       </section>
