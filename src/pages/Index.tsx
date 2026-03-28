@@ -537,9 +537,18 @@ const Index = () => {
       </motion.div>
       </header>
 
+      {/* Engines label */}
+      <section className="relative z-10" style={{ backgroundColor: "#0a0a08" }}>
+        <div className="max-w-7xl mx-auto px-6 pt-16 pb-6">
+          <p className="font-display text-[11px] tracking-[0.25em] uppercase font-bold" style={{ color: "#c8a961" }}>
+            Engines
+          </p>
+        </div>
+      </section>
+
       {/* Product Grid */}
       <section id="engines" className="relative z-10 scroll-mt-20">
-        <div className="grid grid-cols-1 md:grid-cols-2">
+        <div className="grid grid-cols-2 md:grid-cols-4">
           {/* Lazy Run */}
           <Link to="/lazy-run" className="block">
             <motion.div
@@ -547,10 +556,10 @@ const Index = () => {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="aspect-square flex flex-col items-center justify-center gap-6 transition-all duration-300 hover:brightness-[1.15] cursor-pointer"
+              className="aspect-square flex flex-col items-center justify-center gap-4 transition-all duration-300 hover:brightness-[1.15] cursor-pointer p-4"
               style={{ backgroundColor: "#0a0a08" }}
             >
-              <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="#f0ead6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+              <svg width="80" height="80" viewBox="0 0 120 120" fill="none" stroke="#f0ead6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                 <circle cx="60" cy="55" r="30" />
                 <path d="M45 45 L55 55 L45 65" />
                 <path d="M75 45 L65 55 L75 65" />
@@ -560,18 +569,15 @@ const Index = () => {
                 <path d="M35 88 Q60 95 85 88" strokeDasharray="3 3" />
               </svg>
               <div className="text-center">
-                <p style={{ fontFamily: "'Dancing Script', cursive", fontSize: "3.25rem", color: "#f0ead6", lineHeight: 1.1 }}>
+                <p style={{ fontFamily: "'Dancing Script', cursive", fontSize: "clamp(1.5rem, 3vw, 2.5rem)", color: "#f0ead6", lineHeight: 1.1 }}>
                   Lazy
                 </p>
-                <p style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "3.25rem", color: "#f0ead6", lineHeight: 1.1 }}>
+                <p style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(1.5rem, 3vw, 2.5rem)", color: "#f0ead6", lineHeight: 1.1 }}>
                   Run
                 </p>
               </div>
-              <p style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "1.1rem", color: "#f0ead6", opacity: 0.4, marginTop: "0.5rem" }}>
+              <p style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(0.7rem, 1vw, 0.9rem)", color: "#f0ead6", opacity: 0.4 }}>
                 Autonomous everything
-              </p>
-              <p style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "0.85rem", color: "#f0ead6", opacity: 0.4, letterSpacing: "0.15em", textTransform: "uppercase", marginTop: "1rem" }}>
-                Made for Lovable
               </p>
             </motion.div>
           </Link>
@@ -583,23 +589,20 @@ const Index = () => {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.08 }}
-              className="aspect-square flex flex-col items-center justify-center gap-6 transition-all duration-300 hover:brightness-[1.15] cursor-pointer"
+              className="aspect-square flex flex-col items-center justify-center gap-4 transition-all duration-300 hover:brightness-[1.15] cursor-pointer p-4"
               style={{ backgroundColor: "#111110" }}
             >
               {sketches["Admin"]}
               <div className="text-center">
-                <p style={{ fontFamily: "'Dancing Script', cursive", fontSize: "3.25rem", color: "#f0ead6", lineHeight: 1.1 }}>
+                <p style={{ fontFamily: "'Dancing Script', cursive", fontSize: "clamp(1.5rem, 3vw, 2.5rem)", color: "#f0ead6", lineHeight: 1.1 }}>
                   Lazy
                 </p>
-                <p style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "3.25rem", color: "#f0ead6", lineHeight: 1.1 }}>
+                <p style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(1.5rem, 3vw, 2.5rem)", color: "#f0ead6", lineHeight: 1.1 }}>
                   Admin
                 </p>
               </div>
-              <p style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "1.1rem", color: "#f0ead6", opacity: 0.4, marginTop: "0.5rem" }}>
+              <p style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(0.7rem, 1vw, 0.9rem)", color: "#f0ead6", opacity: 0.4 }}>
                 Autonomous ops control
-              </p>
-              <p style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "0.85rem", color: "#f0ead6", opacity: 0.4, letterSpacing: "0.15em", textTransform: "uppercase", marginTop: "1rem" }}>
-                Made for Lovable
               </p>
             </motion.div>
           </Link>
@@ -607,36 +610,32 @@ const Index = () => {
           {products.map((product, i) => {
             const bgEven = "#0a0a08";
             const bgOdd = "#111110";
-            // Offset by 2 since Lazy Run + Lazy Admin take the first row
-            const row = Math.floor((i + 2) / 2);
-            const col = (i + 2) % 2;
+            const cellIndex = i + 2;
+            const row = Math.floor(cellIndex / 4);
+            const col = cellIndex % 4;
             const bg = (row + col) % 2 === 0 ? bgEven : bgOdd;
             const isComingSoon = product.name === "Coming Soon";
-            const isLastAlone = isComingSoon && (products.length + 2) % 2 !== 0;
 
             const content = (
               <motion.div
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: i * 0.08 }}
-                className={`${isLastAlone ? "aspect-auto py-24 md:aspect-square md:py-0" : "aspect-square"} flex flex-col items-center justify-center gap-6 transition-all duration-300 hover:brightness-[1.15] cursor-pointer`}
+                transition={{ duration: 0.6, delay: (i % 4) * 0.08 }}
+                className="aspect-square flex flex-col items-center justify-center gap-4 transition-all duration-300 hover:brightness-[1.15] cursor-pointer p-4"
                 style={{ backgroundColor: bg }}
               >
                 {sketches[product.name]}
                 <div className="text-center">
-                  <p style={{ fontFamily: "'Dancing Script', cursive", fontSize: "3.25rem", color: "#f0ead6", lineHeight: 1.1 }}>
+                  <p style={{ fontFamily: "'Dancing Script', cursive", fontSize: "clamp(1.5rem, 3vw, 2.5rem)", color: "#f0ead6", lineHeight: 1.1 }}>
                     {product.cursive}
                   </p>
-                  <p style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "3.25rem", color: "#f0ead6", lineHeight: 1.1 }}>
+                  <p style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(1.5rem, 3vw, 2.5rem)", color: "#f0ead6", lineHeight: 1.1 }}>
                     {product.name}
                   </p>
                 </div>
-                <p style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "1.1rem", color: "#f0ead6", opacity: 0.4, marginTop: "0.5rem" }}>
+                <p style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(0.7rem, 1vw, 0.9rem)", color: "#f0ead6", opacity: 0.4 }}>
                   {product.tagline}
-                </p>
-                <p style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "0.85rem", color: "#f0ead6", opacity: 0.4, letterSpacing: "0.15em", textTransform: "uppercase", marginTop: "1.5rem" }}>
-                  Made for Lovable
                 </p>
               </motion.div>
             );
@@ -652,66 +651,86 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Agents block */}
-      <section className="relative z-10 border-t border-border" style={{ backgroundColor: "#0a0a08" }}>
-        <div className="max-w-4xl mx-auto px-6 py-24 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <p className="font-display text-[11px] tracking-[0.25em] uppercase font-bold mb-4" style={{ color: "#c8a961" }}>
-              Lazy Agents
-            </p>
-            <h2 style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(1.8rem, 4vw, 3rem)", color: "#f0ead6", lineHeight: 1.1, fontWeight: 800 }}>
-              Engines run your business.<br />Agents run your engines.
-            </h2>
-            <p className="mt-6 font-body text-base text-foreground/50 max-w-xl mx-auto leading-relaxed">
-              Four autonomous agents monitor your stack for errors, improve underperforming prompts, write new engines from a brief, and generate your weekly content strategy — all without manual input.
-            </p>
-          </motion.div>
+      {/* Agents label */}
+      <section className="relative z-10" style={{ backgroundColor: "#0a0a08" }}>
+        <div className="max-w-7xl mx-auto px-6 pt-16 pb-6">
+          <p className="font-display text-[11px] tracking-[0.25em] uppercase font-bold" style={{ color: "#c8a961" }}>
+            Agents
+          </p>
+        </div>
+      </section>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-0 border border-border mt-12">
-            {[
-              { emoji: "👁️", name: "Lazy Watch", tagline: "Monitors every engine error table hourly and opens GitHub issues automatically.", href: "/lazy-watch" },
-              { emoji: "🔧", name: "Lazy Fix", tagline: "Reads performance data weekly and opens PRs with targeted prompt improvements.", href: "/lazy-fix" },
-              { emoji: "🏗️", name: "Lazy Build", tagline: "Writes complete new engine prompts from a one-paragraph brief.", href: "/lazy-build" },
-              { emoji: "📊", name: "Lazy Intel", tagline: "Reads all your data every Monday and fills your SEO and GEO queues.", href: "/lazy-intel" },
-            ].map((agent, i) => (
-              <motion.div
-                key={agent.name}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.08 }}
-              >
-                <Link
-                  to={agent.href}
-                  className="group flex flex-col items-start p-8 hover:bg-card transition-colors border-b sm:odd:border-r last:border-b-0 sm:[&:nth-child(3)]:border-b-0 border-border text-left"
+      {/* Agents Grid */}
+      <section id="agents" className="relative z-10 scroll-mt-20">
+        <div className="grid grid-cols-2 md:grid-cols-4">
+          {[
+            { cursive: "Lazy", name: "Watch", tagline: "Autonomous error monitoring", link: "/lazy-watch", sketch: (
+              <svg width="80" height="80" viewBox="0 0 120 120" fill="none" stroke="#f0ead6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="60" cy="55" r="28" />
+                <circle cx="60" cy="55" r="12" />
+                <circle cx="60" cy="55" r="5" fill="#f0ead6" stroke="none" />
+                <path d="M30 55 L20 55" /><path d="M100 55 L90 55" />
+                <path d="M60 25 L60 15" /><path d="M60 95 L60 85" />
+              </svg>
+            )},
+            { cursive: "Lazy", name: "Fix", tagline: "Autonomous prompt improvement", link: "/lazy-fix", sketch: (
+              <svg width="80" height="80" viewBox="0 0 120 120" fill="none" stroke="#f0ead6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M75 30 L90 45 L50 85 L35 85 L35 70 Z" />
+                <path d="M65 40 L80 55" />
+                <line x1="35" y1="95" x2="85" y2="95" strokeDasharray="4 4" />
+              </svg>
+            )},
+            { cursive: "Lazy", name: "Build", tagline: "Autonomous engine writer", link: "/lazy-build", sketch: (
+              <svg width="80" height="80" viewBox="0 0 120 120" fill="none" stroke="#f0ead6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="30" y="35" width="60" height="55" rx="3" />
+                <path d="M45 25 L45 35" /><path d="M75 25 L75 35" />
+                <line x1="42" y1="52" x2="78" y2="52" />
+                <line x1="42" y1="62" x2="70" y2="62" />
+                <line x1="42" y1="72" x2="75" y2="72" />
+                <path d="M55 80 L60 85 L70 75" />
+              </svg>
+            )},
+            { cursive: "Lazy", name: "Intel", tagline: "Autonomous content strategist", link: "/lazy-intel", sketch: (
+              <svg width="80" height="80" viewBox="0 0 120 120" fill="none" stroke="#f0ead6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="25" y="30" width="70" height="60" rx="3" />
+                <rect x="32" y="55" width="10" height="25" rx="1" />
+                <rect x="47" y="45" width="10" height="35" rx="1" />
+                <rect x="62" y="50" width="10" height="30" rx="1" />
+                <rect x="77" y="38" width="10" height="42" rx="1" />
+                <path d="M32 52 L47 42 L62 47 L87 35" strokeDasharray="3 3" />
+              </svg>
+            )},
+          ].map((agent, i) => {
+            const bgEven = "#0a0a08";
+            const bgOdd = "#111110";
+            const bg = i % 2 === 0 ? bgEven : bgOdd;
+
+            return (
+              <Link key={agent.name} to={agent.link} className="block">
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: i * 0.08 }}
+                  className="aspect-square flex flex-col items-center justify-center gap-4 transition-all duration-300 hover:brightness-[1.15] cursor-pointer p-4"
+                  style={{ backgroundColor: bg }}
                 >
-                  <span className="text-2xl mb-3">{agent.emoji}</span>
-                  <h3 className="font-display text-lg font-bold text-foreground mb-1 group-hover:text-[#c8a961] transition-colors">{agent.name}</h3>
-                  <p className="font-body text-sm text-foreground/50 leading-relaxed">{agent.tagline}</p>
-                </Link>
-              </motion.div>
-            ))}
-          </div>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3 }}
-            className="mt-10"
-          >
-            <Link
-              to="/lazy-agents"
-              className="inline-flex items-center gap-2 font-display text-xs tracking-[0.15em] uppercase font-bold px-6 py-3 border border-border text-foreground/60 hover:text-foreground hover:border-foreground/30 transition-colors"
-            >
-              View all agents →
-            </Link>
-          </motion.div>
+                  {agent.sketch}
+                  <div className="text-center">
+                    <p style={{ fontFamily: "'Dancing Script', cursive", fontSize: "clamp(1.5rem, 3vw, 2.5rem)", color: "#f0ead6", lineHeight: 1.1 }}>
+                      {agent.cursive}
+                    </p>
+                    <p style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(1.5rem, 3vw, 2.5rem)", color: "#f0ead6", lineHeight: 1.1 }}>
+                      {agent.name}
+                    </p>
+                  </div>
+                  <p style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(0.7rem, 1vw, 0.9rem)", color: "#f0ead6", opacity: 0.4 }}>
+                    {agent.tagline}
+                  </p>
+                </motion.div>
+              </Link>
+            );
+          })}
         </div>
       </section>
 
