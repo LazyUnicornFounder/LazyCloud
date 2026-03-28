@@ -449,52 +449,57 @@ const Index = () => {
             Get the Free Prompt
           </Link>
 
-          {/* Integrations */}
-          <div className="mt-8">
-            <p className="text-[14px] tracking-[0.2em] uppercase font-semibold mb-4" style={{ color: "#f0ead6", opacity: 0.5 }}>
-              Integrations
+          {/* Integrations marquee */}
+          <div className="mt-10 overflow-hidden">
+            <p className="text-[11px] tracking-[0.25em] uppercase font-semibold mb-5 text-center" style={{ color: "#f0ead6", opacity: 0.3 }}>
+              Integrates with
             </p>
-            <div className="flex justify-center gap-1.5 overflow-x-auto no-scrollbar max-w-full mx-auto px-2">
-              {[
-                // Content
-                { name: "Firecrawl", href: "/lazy-crawl" },
-                { name: "Perplexity", href: "/lazy-perplexity" },
-                { name: "Contentful", href: "/lazy-contentful" },
-                // Commerce
-                { name: "Stripe", href: "/lazy-pay" },
-                { name: "AutoDS", href: "/lazy-drop" },
-                { name: "Printful", href: "/lazy-print" },
-                { name: "Twilio", href: "/lazy-sms" },
-                { name: "Resend", href: "/lazy-mail" },
-                // Media
-                { name: "ElevenLabs", href: "/lazy-voice" },
-                { name: "Twitch", href: "/lazy-stream" },
-                // Dev
-                { name: "GitHub", href: "/lazy-github" },
-                { name: "GitLab", href: "/lazy-gitlab" },
-                { name: "Linear", href: "/lazy-linear" },
-                { name: "21st.dev", href: "/lazy-design" },
-                { name: "Google OAuth", href: "/lazy-auth" },
-                { name: "Granola", href: "/lazy-granola" },
-                // Ops
-                { name: "Slack", href: "/lazy-alert" },
-                { name: "Telegram", href: "/lazy-telegram" },
-                { name: "Supabase", href: "/lazy-supabase" },
-                { name: "Aikido", href: "/lazy-security" },
-              ].map((item, i) => (
-                <Link key={item.name} to={item.href}>
-                  <motion.span
-                    initial={{ opacity: 0, y: 8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 1 + i * 0.06, duration: 0.4 }}
-                    whileHover={{ scale: 1.1, opacity: 1 }}
-                    className="inline-block text-[11px] tracking-[0.08em] uppercase font-medium px-2 py-1 border transition-colors duration-200 cursor-pointer hover:border-[rgba(240,234,214,0.35)] whitespace-nowrap shrink-0"
-                    style={{ color: "#f0ead6", opacity: 0.4, borderColor: "rgba(240,234,214,0.12)" }}
-                  >
-                    {item.name}
-                  </motion.span>
-                </Link>
-              ))}
+            <div className="relative">
+              {/* Fade edges */}
+              <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
+              <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
+              <motion.div
+                className="flex gap-8 items-center whitespace-nowrap"
+                animate={{ x: ["0%", "-50%"] }}
+                transition={{ duration: 40, ease: "linear", repeat: Infinity }}
+              >
+                {[...Array(2)].map((_, dupeIdx) => (
+                  <div key={dupeIdx} className="flex gap-8 items-center shrink-0">
+                    {[
+                      { name: "Firecrawl", href: "/lazy-crawl" },
+                      { name: "Perplexity", href: "/lazy-perplexity" },
+                      { name: "Contentful", href: "/lazy-contentful" },
+                      { name: "Shopify", href: "/lazy-store" },
+                      { name: "AutoDS", href: "/lazy-drop" },
+                      { name: "Printful", href: "/lazy-print" },
+                      { name: "Stripe", href: "/lazy-pay" },
+                      { name: "Twilio", href: "/lazy-sms" },
+                      { name: "Resend", href: "/lazy-mail" },
+                      { name: "ElevenLabs", href: "/lazy-voice" },
+                      { name: "Twitch", href: "/lazy-stream" },
+                      { name: "GitHub", href: "/lazy-github" },
+                      { name: "GitLab", href: "/lazy-gitlab" },
+                      { name: "Linear", href: "/lazy-linear" },
+                      { name: "21st.dev", href: "/lazy-design" },
+                      { name: "Google OAuth", href: "/lazy-auth" },
+                      { name: "Granola", href: "/lazy-granola" },
+                      { name: "Slack", href: "/lazy-alert" },
+                      { name: "Telegram", href: "/lazy-telegram" },
+                      { name: "Supabase", href: "/lazy-supabase" },
+                      { name: "Aikido", href: "/lazy-security" },
+                    ].map((item) => (
+                      <Link
+                        key={`${dupeIdx}-${item.name}`}
+                        to={item.href}
+                        className="text-[13px] tracking-[0.1em] uppercase font-medium shrink-0 transition-opacity duration-200 hover:opacity-80"
+                        style={{ color: "#f0ead6", opacity: 0.35 }}
+                      >
+                        {item.name}
+                      </Link>
+                    ))}
+                  </div>
+                ))}
+              </motion.div>
             </div>
           </div>
 
