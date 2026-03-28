@@ -49,6 +49,11 @@ import LazyAdminPage from "./pages/LazyAdminPage.tsx";
 import LazyGranolaPage from "./pages/LazyGranolaPage.tsx";
 import LazyGranolaSetup from "./pages/LazyGranolaSetup.tsx";
 import LazyYouTubePage from "./pages/LazyYouTubePage.tsx";
+import LazyAgentsPage from "./pages/LazyAgentsPage.tsx";
+import LazyWatchPage from "./pages/LazyWatchPage.tsx";
+import LazyFixPage from "./pages/LazyFixPage.tsx";
+import LazyBuildPage from "./pages/LazyBuildPage.tsx";
+import LazyIntelPage from "./pages/LazyIntelPage.tsx";
 
 import ChangelogPage from "./pages/ChangelogPage.tsx";
 import UpgradeGuidePage from "./pages/UpgradeGuidePage.tsx";

@@ -98,6 +98,15 @@ const productCategories = [
       { label: "Lazy Security", href: "/lazy-security", tagline: "Autonomous pentesting", icon: icons.security },
     ],
   },
+  {
+    label: "Lazy Agents",
+    items: [
+      { label: "Lazy Watch", href: "/lazy-watch", tagline: "Autonomous error monitoring", icon: icons.security },
+      { label: "Lazy Fix", href: "/lazy-fix", tagline: "Autonomous prompt improvement", icon: icons.code },
+      { label: "Lazy Build", href: "/lazy-build", tagline: "Autonomous engine writing", icon: icons.admin },
+      { label: "Lazy Intel", href: "/lazy-intel", tagline: "Autonomous content strategy", icon: icons.seo },
+    ],
+  },
 ];
 
 /* ── Mega dropdown — flat grid showing all products ── */
