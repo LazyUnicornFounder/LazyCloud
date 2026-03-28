@@ -191,6 +191,25 @@ const sketches: Record<string, JSX.Element> = {
       <line x1="78" y1="30" x2="78" y2="34" />
     </svg>
   ),
+  Drop: (
+    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="#f0ead6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M60 25 Q40 55 40 70 Q40 90 60 90 Q80 90 80 70 Q80 55 60 25Z" />
+      <path d="M50 70 Q55 78 65 72" />
+      <line x1="30" y1="50" x2="20" y2="45" />
+      <line x1="90" y1="50" x2="100" y2="45" />
+      <line x1="60" y1="15" x2="60" y2="22" />
+    </svg>
+  ),
+  Print: (
+    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="#f0ead6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="30" y="45" width="60" height="30" rx="3" />
+      <rect x="38" y="25" width="44" height="20" rx="2" />
+      <rect x="38" y="75" width="44" height="20" rx="2" />
+      <circle cx="80" cy="58" r="3" fill="#f0ead6" stroke="none" />
+      <line x1="45" y1="82" x2="65" y2="82" />
+      <line x1="45" y1="88" x2="58" y2="88" />
+    </svg>
+  ),
   Voice: (
     <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="#f0ead6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       <rect x="50" y="25" width="20" height="40" rx="10" />
@@ -443,6 +462,8 @@ const Index = () => {
                 { name: "Contentful", href: "/lazy-contentful" },
                 // Commerce
                 { name: "Stripe", href: "/lazy-pay" },
+                { name: "AutoDS", href: "/lazy-drop" },
+                { name: "Printful", href: "/lazy-print" },
                 { name: "Twilio", href: "/lazy-sms" },
                 { name: "Resend", href: "/lazy-mail" },
                 // Media
