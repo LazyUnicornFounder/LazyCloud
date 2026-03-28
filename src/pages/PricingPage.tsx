@@ -24,7 +24,7 @@ interface Category {
 const categories: Category[] = [
   {
     key: "unicorn",
-    label: "🚀 Unicorn",
+    label: "Unicorn",
     products: [
       {
         name: "Lazy Run", tagline: "Autonomous operations layer", link: "/lazy-run",
