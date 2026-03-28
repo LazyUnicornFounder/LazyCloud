@@ -39,8 +39,11 @@ const icons = {
   auth: <svg width="20" height="20" viewBox="0 0 120 120" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="35" y="50" width="50" height="40" rx="4"/><path d="M45 50 L45 38 Q45 22 60 22 Q75 22 75 38 L75 50"/><circle cx="60" cy="68" r="5"/></svg>,
 };
 
-/* ── All products organised by category ── */
-const productCategories = [
+type CategoryItem = { label: string; href: string; tagline: string; icon: ReactNode };
+type Category = { label: string; items: CategoryItem[] };
+
+/* ── Engine categories ── */
+const engineCategories: Category[] = [
   {
     label: "Lazy Unicorn",
     items: [
@@ -98,35 +101,19 @@ const productCategories = [
       { label: "Lazy Security", href: "/lazy-security", tagline: "Autonomous pentesting", icon: icons.security },
     ],
   },
-  {
-    label: "Lazy Agents",
-    items: [
-      { label: "Lazy Watch", href: "/lazy-watch", tagline: "Autonomous error monitoring", icon: icons.security },
-      { label: "Lazy Fix", href: "/lazy-fix", tagline: "Autonomous prompt improvement", icon: icons.code },
-      { label: "Lazy Build", href: "/lazy-build", tagline: "Autonomous engine writing", icon: icons.admin },
-      { label: "Lazy Intel", href: "/lazy-intel", tagline: "Autonomous content strategy", icon: icons.seo },
-    ],
-  },
 ];
 
-/* ── Mega dropdown — flat grid showing all products ── */
-function MegaDropdown({ onNavigate }: { onNavigate?: () => void }) {
-  const [open, setOpen] = useState(false);
-  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+/* ── Agent categories ── */
+const agentItems: CategoryItem[] = [
+  { label: "Lazy Watch", href: "/lazy-watch", tagline: "Autonomous error monitoring", icon: icons.security },
+  { label: "Lazy Fix", href: "/lazy-fix", tagline: "Autonomous prompt improvement", icon: icons.code },
+  { label: "Lazy Build", href: "/lazy-build", tagline: "Autonomous engine writing", icon: icons.admin },
+  { label: "Lazy Intel", href: "/lazy-intel", tagline: "Autonomous content strategy", icon: icons.seo },
+];
 
-  const handleEnter = () => {
-    if (timeoutRef.current) clearTimeout(timeoutRef.current);
-    setOpen(true);
-  };
-  const handleLeave = () => {
-    timeoutRef.current = setTimeout(() => setOpen(false), 250);
-  };
-
-  useEffect(() => {
-    return () => { if (timeoutRef.current) clearTimeout(timeoutRef.current); };
-  }, []);
-
-  const renderCategory = (cat: typeof productCategories[number]) => (
+/* ── Shared dropdown category renderer ── */
+function renderCategoryBlock(cat: Category, onClose: () => void) {
+  return (
     <div key={cat.label} className="mb-6">
       <p className="font-display text-[18px] tracking-[0.2em] uppercase text-foreground font-black mb-3">
         {cat.label}
@@ -135,7 +122,7 @@ function MegaDropdown({ onNavigate }: { onNavigate?: () => void }) {
         <a
           key={item.label}
           href={item.href}
-          onClick={() => { setOpen(false); onNavigate?.(); }}
+          onClick={onClose}
           className="group flex items-center gap-4 px-3 py-[18px] -mx-1 hover:bg-secondary/50 transition-colors"
         >
           <span className="text-foreground/50 group-hover:text-foreground/70 transition-colors flex-shrink-0">
@@ -153,6 +140,16 @@ function MegaDropdown({ onNavigate }: { onNavigate?: () => void }) {
       ))}
     </div>
   );
+}
+
+/* ── Engines mega dropdown ── */
+function EnginesDropdown() {
+  const [open, setOpen] = useState(false);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const handleEnter = () => { if (timeoutRef.current) clearTimeout(timeoutRef.current); setOpen(true); };
+  const handleLeave = () => { timeoutRef.current = setTimeout(() => setOpen(false), 250); };
+  useEffect(() => () => { if (timeoutRef.current) clearTimeout(timeoutRef.current); }, []);
+  const close = () => setOpen(false);
 
   return (
     <div className="relative" onMouseEnter={handleEnter} onMouseLeave={handleLeave}>
@@ -160,36 +157,80 @@ function MegaDropdown({ onNavigate }: { onNavigate?: () => void }) {
         onClick={() => setOpen(!open)}
         className="font-body text-[13px] tracking-[0.1em] uppercase font-bold text-foreground/70 hover:text-foreground transition-colors flex items-center gap-1"
       >
-        Products
+        Engines
         <ChevronDown size={11} className={`transition-transform ${open ? "rotate-180" : ""}`} />
       </button>
       {open && (
-        <div
-          className="absolute top-full left-1/2 -translate-x-1/2 mt-3 bg-card border border-border z-50 p-9"
-          style={{ width: 1380 }}
-        >
+        <div className="absolute top-full left-1/2 -translate-x-1/2 mt-3 bg-card border border-border z-50 p-9" style={{ width: 1380 }}>
           <div className="flex gap-12">
-            {/* Column 1: Lazy Unicorn + Lazy Commerce */}
             <div className="flex-1 min-w-0">
-              {[productCategories[0], productCategories[2]].map(renderCategory)}
+              {[engineCategories[0], engineCategories[2]].map(c => renderCategoryBlock(c, close))}
             </div>
-            {/* Column 2: Lazy Content */}
             <div className="flex-1 min-w-0">
-              {[productCategories[1]].map(renderCategory)}
+              {[engineCategories[1]].map(c => renderCategoryBlock(c, close))}
             </div>
-            {/* Column 3: Lazy Media + Lazy Dev */}
             <div className="flex-1 min-w-0">
-              {[productCategories[3], productCategories[4]].map(renderCategory)}
+              {[engineCategories[3], engineCategories[4]].map(c => renderCategoryBlock(c, close))}
             </div>
-            {/* Column 4: Lazy Ops + Lazy Agents */}
             <div className="flex-1 min-w-0">
-              {[productCategories[5], productCategories[6]].map(renderCategory)}
+              {[engineCategories[5]].map(c => renderCategoryBlock(c, close))}
             </div>
           </div>
           <div className="mt-6 pt-5 border-t border-border/50 flex items-center justify-center">
             <span className="font-body text-[12px] tracking-[0.15em] uppercase text-foreground/30 font-semibold">
               Made for Lovable ❤️
             </span>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+/* ── Agents dropdown ── */
+function AgentsDropdown() {
+  const [open, setOpen] = useState(false);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const handleEnter = () => { if (timeoutRef.current) clearTimeout(timeoutRef.current); setOpen(true); };
+  const handleLeave = () => { timeoutRef.current = setTimeout(() => setOpen(false), 250); };
+  useEffect(() => () => { if (timeoutRef.current) clearTimeout(timeoutRef.current); }, []);
+  const close = () => setOpen(false);
+
+  return (
+    <div className="relative" onMouseEnter={handleEnter} onMouseLeave={handleLeave}>
+      <button
+        onClick={() => setOpen(!open)}
+        className="font-body text-[13px] tracking-[0.1em] uppercase font-bold text-foreground/70 hover:text-foreground transition-colors flex items-center gap-1"
+      >
+        Agents
+        <ChevronDown size={11} className={`transition-transform ${open ? "rotate-180" : ""}`} />
+      </button>
+      {open && (
+        <div className="absolute top-full left-1/2 -translate-x-1/2 mt-3 bg-card border border-border z-50 p-9" style={{ width: 340 }}>
+          {agentItems.map((item) => (
+            <a
+              key={item.label}
+              href={item.href}
+              onClick={close}
+              className="group flex items-center gap-4 px-3 py-[18px] -mx-1 hover:bg-secondary/50 transition-colors"
+            >
+              <span className="text-foreground/50 group-hover:text-foreground/70 transition-colors flex-shrink-0">
+                {item.icon}
+              </span>
+              <div className="min-w-0 flex-1">
+                <p className="font-body text-[14px] font-black tracking-[0.04em] uppercase text-foreground/60 group-hover:text-foreground transition-colors leading-tight whitespace-nowrap">
+                  {item.label}
+                </p>
+                <p className="font-body text-[13px] font-normal text-foreground/40 group-hover:text-foreground/55 transition-colors leading-tight mt-1 whitespace-nowrap">
+                  {item.tagline}
+                </p>
+              </div>
+            </a>
+          ))}
+          <div className="mt-4 pt-4 border-t border-border/50">
+            <a href="/lazy-agents" onClick={close} className="font-body text-[12px] tracking-[0.12em] uppercase text-foreground/40 hover:text-foreground transition-colors font-semibold">
+              View all agents →
+            </a>
           </div>
         </div>
       )}
@@ -247,6 +288,12 @@ function SimpleDropdown({
   );
 }
 
+/* ── All mobile categories combined ── */
+const allMobileCategories: Category[] = [
+  ...engineCategories,
+  { label: "Lazy Agents", items: agentItems },
+];
+
 const Navbar = ({ activePage = "home" }: NavbarProps) => {
   const isMobile = useIsMobile();
   const [open, setOpen] = useState(false);
@@ -273,20 +320,6 @@ const Navbar = ({ activePage = "home" }: NavbarProps) => {
     setMobileDropdowns(prev => ({ ...prev, [label]: !prev[label] }));
   };
 
-  const socialIcons = (
-    <>
-      <a href="https://github.com/LazyUnicornFounder/LazyUnicorn" target="_blank" rel="noopener noreferrer" className="text-foreground/45 hover:text-foreground transition-colors" aria-label="View prompts on GitHub">
-        <Github size={14} />
-      </a>
-      <a href="https://x.com/SaadSahawneh" target="_blank" rel="noopener noreferrer" className="text-foreground/45 hover:text-foreground transition-colors" aria-label="Follow on X">
-        <XLogo />
-      </a>
-      <a href="https://www.linkedin.com/company/lazy-unicorn/" target="_blank" rel="noopener noreferrer" className="text-foreground/45 hover:text-foreground transition-colors" aria-label="Follow on LinkedIn">
-        <Linkedin size={14} />
-      </a>
-    </>
-  );
-
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 flex flex-col items-center w-full px-8 transition-all duration-300 ${
@@ -312,7 +345,8 @@ const Navbar = ({ activePage = "home" }: NavbarProps) => {
             <a href="/use-cases" className="font-body text-[13px] tracking-[0.1em] uppercase font-bold text-foreground/70 hover:text-foreground transition-colors">
               Use Cases
             </a>
-            <MegaDropdown />
+            <EnginesDropdown />
+            <AgentsDropdown />
             <a href="/pricing" className="font-body text-[13px] tracking-[0.1em] uppercase font-bold text-foreground/70 hover:text-foreground transition-colors">
               Pricing
             </a>
@@ -360,8 +394,8 @@ const Navbar = ({ activePage = "home" }: NavbarProps) => {
                 Use Cases
               </a>
 
-              {/* Mobile: collapsible product categories */}
-              {productCategories.map((cat) => (
+              {/* Mobile: collapsible categories */}
+              {allMobileCategories.map((cat) => (
                 <div key={cat.label}>
                   <button
                     onClick={() => toggleMobileDropdown(cat.label)}
