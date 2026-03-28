@@ -147,6 +147,17 @@ const products = [
 
 /* ── Sketch SVG icons ── */
 const sketches: Record<string, JSX.Element> = {
+  Run: (
+    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="#f0ead6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="60" cy="55" r="28" />
+      <path d="M60 27 L60 55 L78 55" />
+      <path d="M40 88 L50 78" />
+      <path d="M80 88 L70 78" />
+      <path d="M25 65 L35 60" />
+      <path d="M95 65 L85 60" />
+      <circle cx="60" cy="55" r="3" fill="#f0ead6" stroke="none" />
+    </svg>
+  ),
   Blogger: (
     <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="#f0ead6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       <rect x="30" y="20" width="50" height="70" rx="3" />
