@@ -36,6 +36,7 @@ const rotatingWords = [
   { word: "security", emoji: "🛡️" },          // Lazy Security
   { word: "auth", emoji: "🔐" },              // Lazy Auth
   { word: "meetings", emoji: "📝" },          // Lazy Granola
+  { word: "videos", emoji: "📺" },            // Lazy YouTube
 ];
 
 function RotatingHeadline() {
@@ -127,6 +128,7 @@ const products = [
   // Lazy Media
   { cursive: "Lazy", name: "Voice", link: "/lazy-voice", tagline: "Autonomous podcasts" },
   { cursive: "Lazy", name: "Stream", link: "/lazy-stream", tagline: "Autonomous stream content" },
+  { cursive: "Lazy", name: "YouTube", link: "/lazy-youtube", tagline: "Autonomous video content" },
   // Lazy Dev
   { cursive: "Lazy", name: "GitHub", link: "/lazy-github", tagline: "Autonomous changelogs" },
   { cursive: "Lazy", name: "GitLab", link: "/lazy-gitlab", tagline: "Autonomous GitLab docs" },
@@ -489,6 +491,8 @@ const Index = () => {
                       { name: "Resend", href: "/lazy-mail" },
                       { name: "ElevenLabs", href: "/lazy-voice" },
                       { name: "Twitch", href: "/lazy-stream" },
+                      { name: "YouTube", href: "/lazy-youtube" },
+                      { name: "Supadata", href: "/lazy-youtube" },
                       { name: "GitHub", href: "/lazy-github" },
                       { name: "GitLab", href: "/lazy-gitlab" },
                       { name: "Linear", href: "/lazy-linear" },
