@@ -107,32 +107,32 @@ function RotatingHeadline() {
 
 const products = [
   // Lazy Content
-  { cursive: "Lazy", name: "Blogger", link: "/lazy-blogger", tagline: "Autonomous blog posts." },
-  { cursive: "Lazy", name: "SEO", link: "/lazy-seo", tagline: "Autonomous SEO content." },
-  { cursive: "Lazy", name: "GEO", link: "/lazy-geo", tagline: "Autonomous AI citations." },
-  { cursive: "Lazy", name: "Crawl", link: "/lazy-crawl", tagline: "Autonomous web research." },
-  { cursive: "Lazy", name: "Perplexity", link: "/lazy-perplexity", tagline: "Autonomous deep research." },
-  { cursive: "Lazy", name: "Contentful", link: "/lazy-contentful", tagline: "Autonomous CMS sync." },
+  { cursive: "Lazy", name: "Blogger", link: "/lazy-blogger", tagline: "Autonomous blog posts" },
+  { cursive: "Lazy", name: "SEO", link: "/lazy-seo", tagline: "Autonomous SEO content" },
+  { cursive: "Lazy", name: "GEO", link: "/lazy-geo", tagline: "Autonomous AI citations" },
+  { cursive: "Lazy", name: "Crawl", link: "/lazy-crawl", tagline: "Autonomous web research" },
+  { cursive: "Lazy", name: "Perplexity", link: "/lazy-perplexity", tagline: "Autonomous deep research" },
+  { cursive: "Lazy", name: "Contentful", link: "/lazy-contentful", tagline: "Autonomous CMS sync" },
   // Lazy Commerce
-  { cursive: "Lazy", name: "Store", link: "/lazy-store", tagline: "Autonomous storefronts." },
-  { cursive: "Lazy", name: "Pay", link: "/lazy-pay", tagline: "Autonomous payments." },
-  { cursive: "Lazy", name: "SMS", link: "/lazy-sms", tagline: "Autonomous text campaigns." },
-  { cursive: "Lazy", name: "Mail", link: "/lazy-mail", tagline: "Autonomous email flows." },
+  { cursive: "Lazy", name: "Store", link: "/lazy-store", tagline: "Autonomous storefronts" },
+  { cursive: "Lazy", name: "Pay", link: "/lazy-pay", tagline: "Autonomous payments" },
+  { cursive: "Lazy", name: "SMS", link: "/lazy-sms", tagline: "Autonomous text campaigns" },
+  { cursive: "Lazy", name: "Mail", link: "/lazy-mail", tagline: "Autonomous email flows" },
   // Lazy Media
-  { cursive: "Lazy", name: "Voice", link: "/lazy-voice", tagline: "Autonomous podcasts." },
-  { cursive: "Lazy", name: "Stream", link: "/lazy-stream", tagline: "Autonomous stream content." },
+  { cursive: "Lazy", name: "Voice", link: "/lazy-voice", tagline: "Autonomous podcasts" },
+  { cursive: "Lazy", name: "Stream", link: "/lazy-stream", tagline: "Autonomous stream content" },
   // Lazy Dev
-  { cursive: "Lazy", name: "GitHub", link: "/lazy-github", tagline: "Autonomous changelogs." },
-  { cursive: "Lazy", name: "GitLab", link: "/lazy-gitlab", tagline: "Autonomous GitLab docs." },
-  { cursive: "Lazy", name: "Linear", link: "/lazy-linear", tagline: "Autonomous issue content." },
-  { cursive: "Lazy", name: "Design", link: "/lazy-design", tagline: "Autonomous UI upgrades." },
-  { cursive: "Lazy", name: "Auth", link: "/lazy-auth", tagline: "Autonomous login flows." },
-  { cursive: "Lazy", name: "Granola", link: "/lazy-granola", tagline: "Autonomous meeting content." },
+  { cursive: "Lazy", name: "GitHub", link: "/lazy-github", tagline: "Autonomous changelogs" },
+  { cursive: "Lazy", name: "GitLab", link: "/lazy-gitlab", tagline: "Autonomous GitLab docs" },
+  { cursive: "Lazy", name: "Linear", link: "/lazy-linear", tagline: "Autonomous issue content" },
+  { cursive: "Lazy", name: "Design", link: "/lazy-design", tagline: "Autonomous UI upgrades" },
+  { cursive: "Lazy", name: "Auth", link: "/lazy-auth", tagline: "Autonomous login flows" },
+  { cursive: "Lazy", name: "Granola", link: "/lazy-granola", tagline: "Autonomous meeting content" },
   // Lazy Ops
-  { cursive: "Lazy", name: "Alert", link: "/lazy-alert", tagline: "Autonomous Slack alerts." },
-  { cursive: "Lazy", name: "Telegram", link: "/lazy-telegram", tagline: "Autonomous Telegram updates." },
-  { cursive: "Lazy", name: "Supabase", link: "/lazy-supabase", tagline: "Autonomous database reports." },
-  { cursive: "Lazy", name: "Security", link: "/lazy-security", tagline: "Autonomous pentesting." },
+  { cursive: "Lazy", name: "Alert", link: "/lazy-alert", tagline: "Autonomous Slack alerts" },
+  { cursive: "Lazy", name: "Telegram", link: "/lazy-telegram", tagline: "Autonomous Telegram updates" },
+  { cursive: "Lazy", name: "Supabase", link: "/lazy-supabase", tagline: "Autonomous database reports" },
+  { cursive: "Lazy", name: "Security", link: "/lazy-security", tagline: "Autonomous pentesting" },
 
   { cursive: "Lazy", name: "Coming Soon", link: "", tagline: "More engines loading." },
 ];
@@ -507,7 +507,7 @@ const Index = () => {
                 </p>
               </div>
               <p style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "0.85rem", color: "#f0ead6", opacity: 0.4, marginTop: "0.5rem" }}>
-                Autonomous everything.
+                Autonomous everything
               </p>
               <p style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "0.65rem", color: "#f0ead6", opacity: 0.4, letterSpacing: "0.15em", textTransform: "uppercase", marginTop: "1rem" }}>
                 Made for Lovable
@@ -535,7 +535,7 @@ const Index = () => {
                 </p>
               </div>
               <p style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "0.85rem", color: "#f0ead6", opacity: 0.4, marginTop: "0.5rem" }}>
-                Autonomous ops control.
+                Autonomous ops control
               </p>
               <p style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "0.65rem", color: "#f0ead6", opacity: 0.4, letterSpacing: "0.15em", textTransform: "uppercase", marginTop: "1rem" }}>
                 Made for Lovable
