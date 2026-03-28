@@ -108,6 +108,11 @@ function RotatingHeadline() {
 }
 
 const products = [
+  // Lazy Unicorn
+  { cursive: "Lazy", name: "Run", link: "/lazy-run", tagline: "Autonomous everything" },
+  // Lazy Admin & Design (featured)
+  { cursive: "Lazy", name: "Admin", link: "/lazy-admin", tagline: "Autonomous dashboards" },
+  { cursive: "Lazy", name: "Design", link: "/lazy-design", tagline: "Autonomous UI upgrades" },
   // Lazy Content
   { cursive: "Lazy", name: "Blogger", link: "/lazy-blogger", tagline: "Autonomous blog posts" },
   { cursive: "Lazy", name: "SEO", link: "/lazy-seo", tagline: "Autonomous SEO content" },
@@ -129,7 +134,6 @@ const products = [
   { cursive: "Lazy", name: "GitHub", link: "/lazy-github", tagline: "Autonomous changelogs" },
   { cursive: "Lazy", name: "GitLab", link: "/lazy-gitlab", tagline: "Autonomous GitLab docs" },
   { cursive: "Lazy", name: "Linear", link: "/lazy-linear", tagline: "Autonomous issue content" },
-  { cursive: "Lazy", name: "Design", link: "/lazy-design", tagline: "Autonomous UI upgrades" },
   { cursive: "Lazy", name: "Auth", link: "/lazy-auth", tagline: "Autonomous login flows" },
   { cursive: "Lazy", name: "Granola", link: "/lazy-granola", tagline: "Autonomous meeting content" },
   // Lazy Ops
@@ -138,11 +142,22 @@ const products = [
   { cursive: "Lazy", name: "Supabase", link: "/lazy-supabase", tagline: "Autonomous database reports" },
   { cursive: "Lazy", name: "Security", link: "/lazy-security", tagline: "Autonomous pentesting" },
 
-  { cursive: "Lazy", name: "Coming Soon", link: "", tagline: "More engines loading." },
+  { cursive: "Lazy", name: "Coming Soon", link: "", tagline: "More engines loading" },
 ];
 
 /* ── Sketch SVG icons ── */
 const sketches: Record<string, JSX.Element> = {
+  Run: (
+    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="#f0ead6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="60" cy="55" r="28" />
+      <path d="M60 27 L60 55 L78 55" />
+      <path d="M40 88 L50 78" />
+      <path d="M80 88 L70 78" />
+      <path d="M25 65 L35 60" />
+      <path d="M95 65 L85 60" />
+      <circle cx="60" cy="55" r="3" fill="#f0ead6" stroke="none" />
+    </svg>
+  ),
   Blogger: (
     <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="#f0ead6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       <rect x="30" y="20" width="50" height="70" rx="3" />
