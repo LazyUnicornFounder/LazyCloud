@@ -71,7 +71,7 @@ const faqs = [
 
 export default function LazyYouTubePage() {
   const { prompt } = useCurrentPrompt("lazy-youtube");
-  const promptText = prompt || FALLBACK_PROMPT;
+  const promptText = prompt?.prompt_text || FALLBACK_PROMPT;
   const trackEvent = useTrackEvent();
 
   useEffect(() => {
