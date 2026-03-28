@@ -125,6 +125,8 @@ Blogger: blog_settings, blog_posts, blog_errors
 SEO: seo_settings, seo_posts, seo_keywords (add source field: text), seo_errors
 GEO: geo_settings, geo_posts, geo_queries (add source field: text), geo_citations, geo_errors
 Store: store_settings, store_products, store_promotions, store_content, store_errors
+Drop: drop_settings, drop_products, drop_orders, drop_suppliers, drop_optimisation_log, drop_errors
+Print: print_settings, print_products, print_designs, print_orders, print_optimisation_log, print_errors
 Voice: voice_settings, voice_episodes, voice_errors
 Pay: pay_settings, pay_products, pay_customers, pay_transactions, pay_subscriptions, pay_abandoned, pay_optimisation_log, pay_errors
 SMS: sms_settings, sms_contacts, sms_messages, sms_sequences, sms_optouts, sms_optimisation_log, sms_errors
@@ -166,6 +168,8 @@ Group: Content Engines
 
 Group: Commerce Engines
 - Lazy Store: Discovers products, writes listings, optimises conversion
+- Lazy Drop: Automates product sourcing, listing, and fulfilment via AutoDS
+- Lazy Print: Automates merch creation and sales via Printful
 - Lazy Pay: Installs Stripe with self-improving conversion optimisation
 - Lazy SMS: Sends automated texts via Twilio that improve themselves
 - Lazy Mail: Subscriber capture, welcome sequences, and AI newsletters via Resend
@@ -215,6 +219,10 @@ ElevenLabs section (if Lazy Voice active): API key stored as ELEVENLABS_API_KEY,
 Stripe section (if Lazy Pay active): Publishable Key as STRIPE_PUBLISHABLE_KEY, Secret Key as STRIPE_SECRET_KEY, Webhook Secret as STRIPE_WEBHOOK_SECRET.
 
 Twilio section (if Lazy SMS active): Account SID as TWILIO_ACCOUNT_SID, Auth Token as TWILIO_AUTH_TOKEN, Phone Number.
+
+AutoDS section (if Lazy Drop active): API key stored as AUTODS_API_KEY.
+
+Printful section (if Lazy Print active): API key stored as PRINTFUL_API_KEY.
 
 Twitch section (if Lazy Stream active): Client ID as TWITCH_CLIENT_ID, Client Secret as TWITCH_CLIENT_SECRET, Username.
 
@@ -280,6 +288,8 @@ Content engines:
 
 Commerce engines:
 - Store: store-discover daily, store-optimise Sunday, store-content Tue/Fri, store-listings and store-prices daily
+- Drop: drop-discover daily, drop-import daily, drop-prices every 6 hours, drop-stock every 4 hours, drop-fulfil every hour, drop-optimise Sunday
+- Print: print-discover daily, print-sync every 6 hours, print-fulfil every hour, print-optimise Sunday
 - Pay: pay-optimise Sunday, pay-recover daily
 - SMS: sms-sequences-run every hour
 
@@ -312,6 +322,8 @@ Cron: every Monday at 7am UTC — 0 7 * * 1
 - SEO: seo_posts count, seo_keywords count, keyword sources breakdown
 - GEO: geo_posts count, citation rate, query sources breakdown
 - Store: store_products count, active promotions
+- Drop: drop_products imported, drop_orders fulfilled, drop_suppliers active
+- Print: print_products listed, print_orders fulfilled, print_designs created
 - Pay: pay_transactions succeeded count, MRR from pay_subscriptions
 - SMS: sms_messages sent count, response rate from sms_sequences
 - Voice: voice_episodes count
@@ -353,7 +365,7 @@ Log errors to run_errors.
 Install all edge functions for each active engine using these exact function names:
 blog-publish, seo-discover, seo-publish, geo-discover, geo-publish, geo-test, store-discover, store-listings, store-prices, store-promote, store-optimise, store-content, voice-narrate, voice-rss, pay-checkout, pay-webhook, pay-optimise, pay-recover, pay-portal, sms-send, sms-receive, sms-status, sms-sequences-run, sms-optimise, stream-monitor, stream-process, stream-write-content, stream-optimise, github-webhook, code-sync-roadmap, code-write-content, code-optimise, gitlab-webhook, gitlab-sync-roadmap, gitlab-write-content, gitlab-optimise, linear-sync-all, linear-write-content, linear-velocity-report, linear-optimise, crawl-run, crawl-extract, crawl-publish, perplexity-research, perplexity-feed-engines, perplexity-test-citations, perplexity-improve-content, alert-send, alert-monitor, alert-briefing, alert-command, telegram-send, telegram-monitor, telegram-briefing, telegram-command, contentful-pull, contentful-webhook, contentful-push, supabase-monitor, supabase-publish-milestone, supabase-weekly-report, security-scan, security-poll, security-alert, security-generate-report, security-monitor.
 
-Also install: auth-setup, auth-sync-providers, auth-monitor, granola-sync, granola-process, granola-write-post, granola-write-update, granola-extract-intel, granola-slack-summary, granola-weekly-digest.
+Also install: drop-discover, drop-import, drop-prices, drop-stock, drop-fulfil, drop-optimise, print-discover, print-design, print-sync, print-fulfil, print-optimise, auth-setup, auth-sync-providers, auth-monitor, granola-sync, granola-process, granola-write-post, granola-write-update, granola-extract-intel, granola-slack-summary, granola-weekly-digest.
 
 Only install functions for active engines.
 
