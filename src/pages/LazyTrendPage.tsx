@@ -48,16 +48,18 @@ const faqs = [
   { q: "What if a trend is not relevant to my niche?", a: "Claude filters every signal against your niche keywords before queuing anything. You can also dismiss individual signals from the admin dashboard." },
 ];
 
-function CopyPromptButton({ text }: { text: string }) {
+function CopyPromptButton({ className = "", text }: { className?: string; text: string }) {
   const [copied, setCopied] = useState(false);
+  const trackEvent = useTrackEvent();
   const handleCopy = useCallback(async () => {
     await navigator.clipboard.writeText(text);
     setCopied(true);
-    toast.success("Prompt copied to clipboard!");
+    trackEvent("copy_prompt", { product: "lazy-trend" });
+    toast.success("Copied! Paste this into your Lovable project chat.");
     setTimeout(() => setCopied(false), 2500);
-  }, [text]);
+  }, [trackEvent, text]);
   return (
-    <button onClick={handleCopy} className="inline-flex items-center gap-2 px-8 py-3.5 font-display text-sm tracking-[0.15em] uppercase font-bold transition-all active:scale-[0.97]" style={{ backgroundColor: "#c8a961", color: "#0a0a08" }}>
+    <button onClick={handleCopy} className={`inline-flex items-center gap-2 bg-foreground text-background font-display font-bold text-sm tracking-[0.08em] uppercase px-8 py-4 hover:opacity-90 transition-opacity ${className}`}>
       {copied ? <><Check size={16} /> Copied!</> : <><Copy size={16} /> Copy the Lovable Prompt</>}
     </button>
   );
@@ -81,21 +83,28 @@ export default function LazyTrendPage() {
 
       <main className="relative z-10 pb-32">
         {/* Hero */}
-        <section className="relative px-6 md:px-12 pt-32 pb-32 md:pb-40" style={{ backgroundColor: "#0a0a08" }}>
-          <div className="max-w-4xl mx-auto text-center">
+        <section className="relative px-6 md:px-12 pt-32 pb-24 md:pb-32" style={{ backgroundColor: "#0a0a08" }}>
+          <div className="max-w-4xl mx-auto">
             <motion.div initial="hidden" animate="visible" variants={fadeUp} transition={{ duration: 0.7 }}>
-              <p className="inline-block font-display text-[11px] tracking-[0.25em] uppercase font-bold mb-6 px-4 py-1.5 border border-[#c8a961]/30 text-[#c8a961]">Lazy Agents 🔥</p>
-              <h1 className="font-display text-3xl md:text-5xl font-extrabold tracking-tight leading-[1.1] mb-6" style={{ color: "#f0ead6" }}>
+              <div className="flex items-center gap-3 mb-6">
+                <p style={{ fontFamily: "'Dancing Script', cursive", fontSize: "1.5rem", color: "#f0ead6", opacity: 0.5 }}>Introducing</p>
+                <span className="bg-foreground text-background text-[14px] tracking-[0.15em] uppercase font-extrabold px-3 py-1 font-display">BETA</span>
+              </div>
+              <AutopilotHeadline product="lazy-trend" />
+              <h1 style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(2.5rem, 5vw, 4.5rem)", color: "#f0ead6", lineHeight: 0.95, letterSpacing: "-0.01em" }}>
                 Be first on every trending<br />topic in your niche.
               </h1>
-              <p className="font-body text-base md:text-lg text-foreground/50 max-w-2xl mx-auto leading-relaxed mb-8">
+              <p className="mt-6 font-body text-base md:text-lg text-foreground/70 max-w-xl leading-relaxed">
                 Lazy Trend scans Perplexity, Firecrawl, Hacker News, and your competitors every 6 hours. When a topic spikes in your niche it adds an urgent SEO keyword to your queue, drafts a GEO article for immediate publication, and fires a Slack alert. You publish while the trend is rising — not after it peaks.
               </p>
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+              <div className="flex items-center gap-3 mt-4 mb-8">
+                <span className="font-display text-[11px] tracking-[0.15em] uppercase font-bold px-3 py-1 border border-[#c8a961]/30 text-[#c8a961]">Lazy Agents 🔥</span>
+              </div>
+              <div className="flex flex-col sm:flex-row items-start gap-4">
                 <CopyPromptButton text={promptText} />
-                <a href="#how" className="inline-flex items-center gap-2 px-8 py-3.5 font-display text-sm tracking-[0.15em] uppercase font-bold border border-foreground/20 text-foreground/60 hover:text-foreground hover:border-foreground/40 transition-colors">
+                <button onClick={() => document.getElementById("how")?.scrollIntoView({ behavior: "smooth" })} className="inline-flex items-center gap-2 font-body text-[13px] tracking-[0.15em] uppercase px-6 py-2.5 font-semibold border border-border text-foreground/50 hover:text-foreground transition-colors">
                   See How It Works
-                </a>
+                </button>
               </div>
             </motion.div>
           </div>
