@@ -404,7 +404,7 @@ const AdminAnalytics = ({ password }: AdminAnalyticsProps) => {
                       <span className="font-display text-sm font-bold text-primary">{p.promptCopies}</span>
                       <span className="font-body text-[13px] text-muted-foreground ml-1">copies</span>
                     </div>
-                    <span className="font-body text-[13px] text-muted-foreground w-12 text-right">{p.conversionRate}%</span>
+                    
                   </div>
                 </div>
               ))}
