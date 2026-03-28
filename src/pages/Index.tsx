@@ -559,15 +559,7 @@ const Index = () => {
               className="aspect-square flex flex-col items-center justify-center gap-4 transition-all duration-300 hover:brightness-[1.15] cursor-pointer p-4"
               style={{ backgroundColor: "#0a0a08" }}
             >
-              <svg width="80" height="80" viewBox="0 0 120 120" fill="none" stroke="#f0ead6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="60" cy="55" r="30" />
-                <path d="M45 45 L55 55 L45 65" />
-                <path d="M75 45 L65 55 L75 65" />
-                <line x1="58" y1="40" x2="62" y2="70" />
-                <circle cx="60" cy="55" r="8" />
-                <circle cx="60" cy="55" r="3" fill="#f0ead6" stroke="none" />
-                <path d="M35 88 Q60 95 85 88" strokeDasharray="3 3" />
-              </svg>
+              {sketches["Run"]}
               <div className="text-center">
                 <p style={{ fontFamily: "'Dancing Script', cursive", fontSize: "clamp(1.5rem, 3vw, 2.5rem)", color: "#f0ead6", lineHeight: 1.1 }}>
                   Lazy
