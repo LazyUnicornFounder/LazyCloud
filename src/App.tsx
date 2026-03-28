@@ -155,6 +155,7 @@ const App = () => (
               <Route path="/lazy-granola-setup" element={<LazyGranolaSetup />} />
               <Route path="/lazy-youtube" element={<LazyYouTubePage />} />
               <Route path="/lazy-agents" element={<LazyAgentsPage />} />
+              <Route path="/lazy-engines" element={<LazyEnginesPage />} />
               <Route path="/lazy-watch" element={<LazyWatchPage />} />
               <Route path="/lazy-fix" element={<LazyFixPage />} />
               <Route path="/lazy-build" element={<LazyBuildPage />} />
