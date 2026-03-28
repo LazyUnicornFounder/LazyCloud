@@ -123,7 +123,7 @@ export default function LazyEnginesPage() {
         </section>
 
         {/* Stats bar */}
-        <section className="max-w-4xl mx-auto px-6 -mt-10 mb-16">
+        <section className="max-w-4xl mx-auto px-6 mt-8 mb-16">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="grid grid-cols-3 gap-0 border border-border">
             {[
               { label: "Engines", value: String(totalEngines) },
