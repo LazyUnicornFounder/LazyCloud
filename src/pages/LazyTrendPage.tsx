@@ -43,9 +43,9 @@ const urgencyLevels = [
 ];
 
 const faqs = [
-  { question: "How noisy is it?", answer: "You control the signal threshold in setup. Set it to 3 for broad detection, 7 for only viral topics. The default of 5 catches meaningful trends without flooding your queue." },
-  { question: "Does it compete with Lazy Crawl?", answer: "They complement each other. Lazy Crawl monitors specific competitor URLs on a schedule. Lazy Trend monitors the broader topic landscape in real time for spikes. Both can run simultaneously." },
-  { question: "What if a trend is not relevant to my niche?", answer: "Claude filters every signal against your niche keywords before queuing anything. You can also dismiss individual signals from the admin dashboard." },
+  { q: "How noisy is it?", a: "You control the signal threshold in setup. Set it to 3 for broad detection, 7 for only viral topics. The default of 5 catches meaningful trends without flooding your queue." },
+  { q: "Does it compete with Lazy Crawl?", a: "They complement each other. Lazy Crawl monitors specific competitor URLs on a schedule. Lazy Trend monitors the broader topic landscape in real time for spikes. Both can run simultaneously." },
+  { q: "What if a trend is not relevant to my niche?", a: "Claude filters every signal against your niche keywords before queuing anything. You can also dismiss individual signals from the admin dashboard." },
 ];
 
 function CopyPromptButton({ text }: { text: string }) {
@@ -168,7 +168,11 @@ export default function LazyTrendPage() {
         </section>
 
         {/* Pricing */}
-        <LazyPricingSection />
+        <LazyPricingSection
+          lazyFeatures={["Full prompt — paste and go", "6-hour trend scanning", "Perplexity + Firecrawl sources", "Automatic SEO keyword queuing", "GEO article drafts", "Slack alerts for urgent trends"]}
+          proFeatures={["Everything in Lazy", "Custom source configuration", "Hourly scanning option", "Multi-brand monitoring", "Advanced signal analytics"]}
+          ctaButton={<CopyPromptButton text={promptText} />}
+        />
 
         <section className="max-w-2xl mx-auto px-6 text-center mb-16">
           <p className="font-body text-sm text-foreground/40">
@@ -189,7 +193,7 @@ export default function LazyTrendPage() {
           </motion.div>
         </section>
 
-        <AutopilotHeadline />
+        <AutopilotHeadline product="lazy-trend" />
       </main>
     </div>
   );

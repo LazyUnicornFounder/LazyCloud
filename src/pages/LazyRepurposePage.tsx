@@ -30,10 +30,10 @@ const steps = [
 ];
 
 const faqs = [
-  { question: "How does it know which posts to repurpose?", answer: "It reads your blog_posts, seo_posts, and geo_posts tables and selects the most viewed or most recent — you control how many per week in setup (1, 3, 5, or all new posts)." },
-  { question: "Can I edit the content before posting?", answer: "Yes. Every piece appears in your admin queue as an editable text area. Change anything before copying or posting." },
-  { question: "Does it post automatically?", answer: "Only if you connect your Twitter or LinkedIn API keys and turn on auto-post. By default everything goes to a queue for your review first." },
-  { question: "What if a post has already been repurposed?", answer: "Lazy Repurpose tracks which posts have been processed. It never repurposes the same post twice." },
+  { q: "How does it know which posts to repurpose?", a: "It reads your blog_posts, seo_posts, and geo_posts tables and selects the most viewed or most recent — you control how many per week in setup (1, 3, 5, or all new posts)." },
+  { q: "Can I edit the content before posting?", a: "Yes. Every piece appears in your admin queue as an editable text area. Change anything before copying or posting." },
+  { q: "Does it post automatically?", a: "Only if you connect your Twitter or LinkedIn API keys and turn on auto-post. By default everything goes to a queue for your review first." },
+  { q: "What if a post has already been repurposed?", a: "Lazy Repurpose tracks which posts have been processed. It never repurposes the same post twice." },
 ];
 
 const problemCards = [
@@ -148,7 +148,11 @@ export default function LazyRepurposePage() {
         </section>
 
         {/* Pricing */}
-        <LazyPricingSection />
+        <LazyPricingSection
+          lazyFeatures={["Full prompt — paste and go", "Weekly content repurposing", "Twitter threads", "LinkedIn posts", "Newsletter sections", "Video scripts"]}
+          proFeatures={["Everything in Lazy", "Direct Twitter posting", "Direct LinkedIn posting", "Advanced scheduling", "Multi-brand support"]}
+          ctaButton={<CopyPromptButton text={promptText} />}
+        />
 
         <section className="max-w-2xl mx-auto px-6 text-center mb-16">
           <p className="font-body text-sm text-foreground/40">
@@ -169,7 +173,7 @@ export default function LazyRepurposePage() {
           </motion.div>
         </section>
 
-        <AutopilotHeadline />
+        <AutopilotHeadline product="lazy-repurpose" />
       </main>
     </div>
   );

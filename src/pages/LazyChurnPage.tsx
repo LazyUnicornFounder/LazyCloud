@@ -30,11 +30,11 @@ const signalCards = [
 ];
 
 const faqs = [
-  { question: "How does it know if a customer is at risk?", answer: "It reads your Stripe subscription data daily and your Supabase user_profiles table (from Lazy Auth) for login activity. The risk score is calculated from four signals: login recency, login frequency, renewal proximity, and subscription age." },
-  { question: "Will it spam my customers?", answer: "No. Lazy Churn waits at least 7 days between messages to any single customer. It also tracks outcomes — if someone logged back in after a message it marks them as recovered and stops messaging." },
-  { question: "What if I don't have Lazy Auth installed?", answer: "Lazy Churn can still run using Stripe data alone — renewal proximity and subscription age signals work without login data. Install Lazy Auth for the full risk score." },
-  { question: "Can I edit the messages before they send?", answer: "You can preview and edit AI-generated messages from the admin dashboard. Turn off auto-send and every message goes to a queue for your approval first." },
-  { question: "Does it track whether the messages worked?", answer: "Yes. Lazy Churn checks whether at-risk customers logged back in or cancelled within 48 hours of receiving a message. The recovery rate is shown in your admin dashboard." },
+  { q: "How does it know if a customer is at risk?", a: "It reads your Stripe subscription data daily and your Supabase user_profiles table (from Lazy Auth) for login activity. The risk score is calculated from four signals: login recency, login frequency, renewal proximity, and subscription age." },
+  { q: "Will it spam my customers?", a: "No. Lazy Churn waits at least 7 days between messages to any single customer. It also tracks outcomes — if someone logged back in after a message it marks them as recovered and stops messaging." },
+  { q: "What if I don't have Lazy Auth installed?", a: "Lazy Churn can still run using Stripe data alone — renewal proximity and subscription age signals work without login data. Install Lazy Auth for the full risk score." },
+  { q: "Can I edit the messages before they send?", a: "You can preview and edit AI-generated messages from the admin dashboard. Turn off auto-send and every message goes to a queue for your approval first." },
+  { q: "Does it track whether the messages worked?", a: "Yes. Lazy Churn checks whether at-risk customers logged back in or cancelled within 48 hours of receiving a message. The recovery rate is shown in your admin dashboard." },
 ];
 
 function CopyPromptButton({ text }: { text: string }) {
@@ -168,7 +168,11 @@ export default function LazyChurnPage() {
         </section>
 
         {/* Pricing */}
-        <LazyPricingSection />
+        <LazyPricingSection
+          lazyFeatures={["Full prompt — paste and go", "Daily subscriber monitoring", "AI risk scoring", "Personalised SMS re-engagement", "Personalised email re-engagement", "Outcome tracking"]}
+          proFeatures={["Everything in Lazy", "Custom risk thresholds", "Multi-product monitoring", "Advanced recovery analytics", "Win-back sequences"]}
+          ctaButton={<CopyPromptButton text={promptText} />}
+        />
 
         <section className="max-w-2xl mx-auto px-6 text-center mb-16">
           <p className="font-body text-sm text-foreground/40">
@@ -189,7 +193,7 @@ export default function LazyChurnPage() {
           </motion.div>
         </section>
 
-        <AutopilotHeadline />
+        <AutopilotHeadline product="lazy-churn" />
       </main>
     </div>
   );
