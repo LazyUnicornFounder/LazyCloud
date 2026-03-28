@@ -454,8 +454,8 @@ const Index = () => {
             <br />
             business on Lovable.
           </h1>
-          <p className="tracking-[0.2em] uppercase" style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(1rem, 1.8vw, 1.3rem)", color: "#f0ead6", opacity: 0.45, letterSpacing: "0.2em" }}>
-            One prompt, everything runs itself.
+          <p className="max-w-2xl" style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(0.95rem, 1.4vw, 1.15rem)", color: "#f0ead6", opacity: 0.45, lineHeight: 1.6 }}>
+            Your Lovable site. Fully agentic. Autonomous engines publish your content, process your payments, and monitor your stack. Agents improve the engines. You just build.
           </p>
 
           {/* Body */}
