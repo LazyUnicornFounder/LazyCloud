@@ -181,9 +181,9 @@ function MegaDropdown({ onNavigate }: { onNavigate?: () => void }) {
             <div className="flex-1 min-w-0">
               {[productCategories[3], productCategories[4]].map(renderCategory)}
             </div>
-            {/* Column 4: Lazy Ops */}
+            {/* Column 4: Lazy Ops + Lazy Agents */}
             <div className="flex-1 min-w-0">
-              {[productCategories[5]].map(renderCategory)}
+              {[productCategories[5], productCategories[6]].map(renderCategory)}
             </div>
           </div>
           <div className="mt-6 pt-5 border-t border-border/50 flex items-center justify-center">
