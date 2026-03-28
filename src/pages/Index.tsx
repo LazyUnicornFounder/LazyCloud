@@ -392,6 +392,12 @@ const sketches: Record<string, JSX.Element> = {
       <path d="M72 75 L75 78 L80 72" />
     </svg>
   ),
+  YouTube: (
+    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="#f0ead6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="20" y="30" width="80" height="60" rx="12" />
+      <path d="M52 48 L52 82 L78 65 Z" fill="#f0ead6" stroke="none" />
+    </svg>
+  ),
   "Coming Soon": (
     <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="#f0ead6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       <circle cx="60" cy="55" r="25" />
