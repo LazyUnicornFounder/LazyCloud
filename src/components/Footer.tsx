@@ -29,6 +29,8 @@ const columns = [
     label: "Commerce",
     items: [
       { name: "Lazy Store", href: "/lazy-store" },
+      { name: "Lazy Drop", href: "/lazy-drop" },
+      { name: "Lazy Print", href: "/lazy-print" },
       { name: "Lazy Pay", href: "/lazy-pay" },
       { name: "Lazy SMS", href: "/lazy-sms" },
       { name: "Lazy Mail", href: "/lazy-mail" },
