@@ -64,22 +64,32 @@ export default function LazyDropPage() {
       <Navbar />
 
       {/* Hero */}
-      <section className="pt-32 pb-16 px-6 md:px-12 max-w-4xl mx-auto text-center">
-        <motion.div initial="hidden" animate="visible" variants={{ visible: { transition: { staggerChildren: 0.1 } } }}>
-          <AutopilotHeadline product="lazy-drop" />
-          <motion.h1 variants={fadeUp} transition={{ duration: 0.8 }} className="mt-4" style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(2rem, 5vw, 3.5rem)", color: "#f0ead6", lineHeight: 1.1, fontWeight: 700 }}>
-            800 million products. Zero manual work
-          </motion.h1>
-          <motion.p variants={fadeUp} transition={{ duration: 0.6 }} className="mt-4 font-body text-foreground/50 max-w-2xl mx-auto leading-relaxed">
-            Lazy Drop connects your Lovable store to <a href="https://autods.com" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground/70">AutoDS</a> — the most powerful dropshipping automation platform. It finds trending products in your niche, imports them with AI-written listings, monitors supplier prices every hour, and fulfils every order automatically
-          </motion.p>
-          <motion.div variants={fadeUp} transition={{ duration: 0.6 }} className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
-            <CopyPromptButton text={promptText} />
+      <section className="relative px-6 md:px-12 pt-32 pb-24 md:pb-32" style={{ backgroundColor: "#0a0a08" }}>
+        <div className="max-w-4xl mx-auto">
+          <motion.div initial="hidden" animate="visible" variants={fadeUp} transition={{ duration: 0.7 }}>
+            <div className="flex items-center gap-3 mb-6">
+              <p style={{ fontFamily: "'Dancing Script', cursive", fontSize: "1.5rem", color: "#f0ead6", opacity: 0.5 }}>Introducing</p>
+              <span className="bg-foreground text-background text-[14px] tracking-[0.15em] uppercase font-extrabold px-3 py-1 font-display">BETA</span>
+            </div>
+            <AutopilotHeadline product="lazy-drop" />
+
+            <div className="flex items-center gap-4 flex-wrap">
+              <h1 style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(2.5rem, 5vw, 4.5rem)", color: "#f0ead6", lineHeight: 0.95, letterSpacing: "-0.01em" }}>
+                Lazy Drop
+              </h1>
+              <span className="inline-flex items-center gap-1.5 font-body text-[14px] tracking-[0.12em] uppercase text-foreground/70 border border-border px-3 py-1">Powered by AutoDS</span>
+            </div>
+            <p className="mt-6 font-body text-base md:text-lg text-foreground/70 max-w-xl leading-relaxed">
+              One prompt connects your <a href="https://lovable.dev" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground/90 transition-colors">Lovable</a> store to <a href="https://autods.com" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground/90 transition-colors">AutoDS</a> — 800M+ products from 25+ global suppliers. It finds trending products, imports them with AI-written listings, monitors prices every hour, and fulfils every order automatically.
+            </p>
+            <div className="flex flex-col sm:flex-row items-start gap-4 mt-10">
+              <CopyPromptButton text={promptText} />
+            </div>
+            <p className="mt-6 font-body text-[12px] text-foreground/30 tracking-wider uppercase">
+              800M+ products · 25+ global suppliers · Fully automated fulfilment
+            </p>
           </motion.div>
-          <motion.p variants={fadeUp} transition={{ duration: 0.4 }} className="mt-6 font-body text-[12px] text-foreground/30 tracking-wider uppercase">
-            800M+ products · 25+ global suppliers · Fully automated fulfilment
-          </motion.p>
-        </motion.div>
+        </div>
       </section>
 
       {/* Problem */}
