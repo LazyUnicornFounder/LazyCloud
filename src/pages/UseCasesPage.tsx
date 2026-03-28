@@ -562,6 +562,7 @@ export default function UseCasesPage() {
             </div>
           </div>
         </section>
+      )}
 
       {/* Agents Section Header */}
       {showAgents && (
