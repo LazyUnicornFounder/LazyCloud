@@ -218,7 +218,7 @@ export default function LazyEnginesPage() {
               Engines run your business. Agents run your engines.
             </h3>
             <p className="font-body text-sm text-foreground/50 max-w-lg mx-auto leading-relaxed mb-6">
-              Once your engines are running, install the Lazy Agents — four autonomous agents that monitor errors, improve prompts, write new engines, and generate your weekly content strategy.
+              Once your engines are running, install the Lazy Agents — seven autonomous agents that monitor errors, improve prompts, write new engines, generate your weekly content strategy, repurpose your best content, detect trending topics, and prevent churn.
             </p>
             <Link
               to="/lazy-agents"
