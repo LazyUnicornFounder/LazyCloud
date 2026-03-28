@@ -542,13 +542,23 @@ const Index = () => {
 
       {/* Engines label */}
       <section className="relative z-10" style={{ backgroundColor: "#0a0a08" }}>
-        <div className="px-6 pt-20 pb-8">
+        <div className="px-6 pt-20 pb-8 text-center max-w-4xl mx-auto">
           <h2 style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(2.5rem, 6vw, 5rem)", color: "#f0ead6", fontWeight: 800, lineHeight: 1 }}>
             27 engines run your Lovable business.
           </h2>
           <h2 style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(2.5rem, 6vw, 5rem)", color: "#f0ead6", fontWeight: 800, lineHeight: 1, marginTop: "0.1em" }}>
             One prompt each.
           </h2>
+          <p className="mt-6 mx-auto max-w-2xl" style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(0.9rem, 1.3vw, 1.1rem)", color: "#f0ead6", opacity: 0.45, lineHeight: 1.7 }}>
+            Each engine is a self-contained prompt you paste into your Lovable project. It installs its own tables, edge functions, and UI — then runs itself autonomously.
+          </p>
+          <Link
+            to="/lazy-engines"
+            className="inline-block mt-6 text-sm tracking-[0.15em] uppercase px-8 py-3 font-semibold hover:opacity-80 transition-opacity active:scale-[0.97] bg-primary text-primary-foreground"
+            style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+          >
+            Explore Engines
+          </Link>
         </div>
       </section>
 
@@ -651,13 +661,23 @@ const Index = () => {
 
       {/* Agents label */}
       <section className="relative z-10" style={{ backgroundColor: "#0a0a08" }}>
-        <div className="px-6 pt-20 pb-8">
+        <div className="px-6 pt-20 pb-8 text-center max-w-4xl mx-auto">
           <h2 style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(2.5rem, 6vw, 5rem)", color: "#f0ead6", fontWeight: 800, lineHeight: 1 }}>
             Engines run your Lovable business.
           </h2>
-          <h2 style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(2.5rem, 6vw, 5rem)", color: "#f0ead6", fontWeight: 800, lineHeight: 1 }}>
+          <h2 style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(2.5rem, 6vw, 5rem)", color: "#f0ead6", fontWeight: 800, lineHeight: 1, marginTop: "0.1em" }}>
             Agents run your engines.
           </h2>
+          <p className="mt-6 mx-auto max-w-2xl" style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(0.9rem, 1.3vw, 1.1rem)", color: "#f0ead6", opacity: 0.45, lineHeight: 1.7 }}>
+            Four autonomous agents that monitor, fix, build, and strategise across your entire engine stack — so every engine keeps improving without you.
+          </p>
+          <Link
+            to="/lazy-agents"
+            className="inline-block mt-6 text-sm tracking-[0.15em] uppercase px-8 py-3 font-semibold hover:opacity-80 transition-opacity active:scale-[0.97] bg-primary text-primary-foreground"
+            style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+          >
+            Explore Agents
+          </Link>
         </div>
       </section>
 
