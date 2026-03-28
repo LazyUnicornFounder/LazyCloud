@@ -86,6 +86,13 @@ const PRODUCTS = [
   { key: "lazy-admin", label: "Lazy Admin", path: "/lazy-admin", color: "hsl(220, 40%, 50%)" },
 ];
 
+const AGENTS = [
+  { key: "lazy-watch", label: "Lazy Watch", path: "/lazy-watch", color: "hsl(0, 65%, 50%)" },
+  { key: "lazy-fix", label: "Lazy Fix", path: "/lazy-fix", color: "hsl(120, 50%, 45%)" },
+  { key: "lazy-build", label: "Lazy Build", path: "/lazy-build", color: "hsl(35, 80%, 50%)" },
+  { key: "lazy-intel", label: "Lazy Intel", path: "/lazy-intel", color: "hsl(210, 70%, 55%)" },
+];
+
 const tooltipStyle = {
   backgroundColor: "hsl(var(--card))",
   border: "1px solid hsl(var(--border))",
