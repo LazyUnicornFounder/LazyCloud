@@ -31,11 +31,6 @@ const categories: Category[] = [
         free: ["Setup prompt included", "All 25 engines in one prompt", "Unified admin dashboard", "Master orchestrator", "Weekly AI performance report"],
         pro: { price: "$99", features: ["Hosted version — zero config", "Auto-scaling engine execution", "Priority AI model access", "Dedicated support", "Custom engine configuration"], comingSoon: true },
       },
-      {
-        name: "Lazy Admin", tagline: "Unified dashboard for every engine", link: "/lazy-admin",
-        free: ["Setup prompt included", "Auto-detects installed engines", "Master status indicator", "Unified activity feed", "Per-engine deep dives"],
-        pro: { price: "$9", features: ["Hosted version", "Multi-project support", "Team access with roles", "Weekly email digest", "Mobile app"], comingSoon: true },
-      },
     ],
   },
   {
@@ -86,6 +81,7 @@ const categories: Category[] = [
     key: "ops",
     label: "⚙️ Ops",
     products: [
+      { name: "Lazy Admin", tagline: "Unified dashboard for every engine", link: "/lazy-admin", free: ["Setup prompt included", "Auto-detects installed engines", "Master status indicator", "Unified activity feed", "Per-engine deep dives"], pro: { price: "$9", features: ["Hosted version", "Multi-project support", "Team access with roles", "Weekly email digest", "Mobile app"], comingSoon: true } },
       { name: "Lazy Alert", tagline: "Real-time Slack alerts", link: "/lazy-alert", free: ["Setup prompt included", "Real-time event alerts", "Daily morning briefing", "Slash commands"], pro: { price: "$9", features: ["Hosted version", "Custom branded bot", "Advanced filtering", "Multi-channel routing"], comingSoon: true } },
       { name: "Lazy Telegram", tagline: "Autonomous Telegram alerts", link: "/lazy-telegram", free: ["Setup prompt included", "Real-time event alerts", "Daily morning briefing", "Bot commands"], pro: { price: "$9", features: ["Hosted version", "Group chat support", "Multiple recipient routing", "Custom bot branding"], comingSoon: true } },
       { name: "Lazy Supabase", tagline: "Autonomous database monitoring", link: "/lazy-supabase", free: ["Setup prompt included", "User milestone detection", "Edge function monitoring", "Weekly growth reports"], pro: { price: "$19", features: ["Hosted version", "Multi-project monitoring", "Advanced analytics", "Custom thresholds"], comingSoon: true } },
