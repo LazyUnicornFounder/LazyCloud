@@ -62,6 +62,8 @@ const productCategories = [
     label: "Lazy Commerce",
     items: [
       { label: "Lazy Store", href: "/lazy-store", tagline: "Autonomous storefronts", icon: icons.store },
+      { label: "Lazy Drop", href: "/lazy-drop", tagline: "Autonomous dropshipping", icon: icons.store },
+      { label: "Lazy Print", href: "/lazy-print", tagline: "Autonomous print-on-demand", icon: icons.store },
       { label: "Lazy Pay", href: "/lazy-pay", tagline: "Autonomous payments", icon: icons.pay },
       { label: "Lazy SMS", href: "/lazy-sms", tagline: "Autonomous text campaigns", icon: icons.sms },
       { label: "Lazy Mail", href: "/lazy-mail", tagline: "Autonomous email flows", icon: icons.mail },

@@ -22,6 +22,8 @@ const rotatingWords = [
   { word: "streams", emoji: "🎬" },           // Lazy Stream
   { word: "research", emoji: "🔮" },          // Lazy Perplexity
   { word: "stores", emoji: "🛒" },            // Lazy Store
+  { word: "dropshipping", emoji: "📦" },      // Lazy Drop
+  { word: "merch", emoji: "🖨️" },             // Lazy Print
   { word: "payments", emoji: "💳" },           // Lazy Pay
   { word: "SMS", emoji: "📱" },               // Lazy SMS
   { word: "commits", emoji: "👨‍💻" },          // Lazy GitHub
@@ -115,6 +117,8 @@ const products = [
   { cursive: "Lazy", name: "Contentful", link: "/lazy-contentful", tagline: "Autonomous CMS sync" },
   // Lazy Commerce
   { cursive: "Lazy", name: "Store", link: "/lazy-store", tagline: "Autonomous storefronts" },
+  { cursive: "Lazy", name: "Drop", link: "/lazy-drop", tagline: "Autonomous dropshipping" },
+  { cursive: "Lazy", name: "Print", link: "/lazy-print", tagline: "Autonomous print-on-demand" },
   { cursive: "Lazy", name: "Pay", link: "/lazy-pay", tagline: "Autonomous payments" },
   { cursive: "Lazy", name: "SMS", link: "/lazy-sms", tagline: "Autonomous text campaigns" },
   { cursive: "Lazy", name: "Mail", link: "/lazy-mail", tagline: "Autonomous email flows" },
