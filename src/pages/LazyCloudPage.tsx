@@ -64,7 +64,7 @@ const valueCards = [
 const plans = [
   {
     name: "Starter",
-    price: "$79",
+    price: "Coming soon",
     bestFor: "Founders running their first autonomous stack.",
     features: [
       "All agents managed — no agent limit",
@@ -77,12 +77,12 @@ const plans = [
       "1 site",
     ],
     popular: false,
-    cta: "Get Started",
+    cta: "Join Waitlist",
     filled: false,
   },
   {
     name: "Growth",
-    price: "$149",
+    price: "Coming soon",
     bestFor: "Founders running a full Lazy Stack.",
     features: [
       "Everything in Starter, plus:",
@@ -95,12 +95,12 @@ const plans = [
       "1 site",
     ],
     popular: true,
-    cta: "Get Started",
+    cta: "Join Waitlist",
     filled: true,
   },
   {
     name: "Agency",
-    price: "$299",
+    price: "Coming soon",
     bestFor: "Agencies building autonomous sites for clients.",
     features: [
       "Everything in Growth, plus:",
