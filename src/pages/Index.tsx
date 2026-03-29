@@ -469,16 +469,9 @@ const Index = () => {
           {/* CTA */}
           <div className="mt-6 flex flex-col sm:flex-row items-center gap-3">
             <Link
-              to="/lazy-engines"
-              className="text-sm tracking-[0.15em] uppercase px-8 py-3 font-semibold hover:opacity-80 transition-opacity active:scale-[0.97]"
-              style={{ fontFamily: "'Space Grotesk', sans-serif", backgroundColor: "#f0ead6", color: "#0a0a08", borderRadius: 0 }}
-            >
-              Explore Engines
-            </Link>
-            <Link
               to="/lazy-agents"
               className="text-sm tracking-[0.15em] uppercase px-8 py-3 font-semibold hover:opacity-80 transition-opacity active:scale-[0.97]"
-              style={{ fontFamily: "'Space Grotesk', sans-serif", backgroundColor: "transparent", color: "#f0ead6", borderRadius: 0, border: "1px solid rgba(240,234,214,0.25)" }}
+              style={{ fontFamily: "'Space Grotesk', sans-serif", backgroundColor: "#f0ead6", color: "#0a0a08", borderRadius: 0 }}
             >
               Explore Agents
             </Link>
