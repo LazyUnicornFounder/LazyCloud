@@ -134,6 +134,39 @@ export type Database = {
         }
         Relationships: []
       }
+      changelog: {
+        Row: {
+          affected_agents: string | null
+          agent: string
+          changes: string | null
+          created_at: string
+          id: string
+          pushed_to_github: boolean
+          summary: string
+          version: string
+        }
+        Insert: {
+          affected_agents?: string | null
+          agent: string
+          changes?: string | null
+          created_at?: string
+          id?: string
+          pushed_to_github?: boolean
+          summary: string
+          version: string
+        }
+        Update: {
+          affected_agents?: string | null
+          agent?: string
+          changes?: string | null
+          created_at?: string
+          id?: string
+          pushed_to_github?: boolean
+          summary?: string
+          version?: string
+        }
+        Relationships: []
+      }
       early_access: {
         Row: {
           created_at: string
