@@ -69,35 +69,8 @@ import PublicLayout from "./components/PublicLayout.tsx";
 import AdminLayout from "./pages/admin/AdminLayout.tsx";
 import AdminOverview from "./pages/admin/AdminOverview.tsx";
 import AdminSettingsPage from "./pages/admin/AdminSettingsPage.tsx";
-import AdminInstallsPage from "./pages/admin/AdminInstallsPage.tsx";
 import AgentPage from "./pages/admin/AgentPage.tsx";
-import AdminChangelogPage from "./pages/admin/AdminChangelogPage.tsx";
-import AdminCloudSignupsPage from "./pages/admin/AdminCloudSignupsPage.tsx";
-import WaitlistPage from "./pages/WaitlistPage.tsx";
-import LazyWaitlistPage from "./pages/LazyWaitlistPage.tsx";
-import LazyCloudPage from "./pages/LazyCloudPage.tsx";
 
-const queryClient = new QueryClient();
-
-const App = () => (
-  <HelmetProvider>
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <ScrollToTop />
-          <PublicLayout>
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/admin" element={<AdminLayout />}>
-                <Route index element={<AdminOverview />} />
-                <Route path=":agentKey" element={<AgentPage />} />
-                <Route path="settings" element={<AdminSettingsPage />} />
-                <Route path="installs" element={<AdminInstallsPage />} />
-                <Route path="changelog" element={<AdminChangelogPage />} />
-                <Route path="cloud-signups" element={<AdminCloudSignupsPage />} />
-              </Route>
               <Route path="/blog" element={<Blog />} />
               <Route path="/blog/:slug" element={<BlogPost />} />
               <Route path="/about" element={<AboutPage />} />
