@@ -135,7 +135,7 @@ const LazyGeoPage = () => {
 
         <section className="max-w-3xl mx-auto px-6">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="border border-border bg-card px-8 py-14 text-center">
-            <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-foreground mb-4">Be the answer, not just a result.</h2>
+            <h2 style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(1.8rem, 4vw, 2.8rem)", color: "#f0ead6", lineHeight: "1", letterSpacing: "-0.01em" }} className="font-bold mb-4">Be the answer, not just a result.</h2>
             <p className="font-body text-sm text-muted-foreground max-w-md mx-auto leading-relaxed mb-8">AI agent are replacing search. If your brand isn't being cited, you're invisible to the next generation of users.</p>
             <CopyPromptButton onCopy={handlePromptCopy} promptText={promptText} />
           </motion.div>
