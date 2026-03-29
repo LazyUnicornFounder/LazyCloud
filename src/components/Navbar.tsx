@@ -117,7 +117,7 @@ function renderCategoryBlock(cat: Category, onClose: () => void) {
           className="group flex items-center gap-4 px-3 py-[12px] -mx-1 hover:bg-secondary/50 transition-colors"
         >
           <span className="text-foreground/50 group-hover:text-foreground/70 transition-colors flex-shrink-0">
-            {item.icon}
+            {agentIcon(item.iconKey)}
           </span>
           <div className="min-w-0 flex-1">
             <p className="font-body text-[14px] font-black tracking-[0.04em] uppercase text-foreground/60 group-hover:text-foreground transition-colors leading-tight whitespace-nowrap">
@@ -357,7 +357,7 @@ const Navbar = ({ activePage = "home" }: NavbarProps) => {
                           onClick={() => setOpen(false)}
                           className="flex items-center gap-2.5 py-2 font-body text-[13px] tracking-[0.1em] uppercase text-foreground/55 hover:text-foreground transition-colors"
                         >
-                          <span className="text-foreground/15 flex-shrink-0">{item.icon}</span>
+                          <span className="text-foreground/15 flex-shrink-0">{agentIcon(item.iconKey)}</span>
                           <span>{item.label}</span>
                         </a>
                       ))}
