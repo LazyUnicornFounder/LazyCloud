@@ -177,7 +177,7 @@ function AgentsDropdown() {
               {[agentCategories[3], agentCategories[4]].map(c => renderCategoryBlock(c, close))}
             </div>
             <div className="flex-1 min-w-0">
-              {[agentCategories[5], agentCategories[6]].map(c => renderCategoryBlock(c, close))}
+              {[agentCategories[5]].map(c => renderCategoryBlock(c, close))}
             </div>
           </div>
           <div className="mt-6 pt-5 border-t border-border/50 flex items-center justify-end">
