@@ -1,4 +1,5 @@
 import { useState, useCallback, useEffect } from "react";
+import AutopilotHeadline from "@/components/AutopilotHeadline";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { toast } from "sonner";
@@ -268,28 +269,34 @@ export default function LazyLaunchPage() {
       />
       <Navbar />
 
-      <main className="min-h-screen bg-background pt-24 pb-20">
-        <div className="max-w-3xl mx-auto px-4">
-          {/* Header */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-center mb-10"
-          >
-            <div className="inline-flex items-center gap-2 border border-border px-3 py-1 mb-4">
-              <Rocket size={12} className="text-foreground/60" />
-              <span className="font-body text-xs text-foreground/60 tracking-widest uppercase">Lazy Launch</span>
-            </div>
+      <main className="min-h-screen bg-background pt-0 pb-20">
+        {/* Hero */}
+        <section className="relative px-6 md:px-12 pt-32 pb-24 md:pb-32" style={{ backgroundColor: "#0a0a08" }}>
+          <div className="max-w-4xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7 }}
+            >
+              <div className="flex items-center gap-3 mb-6">
+                <p style={{ fontFamily: "'Dancing Script', cursive", fontSize: "1.5rem", color: "#f0ead6", opacity: 0.5 }}>Introducing</p>
+                <span className="bg-foreground text-background text-[14px] tracking-[0.15em] uppercase font-extrabold px-3 py-1 font-display">BETA</span>
+              </div>
+              <AutopilotHeadline product="lazy-launch" />
               <div className="flex items-center gap-3 mt-4 mb-4">
                 <span className="font-display text-[11px] tracking-[0.15em] uppercase font-bold px-3 py-1 border border-[#c8a961]/30 text-[#c8a961]">Lazy Unicorn</span>
               </div>
-            <h1 className="font-display text-2xl md:text-3xl font-bold tracking-tight text-foreground">
-              Lazy Launch
-            </h1>
-            <p className="font-body text-sm text-muted-foreground mt-2 max-w-lg mx-auto">
-              Describe your business, pick your style, choose your agents — get a prompt you paste into Lovable.
-            </p>
-          </motion.div>
+              <h1 style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(2.5rem, 5vw, 4.5rem)", color: "#f0ead6", lineHeight: 0.95, letterSpacing: "-0.01em" }}>
+                Lazy Launch
+              </h1>
+              <p className="mt-6 font-body text-base md:text-lg text-foreground/70 max-w-xl leading-relaxed">
+                Describe your business, pick your style, choose your agents — get a prompt you paste into Lovable. Your entire site launches in one go.
+              </p>
+            </motion.div>
+          </div>
+        </section>
+
+        <div className="max-w-3xl mx-auto px-4 mt-12">
 
           {/* Step indicator */}
           <div className="flex items-center justify-center gap-1 mb-8">
@@ -596,7 +603,7 @@ export default function LazyLaunchPage() {
                 {copied ? "Copied!" : "Copy & Launch"}
               </button>
             )}
-          </div>
+        </div>
         </div>
       </main>
 
