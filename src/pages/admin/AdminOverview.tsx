@@ -96,6 +96,7 @@ export default function AdminOverview() {
   const queryClient = useQueryClient();
   const [runningAction, setRunningAction] = useState<string | null>(null);
   const [bulkAction, setBulkAction] = useState(false);
+  const [wizardAgent, setWizardAgent] = useState<string | null>(null);
 
   const todayStart = new Date();
   todayStart.setHours(0, 0, 0, 0);
