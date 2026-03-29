@@ -48,6 +48,7 @@ import LazyAuthPage from "./pages/LazyAuthPage.tsx";
 import LazyAdminPage from "./pages/LazyAdminPage.tsx";
 import LazyGranolaPage from "./pages/LazyGranolaPage.tsx";
 import LazyGranolaSetup from "./pages/LazyGranolaSetup.tsx";
+import LazyLaunchPage from "./pages/LazyLaunchPage.tsx";
 import LazyYouTubePage from "./pages/LazyYouTubePage.tsx";
 import LazyAgentsPage from "./pages/LazyAgentsPage.tsx";
 
@@ -157,6 +158,7 @@ const App = () => (
               <Route path="/lazy-granola" element={<LazyGranolaPage />} />
               <Route path="/lazy-granola-setup" element={<LazyGranolaSetup />} />
               <Route path="/lazy-youtube" element={<LazyYouTubePage />} />
+              <Route path="/lazy-launch" element={<LazyLaunchPage />} />
               <Route path="/lazy-agents" element={<LazyAgentsPage />} />
               
               <Route path="/lazy-watch" element={<LazyWatchPage />} />

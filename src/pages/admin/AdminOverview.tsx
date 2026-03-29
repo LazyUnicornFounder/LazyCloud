@@ -73,6 +73,7 @@ const CATEGORIES: { label: string; color: string; agent: AgentDef[] }[] = [
       { key: "repurpose", label: "Repurpose", icon: RefreshCw },
       { key: "trend", label: "Trend", icon: Radar },
       { key: "churn", label: "Churn", icon: CreditCard },
+      { key: "launch", label: "Launch", icon: Zap, adminPath: "/lazy-launch" },
     ],
   },
   {
