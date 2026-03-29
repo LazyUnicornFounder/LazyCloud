@@ -185,7 +185,7 @@ function CopyPromptButton({ className = "", onCopy, text }: { className?: string
 
 function ServiceBadge() {
   return (
-    <span className="inline-flex items-center gap-1.5 font-body text-[14px] tracking-[0.12em] uppercase text-foreground/70 border border-border px-3 py-1">
+    <span className="inline-flex items-center gap-1.5 font-body text-[14px] tracking-[0.12em] uppercase text-foreground/50 border border-border px-3 py-1">
       Powered by Perplexity
     </span>
   );
@@ -223,7 +223,7 @@ const LazyPerplexityPage = () => {
               </div>
 
               <ServiceBadge />
-              <p className="mt-6 font-body text-base md:text-lg text-foreground/70 max-w-xl leading-relaxed">
+              <p className="mt-6 font-body text-base md:text-lg text-foreground/50 max-w-xl leading-relaxed">
                 Lazy Perplexity uses the Perplexity API to research your niche with live web data, feed current intelligence into your blog and SEO agents, and test whether your brand appears when people ask AI questions about your industry.
               </p>
               <div className="flex flex-col sm:flex-row items-start gap-4 mt-10">
@@ -246,7 +246,7 @@ const LazyPerplexityPage = () => {
             {steps.map((step, i) => (
               <motion.div key={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} transition={{ delay: i * 0.08 }} className="flex items-start gap-4">
                 <span className="flex-shrink-0 w-8 h-8 bg-primary text-primary-foreground font-display text-sm font-bold flex items-center justify-center mt-0.5">{i + 1}</span>
-                <p className="font-body text-sm text-foreground/60 leading-relaxed pt-1">{step}</p>
+                <p className="font-body text-sm text-foreground/50 leading-relaxed pt-1">{step}</p>
               </motion.div>
             ))}
           </div>
@@ -267,9 +267,9 @@ const LazyPerplexityPage = () => {
               { icon: Zap, title: "Content Improvement", desc: "Rewrites underperforming posts using fresh Perplexity research." },
             ].map((item, i) => (
               <motion.div key={item.title} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} transition={{ delay: i * 0.06 }} className="border-b sm:odd:border-r last:border-b-0 border-border bg-card p-6">
-                <item.icon size={18} className="text-foreground/65 mb-3" />
+                <item.icon size={18} className="text-foreground/50 mb-3" />
                 <h3 className="font-display text-sm font-bold text-foreground mb-1">{item.title}</h3>
-                <p className="font-body text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
+                <p className="font-body text-sm leading-relaxed">{item.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -291,9 +291,9 @@ const LazyPerplexityPage = () => {
         <section className="max-w-4xl mx-auto px-6 md:px-12">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="border border-border bg-card px-8 py-14 text-center">
             <h2 style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(1.8rem, 4vw, 2.8rem)", color: "#f0ead6", lineHeight: "1", letterSpacing: "-0.01em" }} className="font-bold mb-4">Real research. Real citations. Better content.</h2>
-            <p className="font-body text-sm text-muted-foreground max-w-md mx-auto leading-relaxed mb-8">Every post backed by live web research. Every citation tested against real AI responses.</p>
+            <p className="font-body text-sm max-w-md mx-auto leading-relaxed mb-8">Every post backed by live web research. Every citation tested against real AI responses.</p>
             <CopyPromptButton text={promptText} onCopy={handlePromptCopy} />
-            <p className="font-body text-sm text-foreground/60 mt-4">Open your Lovable project, paste it into the chat, add your API key. Done.</p>
+            <p className="font-body text-sm text-foreground/50 mt-4">Open your Lovable project, paste it into the chat, add your API key. Done.</p>
           </motion.div>
         </section>
       </main>

@@ -78,7 +78,7 @@ export default function LazyBuildPage() {
               <div className="flex items-center gap-3 mt-4 mb-4">
                 <span className="font-display text-[11px] tracking-[0.15em] uppercase font-bold px-3 py-1 border border-[#c8a961]/30 text-[#c8a961]">Lazy Ops</span>
               </div>
-              <p className="mt-6 font-body text-base md:text-lg text-foreground/70 max-w-xl leading-relaxed">
+              <p className="mt-6 font-body text-base md:text-lg text-foreground/50 max-w-xl leading-relaxed">
                 Give Lazy Build an agent name, integration, tagline, and one paragraph. It reads three of your existing prompt files to learn your structure, follows your CLAUDE.md rules, writes a complete new Lazy agent prompt, and opens a draft GitHub PR — tagged @claude for a compliance review before you merge.
               </p>
               <div className="flex flex-col sm:flex-row items-start gap-4 mt-10">
@@ -103,11 +103,11 @@ export default function LazyBuildPage() {
               "💡 You have 10 agent ideas sitting in a list. None of them get built because you don't have the time to write the prompts.",
             ].map((text, i) => (
               <motion.div key={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} transition={{ delay: i * 0.08 }} className="border-b sm:border-b-0 sm:border-r last:border-r-0 last:border-b-0 border-border bg-card p-6">
-                <p className="font-body text-sm text-foreground/50 leading-relaxed">{text}</p>
+                <p className="font-body text-sm leading-relaxed">{text}</p>
               </motion.div>
             ))}
           </div>
-          <motion.p initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="text-center mt-6 font-body text-sm text-foreground/60 font-semibold">
+          <motion.p initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="text-center mt-6 font-body text-sm text-foreground/50 font-semibold">
             Lazy Build writes the prompt in under 5 minutes. You review the PR. You merge. Done.
           </motion.p>
         </section>
@@ -123,7 +123,7 @@ export default function LazyBuildPage() {
                 <span className="flex-shrink-0 w-8 h-8 bg-primary text-primary-foreground font-display text-sm font-bold flex items-center justify-center mt-0.5">{i + 1}</span>
                 <div>
                   <p className="font-display text-sm font-bold text-foreground mb-1">{step.icon} {step.title}</p>
-                  <p className="font-body text-sm text-foreground/60 leading-relaxed">{step.desc}</p>
+                  <p className="font-body text-sm text-foreground/50 leading-relaxed">{step.desc}</p>
                 </div>
               </motion.div>
             ))}
@@ -141,7 +141,7 @@ export default function LazyBuildPage() {
               <p className="font-display text-base font-bold text-foreground">New Agent: Lazy Porkbun — Your domain. Your site. One tab.</p>
             </div>
             <div className="border border-border bg-background p-4 mb-4 font-mono text-xs text-foreground/50 leading-relaxed">
-              <p className="text-foreground/70 font-bold mb-2">Review checklist</p>
+              <p className="text-foreground/50 font-bold mb-2">Review checklist</p>
               <p>✅ Database tables complete with all required fields</p>
               <p>✅ Setup page redirects to /admin</p>
               <p>✅ API keys stored as secrets not in database</p>
@@ -151,7 +151,7 @@ export default function LazyBuildPage() {
               <p>✅ Version number in header</p>
             </div>
             <div className="border border-border bg-background p-4 font-mono text-xs text-foreground/50">
-              <p className="text-foreground/70 mb-1">@claude:</p>
+              <p className="text-foreground/50 mb-1">@claude:</p>
               <p>Reviewed against CLAUDE.md. All required fields present. is_running, setup_complete, prompt_version confirmed. _errors table included. Backlink confirmed. Ready to merge.</p>
             </div>
             <div className="mt-4 flex gap-2">
@@ -172,7 +172,7 @@ export default function LazyBuildPage() {
         <section className="text-center px-6 py-16">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
             <h2 className="font-display text-xl font-bold mb-4">Stop writing prompts from scratch.</h2>
-            <p className="font-body text-sm text-foreground/50 mb-6 max-w-md mx-auto">One paragraph brief. One draft PR. Your prompt stack grows without you writing a word.</p>
+            <p className="font-body text-sm mb-6 max-w-md mx-auto">One paragraph brief. One draft PR. Your prompt stack grows without you writing a word.</p>
             <CopyPromptButton text={promptText} />
           </motion.div>
         </section>

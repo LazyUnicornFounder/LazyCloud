@@ -101,7 +101,7 @@ export default function LazyWatchPage() {
               <div className="flex items-center gap-3 mt-4 mb-4">
                 <span className="font-display text-[11px] tracking-[0.15em] uppercase font-bold px-3 py-1 border border-[#c8a961]/30 text-[#c8a961]">Lazy Ops</span>
               </div>
-              <p className="mt-6 font-body text-base md:text-lg text-foreground/70 max-w-xl leading-relaxed">
+              <p className="mt-6 font-body text-base md:text-lg text-foreground/50 max-w-xl leading-relaxed">
                 Lazy Watch reads every Lazy agent error table every hour. When errors spike it sends them to Claude for diagnosis, opens a GitHub issue with a specific fix recommendation, tags @claude to investigate, and pings your Slack. You find out about broken agent before your users do.
               </p>
               <div className="flex flex-col sm:flex-row items-start gap-4 mt-10">
@@ -126,11 +126,11 @@ export default function LazyWatchPage() {
               "🔕 The error is in the logs. You never check the logs. The agent is broken and the site looks fine.",
             ].map((text, i) => (
               <motion.div key={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} transition={{ delay: i * 0.08 }} className="border-b sm:border-b-0 sm:border-r last:border-r-0 last:border-b-0 border-border bg-card p-6">
-                <p className="font-body text-sm text-foreground/50 leading-relaxed">{text}</p>
+                <p className="font-body text-sm leading-relaxed">{text}</p>
               </motion.div>
             ))}
           </div>
-          <motion.p initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="text-center mt-6 font-body text-sm text-foreground/60 font-semibold">
+          <motion.p initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="text-center mt-6 font-body text-sm text-foreground/50 font-semibold">
             Lazy Watch checks every agent every hour. You get notified before the damage compounds.
           </motion.p>
         </section>
@@ -146,7 +146,7 @@ export default function LazyWatchPage() {
                 <span className="flex-shrink-0 w-8 h-8 bg-primary text-primary-foreground font-display text-sm font-bold flex items-center justify-center mt-0.5">{i + 1}</span>
                 <div>
                   <p className="font-display text-sm font-bold text-foreground mb-1">{step.icon} {step.title}</p>
-                  <p className="font-body text-sm text-foreground/60 leading-relaxed">{step.desc}</p>
+                  <p className="font-body text-sm text-foreground/50 leading-relaxed">{step.desc}</p>
                 </div>
               </motion.div>
             ))}
@@ -181,7 +181,7 @@ export default function LazyWatchPage() {
         <section className="text-center px-6 py-16">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
             <h2 className="font-display text-xl font-bold mb-4">Stop checking logs manually.</h2>
-            <p className="font-body text-sm text-foreground/50 mb-6 max-w-md mx-auto">Paste one prompt. Lazy Watch monitors everything, diagnoses issues, and opens GitHub issues — every hour.</p>
+            <p className="font-body text-sm mb-6 max-w-md mx-auto">Paste one prompt. Lazy Watch monitors everything, diagnoses issues, and opens GitHub issues — every hour.</p>
             <CopyPromptButton text={promptText} />
           </motion.div>
         </section>

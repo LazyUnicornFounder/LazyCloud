@@ -86,7 +86,7 @@ export default function LazyFixPage() {
               <div className="flex items-center gap-3 mt-4 mb-4">
                 <span className="font-display text-[11px] tracking-[0.15em] uppercase font-bold px-3 py-1 border border-[#c8a961]/30 text-[#c8a961]">Lazy Ops</span>
               </div>
-              <p className="mt-6 font-body text-base md:text-lg text-foreground/70 max-w-xl leading-relaxed">
+              <p className="mt-6 font-body text-base md:text-lg text-foreground/50 max-w-xl leading-relaxed">
                 Every Sunday at 11pm Lazy Fix reads your agent performance data — output volume, error rates, last activity dates. It identifies the two weakest agents, writes targeted improvements to their prompts following your SPEC.md rules, and opens GitHub PRs. Monday morning you have two prompts ready to review and merge.
               </p>
 
@@ -112,11 +112,11 @@ export default function LazyFixPage() {
               "⏰ You know your prompts could be better. You never have time to improve them. They stay the same forever.",
             ].map((text, i) => (
               <motion.div key={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} transition={{ delay: i * 0.08 }} className="border-b sm:border-b-0 sm:border-r last:border-r-0 last:border-b-0 border-border bg-card p-6">
-                <p className="font-body text-sm text-foreground/50 leading-relaxed">{text}</p>
+                <p className="font-body text-sm leading-relaxed">{text}</p>
               </motion.div>
             ))}
           </div>
-          <motion.p initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="text-center mt-6 font-body text-sm text-foreground/60 font-semibold">
+          <motion.p initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="text-center mt-6 font-body text-sm text-foreground/50 font-semibold">
             Lazy Fix is the part of you that would improve the prompts if you had time. It has time.
           </motion.p>
         </section>
@@ -132,7 +132,7 @@ export default function LazyFixPage() {
                 <span className="flex-shrink-0 w-8 h-8 bg-primary text-primary-foreground font-display text-sm font-bold flex items-center justify-center mt-0.5">{i + 1}</span>
                 <div>
                   <p className="font-display text-sm font-bold text-foreground mb-1">{step.icon} {step.title}</p>
-                  <p className="font-body text-sm text-foreground/60 leading-relaxed">{step.desc}</p>
+                  <p className="font-body text-sm text-foreground/50 leading-relaxed">{step.desc}</p>
                 </div>
               </motion.div>
             ))}
@@ -148,8 +148,8 @@ export default function LazyFixPage() {
             {improvements.map((item, i) => (
               <motion.div key={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} transition={{ delay: i * 0.08 }} className="border-b sm:odd:border-r last:border-b-0 sm:[&:nth-child(3)]:border-b-0 border-border bg-card p-6">
                 <p className="font-display text-[11px] tracking-[0.15em] uppercase font-bold text-[#c8a961] mb-2">{item.agent}</p>
-                <p className="font-body text-sm text-foreground/70 mb-1">{item.problem}</p>
-                <p className="font-body text-sm text-foreground/50">→ {item.fix}</p>
+                <p className="font-body text-sm text-foreground/50 mb-1">{item.problem}</p>
+                <p className="font-body text-sm">→ {item.fix}</p>
               </motion.div>
             ))}
           </div>
@@ -169,7 +169,7 @@ export default function LazyFixPage() {
         <section className="text-center px-6 py-16">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
             <h2 className="font-display text-xl font-bold mb-4">Stop maintaining prompts manually.</h2>
-            <p className="font-body text-sm text-foreground/50 mb-6 max-w-md mx-auto">Paste one prompt. Every Sunday your weakest agent get improved. You review the PRs Monday morning.</p>
+            <p className="font-body text-sm mb-6 max-w-md mx-auto">Paste one prompt. Every Sunday your weakest agent get improved. You review the PRs Monday morning.</p>
             <CopyPromptButton text={promptText} />
           </motion.div>
         </section>
