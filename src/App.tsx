@@ -82,6 +82,7 @@ import AdminGranolaPage from "./pages/admin/AdminGranolaPage.tsx";
 import AdminWaitlistPage from "./pages/admin/AdminWaitlistPage.tsx";
 import AdminWaitlistSetup from "./pages/admin/AdminWaitlistSetup.tsx";
 import WaitlistPage from "./pages/WaitlistPage.tsx";
+import LazyWaitlistPage from "./pages/LazyWaitlistPage.tsx";
 
 const queryClient = new QueryClient();
 
@@ -166,6 +167,7 @@ const App = () => (
               <Route path="/lazy-launch" element={<LazyLaunchPage />} />
               <Route path="/lazy-agents" element={<LazyAgentsPage />} />
               <Route path="/waitlist" element={<WaitlistPage />} />
+              <Route path="/lazy-waitlist" element={<LazyWaitlistPage />} />
               
               <Route path="/lazy-watch" element={<LazyWatchPage />} />
               <Route path="/lazy-fix" element={<LazyFixPage />} />
