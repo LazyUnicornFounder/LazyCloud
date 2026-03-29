@@ -94,7 +94,7 @@ export default function LazyRepurposePage() {
               <p className="mt-6 font-body text-base md:text-lg text-foreground/70 max-w-xl leading-relaxed">
                 Every blog post, SEO article, and GEO piece you publish automatically becomes a Twitter thread, a LinkedIn post, a newsletter section, and a short-form video script — generated every Sunday and queued for your approval. One piece of content. Five formats. Zero extra writing.
               </p>
-              <div className="flex flex-col sm:flex-row items-start gap-4">
+              <div className="flex flex-col sm:flex-row items-start gap-4 mt-10">
                 <CopyPromptButton text={promptText} />
                 <button onClick={() => document.getElementById("outputs")?.scrollIntoView({ behavior: "smooth" })} className="inline-flex items-center gap-2 font-body text-[13px] tracking-[0.15em] uppercase px-6 py-2.5 font-semibold border border-border text-foreground/50 hover:text-foreground transition-colors">
                   See What Gets Created
