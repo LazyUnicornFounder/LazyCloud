@@ -1,56 +1,15 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { Check, ArrowRight, Cloud } from "lucide-react";
+import { Check, ArrowRight } from "lucide-react";
 import SEO from "@/components/SEO";
 import Navbar from "@/components/Navbar";
 import LazyFaqSection from "@/components/LazyFaqSection";
 import { useTrackEvent } from "@/hooks/useTrackEvent";
-import { supabase } from "@/integrations/supabase/client";
 
 const fadeUp = { hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0 } };
 
-/* ── Live Counter ── */
-function LiveCounter() {
-  const [agents, setAgents] = useState<number | null>(null);
-  const [sites, setSites] = useState<number | null>(null);
 
-  useEffect(() => {
-    (async () => {
-      try {
-        const { count } = await supabase.from("installs").select("*", { count: "exact", head: true });
-        if (count !== null) setAgents(count);
-
-        const { data } = await supabase.from("installs").select("site_url");
-        if (data) setSites(new Set(data.map(r => r.site_url)).size);
-      } catch {
-        // fallback
-      }
-    })();
-  }, []);
-
-  return (
-    <motion.div
-      initial="hidden" animate="visible" variants={fadeUp} transition={{ delay: 0.3 }}
-      className="mt-10 inline-flex items-center gap-6 border border-primary/30 bg-card px-6 py-4"
-    >
-      <div className="text-center">
-        <p className="font-display text-xl font-bold text-primary">
-          {agents !== null ? `${agents.toLocaleString()}` : "2,400+"}
-        </p>
-        <p className="font-body text-[11px] tracking-[0.12em] uppercase text-muted-foreground">agents running</p>
-      </div>
-      <div className="w-px h-8 bg-border" />
-      <div className="text-center">
-        <p className="font-display text-xl font-bold text-primary">
-          {sites !== null ? `${sites.toLocaleString()}` : "180+"}
-        </p>
-        <p className="font-body text-[11px] tracking-[0.12em] uppercase text-muted-foreground">sites</p>
-      </div>
-      <p className="text-[10px] text-muted-foreground/50 font-mono ml-2">Updated live</p>
-    </motion.div>
-  );
-}
 
 /* ── Value Cards ── */
 const valueCards = [
@@ -73,7 +32,7 @@ const plans = [
       "Daily backups — 7 day retention",
       "Lazy Watch monitoring",
       "Managed API keys: Perplexity & Firecrawl",
-      "Email support — 48hr response",
+      "Email support",
       "1 site",
     ],
     popular: false,
@@ -88,10 +47,10 @@ const plans = [
       "Everything in Starter, plus:",
       "All API keys included (Perplexity, Firecrawl, ElevenLabs, Resend, Twilio, Aikido)",
       "Daily backups — 30 day retention",
-      "Priority support — 12hr response",
+      "Priority support",
       "Dedicated Slack channel",
       "Performance analytics dashboard",
-      "48hr SLA on breaking Lovable changes",
+      "Fast response on breaking Lovable changes",
       "1 site",
     ],
     popular: true,
@@ -109,7 +68,7 @@ const plans = [
       "Client management portal",
       "Reseller model — set your own pricing",
       "Dedicated account manager",
-      "Custom SLA",
+      "Custom support agreement",
       "Onboarding call included",
     ],
     popular: false,
@@ -124,7 +83,7 @@ const comparisonRows = [
   { label: "API keys", self: "Individual accounts at full price", cloud: "Volume pricing included" },
   { label: "Monitoring", self: "You check logs yourself", cloud: "24/7 — fixes included" },
   { label: "Backups", self: "You set up yourself", cloud: "Daily automated, 30-day retention" },
-  { label: "Lovable breaking changes", self: "You find and fix", cloud: "48hr SLA — we handle it" },
+  { label: "Lovable breaking changes", self: "You find and fix", cloud: "We handle it" },
   { label: "Support", self: "Community Discord", cloud: "Dedicated Slack channel" },
   { label: "Time cost", self: "2–4 hours/month", cloud: "0 hours" },
 ];
