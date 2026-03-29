@@ -366,6 +366,7 @@ const Navbar = ({ activePage = "home" }: NavbarProps) => {
               ))}
 
               {[
+                { label: "Lazy Cloud", href: "/lazy-cloud" },
                 { label: "Pricing", href: "/pricing" },
                 { label: "Autonomy", href: "/autonomy" },
                 { label: "Blog", href: "/blog" },
