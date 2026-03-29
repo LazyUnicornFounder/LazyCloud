@@ -585,6 +585,7 @@ export const AGENTS: AgentConfig[] = [
     runField: "is_running",
     category: "ops",
     route: "/admin/security",
+    requiredSecrets: ["AIKIDO_API_KEY"],
     actions: [
       { label: "Run Pentest", fn: "security-scan" },
       { label: "Quick Scan", fn: "security-monitor" },
