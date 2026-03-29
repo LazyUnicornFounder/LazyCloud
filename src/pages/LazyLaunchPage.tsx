@@ -1,4 +1,5 @@
 import { useState, useCallback, useEffect } from "react";
+import AutopilotHeadline from "@/components/AutopilotHeadline";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { toast } from "sonner";
