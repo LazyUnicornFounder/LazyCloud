@@ -414,6 +414,7 @@ export const AGENTS: AgentConfig[] = [
       { label: "Sync Roadmap", fn: "code-sync-roadmap" },
       { label: "Optimise", fn: "code-optimise" },
     ],
+    requiredSecrets: ["GITHUB_PROMPTS_TOKEN"],
     statsQueries: [],
     contentTable: "code_content",
     errorsTable: "code_errors",
