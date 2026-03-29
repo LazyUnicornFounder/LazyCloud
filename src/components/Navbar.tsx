@@ -277,10 +277,10 @@ const Navbar = ({ activePage = "home" }: NavbarProps) => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 flex flex-col items-center w-full px-8 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 flex flex-col items-center w-full px-4 md:px-8 transition-all duration-300 ${
         scrolled
           ? "bg-background border-b border-border pt-3 pb-1"
-          : "pt-6"
+          : "pt-4 md:pt-6"
       }`}
     >
       {!isMobile ? (
@@ -341,10 +341,10 @@ const Navbar = ({ activePage = "home" }: NavbarProps) => {
 
           {open && (
             <div className="mt-0 w-full bg-background border border-t-0 border-border px-5 py-4 flex flex-col gap-3 max-h-[80vh] overflow-y-auto">
-              <a href="/how-it-works" onClick={() => setOpen(false)} className="font-body text-[13px] tracking-[0.12em] uppercase text-foreground/50 hover:text-foreground transition-colors font-semibold">
+              <a href="/how-it-works" onClick={() => setOpen(false)} className="font-body text-[13px] tracking-[0.12em] uppercase text-foreground/50 hover:text-foreground transition-colors font-semibold py-1">
                 How It Works
               </a>
-              <a href="/use-cases" onClick={() => setOpen(false)} className="font-body text-[13px] tracking-[0.12em] uppercase text-foreground/50 hover:text-foreground transition-colors font-semibold">
+              <a href="/use-cases" onClick={() => setOpen(false)} className="font-body text-[13px] tracking-[0.12em] uppercase text-foreground/50 hover:text-foreground transition-colors font-semibold py-1">
                 Use Cases
               </a>
 
@@ -384,7 +384,7 @@ const Navbar = ({ activePage = "home" }: NavbarProps) => {
                 { label: "Upgrade Guide", href: "/upgrade-guide" },
                 { label: "About", href: "/about" },
               ].map((item) => (
-                <a key={item.label + item.href} href={item.href} onClick={() => setOpen(false)} className="font-body text-[13px] tracking-[0.12em] uppercase text-foreground/50 hover:text-foreground transition-colors font-semibold">
+                <a key={item.label + item.href} href={item.href} onClick={() => setOpen(false)} className="font-body text-[13px] tracking-[0.12em] uppercase text-foreground/50 hover:text-foreground transition-colors font-semibold py-1">
                   {item.label}
                 </a>
               ))}

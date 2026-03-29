@@ -78,7 +78,7 @@ function RotatingHeadline() {
   }, [current, ready]);
 
   return (
-    <p style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(0.9rem, 2.8vw, 2.2rem)", color: "#f0ead6", opacity: 0.7 }} className="mb-2 mt-12 whitespace-nowrap">
+    <p style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(0.85rem, 2.8vw, 2.2rem)", color: "#f0ead6", opacity: 0.7 }} className="mb-2 mt-12 flex flex-wrap items-center justify-center gap-x-1">
       {/* Hidden measurer */}
       <span
         ref={hiddenRef}
@@ -528,15 +528,11 @@ const Index = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8 }}
-          className="min-h-screen flex flex-col items-center justify-center gap-6 px-6 pt-8 pb-16 text-center"
+          className="min-h-screen flex flex-col items-center justify-center gap-4 md:gap-6 px-4 md:px-6 pt-8 pb-16 text-center"
         >
           <RotatingHeadline />
-          <h1 style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(2.5rem, 6vw, 4.5rem)", color: "#f0ead6", lineHeight: 1.1, fontWeight: 800 }}>
-            Launch, build and run your
-            <br />
-            Lovable<span style={{ color: "#e25555" }}>❤️</span>website or app
-            <br />
-            with autonomous agents<span>🤖</span>.
+          <h1 style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(2rem, 6vw, 4.5rem)", color: "#f0ead6", lineHeight: 1.1, fontWeight: 800 }}>
+            Launch, build and run your Lovable<span style={{ color: "#e25555" }}>❤️</span>website or app with autonomous agents<span>🤖</span>.
           </h1>
           <p className="max-w-2xl" style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(0.95rem, 1.4vw, 1.15rem)", color: "#f0ead6", opacity: 0.45, lineHeight: 1.6 }}>
             Each agent is a single prompt you paste into Lovable. It installs its own tables, edge functions, and UI — then runs itself. Blog posts, SEO, payments, voice, stores, and more.
