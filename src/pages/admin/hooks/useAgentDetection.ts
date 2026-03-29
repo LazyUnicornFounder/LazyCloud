@@ -2,33 +2,54 @@ import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { AGENTS } from "../agentRegistry";
 
+export interface AgentState {
+  installed: boolean;
+  setupComplete: boolean;
+  isRunning: boolean;
+  promptVersion?: string;
+  settings?: Record<string, any>;
+}
+
 /**
- * Detects which agents are installed by checking if their settings table exists.
- * Tries a limit-1 select on each table — if it doesn't error, the table exists.
+ * Detects which agents are installed by probing their settings tables.
+ * Returns a map of agent key → AgentState.
  */
 export function useAgentDetection() {
-  const [installed, setInstalled] = useState<Set<string>>(new Set());
+  const [states, setStates] = useState<Record<string, AgentState>>({});
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    async function detect() {
-      const found = new Set<string>();
-      const checks = AGENTS.map(async (agent) => {
-        try {
-          const { error } = await (supabase as any)
-            .from(agent.settingsTable)
-            .select("id", { count: "exact", head: true });
-          if (!error) found.add(agent.key);
-        } catch {
-          // table doesn't exist
+  const detect = async () => {
+    const result: Record<string, AgentState> = {};
+    const checks = AGENTS.map(async (agent) => {
+      try {
+        const { data, error } = await (supabase as any)
+          .from(agent.settingsTable)
+          .select("*")
+          .limit(1)
+          .maybeSingle();
+        if (error) {
+          result[agent.key] = { installed: false, setupComplete: false, isRunning: false };
+        } else if (!data) {
+          result[agent.key] = { installed: true, setupComplete: false, isRunning: false };
+        } else {
+          result[agent.key] = {
+            installed: true,
+            setupComplete: data.setup_complete !== false,
+            isRunning: !!data[agent.runField],
+            promptVersion: data.prompt_version || undefined,
+            settings: data,
+          };
         }
-      });
-      await Promise.all(checks);
-      setInstalled(found);
-      setLoading(false);
-    }
-    detect();
-  }, []);
+      } catch {
+        result[agent.key] = { installed: false, setupComplete: false, isRunning: false };
+      }
+    });
+    await Promise.all(checks);
+    setStates(result);
+    setLoading(false);
+  };
 
-  return { installed, loading };
+  useEffect(() => { detect(); }, []);
+
+  return { states, loading, refetch: detect };
 }

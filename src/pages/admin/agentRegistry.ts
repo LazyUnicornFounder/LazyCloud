@@ -1,463 +1,342 @@
-// Agent registry — single source of truth for all LazyUnicorn agents
+// Agent Registry — maps every LazyUnicorn agent to its config
+
+export type AgentCategory = "Content" | "Commerce" | "Media" | "Dev" | "Monitor" | "Intelligence";
 
 export interface AgentAction {
   label: string;
   fn: string;
-  body?: Record<string, any>;
+  primary?: boolean;
 }
 
-export interface AgentColumn {
-  key: string;
+export interface AgentStatDef {
   label: string;
-  type?: "badge" | "link" | "date" | "number" | "button";
-  badgeColor?: string;
-  linkPrefix?: string;
-  buttonFn?: string;
-  buttonLabel?: string;
+  table: string;
+  type: "count" | "count_today" | "count_week";
+  dateField?: string;
 }
 
 export interface AgentConfig {
   key: string;
   label: string;
-  subtitle: string;
+  slug: string;
+  category: AgentCategory;
   settingsTable: string;
   runField: string;
-  category: AgentCategory;
-  tab: AdminTab;
-  route: string;
-  actions: AgentAction[];
-  statsQueries: AgentStatQuery[];
   contentTable?: string;
-  contentColumns?: AgentColumn[];
-  errorsTable?: string;
-  queueTable?: string;
-  queueFilter?: Record<string, any>;
-  queueColumns?: AgentColumn[];
-  settingsFields?: SettingsField[];
-  requiredSecrets?: string[];
-  setupRoute?: string;
+  errorTable?: string;
+  subtitle: string;
+  actions: AgentAction[];
+  stats: AgentStatDef[];
+  requiredSecrets?: { field: string; label: string }[];
+  settingsFields?: string[];
 }
 
-export interface AgentStatQuery {
-  label: string;
-  table: string;
-  type: "count" | "count_today" | "count_week" | "sum" | "latest_field" | "computed";
-  filter?: Record<string, any>;
-  field?: string;
-  colorThreshold?: { green: number; amber: number };
-}
-
-export interface SettingsField {
-  key: string;
-  label: string;
-  type?: "text" | "password" | "number" | "textarea" | "toggle";
-  placeholder?: string;
-}
-
-export type AgentCategory = "content" | "commerce" | "media" | "dev" | "ops" | "system";
-
-export type AdminTab = "all" | "content" | "commerce" | "media" | "dev" | "monitor" | "intelligence";
-
-export const ADMIN_TABS: { key: AdminTab; label: string }[] = [
-  { key: "all", label: "All" },
-  { key: "content", label: "Content" },
-  { key: "commerce", label: "Commerce" },
-  { key: "media", label: "Media" },
-  { key: "dev", label: "Dev" },
-  { key: "monitor", label: "Monitor" },
-  { key: "intelligence", label: "Intelligence" },
+export const CATEGORIES: AgentCategory[] = [
+  "Content", "Commerce", "Media", "Dev", "Monitor", "Intelligence",
 ];
 
-export const TAB_COLORS: Record<AdminTab, string> = {
-  all: "#f0ead6",
-  content: "#c8a961",
-  commerce: "#22c55e",
-  media: "#3b82f6",
-  dev: "#a855f7",
-  monitor: "#ef4444",
-  intelligence: "#f59e0b",
-};
-
-export const CATEGORY_META: Record<AgentCategory, { label: string; color: string }> = {
-  content: { label: "Content", color: "#c8a961" },
-  commerce: { label: "Commerce", color: "#22c55e" },
-  media: { label: "Media", color: "#3b82f6" },
-  dev: { label: "Dev", color: "#a855f7" },
-  ops: { label: "Ops", color: "#ef4444" },
-  system: { label: "System", color: "#6b7280" },
+export const CATEGORY_AGENTS: Record<AgentCategory, string[]> = {
+  Content: ["blogger", "seo", "geo", "crawl", "perplexity", "repurpose", "trend"],
+  Commerce: ["store", "drop", "print", "pay", "mail", "sms", "churn"],
+  Media: ["voice", "stream", "youtube"],
+  Dev: ["code", "gitlab", "linear", "contentful", "design", "auth", "granola"],
+  Monitor: ["alert", "telegram", "supabase", "security", "watch"],
+  Intelligence: ["fix", "build", "intel", "agents"],
 };
 
 export const AGENTS: AgentConfig[] = [
   // ── Content ──
   {
-    key: "blogger", label: "Blogger",
-    subtitle: "Publishes blog posts every 15 minutes.",
-    settingsTable: "blog_settings", runField: "is_publishing",
-    category: "content", tab: "content", route: "/admin/blogger",
-    actions: [{ label: "Publish Now", fn: "auto-publish-blog" }],
-    statsQueries: [
-      { label: "Posts today", table: "blog_posts", type: "count_today" },
-      { label: "Posts this week", table: "blog_posts", type: "count_week" },
-    ],
-    contentTable: "blog_posts",
-    contentColumns: [
-      { key: "title", label: "Title" },
-      { key: "status", label: "Status", type: "badge" },
-      { key: "published_at", label: "Date", type: "date" },
-    ],
-    errorsTable: "blog_errors",
-    settingsFields: [
-      { key: "posts_per_day", label: "Posts per Day", type: "number" },
-      { key: "frequency_minutes", label: "Frequency (min)", type: "number" },
-    ],
-  },
-  {
-    key: "seo", label: "SEO",
-    subtitle: "Discovers keywords and publishes ranking articles.",
-    settingsTable: "seo_settings", runField: "is_running",
-    category: "content", tab: "content", route: "/admin/seo",
-    setupRoute: "/lazy-seo-setup",
+    key: "blogger", label: "Blogger", slug: "blogger", category: "Content",
+    settingsTable: "blog_settings", runField: "is_publishing", contentTable: "blog_posts", errorTable: "blog_errors",
+    subtitle: "Autonomous blog post generation across all products",
     actions: [
-      { label: "Publish Now", fn: "lazy-seo-publish" },
-      { label: "Discover Now", fn: "lazy-seo-analyse" },
+      { label: "PUBLISH NOW →", fn: "auto-publish-blog", primary: true },
     ],
-    statsQueries: [
-      { label: "Posts", table: "seo_posts", type: "count" },
-      { label: "Keywords", table: "seo_keywords", type: "count" },
+    stats: [
+      { label: "Posts today", table: "blog_posts", type: "count_today", dateField: "created_at" },
+      { label: "Posts this week", table: "blog_posts", type: "count_week", dateField: "created_at" },
+      { label: "SEO posts total", table: "seo_posts", type: "count" },
+      { label: "GEO posts total", table: "geo_posts", type: "count" },
     ],
-    contentTable: "seo_posts",
-    contentColumns: [
-      { key: "title", label: "Title" },
-      { key: "target_keyword", label: "Keyword", type: "badge" },
-      { key: "published_at", label: "Date", type: "date" },
-    ],
-    queueTable: "seo_keywords", queueFilter: { has_content: false },
-    queueColumns: [{ key: "keyword", label: "Keyword" }, { key: "product", label: "Product", type: "badge" }],
-    errorsTable: "seo_errors",
   },
   {
-    key: "geo", label: "GEO",
-    subtitle: "Publishes content cited by AI search engines.",
-    settingsTable: "geo_settings", runField: "is_running",
-    category: "content", tab: "content", route: "/admin/geo",
-    setupRoute: "/lazy-geo-setup",
+    key: "seo", label: "SEO", slug: "seo", category: "Content",
+    settingsTable: "seo_settings", runField: "is_running", contentTable: "seo_posts", errorTable: "seo_errors",
+    subtitle: "Search engine optimisation content engine",
     actions: [
-      { label: "Publish Now", fn: "lazy-geo-publish" },
-      { label: "Discover Now", fn: "lazy-geo-discover" },
-      { label: "Test Citations", fn: "lazy-geo-test" },
+      { label: "PUBLISH NOW →", fn: "lazy-seo-publish", primary: true },
+      { label: "DISCOVER KEYWORDS", fn: "lazy-seo-analyse" },
     ],
-    statsQueries: [
-      { label: "Posts", table: "geo_posts", type: "count" },
-      { label: "Queries", table: "geo_queries", type: "count" },
+    stats: [
+      { label: "Posts published", table: "seo_posts", type: "count" },
+      { label: "Keywords found", table: "seo_keywords", type: "count" },
     ],
-    contentTable: "geo_posts",
-    contentColumns: [
-      { key: "title", label: "Title" },
-      { key: "target_query", label: "Query", type: "badge" },
-      { key: "published_at", label: "Date", type: "date" },
-    ],
-    queueTable: "geo_queries", queueFilter: { has_content: false },
-    queueColumns: [{ key: "query", label: "Query" }, { key: "query_type", label: "Type", type: "badge" }],
-    errorsTable: "geo_errors",
   },
   {
-    key: "crawl", label: "Crawl",
-    subtitle: "Monitors competitors and feeds intelligence.",
-    settingsTable: "crawl_settings", runField: "is_running",
-    category: "content", tab: "content", route: "/admin/crawl",
-    requiredSecrets: ["FIRECRAWL_API_KEY"],
-    actions: [{ label: "Crawl Now", fn: "crawl-run" }, { label: "Publish Intel", fn: "crawl-publish" }],
-    statsQueries: [], contentTable: "crawl_intel", errorsTable: "crawl_errors",
+    key: "geo", label: "GEO", slug: "geo", category: "Content",
+    settingsTable: "geo_settings", runField: "is_running", contentTable: "geo_posts", errorTable: "geo_errors",
+    subtitle: "Generative engine optimisation for AI search",
+    actions: [
+      { label: "PUBLISH NOW →", fn: "lazy-geo-publish", primary: true },
+      { label: "DISCOVER QUERIES", fn: "lazy-geo-discover" },
+      { label: "TEST CITATIONS", fn: "lazy-geo-test" },
+    ],
+    stats: [
+      { label: "Posts published", table: "geo_posts", type: "count" },
+      { label: "Queries found", table: "geo_queries", type: "count" },
+    ],
   },
   {
-    key: "perplexity", label: "Perplexity",
-    subtitle: "Researches niche and tests brand citations.",
-    settingsTable: "perplexity_settings", runField: "is_running",
-    category: "content", tab: "content", route: "/admin/perplexity",
-    requiredSecrets: ["PERPLEXITY_API_KEY"],
-    actions: [{ label: "Research Now", fn: "perplexity-research" }, { label: "Test Citations", fn: "perplexity-test-citations" }],
-    statsQueries: [], contentTable: "perplexity_content", errorsTable: "perplexity_errors",
+    key: "crawl", label: "Crawl", slug: "crawl", category: "Content",
+    settingsTable: "crawl_settings", runField: "is_running", errorTable: "crawl_errors",
+    subtitle: "Web crawling and intelligence extraction",
+    actions: [{ label: "CRAWL NOW →", fn: "crawl-run", primary: true }, { label: "PUBLISH INTEL", fn: "crawl-publish" }],
+    stats: [], requiredSecrets: [],
   },
   {
-    key: "contentful", label: "Contentful",
-    subtitle: "Two-way content sync with Contentful.",
-    settingsTable: "contentful_settings", runField: "is_running",
-    category: "content", tab: "content", route: "/admin/contentful",
-    requiredSecrets: ["CONTENTFUL_ACCESS_TOKEN"],
-    actions: [{ label: "Pull Now", fn: "contentful-pull" }, { label: "Push Now", fn: "contentful-push" }],
-    statsQueries: [], contentTable: "contentful_sync_log", errorsTable: "contentful_errors",
+    key: "perplexity", label: "Perplexity", slug: "perplexity", category: "Content",
+    settingsTable: "perplexity_settings", runField: "is_running", errorTable: "perplexity_errors",
+    subtitle: "AI-powered research and citation monitoring",
+    actions: [{ label: "RESEARCH NOW →", fn: "perplexity-research", primary: true }, { label: "TEST CITATIONS", fn: "perplexity-test-citations" }],
+    stats: [],
+  },
+  {
+    key: "repurpose", label: "Repurpose", slug: "repurpose", category: "Content",
+    settingsTable: "repurpose_settings", runField: "is_running", errorTable: "repurpose_errors",
+    subtitle: "Transform content across formats and channels",
+    actions: [{ label: "RUN NOW →", fn: "repurpose-run", primary: true }],
+    stats: [],
+  },
+  {
+    key: "trend", label: "Trend", slug: "trend", category: "Content",
+    settingsTable: "trend_settings", runField: "is_running", errorTable: "trend_errors",
+    subtitle: "Trending topic discovery and content seeding",
+    actions: [{ label: "SCAN NOW →", fn: "trend-scan", primary: true }, { label: "SEED AGENTS", fn: "trend-seed" }],
+    stats: [],
   },
 
   // ── Commerce ──
   {
-    key: "store", label: "Store",
-    subtitle: "Discovers products, writes listings, optimises conversion.",
-    settingsTable: "store_settings", runField: "is_running",
-    category: "commerce", tab: "commerce", route: "/admin/store",
-    requiredSecrets: ["SHOPIFY_ACCESS_TOKEN"],
-    actions: [{ label: "Discover", fn: "store-discover" }, { label: "Optimise", fn: "store-optimise" }, { label: "Promote", fn: "store-promote" }],
-    statsQueries: [], contentTable: "store_products", errorsTable: "store_errors",
+    key: "store", label: "Store", slug: "store", category: "Commerce",
+    settingsTable: "store_settings", runField: "is_running", errorTable: "store_errors",
+    subtitle: "Product listing and conversion optimisation",
+    actions: [{ label: "DISCOVER →", fn: "store-discover", primary: true }, { label: "OPTIMISE", fn: "store-optimise" }],
+    stats: [],
   },
   {
-    key: "drop", label: "Drop",
-    subtitle: "Syncs dropshipping products from AutoDS.",
-    settingsTable: "drop_settings", runField: "is_running",
-    category: "commerce", tab: "commerce", route: "/admin/drop",
-    requiredSecrets: ["AUTODS_API_KEY"],
-    actions: [{ label: "Sync Now", fn: "drop-sync" }, { label: "Publish Content", fn: "drop-content" }],
-    statsQueries: [], contentTable: "drop_products", errorsTable: "drop_errors",
+    key: "drop", label: "Drop", slug: "drop", category: "Commerce",
+    settingsTable: "drop_settings", runField: "is_running", errorTable: "drop_errors",
+    subtitle: "Dropshipping product sync and content",
+    actions: [{ label: "SYNC NOW →", fn: "drop-sync", primary: true }, { label: "PUBLISH CONTENT", fn: "drop-content" }],
+    stats: [],
   },
   {
-    key: "print", label: "Print",
-    subtitle: "Syncs Printful products and publishes content.",
-    settingsTable: "print_settings", runField: "is_running",
-    category: "commerce", tab: "commerce", route: "/admin/print",
-    requiredSecrets: ["PRINTFUL_API_KEY"],
-    actions: [{ label: "Sync Now", fn: "print-sync" }, { label: "Publish Content", fn: "print-content" }],
-    statsQueries: [], contentTable: "print_products", errorsTable: "print_errors",
+    key: "print", label: "Print", slug: "print", category: "Commerce",
+    settingsTable: "print_settings", runField: "is_running", errorTable: "print_errors",
+    subtitle: "Print-on-demand product sync and content",
+    actions: [{ label: "SYNC NOW →", fn: "print-sync", primary: true }, { label: "PUBLISH CONTENT", fn: "print-content" }],
+    stats: [],
   },
   {
-    key: "pay", label: "Pay",
-    subtitle: "Stripe payments with self-improving conversion.",
-    settingsTable: "pay_settings", runField: "is_running",
-    category: "commerce", tab: "commerce", route: "/admin/pay",
-    requiredSecrets: ["STRIPE_SECRET_KEY", "STRIPE_WEBHOOK_SECRET"],
-    actions: [{ label: "Optimise Now", fn: "pay-optimise" }, { label: "Run Recovery", fn: "pay-recover" }],
-    statsQueries: [], contentTable: "pay_transactions", errorsTable: "pay_errors",
+    key: "pay", label: "Pay", slug: "pay", category: "Commerce",
+    settingsTable: "pay_settings", runField: "is_running", errorTable: "pay_errors",
+    subtitle: "Payment processing and revenue optimisation",
+    actions: [{ label: "OPTIMISE NOW →", fn: "pay-optimise", primary: true }, { label: "RUN RECOVERY", fn: "pay-recover" }],
+    stats: [],
+    requiredSecrets: [{ field: "stripe_secret_key", label: "Stripe Secret Key" }],
   },
   {
-    key: "sms", label: "SMS",
-    subtitle: "Automated SMS sequences that improve themselves.",
-    settingsTable: "sms_settings", runField: "is_running",
-    category: "commerce", tab: "commerce", route: "/admin/sms",
-    requiredSecrets: ["TWILIO_AUTH_TOKEN"],
-    actions: [{ label: "Run Sequences", fn: "sms-sequences-run" }, { label: "Optimise", fn: "sms-optimise" }],
-    statsQueries: [], contentTable: "sms_messages", errorsTable: "sms_errors",
+    key: "mail", label: "Mail", slug: "mail", category: "Commerce",
+    settingsTable: "mail_settings", runField: "is_running", errorTable: "mail_errors",
+    subtitle: "Email campaigns and subscriber management",
+    actions: [{ label: "SEND CAMPAIGN →", fn: "mail-campaign", primary: true }, { label: "OPTIMISE", fn: "mail-optimise" }],
+    stats: [],
+    requiredSecrets: [{ field: "resend_api_key", label: "Resend API Key" }],
   },
   {
-    key: "mail", label: "Mail",
-    subtitle: "Automated email campaigns that improve themselves.",
-    settingsTable: "mail_settings", runField: "is_running",
-    category: "commerce", tab: "commerce", route: "/admin/mail",
-    requiredSecrets: ["RESEND_API_KEY"],
-    actions: [{ label: "Send Campaign", fn: "mail-campaign" }, { label: "Optimise", fn: "mail-optimise" }],
-    statsQueries: [], contentTable: "mail_campaigns", errorsTable: "mail_errors",
+    key: "sms", label: "SMS", slug: "sms", category: "Commerce",
+    settingsTable: "sms_settings", runField: "is_running", errorTable: "sms_errors",
+    subtitle: "SMS sequences and delivery management",
+    actions: [{ label: "RUN SEQUENCES →", fn: "sms-sequences-run", primary: true }, { label: "OPTIMISE", fn: "sms-optimise" }],
+    stats: [],
+    requiredSecrets: [{ field: "twilio_account_sid", label: "Twilio Account SID" }],
+  },
+  {
+    key: "churn", label: "Churn", slug: "churn", category: "Commerce",
+    settingsTable: "churn_settings", runField: "is_running", errorTable: "churn_errors",
+    subtitle: "Churn detection and retention automation",
+    actions: [{ label: "ANALYSE NOW →", fn: "churn-analyse", primary: true }],
+    stats: [],
   },
 
   // ── Media ──
   {
-    key: "voice", label: "Voice",
-    subtitle: "Narrates every post in your ElevenLabs voice.",
-    settingsTable: "voice_settings", runField: "is_running",
-    category: "media", tab: "media", route: "/admin/voice",
-    requiredSecrets: ["ELEVENLABS_API_KEY"], setupRoute: "/lazy-voice-setup",
-    actions: [{ label: "Narrate Now", fn: "voice-generate" }],
-    statsQueries: [{ label: "Episodes", table: "voice_episodes", type: "count" }],
-    contentTable: "voice_episodes",
-    contentColumns: [{ key: "post_title", label: "Title" }, { key: "status", label: "Status", type: "badge" }, { key: "created_at", label: "Date", type: "date" }],
-    errorsTable: "voice_errors",
-  },
-  {
-    key: "stream", label: "Stream",
-    subtitle: "Turns every Twitch stream into blog posts and SEO content.",
-    settingsTable: "stream_settings", runField: "is_running",
-    category: "media", tab: "media", route: "/admin/stream",
-    requiredSecrets: ["TWITCH_CLIENT_ID", "TWITCH_CLIENT_SECRET"], setupRoute: "/lazy-stream-setup",
-    actions: [{ label: "Process Last Stream", fn: "stream-process" }, { label: "Optimise", fn: "stream-optimise" }],
-    statsQueries: [
-      { label: "Streams", table: "stream_sessions", type: "count" },
-      { label: "Content", table: "stream_content", type: "count" },
+    key: "voice", label: "Voice", slug: "voice", category: "Media",
+    settingsTable: "voice_settings", runField: "is_running", contentTable: "voice_episodes", errorTable: "voice_errors",
+    subtitle: "Text-to-speech podcast generation",
+    actions: [{ label: "NARRATE NOW →", fn: "voice-generate", primary: true }],
+    stats: [
+      { label: "Episodes generated", table: "voice_episodes", type: "count" },
     ],
-    contentTable: "stream_content",
-    contentColumns: [{ key: "title", label: "Title" }, { key: "content_type", label: "Type", type: "badge" }, { key: "published_at", label: "Date", type: "date" }],
-    errorsTable: "stream_errors",
+    requiredSecrets: [{ field: "elevenlabs_api_key", label: "ElevenLabs API Key" }],
   },
   {
-    key: "youtube", label: "YouTube",
-    subtitle: "Turns videos into transcripts, SEO, GEO, and chapters.",
-    settingsTable: "youtube_settings", runField: "is_running",
-    category: "media", tab: "media", route: "/admin/youtube",
-    requiredSecrets: ["SUPADATA_API_KEY"],
-    actions: [{ label: "Sync Now", fn: "youtube-sync" }, { label: "Fetch Comments", fn: "youtube-extract-comments" }],
-    statsQueries: [], contentTable: "youtube_videos", errorsTable: "youtube_errors",
+    key: "stream", label: "Stream", slug: "stream", category: "Media",
+    settingsTable: "stream_settings", runField: "is_running", contentTable: "stream_content", errorTable: "stream_errors",
+    subtitle: "Live stream processing and content extraction",
+    actions: [{ label: "PROCESS LAST STREAM →", fn: "stream-process", primary: true }],
+    stats: [
+      { label: "Streams processed", table: "stream_sessions", type: "count" },
+      { label: "Content published", table: "stream_content", type: "count" },
+    ],
+  },
+  {
+    key: "youtube", label: "YouTube", slug: "youtube", category: "Media",
+    settingsTable: "youtube_settings", runField: "is_running", errorTable: "youtube_errors",
+    subtitle: "YouTube channel sync and comment extraction",
+    actions: [{ label: "SYNC NOW →", fn: "youtube-sync", primary: true }, { label: "FETCH COMMENTS", fn: "youtube-extract-comments" }],
+    stats: [],
+    requiredSecrets: [{ field: "youtube_channel_id", label: "YouTube Channel ID" }],
   },
 
   // ── Dev ──
   {
-    key: "code", label: "GitHub",
-    subtitle: "Turns commits into changelogs and developer posts.",
-    settingsTable: "code_settings", runField: "is_running",
-    category: "dev", tab: "dev", route: "/admin/code",
-    requiredSecrets: ["GITHUB_PROMPTS_TOKEN"],
-    actions: [{ label: "Sync Roadmap", fn: "code-sync-roadmap" }],
-    statsQueries: [], contentTable: "code_content", errorsTable: "code_errors",
+    key: "code", label: "Code", slug: "code", category: "Dev",
+    settingsTable: "code_settings", runField: "is_running", errorTable: "code_errors",
+    subtitle: "Repository commit analysis and roadmap sync",
+    actions: [{ label: "SYNC ROADMAP →", fn: "code-sync-roadmap", primary: true }],
+    stats: [],
   },
   {
-    key: "gitlab", label: "GitLab",
-    subtitle: "Turns GitLab commits into changelogs and posts.",
-    settingsTable: "gitlab_settings", runField: "is_running",
-    category: "dev", tab: "dev", route: "/admin/gitlab",
-    requiredSecrets: ["GITLAB_TOKEN"],
-    actions: [{ label: "Sync Roadmap", fn: "gitlab-sync-roadmap" }],
-    statsQueries: [], contentTable: "gitlab_content", errorsTable: "gitlab_errors",
+    key: "gitlab", label: "GitLab", slug: "gitlab", category: "Dev",
+    settingsTable: "gitlab_settings", runField: "is_running", errorTable: "gitlab_errors",
+    subtitle: "GitLab commit and MR processing",
+    actions: [{ label: "SYNC ROADMAP →", fn: "gitlab-sync-roadmap", primary: true }],
+    stats: [],
+    requiredSecrets: [{ field: "gitlab_url", label: "GitLab URL" }, { field: "gitlab_token", label: "GitLab Token" }],
   },
   {
-    key: "linear", label: "Linear",
-    subtitle: "Turns Linear cycles and issues into product updates.",
-    settingsTable: "linear_settings", runField: "is_running",
-    category: "dev", tab: "dev", route: "/admin/linear",
-    requiredSecrets: ["LINEAR_API_KEY"],
-    actions: [{ label: "Sync Now", fn: "linear-sync-all" }],
-    statsQueries: [], contentTable: "linear_content", errorsTable: "linear_errors",
+    key: "linear", label: "Linear", slug: "linear", category: "Dev",
+    settingsTable: "linear_settings", runField: "is_running", errorTable: "linear_errors",
+    subtitle: "Linear issue sync and velocity reports",
+    actions: [{ label: "SYNC NOW →", fn: "linear-sync-all", primary: true }, { label: "VELOCITY REPORT", fn: "linear-velocity-report" }],
+    stats: [],
+    requiredSecrets: [{ field: "linear_api_key", label: "Linear API Key" }],
   },
   {
-    key: "design", label: "Design",
-    subtitle: "Visual design and component library management.",
-    settingsTable: "design_settings", runField: "is_running",
-    category: "dev", tab: "dev", route: "/admin/design",
-    actions: [{ label: "Run Design Upgrade", fn: "design-upgrade" }],
-    statsQueries: [], errorsTable: "design_errors",
+    key: "contentful", label: "Contentful", slug: "contentful", category: "Dev",
+    settingsTable: "contentful_settings", runField: "is_running", errorTable: "contentful_errors",
+    subtitle: "Contentful CMS pull and push sync",
+    actions: [{ label: "PULL NOW →", fn: "contentful-pull", primary: true }, { label: "PUSH NOW", fn: "contentful-push" }],
+    stats: [],
+    requiredSecrets: [{ field: "contentful_space_id", label: "Contentful Space ID" }],
   },
   {
-    key: "auth", label: "Auth",
-    subtitle: "Authentication — Google Sign-In, email login, roles.",
-    settingsTable: "auth_settings", runField: "is_running",
-    category: "dev", tab: "dev", route: "/admin/auth",
-    actions: [], statsQueries: [],
+    key: "design", label: "Design", slug: "design", category: "Dev",
+    settingsTable: "design_settings", runField: "is_running", errorTable: "design_errors",
+    subtitle: "Design system upgrade automation",
+    actions: [{ label: "RUN UPGRADE →", fn: "design-upgrade", primary: true }],
+    stats: [],
   },
   {
-    key: "granola", label: "Granola",
-    subtitle: "Turns meeting notes into blog posts and updates.",
-    settingsTable: "granola_settings", runField: "is_running",
-    category: "dev", tab: "dev", route: "/admin/granola",
-    requiredSecrets: ["GRANOLA_API_KEY"], setupRoute: "/lazy-granola-setup",
-    actions: [{ label: "Sync Now", fn: "granola-sync" }, { label: "Publish Content", fn: "granola-write-post" }],
-    statsQueries: [
-      { label: "Meetings", table: "granola_meetings", type: "count" },
-      { label: "Outputs", table: "granola_outputs", type: "count" },
+    key: "auth", label: "Auth", slug: "auth", category: "Dev",
+    settingsTable: "auth_settings", runField: "is_running", errorTable: "auth_errors",
+    subtitle: "User management and role administration",
+    actions: [],
+    stats: [],
+  },
+  {
+    key: "granola", label: "Granola", slug: "granola", category: "Dev",
+    settingsTable: "granola_settings", runField: "is_running", contentTable: "granola_outputs", errorTable: "granola_errors",
+    subtitle: "Meeting intelligence and content extraction",
+    actions: [{ label: "SYNC NOW →", fn: "granola-sync", primary: true }, { label: "PUBLISH CONTENT", fn: "granola-write-post" }],
+    stats: [
+      { label: "Meetings synced", table: "granola_meetings", type: "count" },
+      { label: "Content published", table: "granola_outputs", type: "count" },
     ],
-    contentTable: "granola_outputs",
-    contentColumns: [{ key: "title", label: "Title" }, { key: "output_type", label: "Type", type: "badge" }, { key: "created_at", label: "Date", type: "date" }],
-    queueTable: "granola_meetings", queueFilter: { processed: false },
-    queueColumns: [{ key: "title", label: "Title" }, { key: "meeting_type", label: "Type", type: "badge" }],
-    errorsTable: "granola_errors",
   },
 
   // ── Monitor ──
   {
-    key: "alert", label: "Alert",
-    subtitle: "Real-time Slack alerts for every agent event.",
-    settingsTable: "alert_settings", runField: "is_running",
-    category: "ops", tab: "monitor", route: "/admin/alert",
-    requiredSecrets: ["SLACK_WEBHOOK_URL"],
-    actions: [{ label: "Send Test", fn: "alert-test" }, { label: "Briefing Now", fn: "alert-briefing" }],
-    statsQueries: [], contentTable: "alert_log", errorsTable: "alert_errors",
+    key: "alert", label: "Alert", slug: "alert", category: "Monitor",
+    settingsTable: "alert_settings", runField: "is_running", errorTable: "alert_errors",
+    subtitle: "Multi-channel alert dispatching",
+    actions: [{ label: "SEND TEST →", fn: "alert-test", primary: true }, { label: "BRIEFING NOW", fn: "alert-briefing" }],
+    stats: [],
   },
   {
-    key: "telegram", label: "Telegram",
-    subtitle: "Real-time Telegram alerts and bot commands.",
-    settingsTable: "telegram_settings", runField: "is_running",
-    category: "ops", tab: "monitor", route: "/admin/telegram",
-    requiredSecrets: ["TELEGRAM_BOT_TOKEN"],
-    actions: [{ label: "Send Test", fn: "telegram-test" }, { label: "Register Webhook", fn: "telegram-register-webhook" }],
-    statsQueries: [], contentTable: "telegram_log", errorsTable: "telegram_errors",
+    key: "telegram", label: "Telegram", slug: "telegram", category: "Monitor",
+    settingsTable: "telegram_settings", runField: "is_running", errorTable: "telegram_errors",
+    subtitle: "Telegram bot notifications and briefings",
+    actions: [{ label: "SEND TEST →", fn: "telegram-test", primary: true }, { label: "BRIEFING NOW", fn: "telegram-briefing" }],
+    stats: [],
   },
   {
-    key: "supabase", label: "Supabase",
-    subtitle: "Monitors database milestones and publishes updates.",
-    settingsTable: "supabase_settings", runField: "is_running",
-    category: "ops", tab: "monitor", route: "/admin/supabase",
-    actions: [{ label: "Check Now", fn: "supabase-monitor" }],
-    statsQueries: [], contentTable: "supabase_milestones", errorsTable: "supabase_errors",
+    key: "supabase-agent", label: "Supabase", slug: "supabase", category: "Monitor",
+    settingsTable: "supabase_settings", runField: "is_running", errorTable: "supabase_errors",
+    subtitle: "Supabase usage monitoring and milestone tracking",
+    actions: [{ label: "CHECK NOW →", fn: "supabase-monitor", primary: true }, { label: "WEEKLY REPORT", fn: "supabase-weekly-report" }],
+    stats: [],
   },
   {
-    key: "security", label: "Security",
-    subtitle: "Automated pentests and vulnerability monitoring.",
-    settingsTable: "security_settings", runField: "is_running",
-    category: "ops", tab: "monitor", route: "/admin/security",
-    requiredSecrets: ["AIKIDO_API_KEY"],
-    actions: [{ label: "Run Pentest", fn: "security-scan" }, { label: "Quick Scan", fn: "security-monitor" }],
-    statsQueries: [], contentTable: "security_scans", errorsTable: "security_errors",
+    key: "security", label: "Security", slug: "security", category: "Monitor",
+    settingsTable: "security_settings", runField: "is_running", errorTable: "security_errors",
+    subtitle: "Automated pentesting and vulnerability scanning",
+    actions: [{ label: "RUN PENTEST →", fn: "security-scan", primary: true }, { label: "QUICK SCAN", fn: "security-monitor" }],
+    stats: [],
+    requiredSecrets: [{ field: "aikido_project_id", label: "Aikido Project ID" }],
   },
   {
-    key: "watch", label: "Watch",
-    subtitle: "Monitors error tables and opens GitHub issues.",
-    settingsTable: "watch_settings", runField: "is_running",
-    category: "ops", tab: "monitor", route: "/admin/watch",
-    actions: [{ label: "Run Now", fn: "watch-monitor" }],
-    statsQueries: [], contentTable: "watch_issues", errorsTable: "watch_errors",
-  },
-  {
-    key: "fix", label: "Fix",
-    subtitle: "Opens GitHub PRs with prompt improvements.",
-    settingsTable: "fix_settings", runField: "is_running",
-    category: "ops", tab: "monitor", route: "/admin/fix",
-    actions: [{ label: "Run Now", fn: "fix-analyse" }],
-    statsQueries: [], contentTable: "fix_improvements", errorsTable: "fix_errors",
+    key: "watch", label: "Watch", slug: "watch", category: "Monitor",
+    settingsTable: "watch_settings", runField: "is_running", errorTable: "watch_errors",
+    subtitle: "Agent health monitoring and issue creation",
+    actions: [{ label: "RUN NOW →", fn: "watch-monitor", primary: true }],
+    stats: [],
+    requiredSecrets: [{ field: "github_token", label: "GitHub Token" }],
   },
 
   // ── Intelligence ──
   {
-    key: "intel", label: "Intel",
-    subtitle: "Weekly competitive intelligence and content seeding.",
-    settingsTable: "intel_settings", runField: "is_running",
-    category: "ops", tab: "intelligence", route: "/admin/intel",
-    actions: [{ label: "Run Now", fn: "intel-weekly" }, { label: "Seed Agents", fn: "intel-seed" }],
-    statsQueries: [], contentTable: "intel_reports", errorsTable: "intel_errors",
+    key: "fix", label: "Fix", slug: "fix", category: "Intelligence",
+    settingsTable: "fix_settings", runField: "is_running", errorTable: "fix_errors",
+    subtitle: "Automated error analysis and fix PRs",
+    actions: [{ label: "RUN NOW →", fn: "fix-analyse", primary: true }],
+    stats: [],
+    requiredSecrets: [{ field: "github_token", label: "GitHub Token" }],
   },
   {
-    key: "repurpose", label: "Repurpose",
-    subtitle: "Repurposes content into new formats automatically.",
-    settingsTable: "repurpose_settings", runField: "is_running",
-    category: "ops", tab: "intelligence", route: "/admin/repurpose",
-    actions: [{ label: "Run Now", fn: "repurpose-run" }],
-    statsQueries: [], contentTable: "repurpose_output", errorsTable: "repurpose_errors",
+    key: "build", label: "Build", slug: "build", category: "Intelligence",
+    settingsTable: "build_settings", runField: "is_running", errorTable: "build_errors",
+    subtitle: "New agent builder and scaffolding",
+    actions: [{ label: "BUILD NEW AGENT →", fn: "build-engine", primary: true }],
+    stats: [],
+    requiredSecrets: [{ field: "github_token", label: "GitHub Token" }],
   },
   {
-    key: "trend", label: "Trend",
-    subtitle: "Discovers trending topics and seeds content agents.",
-    settingsTable: "trend_settings", runField: "is_running",
-    category: "ops", tab: "intelligence", route: "/admin/trend",
-    actions: [{ label: "Scan Now", fn: "trend-scan" }, { label: "Seed Agents", fn: "trend-seed" }],
-    statsQueries: [], contentTable: "trend_topics", errorsTable: "trend_errors",
+    key: "intel", label: "Intel", slug: "intel", category: "Intelligence",
+    settingsTable: "intel_settings", runField: "is_running", errorTable: "intel_errors",
+    subtitle: "Weekly intelligence reports and topic seeding",
+    actions: [{ label: "RUN NOW →", fn: "intel-weekly", primary: true }, { label: "SEED AGENTS", fn: "intel-seed" }],
+    stats: [],
   },
   {
-    key: "churn", label: "Churn",
-    subtitle: "Detects churn signals and triggers retention.",
-    settingsTable: "churn_settings", runField: "is_running",
-    category: "ops", tab: "intelligence", route: "/admin/churn",
-    actions: [{ label: "Analyse Now", fn: "churn-analyse" }],
-    statsQueries: [], contentTable: "churn_signals", errorsTable: "churn_errors",
-  },
-  {
-    key: "build", label: "Build",
-    subtitle: "Writes and deploys new Lazy agents from a spec.",
-    settingsTable: "build_settings", runField: "is_running",
-    category: "ops", tab: "intelligence", route: "/admin/build",
-    actions: [{ label: "Build New Agent", fn: "build-engine" }],
-    statsQueries: [], contentTable: "build_engines", errorsTable: "build_errors",
-  },
-  {
-    key: "agents", label: "Agents",
-    subtitle: "Autonomous agents that monitor and improve your stack.",
-    settingsTable: "agent_settings", runField: "is_running",
-    category: "ops", tab: "intelligence", route: "/admin/agents",
-    actions: [], statsQueries: [], contentTable: "agent_runs", errorsTable: "agent_errors",
+    key: "agents", label: "Agents", slug: "agents", category: "Intelligence",
+    settingsTable: "agent_settings", runField: "is_running", errorTable: "agent_errors",
+    subtitle: "Meta-agent orchestration and self-improvement",
+    actions: [{ label: "RUN ALL NOW →", fn: "agents-run-all", primary: true }],
+    stats: [],
+    requiredSecrets: [{ field: "github_token", label: "GitHub Token" }],
   },
 ];
 
-export const ALWAYS_VISIBLE = ["installs", "settings", "overview"];
+export const TOTAL_AGENTS = 36;
 
-export function getAgentsByTab(installed: Set<string>, tab: AdminTab): AgentConfig[] {
-  return AGENTS.filter((a) => installed.has(a.key) && (tab === "all" || a.tab === tab));
+export function getAgentBySlug(slug: string): AgentConfig | undefined {
+  return AGENTS.find((a) => a.slug === slug);
 }
 
-export function getAgentsByCategory(installed: Set<string>): Record<AgentCategory, AgentConfig[]> {
-  const result: Record<AgentCategory, AgentConfig[]> = {
-    content: [], commerce: [], media: [], dev: [], ops: [], system: [],
-  };
-  for (const a of AGENTS) {
-    if (installed.has(a.key)) result[a.category].push(a);
-  }
-  return result;
+export function getAgentsByCategory(category: AgentCategory | "All"): AgentConfig[] {
+  if (category === "All") return AGENTS;
+  return AGENTS.filter((a) => a.category === category);
 }
