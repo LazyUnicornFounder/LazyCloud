@@ -58,7 +58,7 @@ export type AgentCategory =
   | "developer"
   | "channels"
   | "security"
-  | "autonomous"
+  | "ops"
   | "system";
 
 export const CATEGORY_META: Record<AgentCategory, { label: string; color: string }> = {
@@ -68,7 +68,7 @@ export const CATEGORY_META: Record<AgentCategory, { label: string; color: string
   developer: { label: "Developer", color: "#a855f7" },
   channels: { label: "Channels", color: "#f97316" },
   security: { label: "Security", color: "#ef4444" },
-  autonomous: { label: "Autonomous", color: "#ef4444" },
+  ops: { label: "Ops", color: "#ef4444" },
   system: { label: "System", color: "#6b7280" },
 };
 
@@ -588,14 +588,14 @@ export const AGENTS: AgentConfig[] = [
     errorsTable: "security_errors",
   },
 
-  // ── Autonomous ──
+  // ── Ops ──
   {
     key: "watch",
     label: "Watch",
     subtitle: "Monitors all agent error tables and opens GitHub issues automatically.",
     settingsTable: "watch_settings",
     runField: "is_running",
-    category: "autonomous",
+    category: "ops",
     route: "/admin/watch",
     actions: [{ label: "Run Now", fn: "watch-monitor" }],
     statsQueries: [],
@@ -608,7 +608,7 @@ export const AGENTS: AgentConfig[] = [
     subtitle: "Reads agent performance data and opens GitHub PRs with prompt improvements.",
     settingsTable: "fix_settings",
     runField: "is_running",
-    category: "autonomous",
+    category: "ops",
     route: "/admin/fix",
     actions: [{ label: "Run Now", fn: "fix-analyse" }],
     statsQueries: [],
@@ -621,7 +621,7 @@ export const AGENTS: AgentConfig[] = [
     subtitle: "Writes and deploys new Lazy engines from a spec.",
     settingsTable: "build_settings",
     runField: "is_running",
-    category: "autonomous",
+    category: "ops",
     route: "/admin/build",
     actions: [{ label: "Build New Engine", fn: "build-engine" }],
     statsQueries: [],
@@ -634,7 +634,7 @@ export const AGENTS: AgentConfig[] = [
     subtitle: "Weekly competitive intelligence reports and content seeding.",
     settingsTable: "intel_settings",
     runField: "is_running",
-    category: "autonomous",
+    category: "ops",
     route: "/admin/intel",
     actions: [
       { label: "Run Now", fn: "intel-weekly" },
@@ -650,7 +650,7 @@ export const AGENTS: AgentConfig[] = [
     subtitle: "Autonomous agents that monitor, fix, and improve your stack via GitHub.",
     settingsTable: "agent_settings",
     runField: "is_running",
-    category: "autonomous",
+    category: "ops",
     route: "/admin/agents",
     actions: [],
     statsQueries: [],
@@ -665,7 +665,7 @@ export const ALWAYS_VISIBLE = ["installs", "settings", "overview"];
 export function getAgentsByCategory(installed: Set<string>): Record<AgentCategory, AgentConfig[]> {
   const result: Record<AgentCategory, AgentConfig[]> = {
     content: [], commerce: [], media: [], developer: [],
-    channels: [], security: [], autonomous: [], system: [],
+    channels: [], security: [], ops: [], system: [],
   };
   for (const a of AGENTS) {
     if (installed.has(a.key)) {
