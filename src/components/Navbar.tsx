@@ -146,8 +146,8 @@ function renderCategoryBlock(cat: Category, onClose: () => void) {
   );
 }
 
-/* ── Engines mega dropdown ── */
-function EnginesDropdown() {
+/* ── Agents mega dropdown ── */
+function AgentsDropdown() {
   const [open, setOpen] = useState(false);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const handleEnter = () => { if (timeoutRef.current) clearTimeout(timeoutRef.current); setOpen(true); };
@@ -161,28 +161,28 @@ function EnginesDropdown() {
         onClick={() => setOpen(!open)}
         className="font-body text-[13px] tracking-[0.1em] uppercase font-bold text-foreground/70 hover:text-foreground transition-colors flex items-center gap-1"
       >
-        Engines
+        Agents
         <ChevronDown size={11} className={`transition-transform ${open ? "rotate-180" : ""}`} />
       </button>
       {open && (
         <div className="absolute top-full left-1/2 -translate-x-1/2 mt-3 bg-card border border-border z-50 p-9" style={{ width: 1380 }}>
           <div className="mb-6 pb-5 border-b border-border/50">
-            <a href="/lazy-engines" onClick={close} className="font-body text-[12px] tracking-[0.12em] uppercase text-foreground/40 hover:text-foreground transition-colors font-semibold">
-              View all engines →
+            <a href="/lazy-agents" onClick={close} className="font-body text-[12px] tracking-[0.12em] uppercase text-foreground/40 hover:text-foreground transition-colors font-semibold">
+              View all agents →
             </a>
           </div>
           <div className="flex gap-12">
             <div className="flex-1 min-w-0">
-              {[engineCategories[0], engineCategories[2]].map(c => renderCategoryBlock(c, close))}
+              {[agentCategories[0], agentCategories[2]].map(c => renderCategoryBlock(c, close))}
             </div>
             <div className="flex-1 min-w-0">
-              {[engineCategories[1]].map(c => renderCategoryBlock(c, close))}
+              {[agentCategories[1]].map(c => renderCategoryBlock(c, close))}
             </div>
             <div className="flex-1 min-w-0">
-              {[engineCategories[3], engineCategories[4]].map(c => renderCategoryBlock(c, close))}
+              {[agentCategories[3], agentCategories[4]].map(c => renderCategoryBlock(c, close))}
             </div>
             <div className="flex-1 min-w-0">
-              {[engineCategories[5]].map(c => renderCategoryBlock(c, close))}
+              {[agentCategories[5], agentCategories[6]].map(c => renderCategoryBlock(c, close))}
             </div>
           </div>
           <div className="mt-6 pt-5 border-t border-border/50 flex items-center justify-end">
@@ -195,9 +195,6 @@ function EnginesDropdown() {
     </div>
   );
 }
-
-/* ── Agents dropdown ── */
-function AgentsDropdown() {
   const [open, setOpen] = useState(false);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const handleEnter = () => { if (timeoutRef.current) clearTimeout(timeoutRef.current); setOpen(true); };
