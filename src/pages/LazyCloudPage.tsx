@@ -1,56 +1,15 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { Check, ArrowRight, Cloud } from "lucide-react";
+import { Check, ArrowRight } from "lucide-react";
 import SEO from "@/components/SEO";
 import Navbar from "@/components/Navbar";
 import LazyFaqSection from "@/components/LazyFaqSection";
 import { useTrackEvent } from "@/hooks/useTrackEvent";
-import { supabase } from "@/integrations/supabase/client";
 
 const fadeUp = { hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0 } };
 
-/* ── Live Counter ── */
-function LiveCounter() {
-  const [agents, setAgents] = useState<number | null>(null);
-  const [sites, setSites] = useState<number | null>(null);
 
-  useEffect(() => {
-    (async () => {
-      try {
-        const { count } = await supabase.from("installs").select("*", { count: "exact", head: true });
-        if (count !== null) setAgents(count);
-
-        const { data } = await supabase.from("installs").select("site_url");
-        if (data) setSites(new Set(data.map(r => r.site_url)).size);
-      } catch {
-        // fallback
-      }
-    })();
-  }, []);
-
-  return (
-    <motion.div
-      initial="hidden" animate="visible" variants={fadeUp} transition={{ delay: 0.3 }}
-      className="mt-10 inline-flex items-center gap-6 border border-primary/30 bg-card px-6 py-4"
-    >
-      <div className="text-center">
-        <p className="font-display text-xl font-bold text-primary">
-          {agents !== null ? `${agents.toLocaleString()}` : "2,400+"}
-        </p>
-        <p className="font-body text-[11px] tracking-[0.12em] uppercase text-muted-foreground">agents running</p>
-      </div>
-      <div className="w-px h-8 bg-border" />
-      <div className="text-center">
-        <p className="font-display text-xl font-bold text-primary">
-          {sites !== null ? `${sites.toLocaleString()}` : "180+"}
-        </p>
-        <p className="font-body text-[11px] tracking-[0.12em] uppercase text-muted-foreground">sites</p>
-      </div>
-      <p className="text-[10px] text-muted-foreground/50 font-mono ml-2">Updated live</p>
-    </motion.div>
-  );
-}
 
 /* ── Value Cards ── */
 const valueCards = [
@@ -73,7 +32,7 @@ const plans = [
       "Daily backups — 7 day retention",
       "Lazy Watch monitoring",
       "Managed API keys: Perplexity & Firecrawl",
-      "Email support — 48hr response",
+      "Email support",
       "1 site",
     ],
     popular: false,
@@ -88,10 +47,10 @@ const plans = [
       "Everything in Starter, plus:",
       "All API keys included (Perplexity, Firecrawl, ElevenLabs, Resend, Twilio, Aikido)",
       "Daily backups — 30 day retention",
-      "Priority support — 12hr response",
+      "Priority support",
       "Dedicated Slack channel",
       "Performance analytics dashboard",
-      "48hr SLA on breaking Lovable changes",
+      "Fast response on breaking Lovable changes",
       "1 site",
     ],
     popular: true,
@@ -109,7 +68,7 @@ const plans = [
       "Client management portal",
       "Reseller model — set your own pricing",
       "Dedicated account manager",
-      "Custom SLA",
+      "Custom support agreement",
       "Onboarding call included",
     ],
     popular: false,
@@ -124,7 +83,7 @@ const comparisonRows = [
   { label: "API keys", self: "Individual accounts at full price", cloud: "Volume pricing included" },
   { label: "Monitoring", self: "You check logs yourself", cloud: "24/7 — fixes included" },
   { label: "Backups", self: "You set up yourself", cloud: "Daily automated, 30-day retention" },
-  { label: "Lovable breaking changes", self: "You find and fix", cloud: "48hr SLA — we handle it" },
+  { label: "Lovable breaking changes", self: "You find and fix", cloud: "We handle it" },
   { label: "Support", self: "Community Discord", cloud: "Dedicated Slack channel" },
   { label: "Time cost", self: "2–4 hours/month", cloud: "0 hours" },
 ];
@@ -142,7 +101,7 @@ const faqs = [
   { q: "What happens if I cancel?", a: "Your agents, settings, and data are exported to your own Supabase account automatically within 24 hours of cancellation. You return to self-hosted with everything intact. No data loss, no lock-in." },
   { q: "Do I still need a Lovable account?", a: "Yes. Lazy Cloud manages the autonomous agent layer — it requires Lovable and Lovable Cloud for the site itself. Think of Lazy Cloud as the operations layer that sits on top of Lovable." },
   { q: "What API keys are included?", a: "Starter includes Perplexity and Firecrawl. Growth and Agency include all integrations: Perplexity, Firecrawl, ElevenLabs, Resend, Twilio SMS, and Aikido. Stripe uses your own keys for payment compliance reasons." },
-  { q: "What happens when Lovable ships a breaking change?", a: "The Lazy Cloud team monitors Lovable updates continuously. When a breaking change affects agent functionality we update the affected prompts and auto-apply them to all Lazy Cloud sites within 48 hours on Growth and Agency plans." },
+  { q: "What happens when Lovable ships a breaking change?", a: "The Lazy Cloud team monitors Lovable updates continuously. When a breaking change affects agent functionality we update the affected prompts and auto-apply them to all Lazy Cloud sites." },
   { q: "Can I white-label Lazy Cloud for my clients?", a: "Yes on the Agency plan. Your clients see your brand name, your custom domain, and your support contact. LazyUnicorn is not visible to your clients." },
 ];
 
@@ -163,9 +122,7 @@ export default function LazyCloudPage() {
       <section className="relative px-6 md:px-12 pt-32 pb-24 md:pb-32" style={{ backgroundColor: "#0a0a08" }}>
         <div className="max-w-4xl mx-auto">
           <motion.div initial="hidden" animate="visible" variants={fadeUp} transition={{ duration: 0.7 }}>
-            <span className="inline-flex items-center gap-2 font-display text-[11px] tracking-[0.15em] uppercase font-bold px-3 py-1 border border-primary/30 text-primary mb-6">
-              <Cloud size={14} /> Built for Lovable ☁️
-            </span>
+            <p className="font-body text-sm text-muted-foreground mb-6">Made for Lovable</p>
             <h1 className="font-display text-foreground" style={{ fontSize: "clamp(2.5rem, 5vw, 4.5rem)", lineHeight: 0.95, letterSpacing: "-0.01em" }}>
               Your autonomous Lovable site.<br />Fully managed.
             </h1>
@@ -184,7 +141,7 @@ export default function LazyCloudPage() {
                 See What's Included
               </a>
             </div>
-            <LiveCounter />
+            
           </motion.div>
         </div>
       </section>
@@ -205,17 +162,6 @@ export default function LazyCloudPage() {
         </div>
       </section>
 
-      {/* ── Testimonial ── */}
-      <section className="max-w-3xl mx-auto px-6 md:px-12 pb-20">
-        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="border border-border bg-card p-8" style={{ borderLeft: "3px solid hsl(var(--primary))" }}>
-          <p className="font-body text-base italic text-foreground/70 leading-relaxed mb-4">
-            "Lazy Cloud saved me 3 hours a week I was spending on API key rotation, prompt updates, and debugging edge function errors. Now I just check the weekly digest."
-          </p>
-          <p className="font-body text-sm text-muted-foreground">— Founder, [redacted] — running 14 agents on Lazy Cloud Growth plan</p>
-          <p className="font-body text-[11px] text-muted-foreground/50 mt-2">Real quote from a Lazy Cloud customer. Name shared on request.</p>
-        </motion.div>
-      </section>
-
       {/* ── What if Lovable changes ── */}
       <section className="max-w-3xl mx-auto px-6 md:px-12 pb-20 md:pb-28">
         <motion.h2 initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="font-display text-2xl md:text-3xl font-bold tracking-tight mb-6">
@@ -223,13 +169,10 @@ export default function LazyCloudPage() {
         </motion.h2>
         <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} transition={{ delay: 0.1 }} className="space-y-4">
           <p className="font-body text-sm text-muted-foreground leading-relaxed">
-            Lovable ships updates regularly. Most are backwards-compatible and your agents keep running without any changes. When Lovable makes a breaking change — to edge function APIs, database schemas, or auth flows — the Lazy Cloud team reviews every affected agent and ships updated prompts within 48 hours. Your stack auto-applies them.
+            Lovable ships updates regularly. Most are backwards-compatible and your agents keep running without any changes. When Lovable makes a breaking change — to edge function APIs, database schemas, or auth flows — the Lazy Cloud team reviews every affected agent and ships updated prompts. Your stack auto-applies them.
           </p>
           <p className="font-body text-sm text-muted-foreground leading-relaxed">
             Self-hosted users have to identify the breaking change, find the affected prompts, update them manually, and re-paste into Lovable. On Lazy Cloud that entire process happens without you. This is the core reason Lazy Cloud exists.
-          </p>
-          <p className="font-body text-[11px] text-muted-foreground/50">
-            We have a 48-hour SLA on breaking Lovable changes for Growth and Agency plans. Starter plan is best-effort, typically same timeframe.
           </p>
         </motion.div>
       </section>
