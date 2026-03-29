@@ -279,12 +279,6 @@ const Navbar = ({ activePage = "home" }: NavbarProps) => {
             <span>Unicorn</span>
           </a>
           <div className="flex items-center gap-8 mx-auto">
-            <a href="/how-it-works" className="font-body text-[13px] tracking-[0.1em] uppercase font-bold text-foreground/70 hover:text-foreground transition-colors">
-              How It Works
-            </a>
-            <a href="/use-cases" className="font-body text-[13px] tracking-[0.1em] uppercase font-bold text-foreground/70 hover:text-foreground transition-colors">
-              Use Cases
-            </a>
             <a href="/lazy-launch" className="font-body text-[13px] tracking-[0.1em] uppercase font-bold text-foreground/70 hover:text-foreground transition-colors">
               Lazy Launch
             </a>
@@ -294,6 +288,12 @@ const Navbar = ({ activePage = "home" }: NavbarProps) => {
             <AgentsDropdown />
             <a href="/pricing" className="font-body text-[13px] tracking-[0.1em] uppercase font-bold text-foreground/70 hover:text-foreground transition-colors">
               Pricing
+            </a>
+            <a href="/how-it-works" className="font-body text-[13px] tracking-[0.1em] uppercase font-bold text-foreground/70 hover:text-foreground transition-colors">
+              How It Works
+            </a>
+            <a href="/use-cases" className="font-body text-[13px] tracking-[0.1em] uppercase font-bold text-foreground/70 hover:text-foreground transition-colors">
+              Use Cases
             </a>
             <SimpleDropdown
               label="Resources"
@@ -371,6 +371,8 @@ const Navbar = ({ activePage = "home" }: NavbarProps) => {
                 { label: "Lazy Launch", href: "/lazy-launch" },
                 { label: "Lazy Cloud", href: "/lazy-cloud" },
                 { label: "Pricing", href: "/pricing" },
+                { label: "How It Works", href: "/how-it-works" },
+                { label: "Use Cases", href: "/use-cases" },
                 { label: "Autonomy", href: "/autonomy" },
                 { label: "Blog", href: "/blog" },
                 { label: "Changelog", href: "/changelog" },
