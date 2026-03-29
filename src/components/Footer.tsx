@@ -64,11 +64,6 @@ const columns = [
       { name: "Lazy Telegram", href: "/lazy-telegram" },
       { name: "Lazy Supabase", href: "/lazy-supabase" },
       { name: "Lazy Security", href: "/lazy-security" },
-    ],
-  },
-  {
-    label: "Agents",
-    items: [
       { name: "Lazy Watch", href: "/lazy-watch" },
       { name: "Lazy Fix", href: "/lazy-fix" },
       { name: "Lazy Build", href: "/lazy-build" },
@@ -83,7 +78,7 @@ export default function Footer() {
   return (
     <footer className="border-t border-border bg-background">
       <div className="max-w-[1520px] mx-auto px-6 md:px-12 py-16">
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-9 gap-10 md:gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-8 gap-10 md:gap-6">
           {/* Brand */}
           <div className="col-span-2 sm:col-span-3 md:col-span-1">
             <Link to="/" className="inline-block">
