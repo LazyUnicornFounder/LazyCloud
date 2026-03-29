@@ -660,8 +660,8 @@ export const ALWAYS_VISIBLE = ["installs", "settings", "overview"];
 
 export function getAgentsByCategory(installed: Set<string>): Record<AgentCategory, AgentConfig[]> {
   const result: Record<AgentCategory, AgentConfig[]> = {
-    content: [], commerce: [], media: [], developer: [],
-    channels: [], security: [], ops: [], system: [],
+    content: [], commerce: [], media: [], dev: [],
+    ops: [], system: [],
   };
   for (const a of AGENTS) {
     if (installed.has(a.key)) {
