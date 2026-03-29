@@ -572,7 +572,7 @@ export default function LazyRunPage() {
           <motion.div variants={fadeUp} initial="hidden" animate="visible" transition={{ duration: 0.5 }}>
             <div className="flex items-center gap-3 mb-6">
               <span className="inline-block font-display text-[14px] font-bold tracking-[0.2em] uppercase px-3 py-1 border border-foreground/20 text-foreground/50">
-                INCLUDES ALL 36 AGENTS
+                INCLUDES ALL 35 AGENTS
               </span>
             </div>
           </motion.div>
