@@ -14,7 +14,7 @@ const fadeUp = { hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0 } };
 
 const SETUP_PROMPT = `[Lazy Crawl Prompt — v0.0.5 — LazyUnicorn.ai]
 
-Add a complete autonomous web intelligence engine called Lazy Crawl to this project. It uses the Firecrawl API to monitor competitor websites, extract trending topics, discover keyword opportunities, find leads from public directories, and feed real current data into your content agents — all automatically.
+Add a complete autonomous web intelligence agents? called Lazy Crawl to this project. It uses the Firecrawl API to monitor competitor websites, extract trending topics, discover keyword opportunities, find leads from public directories, and feed real current data into your content agents — all automatically.
 
 ---
 
@@ -27,7 +27,7 @@ crawl_targets: id (uuid, primary key, default gen_random_uuid()), url (text), cr
 
 crawl_results: id (uuid, primary key, default gen_random_uuid()), target_id (uuid, references crawl_targets), url (text), content (text), extracted_data (jsonb), crawled_at (timestamptz, default now())
 
-crawl_intel: id (uuid, primary key, default gen_random_uuid()), intel_type (text), title (text), summary (text), source_url (text), relevance_score (numeric), fed_to_engine (text), created_at (timestamptz, default now())
+crawl_intel: id (uuid, primary key, default gen_random_uuid()), intel_type (text), title (text), summary (text), source_url (text), relevance_score (numeric), fed_to_agents? (text), created_at (timestamptz, default now())
 
 crawl_leads: id (uuid, primary key, default gen_random_uuid()), name (text), url (text), source (text), extracted_data (jsonb), status (text, default 'new'), created_at (timestamptz, default now())
 

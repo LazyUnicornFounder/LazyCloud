@@ -66,7 +66,7 @@ const AdminOpsAgent = () => {
             <div className="text-center">
               <h3 className="font-display text-lg font-bold text-foreground mb-1">Ops Agent</h3>
               <p className="font-body text-sm text-muted-foreground max-w-sm">
-                I monitor and manage your Lazy Blogger, SEO, and GEO engines. Ask me anything or try a suggestion below.
+                I monitor and manage your Lazy Blogger, SEO, and GEO agents. Ask me anything or try a suggestion below.
               </p>
             </div>
             <div className="flex flex-wrap gap-2 justify-center max-w-lg">

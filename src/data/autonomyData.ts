@@ -35,25 +35,25 @@ export interface EngineData {
 
 export interface EngineCategory {
   label: string;
-  engines: EngineData[];
+  agents?: EngineData[];
 }
 
 export const ENGINE_CATEGORIES: EngineCategory[] = [
   {
     label: "Lazy Unicorn",
-    engines: [
+    agents?: [
       {
         name: "Lazy Run",
-        description: "Installs all twenty-five engines in one prompt",
+        description: "Installs all twenty-five agents? in one prompt",
 
         currentLevel: 4,
         link: "/lazy-run",
         levels: [
           "You install each tool manually. Days per integration.",
-          "Copy-paste guides speed things up. Still hours per engine.",
-          "You batch-install a few engines at a time.",
-          "One prompt. Twenty-three engines. Everything wired in minutes.",
-          "It detects what you're missing and suggests engines automatically. Coming soon.",
+          "Copy-paste guides speed things up. Still hours per agents?.",
+          "You batch-install a few agents? at a time.",
+          "One prompt. Twenty-three agents. Everything wired in minutes.",
+          "It detects what you're missing and suggests agents? automatically. Coming soon.",
           "It benchmarks your stack against similar businesses and optimises. Coming soon.",
         ],
       },
@@ -75,7 +75,7 @@ export const ENGINE_CATEGORIES: EngineCategory[] = [
   },
   {
     label: "Lazy Content",
-    engines: [
+    agents?: [
       {
         name: "Lazy Blogger",
         description: "Writes and publishes blog posts autonomously",
@@ -106,16 +106,16 @@ export const ENGINE_CATEGORIES: EngineCategory[] = [
       },
       {
         name: "Lazy GEO",
-        description: "Gets your brand cited by AI engines",
+        description: "Gets your brand cited by AI agents?",
         currentLevel: 4,
         link: "/lazy-geo",
         levels: [
-          "You guess what AI engines say about you.",
+          "You guess what AI agents? say about you.",
           "AI helps write citation-ready content. You still publish.",
           "You batch-create GEO content on a schedule.",
           "New AI queries discovered. Content commissioned automatically.",
           "Your brand appears in ChatGPT and Perplexity answers. You wrote nothing.",
-          "It adjusts content format per AI engine. Coming soon.",
+          "It adjusts content format per AI agents?. Coming soon.",
         ],
       },
       {
@@ -164,7 +164,7 @@ export const ENGINE_CATEGORIES: EngineCategory[] = [
   },
   {
     label: "Lazy Commerce",
-    engines: [
+    agents?: [
       {
         name: "Lazy Store",
         description: "Discovers products, writes listings, and optimises conversions",
@@ -225,7 +225,7 @@ export const ENGINE_CATEGORIES: EngineCategory[] = [
   },
   {
     label: "Lazy Media",
-    engines: [
+    agents?: [
       {
         name: "Lazy Voice",
         description: "Narrates every post into a podcast episode automatically",
@@ -272,7 +272,7 @@ export const ENGINE_CATEGORIES: EngineCategory[] = [
   },
   {
     label: "Lazy Dev",
-    engines: [
+    agents?: [
       {
         name: "Lazy GitHub",
         description: "Turns GitHub commits into changelogs and developer content",
@@ -361,7 +361,7 @@ export const ENGINE_CATEGORIES: EngineCategory[] = [
   },
   {
     label: "Lazy Ops",
-    engines: [
+    agents?: [
       {
         name: "Lazy Alert",
         description: "Every agent event reported to Slack in real time",
@@ -378,14 +378,14 @@ export const ENGINE_CATEGORIES: EngineCategory[] = [
       },
       {
         name: "Lazy Telegram",
-        description: "Real-time engine reporting via Telegram bot",
+        description: "Real-time agents? reporting via Telegram bot",
         currentLevel: 3,
         link: "/lazy-telegram",
         levels: [
           "You check everything manually.",
           "Email notifications you mostly ignore.",
           "A few automations. Inconsistent.",
-          "Every event hits your Telegram. Bot commands let you control engines without leaving the chat.",
+          "Every event hits your Telegram. Bot commands let you control agents? without leaving the chat.",
           "It surfaces only what needs your attention. Coming soon.",
           "It alerts you before problems compound. Coming soon.",
         ],
@@ -422,7 +422,7 @@ export const ENGINE_CATEGORIES: EngineCategory[] = [
   },
   {
     label: "Lazy Agents",
-    engines: [
+    agents?: [
       {
         name: "Lazy Watch",
         description: "Monitors every agent error table hourly and opens GitHub issues",
@@ -433,7 +433,7 @@ export const ENGINE_CATEGORIES: EngineCategory[] = [
           "Email alerts when things break. You still triage and diagnose.",
           "Scheduled error checks. You still open issues manually.",
           "Every hour, errors are scanned, diagnosed, and GitHub issues opened automatically.",
-          "It correlates errors across engines to find systemic issues. Coming soon.",
+          "It correlates errors across agents? to find systemic issues. Coming soon.",
           "It predicts failures before they happen based on patterns. Coming soon.",
         ],
       },
@@ -453,16 +453,16 @@ export const ENGINE_CATEGORIES: EngineCategory[] = [
       },
       {
         name: "Lazy Build",
-        description: "Writes complete engine prompts from a one-paragraph brief",
+        description: "Writes complete agents? prompts from a one-paragraph brief",
         currentLevel: 4,
         link: "/lazy-build",
         levels: [
-          "You write every agent prompt from scratch. Days per engine.",
+          "You write every agent prompt from scratch. Days per agents?.",
           "Templates speed things up. You still customise everything.",
-          "You maintain a prompt library. Still hours per new engine.",
-          "Describe what you need in a paragraph. A complete engine prompt is generated.",
+          "You maintain a prompt library. Still hours per new agents?.",
+          "Describe what you need in a paragraph. A complete agents? prompt is generated.",
           "It generates database schemas, edge functions, and UI in one go.",
-          "It learns from your existing engines to match your conventions. Coming soon.",
+          "It learns from your existing agents? to match your conventions. Coming soon.",
         ],
       },
       {

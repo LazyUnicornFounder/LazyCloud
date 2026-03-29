@@ -15,22 +15,22 @@ const fadeUp = { hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0 } };
 
 const SETUP_PROMPT = `[Lazy Perplexity Prompt — v0.0.5 — LazyUnicorn.ai]
 
-Add a complete autonomous Perplexity integration called Lazy Perplexity to this project. It uses the Perplexity API to research current topics with real web citations, feed fresh intelligence into Lazy Blogger and Lazy SEO, test brand citation rates with real AI queries, and generate citation-rich content that is more likely to be referenced by AI engines — all automatically.
+Add a complete autonomous Perplexity integration called Lazy Perplexity to this project. It uses the Perplexity API to research current topics with real web citations, feed fresh intelligence into Lazy Blogger and Lazy SEO, test brand citation rates with real AI queries, and generate citation-rich content that is more likely to be referenced by AI agents — all automatically.
 
 ---
 
 MARKETING PAGE PROMPT — paste into LazyUnicorn project:
 
-Add a new page at /lazy-perplexity. It is a marketing and landing page for a product called Lazy Perplexity — an autonomous research and citation engine that uses the Perplexity API to feed real-time web intelligence into your Lazy content agents and test your brand's AI visibility.
+Add a new page at /lazy-perplexity. It is a marketing and landing page for a product called Lazy Perplexity — an autonomous research and citation agents? that uses the Perplexity API to feed real-time web intelligence into your Lazy content agents and test your brand's AI visibility.
 
 Hero section
-Headline: 'Real answers. Real citations. Real content. Powered by Perplexity.' Subheading: 'Lazy Perplexity uses the Perplexity API to research your niche with live web data, feed current intelligence into your blog and SEO engines, and test whether your brand appears when people ask AI questions about your industry.' Primary button: Copy the Lovable Prompt. Secondary button: See How It Works. Badge: Powered by Perplexity.
+Headline: 'Real answers. Real citations. Real content. Powered by Perplexity.' Subheading: 'Lazy Perplexity uses the Perplexity API to research your niche with live web data, feed current intelligence into your blog and SEO agents, and test whether your brand appears when people ask AI questions about your industry.' Primary button: Copy the Lovable Prompt. Secondary button: See How It Works. Badge: Powered by Perplexity.
 
 How it works section
 Four steps: 1. Copy the setup prompt. 2. Paste into your Lovable project. 3. Add your Perplexity API key. 4. Real-time research flows into your content agents automatically.
 
 What it does section
-Eight cards: 1. Real-time research — uses Perplexity to research your niche with live web citations so your blog posts are based on what is actually happening today. 2. Citation-rich content — every AI-generated blog post includes real Perplexity-sourced citations making it more trustworthy and more likely to be cited by other AI engines. 3. Brand visibility testing — asks Perplexity real questions in your niche and checks whether your brand is cited in the answers. 4. Competitor intelligence — asks Perplexity about competitors and extracts what it says about them versus you. 5. Trend discovery — queries Perplexity for current trends in your niche and feeds them into the Lazy SEO keyword queue. 6. Question research — discovers the real questions people are asking AI engines and feeds them into the Lazy GEO query queue. 7. Citation monitoring — tracks your Perplexity citation rate over time and alerts you when it changes significantly. 8. Content improvement — rewrites underperforming posts using Perplexity research to add current citations and improve AI visibility.
+Eight cards: 1. Real-time research — uses Perplexity to research your niche with live web citations so your blog posts are based on what is actually happening today. 2. Citation-rich content — every AI-generated blog post includes real Perplexity-sourced citations making it more trustworthy and more likely to be cited by other AI agents. 3. Brand visibility testing — asks Perplexity real questions in your niche and checks whether your brand is cited in the answers. 4. Competitor intelligence — asks Perplexity about competitors and extracts what it says about them versus you. 5. Trend discovery — queries Perplexity for current trends in your niche and feeds them into the Lazy SEO keyword queue. 6. Question research — discovers the real questions people are asking AI agents? and feeds them into the Lazy GEO query queue. 7. Citation monitoring — tracks your Perplexity citation rate over time and alerts you when it changes significantly. 8. Content improvement — rewrites underperforming posts using Perplexity research to add current citations and improve AI visibility.
 
 Pricing section
 Free — self-hosted, bring your own Perplexity API key. Perplexity API starts at $5 for 5 million tokens. Pro at $29/month — coming soon, hosted version, daily citation monitoring, competitive citation tracking.
@@ -44,7 +44,7 @@ Navigation: Add Lazy Perplexity to the LazyUnicorn navigation.
 
 SETUP PROMPT — paste into user's Lovable project:
 
-Add a complete autonomous Perplexity research and citation engine called Lazy Perplexity to this project. It uses the Perplexity API to research topics with live web data, feed intelligence into Lazy Blogger and Lazy SEO, test brand citation rates, and generate citation-rich content automatically.
+Add a complete autonomous Perplexity research and citation agents? called Lazy Perplexity to this project. It uses the Perplexity API to research topics with live web data, feed intelligence into Lazy Blogger and Lazy SEO, test brand citation rates, and generate citation-rich content automatically.
 
 1. Database
 Create these Supabase tables with RLS enabled:
@@ -103,11 +103,11 @@ Research call 4 — Topic briefs:
 For each topic in research_topics query: 'Provide a comprehensive current briefing on [topic] in the context of [niche]. Include recent developments, key statistics, and what experts are saying.'
 Insert into perplexity_research with research_type topic-brief. Mark the research as unprocessed for crawl-publish to pick up.
 
-After all research calls trigger perplexity-feed-engines.
+After all research calls trigger perplexity-feed-agents.
 Log errors to perplexity_errors with function_name perplexity-research.
 
-4. Feed engines edge function
-Create a Supabase edge function called perplexity-feed-engines handling POST requests.
+4. Feed agents? edge function
+Create a Supabase edge function called perplexity-feed-agents? handling POST requests.
 
 1. Read perplexity_settings.
 2. Query perplexity_research where processed is false.
@@ -116,7 +116,7 @@ Create a Supabase edge function called perplexity-feed-engines handling POST req
 Insert into perplexity_content and also into blog_posts if that table exists. Set citations_count to the number of citations included.
 4. For each topic-brief research: insert the topic as a keyword into seo_keywords if that table exists with priority 8.
 5. Mark each processed research row as processed true.
-Log errors to perplexity_errors with function_name perplexity-feed-engines.
+Log errors to perplexity_errors with function_name perplexity-feed-agents.
 
 5. Brand citation testing edge function
 Create a Supabase edge function called perplexity-test-citations. Cron: every Sunday at 10am UTC — 0 10 * * 0
@@ -128,7 +128,7 @@ Create a Supabase edge function called perplexity-test-citations. Cron: every Su
    Extract the citations array and check if site_url appears in any citation.
 3. Insert into perplexity_citations: query, brand_mentioned, mention_context (surrounding sentence if brand mentioned), confidence, sources_cited as jsonb.
 4. Update brand_cited in geo_queries table if it exists based on brand_mentioned.
-5. If Lazy Alert is installed and brand citation rate changed by more than 10 percent versus last week call alert-send with engine Lazy Perplexity and the citation rate change.
+5. If Lazy Alert is installed and brand citation rate changed by more than 10 percent versus last week call alert-send with agents? Lazy Perplexity and the citation rate change.
 Log errors to perplexity_errors with function_name perplexity-test-citations.
 
 6. Content improvement edge function
@@ -151,7 +151,7 @@ At bottom of every page: 🦄 Powered by Lazy Perplexity — autonomous AI resea
 
 8. Admin
 
-Do not build a standalone dashboard page for this engine. The dashboard lives at /admin/perplexity as part of the unified LazyUnicorn admin panel, which is built separately using the LazyUnicorn Admin Dashboard prompt.
+Do not build a standalone dashboard page for this agents?. The dashboard lives at /admin/perplexity as part of the unified LazyUnicorn admin panel, which is built separately using the LazyUnicorn Admin Dashboard prompt.
 
 If /admin does not yet exist on this project add a simple placeholder at /admin with the text: "Install the LazyUnicorn Admin Dashboard to manage all agents in one place." and a link to /lazy-perplexity-setup.
 
@@ -221,7 +221,7 @@ const LazyPerplexityPage = () => {
                 <ServiceBadge />
               </div>
               <p className="mt-6 font-body text-base md:text-lg text-foreground/70 max-w-xl leading-relaxed">
-                Lazy Perplexity uses the Perplexity API to research your niche with live web data, feed current intelligence into your blog and SEO engines, and test whether your brand appears when people ask AI questions about your industry.
+                Lazy Perplexity uses the Perplexity API to research your niche with live web data, feed current intelligence into your blog and SEO agents, and test whether your brand appears when people ask AI questions about your industry.
               </p>
               <div className="flex flex-col sm:flex-row items-start gap-4 mt-10">
                 <CopyPromptButton text={promptText} onCopy={handlePromptCopy} />
@@ -259,7 +259,7 @@ const LazyPerplexityPage = () => {
               { icon: Eye, title: "Brand Visibility Testing", desc: "Asks Perplexity real questions and checks if your brand is cited." },
               { icon: Users, title: "Competitor Intelligence", desc: "Extracts what AI says about competitors versus you." },
               { icon: TrendingUp, title: "Trend Discovery", desc: "Queries Perplexity for current trends and feeds them into SEO keywords." },
-              { icon: HelpCircle, title: "Question Research", desc: "Discovers real questions people ask AI engines for your GEO queue." },
+              { icon: HelpCircle, title: "Question Research", desc: "Discovers real questions people ask AI agents? for your GEO queue." },
               { icon: BarChart3, title: "Citation Monitoring", desc: "Tracks your Perplexity citation rate over time with alerts on changes." },
               { icon: Zap, title: "Content Improvement", desc: "Rewrites underperforming posts using fresh Perplexity research." },
             ].map((item, i) => (
