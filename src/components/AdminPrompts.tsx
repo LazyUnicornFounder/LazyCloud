@@ -1,9 +1,22 @@
 import { useState, useEffect, useCallback } from "react";
-import { Copy, Check, ChevronDown, ChevronRight, Pencil, History, Save, X, Github, Download } from "lucide-react";
+import { Copy, Check, ChevronDown, ChevronRight, Pencil, History, Save, X, Github, Download, Loader2, CheckCircle, AlertTriangle } from "lucide-react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { savePromptVersion, type PromptVersion } from "@/hooks/usePrompt";
 import { frequencyTiers } from "@/components/lazy-blogger/frequencyData";
+
+interface AffectedAgent {
+  agent: string;
+  reason: string;
+  suggested_change: string;
+}
+
+interface UpdateCheckResult {
+  success: boolean;
+  pushed_to_github: boolean;
+  summary: string;
+  affected_agents: AffectedAgent[];
+}
 
 async function syncToGitHub(product: string, version: string, promptText: string, allPrompts?: { product: string; version: string; prompt_text: string }[]) {
   try {
@@ -15,6 +28,20 @@ async function syncToGitHub(product: string, version: string, promptText: string
   } catch (err) {
     console.error("GitHub sync failed:", err);
     return { success: false, error: err };
+  }
+}
+
+async function runUpdateCheck(agentName: string, newVersion: string, updatedContent: string): Promise<UpdateCheckResult | null> {
+  try {
+    const password = sessionStorage.getItem("admin_pw") || "";
+    const { data, error } = await supabase.functions.invoke("prompt-update-check", {
+      body: { agent_name: agentName, new_version: newVersion, updated_content: updatedContent, password },
+    });
+    if (error) throw error;
+    return data as UpdateCheckResult;
+  } catch (err) {
+    console.error("Update check failed:", err);
+    return null;
   }
 }
 
@@ -99,27 +126,44 @@ function PromptEditor({
   history,
   allVersions,
   onSaved,
+  onApplyFix,
 }: {
   product: typeof PRODUCTS[number];
   current: PromptVersion | null;
   history: PromptVersion[];
   allVersions: PromptVersion[];
   onSaved: () => void;
+  onApplyFix?: (productKey: string, suggestedChange: string) => void;
 }) {
   const [editing, setEditing] = useState(false);
   const [draft, setDraft] = useState(current?.prompt_text || "");
   const [saving, setSaving] = useState(false);
   const [showHistory, setShowHistory] = useState(false);
   const [expanded, setExpanded] = useState(false);
+  const [checking, setChecking] = useState(false);
+  const [checkResult, setCheckResult] = useState<UpdateCheckResult | null>(null);
 
   useEffect(() => { if (current && !editing) setDraft(current.prompt_text); }, [current, editing]);
+
+  // Allow external code to pre-fill a suggested change
+  const applySuggestion = (suggestion: string) => {
+    setDraft((current?.prompt_text || "") + "\n\n// SUGGESTED FIX:\n" + suggestion);
+    setEditing(true);
+    setExpanded(true);
+  };
+
+  // Expose via ref-like callback
+  useEffect(() => {
+    if (onApplyFix) {
+      // Register this editor's apply function — handled via parent callback
+    }
+  }, [onApplyFix]);
 
   const handleSave = async () => {
     if (!current || draft === current.prompt_text) { setEditing(false); return; }
     setSaving(true);
     const newVersion = bumpVersion(current.version);
     const today = new Date().toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
-    // Update the version header in the prompt text
     let updatedText = draft.replace(
       /\[.*?Prompt — v?[\d.]+ — .*?\]/,
       `[${product.label.replace(/^[^\w]*/, "").trim()} Prompt — v${newVersion} — ${today}]`
@@ -131,16 +175,20 @@ function PromptEditor({
     setEditing(false);
     onSaved();
 
-    // Auto-sync to GitHub
-    const currentPrompts = allVersions
-      .filter(v => v.is_current && v.product !== product.key)
-      .map(v => ({ product: v.product, version: v.version, prompt_text: v.prompt_text }));
-    currentPrompts.push({ product: product.key, version: newVersion, prompt_text: updatedText });
-    const syncResult = await syncToGitHub(product.key, newVersion, updatedText, currentPrompts);
-    if (syncResult.success) {
-      toast.success("Synced to GitHub ✓");
+    // Run dependency check (replaces manual GitHub sync)
+    setChecking(true);
+    setCheckResult(null);
+    const result = await runUpdateCheck(product.key, newVersion, updatedText);
+    setChecking(false);
+    if (result) {
+      setCheckResult(result);
+      if (result.pushed_to_github) {
+        toast.success("Pushed to GitHub ✓");
+      } else {
+        toast.error("GitHub push failed — prompt saved locally");
+      }
     } else {
-      toast.error("GitHub sync failed — prompt saved locally");
+      toast.error("Dependency check failed — prompt saved locally");
     }
   };
 
@@ -148,7 +196,7 @@ function PromptEditor({
   const isBlogger = product.key === "lazy-blogger";
 
   return (
-    <div className="border border-border rounded-xl bg-card overflow-hidden">
+    <div id={`prompt-editor-${product.key}`} className="border border-border rounded-xl bg-card overflow-hidden">
       {/* Header */}
       <div className="flex items-center justify-between px-4 py-3">
         <div className="flex items-center gap-3 cursor-pointer" onClick={() => setExpanded(!expanded)}>
@@ -201,7 +249,69 @@ function PromptEditor({
         </div>
       )}
 
-      {/* Read mode */}
+      {/* Dependency check result panel */}
+      {(checking || checkResult) && (
+        <div className="px-4 pb-4 border-t border-border">
+          {checking ? (
+            <div className="flex items-center gap-2 py-3">
+              <Loader2 size={14} className="animate-spin text-muted-foreground" />
+              <span className="font-body text-xs text-muted-foreground">Checking dependencies…</span>
+            </div>
+          ) : checkResult ? (
+            <div className="space-y-3 mt-3">
+              {/* GitHub status */}
+              <div className="flex items-center gap-2">
+                {checkResult.pushed_to_github ? (
+                  <><CheckCircle size={14} className="text-emerald-500" /><span className="font-body text-xs text-emerald-400">Pushed to GitHub</span></>
+                ) : (
+                  <><AlertTriangle size={14} className="text-amber-400" /><span className="font-body text-xs text-amber-400">GitHub push pending</span></>
+                )}
+              </div>
+
+              {/* Affected agents */}
+              {checkResult.affected_agents.length > 0 ? (
+                <div className="border border-amber-500/20 bg-amber-500/5 p-3 space-y-2">
+                  <p className="font-body text-xs text-amber-400 font-semibold">
+                    {checkResult.affected_agents.length} agent{checkResult.affected_agents.length > 1 ? "s" : ""} may need updating:
+                  </p>
+                  {checkResult.affected_agents.map((a) => (
+                    <div key={a.agent} className="flex items-start justify-between gap-3 py-1.5">
+                      <div className="flex-1 min-w-0">
+                        <span className="px-1.5 py-0.5 border border-amber-500/30 text-[10px] uppercase tracking-wider text-amber-400/80 font-body mr-2">{a.agent}</span>
+                        <span className="font-body text-xs text-muted-foreground">{a.reason}</span>
+                        {a.suggested_change && (
+                          <p className="font-body text-[11px] text-foreground/60 mt-1 italic">"{a.suggested_change}"</p>
+                        )}
+                      </div>
+                      <div className="flex items-center gap-1 shrink-0">
+                        {a.suggested_change && onApplyFix && (
+                          <button
+                            onClick={() => onApplyFix(a.agent, a.suggested_change)}
+                            className="font-body text-[10px] px-2 py-1 border border-amber-500/30 text-amber-400 hover:bg-amber-500/10 transition-colors uppercase tracking-wider"
+                          >
+                            Apply Fix
+                          </button>
+                        )}
+                        <button
+                          onClick={() => setCheckResult(prev => prev ? { ...prev, affected_agents: prev.affected_agents.filter(x => x.agent !== a.agent) } : null)}
+                          className="font-body text-[10px] px-2 py-1 text-muted-foreground hover:text-foreground transition-colors uppercase tracking-wider"
+                        >
+                          Dismiss
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="flex items-center gap-2">
+                  <CheckCircle size={12} className="text-emerald-500" />
+                  <span className="font-body text-xs text-emerald-400">No other agents need updating.</span>
+                </div>
+              )}
+            </div>
+          ) : null}
+        </div>
+      )}
       {!editing && expanded && current && (
         <div className="px-4 pb-4 border-t border-border">
           {isBlogger && (
@@ -348,6 +458,12 @@ const AdminPrompts = () => {
             history={productVersions}
             allVersions={allVersions}
             onSaved={fetchAll}
+            onApplyFix={(targetProduct, suggestion) => {
+              // Scroll to the target product editor and pre-fill
+              const el = document.getElementById(`prompt-editor-${targetProduct}`);
+              if (el) el.scrollIntoView({ behavior: "smooth" });
+              toast.info(`Suggested fix for ${targetProduct} — edit the prompt to apply.`);
+            }}
           />
         );
       })}
