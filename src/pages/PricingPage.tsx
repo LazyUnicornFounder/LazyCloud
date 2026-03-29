@@ -27,6 +27,11 @@ const categories: Category[] = [
     label: "Unicorn",
     products: [
       {
+        name: "Lazy Launch", tagline: "Autonomous project launcher", link: "/lazy-launch",
+        free: ["Setup wizard included", "Business info & style selection", "Choose from all 35 agents", "Custom section builder", "One-click prompt generation"],
+        pro: { price: "$49", features: ["Hosted version — zero config", "Template library", "Multi-project support", "Priority AI model access", "Custom branding"], comingSoon: true },
+      },
+      {
         name: "Lazy Run", tagline: "Autonomous operations layer", link: "/lazy-run",
         free: ["Setup prompt included", "All 25 agent in one prompt", "Unified admin dashboard", "Master orchestrator", "Weekly AI performance report"],
         pro: { price: "$99", features: ["Hosted version — zero config", "Auto-scaling agent execution", "Priority AI model access", "Dedicated support", "Custom agent configuration"], comingSoon: true },
