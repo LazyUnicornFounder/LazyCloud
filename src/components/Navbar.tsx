@@ -42,8 +42,8 @@ const icons = {
 type CategoryItem = { label: string; href: string; tagline: string; icon: ReactNode };
 type Category = { label: string; items: CategoryItem[] };
 
-/* ── Engine categories ── */
-const engineCategories: Category[] = [
+/* ── Agent categories (everything is an agent now) ── */
+const agentCategories: Category[] = [
   {
     label: "Lazy Unicorn",
     items: [
@@ -101,17 +101,18 @@ const engineCategories: Category[] = [
       { label: "Lazy Security", href: "/lazy-security", tagline: "Autonomous pentesting", icon: icons.security },
     ],
   },
-];
-
-/* ── Agent categories ── */
-const agentItems: CategoryItem[] = [
-  { label: "Lazy Watch", href: "/lazy-watch", tagline: "Autonomous error monitoring", icon: icons.security },
-  { label: "Lazy Fix", href: "/lazy-fix", tagline: "Autonomous prompt improvement", icon: icons.code },
-  { label: "Lazy Build", href: "/lazy-build", tagline: "Autonomous engine writing", icon: icons.admin },
-  { label: "Lazy Intel", href: "/lazy-intel", tagline: "Autonomous content strategy", icon: icons.seo },
-  { label: "Lazy Repurpose", href: "/lazy-repurpose", tagline: "Autonomous content repurposing", icon: icons.contentful },
-  { label: "Lazy Trend", href: "/lazy-trend", tagline: "Autonomous trend detection", icon: icons.perplexity },
-  { label: "Lazy Churn", href: "/lazy-churn", tagline: "Autonomous churn prevention", icon: icons.pay },
+  {
+    label: "Lazy Autonomous",
+    items: [
+      { label: "Lazy Watch", href: "/lazy-watch", tagline: "Autonomous error monitoring", icon: icons.security },
+      { label: "Lazy Fix", href: "/lazy-fix", tagline: "Autonomous prompt improvement", icon: icons.code },
+      { label: "Lazy Build", href: "/lazy-build", tagline: "Autonomous agent writing", icon: icons.admin },
+      { label: "Lazy Intel", href: "/lazy-intel", tagline: "Autonomous content strategy", icon: icons.seo },
+      { label: "Lazy Repurpose", href: "/lazy-repurpose", tagline: "Autonomous content repurposing", icon: icons.contentful },
+      { label: "Lazy Trend", href: "/lazy-trend", tagline: "Autonomous trend detection", icon: icons.perplexity },
+      { label: "Lazy Churn", href: "/lazy-churn", tagline: "Autonomous churn prevention", icon: icons.pay },
+    ],
+  },
 ];
 
 /* ── Shared dropdown category renderer ── */
