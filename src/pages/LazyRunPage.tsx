@@ -574,15 +574,15 @@ export default function LazyRunPage() {
             </div>
           </motion.div>
           <AutopilotHeadline product="lazy-run" />
-          <div className="flex items-center gap-3 mt-4 mb-4">
-                <span className="font-display text-[11px] tracking-[0.15em] uppercase font-bold px-3 py-1 border border-[#c8a961]/30 text-[#c8a961]">Lazy Unicorn</span>
-              </div>
           <motion.h1
             variants={fadeUp} initial="hidden" animate="visible" transition={{ delay: 0.1 }}
             className="font-display text-4xl md:text-6xl font-bold tracking-tight leading-[1.1] mb-6"
           >
             <span>All 35 agents. One prompt.</span>
           </motion.h1>
+          <div className="flex items-center gap-3 mt-4 mb-4">
+            <span className="font-display text-[11px] tracking-[0.15em] uppercase font-bold px-3 py-1 border border-[#c8a961]/30 text-[#c8a961]">Lazy Unicorn</span>
+          </div>
           <motion.p
             variants={fadeUp} initial="hidden" animate="visible" transition={{ delay: 0.2 }}
             className="font-body text-base md:text-lg text-foreground/70 max-w-2xl leading-relaxed mb-10"
