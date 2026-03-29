@@ -75,12 +75,12 @@ export default function LazyBuildPage() {
               <h1 style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(2.5rem, 5vw, 4.5rem)", color: "#f0ead6", lineHeight: 0.95, letterSpacing: "-0.01em" }}>
                 Lazy Build
               </h1>
+              <div className="flex items-center gap-3 mt-4 mb-4">
+                <span className="font-display text-[11px] tracking-[0.15em] uppercase font-bold px-3 py-1 border border-[#c8a961]/30 text-[#c8a961]">Lazy Ops</span>
+              </div>
               <p className="mt-6 font-body text-base md:text-lg text-foreground/70 max-w-xl leading-relaxed">
                 Give Lazy Build an agent name, integration, tagline, and one paragraph. It reads three of your existing prompt files to learn your structure, follows your CLAUDE.md rules, writes a complete new Lazy agent prompt, and opens a draft GitHub PR — tagged @claude for a compliance review before you merge.
               </p>
-              <div className="flex items-center gap-3 mt-4 mb-8">
-                <span className="font-display text-[11px] tracking-[0.15em] uppercase font-bold px-3 py-1 border border-[#c8a961]/30 text-[#c8a961]">Lazy Ops</span>
-              </div>
               <div className="flex flex-col sm:flex-row items-start gap-4">
                 <CopyPromptButton text={promptText} />
                 <button onClick={() => document.getElementById("how-it-works")?.scrollIntoView({ behavior: "smooth" })} className="inline-flex items-center gap-2 font-body text-[13px] tracking-[0.15em] uppercase px-6 py-2.5 font-semibold border border-border text-foreground/50 hover:text-foreground transition-colors">
