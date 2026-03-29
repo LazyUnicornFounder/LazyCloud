@@ -1,20 +1,34 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import { Loader2, Play, CheckCircle, AlertTriangle, ChevronDown, ChevronRight, Search } from "lucide-react";
+import { Loader2, Play, CheckCircle, AlertTriangle, ChevronDown, ChevronRight, Search, Settings, XCircle, ArrowRight } from "lucide-react";
 import { useAdminContext } from "./AdminLayout";
-import { AGENTS, type AgentConfig } from "./agentRegistry";
-import { useParams } from "react-router-dom";
+import { AGENTS } from "./agentRegistry";
+import { useParams, Link } from "react-router-dom";
+
+/* ── Error diagnosis helper ── */
+function diagnoseError(msg: string): { hint: string; action?: string } {
+  const lower = msg.toLowerCase();
+  if (lower.includes("secret") || lower.includes("api key") || lower.includes("api_key") || lower.includes("unauthorized") || lower.includes("401"))
+    return { hint: "Add the required API key to your project secrets at Project Settings → Edge Functions → Secrets.", action: "Check Secrets" };
+  if (lower.includes("not found") || lower.includes("does not exist") || lower.includes("relation") || lower.includes("42P01"))
+    return { hint: "One or more database tables are missing. Re-run the setup page to create them.", action: "Re-run Setup" };
+  if (lower.includes("setup_complete") || lower.includes("not configured") || lower.includes("setup"))
+    return { hint: "Complete the setup page first before running this agent." };
+  return { hint: "See error details above. Check the error log below for more context." };
+}
 
 export default function AgentPage() {
   const { agentKey } = useParams<{ agentKey: string }>();
   const agent = AGENTS.find((a) => a.key === agentKey);
   const { statuses, refetchStatuses } = useAdminContext();
   const queryClient = useQueryClient();
+  const errorLogRef = useRef<HTMLDivElement>(null);
 
   const [runningFn, setRunningFn] = useState<string | null>(null);
   const [successFn, setSuccessFn] = useState<string | null>(null);
+  const [actionError, setActionError] = useState<{ fn: string; message: string } | null>(null);
   const [toggling, setToggling] = useState(false);
   const [errorsOpen, setErrorsOpen] = useState(false);
   const [settingsOpen, setSettingsOpen] = useState(false);
@@ -22,9 +36,45 @@ export default function AgentPage() {
   const [page, setPage] = useState(0);
   const PAGE_SIZE = 50;
 
-  if (!agent) return <div className="text-[#f0ead6]/50 font-body">Agent not found.</div>;
+  if (!agent) return <div className="text-foreground/50 font-body">Agent not found.</div>;
 
   const status = statuses[agent.key];
+  const setupRoute = agent.setupRoute || `/lazy-${agent.key}-setup`;
+
+  // Settings (also used to check setup_complete)
+  const { data: settings, isLoading: settingsLoading } = useQuery({
+    queryKey: [`agent-settings-${agent.key}`],
+    queryFn: async () => {
+      try {
+        const { data, error } = await (supabase as any).from(agent.settingsTable).select("*").limit(1).single();
+        if (error) throw error;
+        return data || null;
+      } catch { return null; }
+    },
+  });
+
+  const isConfigured = settingsLoading ? null : (settings && settings.setup_complete !== false);
+
+  // ── Not configured state ──
+  if (isConfigured === false) {
+    return (
+      <div className="border border-foreground/8 p-8 text-center max-w-md mx-auto mt-12">
+        <Settings size={28} className="text-foreground/20 mx-auto mb-4" />
+        <h2 className="font-display text-lg font-bold tracking-tight mb-2">{agent.label} is not configured</h2>
+        <p className="font-body text-[13px] text-foreground/50 mb-6">Complete setup to activate this agent.</p>
+        <Link
+          to={setupRoute}
+          className="inline-flex items-center gap-2 bg-foreground text-background px-6 py-2.5 font-body text-[11px] tracking-[0.12em] uppercase font-semibold hover:opacity-90 transition-opacity"
+        >
+          Set Up {agent.label} <ArrowRight size={12} />
+        </Link>
+      </div>
+    );
+  }
+
+  if (isConfigured === null) {
+    return <div className="flex items-center justify-center h-32"><Loader2 size={16} className="animate-spin text-foreground/40" /></div>;
+  }
 
   // Toggle running
   const toggleRunning = async () => {
@@ -36,18 +86,20 @@ export default function AgentPage() {
       if (error) throw error;
       toast.success(status?.running ? `${agent.label} paused` : `${agent.label} started`);
       refetchStatuses();
-    } catch {
-      toast.error("Failed to toggle");
+    } catch (err: any) {
+      toast.error(`Failed to toggle: ${err?.message || "Unknown error"}`);
     }
     setToggling(false);
   };
 
-  // Run action
+  // Run action with detailed error handling
   const runAction = async (fn: string, label: string) => {
     setRunningFn(fn);
+    setActionError(null);
     try {
-      const { error } = await supabase.functions.invoke(fn);
+      const { data, error } = await supabase.functions.invoke(fn);
       if (error) throw error;
+      if (data?.error) throw new Error(data.error);
       toast.success(`${label} completed`);
       setSuccessFn(fn);
       setTimeout(() => setSuccessFn(null), 2000);
@@ -55,8 +107,10 @@ export default function AgentPage() {
       queryClient.invalidateQueries({ queryKey: [`agent-errors-${agent.key}`] });
       queryClient.invalidateQueries({ queryKey: [`agent-stats-${agent.key}`] });
       refetchStatuses();
-    } catch {
-      toast.error(`${label} failed`);
+    } catch (err: any) {
+      const msg = err?.message || err?.toString() || "Unknown error";
+      setActionError({ fn, message: msg });
+      toast.error(`${label} failed — see details below`);
     }
     setRunningFn(null);
   };
@@ -139,17 +193,6 @@ export default function AgentPage() {
     enabled: !!agent.errorsTable,
   });
 
-  // Settings
-  const { data: settings } = useQuery({
-    queryKey: [`agent-settings-${agent.key}`],
-    queryFn: async () => {
-      try {
-        const { data } = await (supabase as any).from(agent.settingsTable).select("*").limit(1).single();
-        return data || {};
-      } catch { return {}; }
-    },
-  });
-
   const columns = agent.contentColumns || [
     { key: "title", label: "Title" },
     { key: "created_at", label: "Date", type: "date" as const },
@@ -161,40 +204,74 @@ export default function AgentPage() {
     return date.toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "2-digit" });
   };
 
+  const hasNeverRun = agentStats.length > 0 && agentStats.every(s => s.value === 0) && content.length === 0;
+  const primaryAction = agent.actions[0];
+
   return (
     <div>
       {/* Status bar */}
-      <div className="border border-[#f0ead6]/8 p-5 flex flex-col md:flex-row md:items-center gap-4 mb-6">
+      <div className="border border-foreground/8 p-5 flex flex-col md:flex-row md:items-center gap-4 mb-6">
         <div className="flex items-center gap-4 flex-1">
           <div>
             <h1 className="font-display text-lg font-bold tracking-tight">{agent.label}</h1>
-            <p className="font-body text-[12px] text-[#f0ead6]/50 mt-0.5">{agent.subtitle}</p>
+            <p className="font-body text-[12px] text-foreground/50 mt-0.5">{agent.subtitle}</p>
           </div>
         </div>
         <div className="flex items-center gap-3">
-          <span className={`font-body text-[11px] tracking-[0.15em] uppercase ${status?.running ? "text-emerald-500" : "text-[#f0ead6]/50"}`}>
+          <span className={`font-body text-[11px] tracking-[0.15em] uppercase ${status?.running ? "text-emerald-500" : "text-foreground/50"}`}>
             {status?.running ? "Running" : "Paused"}
           </span>
           <button
             onClick={toggleRunning}
             disabled={toggling}
-            className={`relative w-11 h-5 transition-colors ${status?.running ? "bg-emerald-600" : "bg-[#f0ead6]/10"}`}
+            className={`relative w-11 h-5 transition-colors ${status?.running ? "bg-emerald-600" : "bg-foreground/10"}`}
           >
-            {toggling && <Loader2 size={8} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-spin text-[#f0ead6]" />}
-            <span className={`block w-4 h-4 bg-[#f0ead6] transition-transform ${status?.running ? "translate-x-6" : "translate-x-0.5"}`} />
+            {toggling && <Loader2 size={8} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-spin text-foreground" />}
+            <span className={`block w-4 h-4 bg-foreground transition-transform ${status?.running ? "translate-x-6" : "translate-x-0.5"}`} />
           </button>
         </div>
       </div>
 
+      {/* Requirements (secrets) */}
+      {agent.requiredSecrets && agent.requiredSecrets.length > 0 && (
+        <div className="border border-foreground/8 p-4 mb-6">
+          <h2 className="font-display text-sm font-bold tracking-[0.1em] uppercase text-foreground/50 mb-3">Requirements</h2>
+          <div className="space-y-2">
+            {agent.requiredSecrets.map((secret) => {
+              const hasRecentSecretError = agentErrors.some((e: any) =>
+                e.error_message?.toLowerCase().includes(secret.toLowerCase()) ||
+                (e.error_message?.toLowerCase().includes("api key") && e.error_message?.toLowerCase().includes(secret.split("_")[0].toLowerCase()))
+              );
+              return (
+                <div key={secret} className="flex items-center gap-2">
+                  {hasRecentSecretError ? (
+                    <>
+                      <XCircle size={12} className="text-red-400 shrink-0" />
+                      <span className="font-body text-[12px] text-red-400">{secret}</span>
+                      <span className="font-body text-[10px] text-foreground/40">— Add this to Project Settings → Edge Functions → Secrets</span>
+                    </>
+                  ) : (
+                    <>
+                      <CheckCircle size={12} className="text-emerald-500 shrink-0" />
+                      <span className="font-body text-[12px] text-foreground/60">{secret}</span>
+                    </>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
       {/* Quick actions */}
       {agent.actions.length > 0 && (
-        <div className="flex flex-wrap gap-2 mb-6">
+        <div className="flex flex-wrap gap-2 mb-4">
           {agent.actions.map((a) => (
             <button
               key={a.fn}
               onClick={() => runAction(a.fn, a.label)}
               disabled={!!runningFn}
-              className="inline-flex items-center gap-2 border border-[#f0ead6]/10 px-4 py-2 font-body text-[11px] uppercase tracking-wider text-[#f0ead6]/70 hover:text-[#f0ead6] hover:border-[#f0ead6]/30 transition-colors disabled:opacity-40"
+              className="inline-flex items-center gap-2 border border-foreground/10 px-4 py-2 font-body text-[11px] uppercase tracking-wider text-foreground/70 hover:text-foreground hover:border-foreground/30 transition-colors disabled:opacity-40"
             >
               {runningFn === a.fn ? <Loader2 size={11} className="animate-spin" /> : successFn === a.fn ? <CheckCircle size={11} className="text-emerald-500" /> : <Play size={11} />}
               {a.label}
@@ -203,15 +280,65 @@ export default function AgentPage() {
         </div>
       )}
 
+      {/* Action error callout */}
+      {actionError && (
+        <div className="border border-red-500/30 bg-red-500/5 p-4 mb-6">
+          <div className="flex items-start gap-2 mb-3">
+            <AlertTriangle size={14} className="text-red-400 mt-0.5 shrink-0" />
+            <div>
+              <p className="font-display text-sm font-bold text-red-400 mb-1">{agent.actions.find(a => a.fn === actionError.fn)?.label || actionError.fn} failed</p>
+              <pre className="font-body text-[11px] text-red-300/80 whitespace-pre-wrap break-all">{actionError.message}</pre>
+            </div>
+          </div>
+          <div className="border-t border-red-500/20 pt-3 mt-2">
+            <p className="font-body text-[11px] text-foreground/50 uppercase tracking-wider mb-1">How to fix</p>
+            <p className="font-body text-[12px] text-foreground/70">{diagnoseError(actionError.message).hint}</p>
+          </div>
+          <div className="flex items-center gap-3 mt-3">
+            {agent.errorsTable && (
+              <button
+                onClick={() => { setErrorsOpen(true); errorLogRef.current?.scrollIntoView({ behavior: "smooth" }); }}
+                className="font-body text-[11px] uppercase tracking-wider text-foreground/50 hover:text-foreground transition-colors underline"
+              >
+                View Error Log
+              </button>
+            )}
+            <button
+              onClick={() => setActionError(null)}
+              className="font-body text-[11px] uppercase tracking-wider text-foreground/40 hover:text-foreground transition-colors"
+            >
+              Dismiss
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Empty state */}
+      {hasNeverRun && !actionError && (
+        <div className="border border-foreground/8 border-dashed p-8 mb-6 text-center">
+          <p className="font-body text-[13px] text-foreground/50 mb-4">
+            No data yet — click{" "}
+            {primaryAction ? (
+              <button onClick={() => runAction(primaryAction.fn, primaryAction.label)} className="text-foreground underline hover:no-underline">
+                {primaryAction.label}
+              </button>
+            ) : (
+              "an action above"
+            )}{" "}
+            to run your first check.
+          </p>
+        </div>
+      )}
+
       {/* Stats + Queue */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
         {agentStats.length > 0 && (
           <div>
-            <h2 className="font-display text-sm font-bold tracking-[0.1em] uppercase text-[#f0ead6]/50 mb-3">Stats</h2>
+            <h2 className="font-display text-sm font-bold tracking-[0.1em] uppercase text-foreground/50 mb-3">Stats</h2>
             <div className="grid grid-cols-2 gap-3">
               {agentStats.map((s) => (
-                <div key={s.label} className="border border-[#f0ead6]/8 p-3">
-                  <p className="font-body text-[10px] tracking-[0.2em] uppercase text-[#f0ead6]/40">{s.label}</p>
+                <div key={s.label} className="border border-foreground/8 p-3">
+                  <p className="font-body text-[10px] tracking-[0.2em] uppercase text-foreground/40">{s.label}</p>
                   <p className="font-display text-xl font-bold mt-1">{s.value}</p>
                 </div>
               ))}
@@ -220,14 +347,14 @@ export default function AgentPage() {
         )}
         {queue.length > 0 && (
           <div>
-            <h2 className="font-display text-sm font-bold tracking-[0.1em] uppercase text-[#f0ead6]/50 mb-3">Queue ({queue.length})</h2>
-            <div className="border border-[#f0ead6]/8 divide-y divide-[#f0ead6]/5 max-h-48 overflow-y-auto">
+            <h2 className="font-display text-sm font-bold tracking-[0.1em] uppercase text-foreground/50 mb-3">Queue ({queue.length})</h2>
+            <div className="border border-foreground/8 divide-y divide-foreground/5 max-h-48 overflow-y-auto">
               {queue.map((item: any, i: number) => {
                 const qCols = agent.queueColumns || [{ key: "title", label: "Title" }];
                 return (
                   <div key={i} className="px-3 py-2 flex items-center gap-3">
                     {qCols.map((c) => (
-                      <span key={c.key} className={`font-body text-[12px] ${c.type === "badge" ? "px-1.5 py-0.5 border border-[#f0ead6]/10 text-[10px] uppercase tracking-wider text-[#f0ead6]/60" : "text-[#f0ead6]/80 flex-1 truncate"}`}>
+                      <span key={c.key} className={`font-body text-[12px] ${c.type === "badge" ? "px-1.5 py-0.5 border border-foreground/10 text-[10px] uppercase tracking-wider text-foreground/60" : "text-foreground/80 flex-1 truncate"}`}>
                         {item[c.key] ?? "—"}
                       </span>
                     ))}
@@ -243,46 +370,46 @@ export default function AgentPage() {
       {agent.contentTable && (
         <div className="mb-6">
           <div className="flex items-center gap-3 mb-3">
-            <h2 className="font-display text-sm font-bold tracking-[0.1em] uppercase text-[#f0ead6]/50">History</h2>
+            <h2 className="font-display text-sm font-bold tracking-[0.1em] uppercase text-foreground/50">History</h2>
             <div className="relative flex-1 max-w-xs">
-              <Search size={12} className="absolute left-3 top-1/2 -translate-y-1/2 text-[#f0ead6]/30" />
+              <Search size={12} className="absolute left-3 top-1/2 -translate-y-1/2 text-foreground/30" />
               <input
                 type="text"
                 value={searchTerm}
                 onChange={(e) => { setSearchTerm(e.target.value); setPage(0); }}
                 placeholder="Search…"
-                className="w-full bg-transparent border border-[#f0ead6]/8 text-[#f0ead6] pl-8 pr-3 py-1.5 font-body text-[11px] focus:outline-none focus:border-[#f0ead6]/20"
+                className="w-full bg-transparent border border-foreground/8 text-foreground pl-8 pr-3 py-1.5 font-body text-[11px] focus:outline-none focus:border-foreground/20"
               />
             </div>
           </div>
           {contentLoading ? (
-            <div className="flex items-center justify-center h-16"><Loader2 size={16} className="animate-spin text-[#f0ead6]/40" /></div>
+            <div className="flex items-center justify-center h-16"><Loader2 size={16} className="animate-spin text-foreground/40" /></div>
           ) : content.length === 0 ? (
-            <p className="font-body text-[12px] text-[#f0ead6]/40">No records yet.</p>
+            <p className="font-body text-[12px] text-foreground/40">No records yet.</p>
           ) : (
             <>
-              <div className="border border-[#f0ead6]/8 overflow-x-auto">
+              <div className="border border-foreground/8 overflow-x-auto">
                 <table className="w-full text-left">
                   <thead>
-                    <tr className="border-b border-[#f0ead6]/8">
+                    <tr className="border-b border-foreground/8">
                       {columns.map((c) => (
-                        <th key={c.key} className="px-3 py-2 font-body text-[10px] tracking-[0.2em] uppercase text-[#f0ead6]/40 font-normal">{c.label}</th>
+                        <th key={c.key} className="px-3 py-2 font-body text-[10px] tracking-[0.2em] uppercase text-foreground/40 font-normal">{c.label}</th>
                       ))}
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-[#f0ead6]/5">
+                  <tbody className="divide-y divide-foreground/5">
                     {content.map((row: any, i: number) => (
-                      <tr key={i} className="hover:bg-[#f0ead6]/3 transition-colors">
+                      <tr key={i} className="hover:bg-foreground/[0.03] transition-colors">
                         {columns.map((c) => (
                           <td key={c.key} className="px-3 py-2 font-body text-[12px]">
                             {c.type === "date" ? (
-                              <span className="text-[#f0ead6]/50">{formatDate(row[c.key])}</span>
+                              <span className="text-foreground/50">{formatDate(row[c.key])}</span>
                             ) : c.type === "badge" ? (
-                              <span className="px-1.5 py-0.5 border border-[#f0ead6]/10 text-[10px] uppercase tracking-wider text-[#f0ead6]/60">
+                              <span className="px-1.5 py-0.5 border border-foreground/10 text-[10px] uppercase tracking-wider text-foreground/60">
                                 {row[c.key] ?? "—"}
                               </span>
                             ) : (
-                              <span className="text-[#f0ead6]/80 truncate block max-w-xs">{row[c.key] ?? "—"}</span>
+                              <span className="text-foreground/80 truncate block max-w-xs">{row[c.key] ?? "—"}</span>
                             )}
                           </td>
                         ))}
@@ -295,15 +422,15 @@ export default function AgentPage() {
                 <button
                   onClick={() => setPage(Math.max(0, page - 1))}
                   disabled={page === 0}
-                  className="font-body text-[11px] uppercase tracking-wider text-[#f0ead6]/50 hover:text-[#f0ead6] disabled:opacity-30"
+                  className="font-body text-[11px] uppercase tracking-wider text-foreground/50 hover:text-foreground disabled:opacity-30"
                 >
                   ← Previous
                 </button>
-                <span className="font-body text-[10px] text-[#f0ead6]/40">Page {page + 1}</span>
+                <span className="font-body text-[10px] text-foreground/40">Page {page + 1}</span>
                 <button
                   onClick={() => setPage(page + 1)}
                   disabled={content.length < PAGE_SIZE}
-                  className="font-body text-[11px] uppercase tracking-wider text-[#f0ead6]/50 hover:text-[#f0ead6] disabled:opacity-30"
+                  className="font-body text-[11px] uppercase tracking-wider text-foreground/50 hover:text-foreground disabled:opacity-30"
                 >
                   Next →
                 </button>
@@ -315,17 +442,17 @@ export default function AgentPage() {
 
       {/* Settings */}
       {settings && Object.keys(settings).length > 0 && (
-        <div className="mb-6 border border-[#f0ead6]/8">
+        <div className="mb-6 border border-foreground/8">
           <button
             onClick={() => setSettingsOpen(!settingsOpen)}
-            className="w-full flex items-center gap-2 px-4 py-3 font-body text-[11px] uppercase tracking-[0.15em] text-[#f0ead6]/60 hover:text-[#f0ead6]/90 transition-colors"
+            className="w-full flex items-center gap-2 px-4 py-3 font-body text-[11px] uppercase tracking-[0.15em] text-foreground/60 hover:text-foreground/90 transition-colors"
           >
             {settingsOpen ? <ChevronDown size={12} /> : <ChevronRight size={12} />}
             Settings
           </button>
           {settingsOpen && (
             <div className="px-4 pb-4">
-              <pre className="font-body text-[11px] text-[#f0ead6]/60 whitespace-pre-wrap break-all">
+              <pre className="font-body text-[11px] text-foreground/60 whitespace-pre-wrap break-all">
                 {JSON.stringify(settings, null, 2)}
               </pre>
             </div>
@@ -335,29 +462,33 @@ export default function AgentPage() {
 
       {/* Error log */}
       {agent.errorsTable && (
-        <div className="border border-[#f0ead6]/8">
+        <div ref={errorLogRef} className="border border-foreground/8">
           <button
             onClick={() => setErrorsOpen(!errorsOpen)}
-            className="w-full flex items-center gap-2 px-4 py-3 font-body text-[11px] uppercase tracking-[0.15em] text-[#f0ead6]/60 hover:text-[#f0ead6]/90 transition-colors"
+            className="w-full flex items-center gap-2 px-4 py-3 font-body text-[11px] uppercase tracking-[0.15em] text-foreground/60 hover:text-foreground/90 transition-colors"
           >
             {errorsOpen ? <ChevronDown size={12} /> : <ChevronRight size={12} />}
             Errors ({agentErrors.length})
             {agentErrors.length > 0 && <AlertTriangle size={11} className="text-red-400 ml-1" />}
           </button>
           {errorsOpen && (
-            <div className="px-4 pb-4 divide-y divide-[#f0ead6]/5">
+            <div className="px-4 pb-4 divide-y divide-foreground/5">
               {agentErrors.length === 0 ? (
                 <div className="flex items-center gap-2 py-2">
                   <CheckCircle size={12} className="text-emerald-500" />
                   <span className="font-body text-[12px] text-emerald-400">No recent errors</span>
                 </div>
               ) : (
-                agentErrors.map((err: any, i: number) => (
-                  <div key={i} className="py-2">
-                    <p className="font-body text-[11px] text-red-400/80">{err.error_message}</p>
-                    <p className="font-body text-[10px] text-[#f0ead6]/30 mt-0.5">{formatDate(err.created_at)}</p>
-                  </div>
-                ))
+                agentErrors.map((err: any, i: number) => {
+                  const diag = diagnoseError(err.error_message || "");
+                  return (
+                    <div key={i} className="py-3">
+                      <p className="font-body text-[11px] text-red-400/80">{err.error_message}</p>
+                      <p className="font-body text-[10px] text-foreground/30 mt-0.5">{formatDate(err.created_at)}</p>
+                      <p className="font-body text-[10px] text-foreground/50 mt-1 italic">{diag.hint}</p>
+                    </div>
+                  );
+                })
               )}
             </div>
           )}
