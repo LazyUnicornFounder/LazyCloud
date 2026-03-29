@@ -553,7 +553,7 @@ function IntegrationCard({ item, index }: { item: Integration; index: number }) 
         <ul className="space-y-2">
           {item.unlocks.map((u, j) => (
             <li key={j} className="flex items-start gap-2">
-              <Zap size={12} className="text-accent mt-0.5 shrink-0" />
+              <ArrowRight size={12} className="text-accent mt-0.5 shrink-0" />
               <span className="font-body text-sm text-foreground/65 leading-relaxed">{u}</span>
             </li>
           ))}
