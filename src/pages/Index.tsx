@@ -88,28 +88,28 @@ function RotatingHeadline() {
   }, [current, ready]);
 
   return (
-    <p style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(0.85rem, 2.8vw, 2.2rem)", color: "hsl(var(--foreground))", opacity: 0.7 }} className="mb-2 mt-12 flex flex-wrap items-center justify-center gap-x-1">
+    <p style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(0.8rem, 2vw, 1.35rem)", color: "hsl(var(--foreground))", opacity: 0.5 }} className="mt-5 flex flex-wrap items-center justify-center gap-x-1">
       {/* Hidden measurer */}
       <span
         ref={hiddenRef}
         aria-hidden="true"
         className="whitespace-nowrap invisible fixed pointer-events-none"
-        style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(0.9rem, 2.8vw, 2.2rem)", top: -9999, left: -9999 }}
+        style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(0.8rem, 2vw, 1.35rem)", top: -9999, left: -9999 }}
       />
       Lovable<span className="ml-1 mr-0">❤️</span>
       <motion.span
         className="inline-flex justify-center relative"
         style={{ height: "1.2em", verticalAlign: "text-bottom", overflow: "clip" }}
-        animate={{ width: width + 12 }}
+        animate={{ width: width + 10 }}
         transition={ready ? { type: "spring", stiffness: 250, damping: 25 } : { duration: 0 }}
       >
         <AnimatePresence mode="wait">
           <motion.span
             key={current.word}
-            initial={ready ? { y: 16, opacity: 0 } : false}
+            initial={ready ? { y: 14, opacity: 0 } : false}
             animate={{ y: 0, opacity: 1 }}
-            exit={{ y: -16, opacity: 0 }}
-            transition={{ duration: 0.3 }}
+            exit={{ y: -14, opacity: 0 }}
+            transition={{ duration: 0.25 }}
             className="absolute inset-0 flex items-center justify-center gap-1 whitespace-nowrap"
             style={{ color: "hsl(var(--primary))" }}
           >
@@ -242,22 +242,44 @@ const Index = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8 }}
-          className="min-h-screen flex flex-col items-center justify-center gap-4 md:gap-6 px-4 md:px-6 pt-8 pb-16 text-center"
+          className="min-h-[90vh] flex flex-col items-center justify-center px-6 md:px-8 pt-24 pb-20 text-center"
         >
-          <RotatingHeadline />
-          <h1 style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(2rem, 6vw, 4.5rem)", color: "hsl(var(--foreground))", lineHeight: 1.1, fontWeight: 800 }}>
+          {/* Headline */}
+          <h1
+            className="max-w-[900px]"
+            style={{
+              fontFamily: "'Space Grotesk', sans-serif",
+              fontSize: "clamp(2.2rem, 5.5vw, 4.2rem)",
+              color: "hsl(var(--foreground))",
+              lineHeight: 1.08,
+              fontWeight: 800,
+              letterSpacing: "-0.02em",
+            }}
+          >
             Launch, build and run<br className="hidden md:inline" />
-            {" "}your Lovable<span style={{ color: "hsl(var(--accent))" }}>❤️</span>website or app<br className="hidden md:inline" />
-            {" "}with autonomous agents<span>🤖</span>.
+            {" "}your Lovable<span style={{ color: "hsl(var(--accent))" }}>❤️</span>website<br className="hidden md:inline" />
+            {" "}with autonomous agents<span className="ml-1">🤖</span>
           </h1>
-          <p className="max-w-2xl" style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(0.95rem, 1.4vw, 1.15rem)", color: "hsl(var(--foreground))", opacity: 0.45, lineHeight: 1.6 }}>
-            Each agent is a single prompt you paste into Lovable. It installs its own tables, edge functions, and UI — then runs itself. Blog posts, SEO, payments, voice, stores, and more.
+
+          {/* Rotating subtitle */}
+          <RotatingHeadline />
+
+          {/* Description */}
+          <p
+            className="max-w-lg mt-6"
+            style={{
+              fontFamily: "'Space Grotesk', sans-serif",
+              fontSize: "clamp(0.9rem, 1.2vw, 1.05rem)",
+              color: "hsl(var(--foreground))",
+              opacity: 0.4,
+              lineHeight: 1.65,
+            }}
+          >
+            Each agent is a single prompt you paste into Lovable. It installs its own tables, edge functions, and UI — then runs itself.
           </p>
 
-          {/* Body */}
-
           {/* CTA */}
-          <div className="mt-6 flex flex-col sm:flex-row items-center gap-3">
+          <div className="mt-10 flex flex-col sm:flex-row items-center gap-3">
             <Link
               to="/lazy-launch"
               className="text-sm tracking-[0.15em] uppercase px-8 py-3 font-semibold hover:opacity-80 transition-opacity active:scale-[0.97]"
@@ -267,29 +289,28 @@ const Index = () => {
             </Link>
             <Link
               to="/lazy-agents"
-              className="text-sm tracking-[0.15em] uppercase px-8 py-3 font-semibold hover:opacity-80 transition-opacity active:scale-[0.97]"
-              style={{ fontFamily: "'Space Grotesk', sans-serif", backgroundColor: "hsl(var(--foreground))", color: "#0a0a08", borderRadius: 0 }}
+              className="text-sm tracking-[0.15em] uppercase px-8 py-3 font-semibold hover:opacity-80 transition-opacity active:scale-[0.97] border border-foreground/20"
+              style={{ fontFamily: "'Space Grotesk', sans-serif", color: "hsl(var(--foreground))", borderRadius: 0 }}
             >
               Explore Agents
             </Link>
           </div>
 
-          {/* Integrations marquee */}
-          <div className="mt-10 overflow-hidden">
-            <p className="text-[11px] tracking-[0.25em] uppercase font-semibold mb-5 text-center" style={{ color: "hsl(var(--foreground))", opacity: 0.3 }}>
+          {/* Integrations marquee — pushed to bottom */}
+          <div className="mt-auto pt-16 w-full max-w-3xl overflow-hidden">
+            <p className="text-[10px] tracking-[0.3em] uppercase font-semibold mb-4 text-center" style={{ color: "hsl(var(--foreground))", opacity: 0.2 }}>
               Integrates with
             </p>
             <div className="relative">
-              {/* Fade edges */}
-              <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
-              <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
+              <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
+              <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
               <motion.div
-                className="flex gap-8 items-center whitespace-nowrap"
+                className="flex gap-10 items-center whitespace-nowrap"
                 animate={{ x: ["0%", "-50%"] }}
-                transition={{ duration: 40, ease: "linear", repeat: Infinity }}
+                transition={{ duration: 45, ease: "linear", repeat: Infinity }}
               >
                 {[...Array(2)].map((_, dupeIdx) => (
-                  <div key={dupeIdx} className="flex gap-8 items-center shrink-0">
+                  <div key={dupeIdx} className="flex gap-10 items-center shrink-0">
                     {[
                       { name: "Firecrawl", href: "/lazy-crawl" },
                       { name: "Perplexity", href: "/lazy-perplexity" },
@@ -303,13 +324,9 @@ const Index = () => {
                       { name: "ElevenLabs", href: "/lazy-voice" },
                       { name: "Twitch", href: "/lazy-stream" },
                       { name: "YouTube", href: "/lazy-youtube" },
-                      { name: "Supadata", href: "/lazy-youtube" },
                       { name: "GitHub", href: "/lazy-github" },
                       { name: "GitLab", href: "/lazy-gitlab" },
                       { name: "Linear", href: "/lazy-linear" },
-                      { name: "21st.dev", href: "/lazy-design" },
-                      { name: "Google OAuth", href: "/lazy-auth" },
-                      { name: "Granola", href: "/lazy-granola" },
                       { name: "Slack", href: "/lazy-alert" },
                       { name: "Telegram", href: "/lazy-telegram" },
                       { name: "Supabase", href: "/lazy-supabase" },
@@ -318,8 +335,8 @@ const Index = () => {
                       <Link
                         key={`${dupeIdx}-${item.name}`}
                         to={item.href}
-                        className="text-[13px] tracking-[0.1em] uppercase font-medium shrink-0 transition-opacity duration-200 hover:opacity-80"
-                        style={{ color: "hsl(var(--foreground))", opacity: 0.35 }}
+                        className="text-[11px] tracking-[0.15em] uppercase font-medium shrink-0 transition-opacity duration-200 hover:opacity-60"
+                        style={{ color: "hsl(var(--foreground))", opacity: 0.25 }}
                       >
                         {item.name}
                       </Link>
@@ -329,8 +346,7 @@ const Index = () => {
               </motion.div>
             </div>
           </div>
-
-      </motion.div>
+        </motion.div>
       </header>
 
       {/* Agents label */}
