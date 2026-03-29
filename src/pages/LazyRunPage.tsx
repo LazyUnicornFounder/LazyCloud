@@ -544,7 +544,7 @@ function CopyPromptButton({ label = "COPY THE LOVABLE PROMPT", text }: { label?:
   return (
     <button
       onClick={handleCopy}
-      className="inline-flex items-center justify-center gap-2 font-display font-bold text-sm tracking-[0.08em] uppercase px-8 py-4 bg-foreground text-background hover:bg-foreground/90 transition-colors"
+      className="inline-flex items-center justify-center gap-2 font-display font-bold text-sm tracking-[0.08em] uppercase px-8 py-4 bg-primary text-primary-foreground hover:bg-foreground/90 transition-colors"
     >
       {copied ? "Copied ✓" : label}
     </button>

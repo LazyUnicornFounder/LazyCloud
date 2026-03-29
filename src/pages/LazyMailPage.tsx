@@ -46,7 +46,7 @@ function CopyPromptButton({ text }: { text: string }) {
     <button
       onClick={handleCopy}
       className="inline-flex items-center justify-center gap-2 font-body text-[13px] tracking-[0.15em] uppercase px-8 py-4 font-semibold transition-opacity hover:opacity-90 active:scale-[0.97]"
-      style={{ backgroundColor: "#f0ead6", color: "#0a0a08" }}
+      className="bg-primary text-primary-foreground"
     >
       {copied ? "Copied ✓" : "Copy the Lovable Prompt"}
     </button>

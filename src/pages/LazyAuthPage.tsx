@@ -126,7 +126,7 @@ function CopyPromptButton({ label = "Copy the Lovable Prompt", text }: { label?:
     <button
       onClick={handleCopy}
       className="inline-flex items-center justify-center gap-2 font-body text-[13px] tracking-[0.15em] uppercase px-8 py-4 font-semibold transition-opacity hover:opacity-90 active:scale-[0.97]"
-      style={{ backgroundColor: "#f0ead6", color: "#0a0a08" }}
+      className="bg-primary text-primary-foreground"
     >
       {copied ? "Copied ✓" : label}
     </button>
@@ -163,7 +163,7 @@ export default function LazyAuthPage() {
               <span className="inline-block font-display text-[14px] font-bold tracking-[0.2em] uppercase px-3 py-1 border border-foreground/20 text-foreground/50">
                 LAZY DEV
               </span>
-              <span className="bg-foreground text-background text-[14px] tracking-[0.15em] uppercase font-extrabold px-3 py-1 font-display">BETA</span>
+              <span className="bg-primary text-primary-foreground text-[14px] tracking-[0.15em] uppercase font-extrabold px-3 py-1 font-display">BETA</span>
             </div>
             <AutopilotHeadline product="lazy-auth" />
 
