@@ -2,12 +2,13 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { useState } from "react";
 import { toast } from "sonner";
+import AgentSetupWizard from "./components/AgentSetupWizard";
 import {
   Loader2, Zap, Play, Pause, AlertTriangle, CheckCircle2,
   PenTool, Search, Brain, Radar, Compass, Database as DbIcon,
   ShoppingCart, CreditCard, MessageSquare, Mail, Mic, Tv,
   Code, GitBranch, CheckCircle, Bell, Send, Shield,
-  LayoutDashboard, RefreshCw, ChevronRight,
+  LayoutDashboard, RefreshCw, ChevronRight, Settings2,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -95,6 +96,7 @@ export default function AdminOverview() {
   const queryClient = useQueryClient();
   const [runningAction, setRunningAction] = useState<string | null>(null);
   const [bulkAction, setBulkAction] = useState(false);
+  const [wizardAgent, setWizardAgent] = useState<string | null>(null);
 
   const todayStart = new Date();
   todayStart.setHours(0, 0, 0, 0);
@@ -318,6 +320,13 @@ export default function AdminOverview() {
 
                     {/* Action row */}
                     <div className="flex items-center gap-2 mt-auto">
+                      <button
+                        onClick={() => setWizardAgent(agent.key)}
+                        className="px-2.5 py-1 font-body text-[11px] border border-[#f0ead6]/10 text-[#f0ead6]/50 hover:text-[#f0ead6]/80 hover:border-[#f0ead6]/25 transition-colors"
+                      >
+                        <Settings2 size={10} className="inline mr-1" />
+                        Configure
+                      </button>
                       {isManaged && (
                         <button
                           onClick={() => toggleAgent(agent)}
@@ -374,6 +383,11 @@ export default function AdminOverview() {
           ))}
         </div>
       </div>
+
+      {/* ── Setup Wizard ── */}
+      {wizardAgent && (
+        <AgentSetupWizard agentKey={wizardAgent} onClose={() => setWizardAgent(null)} />
+      )}
     </div>
   );
 }
