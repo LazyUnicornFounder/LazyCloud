@@ -475,7 +475,7 @@ Style it to sit at the bottom of the page footer, centered, with subtle opacity 
 
 const fadeUp = { hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0 } };
 
-const engines = [
+const agents = [
   // Content
   { name: "Lazy Blogger", desc: "Autonomous blog posts", icon: FileText, href: "/lazy-blogger" },
   { name: "Lazy SEO", desc: "Autonomous SEO content", icon: Search, href: "/lazy-seo" },
@@ -502,26 +502,34 @@ const engines = [
   { name: "Lazy Auth", desc: "Autonomous login flows", icon: Shield, href: "/lazy-auth" },
   { name: "Lazy Granola", desc: "Autonomous meeting content", icon: Calendar, href: "/lazy-granola" },
   // Ops
+  { name: "Lazy Admin", desc: "Unified ops dashboard", icon: LayoutDashboard, href: "/lazy-admin" },
   { name: "Lazy Alert", desc: "Autonomous Slack alerts", icon: Bell, href: "/lazy-alert" },
   { name: "Lazy Telegram", desc: "Autonomous Telegram updates", icon: Send, href: "/lazy-telegram" },
   { name: "Lazy Supabase", desc: "Autonomous database reports", icon: Database, href: "/lazy-supabase" },
   { name: "Lazy Security", desc: "Autonomous pentesting", icon: Shield, href: "/lazy-security" },
+  { name: "Lazy Watch", desc: "Autonomous error monitoring", icon: Activity, href: "/lazy-watch" },
+  { name: "Lazy Fix", desc: "Autonomous prompt improvement", icon: Zap, href: "/lazy-fix" },
+  { name: "Lazy Build", desc: "Writes new agent prompts", icon: Code, href: "/lazy-build" },
+  { name: "Lazy Intel", desc: "Autonomous content strategy", icon: Compass, href: "/lazy-intel" },
+  { name: "Lazy Repurpose", desc: "Autonomous content recycling", icon: ArrowRight, href: "/lazy-repurpose" },
+  { name: "Lazy Trend", desc: "Autonomous trend detection", icon: Radar, href: "/lazy-trend" },
+  { name: "Lazy Churn", desc: "Autonomous churn prevention", icon: Activity, href: "/lazy-churn" },
 ];
 
 const faqs = [
-  { q: "Do I need all twenty-five engines?", a: "No. The setup screen lets you choose which engines to activate. You can start with two or three and add more later without reinstalling." },
+  { q: "Do I need all thirty-five agents?", a: "No. The setup screen lets you choose which agents to activate. You can start with two or three and add more later without reinstalling." },
   { q: "Does it replace the individual Lazy prompts?", a: "Yes. If you install Lazy Run you do not need to paste the individual prompts. Lazy Run includes all of them." },
-  { q: "What API keys do I need?", a: "Only the ones for the engines you activate. Content engines like Lazy Blogger, Lazy SEO, and Lazy GEO use Lovable's built-in AI — no API key required. Lazy Pay needs Stripe. Lazy SMS needs Twilio. Lazy Voice needs ElevenLabs. Lazy Stream needs Twitch. Lazy Mail needs Resend. Lazy Design needs nothing — it uses 21st.dev and built-in AI." },
-  { q: "Can I still use individual engines if I have them installed?", a: "Yes. Lazy Run is additive. If you already have Lazy Blogger installed it will detect it and manage it alongside the others." },
-  { q: "How is Lazy Run different from just pasting all the individual prompts?", a: "Lazy Run adds the coordination layer — unified scheduling, cross-engine activity feed, master controls, performance reporting, and smart resource management. The individual prompts do not talk to each other. Lazy Run makes them work as one system." },
-  { q: "How do I know when there's an update?", a: "Check the changelog at /changelog. Every engine update is versioned and documented with upgrade instructions." },
+  { q: "What API keys do I need?", a: "Only the ones for the agents you activate. Content agents like Lazy Blogger, Lazy SEO, and Lazy GEO use Lovable's built-in AI — no API key required. Lazy Pay needs Stripe. Lazy SMS needs Twilio. Lazy Voice needs ElevenLabs. Lazy Stream needs Twitch. Lazy Mail needs Resend. Lazy Design needs nothing — it uses 21st.dev and built-in AI." },
+  { q: "Can I still use individual agents if I have them installed?", a: "Yes. Lazy Run is additive. If you already have Lazy Blogger installed it will detect it and manage it alongside the others." },
+  { q: "How is Lazy Run different from just pasting all the individual prompts?", a: "Lazy Run adds the coordination layer — unified scheduling, cross-agent activity feed, master controls, performance reporting, and smart resource management. The individual prompts do not talk to each other. Lazy Run makes them work as one system." },
+  { q: "How do I know when there's an update?", a: "Check the changelog at /changelog. Every agent update is versioned and documented with upgrade instructions." },
   { q: "How do I upgrade to a new prompt version?", a: "Visit the upgrade guide at /upgrade-guide. Copy the latest prompt and paste it into your Lovable project. Your existing data and settings are preserved." },
 ];
 
 const dashboardFeatures = [
-  { icon: Zap, title: "Master toggle", desc: "One switch pauses or resumes every engine simultaneously." },
-  { icon: Activity, title: "Unified feed", desc: "Every action from every engine in a single chronological activity stream." },
-  { icon: Clock, title: "Smart scheduling", desc: "Engines are staggered automatically so they never compete for resources or API limits." },
+  { icon: Zap, title: "Master toggle", desc: "One switch pauses or resumes every agent simultaneously." },
+  { icon: Activity, title: "Unified feed", desc: "Every action from every agent in a single chronological activity stream." },
+  { icon: Clock, title: "Smart scheduling", desc: "Agents are staggered automatically so they never compete for resources or API limits." },
 ];
 
 function CopyPromptButton({ label = "COPY THE LOVABLE PROMPT", text }: { label?: string; text: string }) {
@@ -550,7 +558,7 @@ export default function LazyRunPage() {
     <div className="min-h-screen bg-background text-foreground">
       <SEO
         title="Lazy Run — The Autonomous Runtime for Lovable"
-        description="One prompt installs the complete autonomous operations layer into your Lovable project. Twenty-five engines. One dashboard. Everything runs itself."
+        description="One prompt installs the complete autonomous operations layer into your Lovable project. Thirty-five agents. One dashboard. Everything runs itself."
         url="/lazy-run"
       />
       <Navbar />
@@ -561,9 +569,8 @@ export default function LazyRunPage() {
           <motion.div variants={fadeUp} initial="hidden" animate="visible" transition={{ duration: 0.5 }}>
             <div className="flex items-center gap-3 mb-6">
               <span className="inline-block font-display text-[14px] font-bold tracking-[0.2em] uppercase px-3 py-1 border border-foreground/20 text-foreground/50">
-                INCLUDES ALL LAZY ENGINES
+                INCLUDES ALL 35 AGENTS
               </span>
-              <span className="bg-foreground text-background text-[14px] tracking-[0.15em] uppercase font-extrabold px-3 py-1 font-display">BETA</span>
             </div>
           </motion.div>
           <AutopilotHeadline product="lazy-run" />
@@ -571,7 +578,7 @@ export default function LazyRunPage() {
             variants={fadeUp} initial="hidden" animate="visible" transition={{ delay: 0.1 }}
             className="font-display text-4xl md:text-6xl font-bold tracking-tight leading-[1.1] mb-6"
           >
-            <span>All 25 engines in the Lazy Stack. One prompt.</span>
+            <span>All 35 agents. One prompt.</span>
           </motion.h1>
           <motion.p
             variants={fadeUp} initial="hidden" animate="visible" transition={{ delay: 0.2 }}
@@ -615,15 +622,15 @@ export default function LazyRunPage() {
         <div className="max-w-5xl mx-auto">
           <motion.h2 variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}
             className="font-display text-2xl md:text-4xl font-bold tracking-tight text-center mb-14">
-            Every Lazy engine. One prompt.
+            Every agent. One prompt.
           </motion.h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {engines.map((e, i) => (
+            {agents.map((e, i) => (
               <motion.a
                 key={e.name}
                 href={e.href}
                 variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}
-                transition={{ delay: i * 0.05 }}
+                transition={{ delay: i * 0.03 }}
                 className="border border-border p-6 bg-card hover:border-foreground/20 transition-colors group"
               >
                 <e.icon size={20} className="text-foreground/70 mb-3 group-hover:text-foreground/60 transition-colors" />
@@ -634,7 +641,7 @@ export default function LazyRunPage() {
           </div>
           <motion.p variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}
             className="font-body text-sm text-foreground/70 text-center mt-10 max-w-lg mx-auto">
-            All twenty-three engines install in one prompt. All run automatically. All managed from one dashboard.
+            All thirty-five agents install in one prompt. All run automatically. All managed from one dashboard.
           </motion.p>
         </div>
       </section>
@@ -666,17 +673,17 @@ export default function LazyRunPage() {
         <div className="max-w-3xl mx-auto">
           <motion.h2 variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}
             className="font-display text-2xl md:text-4xl font-bold tracking-tight mb-8">
-            Twenty-three engines compounding simultaneously.
+            Thirty-five agents compounding simultaneously.
           </motion.h2>
           <motion.p variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} transition={{ delay: 0.1 }}
             className="font-body text-base md:text-lg text-foreground/70 leading-relaxed">
-            Each Lazy engine compounds on its own. Lazy Blogger builds domain authority. Lazy SEO captures keyword traffic. Lazy GEO earns AI citations. Lazy Store grows revenue. Together they compound on each other. The blog posts support the SEO. The SEO drives traffic to the store. The store triggers the SMS sequences. The SMS drives repeat purchases. The payments data improves the copy. Lazy Run coordinates the whole system so every engine feeds every other one. One prompt. Twenty compounding loops. Running forever.
+            Each agent compounds on its own. Lazy Blogger builds domain authority. Lazy SEO captures keyword traffic. Lazy GEO earns AI citations. Lazy Store grows revenue. Together they compound on each other. The blog posts support the SEO. The SEO drives traffic to the store. The store triggers the SMS sequences. The SMS drives repeat purchases. The payments data improves the copy. Lazy Watch monitors errors. Lazy Fix improves prompts. Lazy Intel fills your content queues. Lazy Trend detects opportunities. Lazy Churn saves subscribers. Lazy Run coordinates the whole system so every agent feeds every other one. One prompt. Thirty-five compounding loops. Running forever.
           </motion.p>
         </div>
       </section>
 
       <LazyPricingSection
-        lazyFeatures={["Lazy Run setup prompt", "Self-hosted in your existing Lovable project", "Installs all twenty-three engines", "Bring your own API keys for each service"]}
+        lazyFeatures={["Lazy Run setup prompt", "Self-hosted in your existing Lovable project", "Installs all thirty-five agents", "Bring your own API keys for each service"]}
         proFeatures={["Hosted version", "All API costs included", "Priority processing", "Weekly performance email", "Dedicated support"]}
         proPrice="$99"
         ctaButton={<CopyPromptButton text={promptText} label="Get the Prompt" />}
@@ -702,7 +709,7 @@ export default function LazyRunPage() {
           </motion.div>
           <motion.p variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} transition={{ delay: 0.3 }}
             className="font-body text-sm text-foreground/65 mt-6 max-w-md mx-auto">
-            Open your Lovable project, paste it into the chat, choose your engines, add your API keys. Your site starts running itself today.
+            Open your Lovable project, paste it into the chat, choose your agents, add your API keys. Your site starts running itself today.
           </motion.p>
         </div>
       </section>
@@ -710,7 +717,7 @@ export default function LazyRunPage() {
       {/* Footer */}
       <footer className="py-10 px-6 border-t border-border text-center">
         <p className="font-display text-[14px] tracking-[0.15em] uppercase text-foreground/60">
-          Lazy Unicorn — Autonomous growth engines for Lovable
+          Lazy Unicorn — Autonomous agents for Lovable
         </p>
       </footer>
     </div>
