@@ -168,10 +168,10 @@ export default function LazyAgentsPage() {
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
             <p className="font-body text-sm text-foreground/40 mb-4">{totalAgents} agents. Zero effort.</p>
             <Link
-              to="/lazy-run"
+              to="/lazy-launch"
               className="inline-flex items-center gap-2 font-display text-xs tracking-[0.12em] uppercase font-bold px-8 py-4 bg-foreground text-background hover:opacity-90 transition-opacity"
             >
-              Get Started with Lazy Run →
+              Get Started with Lazy Launch →
             </Link>
           </motion.div>
         </section>
