@@ -154,7 +154,7 @@ export default function LazyCloudPage() {
     <div className="min-h-screen bg-background text-foreground">
       <SEO
         title="Lazy Cloud — Fully Managed Autonomous Agent Stack"
-        description="Lazy Cloud runs your entire agent stack — monitoring, updating, managing API keys at volume pricing, and fixing problems before you notice. From $79/month."
+        description="Lazy Cloud runs your entire agent stack — monitoring, updating, managing API keys at volume pricing, and fixing problems before you notice. Pricing coming soon."
         url="/lazy-cloud"
       />
       <Navbar />
@@ -363,7 +363,7 @@ export default function LazyCloudPage() {
           </div>
 
           <p className="font-body text-sm text-muted-foreground text-center mt-6 max-w-2xl mx-auto">
-            Self-hosted will always be free and fully functional. Lazy Cloud is for when the 2–4 hours you spend maintaining your stack every month is worth more than $79.
+            Self-hosted will always be free and fully functional. Lazy Cloud is for when the 2–4 hours you spend maintaining your stack every month is worth more than the subscription.
           </p>
         </div>
       </section>
