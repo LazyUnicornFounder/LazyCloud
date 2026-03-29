@@ -1,6 +1,13 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
+import {
+  FileText, Search, Globe, ShoppingCart, Mic, CreditCard,
+  MessageSquare, Video, Code, Zap, Activity, Radar, Compass,
+  Layers, BarChart3, Database, Bell, Send, Shield,
+  LayoutDashboard, Calendar, ArrowRight, Rocket, Clock,
+  type LucideIcon
+} from "lucide-react";
 
 import SEO from "@/components/SEO";
 import Navbar from "@/components/Navbar";
