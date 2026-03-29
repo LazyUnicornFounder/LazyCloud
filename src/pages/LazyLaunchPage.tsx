@@ -59,28 +59,48 @@ const PALETTES = [
 
 /* ── Agent options ── */
 const AGENT_OPTIONS = [
+  // Unicorn
+  { key: "launch", label: "Launch", icon: Rocket, desc: "Landing page generator" },
+  { key: "run", label: "Run", icon: Sparkles, desc: "Autonomous orchestrator" },
+  // Content
   { key: "blogger", label: "Blogger", icon: PenTool, desc: "Autonomous blog content" },
   { key: "seo", label: "SEO", icon: Search, desc: "Search-optimised articles" },
   { key: "geo", label: "GEO", icon: Brain, desc: "AI-engine citations" },
-  { key: "store", label: "Store", icon: ShoppingCart, desc: "Product listings" },
-  { key: "pay", label: "Pay", icon: CreditCard, desc: "Checkout & payments" },
-  { key: "voice", label: "Voice", icon: Mic, desc: "Text-to-podcast" },
-  { key: "stream", label: "Stream", icon: Tv, desc: "Twitch → content" },
-  { key: "github", label: "GitHub", icon: Code, desc: "Repo-to-blog" },
-  { key: "sms", label: "SMS", icon: MessageSquare, desc: "Text notifications" },
-  { key: "mail", label: "Mail", icon: Mail, desc: "Email automation" },
-  { key: "alert", label: "Alert", icon: Bell, desc: "Uptime monitoring" },
-  { key: "telegram", label: "Telegram", icon: Send, desc: "Bot notifications" },
-  { key: "security", label: "Security", icon: Shield, desc: "Vuln scanning" },
   { key: "crawl", label: "Crawl", icon: Radar, desc: "Web scraping" },
-  { key: "design", label: "Design", icon: LayoutDashboard, desc: "UI generation" },
-  { key: "auth", label: "Auth", icon: Shield, desc: "User authentication" },
-  { key: "admin", label: "Admin", icon: LayoutDashboard, desc: "Unified dashboard" },
-  { key: "linear", label: "Linear", icon: GitBranch, desc: "Issue tracking" },
-  { key: "youtube", label: "YouTube", icon: Tv, desc: "Video content" },
   { key: "perplexity", label: "Perplexity", icon: Compass, desc: "AI search" },
   { key: "contentful", label: "Contentful", icon: DbIcon, desc: "CMS sync" },
+  // Commerce
+  { key: "store", label: "Store", icon: ShoppingCart, desc: "Product listings" },
+  { key: "drop", label: "Drop", icon: ShoppingCart, desc: "Autonomous dropshipping" },
+  { key: "print", label: "Print", icon: ShoppingCart, desc: "Print-on-demand merch" },
+  { key: "pay", label: "Pay", icon: CreditCard, desc: "Checkout & payments" },
+  { key: "sms", label: "SMS", icon: MessageSquare, desc: "Text notifications" },
+  { key: "mail", label: "Mail", icon: Mail, desc: "Email automation" },
+  // Media
+  { key: "voice", label: "Voice", icon: Mic, desc: "Text-to-podcast" },
+  { key: "stream", label: "Stream", icon: Tv, desc: "Twitch → content" },
+  { key: "youtube", label: "YouTube", icon: Tv, desc: "Video content" },
+  // Dev
+  { key: "github", label: "GitHub", icon: Code, desc: "Repo-to-blog" },
+  { key: "gitlab", label: "GitLab", icon: GitBranch, desc: "GitLab docs" },
+  { key: "linear", label: "Linear", icon: GitBranch, desc: "Issue tracking" },
+  { key: "design", label: "Design", icon: LayoutDashboard, desc: "UI generation" },
+  { key: "auth", label: "Auth", icon: Shield, desc: "User authentication" },
   { key: "granola", label: "Granola", icon: PenTool, desc: "Meeting intel" },
+  // Ops
+  { key: "admin", label: "Admin", icon: LayoutDashboard, desc: "Unified dashboard" },
+  { key: "alert", label: "Alert", icon: Bell, desc: "Slack alerts" },
+  { key: "telegram", label: "Telegram", icon: Send, desc: "Bot notifications" },
+  { key: "supabase", label: "Supabase", icon: DbIcon, desc: "Database reports" },
+  { key: "security", label: "Security", icon: Shield, desc: "Vuln scanning" },
+  // Agents
+  { key: "watch", label: "Watch", icon: Radar, desc: "Error monitoring" },
+  { key: "fix", label: "Fix", icon: RefreshCw, desc: "Prompt improvement" },
+  { key: "build", label: "Build", icon: Code, desc: "Agent writing" },
+  { key: "intel", label: "Intel", icon: Brain, desc: "Content strategy" },
+  { key: "repurpose", label: "Repurpose", icon: RefreshCw, desc: "Content repurposing" },
+  { key: "trend", label: "Trend", icon: Radar, desc: "Trend detection" },
+  { key: "churn", label: "Churn", icon: CreditCard, desc: "Churn prevention" },
 ];
 
 /* ── Font options ── */
