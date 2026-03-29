@@ -164,7 +164,7 @@ export default function LazyAgentsPage() {
             <p className="font-body text-sm text-foreground/40 mb-4">{totalAgents} agents. Zero effort.</p>
             <Link
               to="/lazy-launch"
-              className="inline-flex items-center gap-2 font-display text-xs tracking-[0.12em] uppercase font-bold px-8 py-4 bg-foreground text-background hover:opacity-90 transition-opacity"
+              className="inline-flex items-center gap-2 font-display text-xs tracking-[0.12em] uppercase font-bold px-8 py-4 bg-primary text-primary-foreground hover:opacity-90 transition-opacity"
             >
               Get Started with Lazy Launch →
             </Link>

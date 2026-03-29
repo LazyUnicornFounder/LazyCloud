@@ -77,7 +77,7 @@ export default function LazyAdminPage() {
             <motion.div {...fade}>
               <div className="flex items-center justify-center gap-3 mb-6">
                 <span className="font-body text-[14px] tracking-[0.2em] uppercase text-[#c8a961]/60">Works with all Lazy agents</span>
-                <span className="bg-foreground text-background text-[14px] tracking-[0.15em] uppercase font-extrabold px-3 py-1 font-display">BETA</span>
+                <span className="bg-primary text-primary-foreground text-[14px] tracking-[0.15em] uppercase font-extrabold px-3 py-1 font-display">BETA</span>
               </div>
               <AutopilotHeadline product="lazy-admin" />
               <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 leading-[1.1]">
@@ -92,7 +92,7 @@ export default function LazyAdminPage() {
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
                 <button
                   onClick={handleCopy}
-                  className="inline-flex items-center justify-center gap-2 bg-foreground text-background font-display text-[13px] tracking-[0.15em] uppercase font-bold px-8 py-3.5 hover:opacity-90 transition-opacity"
+                  className="inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground font-display text-[13px] tracking-[0.15em] uppercase font-bold px-8 py-3.5 hover:opacity-90 transition-opacity"
                 >
                   {copied ? <><Check size={14} /> Copied ✓</> : <><Copy size={14} /> Copy the Lovable Prompt</>}
                 </button>
@@ -210,7 +210,7 @@ export default function LazyAdminPage() {
           ctaButton={
             <button
               onClick={handleCopy}
-              className="w-full inline-flex items-center justify-center gap-2 bg-foreground text-background font-display font-bold text-sm tracking-[0.08em] uppercase px-8 py-4 hover:opacity-90 transition-opacity"
+              className="w-full inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground font-display font-bold text-sm tracking-[0.08em] uppercase px-8 py-4 hover:opacity-90 transition-opacity"
             >
               {copied ? <><Check size={14} /> Copied ✓</> : <><Copy size={14} /> Copy the Lovable Prompt</>}
             </button>
@@ -228,7 +228,7 @@ export default function LazyAdminPage() {
             </p>
             <button
               onClick={handleCopy}
-              className="inline-flex items-center justify-center gap-2 bg-foreground text-background font-display text-[13px] tracking-[0.15em] uppercase font-bold px-8 py-3.5 hover:opacity-90 transition-opacity"
+              className="inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground font-display text-[13px] tracking-[0.15em] uppercase font-bold px-8 py-3.5 hover:opacity-90 transition-opacity"
             >
               {copied ? <><Check size={14} /> Copied ✓</> : <><Copy size={14} /> Copy the Lovable Prompt</>}
             </button>

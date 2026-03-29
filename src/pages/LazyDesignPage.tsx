@@ -45,8 +45,7 @@ function CopyPromptButton({ text }: { text: string }) {
   return (
     <button
       onClick={handleCopy}
-      className="inline-flex items-center justify-center gap-2 font-body text-[13px] tracking-[0.15em] uppercase px-8 py-4 font-semibold transition-opacity hover:opacity-90 active:scale-[0.97]"
-      style={{ backgroundColor: "#f0ead6", color: "#0a0a08" }}
+      className="inline-flex items-center justify-center gap-2 font-body text-[13px] tracking-[0.15em] uppercase px-8 py-4 font-semibold transition-opacity hover:opacity-90 active:scale-[0.97] bg-primary text-primary-foreground"
     >
       {copied ? "Copied ✓" : "Copy the Lovable Prompt"}
     </button>
@@ -109,7 +108,7 @@ export default function LazyDesignPage() {
               <div className="flex items-center gap-3 mb-6">
                 <p style={{ fontFamily: "'Dancing Script', cursive", fontSize: "1.5rem", color: "#f0ead6", opacity: 0.5 }}>Introducing</p>
                 <TwentyFirstBadge />
-                <span className="bg-foreground text-background text-[14px] tracking-[0.15em] uppercase font-extrabold px-3 py-1 font-display">BETA</span>
+                <span className="bg-primary text-primary-foreground text-[14px] tracking-[0.15em] uppercase font-extrabold px-3 py-1 font-display">BETA</span>
               </div>
               <AutopilotHeadline product="lazy-design" />
 

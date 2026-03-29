@@ -280,7 +280,7 @@ export default function LazyLaunchPage() {
             >
               <div className="flex items-center gap-3 mb-6">
                 <p style={{ fontFamily: "'Dancing Script', cursive", fontSize: "1.5rem", color: "#f0ead6", opacity: 0.5 }}>Introducing</p>
-                <span className="bg-foreground text-background text-[14px] tracking-[0.15em] uppercase font-extrabold px-3 py-1 font-display">BETA</span>
+                <span className="bg-primary text-primary-foreground text-[14px] tracking-[0.15em] uppercase font-extrabold px-3 py-1 font-display">BETA</span>
               </div>
               <AutopilotHeadline product="lazy-launch" />
               <h1 style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(2.5rem, 5vw, 4.5rem)", color: "#f0ead6", lineHeight: 0.95, letterSpacing: "-0.01em" }}>
@@ -306,7 +306,7 @@ export default function LazyLaunchPage() {
                 onClick={() => i <= step && setStep(i)}
                 className={`flex items-center gap-1.5 px-3 py-1.5 font-body text-xs transition-colors ${
                   i === step
-                    ? "bg-foreground text-background"
+                    ? "bg-primary text-primary-foreground"
                     : i < step
                     ? "text-foreground/70 hover:text-foreground"
                     : "text-foreground/25 cursor-default"
@@ -558,7 +558,7 @@ export default function LazyLaunchPage() {
                     </pre>
                     <button
                       onClick={handleCopy}
-                      className="absolute top-3 right-3 flex items-center gap-1.5 bg-foreground text-background px-3 py-1.5 font-body text-xs hover:bg-foreground/90 transition-colors"
+                      className="absolute top-3 right-3 flex items-center gap-1.5 bg-primary text-primary-foreground px-3 py-1.5 font-body text-xs hover:bg-foreground/90 transition-colors"
                     >
                       {copied ? <Check size={12} /> : <Copy size={12} />}
                       {copied ? "Copied!" : "Copy prompt"}
@@ -590,14 +590,14 @@ export default function LazyLaunchPage() {
               <button
                 onClick={() => setStep(s => s + 1)}
                 disabled={!canProceed}
-                className="flex items-center gap-1.5 bg-foreground text-background px-4 py-2 font-body text-xs hover:bg-foreground/90 disabled:opacity-30 transition-colors"
+                className="flex items-center gap-1.5 bg-primary text-primary-foreground px-4 py-2 font-body text-xs hover:bg-foreground/90 disabled:opacity-30 transition-colors"
               >
                 Next <ChevronRight size={14} />
               </button>
             ) : (
               <button
                 onClick={handleCopy}
-                className="flex items-center gap-1.5 bg-foreground text-background px-4 py-2 font-body text-xs hover:bg-foreground/90 transition-colors"
+                className="flex items-center gap-1.5 bg-primary text-primary-foreground px-4 py-2 font-body text-xs hover:bg-foreground/90 transition-colors"
               >
                 {copied ? <Check size={12} /> : <Copy size={12} />}
                 {copied ? "Copied!" : "Copy & Launch"}

@@ -120,7 +120,7 @@ const LazyStreamSetup = () => {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-foreground text-background font-body font-semibold text-sm py-3 hover:opacity-90 transition-opacity disabled:opacity-50 mt-4"
+              className="w-full bg-primary text-primary-foreground font-body font-semibold text-sm py-3 hover:opacity-90 transition-opacity disabled:opacity-50 mt-4"
             >
               {loading ? "Activating…" : "Activate Lazy Stream"}
             </button>
