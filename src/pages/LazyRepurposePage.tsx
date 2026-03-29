@@ -182,7 +182,6 @@ export default function LazyRepurposePage() {
           </motion.div>
         </section>
 
-        <AutopilotHeadline product="lazy-repurpose" />
       </main>
     </div>
   );
