@@ -249,7 +249,69 @@ function PromptEditor({
         </div>
       )}
 
-      {/* Read mode */}
+      {/* Dependency check result panel */}
+      {(checking || checkResult) && (
+        <div className="px-4 pb-4 border-t border-border">
+          {checking ? (
+            <div className="flex items-center gap-2 py-3">
+              <Loader2 size={14} className="animate-spin text-muted-foreground" />
+              <span className="font-body text-xs text-muted-foreground">Checking dependencies…</span>
+            </div>
+          ) : checkResult ? (
+            <div className="space-y-3 mt-3">
+              {/* GitHub status */}
+              <div className="flex items-center gap-2">
+                {checkResult.pushed_to_github ? (
+                  <><CheckCircle size={14} className="text-emerald-500" /><span className="font-body text-xs text-emerald-400">Pushed to GitHub</span></>
+                ) : (
+                  <><AlertTriangle size={14} className="text-amber-400" /><span className="font-body text-xs text-amber-400">GitHub push pending</span></>
+                )}
+              </div>
+
+              {/* Affected agents */}
+              {checkResult.affected_agents.length > 0 ? (
+                <div className="border border-amber-500/20 bg-amber-500/5 p-3 space-y-2">
+                  <p className="font-body text-xs text-amber-400 font-semibold">
+                    {checkResult.affected_agents.length} agent{checkResult.affected_agents.length > 1 ? "s" : ""} may need updating:
+                  </p>
+                  {checkResult.affected_agents.map((a) => (
+                    <div key={a.agent} className="flex items-start justify-between gap-3 py-1.5">
+                      <div className="flex-1 min-w-0">
+                        <span className="px-1.5 py-0.5 border border-amber-500/30 text-[10px] uppercase tracking-wider text-amber-400/80 font-body mr-2">{a.agent}</span>
+                        <span className="font-body text-xs text-muted-foreground">{a.reason}</span>
+                        {a.suggested_change && (
+                          <p className="font-body text-[11px] text-foreground/60 mt-1 italic">"{a.suggested_change}"</p>
+                        )}
+                      </div>
+                      <div className="flex items-center gap-1 shrink-0">
+                        {a.suggested_change && onApplyFix && (
+                          <button
+                            onClick={() => onApplyFix(a.agent, a.suggested_change)}
+                            className="font-body text-[10px] px-2 py-1 border border-amber-500/30 text-amber-400 hover:bg-amber-500/10 transition-colors uppercase tracking-wider"
+                          >
+                            Apply Fix
+                          </button>
+                        )}
+                        <button
+                          onClick={() => setCheckResult(prev => prev ? { ...prev, affected_agents: prev.affected_agents.filter(x => x.agent !== a.agent) } : null)}
+                          className="font-body text-[10px] px-2 py-1 text-muted-foreground hover:text-foreground transition-colors uppercase tracking-wider"
+                        >
+                          Dismiss
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="flex items-center gap-2">
+                  <CheckCircle size={12} className="text-emerald-500" />
+                  <span className="font-body text-xs text-emerald-400">No other agents need updating.</span>
+                </div>
+              )}
+            </div>
+          ) : null}
+        </div>
+      )}
       {!editing && expanded && current && (
         <div className="px-4 pb-4 border-t border-border">
           {isBlogger && (
