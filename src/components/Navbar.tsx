@@ -115,8 +115,8 @@ const agentCategories: Category[] = [
 /* ── Shared dropdown category renderer ── */
 function renderCategoryBlock(cat: Category, onClose: () => void) {
   return (
-    <div key={cat.label} className="mb-6">
-      <p className="font-display text-[18px] tracking-[0.2em] uppercase text-foreground font-black mb-3">
+    <div key={cat.label} className="mb-4">
+      <p className="font-display text-[18px] tracking-[0.2em] uppercase text-foreground font-black mb-2">
         {cat.label}
       </p>
       {cat.items.map((item) => (
@@ -124,7 +124,7 @@ function renderCategoryBlock(cat: Category, onClose: () => void) {
           key={item.label}
           href={item.href}
           onClick={onClose}
-          className="group flex items-center gap-4 px-3 py-[18px] -mx-1 hover:bg-secondary/50 transition-colors"
+          className="group flex items-center gap-4 px-3 py-[12px] -mx-1 hover:bg-secondary/50 transition-colors"
         >
           <span className="text-foreground/50 group-hover:text-foreground/70 transition-colors flex-shrink-0">
             {item.icon}
