@@ -55,9 +55,7 @@ export type AgentCategory =
   | "content"
   | "commerce"
   | "media"
-  | "developer"
-  | "channels"
-  | "security"
+  | "dev"
   | "ops"
   | "system";
 
@@ -65,9 +63,7 @@ export const CATEGORY_META: Record<AgentCategory, { label: string; color: string
   content: { label: "Content", color: "#c8a961" },
   commerce: { label: "Commerce", color: "#22c55e" },
   media: { label: "Media", color: "#3b82f6" },
-  developer: { label: "Developer", color: "#a855f7" },
-  channels: { label: "Channels", color: "#f97316" },
-  security: { label: "Security", color: "#ef4444" },
+  dev: { label: "Dev", color: "#a855f7" },
   ops: { label: "Ops", color: "#ef4444" },
   system: { label: "System", color: "#6b7280" },
 };
