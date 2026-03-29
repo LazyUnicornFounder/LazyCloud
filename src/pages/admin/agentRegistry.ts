@@ -343,6 +343,8 @@ export const AGENTS: AgentConfig[] = [
     category: "media",
     route: "/admin/voice",
     actions: [{ label: "Narrate Now", fn: "voice-generate" }],
+    requiredSecrets: ["ELEVENLABS_API_KEY"],
+    setupRoute: "/lazy-voice-setup",
     statsQueries: [
       { label: "Episodes", table: "voice_episodes", type: "count" },
     ],
