@@ -7,7 +7,7 @@ import Navbar from "@/components/Navbar";
 import { useTrackVisit } from "@/hooks/useTrackVisit";
 
 const NEW_TITLE = "Add agents to your Lovable website with one prompt.";
-const NEW_DESCRIPTION = "Paste one prompt into Lovable and get an autonomous agent — blog posts, SEO, GEO, payments, voice, stores, streams, and more. Everything runs itself.";
+const NEW_DESCRIPTION = "Each agent is a single prompt you paste into Lovable. It installs its own tables, edge functions, and UI — then runs itself. Blog posts, SEO, payments, voice, stores, and more, and starts to run your business autonomously.";
 
 const rotatingWords = [
   { word: "everything", emoji: "🦄" },       // Lazy Run
@@ -459,9 +459,6 @@ const Index = () => {
           </h1>
           <p className="max-w-2xl" style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(0.95rem, 1.4vw, 1.15rem)", color: "#f0ead6", opacity: 0.45, lineHeight: 1.6 }}>
             Each agent is a single prompt you paste into Lovable. It installs its own tables, edge functions, and UI — then runs itself. Blog posts, SEO, payments, voice, stores, and more.
-          </p>
-          <p className="mt-2" style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(0.95rem, 1.4vw, 1.15rem)", color: "#f0ead6", opacity: 0.65, lineHeight: 1.6, fontWeight: 600 }}>
-            You just build.
           </p>
 
           {/* Body */}
