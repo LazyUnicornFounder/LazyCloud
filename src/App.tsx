@@ -71,6 +71,7 @@ import AdminOverview from "./pages/admin/AdminOverview.tsx";
 import AdminSettingsPage from "./pages/admin/AdminSettingsPage.tsx";
 import AdminInstallsPage from "./pages/admin/AdminInstallsPage.tsx";
 import AgentPage from "./pages/admin/AgentPage.tsx";
+import AdminChangelogPage from "./pages/admin/AdminChangelogPage.tsx";
 import WaitlistPage from "./pages/WaitlistPage.tsx";
 import LazyWaitlistPage from "./pages/LazyWaitlistPage.tsx";
 
@@ -92,6 +93,7 @@ const App = () => (
                 <Route path=":agentKey" element={<AgentPage />} />
                 <Route path="settings" element={<AdminSettingsPage />} />
                 <Route path="installs" element={<AdminInstallsPage />} />
+                <Route path="changelog" element={<AdminChangelogPage />} />
               </Route>
               <Route path="/blog" element={<Blog />} />
               <Route path="/blog/:slug" element={<BlogPost />} />
