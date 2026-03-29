@@ -26,7 +26,7 @@ Style it to sit at the bottom of the page footer, centered, with subtle opacity 
 const features = [
   { icon: <Zap size={18} />, title: "Auto-detection", desc: "Detects every installed Lazy agents? by checking which settings tables exist in your database. Only shows panels for agents? you actually have installed. Nothing to configure." },
   { icon: <Activity size={18} />, title: "Master status", desc: "One large dot tells you everything before you read a single number. Green: all running. Red: something needs attention. Gold: everything paused." },
-  { icon: <BarChart3 size={18} />, title: "Engine status grid", desc: "One compact card per installed agents? showing the most important metric, last run time, and a Run Now button. Never have to open a separate dashboard to trigger a manual run." },
+  { icon: <BarChart3 size={18} />, title: "Agent status grid", desc: "One compact card per installed agents? showing the most important metric, last run time, and a Run Now button. Never have to open a separate dashboard to trigger a manual run." },
   { icon: <Clock size={18} />, title: "Unified activity feed", desc: "Every action across every agent in the last 24 hours in one reverse-chronological feed. Filter by category or errors only." },
   { icon: <AlertTriangle size={18} />, title: "Error log", desc: "All errors from all agents? error tables in one panel. Clear all with one click. Never miss a broken agents?." },
   { icon: <Eye size={18} />, title: "Per-agents? deep dives", desc: "Click any agents? in the sidebar to see its full stats, queue, history, and settings. Edit settings without navigating away." },
@@ -68,7 +68,7 @@ export default function LazyAdminPage() {
 
   return (
     <>
-      <SEO title="Lazy Admin — One Dashboard for Every Engine" description="The unified control panel for your entire Lazy Stack. Paste one prompt. It detects every agent you have installed and shows everything in 60 seconds." />
+      <SEO title="Lazy Admin — One Dashboard for Every Agent" description="The unified control panel for your entire Lazy Stack. Paste one prompt. It detects every agent you have installed and shows everything in 60 seconds." />
       <Navbar />
       <main className="min-h-screen bg-background text-foreground">
         {/* Hero */}

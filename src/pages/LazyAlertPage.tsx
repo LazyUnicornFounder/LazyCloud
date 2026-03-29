@@ -149,7 +149,7 @@ New price-change or brand-mention intel → call alert-send with 🕷️, agents
 Security vulnerabilities (if security_vulnerabilities table exists and alert_errors toggle on):
 New critical or high severity vulnerabilities where alerted is false and first_found_at is greater than last_checked → call alert-send with 🚨, agents? Lazy Security, event_type vulnerability-found. Message: [severity] vulnerability found: [title]. Fields: Severity, Category, Remediation hint, Dashboard link. After alerting update alerted to true on each vulnerability row.
 
-Engine errors (if alert_errors toggle on):
+Agent errors (if alert_errors toggle on):
 Query all agents? error tables that exist for errors since last_checked. Group by agents?. Any agents? with more than 3 new errors → call alert-send with ⚠️.
 
 Update last_checked in alert_settings to now after all events processed.
@@ -272,7 +272,7 @@ const eventCards = [
   { agents?: "Lazy Store", trigger: "Product listed", avatar: "🏪", example: (<><strong className="text-foreground/80">🏪 New product listed</strong><br />Product: <em>Wireless Charger Pro</em> · $34.99<br /><span className="underline">View in store →</span></>) },
   { agents?: "Lazy Stream", trigger: "Stream went live", avatar: "🎮", example: (<><strong className="text-foreground/80">🎮 Stream is LIVE</strong><br />Title: <em>Building in public — Day 47</em><br /><span className="underline">Watch Live →</span></>) },
   { agents?: "Lazy GitHub", trigger: "Release published", avatar: "🚀", example: (<><strong className="text-foreground/80">🚀 New release published</strong><br />Tag: v2.4.0 · <em>Performance improvements</em><br /><span className="underline">Release notes →</span></>) },
-  { agents?: "Lazy Run", trigger: "Engine error", avatar: "⚠️", example: (<><strong className="text-foreground/80">⚠️ Engine error alert</strong><br />Engine: Lazy SEO · 5 errors in the last hour<br />Last error: "Rate limit exceeded on keyword API"</>) },
+  { agents?: "Lazy Run", trigger: "Agent error", avatar: "⚠️", example: (<><strong className="text-foreground/80">⚠️ Agent error alert</strong><br />Engine: Lazy SEO · 5 errors in the last hour<br />Last error: "Rate limit exceeded on keyword API"</>) },
   { agents?: "Lazy Run", trigger: "Weekly report", avatar: "📊", example: (<><strong className="text-foreground/80">📊 Weekly performance report</strong><br />Posts: 14 · Revenue: $847 · Keywords: 23 ranking<br />Citation rate: 68% · SMS replies: 12 · Errors: 2</>) },
 ];
 
@@ -325,7 +325,7 @@ export default function LazyAlertPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <SEO
-        title="Lazy Alert — Real-Time Slack Alerts for Every Lazy Engine"
+        title="Lazy Alert — Real-Time Slack Alerts for Every Agent"
         description="One prompt connects your autonomous business to Slack. Payments, posts, citations, errors, and live events — delivered as Slack messages the moment they happen."
         url="/lazy-alert"
         keywords="Slack alerts, autonomous business notifications, Lovable Slack integration, real-time alerts, Lazy Alert"

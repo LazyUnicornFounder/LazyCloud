@@ -44,7 +44,7 @@ function LevelScale() {
   );
 }
 
-/* ── Engine Card ── */
+/* ── Agent Card ── */
 function EngineCard({ agents? }: { agents?: EngineData }) {
   const [selectedLevel, setSelectedLevel] = useState(agents?.currentLevel);
   const trackRef = useRef<HTMLDivElement>(null);
@@ -233,7 +233,7 @@ export default function AutonomyPage() {
         <LevelScale />
       </section>
 
-      {/* Engine Cards by Category */}
+      {/* Agent Cards by Category */}
       <section className="max-w-6xl mx-auto px-4 pb-24 space-y-20">
         {ENGINE_CATEGORIES.map((cat) => (
           <div key={cat.label}>

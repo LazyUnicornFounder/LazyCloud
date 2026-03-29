@@ -90,7 +90,7 @@ const LazySeoD = () => {
           </div>
           <div className="bg-card border border-border rounded-xl p-5 space-y-1 flex items-center justify-between">
             <div>
-              <div className="text-muted-foreground text-sm mb-1">Engine Status</div>
+              <div className="text-muted-foreground text-sm mb-1">Agent Status</div>
               <Badge variant={settings?.is_running ? "default" : "secondary"}>
                 {settings?.is_running ? "Running" : "Paused"}
               </Badge>

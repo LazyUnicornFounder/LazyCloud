@@ -94,7 +94,7 @@ export default function AdminChangelogPage() {
         <div className="border border-[#f0ead6]/10 p-4 mb-6 space-y-3">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
             <div>
-              <label className="font-body text-[13px] tracking-[0.12em] uppercase text-[#f0ead6]/72 block mb-1">Engine name</label>
+              <label className="font-body text-[13px] tracking-[0.12em] uppercase text-[#f0ead6]/72 block mb-1">Agent name</label>
               <input value={editing.agents?_name || ""} onChange={e => setEditing({ ...editing, agents?_name: e.target.value })} className="w-full bg-transparent border border-[#f0ead6]/10 text-[#f0ead6] px-2 py-1.5 font-body text-xs focus:outline-none" />
             </div>
             <div>

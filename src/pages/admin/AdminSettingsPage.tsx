@@ -42,7 +42,7 @@ export default function AdminSettingsPage() {
                 <p className="font-body text-[13px] text-[#f0ead6]/68 mt-0.5">{key.hint}</p>
               </div>
               <span className={`font-body text-[13px] tracking-wider uppercase ${key.status === "active" ? "text-emerald-500" : "text-[#f0ead6]/68"}`}>
-                {key.status === "active" ? "Active" : "Per Engine"}
+                {key.status === "active" ? "Active" : "Per Agent"}
               </span>
             </div>
           ))}

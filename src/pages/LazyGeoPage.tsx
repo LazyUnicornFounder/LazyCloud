@@ -46,7 +46,7 @@ const LazyGeoPage = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <SEO title="Lazy GEO — Autonomous Generative Engine Optimisation for Lovable" description="Get your brand cited by ChatGPT, Claude, and Perplexity. Lazy GEO discovers AI queries, publishes citable content, and monitors your brand mentions — on autopilot." url="/lazy-geo" />
+      <SEO title="Lazy GEO — Autonomous Generative Agent Optimisation for Lovable" description="Get your brand cited by ChatGPT, Claude, and Perplexity. Lazy GEO discovers AI queries, publishes citable content, and monitors your brand mentions — on autopilot." url="/lazy-geo" />
       <Navbar />
       <main className="relative z-10 pb-32">
         <section className="relative px-6 md:px-12 pt-32 pb-24 md:pb-32" style={{ backgroundColor: "#0a0a08" }}>
@@ -111,7 +111,7 @@ const LazyGeoPage = () => {
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="border border-border bg-card p-8">
             <h2 className="font-display text-xl font-extrabold tracking-tight mb-4">What is GEO?</h2>
             <p className="font-body text-sm text-muted-foreground leading-relaxed mb-4">
-              <strong className="text-foreground">Generative Engine Optimisation</strong> is the next evolution of SEO. Instead of optimising for Google's link-based results, GEO optimises your content to be <em>cited by AI agents?</em> — ChatGPT, Claude, Perplexity, and Gemini.
+              <strong className="text-foreground">Generative Agent Optimisation</strong> is the next evolution of SEO. Instead of optimising for Google's link-based results, GEO optimises your content to be <em>cited by AI agents?</em> — ChatGPT, Claude, Perplexity, and Gemini.
             </p>
             <p className="font-body text-sm text-muted-foreground leading-relaxed">
               When someone asks an AI assistant a question in your niche, GEO-optimised content is structured so the AI pulls from your site and mentions your brand in its answer. It's the difference between ranking on a page and being the answer.

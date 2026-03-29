@@ -579,7 +579,7 @@ export default function UseCasesPage() {
         </section>
       )}
 
-      {/* Engine Cards */}
+      {/* Agent Cards */}
       {showEngines && (
         <section className="px-6 md:px-12 max-w-5xl mx-auto pb-16">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

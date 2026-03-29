@@ -354,7 +354,7 @@ const LazyStorePage = () => {
     { icon: DollarSign, title: "Pricing Engine", desc: "Monitors competitor prices and adjusts yours automatically to stay competitive." },
     { icon: Megaphone, title: "Promotion Engine", desc: "Identifies slow-moving products and creates discount offers and homepage banners automatically." },
     { icon: TrendingUp, title: "Conversion Optimiser", desc: "Monitors which product pages convert, rewrites underperforming ones, and improves the store week over week." },
-    { icon: BookOpen, title: "SEO Content Engine", desc: "Publishes buying guides and product comparisons targeting the keywords shoppers search before buying." },
+    { icon: BookOpen, title: "SEO Content Agent", desc: "Publishes buying guides and product comparisons targeting the keywords shoppers search before buying." },
   ];
 
   const models = [

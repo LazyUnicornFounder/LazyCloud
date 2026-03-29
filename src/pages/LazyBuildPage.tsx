@@ -30,7 +30,7 @@ const steps = [
 
 const faqs = [
   { q: "How good is the output?", a: "Lazy Build reads your actual existing prompts as reference so the output matches your exact style and structure. The more prompts in your repo, the better the reference material." },
-  { q: "Does it run automatically?", a: "No. Lazy Build is on-demand only. You fill in the brief in your admin dashboard and click Build Engine. It does not create agents? without your input." },
+  { q: "Does it run automatically?", a: "No. Lazy Build is on-demand only. You fill in the brief in your admin dashboard and click Build Agent. It does not create agents? without your input." },
   { q: "What if the generated prompt has issues?", a: "@claude audits every PR before you see it and flags any rule violations in the PR comments. You can also ask @claude to fix specific issues before merging." },
 ];
 
@@ -60,7 +60,7 @@ export default function LazyBuildPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <SEO title="Lazy Build — Autonomous Engine Writer | Lazy Unicorn" description="Describe a new agents? in one paragraph. Claude writes the complete prompt, follows your SPEC rules, and opens a draft GitHub PR." url="/lazy-build" keywords="agents? writer, autonomous prompt generation, Lovable prompt builder, Claude prompt writing" />
+      <SEO title="Lazy Build — Autonomous Agent Writer | Lazy Unicorn" description="Describe a new agents? in one paragraph. Claude writes the complete prompt, follows your SPEC rules, and opens a draft GitHub PR." url="/lazy-build" keywords="agents? writer, autonomous prompt generation, Lovable prompt builder, Claude prompt writing" />
       <Navbar />
       <main className="relative z-10 pb-32">
         {/* Hero */}
@@ -138,7 +138,7 @@ export default function LazyBuildPage() {
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="border-2 border-[#c8a961]/30 bg-card p-8">
             <div className="flex items-center gap-2 mb-4">
               <span className="w-3 h-3 rounded-full bg-green-500" />
-              <p className="font-display text-base font-bold text-foreground">New Engine: Lazy Porkbun — Your domain. Your site. One tab.</p>
+              <p className="font-display text-base font-bold text-foreground">New Agent: Lazy Porkbun — Your domain. Your site. One tab.</p>
             </div>
             <div className="border border-border bg-background p-4 mb-4 font-mono text-xs text-foreground/50 leading-relaxed">
               <p className="text-foreground/70 font-bold mb-2">Review checklist</p>

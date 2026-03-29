@@ -90,7 +90,7 @@ export default function LazyDesignPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <SEO
-        title="Lazy Design — Autonomous Design Upgrade Engine for Lovable"
+        title="Lazy Design — Autonomous Design Upgrade Agent for Lovable"
         description="One prompt upgrades your Lovable site with pre-built 21st.dev components — hero, navigation, testimonials, and more — matched to your brand automatically."
         url="/lazy-design"
         keywords="autonomous design, 21st.dev integration, Lovable design agents?, UI component upgrades, design automation"

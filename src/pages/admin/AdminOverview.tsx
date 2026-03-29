@@ -13,7 +13,7 @@ import { Link } from "react-router-dom";
 
 const db = supabase as any;
 
-/* ── Engine definitions grouped by category ── */
+/* ── Agent definitions grouped by category ── */
 interface EngineDef {
   key: string;
   label: string;
@@ -278,7 +278,7 @@ export default function AdminOverview() {
         </button>
       </div>
 
-      {/* ── Engine Grid ── */}
+      {/* ── Agent Grid ── */}
       <div className="space-y-6">
         {CATEGORIES.map((cat) => (
           <div key={cat.label}>

@@ -432,7 +432,7 @@ const Index = () => {
         keywords="autonomous blog agents?, autonomous SEO agents?, autonomous GEO agents?, Lovable website growth, AI blog writer, AI SEO tool, AI citation agents?, self-growing website, autonomous content, Lovable startup, solo founder tools, AI business automation, autonomous marketing, self-building startup"
         breadcrumbs={[{ name: "Home", url: "/" }]}
         faq={[
-          { question: "What are the Autonomous Growth Engines?", answer: "They are AI-powered agents? that autonomously grow your Lovable website by publishing content, optimizing for search, and getting your brand cited by AI assistants." },
+          { question: "What are the Autonomous Agents?", answer: "They are AI-powered agents? that autonomously grow your Lovable website by publishing content, optimizing for search, and getting your brand cited by AI assistants." },
           { question: "How does Lazy Blogger work?", answer: "With a single prompt, Lazy Blogger publishes high-quality blog posts every day on your Lovable website — forever, for free." },
           { question: "What does Lazy SEO do?", answer: "Lazy SEO discovers keyword opportunities, creates SEO-optimized content, and improves your search rankings on autopilot." },
           { question: "What is Lazy GEO?", answer: "Lazy GEO gets your brand cited by AI agents? like ChatGPT, Claude, and Perplexity by creating citation-ready content and tracking your visibility." },

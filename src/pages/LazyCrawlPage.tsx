@@ -89,7 +89,7 @@ const LazyCrawlPage = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <SEO title="Lazy Crawl — Autonomous Web Intelligence Engine for Lovable" description="Monitor competitors, extract trends, discover leads, and feed real web data into your content agents — all powered by Firecrawl." url="/lazy-crawl" />
+      <SEO title="Lazy Crawl — Autonomous Web Intelligence Agent for Lovable" description="Monitor competitors, extract trends, discover leads, and feed real web data into your content agents — all powered by Firecrawl." url="/lazy-crawl" />
       <Navbar />
       <main className="relative z-10 pb-32">
         {/* Hero */}
@@ -149,7 +149,7 @@ const LazyCrawlPage = () => {
               { icon: Eye, title: "Live Intelligence Feed", desc: "Build a continuously updating industry intelligence feed from real web data." },
               { icon: Database, title: "Real Data for Content", desc: "Feed real current data into your blog posts instead of AI guesswork." },
               { icon: BarChart3, title: "Change Detection", desc: "Get alerted when competitor pricing, features, or messaging changes." },
-              { icon: Zap, title: "Engine Integration", desc: "Extracted intel flows automatically into Lazy Blogger, Lazy SEO, and Lazy GEO." },
+              { icon: Zap, title: "Agent Integration", desc: "Extracted intel flows automatically into Lazy Blogger, Lazy SEO, and Lazy GEO." },
             ].map((item, i) => (
               <motion.div key={item.title} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} transition={{ delay: i * 0.06 }} className="border-b sm:odd:border-r last:border-b-0 border-border bg-card p-6">
                 <item.icon size={18} className="text-foreground/65 mb-3" />
