@@ -108,8 +108,30 @@ export default function AdminLayout() {
             <span className="font-body text-[11px] tracking-[0.1em] uppercase text-[#f0ead6]/70">{masterLabel}</span>
           </div>
 
-          {/* Overview */}
+          {/* Prompts section */}
+          <PromptActions />
+
+          {/* Navigation */}
           <nav className="flex-1 py-2">
+            {/* Installs */}
+            <Link
+              to="/admin/installs"
+              className={`flex items-center gap-2 px-5 py-2 font-body text-[13px] tracking-[0.06em] transition-colors ${isActive("/admin/installs") ? "text-[#c8a961] bg-[#c8a961]/8 border-l-2 border-[#c8a961]" : "text-[#f0ead6]/70 hover:text-[#f0ead6]/95 border-l-2 border-transparent"}`}
+            >
+              <Download size={13} /> Installs
+            </Link>
+
+            {/* Visitor Analytics */}
+            <a
+              href="https://lovable.dev/projects/8f74d28a-09c4-4b3c-97f7-3b60c5834e3d/analytics"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 px-5 py-2 font-body text-[13px] tracking-[0.06em] text-[#f0ead6]/70 hover:text-[#f0ead6]/95 border-l-2 border-transparent transition-colors"
+            >
+              <ExternalLink size={13} /> Visitor Analytics <ExternalLink size={9} className="ml-auto opacity-40" />
+            </a>
+
+            {/* Overview */}
             <Link
               to="/admin"
               className={`flex items-center justify-between px-5 py-2 font-body text-[13px] tracking-[0.06em] transition-colors ${isActive("/admin") ? "text-[#c8a961] bg-[#c8a961]/8 border-l-2 border-[#c8a961]" : "text-[#f0ead6]/70 hover:text-[#f0ead6]/95 border-l-2 border-transparent"}`}
@@ -143,12 +165,6 @@ export default function AdminLayout() {
             {/* System */}
             <div className="mt-3">
               <p className="px-5 font-body text-[10px] tracking-[0.2em] uppercase text-[#f0ead6]/40 mb-1">System</p>
-              <Link
-                to="/admin/installs"
-                className={`flex items-center gap-2 px-5 py-1.5 font-body text-[13px] tracking-[0.06em] transition-colors ${isActive("/admin/installs") ? "text-[#c8a961] bg-[#c8a961]/8 border-l-2 border-[#c8a961]" : "text-[#f0ead6]/70 hover:text-[#f0ead6]/95 border-l-2 border-transparent"}`}
-              >
-                <Download size={12} /> Installs
-              </Link>
               <Link
                 to="/admin/settings"
                 className={`flex items-center gap-2 px-5 py-1.5 font-body text-[13px] tracking-[0.06em] transition-colors ${isActive("/admin/settings") ? "text-[#c8a961] bg-[#c8a961]/8 border-l-2 border-[#c8a961]" : "text-[#f0ead6]/70 hover:text-[#f0ead6]/95 border-l-2 border-transparent"}`}
