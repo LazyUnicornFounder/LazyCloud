@@ -242,7 +242,7 @@ const Index = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8 }}
-          className="min-h-[90vh] flex flex-col items-center justify-center px-6 md:px-8 pt-44 pb-20 text-center"
+          className="min-h-screen flex flex-col items-center justify-end px-6 md:px-8 pb-32 text-center"
         >
           {/* Headline */}
           <h1
@@ -269,27 +269,27 @@ const Index = () => {
             className="max-w-2xl mt-6"
             style={{
               fontFamily: "'Space Grotesk', sans-serif",
-              fontSize: "clamp(0.9rem, 1.2vw, 1.05rem)",
+              fontSize: "clamp(0.85rem, 1.1vw, 0.95rem)",
               color: "hsl(var(--foreground))",
-              opacity: 0.4,
-              lineHeight: 1.65,
+              opacity: 0.35,
+              lineHeight: 1.7,
             }}
           >
             Each agent is a single prompt you paste into Lovable. It installs its own tables,<br className="hidden md:inline" /> edge functions, and UI — then runs itself, so you can build your autonomous business.
           </p>
 
           {/* CTA */}
-          <div className="mt-10 flex flex-col sm:flex-row items-center gap-3">
+          <div className="mt-8 flex flex-col sm:flex-row items-center gap-3">
             <Link
               to="/lazy-launch"
-              className="text-sm tracking-[0.15em] uppercase px-8 py-3 font-semibold hover:opacity-80 transition-opacity active:scale-[0.97]"
+              className="text-xs tracking-[0.2em] uppercase px-7 py-2.5 font-semibold hover:opacity-80 transition-opacity active:scale-[0.97]"
               style={{ fontFamily: "'Space Grotesk', sans-serif", backgroundColor: "hsl(var(--primary))", color: "#0a0a08", borderRadius: 0 }}
             >
               Launch your Lovable website
             </Link>
             <Link
               to="/lazy-agents"
-              className="text-sm tracking-[0.15em] uppercase px-8 py-3 font-semibold hover:opacity-80 transition-opacity active:scale-[0.97] border border-foreground/20"
+              className="text-xs tracking-[0.2em] uppercase px-7 py-2.5 font-semibold hover:opacity-80 transition-opacity active:scale-[0.97] border border-foreground/15"
               style={{ fontFamily: "'Space Grotesk', sans-serif", color: "hsl(var(--foreground))", borderRadius: 0 }}
             >
               Explore Agents
