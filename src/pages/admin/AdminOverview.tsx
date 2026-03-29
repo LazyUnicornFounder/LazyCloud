@@ -197,13 +197,13 @@ export default function AdminOverview() {
                     <button
                       onClick={() => runAction(firstAction.fn, firstAction.label)}
                       disabled={!!runningAction}
-                      className="inline-flex items-center gap-1 px-2 py-1 font-body text-[9px] uppercase tracking-wider text-[#f0ead6]/60 hover:text-[#f0ead6] border border-[#f0ead6]/8 hover:border-[#f0ead6]/20 transition-colors disabled:opacity-40"
+                      className="inline-flex items-center gap-1 px-2 py-1 font-body text-[9px] uppercase tracking-wider text-[#0a0a08] bg-orange-500 hover:bg-orange-400 transition-colors disabled:opacity-40"
                     >
                       {runningAction === firstAction.fn ? <Loader2 size={9} className="animate-spin" /> : <Play size={9} />}
                       Run
                     </button>
                   )}
-                  <Link to={agent.route} className="ml-auto font-body text-[9px] uppercase tracking-wider text-[#f0ead6]/30 hover:text-[#c8a961] transition-colors">
+                  <Link to={agent.route} className="ml-auto px-2 py-1 font-body text-[9px] uppercase tracking-wider text-[#0a0a08] bg-orange-500 hover:bg-orange-400 transition-colors">
                     Open →
                   </Link>
                 </div>
