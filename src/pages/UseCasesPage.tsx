@@ -3,9 +3,11 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
   CreditCard, MessageSquare, Mic, Globe, GitBranch, Search,
-  Hash, Send, Tv, Database, FileText, Shield, Code, Zap,
-  ArrowRight, CheckCircle2, Palette, Eye, Wrench, Hammer,
-  BarChart3, RefreshCw, TrendingUp, UserX, Settings,
+  Bell, Send, MonitorPlay, Database, FileText, Shield, Code,
+  ArrowRight, Paintbrush, Eye, Wrench, Hammer,
+  Brain, RefreshCw, TrendingUp, UserCheck, LayoutDashboard,
+  Radar, Compass, Layers, ShoppingCart, Package, Printer, Mail,
+  Youtube, Lock, Calendar,
 } from "lucide-react";
 import SEO from "@/components/SEO";
 import Navbar from "@/components/Navbar";
