@@ -16,8 +16,8 @@ import SEO from "@/components/SEO";
 import Navbar from "@/components/Navbar";
 import { useTrackVisit } from "@/hooks/useTrackVisit";
 
-const NEW_TITLE = "Launch, build and run your Lovable website with autonomous agents.";
-const NEW_DESCRIPTION = "Your site launches. Your waitlist fills. Your blog writes itself. Your pages rank. Your payments process. All from one prompt — all on autopilot.";
+const NEW_TITLE = "Launch your autonomous business on Lovable.";
+const NEW_DESCRIPTION = "Your site launches. Your waitlist fills. Your blog writes itself. Your stores sell. Your pages rank. Your payments process. All from one prompt — all on autopilot.";
 
 const rotatingWords = [
   { word: "everything", emoji: "🦄" },       // Lazy Run
@@ -259,13 +259,12 @@ const Index = () => {
                   letterSpacing: "-0.01em",
                 }}
               >
-                Launch, build and run<br className="hidden md:inline" />
-                {" "}your Lovable website<br className="hidden md:inline" />
-                {" "}with autonomous agents.
+                Launch your autonomous<br className="hidden md:inline" />
+                {" "}business on Lovable.
               </h1>
 
               <p className="mt-6 font-body text-base md:text-lg max-w-xl leading-relaxed" style={{ color: "#f0ead6", opacity: 0.5 }}>
-                Your site launches. Your waitlist fills. Your blog writes itself. Your pages rank. Your payments process. All from one prompt — all on autopilot.
+                Your site launches. Your waitlist fills. Your blog writes itself. Your stores sell. Your pages rank. Your payments process. All from one prompt — all on autopilot.
               </p>
 
               <div className="flex flex-col sm:flex-row items-start gap-4 mt-10">
