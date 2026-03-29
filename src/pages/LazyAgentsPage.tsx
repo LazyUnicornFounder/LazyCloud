@@ -149,7 +149,7 @@ export default function LazyAgentsPage() {
                   <Link
                     key={agent.name}
                     to={agent.href}
-                    className="border-b lg:[&:nth-last-child(-n+3)]:border-b-0 sm:[&:nth-last-child(-n+2)]:border-b-0 sm:odd:border-r lg:odd:border-r-0 lg:[&:nth-child(3n+1)]:border-r lg:[&:nth-child(3n+2)]:border-r border-border bg-card p-6 flex items-start gap-4 hover:bg-accent/5 transition-colors group"
+                    className="border-b last:border-b-0 sm:odd:border-r lg:odd:border-r-0 lg:[&:nth-child(3n+1)]:border-r lg:[&:nth-child(3n+2)]:border-r border-border bg-card p-5 sm:p-6 flex items-start gap-4 hover:bg-accent/5 transition-colors group"
                   >
                     <span className="text-xl mt-0.5">{agent.emoji}</span>
                     <div className="min-w-0">
