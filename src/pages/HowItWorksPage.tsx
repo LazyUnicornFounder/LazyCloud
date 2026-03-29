@@ -261,14 +261,23 @@ export default function HowItWorksPage() {
         {/* CTA */}
         <section className="px-6 md:px-12 py-24 border-t border-white/10">
           <div className="max-w-4xl mx-auto">
-            <h2 style={heroHeading}>Pick an agent. Paste the prompt. Watch it run.</h2>
-            <p className="mt-6 font-body text-base leading-relaxed" style={{ color: "#f0ead6", opacity: 0.5 }}>Or install everything at once with Lazy Run.</p>
+          <h2 style={heroHeading}>Pick an agent. Paste the prompt. Watch it run.</h2>
+          <p className="mt-6 font-body text-base leading-relaxed" style={{ color: "#f0ead6", opacity: 0.5 }}>Or install everything at once with Lazy Run. Want it fully managed? Try Lazy Cloud.</p>
+          <div className="flex flex-wrap items-start gap-4 mt-8">
             <Link
               to="/lazy-run"
-              className="inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground font-display text-sm tracking-[0.08em] uppercase font-bold px-8 py-4 hover:opacity-90 transition-opacity mt-8"
+              className="inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground font-display text-sm tracking-[0.08em] uppercase font-bold px-8 py-4 hover:opacity-90 transition-opacity"
             >
               Get Lazy Run
             </Link>
+            <Link
+              to="/lazy-cloud"
+              className="inline-flex items-center justify-center gap-2 font-display text-sm tracking-[0.08em] uppercase font-bold px-8 py-4 border border-white/15 hover:border-white/30 transition-colors"
+              style={{ color: "#f0ead6" }}
+            >
+              Explore Lazy Cloud
+            </Link>
+          </div>
           </div>
         </section>
       </main>
