@@ -1,28 +1,98 @@
 import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { Eye, Wrench, HardHat, BarChart3, Github, Key, Bot } from "lucide-react";
 import SEO from "@/components/SEO";
 import Navbar from "@/components/Navbar";
 import { useTrackEvent } from "@/hooks/useTrackEvent";
 
 const fadeUp = { hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0 } };
 
-const agents = [
-  { emoji: "👁️", name: "Lazy Watch", tagline: "Your stack watches itself.", desc: "Monitors every agent's error table hourly and opens GitHub issues automatically.", href: "/lazy-watch", icon: Eye },
-  { emoji: "🔧", name: "Lazy Fix", tagline: "Your prompts improve while you sleep.", desc: "Reads performance data every Sunday and opens PRs with targeted prompt improvements.", href: "/lazy-fix", icon: Wrench },
-  { emoji: "🏗️", name: "Lazy Build", tagline: "Describe it. Claude builds it.", desc: "Writes complete new agent prompts from a one-paragraph brief and opens a draft GitHub PR.", href: "/lazy-build", icon: HardHat },
-  { emoji: "📊", name: "Lazy Intel", tagline: "Your strategy writes itself.", desc: "Reads all your agent data every Monday and fills your SEO and GEO queues automatically.", href: "/lazy-intel", icon: BarChart3 },
-  { emoji: "🔄", name: "Lazy Repurpose", tagline: "One post. Five formats. Zero writing.", desc: "Every Sunday, turns your top blog posts into Twitter threads, LinkedIn posts, newsletter sections, and video scripts.", href: "/lazy-repurpose", icon: Bot },
-  { emoji: "🔥", name: "Lazy Trend", tagline: "Be first on every trending topic.", desc: "Scans Perplexity, Firecrawl, and competitors every 6 hours. Queues SEO keywords and GEO articles on trending topics.", href: "/lazy-trend", icon: BarChart3 },
-  { emoji: "💰", name: "Lazy Churn", tagline: "The cheapest customer is the one you keep.", desc: "Monitors Stripe subscribers daily. Sends personalised re-engagement SMS and email before cancellation happens.", href: "/lazy-churn", icon: Eye },
+interface Agent {
+  emoji: string;
+  name: string;
+  tagline: string;
+  href: string;
+}
+
+interface Category {
+  label: string;
+  agents: Agent[];
+}
+
+const categories: Category[] = [
+  {
+    label: "Unicorn",
+    agents: [
+      { emoji: "🚀", name: "Lazy Launch", tagline: "Launch your Lovable website", href: "/lazy-launch" },
+      { emoji: "▶️", name: "Lazy Run", tagline: "Autonomous everything", href: "/lazy-run" },
+    ],
+  },
+  {
+    label: "Content",
+    agents: [
+      { emoji: "✍️", name: "Lazy Blogger", tagline: "Autonomous blog posts", href: "/lazy-blogger" },
+      { emoji: "🔍", name: "Lazy SEO", tagline: "Autonomous SEO content", href: "/lazy-seo" },
+      { emoji: "🌍", name: "Lazy GEO", tagline: "Autonomous AI citations", href: "/lazy-geo" },
+      { emoji: "🕷️", name: "Lazy Crawl", tagline: "Autonomous web research", href: "/lazy-crawl" },
+      { emoji: "🔮", name: "Lazy Perplexity", tagline: "Autonomous deep research", href: "/lazy-perplexity" },
+      { emoji: "📦", name: "Lazy Contentful", tagline: "Autonomous CMS sync", href: "/lazy-contentful" },
+    ],
+  },
+  {
+    label: "Commerce",
+    agents: [
+      { emoji: "🏪", name: "Lazy Store", tagline: "Autonomous storefronts", href: "/lazy-store" },
+      { emoji: "📬", name: "Lazy Drop", tagline: "Autonomous dropshipping", href: "/lazy-drop" },
+      { emoji: "🖨️", name: "Lazy Print", tagline: "Autonomous print-on-demand", href: "/lazy-print" },
+      { emoji: "💳", name: "Lazy Pay", tagline: "Autonomous payments", href: "/lazy-pay" },
+      { emoji: "📱", name: "Lazy SMS", tagline: "Autonomous text campaigns", href: "/lazy-sms" },
+      { emoji: "✉️", name: "Lazy Mail", tagline: "Autonomous email flows", href: "/lazy-mail" },
+    ],
+  },
+  {
+    label: "Media",
+    agents: [
+      { emoji: "🎙️", name: "Lazy Voice", tagline: "Autonomous podcasts", href: "/lazy-voice" },
+      { emoji: "📺", name: "Lazy Stream", tagline: "Autonomous stream content", href: "/lazy-stream" },
+      { emoji: "🎬", name: "Lazy YouTube", tagline: "Autonomous video content", href: "/lazy-youtube" },
+    ],
+  },
+  {
+    label: "Dev",
+    agents: [
+      { emoji: "🐙", name: "Lazy GitHub", tagline: "Autonomous changelogs", href: "/lazy-github" },
+      { emoji: "🦊", name: "Lazy GitLab", tagline: "Autonomous GitLab docs", href: "/lazy-gitlab" },
+      { emoji: "✅", name: "Lazy Linear", tagline: "Autonomous issue content", href: "/lazy-linear" },
+      { emoji: "🎨", name: "Lazy Design", tagline: "Autonomous UI upgrades", href: "/lazy-design" },
+      { emoji: "🔐", name: "Lazy Auth", tagline: "Autonomous login flows", href: "/lazy-auth" },
+      { emoji: "🧠", name: "Lazy Granola", tagline: "Autonomous meeting content", href: "/lazy-granola" },
+    ],
+  },
+  {
+    label: "Ops",
+    agents: [
+      { emoji: "⚙️", name: "Lazy Admin", tagline: "Autonomous ops control", href: "/lazy-admin" },
+      { emoji: "🚨", name: "Lazy Alert", tagline: "Autonomous Slack alerts", href: "/lazy-alert" },
+      { emoji: "✈️", name: "Lazy Telegram", tagline: "Autonomous Telegram updates", href: "/lazy-telegram" },
+      { emoji: "🗄️", name: "Lazy Supabase", tagline: "Autonomous database reports", href: "/lazy-supabase" },
+      { emoji: "🛡️", name: "Lazy Security", tagline: "Autonomous pentesting", href: "/lazy-security" },
+    ],
+  },
+  {
+    label: "Agents",
+    agents: [
+      { emoji: "👁️", name: "Lazy Watch", tagline: "Autonomous error monitoring", href: "/lazy-watch" },
+      { emoji: "🔧", name: "Lazy Fix", tagline: "Autonomous prompt improvement", href: "/lazy-fix" },
+      { emoji: "🏗️", name: "Lazy Build", tagline: "Autonomous agent writing", href: "/lazy-build" },
+      { emoji: "📊", name: "Lazy Intel", tagline: "Autonomous content strategy", href: "/lazy-intel" },
+      { emoji: "🔄", name: "Lazy Repurpose", tagline: "Autonomous content repurposing", href: "/lazy-repurpose" },
+      { emoji: "🔥", name: "Lazy Trend", tagline: "Autonomous trend detection", href: "/lazy-trend" },
+      { emoji: "💰", name: "Lazy Churn", tagline: "Autonomous churn prevention", href: "/lazy-churn" },
+    ],
+  },
 ];
 
-const prerequisites = [
-  { icon: Github, title: "GitHub repo", desc: "Your LazyUnicorn prompts live in a GitHub repo. The agents read and write to it. You need GITHUB_TOKEN as a secret with repo scope." },
-  { icon: Bot, title: "At least 3 agents installed", desc: "Ops agents need performance data to analyse. Install Lazy Blogger, Lazy SEO, and Lazy GEO as a minimum before running Lazy Fix or Lazy Intel." },
-  { icon: Key, title: "ANTHROPIC_API_KEY", desc: "All seven agents use Claude for diagnosis, writing, and strategy. Set this as a secret if not already done." },
-];
+const totalAgents = categories.reduce((sum, c) => sum + c.agents.length, 0);
 
 export default function LazyAgentsPage() {
   const trackEvent = useTrackEvent();
@@ -31,96 +101,78 @@ export default function LazyAgentsPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <SEO
-        title="Lazy Agents — Autonomous Stack Intelligence | Lazy Unicorn"
-        description="Seven autonomous agents that monitor your stack, fix broken prompts, improve performance, and write new agents — running inside your Lovable project."
+        title="All 35 Agents — Autonomous Stack | Lazy Unicorn"
+        description="Browse all 35 autonomous agents across content, commerce, media, dev, and ops — running inside your Lovable project."
         url="/lazy-agents"
-        keywords="autonomous agents, self-improving stack, Lovable agents, prompt improvement, error monitoring"
+        keywords="autonomous agents, Lovable agents, lazy unicorn agents, autonomous stack"
       />
       <Navbar />
 
       <main className="relative z-10 pb-32">
         {/* Hero */}
-        <section className="relative px-6 md:px-12 pt-32 pb-32 md:pb-40" style={{ backgroundColor: "#0a0a08" }}>
+        <section className="relative px-6 md:px-12 pt-32 pb-24 md:pb-32" style={{ backgroundColor: "#0a0a08" }}>
           <div className="max-w-4xl mx-auto text-center">
             <motion.div initial="hidden" animate="visible" variants={fadeUp} transition={{ duration: 0.7 }}>
-              <p className="font-display text-[11px] tracking-[0.25em] uppercase text-foreground/40 font-bold mb-6">Lazy Agents</p>
+              <p className="font-display text-[11px] tracking-[0.25em] uppercase text-foreground/40 font-bold mb-6">{totalAgents} Agents</p>
               <h1 style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(1.8rem, 4vw, 3.2rem)", color: "#f0ead6", lineHeight: 1.15, letterSpacing: "-0.02em" }}>
-                Your agents monitor, fix, and improve themselves.
+                Every agent. One stack.
               </h1>
               <p className="mt-6 font-body text-base md:text-lg text-foreground/60 max-w-2xl mx-auto leading-relaxed">
-                Seven autonomous ops agents that monitor errors, fix prompts, build new agents, strategise content, repurpose posts, detect trends, and prevent churn — all running inside your Lovable project.
+                {totalAgents} autonomous agents across {categories.length} categories — content, commerce, media, dev, ops, and meta-agents — all running inside your Lovable project.
               </p>
             </motion.div>
           </div>
         </section>
 
-        {/* Agent cards */}
-        <section className="max-w-4xl mx-auto px-6 mt-8 mb-20">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-0 border border-border">
-            {agents.map((agent, i) => (
-              <motion.div
-                key={agent.name}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={fadeUp}
-                transition={{ delay: i * 0.08 }}
-                className="border-b sm:odd:border-r last:border-b-0 sm:[&:nth-child(3)]:border-b-0 border-border bg-card p-8 flex flex-col"
-              >
-                <p className="text-2xl leading-[1.2] mb-3 pt-1">{agent.emoji}</p>
-                <h3 className="font-display text-lg font-bold text-foreground mb-1">{agent.name}</h3>
-                <p className="font-body text-sm font-semibold text-[#c8a961] mb-2">{agent.tagline}</p>
-                <p className="font-body text-sm text-foreground/50 leading-relaxed mb-6 flex-1">{agent.desc}</p>
-                <Link
-                  to={agent.href}
-                  className="inline-flex items-center gap-2 font-display text-xs tracking-[0.15em] uppercase font-bold text-foreground/60 hover:text-foreground transition-colors"
-                >
-                  View Agent →
-                </Link>
-              </motion.div>
-            ))}
-          </div>
-        </section>
+        {/* Categories */}
+        {categories.map((category, ci) => (
+          <section key={category.label} className="max-w-5xl mx-auto px-6 mt-16 first:mt-8">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeUp}
+              transition={{ delay: ci * 0.05 }}
+            >
+              <div className="flex items-center gap-3 mb-6">
+                <h2 className="font-display text-xs tracking-[0.2em] uppercase font-bold text-foreground/40">
+                  {category.label}
+                </h2>
+                <span className="font-body text-[11px] tracking-[0.15em] uppercase text-foreground/25">
+                  {category.agents.length} agents
+                </span>
+                <div className="flex-1 border-t border-border/30" />
+              </div>
 
-        {/* Prerequisites */}
-        <section className="max-w-3xl mx-auto px-6 mb-20">
-          <motion.h2 initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="font-display text-2xl sm:text-3xl font-extrabold tracking-tight text-center mb-10">
-            What you need before installing ops agents
-          </motion.h2>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-0 border border-border">
-            {prerequisites.map((req, i) => (
-              <motion.div
-                key={req.title}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={fadeUp}
-                transition={{ delay: i * 0.08 }}
-                className="border-b sm:border-b-0 sm:border-r last:border-r-0 last:border-b-0 border-border bg-card p-6 text-center"
-              >
-                <req.icon size={18} className="text-[#c8a961] mx-auto mb-3" />
-                <h3 className="font-display text-sm font-bold text-foreground mb-2">{req.title}</h3>
-                <p className="font-body text-sm text-muted-foreground leading-relaxed">{req.desc}</p>
-              </motion.div>
-            ))}
-          </div>
-        </section>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-0 border border-border">
+                {category.agents.map((agent, i) => (
+                  <Link
+                    key={agent.name}
+                    to={agent.href}
+                    className="border-b lg:[&:nth-last-child(-n+3)]:border-b-0 sm:[&:nth-last-child(-n+2)]:border-b-0 sm:odd:border-r lg:odd:border-r-0 lg:[&:nth-child(3n+1)]:border-r lg:[&:nth-child(3n+2)]:border-r border-border bg-card p-6 flex items-start gap-4 hover:bg-accent/5 transition-colors group"
+                  >
+                    <span className="text-xl mt-0.5">{agent.emoji}</span>
+                    <div className="min-w-0">
+                      <h3 className="font-display text-sm font-bold text-foreground group-hover:text-[#c8a961] transition-colors">{agent.name}</h3>
+                      <p className="font-body text-xs text-foreground/45 mt-0.5">{agent.tagline}</p>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </motion.div>
+          </section>
+        ))}
 
         {/* CTA */}
-        <section className="text-center px-6">
+        <section className="text-center px-6 mt-24">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
-            <p className="font-body text-sm text-foreground/40 mb-6">Pick an agent and get started.</p>
-            <div className="flex flex-wrap justify-center gap-3">
-              {agents.map((a) => (
-                <Link
-                  key={a.href}
-                  to={a.href}
-                  className="inline-flex items-center gap-2 font-display text-xs tracking-[0.12em] uppercase font-bold px-5 py-3 border border-border text-foreground/60 hover:text-foreground hover:border-foreground/30 transition-colors"
-                >
-                  {a.emoji} {a.name}
-                </Link>
-              ))}
-            </div>
+            <p className="font-body text-sm text-foreground/40 mb-4">{totalAgents} agents. Zero effort.</p>
+            <Link
+              to="/lazy-run"
+              className="inline-flex items-center gap-2 font-display text-xs tracking-[0.12em] uppercase font-bold px-8 py-4 bg-foreground text-background hover:opacity-90 transition-opacity"
+            >
+              Get Started with Lazy Run →
+            </Link>
           </motion.div>
         </section>
       </main>
