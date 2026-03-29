@@ -418,6 +418,68 @@ const sketches: Record<string, JSX.Element> = {
       <path d="M45 90 L55 85 L65 90 L75 85" />
     </svg>
   ),
+  Watch: (
+    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="#f0ead6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="60" cy="55" r="28" />
+      <circle cx="60" cy="55" r="12" />
+      <circle cx="60" cy="55" r="5" fill="#f0ead6" stroke="none" />
+      <path d="M30 55 L20 55" /><path d="M100 55 L90 55" />
+      <path d="M60 25 L60 15" /><path d="M60 95 L60 85" />
+    </svg>
+  ),
+  Fix: (
+    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="#f0ead6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M75 30 L90 45 L50 85 L35 85 L35 70 Z" />
+      <path d="M65 40 L80 55" />
+      <line x1="35" y1="95" x2="85" y2="95" strokeDasharray="4 4" />
+    </svg>
+  ),
+  Build: (
+    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="#f0ead6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="30" y="35" width="60" height="55" rx="3" />
+      <path d="M45 25 L45 35" /><path d="M75 25 L75 35" />
+      <line x1="42" y1="52" x2="78" y2="52" />
+      <line x1="42" y1="62" x2="70" y2="62" />
+      <line x1="42" y1="72" x2="75" y2="72" />
+      <path d="M55 80 L60 85 L70 75" />
+    </svg>
+  ),
+  Intel: (
+    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="#f0ead6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="25" y="30" width="70" height="60" rx="3" />
+      <rect x="32" y="55" width="10" height="25" rx="1" />
+      <rect x="47" y="45" width="10" height="35" rx="1" />
+      <rect x="62" y="50" width="10" height="30" rx="1" />
+      <rect x="77" y="38" width="10" height="42" rx="1" />
+      <path d="M32 52 L47 42 L62 47 L87 35" strokeDasharray="3 3" />
+    </svg>
+  ),
+  Repurpose: (
+    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="#f0ead6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M40 40 L80 40 L80 60 L90 50 L70 30" />
+      <path d="M80 80 L40 80 L40 60 L30 70 L50 90" />
+      <rect x="45" y="50" width="30" height="20" rx="2" />
+      <line x1="50" y1="57" x2="70" y2="57" />
+      <line x1="50" y1="63" x2="65" y2="63" />
+    </svg>
+  ),
+  Trend: (
+    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="#f0ead6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M25 85 L45 65 L60 72 L80 40 L95 35" />
+      <circle cx="95" cy="35" r="5" fill="#f0ead6" stroke="none" />
+      <path d="M85 40 L95 35 L90 25" />
+      <line x1="25" y1="90" x2="95" y2="90" />
+      <line x1="25" y1="30" x2="25" y2="90" />
+    </svg>
+  ),
+  Churn: (
+    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="#f0ead6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="60" cy="45" r="15" />
+      <path d="M60 30 L60 45 L70 45" />
+      <path d="M35 75 Q35 65 60 60 Q85 65 85 75 L85 90 L35 90 Z" />
+      <path d="M48 80 L55 87 L72 72" />
+    </svg>
+  ),
   "Coming Soon": (
     <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="#f0ead6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       <circle cx="60" cy="55" r="25" />
