@@ -16,7 +16,7 @@ const FALLBACK_PROMPT = `[Lazy Intel Prompt — v0.0.1 — LazyUnicorn.ai]
 
 Add an autonomous performance intelligence agent called Lazy Intel to this project. Every Monday at 6am it reads all available content analytics, YouTube performance, customer discovery signals, comment intelligence, and competitor data — generates a weekly content strategy brief — and automatically adds the best SEO keywords and GEO queries to your content queues. Your strategy writes itself.
 
-Note: Lazy Intel uses no external APIs. It reads your existing Supabase tables from other installed Lazy engines. The more engines installed, the richer the intelligence.`;
+Note: Lazy Intel uses no external APIs. It reads your existing Supabase tables from other installed Lazy agents. The more agents installed, the richer the intelligence.`;
 
 const dataSources = [
   { source: "Blog posts", reads: "Top topics, output velocity", engine: "Lazy Blogger" },
@@ -30,7 +30,7 @@ const dataSources = [
 ];
 
 const faqs = [
-  { q: "What if I only have Lazy Blogger installed?", a: "Lazy Intel reads whatever tables exist and skips the ones that don't. With only Lazy Blogger it works from blog post performance data alone — limited but useful. Install more engines for richer intelligence." },
+  { q: "What if I only have Lazy Blogger installed?", a: "Lazy Intel reads whatever tables exist and skips the ones that don't. With only Lazy Blogger it works from blog post performance data alone — limited but useful. Install more agents for richer intelligence." },
   { q: "Can I run it on demand?", a: "Yes. In your admin dashboard there is a Regenerate Brief button that triggers intel-analyse immediately. Useful when you want a mid-week strategy refresh." },
   { q: "Does it change my content automatically?", a: "Only the queue. If auto-add is enabled it adds keywords to seo_keywords and queries to geo_queries automatically. Lazy Blogger, Lazy SEO, and Lazy GEO then pick those up on their next run. You can also turn auto-add off and add them manually from the brief." },
 ];
@@ -116,7 +116,7 @@ export default function LazyIntelPage() {
         {/* Data sources */}
         <section id="data-sources" className="max-w-3xl mx-auto px-6 mb-20">
           <motion.h2 initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="font-display text-2xl sm:text-3xl font-extrabold tracking-tight text-center mb-8">
-            The more engines installed, the smarter it gets.
+            The more agents installed, the smarter it gets.
           </motion.h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-0 border border-border">
             {dataSources.map((ds, i) => (

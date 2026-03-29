@@ -228,7 +228,7 @@ export default function AutonomyPage() {
         >
           Most tools automate tasks. Lazy Unicorn engines automate outcomes.
           Drag the slider on any engine to see what autonomy looks like at each
-          level — and where each engine sits today.
+          level — and where each agent sits today.
         </motion.p>
         <LevelScale />
       </section>
@@ -259,7 +259,7 @@ export default function AutonomyPage() {
             className="text-2xl md:text-3xl font-bold text-foreground"
             style={{ fontFamily: "var(--font-display)" }}
           >
-            Every engine starts at Level 3. The self-improving ones reach
+            Every agent starts at Level 3. The self-improving ones reach
             Level 5.
           </h2>
           <p className="text-sm text-muted-foreground leading-relaxed max-w-xl mx-auto">
@@ -267,7 +267,7 @@ export default function AutonomyPage() {
             set and never change. Lazy Unicorn engines are generative at minimum
             and self-improving at their best. They do not just execute tasks.
             They measure results, rewrite what does not work, and compound over
-            time. That is the difference between a tool and an engine.
+            time. That is the difference between a tool and an agent.
           </p>
           <Link
             to="/lazy-run"

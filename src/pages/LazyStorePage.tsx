@@ -226,7 +226,7 @@ Show payment success message and link to /store.
 
 Do not build a standalone dashboard page for this engine. The dashboard lives at /admin/store as part of the unified LazyUnicorn admin panel, which is built separately using the LazyUnicorn Admin Dashboard prompt. This engine only needs its setup page, database tables, edge functions, and public pages.
 
-If /admin does not yet exist on this project add a simple placeholder at /admin with the text: "Install the LazyUnicorn Admin Dashboard to manage all engines in one place." and a link to /lazy-store-setup.
+If /admin does not yet exist on this project add a simple placeholder at /admin with the text: "Install the LazyUnicorn Admin Dashboard to manage all agents in one place." and a link to /lazy-store-setup.
 
 ## 7. Navigation
 
@@ -369,7 +369,7 @@ const LazyStorePage = () => {
     { q: "Will the listings sound generic?", a: "You set the brand voice, niche, and tone in the five-question setup. The AI writes every listing in your brand voice." },
     { q: "What if a product page is not converting?", a: "The conversion optimiser detects underperforming pages weekly and rewrites them automatically. You do not need to identify or fix them manually." },
     { q: "Can I add my own products?", a: "Yes. Manually added products get the same AI-written listings, pricing monitoring, and conversion optimisation as auto-discovered ones." },
-    { q: "How do I know when there's an update?", a: "Check the changelog at /changelog. Every engine update is versioned and documented with upgrade instructions." },
+    { q: "How do I know when there's an update?", a: "Check the changelog at /changelog. Every agent update is versioned and documented with upgrade instructions." },
     { q: "How do I upgrade to a new prompt version?", a: "Visit the upgrade guide at /upgrade-guide. Copy the latest prompt and paste it into your Lovable project. Your existing data and settings are preserved." },
   ];
 
@@ -486,7 +486,7 @@ const LazyStorePage = () => {
         {/* ── Three Models ── */}
         <section className="max-w-4xl mx-auto px-6 mb-24">
           <motion.h2 initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="font-display text-2xl sm:text-3xl font-extrabold tracking-tight text-center mb-10">
-            Pick your model. The engine runs the same.
+            Pick your model. The agent runs the same.
           </motion.h2>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             {models.map((item, i) => (

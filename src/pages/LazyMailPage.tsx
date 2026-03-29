@@ -64,9 +64,9 @@ const features = [
   { icon: Users, title: "Subscriber capture", desc: "Embeddable subscribe form on every page. Double opt-in for GDPR compliance." },
   { icon: Send, title: "Welcome sequences", desc: "AI-written welcome emails sent the moment someone confirms. Multi-step sequences with delays." },
   { icon: Mail, title: "Newsletter broadcasts", desc: "Picks your latest blog post, writes a newsletter, and sends it to every subscriber automatically." },
-  { icon: Clock, title: "Scheduled delivery", desc: "Daily, weekly, or biweekly newsletters. Pick the day. The engine handles the rest." },
+  { icon: Clock, title: "Scheduled delivery", desc: "Daily, weekly, or biweekly newsletters. Pick the day. The agent handles the rest." },
   { icon: BarChart3, title: "Self-improving open rates", desc: "Rewrites underperforming subject lines using AI when open rates drop below 20%." },
-  { icon: Zap, title: "Zero manual work", desc: "After setup you never write, schedule, or send another email. The engine does everything." },
+  { icon: Zap, title: "Zero manual work", desc: "After setup you never write, schedule, or send another email. The agent does everything." },
 ];
 
 const faqs = [

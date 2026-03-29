@@ -9,11 +9,11 @@ interface Message {
 }
 
 const SUGGESTIONS = [
-  "How are the engines doing?",
+  "How are the agents doing?",
   "Show me recent errors",
   "Publish a blog post now",
   "What were the latest posts?",
-  "Pause the blogger engine",
+  "Pause the blogger agent",
 ];
 
 const AdminOpsAgent = () => {

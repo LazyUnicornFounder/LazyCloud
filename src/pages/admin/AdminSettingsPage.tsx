@@ -11,7 +11,7 @@ export default function AdminSettingsPage() {
         <p className="font-body text-[13px] tracking-[0.15em] uppercase text-[#f0ead6]/75 mb-3">Site Settings</p>
         <div className="border border-[#f0ead6]/8 p-5 space-y-4">
           <p className="font-body text-xs text-[#f0ead6]/82">
-            Site-wide defaults are configured per engine. Visit each engine's settings panel to update.
+            Site-wide defaults are configured per engine. Visit each agent's settings panel to update.
           </p>
         </div>
       </div>

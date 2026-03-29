@@ -144,7 +144,7 @@ const products = [
   { cursive: "Lazy", name: "Supabase", link: "/lazy-supabase", tagline: "Autonomous database reports" },
   { cursive: "Lazy", name: "Security", link: "/lazy-security", tagline: "Autonomous pentesting" },
 
-  { cursive: "Lazy", name: "Coming Soon", link: "", tagline: "More engines loading" },
+  { cursive: "Lazy", name: "Coming Soon", link: "", tagline: "More agents loading" },
 ];
 
 /* ── Sketch SVG icons ── */

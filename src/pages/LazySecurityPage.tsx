@@ -206,7 +206,7 @@ At the bottom add: "🦄 Security monitored by Lazy Security — autonomous secu
 
 Do not build a standalone dashboard page for this engine. The dashboard lives at /admin/security as part of the unified LazyUnicorn admin panel, which is built separately using the LazyUnicorn Admin Dashboard prompt. This engine only needs its setup page, database tables, edge functions, and public pages.
 
-If /admin does not yet exist on this project add a simple placeholder at /admin with the text: "Install the LazyUnicorn Admin Dashboard to manage all engines in one place." and a link to /lazy-security-setup.
+If /admin does not yet exist on this project add a simple placeholder at /admin with the text: "Install the LazyUnicorn Admin Dashboard to manage all agents in one place." and a link to /lazy-security-setup.
 
 ## 10. Navigation
 
@@ -264,7 +264,7 @@ const faqs = [
   { q: "How often does it run a pentest?", a: "You configure the schedule in setup. Default is monthly. You can also trigger a pentest manually from the dashboard or via a Slack command with /lazy pentest." },
   { q: "What happens when a vulnerability is found?", a: "Critical and high severity findings trigger an instant Slack or Telegram alert. All findings appear in your dashboard with Aikido's remediation recommendations. You fix them in Lovable and Lazy Security tracks the fix." },
   { q: "Can I show customers my security report?", a: "Yes. The generated report is designed to be shared. It shows your security score, test methodology, findings summary, and fix history. Attach it to vendor questionnaires, share it with enterprise prospects, or publish it to build trust." },
-  { q: "How do I know when there's an update?", a: "Check the changelog at /changelog. Every engine update is versioned and documented with upgrade instructions." },
+  { q: "How do I know when there's an update?", a: "Check the changelog at /changelog. Every agent update is versioned and documented with upgrade instructions." },
   { q: "How do I upgrade to a new prompt version?", a: "Visit the upgrade guide at /upgrade-guide. Copy the latest prompt and paste it into your Lovable project. Your existing data and settings are preserved." },
 ];
 

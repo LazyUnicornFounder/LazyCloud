@@ -21,13 +21,13 @@ Add a complete autonomous Perplexity integration called Lazy Perplexity to this 
 
 MARKETING PAGE PROMPT — paste into LazyUnicorn project:
 
-Add a new page at /lazy-perplexity. It is a marketing and landing page for a product called Lazy Perplexity — an autonomous research and citation engine that uses the Perplexity API to feed real-time web intelligence into your Lazy content engines and test your brand's AI visibility.
+Add a new page at /lazy-perplexity. It is a marketing and landing page for a product called Lazy Perplexity — an autonomous research and citation engine that uses the Perplexity API to feed real-time web intelligence into your Lazy content agents and test your brand's AI visibility.
 
 Hero section
 Headline: 'Real answers. Real citations. Real content. Powered by Perplexity.' Subheading: 'Lazy Perplexity uses the Perplexity API to research your niche with live web data, feed current intelligence into your blog and SEO engines, and test whether your brand appears when people ask AI questions about your industry.' Primary button: Copy the Lovable Prompt. Secondary button: See How It Works. Badge: Powered by Perplexity.
 
 How it works section
-Four steps: 1. Copy the setup prompt. 2. Paste into your Lovable project. 3. Add your Perplexity API key. 4. Real-time research flows into your content engines automatically.
+Four steps: 1. Copy the setup prompt. 2. Paste into your Lovable project. 3. Add your Perplexity API key. 4. Real-time research flows into your content agents automatically.
 
 What it does section
 Eight cards: 1. Real-time research — uses Perplexity to research your niche with live web citations so your blog posts are based on what is actually happening today. 2. Citation-rich content — every AI-generated blog post includes real Perplexity-sourced citations making it more trustworthy and more likely to be cited by other AI engines. 3. Brand visibility testing — asks Perplexity real questions in your niche and checks whether your brand is cited in the answers. 4. Competitor intelligence — asks Perplexity about competitors and extracts what it says about them versus you. 5. Trend discovery — queries Perplexity for current trends in your niche and feeds them into the Lazy SEO keyword queue. 6. Question research — discovers the real questions people are asking AI engines and feeds them into the Lazy GEO query queue. 7. Citation monitoring — tracks your Perplexity citation rate over time and alerts you when it changes significantly. 8. Content improvement — rewrites underperforming posts using Perplexity research to add current citations and improve AI visibility.
@@ -153,7 +153,7 @@ At bottom of every page: 🦄 Powered by Lazy Perplexity — autonomous AI resea
 
 Do not build a standalone dashboard page for this engine. The dashboard lives at /admin/perplexity as part of the unified LazyUnicorn admin panel, which is built separately using the LazyUnicorn Admin Dashboard prompt.
 
-If /admin does not yet exist on this project add a simple placeholder at /admin with the text: "Install the LazyUnicorn Admin Dashboard to manage all engines in one place." and a link to /lazy-perplexity-setup.
+If /admin does not yet exist on this project add a simple placeholder at /admin with the text: "Install the LazyUnicorn Admin Dashboard to manage all agents in one place." and a link to /lazy-perplexity-setup.
 
 9. Navigation
 Add Research link to /research. Add Citation Tracker link to /citation-tracker. Add an Admin link to the main site navigation pointing to /admin.
@@ -164,7 +164,7 @@ Add a small "Powered by Lazy Unicorn" backlink badge in the footer of every publ
 <a href="https://www.lazyunicorn.ai" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;padding:6px 12px;background:#0a0a08;color:#f0ead6;font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;border:1px solid rgba(240,234,214,0.2)">🦄 Powered by Lazy Unicorn</a>
 Style it to sit at the bottom of the page footer, centered, with subtle opacity (60%) that increases to 100% on hover.`;
 
-const steps = ["Copy the setup prompt from this page.", "Paste it into your existing Lovable project.", "Add your Perplexity API key.", "Real-time research flows into your content engines automatically."];
+const steps = ["Copy the setup prompt from this page.", "Paste it into your existing Lovable project.", "Add your Perplexity API key.", "Real-time research flows into your content agents automatically."];
 
 function CopyPromptButton({ className = "", onCopy, text }: { className?: string; onCopy: () => void; text: string }) {
   const [copied, setCopied] = useState(false);
@@ -238,7 +238,7 @@ const LazyPerplexityPage = () => {
 
         {/* How it works */}
         <section id="how-it-works" className="max-w-2xl mx-auto px-6 mb-20 pt-20">
-          <motion.h2 initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="font-display text-2xl sm:text-3xl font-extrabold tracking-tight text-center mb-8">Real research. Flowing into your content engines.</motion.h2>
+          <motion.h2 initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="font-display text-2xl sm:text-3xl font-extrabold tracking-tight text-center mb-8">Real research. Flowing into your content agents.</motion.h2>
           <div className="space-y-4">
             {steps.map((step, i) => (
               <motion.div key={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} transition={{ delay: i * 0.08 }} className="flex items-start gap-4">
@@ -280,7 +280,7 @@ const LazyPerplexityPage = () => {
           { q: "What model does it use?", a: "It uses the Perplexity sonar model for research and sonar-pro for citation testing." },
           { q: "How often does it research?", a: "Daily for trend and topic research. Weekly for brand citation testing. All configurable." },
           { q: "Can I control what topics it researches?", a: "Yes. The setup page lets you specify research topics, competitors, and niche focus areas." },
-          { q: "How do I know when there's an update?", a: "Check the changelog at /changelog. Every engine update is versioned and documented with upgrade instructions." },
+          { q: "How do I know when there's an update?", a: "Check the changelog at /changelog. Every agent update is versioned and documented with upgrade instructions." },
           { q: "How do I upgrade to a new prompt version?", a: "Visit the upgrade guide at /upgrade-guide. Copy the latest prompt and paste it into your Lovable project. Your existing data and settings are preserved." },
         ]} />
 

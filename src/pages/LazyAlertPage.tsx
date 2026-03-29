@@ -168,7 +168,7 @@ Collect metrics from last 24 hours from every installed engine (skip any table t
 blog_posts published, seo_posts published, geo_posts published, geo_citations brand_mentioned true, pay_transactions succeeded and total revenue, sms_messages sent and response rate, store_products new, voice_episodes new, stream_sessions processed, code_content published, gitlab_content published, linear_content published, crawl_intel new items and leads found, perplexity_citations brand_mentioned true.
 
 Call the built-in Lovable AI:
-"Write a daily Slack briefing for [brand_name]. Metrics from the last 24 hours: [metrics]. Write 3 to 5 bullet points maximum, each one line. Lead with the most impressive metric. Flag anything unusually low. End with one sentence about what the engines will do today. Return only the briefing text with bullet points. No preamble."
+"Write a daily Slack briefing for [brand_name]. Metrics from the last 24 hours: [metrics]. Write 3 to 5 bullet points maximum, each one line. Lead with the most impressive metric. Flag anything unusually low. End with one sentence about what the agents will do today. Return only the briefing text with bullet points. No preamble."
 
 Build Slack message. Header: "Good morning [brand_name] — your daily autonomous business report."
 Call alert-send with engine Lazy Run, event_type daily-briefing.
@@ -205,7 +205,7 @@ Log errors to alert_errors with function_name alert-command.
 
 Do not build a standalone dashboard page for this engine. The dashboard lives at /admin/alert as part of the unified LazyUnicorn admin panel, which is built separately using the LazyUnicorn Admin Dashboard prompt. This engine only needs its setup page, database tables, edge functions, and public pages.
 
-If /admin does not yet exist on this project add a simple placeholder at /admin with the text: "Install the LazyUnicorn Admin Dashboard to manage all engines in one place." and a link to /lazy-alert-setup.
+If /admin does not yet exist on this project add a simple placeholder at /admin with the text: "Install the LazyUnicorn Admin Dashboard to manage all agents in one place." and a link to /lazy-alert-setup.
 
 ## 8. Navigation
 
@@ -287,22 +287,22 @@ const slashCommands = [
 ];
 
 const slashDescriptions: Record<string, string> = {
-  "/lazy status": "shows all engines running or paused with last run time",
+  "/lazy status": "shows all agents running or paused with last run time",
   "/lazy publish blog": "triggers one immediate blog-publish run",
   "/lazy publish seo": "triggers one immediate seo-publish run",
   "/lazy publish geo": "triggers one immediate geo-publish run",
-  "/lazy pause [engine]": "pauses a specific engine",
+  "/lazy pause [engine]": "pauses a specific agent",
   "/lazy resume [engine]": "resumes a paused engine",
-  "/lazy errors": "shows the last 10 errors across all engines",
+  "/lazy errors": "shows the last 10 errors across all agents",
 };
 
 const faqs = [
   { q: "Do I need a paid Slack account?", a: "No. Incoming webhooks work on free Slack workspaces. The slash commands require a Slack app which is also free to create." },
   { q: "Can I route different events to different channels?", a: "In the current version all events go to one configured channel. Multi-channel routing is coming in the Pro version." },
-  { q: "Does it work if I only have some Lazy engines installed?", a: "Yes. Lazy Alert detects which engines are installed and only sends alerts for the ones that are active." },
+  { q: "Does it work if I only have some Lazy agents installed?", a: "Yes. Lazy Alert detects which engines are installed and only sends alerts for the ones that are active." },
   { q: "Can I turn off specific alert types?", a: "Yes. The setup screen lets you toggle each alert type on or off individually." },
   { q: "Will it spam my Slack?", a: "No. Only significant events trigger messages. Routine publishes batch into the daily briefing rather than sending one message per post." },
-  { q: "How do I know when there's an update?", a: "Check the changelog at /changelog. Every engine update is versioned and documented with upgrade instructions." },
+  { q: "How do I know when there's an update?", a: "Check the changelog at /changelog. Every agent update is versioned and documented with upgrade instructions." },
   { q: "How do I upgrade to a new prompt version?", a: "Visit the upgrade guide at /upgrade-guide. Copy the latest prompt and paste it into your Lovable project. Your existing data and settings are preserved." },
 ];
 
@@ -426,7 +426,7 @@ export default function LazyAlertPage() {
                 <p>🌐 <strong className="text-foreground/70">Citation rate:</strong> 68% across 12 queries</p>
                 <p>💬 <strong className="text-foreground/70">SMS replies:</strong> 7 (3 positive, 4 neutral)</p>
                 <p>⚠️ <strong className="text-foreground/70">Errors:</strong> 1 (Lazy SEO — rate limit)</p>
-                <p className="pt-1 text-foreground/70 text-sm">All engines running normally.</p>
+                <p className="pt-1 text-foreground/70 text-sm">All agents running normally.</p>
               </div>
             </SlackMessage>
           </motion.div>
@@ -441,7 +441,7 @@ export default function LazyAlertPage() {
           </motion.h2>
 
           <motion.p variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="mt-4 font-body text-base text-foreground/50 leading-relaxed max-w-2xl">
-            Lazy Alert installs a set of slash commands into your Slack workspace so you can trigger and control your engines without opening a dashboard.
+            Lazy Alert installs a set of slash commands into your Slack workspace so you can trigger and control your agents without opening a dashboard.
           </motion.p>
 
           <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="mt-10 bg-[#1a1a18] border border-border p-6 font-mono text-sm space-y-2">

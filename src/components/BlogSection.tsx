@@ -272,7 +272,7 @@ export const staticBlogPosts: BlogPost[] = [
 
       "\"The founders who build on this infrastructure first will be very hard to catch.\"",
 
-      "The product layer removes the engineering dependency. The operations layer removes the management dependency. The identity layer removes the headcount dependency. The content layer removes the marketing dependency. Combined, they make one person capable of owning and running a company that would have required twenty people and $2M in seed capital five years ago.",
+      "The product layer removes the agentering dependency. The operations layer removes the management dependency. The identity layer removes the headcount dependency. The content layer removes the marketing dependency. Combined, they make one person capable of owning and running a company that would have required twenty people and $2M in seed capital five years ago.",
 
       "This is not a marginal improvement on the old model. It's a different model entirely — one where the cost of starting and running a business has been compressed so dramatically that the primary barrier is no longer resources. It's clarity. The idea. The direction. The judgment to point a powerful system at the right target.",
 
@@ -320,7 +320,7 @@ export const staticBlogPosts: BlogPost[] = [
 
       "<strong>Level 3 — Managed:</strong> The business runs with weekly check-ins. You've handed off execution. Agents or team members handle day-to-day operations. You review outputs weekly and make strategic decisions. Revenue continues during your absence. Still dependent on your judgment but not your daily presence.",
 
-      "<strong>Level 4 — Autonomous:</strong> The business runs and grows without you. Agents handle operations and growth loops run continuously. Revenue arrives without your initiation. The business compounds. You are the direction, not the engine. Monthly strategic involvement is all that's required.",
+      "<strong>Level 4 — Autonomous:</strong> The business runs and grows without you. Agents handle operations and growth loops run continuously. Revenue arrives without your initiation. The business compounds. You are the direction, not the agent. Monthly strategic involvement is all that's required.",
 
       "<strong>Level 5 — Recursive:</strong> The business improves its own ability to grow. Agents measure, learn, and update their own behaviour based on results. The system gets better at running itself every week. The founder sets direction occasionally. The business handles the execution — and the improvement of that execution — autonomously.",
 
@@ -1092,7 +1092,7 @@ export const staticBlogPosts: BlogPost[] = [
 
       "<strong>Sean Dorje</strong> · CEO & Co-Founder — Berkeley dropout · YC X25 · Computer vision · ezML co-founder · Relixir CEO. Started building computer vision systems at 15, scaling them to six-figure revenues. Co-founded ezML — an enterprise computer vision platform backed by Pear VC — while still at Berkeley. Dropped out to pursue the company. Went through Y Combinator's X25 batch with Relixir, the AI GEO platform he and Dennis built before pivoting their core insight into Naïve.",
 
-      "<strong>Dennis Zax</strong> · CTO & Co-Founder — Berkeley alum · YC X25 · Systems builder · ezML co-founder · Relixir CTO. The technical spine of every company Sean has co-founded. Built the systems architecture at ezML, co-developed the autonomous content infrastructure at Relixir that ranked them #1 across 200+ search queries, and now leads the engineering behind Naïve's AI employee runtime.",
+      "<strong>Dennis Zax</strong> · CTO & Co-Founder — Berkeley alum · YC X25 · Systems builder · ezML co-founder · Relixir CTO. The technical spine of every company Sean has co-founded. Built the systems architecture at ezML, co-developed the autonomous content infrastructure at Relixir that ranked them #1 across 200+ search queries, and now leads the agentering behind Naïve's AI employee runtime.",
 
       "<strong>How You Get to Naïve</strong>",
 
@@ -1630,7 +1630,7 @@ export const staticBlogPosts: BlogPost[] = [
 
       "Polsia (polsia.com) — Best for running what you've built. Polsia is the autonomous company runtime. You give it your business — existing or new — and it runs it. Every day, Polsia's agents wake up, assess what the company needs, and execute: sending outbound, shipping code updates, managing your inbox, running campaigns, handling support. It currently operates 800+ companies simultaneously at $49/month.",
 
-      "Think of Naïve as the launchpad and Polsia as the engine. Many founders will use both — Naïve to get started quickly, Polsia to run it long-term.",
+      "Think of Naïve as the launchpad and Polsia as the agent. Many founders will use both — Naïve to get started quickly, Polsia to run it long-term.",
 
       "Before You Start: The One Thing That Matters",
 
@@ -1956,7 +1956,7 @@ export const staticBlogPosts: BlogPost[] = [
 
       "<strong>1. Autonomous decision-making.</strong> Not \"execute this instruction\" but \"assess the situation and decide what to do.\" A business automation system needs agents that can look at the state of the company and determine what action is most valuable next — without being told.",
 
-      "<strong>2. Cross-functional coordination.</strong> A marketing agent that knows what the engineering agent is building. A support agent that updates the product agent when a feature request is common. Agents that operate as a team, not as independent scripts.",
+      "<strong>2. Cross-functional coordination.</strong> A marketing agent that knows what the agentering agent is building. A support agent that updates the product agent when a feature request is common. Agents that operate as a team, not as independent scripts.",
 
       "<strong>3. Persistent memory and context.</strong> The system needs to remember what it did last week, what worked, what didn't, who the customers are, what the product does, and how it's been received. Business context that accumulates rather than resetting each conversation.",
 
@@ -2487,7 +2487,7 @@ const BLOG_TAGS: { label: string; keywords: string[] }[] = [
   { label: "Perplexity", keywords: ["lazy perplexity", "perplexity engine"] },
   { label: "Supabase", keywords: ["lazy supabase", "supabase engine", "database monitor engine"] },
   { label: "SMS", keywords: ["lazy sms", "sms engine", "sms campaign engine"] },
-  { label: "Run", keywords: ["lazy run", "run engine", "all engines", "master toggle"] },
+  { label: "Run", keywords: ["lazy run", "run engine", "all agents", "master toggle"] },
 ];
 
 function getPostTags(post: BlogPost): string[] {

@@ -274,7 +274,7 @@ const integrations: Integration[] = [
       "Get an instant Slack message every time a payment comes in.",
       "Receive alerts when any engine encounters an error.",
       "Get a morning briefing in Slack showing everything your autonomous site did overnight.",
-      "Control your engines with slash commands without opening a dashboard.",
+      "Control your agents with slash commands without opening a dashboard.",
       "Route different events to different Slack channels — payments to one channel, errors to another.",
     ],
     engine: "Lazy Alert",
@@ -287,7 +287,7 @@ const integrations: Integration[] = [
     description: "Send messages and receive commands through bots — connecting your Lovable site to Telegram.",
     unlocks: [
       "Get real-time Telegram messages for every significant engine event.",
-      "Control your engines with bot commands from your phone.",
+      "Control your agents with bot commands from your phone.",
       "Receive a daily morning briefing in Telegram.",
       "Get instant alerts for critical security vulnerabilities.",
       "Use /lazy publish, /lazy pause, /lazy status from any device without opening a browser.",
@@ -370,7 +370,7 @@ const integrations: Integration[] = [
     category: "Lazy Agents",
     description: "Lazy Agents use your GitHub repo to open issues for errors and PRs for prompt improvements — all autonomously.",
     unlocks: [
-      "Lazy Watch opens a GitHub issue every time an engine error is detected.",
+      "Lazy Watch opens a GitHub issue every time an agent error is detected.",
       "Lazy Fix opens a pull request with targeted prompt improvements weekly.",
       "Lazy Build commits a complete new engine prompt from a one-paragraph brief.",
       "All agent activity is tracked and auditable via your repo.",

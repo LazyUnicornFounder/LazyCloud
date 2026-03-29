@@ -14,7 +14,7 @@ const fadeUp = { hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0 } };
 
 const FALLBACK_PROMPT = `[Lazy Fix Prompt — v0.0.1 — LazyUnicorn.ai]
 
-Add an autonomous prompt improvement agent called Lazy Fix to this project. Every Sunday night it reads your engine performance data, identifies the two weakest-performing Lazy engines, makes targeted improvements to their prompts, and opens GitHub PRs for you to review Monday morning — all automatically.
+Add an autonomous prompt improvement agent called Lazy Fix to this project. Every Sunday night it reads your engine performance data, identifies the two weakest-performing Lazy agents, makes targeted improvements to their prompts, and opens GitHub PRs for you to review Monday morning — all automatically.
 
 Required secrets:
 - ANTHROPIC_API_KEY — for Claude improvement calls
@@ -23,7 +23,7 @@ Required secrets:
 - SLACK_WEBHOOK_URL — optional, from Lazy Alert settings`;
 
 const steps = [
-  { icon: "📊", title: "Analyse", desc: "Every Sunday night Lazy Fix reads output counts, error rates, and last activity dates across all your installed engines." },
+  { icon: "📊", title: "Analyse", desc: "Every Sunday night Lazy Fix reads output counts, error rates, and last activity dates across all your installed agents." },
   { icon: "🎯", title: "Identify", desc: "Claude selects the two engines most in need of improvement — high error rate, low output volume, or long inactivity." },
   { icon: "✍️", title: "Improve", desc: "Lazy Fix fetches the prompt file from GitHub, reads CLAUDE.md for your rules, and writes a targeted improvement to the specific underperforming section — not a rewrite, a precise targeted edit." },
   { icon: "📬", title: "PR", desc: "A GitHub PR opens on a new branch. The diff shows exactly what changed and why. @claude is tagged to audit it before you merge." },
@@ -39,7 +39,7 @@ const improvements = [
 const faqs = [
   { q: "Will it change things I don't want changed?", a: "Lazy Fix makes targeted single-section edits only. It never restructures a whole file. The diff in the PR shows exactly what changed — you review and merge or reject." },
   { q: "What if it opens a bad PR?", a: "Set the PR status to Rejected in the admin dashboard. Lazy Fix will not make the same improvement again if it is marked rejected." },
-  { q: "How does it know what to improve?", a: "It reads your Supabase tables. Engines that write to blog_posts, seo_posts, geo_posts give it output volume data. Error tables give it failure rate data. The more engines installed, the better the signal." },
+  { q: "How does it know what to improve?", a: "It reads your Supabase tables. Engines that write to blog_posts, seo_posts, geo_posts give it output volume data. Error tables give it failure rate data. The more agents installed, the better the signal." },
 ];
 
 function CopyPromptButton({ className = "", text }: { className?: string; text: string }) {

@@ -213,7 +213,7 @@ At the bottom of every public page add: "🦄 Powered by Lazy GitHub — autonom
 
 Do not build a standalone dashboard page for this engine. The dashboard lives at /admin/code as part of the unified LazyUnicorn admin panel, which is built separately using the LazyUnicorn Admin Dashboard prompt. This engine only needs its setup page, database tables, edge functions, and public pages.
 
-If /admin does not yet exist on this project add a simple placeholder at /admin with the text: "Install the LazyUnicorn Admin Dashboard to manage all engines in one place." and a link to /lazy-github-setup.
+If /admin does not yet exist on this project add a simple placeholder at /admin with the text: "Install the LazyUnicorn Admin Dashboard to manage all agents in one place." and a link to /lazy-github-setup.
 
 ## 8. Navigation
 
@@ -254,7 +254,7 @@ const faqs = [
   { q: "Can I edit the content before it publishes?", a: "Not in the current version. Content publishes automatically. A drafts mode is coming in the Pro version." },
   { q: "Does it work with monorepos?", a: "Yes. You can configure which directories or packages to monitor so only relevant commits trigger content." },
   { q: "What if I push many small commits?", a: "Lazy GitHub batches commits within a 1-hour window and produces one changelog entry per batch rather than one per commit." },
-  { q: "How do I know when there's an update?", a: "Check the changelog at /changelog. Every engine update is versioned and documented with upgrade instructions." },
+  { q: "How do I know when there's an update?", a: "Check the changelog at /changelog. Every agent update is versioned and documented with upgrade instructions." },
   { q: "How do I upgrade to a new prompt version?", a: "Visit the upgrade guide at /upgrade-guide. Copy the latest prompt and paste it into your Lovable project. Your existing data and settings are preserved." },
 ];
 

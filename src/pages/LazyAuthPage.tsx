@@ -289,7 +289,7 @@ export default function LazyAuthPage() {
       {/* Footer */}
       <footer className="py-10 px-6 border-t border-border text-center">
         <p className="font-display text-[14px] tracking-[0.15em] uppercase text-foreground/60">
-          Lazy Unicorn — Autonomous growth engines for Lovable
+          Lazy Unicorn — Autonomous growth agents for Lovable
         </p>
       </footer>
     </div>

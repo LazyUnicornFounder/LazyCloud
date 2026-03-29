@@ -139,7 +139,7 @@ At bottom of every page: 🦄 Powered by Lazy Linear — autonomous Linear conte
 
 Do not build a standalone dashboard page for this engine. The dashboard lives at /admin/linear as part of the unified LazyUnicorn admin panel, which is built separately using the LazyUnicorn Admin Dashboard prompt.
 
-If /admin does not yet exist on this project add a simple placeholder at /admin with the text: "Install the LazyUnicorn Admin Dashboard to manage all engines in one place." and a link to /lazy-linear-setup.
+If /admin does not yet exist on this project add a simple placeholder at /admin with the text: "Install the LazyUnicorn Admin Dashboard to manage all agents in one place." and a link to /lazy-linear-setup.
 
 9. Navigation
 Add Product Updates link to /product-updates. Add Roadmap link to /product-roadmap. Add an Admin link to the main site navigation pointing to /admin.
@@ -267,7 +267,7 @@ const LazyLinearPage = () => {
           { q: "Can I control what gets published?", a: "Yes. The dashboard lets you approve content before publishing. Auto-publish is also available." },
           { q: "Does it work with multiple teams?", a: "The current version monitors one Linear team. Multi-team support is coming in Pro." },
           { q: "What if my issues have no descriptions?", a: "Lazy Linear uses issue titles and labels to write summaries. Descriptions improve quality but are not required." },
-          { q: "How do I know when there's an update?", a: "Check the changelog at /changelog. Every engine update is versioned and documented with upgrade instructions." },
+          { q: "How do I know when there's an update?", a: "Check the changelog at /changelog. Every agent update is versioned and documented with upgrade instructions." },
           { q: "How do I upgrade to a new prompt version?", a: "Visit the upgrade guide at /upgrade-guide. Copy the latest prompt and paste it into your Lovable project. Your existing data and settings are preserved." },
         ]} />
 

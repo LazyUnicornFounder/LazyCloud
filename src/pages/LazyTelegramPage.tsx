@@ -15,7 +15,7 @@ const fadeUp = { hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0 } };
 
 const SETUP_PROMPT = `[Lazy Telegram Prompt — v0.0.5 — LazyUnicorn.ai]
 
-Add a complete autonomous Telegram integration called Lazy Telegram to this project. It mirrors Lazy Alert but for Telegram — sending real-time event notifications, a daily briefing, and accepting bot commands to control your engines directly from Telegram. Your autonomous business in your pocket, delivered through Telegram.
+Add a complete autonomous Telegram integration called Lazy Telegram to this project. It mirrors Lazy Alert but for Telegram — sending real-time event notifications, a daily briefing, and accepting bot commands to control your agents directly from Telegram. Your autonomous business in your pocket, delivered through Telegram.
 
 ---
 
@@ -33,7 +33,7 @@ What gets sent section
 Eight event cards identical in structure to Lazy Alert but for Telegram. Include mock Telegram message previews styled as the Telegram chat interface with a blue LazyUnicorn avatar. Events: payments received, SMS customer replies, brand citations, posts published, products listed, streams going live, releases published, engine errors.
 
 Bot commands section
-Headline: Control everything from Telegram. Show commands in a code block: /status — all engines running or paused. /publish blog — trigger one blog post. /publish seo — trigger one SEO post. /publish geo — trigger one GEO post. /pause [engine] — pause an engine. /resume [engine] — resume an engine. /errors — last 10 errors. /report — send daily briefing now. /help — all commands.
+Headline: Control everything from Telegram. Show commands in a code block: /status — all agents running or paused. /publish blog — trigger one blog post. /publish seo — trigger one SEO post. /publish geo — trigger one GEO post. /pause [engine] — pause an agent. /resume [engine] — resume an agent. /errors — last 10 errors. /report — send daily briefing now. /help — all commands.
 
 Pricing section
 Free — self-hosted, bring your own Telegram bot (free). Pro at $9/month — coming soon, hosted version, group chat support, multiple recipient routing.
@@ -109,7 +109,7 @@ This receives Telegram webhook updates. Read TELEGRAM_BOT_TOKEN from secrets. Pa
 Register the webhook by calling: https://api.telegram.org/bot[TELEGRAM_BOT_TOKEN]/setWebhook?url=[site_url]/api/telegram-webhook
 
 Handle these commands:
-/status — query all engine settings tables, return status of each engine with emoji indicators.
+/status — query all engine settings tables, return status of each agent with emoji indicators.
 /publish blog — call blog-publish. Reply: Publishing one blog post now.
 /publish seo — call seo-publish. Reply: Publishing one SEO post now.
 /publish geo — call geo-publish. Reply: Publishing one GEO post now.
@@ -129,7 +129,7 @@ Respond to Telegram using the answerMessage API. Log errors to telegram_errors w
 
 Do not build a standalone dashboard page for this engine. The dashboard lives at /admin/telegram as part of the unified LazyUnicorn admin panel, which is built separately using the LazyUnicorn Admin Dashboard prompt.
 
-If /admin does not yet exist on this project add a simple placeholder at /admin with the text: "Install the LazyUnicorn Admin Dashboard to manage all engines in one place." and a link to /lazy-telegram-setup.
+If /admin does not yet exist on this project add a simple placeholder at /admin with the text: "Install the LazyUnicorn Admin Dashboard to manage all agents in one place." and a link to /lazy-telegram-setup.
 
 8. Navigation
 Do not add any Lazy Telegram pages to public navigation. All pages are admin-only.
@@ -256,7 +256,7 @@ const LazyTelegramPage = () => {
           { q: "Is it different from Lazy Alert?", a: "Lazy Alert sends to Slack. Lazy Telegram sends to Telegram. Both install with one prompt and can run simultaneously." },
           { q: "Can I send to a Telegram group?", a: "Yes. Add your bot to a group and use the group chat ID. Multi-group routing is coming in Pro." },
           { q: "Do the bot commands work?", a: "Yes. Commands like /status, /publish, /pause, and /errors work in any chat where your bot is present." },
-          { q: "How do I know when there's an update?", a: "Check the changelog at /changelog. Every engine update is versioned and documented with upgrade instructions." },
+          { q: "How do I know when there's an update?", a: "Check the changelog at /changelog. Every agent update is versioned and documented with upgrade instructions." },
           { q: "How do I upgrade to a new prompt version?", a: "Visit the upgrade guide at /upgrade-guide. Copy the latest prompt and paste it into your Lovable project. Your existing data and settings are preserved." },
         ]} />
 

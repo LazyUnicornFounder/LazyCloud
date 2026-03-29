@@ -138,7 +138,7 @@ At the bottom add: 🦄 Powered by Lazy Supabase — autonomous database monitor
 
 Do not build a standalone dashboard page for this engine. The dashboard lives at /admin/supabase as part of the unified LazyUnicorn admin panel, which is built separately using the LazyUnicorn Admin Dashboard prompt.
 
-If /admin does not yet exist on this project add a simple placeholder at /admin with the text: "Install the LazyUnicorn Admin Dashboard to manage all engines in one place." and a link to /lazy-supabase-setup.
+If /admin does not yet exist on this project add a simple placeholder at /admin with the text: "Install the LazyUnicorn Admin Dashboard to manage all agents in one place." and a link to /lazy-supabase-setup.
 
 8. Navigation
 Add Milestones link to the main navigation pointing to /milestones. Add an Admin link to the main site navigation pointing to /admin.
@@ -266,7 +266,7 @@ const LazySupabasePage = () => {
           { q: "Will it publish every event?", a: "No. Only significant milestones trigger posts. Routine database activity is monitored but not published." },
           { q: "Can I choose which tables to monitor?", a: "Yes. The setup page lets you specify which tables to track for row milestones." },
           { q: "Does it work with multiple Supabase projects?", a: "The current version monitors one project. Multi-project support is coming in Pro." },
-          { q: "How do I know when there's an update?", a: "Check the changelog at /changelog. Every engine update is versioned and documented with upgrade instructions." },
+          { q: "How do I know when there's an update?", a: "Check the changelog at /changelog. Every agent update is versioned and documented with upgrade instructions." },
           { q: "How do I upgrade to a new prompt version?", a: "Visit the upgrade guide at /upgrade-guide. Copy the latest prompt and paste it into your Lovable project. Your existing data and settings are preserved." },
         ]} />
 

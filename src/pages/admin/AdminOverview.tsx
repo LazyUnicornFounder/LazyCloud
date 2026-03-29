@@ -198,7 +198,7 @@ export default function AdminOverview() {
         const { data: row } = await db.from(e.settingsTable!).select("id").limit(1).single();
         if (row) await db.from(e.settingsTable!).update({ [e.runField!]: start }).eq("id", row.id);
       }));
-      toast.success(start ? "All engines started" : "All engines paused");
+      toast.success(start ? "All agents started" : "All agents paused");
       queryClient.invalidateQueries({ queryKey: ["mission-control-status"] });
     } catch { toast.error("Bulk action failed"); }
     setBulkAction(false);
@@ -208,7 +208,7 @@ export default function AdminOverview() {
     setBulkAction(true);
     try {
       await Promise.all(PUBLISHABLE.map(e => supabase.functions.invoke(e.publishFn!)));
-      toast.success("All content engines published");
+      toast.success("All content agents published");
       queryClient.invalidateQueries({ queryKey: ["mission-control-status"] });
       queryClient.invalidateQueries({ queryKey: ["mission-alerts"] });
     } catch { toast.error("Bulk publish failed"); }

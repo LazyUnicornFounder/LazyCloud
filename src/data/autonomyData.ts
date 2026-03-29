@@ -59,14 +59,14 @@ export const ENGINE_CATEGORIES: EngineCategory[] = [
       },
       {
         name: "Lazy Admin",
-        description: "Unified dashboard for every engine in your stack",
+        description: "Unified dashboard for every agent in your stack",
         currentLevel: 3,
         link: "/lazy-admin",
         levels: [
-          "You check each engine in its own dashboard. Tab hell.",
+          "You check each agent in its own dashboard. Tab hell.",
           "Bookmarks help. You still context-switch constantly.",
           "Weekly check-in across dashboards. Things fall through cracks.",
-          "One dashboard. Every engine. Status, errors, and actions in sixty seconds.",
+          "One dashboard. Every agent. Status, errors, and actions in sixty seconds.",
           "It surfaces only what needs attention. Coming soon.",
           "It learns your review patterns and pre-prioritises. Coming soon.",
         ],
@@ -120,21 +120,21 @@ export const ENGINE_CATEGORIES: EngineCategory[] = [
       },
       {
         name: "Lazy Crawl",
-        description: "Monitors competitors and feeds intelligence to your engines",
+        description: "Monitors competitors and feeds intelligence to your agents",
         currentLevel: 3,
         link: "/lazy-crawl",
         levels: [
           "You visit competitor sites manually. Monthly if lucky.",
           "You use research tools when you remember to.",
           "Google Alerts and RSS feeds. Passive but shallow.",
-          "Competitor changes detected. Intelligence fed to your engines automatically.",
+          "Competitor changes detected. Intelligence fed to your agents automatically.",
           "It publishes content from what it discovers. Coming soon.",
           "It learns which intelligence drives traffic. Coming soon.",
         ],
       },
       {
         name: "Lazy Perplexity",
-        description: "Queries Perplexity for trends and feeds your content engines",
+        description: "Queries Perplexity for trends and feeds your content agents",
         currentLevel: 3,
         link: "/lazy-perplexity",
         levels: [
@@ -353,7 +353,7 @@ export const ENGINE_CATEGORIES: EngineCategory[] = [
           "AI summarises meetings. You still copy-paste and publish.",
           "You batch-process last week's meetings on Friday. Always behind.",
           "Meeting ends. Blog post, Slack summary, and Linear issues publish automatically.",
-          "It extracts customer intelligence and feeds it into your content engines. Coming soon.",
+          "It extracts customer intelligence and feeds it into your content agents. Coming soon.",
           "It learns which meeting insights drive the most engagement. Coming soon.",
         ],
       },
@@ -364,7 +364,7 @@ export const ENGINE_CATEGORIES: EngineCategory[] = [
     engines: [
       {
         name: "Lazy Alert",
-        description: "Every engine event reported to Slack in real time",
+        description: "Every agent event reported to Slack in real time",
         currentLevel: 3,
         link: "/lazy-alert",
         levels: [
@@ -425,7 +425,7 @@ export const ENGINE_CATEGORIES: EngineCategory[] = [
     engines: [
       {
         name: "Lazy Watch",
-        description: "Monitors every engine error table hourly and opens GitHub issues",
+        description: "Monitors every agent error table hourly and opens GitHub issues",
         currentLevel: 3,
         link: "/lazy-watch",
         levels: [
@@ -457,7 +457,7 @@ export const ENGINE_CATEGORIES: EngineCategory[] = [
         currentLevel: 4,
         link: "/lazy-build",
         levels: [
-          "You write every engine prompt from scratch. Days per engine.",
+          "You write every agent prompt from scratch. Days per engine.",
           "Templates speed things up. You still customise everything.",
           "You maintain a prompt library. Still hours per new engine.",
           "Describe what you need in a paragraph. A complete engine prompt is generated.",
