@@ -134,6 +134,7 @@ export const AGENTS: AgentConfig[] = [
     runField: "is_running",
     category: "content",
     route: "/admin/geo",
+    setupRoute: "/lazy-geo-setup",
     actions: [
       { label: "Publish Now", fn: "lazy-geo-publish" },
       { label: "Discover Now", fn: "lazy-geo-discover" },
