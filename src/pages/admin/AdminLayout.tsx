@@ -1,6 +1,6 @@
 import { useState, useEffect, createContext, useContext } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
-import { Loader2, Pause, Play, LayoutDashboard, Settings, Download } from "lucide-react";
+import { Loader2, Pause, Play, LayoutDashboard, Settings, Download, ExternalLink, GitBranch, Upload } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { useAgentDetection } from "./hooks/useAgentDetection";
@@ -108,8 +108,30 @@ export default function AdminLayout() {
             <span className="font-body text-[11px] tracking-[0.1em] uppercase text-[#f0ead6]/70">{masterLabel}</span>
           </div>
 
-          {/* Overview */}
+          {/* Prompts section */}
+          <PromptActions />
+
+          {/* Navigation */}
           <nav className="flex-1 py-2">
+            {/* Installs */}
+            <Link
+              to="/admin/installs"
+              className={`flex items-center gap-2 px-5 py-2 font-body text-[13px] tracking-[0.06em] transition-colors ${isActive("/admin/installs") ? "text-[#c8a961] bg-[#c8a961]/8 border-l-2 border-[#c8a961]" : "text-[#f0ead6]/70 hover:text-[#f0ead6]/95 border-l-2 border-transparent"}`}
+            >
+              <Download size={13} /> Installs
+            </Link>
+
+            {/* Visitor Analytics */}
+            <a
+              href="https://lovable.dev/projects/8f74d28a-09c4-4b3c-97f7-3b60c5834e3d/analytics"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 px-5 py-2 font-body text-[13px] tracking-[0.06em] text-[#f0ead6]/70 hover:text-[#f0ead6]/95 border-l-2 border-transparent transition-colors"
+            >
+              <ExternalLink size={13} /> Visitor Analytics <ExternalLink size={9} className="ml-auto opacity-40" />
+            </a>
+
+            {/* Overview */}
             <Link
               to="/admin"
               className={`flex items-center justify-between px-5 py-2 font-body text-[13px] tracking-[0.06em] transition-colors ${isActive("/admin") ? "text-[#c8a961] bg-[#c8a961]/8 border-l-2 border-[#c8a961]" : "text-[#f0ead6]/70 hover:text-[#f0ead6]/95 border-l-2 border-transparent"}`}
@@ -143,12 +165,6 @@ export default function AdminLayout() {
             {/* System */}
             <div className="mt-3">
               <p className="px-5 font-body text-[10px] tracking-[0.2em] uppercase text-[#f0ead6]/40 mb-1">System</p>
-              <Link
-                to="/admin/installs"
-                className={`flex items-center gap-2 px-5 py-1.5 font-body text-[13px] tracking-[0.06em] transition-colors ${isActive("/admin/installs") ? "text-[#c8a961] bg-[#c8a961]/8 border-l-2 border-[#c8a961]" : "text-[#f0ead6]/70 hover:text-[#f0ead6]/95 border-l-2 border-transparent"}`}
-              >
-                <Download size={12} /> Installs
-              </Link>
               <Link
                 to="/admin/settings"
                 className={`flex items-center gap-2 px-5 py-1.5 font-body text-[13px] tracking-[0.06em] transition-colors ${isActive("/admin/settings") ? "text-[#c8a961] bg-[#c8a961]/8 border-l-2 border-[#c8a961]" : "text-[#f0ead6]/70 hover:text-[#f0ead6]/95 border-l-2 border-transparent"}`}
@@ -209,5 +225,46 @@ export default function AdminLayout() {
         </main>
       </div>
     </AdminContext.Provider>
+  );
+}
+
+function PromptActions() {
+  const [syncing, setSyncing] = useState(false);
+  const [pushing, setPushing] = useState(false);
+
+  const sync = async () => {
+    setSyncing(true);
+    try {
+      const { error } = await supabase.functions.invoke("pull-prompts-github");
+      if (error) throw error;
+      toast.success("Prompts synced from GitHub.");
+    } catch { toast.error("Sync from GitHub failed."); }
+    setSyncing(false);
+  };
+
+  const push = async () => {
+    setPushing(true);
+    try {
+      const { error } = await supabase.functions.invoke("sync-prompts-github");
+      if (error) throw error;
+      toast.success("Prompts pushed to GitHub.");
+    } catch { toast.error("Push to GitHub failed."); }
+    setPushing(false);
+  };
+
+  const btnClass = "w-full flex items-center justify-center gap-2 border border-[#f0ead6]/10 py-1.5 font-body text-[10px] tracking-[0.1em] uppercase text-[#f0ead6]/70 hover:text-[#f0ead6] hover:border-[#f0ead6]/30 transition-colors disabled:opacity-40";
+
+  return (
+    <div className="px-5 py-3 border-b border-[#f0ead6]/8 space-y-1.5">
+      <p className="font-body text-[10px] tracking-[0.2em] uppercase text-[#f0ead6]/40 mb-1">Prompts</p>
+      <button onClick={sync} disabled={syncing || pushing} className={btnClass}>
+        {syncing ? <Loader2 size={10} className="animate-spin" /> : <GitBranch size={10} />}
+        Sync from GitHub
+      </button>
+      <button onClick={push} disabled={syncing || pushing} className={btnClass}>
+        {pushing ? <Loader2 size={10} className="animate-spin" /> : <Upload size={10} />}
+        Push to GitHub
+      </button>
+    </div>
   );
 }
