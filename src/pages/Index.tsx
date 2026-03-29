@@ -78,7 +78,7 @@ function RotatingHeadline() {
   }, [current, ready]);
 
   return (
-    <p style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(0.85rem, 2.8vw, 2.2rem)", color: "#f0ead6", opacity: 0.7 }} className="mb-2 mt-12 flex flex-wrap items-center justify-center gap-x-1">
+    <p style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(0.85rem, 2.8vw, 2.2rem)", color: "hsl(var(--foreground))", opacity: 0.7 }} className="mb-2 mt-12 flex flex-wrap items-center justify-center gap-x-1">
       {/* Hidden measurer */}
       <span
         ref={hiddenRef}
@@ -101,7 +101,7 @@ function RotatingHeadline() {
             exit={{ y: -16, opacity: 0 }}
             transition={{ duration: 0.3 }}
             className="absolute inset-0 flex items-center justify-center gap-1 whitespace-nowrap"
-            style={{ color: "#c8a961" }}
+            style={{ color: "hsl(var(--primary))" }}
           >
             {current.word}<span>{current.emoji}</span>
           </motion.span>
@@ -158,18 +158,18 @@ const products = [
 /* ── Sketch SVG icons ── */
 const sketches: Record<string, JSX.Element> = {
   Run: (
-    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="#f0ead6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       <circle cx="60" cy="55" r="28" />
       <path d="M60 27 L60 55 L78 55" />
       <path d="M40 88 L50 78" />
       <path d="M80 88 L70 78" />
       <path d="M25 65 L35 60" />
       <path d="M95 65 L85 60" />
-      <circle cx="60" cy="55" r="3" fill="#f0ead6" stroke="none" />
+      <circle cx="60" cy="55" r="3" fill="currentColor" stroke="none" />
     </svg>
   ),
   Blogger: (
-    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="#f0ead6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       <rect x="30" y="20" width="50" height="70" rx="3" />
       <line x1="40" y1="38" x2="70" y2="38" />
       <line x1="40" y1="48" x2="65" y2="48" />
@@ -179,7 +179,7 @@ const sketches: Record<string, JSX.Element> = {
     </svg>
   ),
   SEO: (
-    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="#f0ead6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       <circle cx="50" cy="55" r="22" />
       <line x1="66" y1="71" x2="85" y2="90" />
       <rect x="25" y="70" width="8" height="20" rx="1" />
@@ -188,7 +188,7 @@ const sketches: Record<string, JSX.Element> = {
     </svg>
   ),
   GEO: (
-    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="#f0ead6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       <path d="M25 75 Q25 30 60 30 Q95 30 95 75 Q95 85 60 95 Q25 85 25 75Z" />
       <circle cx="60" cy="58" r="12" />
       <path d="M54 55 L58 62 L66 54" />
@@ -197,17 +197,17 @@ const sketches: Record<string, JSX.Element> = {
     </svg>
   ),
   Crawl: (
-    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="#f0ead6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       <circle cx="60" cy="55" r="25" />
       <path d="M40 45 Q60 30 80 45" />
       <path d="M40 65 Q60 80 80 65" />
       <line x1="60" y1="30" x2="60" y2="80" />
       <line x1="35" y1="55" x2="85" y2="55" />
-      <circle cx="60" cy="55" r="5" fill="#f0ead6" stroke="none" />
+      <circle cx="60" cy="55" r="5" fill="currentColor" stroke="none" />
     </svg>
   ),
   Store: (
-    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="#f0ead6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       <path d="M35 45 L40 25 L80 25 L85 45" />
       <rect x="35" y="45" width="50" height="50" rx="3" />
       <path d="M55 25 L55 35" />
@@ -217,7 +217,7 @@ const sketches: Record<string, JSX.Element> = {
     </svg>
   ),
   Drop: (
-    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="#f0ead6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       <path d="M60 25 Q40 55 40 70 Q40 90 60 90 Q80 90 80 70 Q80 55 60 25Z" />
       <path d="M50 70 Q55 78 65 72" />
       <line x1="30" y1="50" x2="20" y2="45" />
@@ -226,17 +226,17 @@ const sketches: Record<string, JSX.Element> = {
     </svg>
   ),
   Print: (
-    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="#f0ead6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       <rect x="30" y="45" width="60" height="30" rx="3" />
       <rect x="38" y="25" width="44" height="20" rx="2" />
       <rect x="38" y="75" width="44" height="20" rx="2" />
-      <circle cx="80" cy="58" r="3" fill="#f0ead6" stroke="none" />
+      <circle cx="80" cy="58" r="3" fill="currentColor" stroke="none" />
       <line x1="45" y1="82" x2="65" y2="82" />
       <line x1="45" y1="88" x2="58" y2="88" />
     </svg>
   ),
   Voice: (
-    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="#f0ead6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       <rect x="50" y="25" width="20" height="40" rx="10" />
       <path d="M40 55 Q40 80 60 80 Q80 80 80 55" />
       <line x1="60" y1="80" x2="60" y2="95" />
@@ -246,7 +246,7 @@ const sketches: Record<string, JSX.Element> = {
     </svg>
   ),
   Pay: (
-    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="#f0ead6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       <rect x="20" y="35" width="80" height="50" rx="5" />
       <line x1="20" y1="50" x2="100" y2="50" />
       <line x1="30" y1="65" x2="55" y2="65" />
@@ -256,7 +256,7 @@ const sketches: Record<string, JSX.Element> = {
     </svg>
   ),
   SMS: (
-    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="#f0ead6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       <rect x="38" y="18" width="44" height="84" rx="8" />
       <line x1="52" y1="24" x2="68" y2="24" />
       <circle cx="60" cy="92" r="4" />
@@ -266,18 +266,18 @@ const sketches: Record<string, JSX.Element> = {
     </svg>
   ),
   Stream: (
-    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="#f0ead6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       <rect x="25" y="30" width="70" height="45" rx="3" />
       <circle cx="60" cy="52" r="10" />
-      <path d="M56 49 L66 52 L56 55 Z" fill="#f0ead6" stroke="none" />
+      <path d="M56 49 L66 52 L56 55 Z" fill="currentColor" stroke="none" />
       <line x1="40" y1="85" x2="80" y2="85" />
       <line x1="50" y1="75" x2="50" y2="85" />
       <line x1="70" y1="75" x2="70" y2="85" />
-      <circle cx="85" cy="35" r="4" fill="#f0ead6" stroke="none" />
+      <circle cx="85" cy="35" r="4" fill="currentColor" stroke="none" />
     </svg>
   ),
   GitHub: (
-    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="#f0ead6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       <path d="M45 40 L25 60 L45 80" />
       <path d="M75 40 L95 60 L75 80" />
       <line x1="65" y1="30" x2="55" y2="90" />
@@ -285,22 +285,22 @@ const sketches: Record<string, JSX.Element> = {
     </svg>
   ),
   Alert: (
-    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="#f0ead6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       <rect x="28" y="30" width="64" height="50" rx="5" />
       <path d="M28 40 L60 62 L92 40" />
-      <circle cx="85" cy="35" r="10" fill="#f0ead6" stroke="none" />
-      <path d="M85 30 L85 37" stroke="#0a0a08" strokeWidth="2" />
-      <circle cx="85" cy="40" r="1.5" fill="#0a0a08" stroke="none" />
+      <circle cx="85" cy="35" r="10" fill="currentColor" stroke="none" />
+      <path d="M85 30 L85 37" stroke="hsl(var(--background))" strokeWidth="2" />
+      <circle cx="85" cy="40" r="1.5" fill="hsl(var(--background))" stroke="none" />
     </svg>
   ),
   GitLab: (
-    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="#f0ead6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       <path d="M60 95 L30 55 L38 25 L48 55 L72 55 L82 25 L90 55 Z" />
       <circle cx="60" cy="58" r="8" strokeDasharray="3 3" />
     </svg>
   ),
   Supabase: (
-    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="#f0ead6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       <path d="M60 90 Q30 80 30 55 Q30 30 60 25 Q90 30 90 55 Q90 80 60 90Z" />
       <line x1="40" y1="50" x2="80" y2="50" />
       <line x1="40" y1="60" x2="80" y2="60" />
@@ -308,7 +308,7 @@ const sketches: Record<string, JSX.Element> = {
     </svg>
   ),
   Telegram: (
-    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="#f0ead6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       <path d="M25 55 L95 30 L75 90 L55 65 Z" />
       <line x1="95" y1="30" x2="55" y2="65" />
       <line x1="55" y1="65" x2="55" y2="85" />
@@ -316,14 +316,14 @@ const sketches: Record<string, JSX.Element> = {
     </svg>
   ),
   Linear: (
-    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="#f0ead6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       <circle cx="60" cy="55" r="28" />
       <path d="M45 55 L55 65 L75 45" />
       <line x1="35" y1="88" x2="85" y2="88" strokeDasharray="4 4" />
     </svg>
   ),
   Contentful: (
-    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="#f0ead6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       <rect x="30" y="28" width="60" height="64" rx="5" />
       <line x1="60" y1="28" x2="60" y2="92" />
       <path d="M40 50 L55 50" />
@@ -335,22 +335,22 @@ const sketches: Record<string, JSX.Element> = {
     </svg>
   ),
   Perplexity: (
-    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="#f0ead6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       <circle cx="55" cy="50" r="22" />
       <line x1="71" y1="66" x2="90" y2="85" />
       <path d="M48 45 Q55 35 62 45" />
-      <circle cx="55" cy="55" r="3" fill="#f0ead6" stroke="none" />
+      <circle cx="55" cy="55" r="3" fill="currentColor" stroke="none" />
       <path d="M40 75 L50 85 L65 80 L80 90" strokeDasharray="3 3" />
     </svg>
   ),
   Security: (
-    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="#f0ead6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       <path d="M60 20 L90 35 L90 60 Q90 85 60 100 Q30 85 30 60 L30 35 Z" />
       <path d="M48 58 L56 66 L74 48" />
     </svg>
   ),
   Auth: (
-    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="#f0ead6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       <rect x="35" y="50" width="50" height="40" rx="4" />
       <path d="M45 50 L45 38 Q45 22 60 22 Q75 22 75 38 L75 50" />
       <circle cx="60" cy="68" r="5" />
@@ -358,7 +358,7 @@ const sketches: Record<string, JSX.Element> = {
     </svg>
   ),
   Mail: (
-    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="#f0ead6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       <rect x="25" y="35" width="70" height="50" rx="3" />
       <path d="M25 40 L60 65 L95 40" />
       <line x1="25" y1="82" x2="45" y2="62" />
@@ -366,24 +366,24 @@ const sketches: Record<string, JSX.Element> = {
     </svg>
   ),
   Design: (
-    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="#f0ead6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       <rect x="30" y="25" width="60" height="70" rx="4" />
       <line x1="30" y1="45" x2="90" y2="45" />
       <rect x="38" y="55" width="20" height="15" rx="2" />
       <rect x="62" y="55" width="20" height="15" rx="2" />
       <rect x="38" y="75" width="44" height="10" rx="2" />
-      <circle cx="40" cy="35" r="3" fill="#f0ead6" stroke="none" />
-      <circle cx="50" cy="35" r="3" fill="#f0ead6" stroke="none" />
-      <circle cx="60" cy="35" r="3" fill="#f0ead6" stroke="none" />
+      <circle cx="40" cy="35" r="3" fill="currentColor" stroke="none" />
+      <circle cx="50" cy="35" r="3" fill="currentColor" stroke="none" />
+      <circle cx="60" cy="35" r="3" fill="currentColor" stroke="none" />
     </svg>
   ),
   Admin: (
-    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="#f0ead6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       <rect x="25" y="25" width="70" height="70" rx="5" />
       <line x1="25" y1="45" x2="95" y2="45" />
       <line x1="55" y1="45" x2="55" y2="95" />
-      <circle cx="40" cy="35" r="3" fill="#f0ead6" stroke="none" />
-      <circle cx="50" cy="35" r="3" fill="#f0ead6" stroke="none" />
+      <circle cx="40" cy="35" r="3" fill="currentColor" stroke="none" />
+      <circle cx="50" cy="35" r="3" fill="currentColor" stroke="none" />
       <rect x="32" y="55" width="16" height="12" rx="1" />
       <rect x="32" y="75" width="16" height="12" rx="1" />
       <line x1="62" y1="60" x2="88" y2="60" />
@@ -393,7 +393,7 @@ const sketches: Record<string, JSX.Element> = {
     </svg>
   ),
   Granola: (
-    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="#f0ead6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       <rect x="30" y="25" width="60" height="70" rx="4" />
       <line x1="42" y1="40" x2="78" y2="40" />
       <line x1="42" y1="50" x2="72" y2="50" />
@@ -404,13 +404,13 @@ const sketches: Record<string, JSX.Element> = {
     </svg>
   ),
   YouTube: (
-    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="#f0ead6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       <rect x="20" y="30" width="80" height="60" rx="12" />
-      <path d="M52 48 L52 82 L78 65 Z" fill="#f0ead6" stroke="none" />
+      <path d="M52 48 L52 82 L78 65 Z" fill="currentColor" stroke="none" />
     </svg>
   ),
   Launch: (
-    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="#f0ead6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       <path d="M60 20 Q50 50 40 70 L60 60 L80 70 Q70 50 60 20Z" />
       <path d="M40 70 L30 85" />
       <path d="M80 70 L90 85" />
@@ -419,23 +419,23 @@ const sketches: Record<string, JSX.Element> = {
     </svg>
   ),
   Watch: (
-    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="#f0ead6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       <circle cx="60" cy="55" r="28" />
       <circle cx="60" cy="55" r="12" />
-      <circle cx="60" cy="55" r="5" fill="#f0ead6" stroke="none" />
+      <circle cx="60" cy="55" r="5" fill="currentColor" stroke="none" />
       <path d="M30 55 L20 55" /><path d="M100 55 L90 55" />
       <path d="M60 25 L60 15" /><path d="M60 95 L60 85" />
     </svg>
   ),
   Fix: (
-    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="#f0ead6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       <path d="M75 30 L90 45 L50 85 L35 85 L35 70 Z" />
       <path d="M65 40 L80 55" />
       <line x1="35" y1="95" x2="85" y2="95" strokeDasharray="4 4" />
     </svg>
   ),
   Build: (
-    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="#f0ead6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       <rect x="30" y="35" width="60" height="55" rx="3" />
       <path d="M45 25 L45 35" /><path d="M75 25 L75 35" />
       <line x1="42" y1="52" x2="78" y2="52" />
@@ -445,7 +445,7 @@ const sketches: Record<string, JSX.Element> = {
     </svg>
   ),
   Intel: (
-    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="#f0ead6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       <rect x="25" y="30" width="70" height="60" rx="3" />
       <rect x="32" y="55" width="10" height="25" rx="1" />
       <rect x="47" y="45" width="10" height="35" rx="1" />
@@ -455,7 +455,7 @@ const sketches: Record<string, JSX.Element> = {
     </svg>
   ),
   Repurpose: (
-    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="#f0ead6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       <path d="M40 40 L80 40 L80 60 L90 50 L70 30" />
       <path d="M80 80 L40 80 L40 60 L30 70 L50 90" />
       <rect x="45" y="50" width="30" height="20" rx="2" />
@@ -464,16 +464,16 @@ const sketches: Record<string, JSX.Element> = {
     </svg>
   ),
   Trend: (
-    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="#f0ead6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       <path d="M25 85 L45 65 L60 72 L80 40 L95 35" />
-      <circle cx="95" cy="35" r="5" fill="#f0ead6" stroke="none" />
+      <circle cx="95" cy="35" r="5" fill="currentColor" stroke="none" />
       <path d="M85 40 L95 35 L90 25" />
       <line x1="25" y1="90" x2="95" y2="90" />
       <line x1="25" y1="30" x2="25" y2="90" />
     </svg>
   ),
   Churn: (
-    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="#f0ead6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       <circle cx="60" cy="45" r="15" />
       <path d="M60 30 L60 45 L70 45" />
       <path d="M35 75 Q35 65 60 60 Q85 65 85 75 L85 90 L35 90 Z" />
@@ -481,7 +481,7 @@ const sketches: Record<string, JSX.Element> = {
     </svg>
   ),
   "Coming Soon": (
-    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="#f0ead6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       <circle cx="60" cy="55" r="25" />
       <path d="M60 40 L60 58 L72 64" />
       <circle cx="60" cy="55" r="3" />
@@ -503,7 +503,7 @@ const Index = () => {
   }, [location.hash]);
 
   return (
-    <div className="min-h-screen text-foreground relative bg-[#0a0a08]">
+    <div className="min-h-screen text-foreground relative bg-background">
       <SEO
         title={NEW_TITLE}
         url="/"
@@ -523,7 +523,7 @@ const Index = () => {
       <Navbar activePage="home" />
 
       {/* Hero */}
-      <header className="relative z-10" style={{ backgroundColor: "#0a0a08" }}>
+      <header className="relative z-10" style={{ backgroundColor: "hsl(var(--background))" }}>
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -531,12 +531,12 @@ const Index = () => {
           className="min-h-screen flex flex-col items-center justify-center gap-4 md:gap-6 px-4 md:px-6 pt-8 pb-16 text-center"
         >
           <RotatingHeadline />
-          <h1 style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(2rem, 6vw, 4.5rem)", color: "#f0ead6", lineHeight: 1.1, fontWeight: 800 }}>
+          <h1 style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(2rem, 6vw, 4.5rem)", color: "hsl(var(--foreground))", lineHeight: 1.1, fontWeight: 800 }}>
             Launch, build and run<br className="hidden md:inline" />
-            {" "}your Lovable<span style={{ color: "#e25555" }}>❤️</span>website or app<br className="hidden md:inline" />
+            {" "}your Lovable<span style={{ color: "hsl(var(--accent))" }}>❤️</span>website or app<br className="hidden md:inline" />
             {" "}with autonomous agents<span>🤖</span>.
           </h1>
-          <p className="max-w-2xl" style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(0.95rem, 1.4vw, 1.15rem)", color: "#f0ead6", opacity: 0.45, lineHeight: 1.6 }}>
+          <p className="max-w-2xl" style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(0.95rem, 1.4vw, 1.15rem)", color: "hsl(var(--foreground))", opacity: 0.45, lineHeight: 1.6 }}>
             Each agent is a single prompt you paste into Lovable. It installs its own tables, edge functions, and UI — then runs itself. Blog posts, SEO, payments, voice, stores, and more.
           </p>
 
@@ -547,14 +547,14 @@ const Index = () => {
             <Link
               to="/lazy-launch"
               className="text-sm tracking-[0.15em] uppercase px-8 py-3 font-semibold hover:opacity-80 transition-opacity active:scale-[0.97]"
-              style={{ fontFamily: "'Space Grotesk', sans-serif", backgroundColor: "#c8a961", color: "#0a0a08", borderRadius: 0 }}
+              style={{ fontFamily: "'Space Grotesk', sans-serif", backgroundColor: "hsl(var(--primary))", color: "#0a0a08", borderRadius: 0 }}
             >
               Launch your Lovable website
             </Link>
             <Link
               to="/lazy-agents"
               className="text-sm tracking-[0.15em] uppercase px-8 py-3 font-semibold hover:opacity-80 transition-opacity active:scale-[0.97]"
-              style={{ fontFamily: "'Space Grotesk', sans-serif", backgroundColor: "#f0ead6", color: "#0a0a08", borderRadius: 0 }}
+              style={{ fontFamily: "'Space Grotesk', sans-serif", backgroundColor: "hsl(var(--foreground))", color: "#0a0a08", borderRadius: 0 }}
             >
               Explore Agents
             </Link>
@@ -562,7 +562,7 @@ const Index = () => {
 
           {/* Integrations marquee */}
           <div className="mt-10 overflow-hidden">
-            <p className="text-[11px] tracking-[0.25em] uppercase font-semibold mb-5 text-center" style={{ color: "#f0ead6", opacity: 0.3 }}>
+            <p className="text-[11px] tracking-[0.25em] uppercase font-semibold mb-5 text-center" style={{ color: "hsl(var(--foreground))", opacity: 0.3 }}>
               Integrates with
             </p>
             <div className="relative">
@@ -605,7 +605,7 @@ const Index = () => {
                         key={`${dupeIdx}-${item.name}`}
                         to={item.href}
                         className="text-[13px] tracking-[0.1em] uppercase font-medium shrink-0 transition-opacity duration-200 hover:opacity-80"
-                        style={{ color: "#f0ead6", opacity: 0.35 }}
+                        style={{ color: "hsl(var(--foreground))", opacity: 0.35 }}
                       >
                         {item.name}
                       </Link>
@@ -620,15 +620,15 @@ const Index = () => {
       </header>
 
       {/* Agents label */}
-      <section className="relative z-10" style={{ backgroundColor: "#0a0a08" }}>
+      <section className="relative z-10" style={{ backgroundColor: "hsl(var(--background))" }}>
         <div className="px-6 pt-20 pb-8 text-center max-w-4xl mx-auto">
-          <h2 style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(2.5rem, 6vw, 5rem)", color: "#f0ead6", fontWeight: 800, lineHeight: 1 }}>
+          <h2 style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(2.5rem, 6vw, 5rem)", color: "hsl(var(--foreground))", fontWeight: 800, lineHeight: 1 }}>
             35 agents run your Lovable business.
           </h2>
-          <h2 style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(2.5rem, 6vw, 5rem)", color: "#f0ead6", fontWeight: 800, lineHeight: 1, marginTop: "0.1em" }}>
+          <h2 style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(2.5rem, 6vw, 5rem)", color: "hsl(var(--foreground))", fontWeight: 800, lineHeight: 1, marginTop: "0.1em" }}>
             One prompt each.
           </h2>
-          <p className="mt-6 mx-auto max-w-2xl" style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(0.9rem, 1.3vw, 1.1rem)", color: "#f0ead6", opacity: 0.45, lineHeight: 1.7 }}>
+          <p className="mt-6 mx-auto max-w-2xl" style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(0.9rem, 1.3vw, 1.1rem)", color: "hsl(var(--foreground))", opacity: 0.45, lineHeight: 1.7 }}>
             Each agent is a self-contained prompt you paste into your Lovable project. It installs its own tables, edge functions, and UI — then runs itself autonomously.
           </p>
           <Link
@@ -648,18 +648,18 @@ const Index = () => {
           <Link to="/lazy-launch" className="block">
             <div
               className="aspect-square flex flex-col items-center justify-center gap-4 transition-colors duration-300 hover:brightness-[1.15] cursor-pointer p-4"
-              style={{ backgroundColor: "#0a0a08" }}
+              style={{ backgroundColor: "hsl(var(--background))" }}
             >
               {sketches["Launch"]}
               <div className="text-center">
-                <p style={{ fontFamily: "'Dancing Script', cursive", fontSize: "clamp(1.5rem, 3vw, 2.5rem)", color: "#f0ead6", lineHeight: 1.1 }}>
+                <p style={{ fontFamily: "'Dancing Script', cursive", fontSize: "clamp(1.5rem, 3vw, 2.5rem)", color: "hsl(var(--foreground))", lineHeight: 1.1 }}>
                   Lazy
                 </p>
-                <p style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(1.5rem, 3vw, 2.5rem)", color: "#f0ead6", lineHeight: 1.1 }}>
+                <p style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(1.5rem, 3vw, 2.5rem)", color: "hsl(var(--foreground))", lineHeight: 1.1 }}>
                   Launch
                 </p>
               </div>
-              <p style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(0.7rem, 1vw, 0.9rem)", color: "#f0ead6", opacity: 0.4 }}>
+              <p style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(0.7rem, 1vw, 0.9rem)", color: "hsl(var(--foreground))", opacity: 0.4 }}>
                 Launch your Lovable website
               </p>
             </div>
@@ -669,26 +669,26 @@ const Index = () => {
           <Link to="/lazy-run" className="block">
             <div
               className="aspect-square flex flex-col items-center justify-center gap-4 transition-colors duration-300 hover:brightness-[1.15] cursor-pointer p-4"
-              style={{ backgroundColor: "#111110" }}
+              style={{ backgroundColor: "hsl(var(--card))" }}
             >
               {sketches["Run"]}
               <div className="text-center">
-                <p style={{ fontFamily: "'Dancing Script', cursive", fontSize: "clamp(1.5rem, 3vw, 2.5rem)", color: "#f0ead6", lineHeight: 1.1 }}>
+                <p style={{ fontFamily: "'Dancing Script', cursive", fontSize: "clamp(1.5rem, 3vw, 2.5rem)", color: "hsl(var(--foreground))", lineHeight: 1.1 }}>
                   Lazy
                 </p>
-                <p style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(1.5rem, 3vw, 2.5rem)", color: "#f0ead6", lineHeight: 1.1 }}>
+                <p style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(1.5rem, 3vw, 2.5rem)", color: "hsl(var(--foreground))", lineHeight: 1.1 }}>
                   Run
                 </p>
               </div>
-              <p style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(0.7rem, 1vw, 0.9rem)", color: "#f0ead6", opacity: 0.4 }}>
+              <p style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(0.7rem, 1vw, 0.9rem)", color: "hsl(var(--foreground))", opacity: 0.4 }}>
                 Autonomous everything
               </p>
             </div>
           </Link>
 
           {products.map((product, i) => {
-            const bgEven = "#0a0a08";
-            const bgOdd = "#111110";
+            const bgEven = "hsl(var(--background))";
+            const bgOdd = "hsl(var(--card))";
             const cellIndex = i + 2;
             const row = Math.floor(cellIndex / 4);
             const col = cellIndex % 4;
@@ -702,14 +702,14 @@ const Index = () => {
               >
                 {sketches[product.name]}
                 <div className="text-center">
-                  <p style={{ fontFamily: "'Dancing Script', cursive", fontSize: "clamp(1.5rem, 3vw, 2.5rem)", color: "#f0ead6", lineHeight: 1.1 }}>
+                  <p style={{ fontFamily: "'Dancing Script', cursive", fontSize: "clamp(1.5rem, 3vw, 2.5rem)", color: "hsl(var(--foreground))", lineHeight: 1.1 }}>
                     {product.cursive}
                   </p>
-                  <p style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(1.5rem, 3vw, 2.5rem)", color: "#f0ead6", lineHeight: 1.1 }}>
+                  <p style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(1.5rem, 3vw, 2.5rem)", color: "hsl(var(--foreground))", lineHeight: 1.1 }}>
                     {product.name}
                   </p>
                 </div>
-                <p style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(0.7rem, 1vw, 0.9rem)", color: "#f0ead6", opacity: 0.4 }}>
+                <p style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(0.7rem, 1vw, 0.9rem)", color: "hsl(var(--foreground))", opacity: 0.4 }}>
                   {product.tagline}
                 </p>
               </div>
