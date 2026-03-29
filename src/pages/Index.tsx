@@ -16,7 +16,7 @@ import SEO from "@/components/SEO";
 import Navbar from "@/components/Navbar";
 import { useTrackVisit } from "@/hooks/useTrackVisit";
 
-const NEW_TITLE = "Launch, build and run your Lovable website or app with autonomous agents";
+const NEW_TITLE = "Launch, build and run your Lovable website with autonomous agents.";
 const NEW_DESCRIPTION = "Copy, paste, done. Each agent sets itself up and runs on autopilot — publishing content, handling payments, growing your audience, and more.";
 
 const rotatingWords = [
@@ -261,7 +261,7 @@ const Index = () => {
               >
                 Launch, build and run<br className="hidden md:inline" />
                 {" "}your Lovable website<br className="hidden md:inline" />
-                {" "}with autonomous agents
+                {" "}with autonomous agents.
               </h1>
 
               <p className="mt-6 font-body text-base md:text-lg max-w-xl leading-relaxed" style={{ color: "#f0ead6", opacity: 0.5 }}>
