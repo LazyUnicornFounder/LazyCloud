@@ -5,7 +5,7 @@ import {
   CreditCard, MessageSquare, Mic, Globe, GitBranch, Search,
   Bell, Send, MonitorPlay, Database, FileText, Shield, Code,
   ArrowRight, Paintbrush, Eye, Wrench, Hammer,
-  Brain, RefreshCw, TrendingUp, UserCheck, LayoutDashboard,
+  Brain, RefreshCw, TrendingUp, UserCheck, LayoutDashboard, BarChart3,
   Radar, Compass, Layers, ShoppingCart, Package, Printer, Mail,
   Youtube, Lock, Calendar,
 } from "lucide-react";
@@ -216,7 +216,7 @@ const integrations: Integration[] = [
     ],
     agent: "Lazy Linear",
     agentHref: "/lazy-linear",
-    icon: <Brain size={20} />,
+    icon: <BarChart3 size={20} />,
   },
   {
     name: "21st.dev",
