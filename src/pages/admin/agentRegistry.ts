@@ -33,6 +33,8 @@ export interface AgentConfig {
   queueFilter?: Record<string, any>;
   queueColumns?: AgentColumn[];
   settingsFields?: SettingsField[];
+  requiredSecrets?: string[];
+  setupRoute?: string;
 }
 
 export interface AgentStatQuery {
@@ -101,6 +103,7 @@ export const AGENTS: AgentConfig[] = [
     runField: "is_running",
     category: "content",
     route: "/admin/seo",
+    setupRoute: "/lazy-seo-setup",
     actions: [
       { label: "Publish Now", fn: "lazy-seo-publish" },
       { label: "Discover Now", fn: "lazy-seo-analyse" },
@@ -131,6 +134,7 @@ export const AGENTS: AgentConfig[] = [
     runField: "is_running",
     category: "content",
     route: "/admin/geo",
+    setupRoute: "/lazy-geo-setup",
     actions: [
       { label: "Publish Now", fn: "lazy-geo-publish" },
       { label: "Discover Now", fn: "lazy-geo-discover" },
@@ -341,6 +345,8 @@ export const AGENTS: AgentConfig[] = [
     category: "media",
     route: "/admin/voice",
     actions: [{ label: "Narrate Now", fn: "voice-generate" }],
+    requiredSecrets: ["ELEVENLABS_API_KEY"],
+    setupRoute: "/lazy-voice-setup",
     statsQueries: [
       { label: "Episodes", table: "voice_episodes", type: "count" },
     ],
@@ -364,6 +370,8 @@ export const AGENTS: AgentConfig[] = [
       { label: "Process Last Stream", fn: "stream-process" },
       { label: "Optimise", fn: "stream-optimise" },
     ],
+    requiredSecrets: ["TWITCH_CLIENT_ID", "TWITCH_CLIENT_SECRET"],
+    setupRoute: "/lazy-stream-setup",
     statsQueries: [
       { label: "Streams", table: "stream_sessions", type: "count" },
       { label: "Content", table: "stream_content", type: "count" },
@@ -408,6 +416,7 @@ export const AGENTS: AgentConfig[] = [
       { label: "Sync Roadmap", fn: "code-sync-roadmap" },
       { label: "Optimise", fn: "code-optimise" },
     ],
+    requiredSecrets: ["GITHUB_PROMPTS_TOKEN"],
     statsQueries: [],
     contentTable: "code_content",
     errorsTable: "code_errors",
@@ -479,6 +488,7 @@ export const AGENTS: AgentConfig[] = [
       { label: "Sync Now", fn: "granola-sync" },
       { label: "Publish Content", fn: "granola-write-post" },
     ],
+    setupRoute: "/lazy-granola-setup",
     statsQueries: [
       { label: "Meetings", table: "granola_meetings", type: "count" },
       { label: "Outputs", table: "granola_outputs", type: "count" },
@@ -575,6 +585,7 @@ export const AGENTS: AgentConfig[] = [
     runField: "is_running",
     category: "ops",
     route: "/admin/security",
+    requiredSecrets: ["AIKIDO_API_KEY"],
     actions: [
       { label: "Run Pentest", fn: "security-scan" },
       { label: "Quick Scan", fn: "security-monitor" },
