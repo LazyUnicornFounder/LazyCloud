@@ -383,6 +383,11 @@ export default function AdminOverview() {
           ))}
         </div>
       </div>
+
+      {/* ── Setup Wizard ── */}
+      {wizardAgent && (
+        <AgentSetupWizard agentKey={wizardAgent} onClose={() => setWizardAgent(null)} />
+      )}
     </div>
   );
 }
