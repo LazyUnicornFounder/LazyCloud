@@ -175,11 +175,6 @@ function AgentsDropdown() {
               {[agentCategories[5]].map(c => renderCategoryBlock(c, close))}
             </div>
           </div>
-          <div className="mt-3 pt-3 border-t border-border/50 flex items-center justify-end">
-            <span className="font-body text-[12px] tracking-[0.15em] uppercase text-foreground/30 font-semibold">
-              Made for Lovable ❤️
-            </span>
-          </div>
         </div>
       )}
     </div>
