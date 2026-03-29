@@ -196,7 +196,7 @@ function PromptEditor({
   const isBlogger = product.key === "lazy-blogger";
 
   return (
-    <div className="border border-border rounded-xl bg-card overflow-hidden">
+    <div id={`prompt-editor-${product.key}`} className="border border-border rounded-xl bg-card overflow-hidden">
       {/* Header */}
       <div className="flex items-center justify-between px-4 py-3">
         <div className="flex items-center gap-3 cursor-pointer" onClick={() => setExpanded(!expanded)}>
@@ -458,6 +458,12 @@ const AdminPrompts = () => {
             history={productVersions}
             allVersions={allVersions}
             onSaved={fetchAll}
+            onApplyFix={(targetProduct, suggestion) => {
+              // Scroll to the target product editor and pre-fill
+              const el = document.getElementById(`prompt-editor-${targetProduct}`);
+              if (el) el.scrollIntoView({ behavior: "smooth" });
+              toast.info(`Suggested fix for ${targetProduct} — edit the prompt to apply.`);
+            }}
           />
         );
       })}
