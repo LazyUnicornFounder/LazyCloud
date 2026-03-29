@@ -246,10 +246,8 @@ function SimpleDropdown({
   );
 }
 
-/* ── All mobile categories combined ── */
-const allMobileCategories: Category[] = [
+/* ── All mobile categories ── */
 const allMobileCategories: Category[] = [...agentCategories];
-];
 
 const Navbar = ({ activePage = "home" }: NavbarProps) => {
   const isMobile = useIsMobile();
