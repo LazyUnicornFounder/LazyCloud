@@ -198,7 +198,26 @@ function AgentCard({ agent }: { agent: AgentData }) {
 }
 
 /* ── Main Page ── */
+const CATEGORY_FILTERS = ["All", ...AGENT_CATEGORIES.map(c => c.label)];
+const LEVEL_FILTERS = [
+  { label: "Any level", value: -1 },
+  { label: "L3+", value: 3 },
+  { label: "L4+", value: 4 },
+  { label: "L5 only", value: 5 },
+];
+
 export default function AutonomyPage() {
+  const [catFilter, setCatFilter] = useState("All");
+  const [levelFilter, setLevelFilter] = useState(-1);
+
+  const filteredCategories = AGENT_CATEGORIES
+    .filter(cat => catFilter === "All" || cat.label === catFilter)
+    .map(cat => ({
+      ...cat,
+      agent: cat.agent.filter(a => levelFilter === -1 || a.currentLevel >= levelFilter),
+    }))
+    .filter(cat => cat.agent.length > 0);
+
   return (
     <>
       <SEO
@@ -233,9 +252,50 @@ export default function AutonomyPage() {
         <LevelScale />
       </section>
 
+      {/* Filters */}
+      <section className="max-w-6xl mx-auto px-4 pb-8">
+        <div className="flex flex-wrap items-center gap-3">
+          {/* Category filters */}
+          <div className="flex flex-wrap gap-2">
+            {CATEGORY_FILTERS.map(f => (
+              <button
+                key={f}
+                onClick={() => setCatFilter(f)}
+                className={`font-mono text-[12px] tracking-[0.12em] uppercase px-4 py-2 border transition-colors ${
+                  catFilter === f
+                    ? "bg-primary text-primary-foreground border-primary"
+                    : "border-border text-muted-foreground hover:border-foreground/30"
+                }`}
+              >
+                {f}
+              </button>
+            ))}
+          </div>
+
+          <div className="w-px h-6 bg-border hidden sm:block" />
+
+          {/* Level filters */}
+          <div className="flex flex-wrap gap-2">
+            {LEVEL_FILTERS.map(f => (
+              <button
+                key={f.value}
+                onClick={() => setLevelFilter(f.value)}
+                className={`font-mono text-[12px] tracking-[0.12em] uppercase px-4 py-2 border transition-colors ${
+                  levelFilter === f.value
+                    ? "bg-primary text-primary-foreground border-primary"
+                    : "border-border text-muted-foreground hover:border-foreground/30"
+                }`}
+              >
+                {f.label}
+              </button>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Agent Cards by Category */}
       <section className="max-w-6xl mx-auto px-4 pb-24 space-y-20">
-        {AGENT_CATEGORIES.map((cat) => (
+        {filteredCategories.map((cat) => (
           <div key={cat.label}>
             <h2 className="text-[14px] font-mono uppercase tracking-widest text-muted-foreground mb-6">
               {cat.label}
@@ -247,6 +307,11 @@ export default function AutonomyPage() {
             </div>
           </div>
         ))}
+        {filteredCategories.length === 0 && (
+          <p className="text-center text-muted-foreground font-mono text-sm py-12">
+            No agents match the selected filters.
+          </p>
+        )}
       </section>
 
       {/* Footer CTA */}
