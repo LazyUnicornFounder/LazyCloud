@@ -36,6 +36,11 @@ const categories: Category[] = [
         free: ["Setup prompt included", "All 35 agents in one prompt", "Unified admin dashboard", "Master orchestrator", "Weekly AI performance report"],
         pro: { price: "$99", features: ["Hosted version — zero config", "Auto-scaling agent execution", "Priority AI model access", "Dedicated support", "Custom agent configuration"], comingSoon: true },
       },
+      {
+        name: "Lazy Admin", tagline: "Unified dashboard for every agent", link: "/lazy-admin",
+        free: ["Setup prompt included", "Auto-detects installed agents", "Master status indicator", "Unified activity feed", "Per-agent deep dives"],
+        pro: { price: "$9", features: ["Hosted version", "Multi-project support", "Team access with roles", "Weekly email digest", "Mobile app"], comingSoon: true },
+      },
     ],
   },
   {
