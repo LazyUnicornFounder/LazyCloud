@@ -423,7 +423,7 @@ const Index = () => {
 
       {/* Product Grid */}
       <section id="agent" className="relative z-10 scroll-mt-20">
-        <div className="grid grid-cols-2 md:grid-cols-4" className="border-t border-border">
+        <div className="grid grid-cols-2 md:grid-cols-4 border-t border-border">
           {/* Lazy Launch */}
           <Link to="/lazy-launch" className="block">
             <div
