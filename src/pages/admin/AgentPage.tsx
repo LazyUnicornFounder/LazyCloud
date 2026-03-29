@@ -58,7 +58,7 @@ export default function AgentPage() {
   });
 
   // Populate form when settings load
-  const isConfigured = settingsLoading ? null : (settings && settings.setup_complete !== false);
+  const isConfigured = settingsLoading ? null : (settings ? settings.setup_complete !== false : false);
 
   /* ── Not configured ── */
   if (isConfigured === false) {
