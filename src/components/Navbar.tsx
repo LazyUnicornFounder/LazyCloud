@@ -287,6 +287,9 @@ const Navbar = ({ activePage = "home" }: NavbarProps) => {
               Use Cases
             </a>
             <AgentsDropdown />
+            <a href="/lazy-cloud" className="font-body text-[13px] tracking-[0.1em] uppercase font-bold text-foreground/70 hover:text-foreground transition-colors">
+              Lazy Cloud
+            </a>
             <a href="/pricing" className="font-body text-[13px] tracking-[0.1em] uppercase font-bold text-foreground/70 hover:text-foreground transition-colors">
               Pricing
             </a>
