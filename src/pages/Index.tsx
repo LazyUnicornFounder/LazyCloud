@@ -238,7 +238,7 @@ const Index = () => {
 
       {/* Hero */}
       <header className="relative z-10" style={{ backgroundColor: "#0a0a08" }}>
-        <section className="relative px-6 md:px-12 pt-32 pb-24 md:pb-32">
+        <section className="relative px-6 md:px-12 pt-32 pb-24 md:pb-32 min-h-screen flex flex-col justify-center">
           <div className="max-w-4xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 24 }}
