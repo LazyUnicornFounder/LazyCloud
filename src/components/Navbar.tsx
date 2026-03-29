@@ -15,7 +15,7 @@ const XLogo = () => (
 
 /* ── Agent icon map (Lucide, consistent with homepage & lazy-run) ── */
 const iconMap: Record<string, LucideIcon> = {
-  Launch: Rocket, Waitlist: ListEnd, Run: Clock, Blogger: FileText, SEO: Search, GEO: Globe,
+  Launch: Rocket, Cloud: Database, Waitlist: ListEnd, Run: Clock, Blogger: FileText, SEO: Search, GEO: Globe,
   Crawl: Radar, Perplexity: Compass, Contentful: Layers, Store: ShoppingCart,
   Drop: Package, Print: Printer, Pay: CreditCard, SMS: MessageSquare, Mail: Mail,
   Voice: Mic, Stream: MonitorPlay, YouTube: Youtube, GitHub: Code, GitLab: GitBranch,
@@ -36,9 +36,10 @@ type Category = { label: string; items: CategoryItem[] };
 /* ── Agent categories ── */
 const agentCategories: Category[] = [
   {
-    label: "Lazy Unicorn",
+    label: "Lazy Platform",
     items: [
-      { label: "Lazy Waitlist", href: "/lazy-waitlist", tagline: "Autonomous pre-launch capture", iconKey: "Waitlist" },
+      { label: "Lazy Launch", href: "/lazy-launch", tagline: "Autonomous project launcher", iconKey: "Launch" },
+      { label: "Lazy Cloud", href: "/lazy-cloud", tagline: "Autonomous cloud hosting", iconKey: "Cloud" },
       { label: "Lazy Run", href: "/lazy-run", tagline: "Autonomous everything", iconKey: "Run" },
       { label: "Lazy Admin", href: "/lazy-admin", tagline: "Autonomous ops control", iconKey: "Admin" },
     ],
