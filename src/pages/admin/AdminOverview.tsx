@@ -320,6 +320,13 @@ export default function AdminOverview() {
 
                     {/* Action row */}
                     <div className="flex items-center gap-2 mt-auto">
+                      <button
+                        onClick={() => setWizardAgent(agent.key)}
+                        className="px-2.5 py-1 font-body text-[11px] border border-[#f0ead6]/10 text-[#f0ead6]/50 hover:text-[#f0ead6]/80 hover:border-[#f0ead6]/25 transition-colors"
+                      >
+                        <Settings2 size={10} className="inline mr-1" />
+                        Configure
+                      </button>
                       {isManaged && (
                         <button
                           onClick={() => toggleAgent(agent)}
