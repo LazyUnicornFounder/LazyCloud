@@ -486,6 +486,7 @@ export const AGENTS: AgentConfig[] = [
       { label: "Sync Now", fn: "granola-sync" },
       { label: "Publish Content", fn: "granola-write-post" },
     ],
+    setupRoute: "/lazy-granola-setup",
     statsQueries: [
       { label: "Meetings", table: "granola_meetings", type: "count" },
       { label: "Outputs", table: "granola_outputs", type: "count" },
