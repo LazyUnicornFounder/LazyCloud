@@ -1,14 +1,95 @@
-import { useEffect } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useState, useCallback } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Check, ArrowRight } from "lucide-react";
 import SEO from "@/components/SEO";
 import Navbar from "@/components/Navbar";
 import LazyFaqSection from "@/components/LazyFaqSection";
 import { useTrackEvent } from "@/hooks/useTrackEvent";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
 
 const fadeUp = { hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0 } };
 
+/* ── Waitlist Button with inline email capture ── */
+function WaitlistButton({ plan, filled, cta }: { plan: string; filled: boolean; cta: string }) {
+  const [showForm, setShowForm] = useState(false);
+  const [email, setEmail] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+  const [done, setDone] = useState(false);
+
+  const handleSubmit = useCallback(async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email.trim() || submitting) return;
+    setSubmitting(true);
+    try {
+      const { error } = await supabase.from("early_access").insert({ email: email.trim(), source: `lazy-cloud-${plan.toLowerCase()}` });
+      if (error?.code === "23505") {
+        toast.success("You're already on the list!");
+      } else if (error) {
+        toast.error("Something went wrong. Please try again.");
+      } else {
+        toast.success("You're on the waitlist! We'll be in touch.");
+      }
+      setDone(true);
+    } catch {
+      toast.error("Something went wrong. Please try again.");
+    } finally {
+      setSubmitting(false);
+    }
+  }, [email, submitting, plan]);
+
+  if (done) {
+    return (
+      <div className="w-full text-center py-3 font-display font-bold text-sm tracking-[0.08em] uppercase text-primary">
+        ✓ You're on the list
+      </div>
+    );
+  }
+
+  return (
+    <div className="w-full">
+      <AnimatePresence mode="wait">
+        {!showForm ? (
+          <motion.button
+            key="cta"
+            initial={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setShowForm(true)}
+            className={`w-full font-display font-bold text-sm tracking-[0.08em] uppercase px-6 py-3 transition-opacity hover:opacity-90 ${filled ? "bg-primary text-primary-foreground" : "border border-primary text-primary"}`}
+          >
+            {cta}
+          </motion.button>
+        ) : (
+          <motion.form
+            key="form"
+            initial={{ opacity: 0, y: 4 }}
+            animate={{ opacity: 1, y: 0 }}
+            onSubmit={handleSubmit}
+            className="flex gap-0"
+          >
+            <input
+              type="email"
+              required
+              autoFocus
+              placeholder="you@company.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="flex-1 min-w-0 bg-background border border-border px-3 py-2.5 font-body text-sm text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-primary"
+            />
+            <button
+              type="submit"
+              disabled={submitting}
+              className="bg-primary text-primary-foreground font-display font-bold text-xs tracking-[0.08em] uppercase px-4 py-2.5 hover:opacity-90 transition-opacity disabled:opacity-50 whitespace-nowrap"
+            >
+              {submitting ? "…" : "Join"}
+            </button>
+          </motion.form>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
 
 
 /* ── Value Cards ── */
@@ -282,9 +363,7 @@ export default function LazyCloudPage() {
                     </li>
                   ))}
                 </ul>
-                <button className={`w-full font-display font-bold text-sm tracking-[0.08em] uppercase px-6 py-3 transition-opacity hover:opacity-90 ${plan.filled ? "bg-primary text-primary-foreground" : "border border-primary text-primary"}`}>
-                  {plan.cta}
-                </button>
+                <WaitlistButton plan={plan.name} filled={plan.filled} cta={plan.cta} />
               </motion.div>
             ))}
           </div>
