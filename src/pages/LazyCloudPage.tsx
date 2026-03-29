@@ -381,7 +381,7 @@ export default function LazyCloudPage() {
             Stop re-pasting prompts, rotating API keys, checking error logs, and fixing breaking changes. Lazy Cloud handles all of it. Migration included. Cancel anytime.
           </p>
           <a href="#pricing" className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-display font-bold text-sm tracking-[0.08em] uppercase px-8 py-4 hover:opacity-90 transition-opacity">
-            Start with Lazy Cloud — from $79/month
+            Start with Lazy Cloud — Coming Soon
           </a>
           <p className="font-body text-[11px] text-muted-foreground/50 mt-4">No setup fee. No agent limit. Your data is always yours.</p>
         </motion.div>
