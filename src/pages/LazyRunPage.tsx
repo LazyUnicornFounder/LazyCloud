@@ -520,7 +520,7 @@ const agents = [
 ];
 
 const faqs = [
-  { q: "Do I need all thirty-five agent", a: "No. The setup screen lets you choose which agents to activate. You can start with two or three and add more later without reinstalling." },
+  { q: "Do I need all thirty-five agents?", a: "No. The setup screen lets you choose which agents to activate. You can start with two or three and add more later without reinstalling." },
   { q: "Does it replace the individual Lazy prompts?", a: "Yes. If you install Lazy Run you do not need to paste the individual prompts. Lazy Run includes all of them." },
   { q: "What API keys do I need?", a: "Only the ones for the agents you activate. Content agents like Lazy Blogger, Lazy SEO, and Lazy GEO use Lovable's built-in AI — no API key required. Lazy Pay needs Stripe. Lazy SMS needs Twilio. Lazy Voice needs ElevenLabs. Lazy Stream needs Twitch. Lazy Mail needs Resend. Lazy Design needs nothing — it uses 21st.dev and built-in AI." },
   { q: "Can I still use individual agents if I have them installed?", a: "Yes. Lazy Run is additive. If you already have Lazy Blogger installed it will detect it and manage it alongside the others." },
