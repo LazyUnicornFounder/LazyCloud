@@ -1,7 +1,7 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { useState } from "react";
-import EngineStatusBar from "./components/EngineStatusBar";
+import AgentStatusBar from "./components/AgentStatusBar";
 import QuickActions, { Zap } from "./components/QuickActions";
 import ContentTable from "./components/ContentTable";
 import ErrorLog from "./components/ErrorLog";
@@ -59,7 +59,7 @@ export default function AdminStreamPage() {
 
   return (
     <div>
-      <EngineStatusBar
+      <AgentStatusBar
         name="Lazy Stream"
         running={settings?.is_running ?? false}
         onToggle={toggleRunning}

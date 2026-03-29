@@ -3,7 +3,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useState } from "react";
 import { toast } from "sonner";
 import { Loader2, Zap, Pause, Play, Search, Brain } from "lucide-react";
-import EngineStatusBar from "./components/EngineStatusBar";
+import AgentStatusBar from "./components/AgentStatusBar";
 import ContentTable from "./components/ContentTable";
 import ErrorLog from "./components/ErrorLog";
 
@@ -118,7 +118,7 @@ export default function AdminBloggerPage() {
 
   return (
     <div className="space-y-8">
-      <EngineStatusBar
+      <AgentStatusBar
         name="Lazy Blogger"
         running={settings?.is_publishing ?? false}
         onToggle={toggleRunning}

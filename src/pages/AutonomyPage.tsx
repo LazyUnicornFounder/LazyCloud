@@ -7,8 +7,8 @@ import {
   LEVEL_LABELS,
   LEVEL_COLORS,
   LEVEL_BG_TINTS,
-  ENGINE_CATEGORIES,
-  type EngineData,
+  AGENT_CATEGORIES,
+  type AgentData,
 } from "@/data/autonomyData";
 
 /* ── Level Scale ── */
@@ -45,7 +45,7 @@ function LevelScale() {
 }
 
 /* ── Agent Card ── */
-function EngineCard({ agent }: { agent: EngineData }) {
+function AgentCard({ agent }: { agent: AgentData }) {
   const [selectedLevel, setSelectedLevel] = useState(agent.currentLevel);
   const trackRef = useRef<HTMLDivElement>(null);
 
@@ -235,14 +235,14 @@ export default function AutonomyPage() {
 
       {/* Agent Cards by Category */}
       <section className="max-w-6xl mx-auto px-4 pb-24 space-y-20">
-        {ENGINE_CATEGORIES.map((cat) => (
+        {AGENT_CATEGORIES.map((cat) => (
           <div key={cat.label}>
             <h2 className="text-[14px] font-mono uppercase tracking-widest text-muted-foreground mb-6">
               {cat.label}
             </h2>
             <div className="grid grid-cols-1 gap-6 md:gap-8">
               {cat.agent.map((agent) => (
-                <EngineCard key={agent.name} agent={agent} />
+                <AgentCard key={agent.name} agent={agent} />
               ))}
             </div>
           </div>

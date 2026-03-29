@@ -157,7 +157,7 @@ export default function AdminChangelogPage() {
         <table className="w-full">
           <thead>
             <tr className="border-b border-[#f0ead6]/8">
-              {["Engine", "Version", "Date", "Type", "Complexity", "Summary", "Published", ""].map(h => (
+              {["Agent", "Version", "Date", "Type", "Complexity", "Summary", "Published", ""].map(h => (
                 <th key={h} className="font-body text-[13px] tracking-[0.12em] uppercase text-[#f0ead6]/68 px-3 py-2.5 text-left">{h}</th>
               ))}
             </tr>
