@@ -89,7 +89,7 @@ export default function LazyChurnPage() {
               <p className="mt-6 font-body text-base md:text-lg text-foreground/70 max-w-xl leading-relaxed">
                 Lazy Churn monitors every subscriber daily. When someone goes quiet — stops logging in, drops their usage, approaches renewal without engaging — it sends a personalised SMS and email before they ever reach the cancel button. Written by Claude. Sent automatically. One recovered customer pays for the agent forever.
               </p>
-              <div className="flex flex-col sm:flex-row items-start gap-4">
+              <div className="flex flex-col sm:flex-row items-start gap-4 mt-10">
                 <CopyPromptButton text={promptText} />
                 <button onClick={() => document.getElementById("signals")?.scrollIntoView({ behavior: "smooth" })} className="inline-flex items-center gap-2 font-body text-[13px] tracking-[0.15em] uppercase px-6 py-2.5 font-semibold border border-border text-foreground/50 hover:text-foreground transition-colors">
                   See How It Works

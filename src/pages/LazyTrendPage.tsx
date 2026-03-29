@@ -100,7 +100,7 @@ export default function LazyTrendPage() {
               <p className="mt-6 font-body text-base md:text-lg text-foreground/70 max-w-xl leading-relaxed">
                 Lazy Trend scans Perplexity, Firecrawl, Hacker News, and your competitors every 6 hours. When a topic spikes in your niche it adds an urgent SEO keyword to your queue, drafts a GEO article for immediate publication, and fires a Slack alert. You publish while the trend is rising — not after it peaks.
               </p>
-              <div className="flex flex-col sm:flex-row items-start gap-4">
+              <div className="flex flex-col sm:flex-row items-start gap-4 mt-10">
                 <CopyPromptButton text={promptText} />
                 <button onClick={() => document.getElementById("how")?.scrollIntoView({ behavior: "smooth" })} className="inline-flex items-center gap-2 font-body text-[13px] tracking-[0.15em] uppercase px-6 py-2.5 font-semibold border border-border text-foreground/50 hover:text-foreground transition-colors">
                   See How It Works

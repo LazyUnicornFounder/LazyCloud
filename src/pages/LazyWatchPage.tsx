@@ -104,7 +104,7 @@ export default function LazyWatchPage() {
               <p className="mt-6 font-body text-base md:text-lg text-foreground/70 max-w-xl leading-relaxed">
                 Lazy Watch reads every Lazy agent error table every hour. When errors spike it sends them to Claude for diagnosis, opens a GitHub issue with a specific fix recommendation, tags @claude to investigate, and pings your Slack. You find out about broken agent before your users do.
               </p>
-              <div className="flex flex-col sm:flex-row items-start gap-4">
+              <div className="flex flex-col sm:flex-row items-start gap-4 mt-10">
                 <CopyPromptButton text={promptText} />
                 <button onClick={() => document.getElementById("how-it-works")?.scrollIntoView({ behavior: "smooth" })} className="inline-flex items-center gap-2 font-body text-[13px] tracking-[0.15em] uppercase px-6 py-2.5 font-semibold border border-border text-foreground/50 hover:text-foreground transition-colors">
                   See How It Works

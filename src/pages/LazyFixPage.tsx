@@ -90,7 +90,7 @@ export default function LazyFixPage() {
                 Every Sunday at 11pm Lazy Fix reads your agent performance data — output volume, error rates, last activity dates. It identifies the two weakest agents, writes targeted improvements to their prompts following your SPEC.md rules, and opens GitHub PRs. Monday morning you have two prompts ready to review and merge.
               </p>
 
-              <div className="flex flex-col sm:flex-row items-start gap-4">
+              <div className="flex flex-col sm:flex-row items-start gap-4 mt-10">
                 <CopyPromptButton text={promptText} />
                 <button onClick={() => document.getElementById("how-it-works")?.scrollIntoView({ behavior: "smooth" })} className="inline-flex items-center gap-2 font-body text-[13px] tracking-[0.15em] uppercase px-6 py-2.5 font-semibold border border-border text-foreground/50 hover:text-foreground transition-colors">
                   See How It Works

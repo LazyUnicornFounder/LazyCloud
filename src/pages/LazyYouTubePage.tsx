@@ -414,7 +414,7 @@ export default function LazyYouTubePage() {
                 </div>
               </div>
 
-              <div className="flex flex-col sm:flex-row items-start gap-4">
+              <div className="flex flex-col sm:flex-row items-start gap-4 mt-10">
                 <CopyPromptButton text={promptText} />
                 <button
                   onClick={(e) => { e.preventDefault(); document.getElementById("how-it-works")?.scrollIntoView({ behavior: "smooth" }); }}
