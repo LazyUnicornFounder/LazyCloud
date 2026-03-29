@@ -55,9 +55,7 @@ export type AgentCategory =
   | "content"
   | "commerce"
   | "media"
-  | "developer"
-  | "channels"
-  | "security"
+  | "dev"
   | "ops"
   | "system";
 
@@ -65,9 +63,7 @@ export const CATEGORY_META: Record<AgentCategory, { label: string; color: string
   content: { label: "Content", color: "#c8a961" },
   commerce: { label: "Commerce", color: "#22c55e" },
   media: { label: "Media", color: "#3b82f6" },
-  developer: { label: "Developer", color: "#a855f7" },
-  channels: { label: "Channels", color: "#f97316" },
-  security: { label: "Security", color: "#ef4444" },
+  dev: { label: "Dev", color: "#a855f7" },
   ops: { label: "Ops", color: "#ef4444" },
   system: { label: "System", color: "#6b7280" },
 };
@@ -196,7 +192,7 @@ export const AGENTS: AgentConfig[] = [
     subtitle: "Repurposes existing content into new formats automatically.",
     settingsTable: "repurpose_settings",
     runField: "is_running",
-    category: "content",
+    category: "ops",
     route: "/admin/repurpose",
     actions: [{ label: "Run Now", fn: "repurpose-run" }],
     statsQueries: [],
@@ -209,7 +205,7 @@ export const AGENTS: AgentConfig[] = [
     subtitle: "Discovers trending topics and seeds content engines.",
     settingsTable: "trend_settings",
     runField: "is_running",
-    category: "content",
+    category: "ops",
     route: "/admin/trend",
     actions: [
       { label: "Scan Now", fn: "trend-scan" },
@@ -327,7 +323,7 @@ export const AGENTS: AgentConfig[] = [
     subtitle: "Detects churn signals and triggers retention actions automatically.",
     settingsTable: "churn_settings",
     runField: "is_running",
-    category: "commerce",
+    category: "ops",
     route: "/admin/churn",
     actions: [{ label: "Analyse Now", fn: "churn-analyse" }],
     statsQueries: [],
@@ -406,7 +402,7 @@ export const AGENTS: AgentConfig[] = [
     subtitle: "Turns every GitHub commit into changelogs and developer posts.",
     settingsTable: "code_settings",
     runField: "is_running",
-    category: "developer",
+    category: "dev",
     route: "/admin/code",
     actions: [
       { label: "Sync Roadmap", fn: "code-sync-roadmap" },
@@ -422,7 +418,7 @@ export const AGENTS: AgentConfig[] = [
     subtitle: "Turns every GitLab commit into changelogs and developer posts.",
     settingsTable: "gitlab_settings",
     runField: "is_running",
-    category: "developer",
+    category: "dev",
     route: "/admin/gitlab",
     actions: [
       { label: "Sync Roadmap", fn: "gitlab-sync-roadmap" },
@@ -438,7 +434,7 @@ export const AGENTS: AgentConfig[] = [
     subtitle: "Turns Linear cycles and issues into product updates.",
     settingsTable: "linear_settings",
     runField: "is_running",
-    category: "developer",
+    category: "dev",
     route: "/admin/linear",
     actions: [
       { label: "Sync Now", fn: "linear-sync-all" },
@@ -454,7 +450,7 @@ export const AGENTS: AgentConfig[] = [
     subtitle: "Authentication system — Google Sign-In, email login, role management.",
     settingsTable: "auth_settings",
     runField: "is_running",
-    category: "developer",
+    category: "dev",
     route: "/admin/auth",
     actions: [],
     statsQueries: [],
@@ -465,7 +461,7 @@ export const AGENTS: AgentConfig[] = [
     subtitle: "Visual design and component library management.",
     settingsTable: "design_settings",
     runField: "is_running",
-    category: "developer",
+    category: "dev",
     route: "/admin/design",
     actions: [{ label: "Run Design Upgrade", fn: "design-upgrade" }],
     statsQueries: [],
@@ -477,7 +473,7 @@ export const AGENTS: AgentConfig[] = [
     subtitle: "Turns meeting notes from Granola into blog posts and product updates.",
     settingsTable: "granola_settings",
     runField: "is_running",
-    category: "developer",
+    category: "dev",
     route: "/admin/granola",
     actions: [
       { label: "Sync Now", fn: "granola-sync" },
@@ -510,7 +506,7 @@ export const AGENTS: AgentConfig[] = [
     subtitle: "Real-time Slack alerts for every agent event.",
     settingsTable: "alert_settings",
     runField: "is_running",
-    category: "channels",
+    category: "ops",
     route: "/admin/alert",
     actions: [
       { label: "Send Test", fn: "alert-test" },
@@ -526,7 +522,7 @@ export const AGENTS: AgentConfig[] = [
     subtitle: "Real-time Telegram alerts and bot commands.",
     settingsTable: "telegram_settings",
     runField: "is_running",
-    category: "channels",
+    category: "ops",
     route: "/admin/telegram",
     actions: [
       { label: "Send Test", fn: "telegram-test" },
@@ -543,7 +539,7 @@ export const AGENTS: AgentConfig[] = [
     subtitle: "Two-way content sync with Contentful.",
     settingsTable: "contentful_settings",
     runField: "is_running",
-    category: "channels",
+    category: "content",
     route: "/admin/contentful",
     actions: [
       { label: "Pull Now", fn: "contentful-pull" },
@@ -559,7 +555,7 @@ export const AGENTS: AgentConfig[] = [
     subtitle: "Monitors database milestones and publishes product updates.",
     settingsTable: "supabase_settings",
     runField: "is_running",
-    category: "channels",
+    category: "ops",
     route: "/admin/supabase",
     actions: [
       { label: "Check Now", fn: "supabase-monitor" },
@@ -577,7 +573,7 @@ export const AGENTS: AgentConfig[] = [
     subtitle: "Automated pentests and vulnerability monitoring.",
     settingsTable: "security_settings",
     runField: "is_running",
-    category: "security",
+    category: "ops",
     route: "/admin/security",
     actions: [
       { label: "Run Pentest", fn: "security-scan" },
@@ -664,8 +660,8 @@ export const ALWAYS_VISIBLE = ["installs", "settings", "overview"];
 
 export function getAgentsByCategory(installed: Set<string>): Record<AgentCategory, AgentConfig[]> {
   const result: Record<AgentCategory, AgentConfig[]> = {
-    content: [], commerce: [], media: [], developer: [],
-    channels: [], security: [], ops: [], system: [],
+    content: [], commerce: [], media: [], dev: [],
+    ops: [], system: [],
   };
   for (const a of AGENTS) {
     if (installed.has(a.key)) {
