@@ -105,7 +105,7 @@ const agentCategories: Category[] = [
 /* ── Shared dropdown category renderer ── */
 function renderCategoryBlock(cat: Category, onClose: () => void) {
   return (
-    <div key={cat.label} className="mb-4">
+    <div key={cat.label} className="mb-2">
       <p className="font-display text-[18px] tracking-[0.2em] uppercase text-foreground font-black mb-2">
         {cat.label}
       </p>
@@ -114,7 +114,7 @@ function renderCategoryBlock(cat: Category, onClose: () => void) {
           key={item.label}
           href={item.href}
           onClick={onClose}
-          className="group flex items-center gap-4 px-3 py-[12px] -mx-1 hover:bg-secondary/50 transition-colors"
+          className="group flex items-center gap-3 px-3 py-[7px] -mx-1 hover:bg-secondary/50 transition-colors"
         >
           <span className="text-foreground/50 group-hover:text-foreground/70 transition-colors flex-shrink-0">
             {agentIcon(item.iconKey)}
@@ -152,8 +152,8 @@ function AgentsDropdown() {
         <ChevronDown size={11} className={`transition-transform ${open ? "rotate-180" : ""}`} />
       </button>
       {open && (
-        <div className="absolute top-full left-1/2 -translate-x-1/2 mt-3 bg-card border border-border z-50 p-9" style={{ width: 1380 }}>
-          <div className="mb-6 pb-5 border-b border-border/50 flex items-center justify-between">
+        <div className="absolute top-full left-1/2 -translate-x-1/2 mt-3 bg-card border border-border z-50 p-6 max-h-[75vh] overflow-y-auto" style={{ width: 1380 }}>
+          <div className="mb-3 pb-3 border-b border-border/50 flex items-center justify-between">
             <a href="/lazy-agents" onClick={close} className="font-body text-[12px] tracking-[0.12em] uppercase text-foreground/40 hover:text-foreground transition-colors font-semibold">
               View all agents →
             </a>
@@ -161,7 +161,7 @@ function AgentsDropdown() {
               Made for Lovable ❤️
             </span>
           </div>
-          <div className="flex gap-12">
+          <div className="flex gap-8">
             <div className="flex-1 min-w-0">
               {[agentCategories[0], agentCategories[2]].map(c => renderCategoryBlock(c, close))}
             </div>
@@ -175,7 +175,7 @@ function AgentsDropdown() {
               {[agentCategories[5]].map(c => renderCategoryBlock(c, close))}
             </div>
           </div>
-          <div className="mt-6 pt-5 border-t border-border/50 flex items-center justify-end">
+          <div className="mt-3 pt-3 border-t border-border/50 flex items-center justify-end">
             <span className="font-body text-[12px] tracking-[0.15em] uppercase text-foreground/30 font-semibold">
               Made for Lovable ❤️
             </span>
