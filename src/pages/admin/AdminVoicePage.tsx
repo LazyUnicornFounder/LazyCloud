@@ -1,7 +1,7 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { useState } from "react";
-import EngineStatusBar from "./components/EngineStatusBar";
+import AgentStatusBar from "./components/AgentStatusBar";
 import ContentTable from "./components/ContentTable";
 import ErrorLog from "./components/ErrorLog";
 import SettingsPanel from "./components/SettingsPanel";
@@ -48,7 +48,7 @@ export default function AdminVoicePage() {
 
   return (
     <div>
-      <EngineStatusBar
+      <AgentStatusBar
         name="Lazy Voice"
         running={settings?.is_running ?? false}
         onToggle={toggleRunning}

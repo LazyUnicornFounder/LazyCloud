@@ -3,7 +3,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useState } from "react";
 import { Globe, FileText, Clock, Target, ArrowUpRight, Loader2 } from "lucide-react";
 import { toast } from "sonner";
-import EngineStatusBar from "./components/EngineStatusBar";
+import AgentStatusBar from "./components/AgentStatusBar";
 import QuickActions, { Zap, Search, Brain } from "./components/QuickActions";
 import ErrorLog from "./components/ErrorLog";
 import SettingsPanel from "./components/SettingsPanel";
@@ -116,7 +116,7 @@ export default function AdminGeoPage() {
 
   return (
     <div>
-      <EngineStatusBar
+      <AgentStatusBar
         name="Lazy GEO"
         running={settings?.is_running ?? false}
         onToggle={toggleRunning}

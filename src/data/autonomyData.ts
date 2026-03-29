@@ -25,7 +25,7 @@ export const LEVEL_BG_TINTS: Record<number, string> = {
   5: "rgba(245,158,11,0.09)",
 };
 
-export interface EngineData {
+export interface AgentData {
   name: string;
   description: string;
   currentLevel: number;
@@ -33,12 +33,12 @@ export interface EngineData {
   levels: string[];
 }
 
-export interface EngineCategory {
+export interface AgentCategory {
   label: string;
-  agent: EngineData[];
+  agent: AgentData[];
 }
 
-export const ENGINE_CATEGORIES: EngineCategory[] = [
+export const AGENT_CATEGORIES: AgentCategory[] = [
   {
     label: "Lazy Unicorn",
     agent: [

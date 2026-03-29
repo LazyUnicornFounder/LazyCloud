@@ -23,7 +23,7 @@ interface Release {
   created_at: string;
 }
 
-const ENGINE_CATEGORIES: Record<string, string[]> = {
+const AGENT_CATEGORIES: Record<string, string[]> = {
   "Lazy Content": ["Lazy Blogger", "Lazy SEO", "Lazy GEO", "Lazy Crawl", "Lazy Perplexity", "Lazy Contentful"],
   "Lazy Commerce": ["Lazy Store", "Lazy Pay", "Lazy SMS", "Lazy Mail"],
   "Lazy Media": ["Lazy Voice", "Lazy Stream"],
@@ -32,7 +32,7 @@ const ENGINE_CATEGORIES: Record<string, string[]> = {
   "Lazy Agents": ["Lazy Watch", "Lazy Fix", "Lazy Build", "Lazy Intel"],
 };
 
-const CATEGORY_FILTERS = ["All Agents", ...Object.keys(ENGINE_CATEGORIES)];
+const CATEGORY_FILTERS = ["All Agents", ...Object.keys(AGENT_CATEGORIES)];
 const CHANGE_TYPES = ["All", "Major", "Minor", "Fix", "Security"];
 
 function changeTypeBadge(type: string) {
@@ -65,7 +65,7 @@ export default function ChangelogPage() {
   const [expandedUpgrade, setExpandedUpgrade] = useState<Set<string>>(new Set());
 
   // Version checker
-  const [checkerEngine, setCheckerEngine] = useState("");
+  const [checkerAgent, setCheckerEngine] = useState("");
   const [checkerVersion, setCheckerVersion] = useState("");
   const [checkerResult, setCheckerResult] = useState<null | { upToDate: boolean; updates: Release[] }>(null);
 
@@ -86,7 +86,7 @@ export default function ChangelogPage() {
   const filtered = useMemo(() => {
     return releases.filter(r => {
       if (categoryFilter !== "All Agents") {
-        const agent = ENGINE_CATEGORIES[categoryFilter] || [];
+        const agent = AGENT_CATEGORIES[categoryFilter] || [];
         if (!agent.includes(r.agent_name)) return false;
       }
       if (typeFilter !== "All" && r.change_type !== typeFilter.toLowerCase()) return false;
@@ -111,8 +111,8 @@ export default function ChangelogPage() {
   };
 
   const handleCheck = () => {
-    if (!checkerEngine || !checkerVersion) return;
-    const agentReleases = releases.filter(r => r.agent_name === checkerEngine);
+    if (!checkerAgent || !checkerVersion) return;
+    const agentReleases = releases.filter(r => r.agent_name === checkerAgent);
     const currentRelease = agentReleases.find(r => r.version === checkerVersion);
     if (!currentRelease) {
       setCheckerResult({ upToDate: false, updates: agentReleases });
@@ -154,7 +154,7 @@ export default function ChangelogPage() {
               <div className="flex-1">
                 <label className="font-body text-[14px] tracking-[0.12em] uppercase text-foreground/70 mb-1 block">Agent</label>
                 <select
-                  value={checkerEngine}
+                  value={checkerAgent}
                   onChange={e => { setCheckerEngine(e.target.value); setCheckerResult(null); }}
                   className="w-full bg-background border border-border text-foreground px-3 py-2 font-body text-sm focus:outline-none focus:border-foreground/30"
                 >

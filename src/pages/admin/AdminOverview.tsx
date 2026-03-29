@@ -14,7 +14,7 @@ import { Link } from "react-router-dom";
 const db = supabase as any;
 
 /* ── Agent definitions grouped by category ── */
-interface EngineDef {
+interface AgentDef {
   key: string;
   label: string;
   icon: any;
@@ -26,7 +26,7 @@ interface EngineDef {
   adminPath?: string;
 }
 
-const CATEGORIES: { label: string; color: string; agent: EngineDef[] }[] = [
+const CATEGORIES: { label: string; color: string; agent: AgentDef[] }[] = [
   {
     label: "Content", color: "text-blue-400",
     agent: [
@@ -85,11 +85,11 @@ const CATEGORIES: { label: string; color: string; agent: EngineDef[] }[] = [
   },
 ];
 
-const ALL_ENGINES = CATEGORIES.flatMap(c => c.agent);
-const MANAGED_ENGINES = ALL_ENGINES.filter(e => e.settingsTable);
-const PUBLISHABLE = ALL_ENGINES.filter(e => e.publishFn);
+const ALL_AGENTS = CATEGORIES.flatMap(c => c.agent);
+const MANAGED_AGENTS = ALL_AGENTS.filter(e => e.settingsTable);
+const PUBLISHABLE = ALL_AGENTS.filter(e => e.publishFn);
 
-type EngineStatus = { running: boolean; errors24h: number; publishedToday: number; lastPublished: string | null };
+type AgentStatus = { running: boolean; errors24h: number; publishedToday: number; lastPublished: string | null };
 
 export default function AdminOverview() {
   const queryClient = useQueryClient();
@@ -101,12 +101,12 @@ export default function AdminOverview() {
   const yesterday = new Date(Date.now() - 86400000).toISOString();
 
   /* ── Fetch all agent statuses ── */
-  const { data: statuses = {}, isLoading } = useQuery<Record<string, EngineStatus>>({
+  const { data: statuses = {}, isLoading } = useQuery<Record<string, AgentStatus>>({
     queryKey: ["mission-control-status"],
     queryFn: async () => {
-      const result: Record<string, EngineStatus> = {};
+      const result: Record<string, AgentStatus> = {};
 
-      await Promise.all(MANAGED_ENGINES.map(async (e) => {
+      await Promise.all(MANAGED_AGENTS.map(async (e) => {
         const { data: settings } = await db.from(e.settingsTable!).select(e.runField!).limit(1).single();
         let errors24h = 0;
         if (e.errorTable) {
@@ -125,7 +125,7 @@ export default function AdminOverview() {
       }));
 
       // Unmanaged agent default
-      ALL_ENGINES.forEach(e => {
+      ALL_AGENTS.forEach(e => {
         if (!result[e.key]) result[e.key] = { running: false, errors24h: 0, publishedToday: 0, lastPublished: null };
       });
       return result;
@@ -163,7 +163,7 @@ export default function AdminOverview() {
   });
 
   /* ── Actions ── */
-  const triggerPublish = async (agent: EngineDef) => {
+  const triggerPublish = async (agent: AgentDef) => {
     if (!agent.publishFn) return;
     setRunningAction(agent.key);
     try {
@@ -176,7 +176,7 @@ export default function AdminOverview() {
     setRunningAction(null);
   };
 
-  const toggleEngine = async (agent: EngineDef) => {
+  const toggleAgent = async (agent: AgentDef) => {
     if (!agent.settingsTable || !agent.runField) return;
     const current = statuses[agent.key]?.running ?? false;
     setRunningAction(`toggle-${agent.key}`);
@@ -194,7 +194,7 @@ export default function AdminOverview() {
   const bulkToggle = async (start: boolean) => {
     setBulkAction(true);
     try {
-      await Promise.all(MANAGED_ENGINES.map(async (e) => {
+      await Promise.all(MANAGED_AGENTS.map(async (e) => {
         const { data: row } = await db.from(e.settingsTable!).select("id").limit(1).single();
         if (row) await db.from(e.settingsTable!).update({ [e.runField!]: start }).eq("id", row.id);
       }));
@@ -257,7 +257,7 @@ export default function AdminOverview() {
             </p>
             <p className="font-body text-xs text-red-300/70 mt-1">
               {needsAttention.map(([key, s]) => {
-                const eng = ALL_ENGINES.find(e => e.key === key);
+                const eng = ALL_AGENTS.find(e => e.key === key);
                 return `${eng?.label ?? key} (${s.errors24h} error${s.errors24h > 1 ? "s" : ""})`;
               }).join(" · ")}
             </p>
@@ -320,7 +320,7 @@ export default function AdminOverview() {
                     <div className="flex items-center gap-2 mt-auto">
                       {isManaged && (
                         <button
-                          onClick={() => toggleEngine(agent)}
+                          onClick={() => toggleAgent(agent)}
                           disabled={!!runningAction}
                           className={`px-2.5 py-1 font-body text-[11px] border transition-colors disabled:opacity-30 ${
                             s.running

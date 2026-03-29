@@ -10,7 +10,7 @@ interface Props {
   lastRun: string | null;
 }
 
-export default function EngineStatusBar({ name, running, onToggle, toggling, publishedToday, publishedTotal, lastRun }: Props) {
+export default function AgentStatusBar({ name, running, onToggle, toggling, publishedToday, publishedTotal, lastRun }: Props) {
   return (
     <div className="border border-[#f0ead6]/8 p-5 flex flex-col md:flex-row md:items-center gap-4">
       <div className="flex items-center gap-4 flex-1">
