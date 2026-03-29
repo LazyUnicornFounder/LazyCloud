@@ -113,8 +113,6 @@ function RotatingHeadline() {
 }
 
 const products = [
-  // Run and Admin are rendered as special blocks above
-  { cursive: "Lazy", name: "Design", link: "/lazy-design", tagline: "Autonomous UI upgrades" },
   // Lazy Content
   { cursive: "Lazy", name: "Blogger", link: "/lazy-blogger", tagline: "Autonomous blog posts" },
   { cursive: "Lazy", name: "SEO", link: "/lazy-seo", tagline: "Autonomous SEO content" },
@@ -137,15 +135,22 @@ const products = [
   { cursive: "Lazy", name: "GitHub", link: "/lazy-github", tagline: "Autonomous changelogs" },
   { cursive: "Lazy", name: "GitLab", link: "/lazy-gitlab", tagline: "Autonomous GitLab docs" },
   { cursive: "Lazy", name: "Linear", link: "/lazy-linear", tagline: "Autonomous issue content" },
+  { cursive: "Lazy", name: "Design", link: "/lazy-design", tagline: "Autonomous UI upgrades" },
   { cursive: "Lazy", name: "Auth", link: "/lazy-auth", tagline: "Autonomous login flows" },
   { cursive: "Lazy", name: "Granola", link: "/lazy-granola", tagline: "Autonomous meeting content" },
   // Lazy Ops
+  { cursive: "Lazy", name: "Admin", link: "/lazy-admin", tagline: "Autonomous ops control" },
   { cursive: "Lazy", name: "Alert", link: "/lazy-alert", tagline: "Autonomous Slack alerts" },
   { cursive: "Lazy", name: "Telegram", link: "/lazy-telegram", tagline: "Autonomous Telegram updates" },
   { cursive: "Lazy", name: "Supabase", link: "/lazy-supabase", tagline: "Autonomous database reports" },
   { cursive: "Lazy", name: "Security", link: "/lazy-security", tagline: "Autonomous pentesting" },
-  // Lazy Launch
-  { cursive: "Lazy", name: "Launch", link: "/lazy-launch", tagline: "Launch your Lovable website" },
+  { cursive: "Lazy", name: "Watch", link: "/lazy-watch", tagline: "Autonomous error monitoring" },
+  { cursive: "Lazy", name: "Fix", link: "/lazy-fix", tagline: "Autonomous prompt improvement" },
+  { cursive: "Lazy", name: "Build", link: "/lazy-build", tagline: "Autonomous agent writing" },
+  { cursive: "Lazy", name: "Intel", link: "/lazy-intel", tagline: "Autonomous content strategy" },
+  { cursive: "Lazy", name: "Repurpose", link: "/lazy-repurpose", tagline: "Autonomous content repurposing" },
+  { cursive: "Lazy", name: "Trend", link: "/lazy-trend", tagline: "Autonomous trend detection" },
+  { cursive: "Lazy", name: "Churn", link: "/lazy-churn", tagline: "Autonomous churn prevention" },
 
   { cursive: "Lazy", name: "Coming Soon", link: "", tagline: "More agents loading" },
 ];
