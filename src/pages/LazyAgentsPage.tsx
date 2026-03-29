@@ -9,19 +9,19 @@ import { useTrackEvent } from "@/hooks/useTrackEvent";
 const fadeUp = { hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0 } };
 
 const agents = [
-  { emoji: "👁️", name: "Lazy Watch", tagline: "Your stack watches itself.", desc: "Monitors every engine error table hourly and opens GitHub issues automatically.", href: "/lazy-watch", icon: Eye },
+  { emoji: "👁️", name: "Lazy Watch", tagline: "Your stack watches itself.", desc: "Monitors every agent's error table hourly and opens GitHub issues automatically.", href: "/lazy-watch", icon: Eye },
   { emoji: "🔧", name: "Lazy Fix", tagline: "Your prompts improve while you sleep.", desc: "Reads performance data every Sunday and opens PRs with targeted prompt improvements.", href: "/lazy-fix", icon: Wrench },
-  { emoji: "🏗️", name: "Lazy Build", tagline: "Describe it. Claude builds it.", desc: "Writes complete new engine prompts from a one-paragraph brief and opens a draft GitHub PR.", href: "/lazy-build", icon: HardHat },
-  { emoji: "📊", name: "Lazy Intel", tagline: "Your strategy writes itself.", desc: "Reads all your engine data every Monday and fills your SEO and GEO queues automatically.", href: "/lazy-intel", icon: BarChart3 },
+  { emoji: "🏗️", name: "Lazy Build", tagline: "Describe it. Claude builds it.", desc: "Writes complete new agent prompts from a one-paragraph brief and opens a draft GitHub PR.", href: "/lazy-build", icon: HardHat },
+  { emoji: "📊", name: "Lazy Intel", tagline: "Your strategy writes itself.", desc: "Reads all your agent data every Monday and fills your SEO and GEO queues automatically.", href: "/lazy-intel", icon: BarChart3 },
   { emoji: "🔄", name: "Lazy Repurpose", tagline: "One post. Five formats. Zero writing.", desc: "Every Sunday, turns your top blog posts into Twitter threads, LinkedIn posts, newsletter sections, and video scripts.", href: "/lazy-repurpose", icon: Bot },
   { emoji: "🔥", name: "Lazy Trend", tagline: "Be first on every trending topic.", desc: "Scans Perplexity, Firecrawl, and competitors every 6 hours. Queues SEO keywords and GEO articles on trending topics.", href: "/lazy-trend", icon: BarChart3 },
   { emoji: "💰", name: "Lazy Churn", tagline: "The cheapest customer is the one you keep.", desc: "Monitors Stripe subscribers daily. Sends personalised re-engagement SMS and email before cancellation happens.", href: "/lazy-churn", icon: Eye },
 ];
 
 const prerequisites = [
-  { icon: Github, title: "GitHub repo", desc: "Your LazyUnicorn prompts live in a GitHub repo. The agents read and write to it. You need GITHUB_TOKEN as a Supabase secret with repo scope." },
-  { icon: Bot, title: "At least 3 Lazy engines installed", desc: "Agents need performance data to analyse. Install Lazy Blogger, Lazy SEO, and Lazy GEO as a minimum before running Lazy Fix or Lazy Intel." },
-  { icon: Key, title: "ANTHROPIC_API_KEY", desc: "All four agents use Claude for diagnosis, writing, and strategy. Set this as a Supabase secret if not already done." },
+  { icon: Github, title: "GitHub repo", desc: "Your LazyUnicorn prompts live in a GitHub repo. The agents read and write to it. You need GITHUB_TOKEN as a secret with repo scope." },
+  { icon: Bot, title: "At least 3 agents installed", desc: "Ops agents need performance data to analyse. Install Lazy Blogger, Lazy SEO, and Lazy GEO as a minimum before running Lazy Fix or Lazy Intel." },
+  { icon: Key, title: "ANTHROPIC_API_KEY", desc: "All seven agents use Claude for diagnosis, writing, and strategy. Set this as a secret if not already done." },
 ];
 
 export default function LazyAgentsPage() {
@@ -32,7 +32,7 @@ export default function LazyAgentsPage() {
     <div className="min-h-screen bg-background text-foreground">
       <SEO
         title="Lazy Agents — Autonomous Stack Intelligence | Lazy Unicorn"
-        description="Four autonomous agents that monitor your engines, fix broken prompts, improve performance, and write new engines — running inside your Lovable project."
+        description="Seven autonomous agents that monitor your stack, fix broken prompts, improve performance, and write new agents — running inside your Lovable project."
         url="/lazy-agents"
         keywords="autonomous agents, self-improving stack, Lovable agents, prompt improvement, error monitoring"
       />
@@ -45,10 +45,10 @@ export default function LazyAgentsPage() {
             <motion.div initial="hidden" animate="visible" variants={fadeUp} transition={{ duration: 0.7 }}>
               <p className="font-display text-[11px] tracking-[0.25em] uppercase text-foreground/40 font-bold mb-6">Lazy Agents</p>
               <h1 style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(1.8rem, 4vw, 3.2rem)", color: "#f0ead6", lineHeight: 1.15, letterSpacing: "-0.02em" }}>
-                Engines run your Lovable business.<br />Agents run your engines.
+                Your agents monitor, fix, and improve themselves.
               </h1>
               <p className="mt-6 font-body text-base md:text-lg text-foreground/60 max-w-2xl mx-auto leading-relaxed">
-                Seven autonomous agents that monitor, fix, build, strategise, repurpose, detect trends, and prevent churn across your entire engine stack. Your business runs. Your stack improves. You do less every week.
+                Seven autonomous ops agents that monitor errors, fix prompts, build new agents, strategise content, repurpose posts, detect trends, and prevent churn — all running inside your Lovable project.
               </p>
             </motion.div>
           </div>
@@ -75,48 +75,17 @@ export default function LazyAgentsPage() {
                   to={agent.href}
                   className="inline-flex items-center gap-2 font-display text-xs tracking-[0.15em] uppercase font-bold text-foreground/60 hover:text-foreground transition-colors"
                 >
-                  View Product →
+                  View Agent →
                 </Link>
               </motion.div>
             ))}
           </div>
         </section>
 
-        {/* How agents are different */}
-        <section className="max-w-4xl mx-auto px-6 mb-20">
-          <motion.h2 initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="font-display text-2xl sm:text-3xl font-extrabold tracking-tight text-center mb-10">
-            Engines automate tasks. Agents automate your stack.
-          </motion.h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-0 border border-border">
-            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="border-b sm:border-b-0 sm:border-r border-border bg-card p-8">
-              <h3 className="font-display text-sm tracking-[0.15em] uppercase font-bold text-foreground/65 mb-4">Lazy Engines</h3>
-              <ul className="font-body text-sm text-foreground/50 leading-relaxed space-y-2">
-                <li>Run on a schedule.</li>
-                <li>Publish content, process orders, send messages.</li>
-                <li>Do one specific thing well.</li>
-                <li>You paste the prompt and they go.</li>
-              </ul>
-            </motion.div>
-            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} transition={{ delay: 0.08 }} className="bg-card p-8">
-              <h3 className="font-display text-sm tracking-[0.15em] uppercase font-bold text-[#c8a961] mb-4">Lazy Agents</h3>
-              <ul className="font-body text-sm text-foreground/50 leading-relaxed space-y-2">
-                <li>Watch the engines.</li>
-                <li>Fix what breaks.</li>
-                <li>Improve what underperforms.</li>
-                <li>Write new engines when you need them.</li>
-                <li className="text-foreground/70 font-semibold">Compound over time.</li>
-              </ul>
-            </motion.div>
-          </div>
-          <motion.p initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="text-center mt-6 font-body text-sm text-foreground/50 max-w-xl mx-auto leading-relaxed">
-            Install the engines first. Then install the agents. The agents need data to work with — the more engines running, the smarter the agents get.
-          </motion.p>
-        </section>
-
         {/* Prerequisites */}
         <section className="max-w-3xl mx-auto px-6 mb-20">
           <motion.h2 initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="font-display text-2xl sm:text-3xl font-extrabold tracking-tight text-center mb-10">
-            What you need before installing agents
+            What you need before installing ops agents
           </motion.h2>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-0 border border-border">
             {prerequisites.map((req, i) => (
