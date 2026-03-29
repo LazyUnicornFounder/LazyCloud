@@ -103,6 +103,7 @@ export const AGENTS: AgentConfig[] = [
     runField: "is_running",
     category: "content",
     route: "/admin/seo",
+    setupRoute: "/lazy-seo-setup",
     actions: [
       { label: "Publish Now", fn: "lazy-seo-publish" },
       { label: "Discover Now", fn: "lazy-seo-analyse" },
