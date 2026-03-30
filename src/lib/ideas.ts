@@ -29,14 +29,25 @@ export async function fetchIdeasForDate(date?: string): Promise<{
 }> {
   const targetDate = date || getAmmanDate();
 
-  const { data, error } = await breakingMuseClient
+  let { data, error } = await breakingMuseClient
     .from("daily_ideas")
     .select("*")
     .eq("date", targetDate)
     .order("is_featured", { ascending: false })
     .order("tag");
 
-  console.log("[BreakingMuse] date:", targetDate, "data:", data, "error:", error);
+  // Fallback to yesterday if today returns empty
+  if (!error && (!data || data.length === 0)) {
+    const yesterday = addDays(targetDate, -1);
+    const fallback = await breakingMuseClient
+      .from("daily_ideas")
+      .select("*")
+      .eq("date", yesterday)
+      .order("is_featured", { ascending: false })
+      .order("tag");
+    data = fallback.data;
+    error = fallback.error;
+  }
 
   if (error) {
     console.error("Error fetching ideas:", error);
