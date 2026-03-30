@@ -11,9 +11,18 @@ const NAV = [
     ],
   },
   {
+    header: "PLATFORM",
+    items: [
+      { label: "Launch", path: "/docs/platform/launch" },
+      { label: "Cloud", path: "/docs/platform/cloud" },
+      { label: "Run", path: "/docs/platform/run" },
+      { label: "Admin", path: "/docs/platform/admin" },
+      { label: "Waitlist", path: "/docs/platform/waitlist" },
+    ],
+  },
+  {
     header: "AGENTS",
     items: [
-      { label: "Platform", path: "/docs/agents/platform" },
       { label: "Content", path: "/docs/agents/content" },
       { label: "Commerce", path: "/docs/agents/commerce" },
       { label: "Media", path: "/docs/agents/media" },
@@ -93,7 +102,11 @@ function DocsRightSidebar() {
     "/docs": ["What is LazyUnicorn?"],
     "/docs/quickstart": ["Step 1 — Open Lovable", "Step 2 — Pick an agent", "Step 3 — Get the prompt", "Step 4 — Paste into Lovable", "Step 5 — Complete setup", "Step 6 — It's running"],
     "/docs/how-it-works": ["Every agent is a mega-prompt", "Agents detect each other", "Updates"],
-    "/docs/agents/platform": ["Lazy Launch", "Lazy Cloud", "Lazy Run", "Lazy Admin", "Lazy Waitlist"],
+    "/docs/platform/launch": ["What it does", "How to use it"],
+    "/docs/platform/cloud": ["What it does", "How to use it"],
+    "/docs/platform/run": ["What it does", "How to use it"],
+    "/docs/platform/admin": ["What it does", "How to use it"],
+    "/docs/platform/waitlist": ["What it does", "How to use it"],
     "/docs/agents/content": ["Lazy Blogger", "Lazy SEO", "Lazy GEO", "Lazy Crawl", "Lazy Perplexity", "Lazy Repurpose", "Lazy Trend"],
     "/docs/agents/commerce": ["Lazy Store", "Lazy Drop", "Lazy Print", "Lazy Pay", "Lazy Mail", "Lazy SMS", "Lazy Churn"],
     "/docs/agents/media": ["Lazy Voice", "Lazy Stream", "Lazy YouTube"],
