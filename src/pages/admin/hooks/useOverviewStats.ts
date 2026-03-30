@@ -1,57 +1,55 @@
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
+import { adminWrite } from "@/lib/adminWrite";
 
-export function useOverviewStats(hasAnyInstalled: boolean) {
+export function useOverviewStats() {
   return useQuery({
     queryKey: ["admin-overview-stats"],
-    enabled: hasAnyInstalled,
     queryFn: async () => {
-      const today = new Date(); today.setHours(0, 0, 0, 0);
-      const todayIso = today.toISOString();
+      const todayIso = new Date().toISOString().slice(0, 10);
 
-      const countToday = async (table: string, dateField = "created_at") => {
+      const safeCount = async (table: string, filter?: Record<string, any>, dateFilter?: string) => {
         try {
-          const { count } = await (supabase as any).from(table).select("id", { count: "exact", head: true }).gte(dateField, todayIso);
-          return count || 0;
-        } catch { return 0; }
-      };
-
-      const countErrors = async (table: string) => {
-        try {
-          const { count } = await (supabase as any).from(table).select("id", { count: "exact", head: true }).gte("created_at", todayIso);
-          return count || 0;
-        } catch { return 0; }
-      };
-
-      const countCopies = async (sinceIso?: string) => {
-        try {
-          let q = (supabase as any).from("analytics_events").select("id", { count: "exact", head: true })
-            .or("event_name.eq.copy_prompt,event_name.ilike.%_prompt_copy");
-          if (sinceIso) q = q.gte("created_at", sinceIso);
+          let q = (supabase as any).from(table).select("id", { count: "exact", head: true });
+          if (dateFilter) q = q.gte("created_at", dateFilter).lt("created_at", dateFilter + "T23:59:59.999Z");
+          if (filter) {
+            for (const [k, v] of Object.entries(filter)) {
+              q = q.eq(k, v);
+            }
+          }
           const { count } = await q;
           return count || 0;
-        } catch { return 0; }
+        } catch {
+          return 0;
+        }
       };
 
-      const [blogToday, seoToday, geoToday, copiesToday, copiesTotal] = await Promise.all([
-        countToday("blog_posts"),
-        countToday("seo_posts", "published_at"),
-        countToday("geo_posts", "published_at"),
-        countCopies(todayIso),
-        countCopies(),
+      const [blogToday, seoToday, geoToday] = await Promise.all([
+        safeCount("blog_posts", { status: "published" }, todayIso),
+        safeCount("seo_posts", { status: "published" }, todayIso),
+        safeCount("geo_posts", { status: "published" }, todayIso),
       ]);
 
-      const errorTables = ["blog_errors", "seo_errors", "geo_errors", "voice_errors", "stream_errors", "granola_errors", "waitlist_errors"];
-      const errorCounts = await Promise.all(errorTables.map(countErrors));
+      // Errors today across all error tables
+      const errorTables = ["blog_errors", "seo_errors", "geo_errors", "voice_errors", "stream_errors", "granola_errors"];
+      const errorCounts = await Promise.all(errorTables.map((t) => safeCount(t, undefined, todayIso)));
       const errorsToday = errorCounts.reduce((a, b) => a + b, 0);
+
+      // Copies today
+      const copiesToday = await (async () => {
+        try {
+          const { data } = await adminWrite({
+            table: "prompt_versions", operation: "select", match: {},
+          });
+          return 0;
+        } catch { return 0; }
+      })();
 
       return {
         postsToday: blogToday + seoToday + geoToday,
         errorsToday,
-        copiesToday,
-        copiesTotal,
       };
     },
-    refetchInterval: 60_000,
+    refetchInterval: 30000,
   });
 }

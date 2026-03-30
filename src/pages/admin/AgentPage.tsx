@@ -1,12 +1,12 @@
+import { useParams, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { useParams, useNavigate, Link } from "react-router-dom";
-import { ArrowLeft, Loader2, Pencil, X, Check, ChevronDown, ChevronUp } from "lucide-react";
-import { toast } from "sonner";
+import { useQuery } from "@tanstack/react-query";
+import { Loader2, Pencil, Check, X, ChevronDown, ChevronRight, CheckCircle, AlertTriangle } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
+import { adminWrite } from "@/lib/adminWrite";
+import { toast } from "sonner";
 import { useAdminContext } from "./AdminLayout";
 import { getAgentBySlug } from "./agentRegistry";
-import { useQuery } from "@tanstack/react-query";
-import AgentSetupWizard from "./components/AgentSetupWizard";
 
 export default function AgentPage() {
   const { agentSlug } = useParams<{ agentSlug: string }>();
@@ -14,284 +14,327 @@ export default function AgentPage() {
   const { states, refetch } = useAdminContext();
   const agent = getAgentBySlug(agentSlug || "");
 
-  const [runningAction, setRunningAction] = useState<string | null>(null);
   const [editingField, setEditingField] = useState<string | null>(null);
   const [editValue, setEditValue] = useState("");
   const [saving, setSaving] = useState(false);
-  const [showErrors, setShowErrors] = useState(false);
-  const [showSetupWizard, setShowSetupWizard] = useState(false);
+  const [actionLoading, setActionLoading] = useState<string | null>(null);
+  const [errorsExpanded, setErrorsExpanded] = useState(false);
+  const [actionError, setActionError] = useState<{ message: string; hint?: string } | null>(null);
 
   if (!agent) {
+    return <div className="py-10 text-center" style={{ color: "rgba(240,234,214,0.5)" }}>Agent not found</div>;
+  }
+
+  const state = states[agent.key];
+
+  if (!state?.installed || !state?.setupComplete) {
     return (
       <div className="py-16 text-center">
-        <p className="text-muted-foreground text-[13px]">Agent not found.</p>
-        <Link to="/admin" className="text-primary text-[12px] mt-2 inline-block">← Back to overview</Link>
-      </div>
-    );
-  }
-
-  const st = states[agent.key];
-
-  if (!st || !st.installed || !st.setupComplete) {
-    return (
-      <div className="max-w-md mx-auto py-20 text-center">
-        <h2 className="text-xl font-bold mb-2">{agent.label} is not configured</h2>
-        <p className="text-foreground/50 text-[13px] mb-6">Complete setup to activate this agent.</p>
-        <button onClick={() => setShowSetupWizard(true)}
-          className="inline-block px-6 py-3 bg-primary text-primary-foreground text-[12px] font-bold tracking-[0.1em] uppercase hover:opacity-90 transition-opacity">
+        <h2 className="text-[22px] font-bold mb-3" style={{ color: "#f0ead6" }}>{agent.label} is not configured</h2>
+        <p className="mb-6" style={{ fontSize: 14, color: "rgba(240,234,214,0.5)" }}>Complete setup to activate this agent.</p>
+        <button onClick={() => navigate(`/lazy-${agent.slug}-setup`)}
+          className="px-5 py-2.5 rounded-md text-[12px] font-bold uppercase tracking-[0.08em] transition-opacity hover:opacity-90"
+          style={{ background: "#c9a84c", color: "#0a0a08" }}>
           SET UP {agent.label.toUpperCase()} →
         </button>
-        <br />
-        <Link to="/admin" className="text-foreground/40 text-[11px] mt-4 inline-block hover:text-foreground/60">← Back</Link>
-        <AgentSetupWizard
-          agent={agent}
-          open={showSetupWizard}
-          onClose={() => setShowSetupWizard(false)}
-          onComplete={() => refetch()}
-        />
       </div>
     );
   }
-
-  const runAction = async (fn: string, label: string) => {
-    setRunningAction(fn);
-    try {
-      const { data, error } = await supabase.functions.invoke(fn);
-      if (error) throw error;
-      if (data?.error) throw new Error(data.error);
-      toast.success(`${label} completed`);
-      refetch();
-    } catch (err: any) {
-      const msg = err?.message || "Unknown error";
-      let hint = "";
-      if (/secret|api.key|unauthorized/i.test(msg)) hint = "Add the required API key in your backend secrets.";
-      else if (/not found|does not exist/i.test(msg)) hint = "Check that all database tables were created. Re-run setup.";
-      else if (/setup_complete/i.test(msg)) hint = "Complete the setup page first.";
-      toast.error(`${label} failed — ${msg}${hint ? `\n💡 ${hint}` : ""}`);
-    }
-    setRunningAction(null);
-  };
 
   const toggleRunning = async () => {
     try {
-      await (supabase as any).from(agent.settingsTable).update({ [agent.runField]: !st.isRunning });
-      toast.success(st.isRunning ? `${agent.label} paused` : `${agent.label} resumed`);
+      await adminWrite({
+        table: agent.settingsTable,
+        operation: "update",
+        data: { [agent.runField]: !state.isRunning },
+        match: { id: state.settings?.id },
+      });
+      toast.success(state.isRunning ? `${agent.label} paused` : `${agent.label} resumed`);
       refetch();
-    } catch { toast.error("Failed to toggle agent"); }
+    } catch (err: any) {
+      toast.error(err.message);
+    }
+  };
+
+  const runAction = async (fn: string, label: string) => {
+    if (!fn) return;
+    setActionLoading(fn);
+    setActionError(null);
+    try {
+      const { data, error } = await supabase.functions.invoke(fn);
+      if (error) throw error;
+      toast.success(`${label} completed`);
+      refetch();
+    } catch (err: any) {
+      const msg = err.message || "Unknown error";
+      let hint: string | undefined;
+      if (/secret|api.?key|unauthorized/i.test(msg)) hint = "Add the required API key in your project secrets.";
+      else if (/not found|does not exist/i.test(msg)) hint = "Check that all database tables were created. Re-run the setup page.";
+      else if (/setup_complete/i.test(msg)) hint = "Complete the setup page first.";
+      setActionError({ message: msg, hint });
+      toast.error(`${label} failed`);
+    } finally {
+      setActionLoading(null);
+    }
   };
 
   const saveField = async (field: string) => {
     setSaving(true);
     try {
-      await (supabase as any).from(agent.settingsTable).update({ [field]: editValue });
+      await adminWrite({
+        table: agent.settingsTable,
+        operation: "update",
+        data: { [field]: editValue },
+        match: { id: state.settings?.id },
+      });
       toast.success("Saved");
       setEditingField(null);
       refetch();
-    } catch { toast.error("Failed to save"); }
-    setSaving(false);
+    } catch (err: any) {
+      toast.error(err.message);
+    } finally {
+      setSaving(false);
+    }
   };
 
-  const { data: agentErrors = [] } = useQuery({
-    queryKey: ["agent-errors", agent.key],
+  // Errors query
+  const { data: errors } = useQuery({
+    queryKey: ["agent-errors", agent.errorsTable],
     queryFn: async () => {
-      if (!agent.errorTable) return [];
+      if (!agent.errorsTable) return [];
       try {
         const { data } = await (supabase as any)
-          .from(agent.errorTable)
-          .select("error_message, created_at")
+          .from(agent.errorsTable)
+          .select("*")
           .order("created_at", { ascending: false })
           .limit(10);
         return data || [];
       } catch { return []; }
     },
+    enabled: !!agent.errorsTable,
   });
 
-  const { data: statValues = {} } = useQuery({
+  // Stats query
+  const { data: statValues } = useQuery({
     queryKey: ["agent-stats", agent.key],
     queryFn: async () => {
-      const result: Record<string, number> = {};
-      await Promise.all(agent.stats.map(async (s) => {
+      const results: Record<string, number> = {};
+      for (const stat of agent.stats) {
         try {
-          if (s.type === "count") {
-            const { count } = await (supabase as any).from(s.table).select("id", { count: "exact", head: true });
-            result[s.label] = count || 0;
-          } else if (s.type === "count_today") {
-            const today = new Date(); today.setHours(0, 0, 0, 0);
-            const { count } = await (supabase as any).from(s.table).select("id", { count: "exact", head: true }).gte(s.dateField || "created_at", today.toISOString());
-            result[s.label] = count || 0;
-          } else if (s.type === "count_week") {
-            const week = new Date(); week.setDate(week.getDate() - 7);
-            const { count } = await (supabase as any).from(s.table).select("id", { count: "exact", head: true }).gte(s.dateField || "created_at", week.toISOString());
-            result[s.label] = count || 0;
+          let q = (supabase as any).from(stat.table).select("id", { count: "exact", head: true });
+          if (stat.filter) {
+            for (const [k, v] of Object.entries(stat.filter)) q = q.eq(k, v);
           }
-        } catch {}
-      }));
-      return result;
+          if (stat.dateFilter === "today") {
+            q = q.gte("created_at", new Date().toISOString().slice(0, 10));
+          }
+          if (stat.dateFilter === "this_week") {
+            const d = new Date();
+            d.setDate(d.getDate() - 7);
+            q = q.gte("created_at", d.toISOString());
+          }
+          const { count } = await q;
+          results[stat.label] = count || 0;
+        } catch {
+          results[stat.label] = 0;
+        }
+      }
+      return results;
     },
   });
 
-  const settings = st.settings || {};
-  const importantFields = Object.keys(settings).filter(
-    (k) => !["id", "created_at", "setup_complete"].includes(k) && typeof settings[k] !== "object"
-  ).slice(0, 5);
-
   const timeAgo = (iso: string) => {
-    const d = (Date.now() - new Date(iso).getTime()) / 1000;
-    if (d < 60) return `${Math.floor(d)}s ago`;
-    if (d < 3600) return `${Math.floor(d / 60)}m ago`;
-    if (d < 86400) return `${Math.floor(d / 3600)}h ago`;
-    return `${Math.floor(d / 86400)}d ago`;
+    const diff = Date.now() - new Date(iso).getTime();
+    const mins = Math.floor(diff / 60000);
+    if (mins < 1) return "just now";
+    if (mins < 60) return `${mins} min ago`;
+    const hrs = Math.floor(mins / 60);
+    if (hrs < 24) return `${hrs} hr ago`;
+    return `${Math.floor(hrs / 24)}d ago`;
   };
-
-  const dotColor = st.isRunning ? "#4ade80" : "hsl(var(--muted-foreground))";
 
   return (
     <div>
-      <button onClick={() => navigate("/admin")} className="flex items-center gap-1 text-[11px] text-foreground/40 hover:text-foreground/70 mb-4 transition-colors">
-        <ArrowLeft size={12} /> Back to overview
-      </button>
-
+      {/* Header */}
       <div className="flex items-center justify-between mb-8">
-        <div>
-          <h1 className="text-2xl font-bold tracking-[0.05em] uppercase">{agent.label}</h1>
-          <p className="text-[13px] text-foreground/50 mt-1">{agent.subtitle}</p>
-        </div>
-        <div className="flex items-center gap-4">
-          <span className="flex items-center gap-1.5 text-[11px]">
-            <span className="w-2 h-2 rounded-full" style={{ backgroundColor: dotColor }} />
-            <span className={st.isRunning ? "text-[#4ade80]" : "text-muted-foreground"}>
-              {st.isRunning ? "RUNNING" : "PAUSED"}
-            </span>
+        <div className="flex items-center gap-3">
+          <h1 className="text-[28px] font-bold" style={{ color: "#f0ead6" }}>{agent.label}</h1>
+          <span className={`w-[8px] h-[8px] rounded-full ${state.hasRecentError ? "bg-[#f87171]" : state.isRunning ? "bg-[#4ade80]" : "bg-[rgba(240,234,214,0.2)]"}`} />
+          <span style={{ fontSize: 13, color: "rgba(240,234,214,0.5)" }}>
+            {state.hasRecentError ? "Error" : state.isRunning ? "Running" : "Paused"}
           </span>
-          <button onClick={toggleRunning}
-            className={`px-3 py-1.5 text-[10px] font-bold tracking-wider uppercase transition-colors ${
-              st.isRunning
-                ? "border border-border text-foreground/60 hover:text-foreground"
-                : "bg-[#4ade80] text-background"
-            }`}>
-            {st.isRunning ? "PAUSE" : "RESUME"}
-          </button>
         </div>
+        <button onClick={toggleRunning}
+          className="px-4 py-1.5 rounded text-[11px] font-bold uppercase tracking-[0.08em] transition-opacity hover:opacity-90"
+          style={{ background: state.isRunning ? "rgba(240,234,214,0.08)" : "#c9a84c", color: state.isRunning ? "#f0ead6" : "#0a0a08" }}>
+          {state.isRunning ? "PAUSE" : "RESUME"}
+        </button>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        {/* Left — Status */}
-        <div>
-          {agent.stats.length > 0 ? (
-            <div className="grid grid-cols-2 gap-3 mb-6">
-              {agent.stats.map((s) => (
-                <div key={s.label} className="border border-border p-4">
-                  <p className="text-[10px] tracking-[0.2em] uppercase text-muted-foreground">{s.label}</p>
-                  <p className="text-2xl font-bold mt-1">{statValues[s.label] ?? "—"}</p>
+      {/* Action error */}
+      {actionError && (
+        <div className="mb-6 p-4 rounded-lg" style={{ background: "rgba(248,113,113,0.08)", border: "1px solid rgba(248,113,113,0.2)" }}>
+          <p className="text-[13px] font-bold mb-1" style={{ color: "#f87171" }}>{actionError.message}</p>
+          {actionError.hint && (
+            <div className="mt-2">
+              <p className="text-[11px] font-bold uppercase mb-1" style={{ color: "rgba(240,234,214,0.5)" }}>How to fix</p>
+              <p className="text-[12px]" style={{ color: "rgba(240,234,214,0.6)" }}>{actionError.hint}</p>
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* Stats grid */}
+      {agent.stats.length > 0 && (
+        <div className="grid grid-cols-2 gap-3 mb-8">
+          {agent.stats.map((stat) => (
+            <div key={stat.label} className="p-4 rounded-lg" style={{ border: "1px solid rgba(240,234,214,0.08)" }}>
+              <div className="text-[24px] font-bold" style={{ color: "#f0ead6" }}>
+                {statValues?.[stat.label] ?? "—"}
+              </div>
+              <div style={{ fontSize: 10, textTransform: "uppercase", letterSpacing: "0.1em", color: "rgba(240,234,214,0.4)", marginTop: 4 }}>
+                {stat.label}
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* Settings */}
+      {agent.settingsFields && agent.settingsFields.length > 0 && (
+        <div className="mb-8">
+          <h3 className="mb-3" style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(240,234,214,0.3)" }}>
+            SETTINGS
+          </h3>
+          {agent.settingsFields.map((field) => (
+            <div key={field} className="flex items-center justify-between py-2.5"
+              style={{ borderBottom: "1px solid rgba(240,234,214,0.04)" }}>
+              <span style={{ fontSize: 13, color: "rgba(240,234,214,0.5)" }}>{field}</span>
+              {editingField === field ? (
+                <div className="flex items-center gap-2">
+                  <input value={editValue} onChange={(e) => setEditValue(e.target.value)}
+                    className="px-2 py-1 rounded text-[13px] font-display"
+                    style={{ background: "rgba(240,234,214,0.05)", border: "1px solid rgba(240,234,214,0.15)", color: "#f0ead6", width: 200 }}
+                    autoFocus
+                  />
+                  <button onClick={() => saveField(field)} disabled={saving}>
+                    {saving ? <Loader2 size={14} className="animate-spin" /> : <Check size={14} style={{ color: "#4ade80" }} />}
+                  </button>
+                  <button onClick={() => setEditingField(null)}><X size={14} style={{ color: "#f87171" }} /></button>
                 </div>
-              ))}
+              ) : (
+                <div className="flex items-center gap-2">
+                  <span style={{ fontSize: 13, color: "#f0ead6" }}>{String(state.settings?.[field] ?? "—")}</span>
+                  <button onClick={() => { setEditingField(field); setEditValue(String(state.settings?.[field] ?? "")); }}>
+                    <Pencil size={12} style={{ color: "rgba(240,234,214,0.3)" }} />
+                  </button>
+                </div>
+              )}
             </div>
-          ) : (
-            <div className="border border-border border-dashed p-8 mb-6 text-center">
-              <p className="text-[12px] text-muted-foreground">
-                No data yet — click the primary action to run your first check.
-              </p>
-            </div>
-          )}
-
-          {/* Error log */}
-          <div className="border border-border">
-            <button onClick={() => setShowErrors(!showErrors)}
-              className="w-full flex items-center justify-between px-4 py-3 text-[11px] tracking-[0.15em] uppercase text-muted-foreground font-bold hover:text-foreground/70 transition-colors">
-              <span>Error Log ({agentErrors.length})</span>
-              {showErrors ? <ChevronUp size={12} /> : <ChevronDown size={12} />}
-            </button>
-            {showErrors && (
-              <div className="border-t border-foreground/5 max-h-64 overflow-y-auto">
-                {agentErrors.length === 0 ? (
-                  <p className="px-4 py-3 text-[12px] text-muted-foreground">No errors in the last 24 hours</p>
-                ) : (
-                  agentErrors.map((err: any, i: number) => (
-                    <div key={i} className="px-4 py-2 border-b border-foreground/5 last:border-0">
-                      <p className="text-[11px] text-destructive truncate">{err.error_message}</p>
-                      <p className="text-[9px] text-muted-foreground mt-0.5">{timeAgo(err.created_at)}</p>
-                    </div>
-                  ))
-                )}
-              </div>
-            )}
-          </div>
+          ))}
         </div>
+      )}
 
-        {/* Right — Actions + Settings */}
-        <div>
-          {agent.requiredSecrets && agent.requiredSecrets.length > 0 && (
-            <div className="mb-6">
-              <p className="text-[10px] tracking-[0.15em] uppercase text-muted-foreground font-bold mb-2">Requirements</p>
-              {agent.requiredSecrets.map((sec) => {
-                const hasValue = !!settings[sec.field];
-                return (
-                  <div key={sec.field} className="flex items-center gap-2 py-1">
-                    <span className={`w-3 h-3 rounded-full text-[8px] flex items-center justify-center ${hasValue ? "bg-[#4ade80]/20 text-[#4ade80]" : "bg-destructive/20 text-destructive"}`}>
-                      {hasValue ? "✓" : "!"}
-                    </span>
-                    <span className="text-[12px] text-foreground/60">{sec.label}</span>
-                  </div>
-                );
-              })}
-            </div>
-          )}
-
-          {/* Actions */}
-          <div className="flex flex-col gap-2 mb-6">
-            {agent.actions.map((action) => (
-              <button key={action.fn}
-                onClick={() => runAction(action.fn, action.label)}
-                disabled={!!runningAction}
-                className={`w-full py-3 text-[12px] font-bold tracking-[0.1em] uppercase transition-all disabled:opacity-40 ${
-                  action.primary
-                    ? "bg-primary text-primary-foreground hover:opacity-90"
-                    : "border border-border text-foreground/60 hover:text-foreground hover:border-foreground/30"
-                }`}>
-                {runningAction === action.fn ? <Loader2 size={14} className="animate-spin inline mr-2" /> : null}
-                {action.label}
-              </button>
-            ))}
-          </div>
-
-          {/* Settings */}
-          {importantFields.length > 0 && (
+      {/* Error log */}
+      {agent.errorsTable && (
+        <div className="mb-8">
+          <button onClick={() => setErrorsExpanded(!errorsExpanded)} className="flex items-center gap-2 mb-2">
+            {errorsExpanded ? <ChevronDown size={14} /> : <ChevronRight size={14} />}
+            <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(240,234,214,0.3)" }}>
+              ERROR LOG
+            </span>
+          </button>
+          {errorsExpanded && (
             <div>
-              <p className="text-[10px] tracking-[0.15em] uppercase text-muted-foreground font-bold mb-2">Settings</p>
-              <div className="border border-border divide-y divide-foreground/5">
-                {importantFields.map((field) => (
-                  <div key={field} className="flex items-center justify-between px-4 py-2.5">
-                    <span className="text-[11px] text-foreground/50">{field.replace(/_/g, " ")}</span>
-                    {editingField === field ? (
-                      <div className="flex items-center gap-1">
-                        <input value={editValue} onChange={(e) => setEditValue(e.target.value)}
-                          className="bg-transparent border border-border text-foreground text-[11px] px-2 py-1 w-32 focus:outline-none" />
-                        <button onClick={() => saveField(field)} disabled={saving}
-                          className="p-1 text-[#4ade80] hover:text-[#4ade80]/80">
-                          {saving ? <Loader2 size={10} className="animate-spin" /> : <Check size={10} />}
-                        </button>
-                        <button onClick={() => setEditingField(null)} className="p-1 text-destructive">
-                          <X size={10} />
-                        </button>
-                      </div>
-                    ) : (
-                      <div className="flex items-center gap-2">
-                        <span className="text-[11px] text-foreground">
-                          {typeof settings[field] === "boolean" ? (settings[field] ? "true" : "false") : String(settings[field] ?? "—")}
-                        </span>
-                        <button onClick={() => { setEditingField(field); setEditValue(String(settings[field] ?? "")); }}
-                          className="p-1 text-foreground/20 hover:text-foreground/60 transition-colors">
-                          <Pencil size={10} />
-                        </button>
-                      </div>
-                    )}
+              {(!errors || errors.length === 0) ? (
+                <p style={{ fontSize: 13, color: "rgba(240,234,214,0.35)" }}>No errors in the last 24 hours</p>
+              ) : (
+                errors.map((err: any) => (
+                  <div key={err.id} className="py-2" style={{ borderBottom: "1px solid rgba(240,234,214,0.04)" }}>
+                    <span style={{ fontSize: 11, color: "rgba(240,234,214,0.3)" }}>{timeAgo(err.created_at)}</span>
+                    <span className="ml-3" style={{ fontSize: 13, color: "#f87171" }}>{err.error_message}</span>
                   </div>
-                ))}
-              </div>
+                ))
+              )}
             </div>
           )}
         </div>
-      </div>
+      )}
+
+      {/* Empty state */}
+      {agent.stats.length === 0 && (!errors || errors.length === 0) && (
+        <div className="py-10 text-center" style={{ color: "rgba(240,234,214,0.4)", fontSize: 14 }}>
+          No data yet — click the primary action to run your first check.
+        </div>
+      )}
     </div>
   );
 }
+
+// Right sidebar for agent detail
+export function AgentRightSidebar({ slug }: { slug: string }) {
+  const { states } = useAdminContext();
+  const agent = getAgentBySlug(slug);
+  const [actionLoading, setActionLoading] = useState<string | null>(null);
+
+  if (!agent) return null;
+  const state = states[agent.key];
+
+  const runAction = async (fn: string, label: string) => {
+    if (!fn) return;
+    setActionLoading(fn);
+    try {
+      const { error } = await supabase.functions.invoke(fn);
+      if (error) throw error;
+      toast.success(`${label} completed`);
+    } catch (err: any) {
+      toast.error(err.message || "Action failed");
+    } finally {
+      setActionLoading(null);
+    }
+  };
+
+  return (
+    <div>
+      <h3 className="mb-4" style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(240,234,214,0.3)" }}>
+        ACTIONS
+      </h3>
+
+      {agent.actions.map((action) => (
+        <button key={action.fn || action.label}
+          onClick={() => runAction(action.fn, action.label)}
+          disabled={!!actionLoading}
+          className="w-full mb-2 py-2.5 rounded-md text-[13px] font-bold uppercase tracking-[0.06em] transition-opacity hover:opacity-90 flex items-center justify-center gap-2"
+          style={action.primary
+            ? { background: "#c9a84c", color: "#0a0a08" }
+            : { border: "1px solid rgba(240,234,214,0.12)", color: "rgba(240,234,214,0.6)", background: "transparent" }
+          }
+        >
+          {actionLoading === action.fn && <Loader2 size={12} className="animate-spin" />}
+          {action.label} {action.primary && "→"}
+        </button>
+      ))}
+
+      {/* Requirements */}
+      {agent.requiredSecrets && agent.requiredSecrets.length > 0 && (
+        <div className="mt-6">
+          <h4 className="mb-3" style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(240,234,214,0.3)" }}>
+            REQUIREMENTS
+          </h4>
+          {agent.requiredSecrets.map((secret) => {
+            const hasValue = secret.settingsField && state?.settings?.[secret.settingsField];
+            return (
+              <div key={secret.name} className="flex items-center gap-2 mb-2">
+                {hasValue ? <CheckCircle size={12} style={{ color: "#4ade80" }} /> : <AlertTriangle size={12} style={{ color: "#f87171" }} />}
+                <span style={{ fontSize: 12, fontFamily: "monospace", color: hasValue ? "rgba(240,234,214,0.6)" : "#f87171" }}>
+                  {secret.name}
+                </span>
+              </div>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
+}
+

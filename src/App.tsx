@@ -66,10 +66,10 @@ import HowItWorksPage from "./pages/HowItWorksPage.tsx";
 import UseCasesPage from "./pages/UseCasesPage.tsx";
 import PublicLayout from "./components/PublicLayout.tsx";
 
-import AdminLayout from "./pages/admin/AdminLayout.tsx";
-import AdminOverview from "./pages/admin/AdminOverview.tsx";
-import AdminSettingsPage from "./pages/admin/AdminSettingsPage.tsx";
-import AgentPage from "./pages/admin/AgentPage.tsx";
+import AdminLayout from "./pages/admin/AdminLayout";
+import AdminOverview from "./pages/admin/AdminOverview";
+import AdminSettingsPage from "./pages/admin/AdminSettingsPage";
+import AgentPage from "./pages/admin/AgentPage";
 import WaitlistPage from "./pages/WaitlistPage.tsx";
 import LazyWaitlistPage from "./pages/LazyWaitlistPage.tsx";
 import LazyCloudPage from "./pages/LazyCloudPage.tsx";

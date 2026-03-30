@@ -1,99 +1,109 @@
 import { useState } from "react";
-import { ArrowLeft } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
+import { Loader2 } from "lucide-react";
+import { adminWrite } from "@/lib/adminWrite";
 import { useAdminContext } from "./AdminLayout";
 import { AGENTS } from "./agentRegistry";
 
 export default function AdminSettingsPage() {
-  const navigate = useNavigate();
-  const { states } = useAdminContext();
+  const { states, refetch } = useAdminContext();
+  const [siteUrl, setSiteUrl] = useState("");
+  const [brandName, setBrandName] = useState("");
+  const [propagating, setPropagating] = useState(false);
 
-  const installedAgents = AGENTS.filter((a) => states[a.key]?.installed);
-
-  const siteSettings = [
-    { key: "site_url", label: "Site URL" },
-    { key: "brand_name", label: "Brand Name" },
-    { key: "business_description", label: "Business Description" },
-  ];
-
-  const apiServices = [
-    { name: "ElevenLabs", agents: ["voice"] },
-    { name: "Stripe", agents: ["pay"] },
-    { name: "Twilio", agents: ["sms"] },
-    { name: "Twitch", agents: ["stream"] },
-    { name: "GitHub", agents: ["watch", "fix", "build", "agents"] },
-    { name: "GitLab", agents: ["gitlab"] },
-    { name: "Linear", agents: ["linear"] },
-    { name: "Contentful", agents: ["contentful"] },
-    { name: "Aikido", agents: ["security"] },
-    { name: "Resend", agents: ["mail"] },
-    { name: "Granola", agents: ["granola"] },
-    { name: "YouTube", agents: ["youtube"] },
-  ];
+  const handlePropagate = async () => {
+    setPropagating(true);
+    const installed = AGENTS.filter((a) => states[a.key]?.installed && states[a.key]?.setupComplete);
+    for (const a of installed) {
+      try {
+        const data: Record<string, any> = {};
+        if (siteUrl) data.site_url = siteUrl;
+        if (brandName) data.brand_name = brandName;
+        if (Object.keys(data).length > 0) {
+          await adminWrite({
+            table: a.settingsTable,
+            operation: "update",
+            data,
+            match: { id: states[a.key]?.settings?.id },
+          });
+        }
+      } catch {}
+    }
+    toast.success("Settings propagated to all agents");
+    setPropagating(false);
+    refetch();
+  };
 
   return (
     <div>
-      <button onClick={() => navigate("/admin")}
-        className="flex items-center gap-1 text-[11px] text-foreground/40 hover:text-foreground/70 mb-4 transition-colors">
-        <ArrowLeft size={12} /> Back to overview
-      </button>
+      <h1 className="text-[28px] font-bold mb-8" style={{ color: "#f0ead6" }}>Settings</h1>
 
-      <h1 className="text-2xl font-bold tracking-[0.05em] uppercase mb-8">Settings</h1>
+      {/* Site settings */}
+      <div className="mb-10">
+        <h3 className="mb-4" style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(240,234,214,0.3)" }}>
+          SITE SETTINGS
+        </h3>
 
-      {/* Site Settings */}
-      <section className="mb-10">
-        <h2 className="text-[11px] tracking-[0.2em] uppercase text-muted-foreground font-bold mb-3">Site Settings</h2>
-        <div className="border border-border divide-y divide-foreground/5">
-          {siteSettings.map((s) => (
-            <div key={s.key} className="flex items-center justify-between px-4 py-3">
-              <span className="text-[12px] text-foreground/50">{s.label}</span>
-              <span className="text-[12px] text-muted-foreground">—</span>
+        <div className="mb-4">
+          <label style={{ fontSize: 12, color: "rgba(240,234,214,0.5)", display: "block", marginBottom: 6 }}>Site URL</label>
+          <input value={siteUrl} onChange={(e) => setSiteUrl(e.target.value)}
+            placeholder="https://yourdomain.com"
+            className="w-full max-w-md px-3 py-2 rounded-md text-[13px] font-display"
+            style={{ background: "rgba(240,234,214,0.05)", border: "1px solid rgba(240,234,214,0.1)", color: "#f0ead6" }}
+          />
+        </div>
+
+        <div className="mb-6">
+          <label style={{ fontSize: 12, color: "rgba(240,234,214,0.5)", display: "block", marginBottom: 6 }}>Brand Name</label>
+          <input value={brandName} onChange={(e) => setBrandName(e.target.value)}
+            placeholder="Your Brand"
+            className="w-full max-w-md px-3 py-2 rounded-md text-[13px] font-display"
+            style={{ background: "rgba(240,234,214,0.05)", border: "1px solid rgba(240,234,214,0.1)", color: "#f0ead6" }}
+          />
+        </div>
+
+        <button onClick={handlePropagate} disabled={propagating}
+          className="px-5 py-2.5 rounded-md text-[12px] font-bold uppercase tracking-[0.08em] transition-opacity hover:opacity-90 flex items-center gap-2"
+          style={{ background: "#c9a84c", color: "#0a0a08" }}>
+          {propagating && <Loader2 size={14} className="animate-spin" />}
+          PROPAGATE TO ALL AGENTS
+        </button>
+      </div>
+
+      {/* Version status */}
+      <div className="mb-10">
+        <h3 className="mb-4" style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(240,234,214,0.3)" }}>
+          VERSION STATUS
+        </h3>
+        <div className="flex items-center py-2" style={{ borderBottom: "1px solid rgba(240,234,214,0.08)", fontSize: 11, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "rgba(240,234,214,0.3)" }}>
+          <div style={{ flex: 2 }}>Agent</div>
+          <div style={{ flex: 1 }}>Installed</div>
+          <div style={{ flex: 1 }}>Status</div>
+        </div>
+        {AGENTS.filter((a) => states[a.key]?.installed && states[a.key]?.setupComplete).map((a) => (
+          <div key={a.key} className="flex items-center py-2.5" style={{ borderBottom: "1px solid rgba(240,234,214,0.04)", fontSize: 13 }}>
+            <div style={{ flex: 2, color: "#f0ead6", fontWeight: 600 }}>{a.label}</div>
+            <div style={{ flex: 1, color: "rgba(240,234,214,0.5)" }}>{states[a.key]?.promptVersion ? `v${states[a.key].promptVersion}` : "—"}</div>
+            <div style={{ flex: 1 }}>
+              <span className="px-2 py-0.5 rounded text-[10px] font-bold uppercase"
+                style={{ background: "rgba(74,222,128,0.1)", color: "#4ade80" }}>
+                UP TO DATE
+              </span>
             </div>
-          ))}
-        </div>
-      </section>
-
-      {/* API Keys */}
-      <section className="mb-10">
-        <h2 className="text-[11px] tracking-[0.2em] uppercase text-muted-foreground font-bold mb-3">API Connections</h2>
-        <div className="border border-border divide-y divide-foreground/5">
-          {apiServices.map((svc) => {
-            const isInstalled = svc.agents.some((a) => states[a]?.installed);
-            return (
-              <div key={svc.name} className="flex items-center justify-between px-4 py-3">
-                <span className="text-[12px] text-foreground">{svc.name}</span>
-                <span className={`text-[10px] tracking-wider uppercase font-bold px-2 py-0.5 rounded ${
-                  isInstalled ? "bg-[#4ade80]/10 text-[#4ade80]" : "bg-foreground/5 text-foreground/25"
-                }`}>
-                  {isInstalled ? "Connected" : "Not installed"}
-                </span>
-              </div>
-            );
-          })}
-        </div>
-      </section>
-
-      {/* Version Status */}
-      <section className="mb-10">
-        <h2 className="text-[11px] tracking-[0.2em] uppercase text-muted-foreground font-bold mb-3">Version Status</h2>
-        <div className="border border-border">
-          <div className="grid items-center gap-2 px-4 py-2 border-b border-border text-[10px] tracking-[0.15em] uppercase text-muted-foreground font-bold"
-            style={{ gridTemplateColumns: "2fr 1fr 1fr" }}>
-            <div>Agent</div><div>Installed</div><div>Status</div>
           </div>
-          {installedAgents.map((agent) => (
-            <div key={agent.key} className="grid items-center gap-2 px-4 py-2.5 border-b border-foreground/5 text-[12px]"
-              style={{ gridTemplateColumns: "2fr 1fr 1fr" }}>
-              <div className="text-foreground">{agent.label}</div>
-              <div className="text-foreground/50">{states[agent.key]?.promptVersion ? `v${states[agent.key]!.promptVersion}` : "—"}</div>
-              <div className="text-[#4ade80] text-[10px] uppercase tracking-wider font-bold">Up to date</div>
-            </div>
-          ))}
-          {installedAgents.length === 0 && (
-            <div className="px-4 py-6 text-center text-[12px] text-muted-foreground">No agents installed</div>
-          )}
-        </div>
-      </section>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+export function SettingsRightSidebar() {
+  return (
+    <div>
+      <h3 className="mb-4" style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(240,234,214,0.3)" }}>
+        SETTINGS
+      </h3>
+      <p style={{ fontSize: 13, color: "rgba(240,234,214,0.4)" }}>Global configuration for all agents</p>
     </div>
   );
 }
