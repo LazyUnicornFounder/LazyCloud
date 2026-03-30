@@ -183,6 +183,7 @@ const App = () => (
                 <Route path="/lazy-trend" element={<LazyTrendPage />} />
                 <Route path="/lazy-churn" element={<LazyChurnPage />} />
                 <Route path="/lazy-cloud" element={<LazyCloudPage />} />
+                <Route path="/lazy-idea" element={<LazyIdeaPage />} />
                 <Route path="/pricing" element={<PricingPage />} />
                 <Route path="/autonomy" element={<AutonomyPage />} />
                 <Route path="/lazy-security" element={<LazySecurityPage />} />
