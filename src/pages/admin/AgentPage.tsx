@@ -24,12 +24,16 @@ function SetupWizard({ agent, onComplete }: { agent: AgentConfig; onComplete: ()
   // Step 1: Required secrets first
   if (agent.requiredSecrets) {
     for (const secret of agent.requiredSecrets) {
+      const isRuntimeOnly = !secret.settingsField;
       steps.push({
         key: secret.name,
         label: secret.name.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase()),
-        description: `Required API key or credential. Find this in your ${secret.name.split("_")[0]} account settings.`,
+        description: isRuntimeOnly
+          ? `This secret should already be configured as a project secret. Enter it here to confirm it's ready (value is not stored in the database).`
+          : `Required API key or credential. Find this in your ${secret.name.split("_")[0]} account settings.`,
         type: "secret",
-        placeholder: `Enter ${secret.name}…`,
+        placeholder: isRuntimeOnly ? `Confirm ${secret.name} is set (or type "done")` : `Enter ${secret.name}…`,
+        optional: isRuntimeOnly,
       });
     }
   }
