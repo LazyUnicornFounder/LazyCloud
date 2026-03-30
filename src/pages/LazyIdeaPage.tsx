@@ -162,6 +162,7 @@ const LazyIdeaPage = () => {
           {!isLoading && filteredIdeas.length === 0 && (
             <p className="text-center text-muted-foreground py-12">No ideas found.</p>
           )}
+        </section>
         </main>
       </div>
     </>
