@@ -4,6 +4,7 @@ import IdeaCard from "@/components/IdeaCard";
 import { fetchIdeasForDate } from "@/lib/ideas";
 import { Search, RefreshCw, Lightbulb } from "lucide-react";
 import SEO from "@/components/SEO";
+import Navbar from "@/components/Navbar";
 
 const categories = [
   "All", "Architecture", "Art", "Boxing", "Cars", "Coffee", "Construction",
@@ -68,6 +69,7 @@ const LazyIdeaPage = () => {
         url="https://lazyunicorn.ai/lazy-idea"
       />
       <div className="min-h-screen bg-background">
+        <Navbar />
         <main className="max-w-7xl mx-auto px-6 py-6">
           {/* Hero */}
           <div className="flex flex-col items-center justify-center gap-2 py-12 mb-4">
