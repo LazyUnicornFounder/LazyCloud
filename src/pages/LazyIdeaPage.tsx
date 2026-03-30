@@ -74,18 +74,22 @@ const LazyIdeaPage = () => {
       <div className="min-h-screen bg-background">
         <Navbar />
         <main className="max-w-7xl mx-auto px-6 py-6">
-          {/* Hero */}
-          <div className="flex flex-col items-center justify-center gap-2 py-12 mb-4">
-            <div className="flex items-center gap-3">
-              <Lightbulb className="w-10 h-10 text-primary" />
-              <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground">
+        <section className="relative px-6 md:px-12 pt-32 pb-24 md:pb-32">
+          <div className="max-w-4xl mx-auto">
+            <motion.div initial="hidden" animate="visible" variants={fadeUp} transition={{ duration: 0.7 }}>
+              <span className="font-display text-[11px] tracking-[0.2em] uppercase font-bold text-foreground/40 mb-4 block">BETA</span>
+              <h1 style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(2.5rem, 5vw, 4.5rem)", color: "#f0ead6", lineHeight: 0.95, letterSpacing: "-0.01em" }}>
                 Lazy Idea
               </h1>
-            </div>
-            <p className="text-base md:text-lg text-muted-foreground tracking-tight font-medium">
-              Turn today's news into your next startup idea.
-            </p>
+              <div className="flex items-center gap-3 mt-4 mb-4">
+                <span className="font-display text-[11px] tracking-[0.15em] uppercase font-bold px-3 py-1 border border-[#c8a961]/30 text-[#c8a961]">Lazy Content</span>
+              </div>
+              <p className="mt-6 font-body text-base md:text-lg text-foreground/50 max-w-xl leading-relaxed">
+                Turn today's news into your next startup idea. Fresh ideas generated daily from breaking news, organized by category.
+              </p>
+            </motion.div>
           </div>
+        </section>
 
           {/* Categories */}
           <div className="relative z-10 flex gap-2 overflow-x-auto justify-center mb-3 flex-wrap">
