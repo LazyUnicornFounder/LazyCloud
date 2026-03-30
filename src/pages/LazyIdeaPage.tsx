@@ -73,7 +73,7 @@ const LazyIdeaPage = () => {
       />
       <div className="min-h-screen bg-background">
         <Navbar />
-        <main className="max-w-7xl mx-auto px-6 py-6">
+        <main className="relative z-10 pb-32">
         <section className="relative px-6 md:px-12 pt-32 pb-24 md:pb-32">
           <div className="max-w-4xl mx-auto">
             <motion.div initial="hidden" animate="visible" variants={fadeUp} transition={{ duration: 0.7 }}>
