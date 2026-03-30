@@ -71,6 +71,7 @@ const UseCasesPage = lazy(() => import("./pages/UseCasesPage.tsx"));
 const WaitlistPage = lazy(() => import("./pages/WaitlistPage.tsx"));
 const LazyWaitlistPage = lazy(() => import("./pages/LazyWaitlistPage.tsx"));
 const LazyCloudPage = lazy(() => import("./pages/LazyCloudPage.tsx"));
+const LazyIdeaPage = lazy(() => import("./pages/LazyIdeaPage.tsx"));
 
 const AdminLayout = lazy(() => import("./pages/admin/AdminLayout"));
 const AdminOverview = lazy(() => import("./pages/admin/AdminOverview"));
