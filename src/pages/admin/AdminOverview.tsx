@@ -7,6 +7,7 @@ import { useAdminContext } from "./AdminLayout";
 import { useOverviewStats } from "./hooks/useOverviewStats";
 import { useAgentErrors } from "./hooks/useAgentErrors";
 import { AGENTS, CATEGORIES, CATEGORY_AGENTS, TOTAL_AGENTS, type AgentCategory, type AgentConfig } from "./agentRegistry";
+import AgentSetupWizard from "./components/AgentSetupWizard";
 
 type FilterCategory = "All" | AgentCategory;
 
