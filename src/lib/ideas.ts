@@ -36,6 +36,8 @@ export async function fetchIdeasForDate(date?: string): Promise<{
     .order("is_featured", { ascending: false })
     .order("tag");
 
+  console.log("[BreakingMuse] date:", targetDate, "data:", data, "error:", error);
+
   if (error) {
     console.error("Error fetching ideas:", error);
     return { featured: [], all: {} };
