@@ -43,7 +43,7 @@ const agentGroups = [
 ];
 
 const faqs = [
-  { q: "Do I need all the Lazy agents installed first?", a: "No. Lazy Admin works with any combination. Install one agent and Lazy Admin shows one panel. Install all twenty-five and it shows everything. It detects what is there." },
+  { q: "Do I need all the Lazy agents installed first?", a: "No. Lazy Admin works with any combination. Install one agent and Lazy Admin shows one panel. Install all thirty-five and it shows everything. It detects what is there." },
   { q: "Does it replace the individual setup pages?", a: "No. Each agent still has its own /lazy-[agent]-setup page for configuration. Lazy Admin is for monitoring and control, not initial setup." },
   { q: "Can I trigger agent runs from the dashboard?", a: "Yes. Every agent panel has a Run Now button that calls that agent's primary function immediately without leaving the dashboard." },
   { q: "Does it work if I do not use Lazy Run?", a: "Yes. Lazy Admin works independently of Lazy Run. Lazy Run provides the run_activity and run_performance tables that power some charts, but the dashboard detects and works without them." },
