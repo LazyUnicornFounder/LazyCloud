@@ -97,7 +97,7 @@ function SetupWizard({ agent, onComplete }: { agent: AgentConfig; onComplete: ()
     setSaving(true);
     try {
       if (currentStep.type === "secret" && currentStep.key) {
-        // Secrets go to the settings table field if there's a matching settingsField
+        // Secrets with a settingsField go to the settings table; others are runtime env vars (already configured)
         const matchingSecret = agent.requiredSecrets?.find((s) => s.name === currentStep.key);
         if (matchingSecret?.settingsField) {
           await adminWrite({
@@ -106,6 +106,7 @@ function SetupWizard({ agent, onComplete }: { agent: AgentConfig; onComplete: ()
             data: { [matchingSecret.settingsField]: formValues[currentStep.key] },
           });
         }
+        // Runtime-only secrets (no settingsField) are already added via project secrets — just proceed
       } else if (currentStep.type === "setting") {
         await adminWrite({
           table: agent.settingsTable,
