@@ -220,7 +220,7 @@ export default function LazyAdminPage() {
           <div className="max-w-2xl mx-auto text-center">
             <h2 className="font-display text-3xl md:text-4xl font-bold tracking-tight mb-6">Every agent. One dashboard. One minute a day.</h2>
             <p className="font-body text-foreground/50 mb-10 max-w-lg mx-auto">
-              You built an autonomous business. Lazy Admin makes sure you can check on it without spending your morning opening twenty tabs.
+              You built an autonomous business. Lazy Admin makes sure you can check on it without spending your morning opening thirty-five tabs.
             </p>
             <button
               onClick={handleCopy}
