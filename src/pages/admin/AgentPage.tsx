@@ -92,7 +92,7 @@ function SetupWizard({ agent, onComplete }: { agent: AgentConfig; onComplete: ()
 
   const currentStep = steps[step];
   const isLastStep = step === steps.length - 1;
-  const canProceed = !!formValues[currentStep?.key]?.trim();
+  const canProceed = currentStep?.optional || !!formValues[currentStep?.key]?.trim();
 
   const handleNext = async () => {
     if (!currentStep) return;
