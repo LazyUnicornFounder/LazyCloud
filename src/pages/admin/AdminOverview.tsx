@@ -200,6 +200,18 @@ export function OverviewRightSidebar() {
           {stats?.errorsToday ?? 0}
         </div>
       </div>
+      <div className="mb-5">
+        <div style={{ fontSize: 10, textTransform: "uppercase", letterSpacing: "0.1em", color: "rgba(240,234,214,0.4)" }}>Total Copies</div>
+        <div style={{ fontSize: 18, fontWeight: 700, color: "#c9a84c" }}>
+          {stats?.copiesByAgent ? Object.values(stats.copiesByAgent).reduce((a, b) => a + b, 0) : "—"}
+        </div>
+      </div>
+      <div className="mb-5">
+        <div style={{ fontSize: 10, textTransform: "uppercase", letterSpacing: "0.1em", color: "rgba(240,234,214,0.4)" }}>Total Installs</div>
+        <div style={{ fontSize: 18, fontWeight: 700, color: "#4ade80" }}>
+          {stats?.installsByAgent ? Object.values(stats.installsByAgent).reduce((a, b) => a + b, 0) : "—"}
+        </div>
+      </div>
     </div>
   );
 }
