@@ -5,28 +5,33 @@ const TODAY = new Date().toISOString().slice(0, 10);
 
 const STATIC_PAGES = [
   { loc: "/", changefreq: "daily", priority: "1.0" },
-  { loc: "/blog", changefreq: "daily", priority: "0.9" },
-  { loc: "/pricing", changefreq: "monthly", priority: "0.7" },
-  { loc: "/about", changefreq: "monthly", priority: "0.6" },
-  { loc: "/how-it-works", changefreq: "monthly", priority: "0.7" },
-  { loc: "/use-cases", changefreq: "monthly", priority: "0.7" },
-  { loc: "/autonomy", changefreq: "monthly", priority: "0.6" },
-  { loc: "/changelog", changefreq: "weekly", priority: "0.6" },
-  { loc: "/upgrade-guide", changefreq: "monthly", priority: "0.5" },
-  { loc: "/listen", changefreq: "weekly", priority: "0.5" },
+  { loc: "/blog", changefreq: "daily", priority: "0.8" },
+  { loc: "/pricing", changefreq: "monthly", priority: "0.8" },
+  { loc: "/about", changefreq: "monthly", priority: "0.8" },
+  { loc: "/how-it-works", changefreq: "monthly", priority: "0.8" },
+  { loc: "/use-cases", changefreq: "monthly", priority: "0.8" },
+  { loc: "/autonomy", changefreq: "monthly", priority: "0.8" },
+  { loc: "/changelog", changefreq: "weekly", priority: "0.8" },
+  { loc: "/upgrade-guide", changefreq: "monthly", priority: "0.8" },
+  { loc: "/listen", changefreq: "weekly", priority: "0.8" },
   { loc: "/seo-blog", changefreq: "daily", priority: "0.8" },
   { loc: "/geo-blog", changefreq: "daily", priority: "0.8" },
-  { loc: "/streams", changefreq: "weekly", priority: "0.6" },
+  { loc: "/streams", changefreq: "weekly", priority: "0.8" },
+  { loc: "/waitlist", changefreq: "monthly", priority: "0.8" },
+  { loc: "/docs", changefreq: "weekly", priority: "0.8" },
 ];
 
 const PRODUCT_PAGES = [
   "/lazy-run", "/lazy-admin", "/lazy-blogger", "/lazy-seo", "/lazy-geo",
   "/lazy-crawl", "/lazy-perplexity", "/lazy-contentful",
   "/lazy-store", "/lazy-pay", "/lazy-sms", "/lazy-mail",
-  "/lazy-voice", "/lazy-stream",
+  "/lazy-voice", "/lazy-stream", "/lazy-launch", "/lazy-cloud",
   "/lazy-github", "/lazy-gitlab", "/lazy-linear", "/lazy-design", "/lazy-auth",
   "/lazy-alert", "/lazy-telegram", "/lazy-supabase", "/lazy-security",
-  
+  "/lazy-agents", "/lazy-youtube", "/lazy-granola",
+  "/lazy-watch", "/lazy-fix", "/lazy-build", "/lazy-intel",
+  "/lazy-repurpose", "/lazy-trend", "/lazy-churn",
+  "/lazy-waitlist", "/lazy-drop", "/lazy-print",
 ];
 
 function urlEntry(loc: string, lastmod: string, changefreq: string, priority: string) {
@@ -45,12 +50,10 @@ Deno.serve(async () => {
 
   const entries: string[] = [];
 
-  // Static pages
   for (const p of STATIC_PAGES) {
     entries.push(urlEntry(p.loc, TODAY, p.changefreq, p.priority));
   }
 
-  // Product pages
   for (const loc of PRODUCT_PAGES) {
     entries.push(urlEntry(loc, TODAY, "weekly", "0.8"));
   }
@@ -64,7 +67,7 @@ Deno.serve(async () => {
 
   for (const p of blogPosts || []) {
     const mod = p.published_at ? p.published_at.slice(0, 10) : TODAY;
-    entries.push(urlEntry(`/blog/${p.slug}`, mod, "monthly", "0.7"));
+    entries.push(urlEntry(`/blog/${p.slug}`, mod, "monthly", "0.6"));
   }
 
   // SEO posts
@@ -76,7 +79,7 @@ Deno.serve(async () => {
 
   for (const p of seoPosts || []) {
     const mod = p.published_at ? p.published_at.slice(0, 10) : TODAY;
-    entries.push(urlEntry(`/seo-blog/${p.slug}`, mod, "monthly", "0.7"));
+    entries.push(urlEntry(`/seo-blog/${p.slug}`, mod, "monthly", "0.6"));
   }
 
   // GEO posts
@@ -88,7 +91,7 @@ Deno.serve(async () => {
 
   for (const p of geoPosts || []) {
     const mod = p.published_at ? p.published_at.slice(0, 10) : TODAY;
-    entries.push(urlEntry(`/geo-blog/${p.slug}`, mod, "monthly", "0.7"));
+    entries.push(urlEntry(`/geo-blog/${p.slug}`, mod, "monthly", "0.6"));
   }
 
   // Stream content
