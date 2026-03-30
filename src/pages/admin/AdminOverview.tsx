@@ -252,6 +252,16 @@ export default function AdminOverview() {
           </div>
         )}
       </div>
+
+      {/* Setup wizard dialog */}
+      {setupAgent && (
+        <AgentSetupWizard
+          agent={setupAgent}
+          open={!!setupAgent}
+          onClose={() => setSetupAgent(null)}
+          onComplete={() => refetch()}
+        />
+      )}
     </div>
   );
 }

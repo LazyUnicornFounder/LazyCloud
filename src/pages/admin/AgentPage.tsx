@@ -6,6 +6,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useAdminContext } from "./AdminLayout";
 import { getAgentBySlug } from "./agentRegistry";
 import { useQuery } from "@tanstack/react-query";
+import AgentSetupWizard from "./components/AgentSetupWizard";
 
 export default function AgentPage() {
   const { agentSlug } = useParams<{ agentSlug: string }>();
