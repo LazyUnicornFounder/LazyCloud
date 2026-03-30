@@ -61,7 +61,13 @@ const LazyIdeaPage = () => {
       );
     }
 
-    return ideas;
+    // Deduplicate by title
+    const seen = new Set<string>();
+    return ideas.filter((idea) => {
+      if (seen.has(idea.title)) return false;
+      seen.add(idea.title);
+      return true;
+    });
   }, [searchQuery, activeCategory, featured, allByCategory]);
 
   return (
