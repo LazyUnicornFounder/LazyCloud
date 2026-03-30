@@ -23,10 +23,22 @@ export function useOverviewStats(hasAnyInstalled: boolean) {
         } catch { return 0; }
       };
 
-      const [blogToday, seoToday, geoToday] = await Promise.all([
+      const countCopies = async (sinceIso?: string) => {
+        try {
+          let q = (supabase as any).from("analytics_events").select("id", { count: "exact", head: true })
+            .or("event_name.eq.copy_prompt,event_name.ilike.%_prompt_copy");
+          if (sinceIso) q = q.gte("created_at", sinceIso);
+          const { count } = await q;
+          return count || 0;
+        } catch { return 0; }
+      };
+
+      const [blogToday, seoToday, geoToday, copiesToday, copiesTotal] = await Promise.all([
         countToday("blog_posts"),
         countToday("seo_posts", "published_at"),
         countToday("geo_posts", "published_at"),
+        countCopies(todayIso),
+        countCopies(),
       ]);
 
       const errorTables = ["blog_errors", "seo_errors", "geo_errors", "voice_errors", "stream_errors", "granola_errors", "waitlist_errors"];
@@ -36,6 +48,8 @@ export function useOverviewStats(hasAnyInstalled: boolean) {
       return {
         postsToday: blogToday + seoToday + geoToday,
         errorsToday,
+        copiesToday,
+        copiesTotal,
       };
     },
     refetchInterval: 60_000,
