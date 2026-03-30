@@ -169,11 +169,12 @@ export default function AdminOverview() {
       <div className="flex-1 pl-6 min-w-0">
         {/* Stats row */}
         {hasAnySetup && (
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-3 mb-6">
-            {[
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 mb-6">
+             {[
               { label: "Posts Today", value: stats?.postsToday ?? "—" },
               { label: "Agents Active", value: `${runningCount}/${TOTAL_AGENTS}` },
-              { label: "Revenue Today", value: "—", gold: true },
+              { label: "Prompts Copied Today", value: stats?.copiesToday ?? "—", gold: true },
+              { label: "Total Prompts Copied", value: stats?.copiesTotal ?? "—", gold: true },
               { label: "Errors Today", value: stats?.errorsToday ?? "—", red: (stats?.errorsToday ?? 0) > 0 },
               { label: "Security Score", value: "—" },
             ].map((s) => (
