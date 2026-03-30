@@ -20,7 +20,7 @@ const NEW_TITLE = "Launch your autonomous business on Lovable.";
 const NEW_DESCRIPTION = "Turn today's news into your next startup idea with Lazy Idea. Launch your website with Lazy Launch, and run it autonomously with Lazy Agents.";
 
 const rotatingWords = [
-  "websites", "apps", "stores", "blogs", "podcasts", "streams",
+  "ideas", "websites", "apps", "stores", "blogs", "podcasts", "streams",
   "emails", "security", "SEO", "GEO", "payments", "SMS",
   "design", "alerts", "merch", "commits", "databases", "waitlists",
   "research",
