@@ -34,11 +34,12 @@ const features = [
 ];
 
 const agentGroups = [
-  { label: "Lazy Content", color: "text-[#c8a961]", agent: ["Blogger", "SEO", "GEO", "Crawl", "Perplexity", "Contentful"] },
-  { label: "Lazy Commerce", color: "text-emerald-400", agent: ["Store", "Drop", "Print", "Pay", "SMS", "Mail"] },
-  { label: "Lazy Media", color: "text-blue-400", agent: ["Voice", "Stream"] },
-  { label: "Lazy Dev", color: "text-purple-400", agent: ["GitHub", "GitLab", "Linear", "Design", "Auth"] },
-  { label: "Lazy Ops", color: "text-foreground/50", agent: ["Alert", "Telegram", "Supabase", "Security"] },
+  { label: "Platform", color: "text-[#c8a961]", agent: ["Launch", "Cloud", "Run", "Admin", "Waitlist"] },
+  { label: "Content", color: "text-[#c8a961]", agent: ["Blogger", "SEO", "GEO", "Crawl", "Perplexity", "Repurpose", "Trend"] },
+  { label: "Commerce", color: "text-emerald-400", agent: ["Store", "Drop", "Print", "Pay", "Mail", "SMS", "Churn"] },
+  { label: "Media", color: "text-blue-400", agent: ["Voice", "Stream", "YouTube"] },
+  { label: "Dev", color: "text-purple-400", agent: ["Code", "GitLab", "Linear", "Contentful", "Design", "Auth", "Granola"] },
+  { label: "Ops", color: "text-foreground/50", agent: ["Alert", "Telegram", "Supabase", "Security", "Watch", "Fix", "Build", "Intel", "Agents"] },
 ];
 
 const faqs = [
