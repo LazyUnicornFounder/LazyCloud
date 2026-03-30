@@ -6,12 +6,13 @@ import VoiceAgentWidget from "@/components/VoiceAgentWidget";
 export default function PublicLayout({ children }: { children: React.ReactNode }) {
   const location = useLocation();
   const isAdmin = location.pathname.startsWith("/admin");
+  const isDocs = location.pathname.startsWith("/docs");
 
   return (
     <>
       {children}
-      {!isAdmin && <LazyLaunchCTA />}
-      {!isAdmin && <Footer />}
+      {!isAdmin && !isDocs && <LazyLaunchCTA />}
+      {!isAdmin && !isDocs && <Footer />}
       {/* <VoiceAgentWidget /> */}
     </>
   );
