@@ -69,6 +69,7 @@ import PublicLayout from "./components/PublicLayout.tsx";
 import AdminLayout from "./pages/admin/AdminLayout";
 import AdminOverview from "./pages/admin/AdminOverview";
 import AdminSettingsPage from "./pages/admin/AdminSettingsPage";
+import AdminCloudSignups from "./pages/admin/AdminCloudSignups";
 import AgentPage from "./pages/admin/AgentPage";
 import WaitlistPage from "./pages/WaitlistPage.tsx";
 import LazyWaitlistPage from "./pages/LazyWaitlistPage.tsx";
