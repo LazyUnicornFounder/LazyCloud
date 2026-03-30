@@ -65,7 +65,7 @@ const LazyIdeaPage = () => {
       <SEO
         title="Lazy Idea — AI Startup Ideas from Today's News"
         description="Fresh startup ideas generated daily from breaking news. Browse by category, search, and discover your next big idea."
-        path="/lazy-idea"
+        url="https://lazyunicorn.ai/lazy-idea"
       />
       <div className="min-h-screen bg-background">
         <main className="max-w-7xl mx-auto px-6 py-6">
