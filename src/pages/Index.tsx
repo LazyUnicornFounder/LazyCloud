@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import PricingSection from "@/components/PricingSection";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
 import {
@@ -349,6 +350,9 @@ const Index = () => {
           </motion.div>
         </div>
       </section>
+
+      {/* Pricing */}
+      <PricingSection />
 
       {/* Product Grid */}
       <section id="agent" className="relative z-10 scroll-mt-20">
