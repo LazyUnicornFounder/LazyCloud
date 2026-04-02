@@ -6,7 +6,8 @@ import { useRef } from "react";
 import {
   Search, Upload, Brain, MessageSquare, Globe, FileText,
   Bookmark, Shield, Lock, Building2,
-  Scale, Landmark, HardHat, Check, ArrowRight, Sparkles
+  Scale, Landmark, HardHat, Check, ArrowRight, Sparkles,
+  TrendingUp, ShieldCheck
 } from "lucide-react";
 
 /* ── Scroll-triggered wrapper ── */
@@ -64,6 +65,8 @@ const useCases = [
   { icon: Scale, title: "Legal", desc: "Search 25 years of court decisions and contracts simultaneously" },
   { icon: Building2, title: "Corporate", desc: "Every policy, procedure, and memo — instantly searchable" },
   { icon: Landmark, title: "Government", desc: "Decades of records, one search bar" },
+  { icon: TrendingUp, title: "Finance", desc: "Compliance docs, audit trails, and reports — all searchable instantly" },
+  { icon: ShieldCheck, title: "Insurance", desc: "Claims, policies, and underwriting files at your fingertips" },
 ];
 
 const features = [
