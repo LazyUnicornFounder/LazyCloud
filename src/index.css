@@ -37,7 +37,7 @@
     --input: 40 8% 10%;
     --ring: 16 90% 55%;
 
-    --radius: 0rem;
+    --radius: 0.5rem;
 
     --font-display: 'Space Grotesk', system-ui, sans-serif;
     --font-body: 'Space Grotesk', system-ui, sans-serif;
