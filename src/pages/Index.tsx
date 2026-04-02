@@ -66,7 +66,7 @@ const useCases = [
   { icon: Building2, title: "Corporate", desc: "Every policy, procedure, and memo — instantly searchable" },
   { icon: Landmark, title: "Government", desc: "Decades of records, one search bar" },
   { icon: TrendingUp, title: "Finance", desc: "Compliance docs, audit trails, and reports — all searchable instantly" },
-  { icon: FileShield, title: "Insurance", desc: "Claims, policies, and underwriting files at your fingertips" },
+  { icon: ShieldCheck, title: "Insurance", desc: "Claims, policies, and underwriting files at your fingertips" },
 ];
 
 const features = [
