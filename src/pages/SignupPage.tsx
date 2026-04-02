@@ -136,7 +136,7 @@ export default function SignupPage() {
             </select>
           </div>
           <Button type="submit" className="w-full" disabled={loading}>
-            {loading ? "Creating account..." : "Start Free Trial"}
+            {loading ? "Creating account..." : "Get Early Access"}
           </Button>
         </form>
 
