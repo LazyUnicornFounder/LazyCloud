@@ -93,7 +93,14 @@ export default function SignupPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background flex items-center justify-center px-6 py-16">
+    <div className="min-h-screen bg-background flex items-center justify-center px-6 py-16 relative">
+      <button
+        onClick={() => navigate("/")}
+        className="absolute top-6 right-6 p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-secondary/50 transition-colors"
+        aria-label="Close"
+      >
+        <X className="h-5 w-5" />
+      </button>
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <Link to="/" className="font-display text-lg font-bold tracking-tight">
