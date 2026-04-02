@@ -1,461 +1,353 @@
-import { useState, useEffect } from "react";
-import PricingSection from "@/components/PricingSection";
-import { motion, AnimatePresence } from "framer-motion";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 import {
-  FileText, Search, Globe, ShoppingCart, Mic, CreditCard,
-  MessageSquare, Video, Code, Zap, Activity, Radar, Compass,
-  Layers, BarChart3, Database, Bell, Send, Shield,
-  LayoutDashboard, Calendar, ArrowRight, Rocket, Clock,
-  Package, Printer, Mail, MonitorPlay, Youtube, GitBranch,
-  Paintbrush, Lock, Eye, Wrench, Hammer, Brain, RefreshCw,
-  TrendingUp, UserCheck, Hourglass, ListEnd,
-  type LucideIcon
+  Search, Upload, Brain, MessageSquare, Globe, FileText,
+  Bookmark, Shield, Lock, Eye, FileCheck, Building2,
+  Scale, Landmark, HardHat, Check, ArrowRight
 } from "lucide-react";
 
-import SEO from "@/components/SEO";
-import Navbar from "@/components/Navbar";
-import { useTrackVisit } from "@/hooks/useTrackVisit";
-
-const NEW_TITLE = "Launch your autonomous business on Lovable.";
-const NEW_DESCRIPTION = "Turn today's news into your next startup idea with Lazy Idea. Launch your website with Lazy Launch, and run it autonomously with Lazy Agents.";
-
-const rotatingWords = [
-  "ideas", "websites", "apps", "stores", "blogs", "podcasts", "streams",
-  "emails", "security", "SEO", "GEO", "payments", "SMS",
-  "design", "alerts", "merch", "commits", "databases", "waitlists",
-  "research",
+const stats = [
+  { value: "55,000+", label: "files indexed" },
+  { value: "61GB", label: "processed" },
+  { value: "1 afternoon", label: "to set up" },
+  { value: "EN + AR", label: "bilingual" },
 ];
 
-function RotatingHeadline() {
-  const [index, setIndex] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setIndex((prev) => (prev + 1) % rotatingWords.length);
-    }, 2200);
-    return () => clearInterval(interval);
-  }, []);
-
-  return (
-    <div className="flex items-center gap-2 mb-2">
-      <span
-        className="font-body text-[12px] tracking-[0.2em] uppercase font-semibold"
-        style={{ color: "hsl(var(--foreground))", opacity: 0.45 }}
-      >
-        Now automating
-      </span>
-      <div className="relative h-5 overflow-hidden" style={{ minWidth: 90 }}>
-        <AnimatePresence mode="wait">
-          <motion.span
-            key={rotatingWords[index]}
-            initial={{ y: 16, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: -16, opacity: 0 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="absolute inset-0 flex items-center font-body text-[12px] tracking-[0.2em] uppercase font-semibold"
-            style={{ color: "hsl(var(--primary))" }}
-          >
-            {rotatingWords[index]}
-          </motion.span>
-        </AnimatePresence>
-      </div>
-    </div>
-  );
-}
-
-const products = [
-  // Lazy Content
-  { cursive: "Lazy", name: "Blogger", link: "/lazy-blogger", tagline: "Autonomous blog posts" },
-  { cursive: "Lazy", name: "SEO", link: "/lazy-seo", tagline: "Autonomous SEO content" },
-  { cursive: "Lazy", name: "GEO", link: "/lazy-geo", tagline: "Autonomous AI citations" },
-  { cursive: "Lazy", name: "Crawl", link: "/lazy-crawl", tagline: "Autonomous web research" },
-  { cursive: "Lazy", name: "Perplexity", link: "/lazy-perplexity", tagline: "Autonomous deep research" },
-  { cursive: "Lazy", name: "Contentful", link: "/lazy-contentful", tagline: "Autonomous CMS sync" },
-  // Lazy Commerce
-  { cursive: "Lazy", name: "Store", link: "/lazy-store", tagline: "Autonomous storefronts" },
-  { cursive: "Lazy", name: "Drop", link: "/lazy-drop", tagline: "Autonomous dropshipping" },
-  { cursive: "Lazy", name: "Print", link: "/lazy-print", tagline: "Autonomous print-on-demand" },
-  { cursive: "Lazy", name: "Pay", link: "/lazy-pay", tagline: "Autonomous payments" },
-  { cursive: "Lazy", name: "SMS", link: "/lazy-sms", tagline: "Autonomous text campaigns" },
-  { cursive: "Lazy", name: "Mail", link: "/lazy-mail", tagline: "Autonomous email flows" },
-  // Lazy Media
-  { cursive: "Lazy", name: "Voice", link: "/lazy-voice", tagline: "Autonomous podcasts" },
-  { cursive: "Lazy", name: "Stream", link: "/lazy-stream", tagline: "Autonomous stream content" },
-  { cursive: "Lazy", name: "YouTube", link: "/lazy-youtube", tagline: "Autonomous video content" },
-  // Lazy Dev
-  { cursive: "Lazy", name: "GitHub", link: "/lazy-github", tagline: "Autonomous changelogs" },
-  { cursive: "Lazy", name: "GitLab", link: "/lazy-gitlab", tagline: "Autonomous GitLab docs" },
-  { cursive: "Lazy", name: "Linear", link: "/lazy-linear", tagline: "Autonomous issue content" },
-  { cursive: "Lazy", name: "Design", link: "/lazy-design", tagline: "Autonomous UI upgrades" },
-  { cursive: "Lazy", name: "Auth", link: "/lazy-auth", tagline: "Autonomous login flows" },
-  { cursive: "Lazy", name: "Granola", link: "/lazy-granola", tagline: "Autonomous meeting content" },
-  // Lazy Ops
-  { cursive: "Lazy", name: "Admin", link: "/lazy-admin", tagline: "Autonomous ops control" },
-  { cursive: "Lazy", name: "Alert", link: "/lazy-alert", tagline: "Autonomous Slack alerts" },
-  { cursive: "Lazy", name: "Telegram", link: "/lazy-telegram", tagline: "Autonomous Telegram updates" },
-  { cursive: "Lazy", name: "Supabase", link: "/lazy-supabase", tagline: "Autonomous database reports" },
-  { cursive: "Lazy", name: "Security", link: "/lazy-security", tagline: "Autonomous pentesting" },
-  { cursive: "Lazy", name: "Watch", link: "/lazy-watch", tagline: "Autonomous error monitoring" },
-  { cursive: "Lazy", name: "Fix", link: "/lazy-fix", tagline: "Autonomous prompt improvement" },
-  { cursive: "Lazy", name: "Build", link: "/lazy-build", tagline: "Autonomous agent writing" },
-  { cursive: "Lazy", name: "Intel", link: "/lazy-intel", tagline: "Autonomous content strategy" },
-  { cursive: "Lazy", name: "Repurpose", link: "/lazy-repurpose", tagline: "Autonomous content repurposing" },
-  { cursive: "Lazy", name: "Trend", link: "/lazy-trend", tagline: "Autonomous trend detection" },
-  { cursive: "Lazy", name: "Churn", link: "/lazy-churn", tagline: "Autonomous churn prevention" },
-
-  { cursive: "Lazy", name: "Coming Soon", link: "", tagline: "More agents loading" },
+const steps = [
+  {
+    icon: Upload,
+    title: "Upload your files",
+    desc: "Connect existing storage or upload directly. Supports PDF, Word, Excel, CAD, images, and more.",
+  },
+  {
+    icon: Brain,
+    title: "We index everything",
+    desc: "AI reads, chunks, and embeds every document. Full semantic search across your entire archive.",
+  },
+  {
+    icon: Search,
+    title: "Ask anything",
+    desc: "Search in plain language. Get exact files, page numbers, and AI-powered answers with citations.",
+  },
 ];
 
-/* ── Lucide icon map ── */
-const iconMap: Record<string, LucideIcon> = {
-  Launch: Rocket,
-  Waitlist: ListEnd,
-  Run: Clock,
-  Blogger: FileText,
-  SEO: Search,
-  GEO: Globe,
-  Crawl: Radar,
-  Perplexity: Compass,
-  Contentful: Layers,
-  Store: ShoppingCart,
-  Drop: Package,
-  Print: Printer,
-  Pay: CreditCard,
-  SMS: MessageSquare,
-  Mail: Mail,
-  Voice: Mic,
-  Stream: MonitorPlay,
-  YouTube: Youtube,
-  GitHub: Code,
-  GitLab: GitBranch,
-  Linear: BarChart3,
-  Design: Paintbrush,
-  Auth: Lock,
-  Granola: Calendar,
-  Admin: LayoutDashboard,
-  Alert: Bell,
-  Telegram: Send,
-  Supabase: Database,
-  Security: Shield,
-  Watch: Eye,
-  Fix: Wrench,
-  Build: Hammer,
-  Intel: Brain,
-  Repurpose: RefreshCw,
-  Trend: TrendingUp,
-  Churn: UserCheck,
-  "Coming Soon": Hourglass,
-};
+const useCases = [
+  { icon: HardHat, title: "Construction & Engineering", desc: "Find that FIDIC clause in seconds, not hours" },
+  { icon: Scale, title: "Legal", desc: "Search 25 years of court decisions and contracts simultaneously" },
+  { icon: Building2, title: "Corporate", desc: "Every policy, procedure, and memo — instantly searchable" },
+  { icon: Landmark, title: "Government", desc: "Decades of records, one search bar" },
+];
 
-const Index = () => {
-  useTrackVisit();
-  const location = useLocation();
+const features = [
+  { icon: Search, title: "Semantic search", desc: "Understands meaning, not just keywords" },
+  { icon: Globe, title: "Arabic + English", desc: "RTL built in from day one" },
+  { icon: FileText, title: "PDF preview", desc: "Highlighting on the exact page" },
+  { icon: Bookmark, title: "Bookmarks & collections", desc: "Organise your most-used documents" },
+  { icon: MessageSquare, title: "Chat with citations", desc: "AI answers backed by your files" },
+  { icon: Shield, title: "Your data stays yours", desc: "Client-owned infrastructure" },
+];
 
-  useEffect(() => {
-    if (location.hash) {
-      const el = document.querySelector(location.hash);
-      if (el) setTimeout(() => el.scrollIntoView({ behavior: "smooth" }), 100);
-    }
-  }, [location.hash]);
+const securityPoints = [
+  "Client-owned AWS / Supabase accounts",
+  "End-to-end encryption",
+  "SOC 2 compatible architecture",
+  "Full audit trails",
+  "NDA + DPA standard",
+];
 
+const pricingTiers = [
+  {
+    name: "Starter",
+    price: "$499",
+    period: "/month",
+    features: ["Up to 50 GB", "50,000 files", "5 users", "Email support"],
+    cta: "Start Free Trial",
+    highlighted: false,
+  },
+  {
+    name: "Professional",
+    price: "$999",
+    period: "/month",
+    features: ["Up to 500 GB", "500,000 files", "25 users", "Priority support", "Custom branding"],
+    cta: "Start Free Trial",
+    highlighted: true,
+  },
+  {
+    name: "Enterprise",
+    price: "Custom",
+    period: "",
+    features: ["Unlimited everything", "On-premise option", "Dedicated support", "SLA"],
+    cta: "Contact Us",
+    highlighted: false,
+  },
+];
+
+const testimonials = [
+  {
+    quote: "We went from spending hours digging through archives to finding exactly what we need in seconds. Game changer.",
+    name: "Ahmad Al-Rashid",
+    title: "Head of Engineering",
+    company: "Gulf Construction Co.",
+  },
+  {
+    quote: "The Arabic support is flawless. Our team finally has a tool that works with our documents natively.",
+    name: "Sara Mahmoud",
+    title: "Legal Director",
+    company: "Al-Nour Law Firm",
+  },
+  {
+    quote: "25 years of government records, searchable in one afternoon. I didn't believe it until I saw it.",
+    name: "Khalid Nasser",
+    title: "IT Director",
+    company: "Ministry of Works",
+  },
+];
+
+export default function Index() {
   return (
-    <div className="min-h-screen text-foreground relative bg-background">
-      <SEO
-        title={NEW_TITLE}
-        url="/"
-        description={NEW_DESCRIPTION}
-        keywords="autonomous blog agent, autonomous SEO agent, autonomous GEO agent, Lovable website growth, AI blog writer, AI SEO tool, AI citation agent, self-growing website, autonomous content, Lovable startup, solo founder tools, AI business automation, autonomous marketing, self-building startup"
-        breadcrumbs={[{ name: "Home", url: "/" }]}
-        faq={[
-          { question: "What are the Autonomous Agents?", answer: "They are AI-powered agent that autonomously grow your Lovable website by publishing content, optimizing for search, and getting your brand cited by AI assistants." },
-          { question: "How does Lazy Blogger work?", answer: "With a single prompt, Lazy Blogger publishes high-quality blog posts every day on your Lovable website — forever, for free." },
-          { question: "What does Lazy SEO do?", answer: "Lazy SEO discovers keyword opportunities, creates SEO-optimized content, and improves your search rankings on autopilot." },
-          { question: "What is Lazy GEO?", answer: "Lazy GEO gets your brand cited by AI agent like ChatGPT, Claude, and Perplexity by creating citation-ready content and tracking your visibility." },
-        ]}
-        speakable={["h1", ".hero-description"]}
-      />
-
-
-      <Navbar activePage="home" />
-
-      <main>
-      {/* Hero */}
-      <header className="relative z-10">
-        <section className="relative px-6 md:px-12 pt-32 pb-24 md:pb-32 min-h-screen flex flex-col justify-center">
-          <div className="max-w-4xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7 }}
-            >
-              <RotatingHeadline />
-
-              <h1
-                className="mt-6"
-                style={{
-                  fontFamily: "'Space Grotesk', sans-serif",
-                  fontSize: "clamp(2.5rem, 5vw, 4.5rem)",
-                  color: "#f0ead6",
-                  lineHeight: 0.95,
-                  letterSpacing: "-0.01em",
-                }}
-              >
-                Launch your autonomous<br className="hidden md:inline" />
-                {" "}business on Lovable.
-              </h1>
-
-              <p className="mt-6 font-body text-base md:text-lg max-w-xl leading-relaxed" style={{ color: "#f0ead6", opacity: 0.5 }}>
-                Turn today's news into your next startup idea with Lazy Idea. Launch your website with Lazy Launch, and run it autonomously with Lazy Agents.
-              </p>
-
-
-              <div className="flex flex-col sm:flex-row items-start gap-4 mt-10">
-                <Link
-                  to="/lazy-idea"
-                  className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-display font-bold text-sm tracking-[0.08em] uppercase px-8 py-4 hover:opacity-90 transition-opacity"
-                >
-                  Try Lazy Idea
-                </Link>
-              </div>
-            </motion.div>
-
-            {/* Integrations marquee */}
-            <div className="mt-16 overflow-hidden">
-              <p className="text-[10px] tracking-[0.3em] uppercase font-semibold mb-4" style={{ color: "#f0ead6", opacity: 0.2 }}>
-                Integrates with
-              </p>
-              <div className="relative">
-                <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-[#0a0a08] to-transparent z-10 pointer-events-none" />
-                <motion.div
-                  className="flex gap-10 items-center whitespace-nowrap"
-                  animate={{ x: ["0%", "-50%"] }}
-                  transition={{ duration: 45, ease: "linear", repeat: Infinity }}
-                >
-                  {[...Array(2)].map((_, dupeIdx) => (
-                    <div key={dupeIdx} className="flex gap-10 items-center shrink-0">
-                      {[
-                        { name: "Firecrawl", href: "/lazy-crawl" },
-                        { name: "Perplexity", href: "/lazy-perplexity" },
-                        { name: "Contentful", href: "/lazy-contentful" },
-                        { name: "Shopify", href: "/lazy-store" },
-                        { name: "AutoDS", href: "/lazy-drop" },
-                        { name: "Printful", href: "/lazy-print" },
-                        { name: "Stripe", href: "/lazy-pay" },
-                        { name: "Twilio", href: "/lazy-sms" },
-                        { name: "Resend", href: "/lazy-mail" },
-                        { name: "ElevenLabs", href: "/lazy-voice" },
-                        { name: "Twitch", href: "/lazy-stream" },
-                        { name: "YouTube", href: "/lazy-youtube" },
-                        { name: "GitHub", href: "/lazy-github" },
-                        { name: "GitLab", href: "/lazy-gitlab" },
-                        { name: "Linear", href: "/lazy-linear" },
-                        { name: "Slack", href: "/lazy-alert" },
-                        { name: "Telegram", href: "/lazy-telegram" },
-                        { name: "Supabase", href: "/lazy-supabase" },
-                        { name: "Aikido", href: "/lazy-security" },
-                      ].map((item) => (
-                        <Link
-                          key={`${dupeIdx}-${item.name}`}
-                          to={item.href}
-                          className="text-[11px] tracking-[0.15em] uppercase font-medium shrink-0 transition-opacity duration-200 hover:opacity-60"
-                          style={{ color: "#f0ead6", opacity: 0.25 }}
-                        >
-                          {item.name}
-                        </Link>
-                      ))}
-                    </div>
-                  ))}
-                </motion.div>
-              </div>
-            </div>
+    <div className="min-h-screen bg-background text-foreground">
+      {/* Navbar */}
+      <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border bg-background/80 backdrop-blur-md">
+        <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+          <span className="font-display text-lg font-bold tracking-tight">Lazy Cloud</span>
+          <div className="hidden md:flex items-center gap-8 text-sm text-muted-foreground">
+            <a href="#how-it-works" className="hover:text-foreground transition-colors">How it works</a>
+            <a href="#use-cases" className="hover:text-foreground transition-colors">Use cases</a>
+            <a href="#pricing" className="hover:text-foreground transition-colors">Pricing</a>
+            <a href="#security" className="hover:text-foreground transition-colors">Security</a>
           </div>
-        </section>
-      </header>
+          <div className="flex items-center gap-3">
+            <Link to="/login">
+              <Button variant="ghost" size="sm">Log in</Button>
+            </Link>
+            <Link to="/signup">
+              <Button size="sm">Start Free Trial</Button>
+            </Link>
+          </div>
+        </div>
+      </nav>
 
-      {/* ── Step 1: Lazy Idea ── */}
-      <section className="relative z-10 border-t border-border">
-        <div className="px-6 md:px-12 py-20 md:py-28 max-w-4xl mx-auto">
-          <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
-            <p className="font-body text-[14px] tracking-[0.2em] uppercase mb-4" style={{ color: "#c8a961", opacity: 0.6 }}>
-              Step 1
-            </p>
-            <h2 style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(2rem, 4vw, 3.5rem)", color: "#f0ead6", lineHeight: 0.95, letterSpacing: "-0.01em" }}>
-              Find your next<br className="hidden md:inline" /> startup idea.
-            </h2>
-            <p className="mt-6 max-w-xl font-body text-base md:text-lg leading-relaxed" style={{ color: "#f0ead6", opacity: 0.5 }}>
-              Lazy Idea turns today's breaking news into fresh startup ideas — generated daily, organized by category. Browse, search, and discover the idea worth building.
-            </p>
-            <div className="flex flex-col sm:flex-row items-start gap-4 mt-10">
-              <Link
-                to="/lazy-idea"
-                className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-display font-bold text-sm tracking-[0.08em] uppercase px-8 py-4 hover:opacity-90 transition-opacity"
-              >
-                Try Lazy Idea
-              </Link>
-            </div>
-          </motion.div>
+      {/* Hero */}
+      <section className="pt-32 pb-20 px-6">
+        <div className="max-w-4xl mx-auto text-center">
+          <h1 className="text-4xl md:text-6xl font-bold font-display tracking-tight leading-tight mb-6">
+            25 Years of Documents.
+            <br />
+            <span className="text-primary">One Search.</span>
+          </h1>
+          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed">
+            Turn your company's file archive into an AI-powered search assistant.
+            Ask questions in plain English or Arabic — get the exact file and page number.
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Link to="/signup">
+              <Button size="lg" className="text-base px-8">
+                Start Free Trial <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </Link>
+            <a href="#demo">
+              <Button variant="outline" size="lg" className="text-base px-8">
+                See Demo
+              </Button>
+            </a>
+          </div>
         </div>
       </section>
 
-      {/* ── Step 2: Lazy Launch ── */}
-      <section className="relative z-10 border-t border-border">
-        <div className="px-6 md:px-12 py-20 md:py-28 max-w-4xl mx-auto">
-          <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
-            <p className="font-body text-[14px] tracking-[0.2em] uppercase mb-4" style={{ color: "#c8a961", opacity: 0.6 }}>
-              Step 2
-            </p>
-            <h2 style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(2rem, 4vw, 3.5rem)", color: "#f0ead6", lineHeight: 0.95, letterSpacing: "-0.01em" }}>
-              Launch your Lovable site<br className="hidden md:inline" /> with one prompt.
-            </h2>
-            <p className="mt-6 max-w-xl font-body text-base md:text-lg leading-relaxed" style={{ color: "#f0ead6", opacity: 0.5 }}>
-              Describe your business, pick your agents, choose your design — Lazy Launch generates a single prompt that builds your entire site in Lovable. Landing page, blog, SEO, payments, and everything else. One paste. Done.
-            </p>
-            <div className="flex flex-col sm:flex-row items-start gap-4 mt-10">
-              <Link
-                to="/lazy-launch"
-                className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-display font-bold text-sm tracking-[0.08em] uppercase px-8 py-4 hover:opacity-90 transition-opacity"
-              >
-                Try Lazy Launch
-              </Link>
+      {/* Stats */}
+      <section className="border-y border-border py-8 px-6">
+        <div className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+          {stats.map((s) => (
+            <div key={s.label}>
+              <div className="text-2xl md:text-3xl font-bold font-display text-primary">{s.value}</div>
+              <div className="text-sm text-muted-foreground mt-1">{s.label}</div>
             </div>
-          </motion.div>
+          ))}
         </div>
       </section>
 
-      {/* ── Step 3: Lazy Agents ── */}
-      <section className="relative z-10 border-t border-border">
-        <div className="px-6 md:px-12 py-20 md:py-28 max-w-4xl mx-auto">
-          <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
-            <p className="font-body text-[14px] tracking-[0.2em] uppercase mb-4" style={{ color: "#c8a961", opacity: 0.6 }}>
-              Step 3
-            </p>
-            <h2 style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(2rem, 4vw, 3.5rem)", color: "#f0ead6", lineHeight: 0.95, letterSpacing: "-0.01em" }}>
-              34 Lazy Agents run your<br className="hidden md:inline" /> Lovable business.
-            </h2>
-            <h2 style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(2rem, 4vw, 3.5rem)", color: "#f0ead6", lineHeight: 0.95, letterSpacing: "-0.01em", marginTop: "0.1em" }}>
-              One prompt each.
-            </h2>
-            <p className="mt-6 max-w-xl font-body text-base md:text-lg leading-relaxed" style={{ color: "#f0ead6", opacity: 0.5 }}>
-              Each agent is a self-contained prompt you paste into your Lovable project. It installs its own tables, edge functions, and UI — then runs itself autonomously.
-            </p>
-            <div className="flex flex-col sm:flex-row items-start gap-4 mt-10">
-              <Link
-                to="/agents"
-                className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-display font-bold text-sm tracking-[0.08em] uppercase px-8 py-4 hover:opacity-90 transition-opacity"
-              >
-                Explore Lazy Agents
-              </Link>
-            </div>
-          </motion.div>
+      {/* How it works */}
+      <section id="how-it-works" className="py-24 px-6">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold font-display text-center mb-16">How it works</h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            {steps.map((step, i) => (
+              <div key={step.title} className="text-center">
+                <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-5">
+                  <step.icon className="h-6 w-6 text-primary" />
+                </div>
+                <div className="text-xs text-muted-foreground mb-2 uppercase tracking-wider">Step {i + 1}</div>
+                <h3 className="text-lg font-semibold mb-2">{step.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{step.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Use cases */}
+      <section id="use-cases" className="py-24 px-6 bg-secondary/30">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold font-display text-center mb-16">Built for industries that drown in documents</h2>
+          <div className="grid sm:grid-cols-2 gap-6">
+            {useCases.map((uc) => (
+              <Card key={uc.title} className="bg-card border-border">
+                <CardContent className="p-6 flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
+                    <uc.icon className="h-5 w-5 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold mb-1">{uc.title}</h3>
+                    <p className="text-sm text-muted-foreground">{uc.desc}</p>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Demo placeholder */}
+      <section id="demo" className="py-24 px-6">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-3xl md:text-4xl font-bold font-display mb-6">See it in action</h2>
+          <p className="text-muted-foreground mb-10">Watch how Lazy Cloud searches 55,000+ documents in seconds.</p>
+          <div className="aspect-video bg-secondary/50 border border-border rounded-lg flex items-center justify-center">
+            <div className="text-muted-foreground text-sm">Demo video coming soon</div>
+          </div>
+        </div>
+      </section>
+
+      {/* Features */}
+      <section className="py-24 px-6 bg-secondary/30">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold font-display text-center mb-16">Everything you need</h2>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {features.map((f) => (
+              <div key={f.title} className="p-6 border border-border rounded-lg bg-card">
+                <f.icon className="h-6 w-6 text-primary mb-4" />
+                <h3 className="font-semibold mb-1">{f.title}</h3>
+                <p className="text-sm text-muted-foreground">{f.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Security */}
+      <section id="security" className="py-24 px-6">
+        <div className="max-w-4xl mx-auto text-center">
+          <Lock className="h-10 w-10 text-primary mx-auto mb-6" />
+          <h2 className="text-3xl md:text-4xl font-bold font-display mb-4">Your data, your servers, your keys.</h2>
+          <p className="text-muted-foreground max-w-xl mx-auto mb-10">
+            We deploy into your own cloud accounts. Your documents never touch our servers.
+          </p>
+          <div className="flex flex-wrap justify-center gap-4">
+            {securityPoints.map((point) => (
+              <div key={point} className="flex items-center gap-2 text-sm border border-border rounded-full px-4 py-2">
+                <Check className="h-4 w-4 text-primary" />
+                {point}
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* Pricing */}
-      <PricingSection />
-
-      {/* Product Grid */}
-      <section id="agent" className="relative z-10 scroll-mt-20">
-        <div className="grid grid-cols-2 md:grid-cols-4 border-t border-border">
-          {/* Lazy Launch */}
-          <Link to="/lazy-launch" className="block">
-            <div
-              className="aspect-square flex flex-col items-center justify-center gap-4 transition-all duration-300 hover:bg-[#131310] cursor-pointer p-4 border-b border-r border-[#f0ead6]/[0.04]"
-             
-            >
-              {(() => { const Icon = iconMap["Launch"]; return Icon ? <Icon size={24} strokeWidth={1.5} style={{ color: "#f0ead6" }} /> : null; })()}
-              <div className="text-center">
-                <p style={{ fontFamily: "'Dancing Script', cursive", fontSize: "clamp(1.5rem, 3vw, 2.5rem)", color: "#f0ead6", lineHeight: 1.1 }}>
-                  Lazy
-                </p>
-                <p style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(1.5rem, 3vw, 2.5rem)", color: "#f0ead6", lineHeight: 1.1 }}>
-                  Launch
-                </p>
-              </div>
-                <p style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(0.7rem, 1vw, 0.9rem)", color: "#f0ead6", opacity: 0.5 }}>
-                 Launch your Lovable website
-              </p>
-            </div>
-          </Link>
-
-          {/* Lazy Waitlist */}
-          <Link to="/lazy-waitlist" className="block">
-            <div
-              className="aspect-square flex flex-col items-center justify-center gap-4 transition-all duration-300 hover:bg-[#131310] cursor-pointer p-4 border-b border-r border-[#f0ead6]/[0.04]"
-             
-            >
-              {(() => { const Icon = iconMap["Waitlist"]; return Icon ? <Icon size={24} strokeWidth={1.5} style={{ color: "#f0ead6" }} /> : null; })()}
-              <div className="text-center">
-                <p style={{ fontFamily: "'Dancing Script', cursive", fontSize: "clamp(1.5rem, 3vw, 2.5rem)", color: "#f0ead6", lineHeight: 1.1 }}>
-                  Lazy
-                </p>
-                <p style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(1.5rem, 3vw, 2.5rem)", color: "#f0ead6", lineHeight: 1.1 }}>
-                  Waitlist
-                </p>
-              </div>
-                <p style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(0.7rem, 1vw, 0.9rem)", color: "#f0ead6", opacity: 0.5 }}>
-                 Autonomous pre-launch capture
-              </p>
-            </div>
-          </Link>
-
-          {/* Lazy Run */}
-          <Link to="/lazy-run" className="block">
-            <div
-              className="aspect-square flex flex-col items-center justify-center gap-4 transition-all duration-300 hover:bg-[#131310] cursor-pointer p-4 border-b border-r border-[#f0ead6]/[0.04]"
-             
-            >
-              {(() => { const Icon = iconMap["Run"]; return Icon ? <Icon size={24} strokeWidth={1.5} style={{ color: "#f0ead6" }} /> : null; })()}
-              <div className="text-center">
-                <p style={{ fontFamily: "'Dancing Script', cursive", fontSize: "clamp(1.5rem, 3vw, 2.5rem)", color: "#f0ead6", lineHeight: 1.1 }}>
-                  Lazy
-                </p>
-                <p style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(1.5rem, 3vw, 2.5rem)", color: "#f0ead6", lineHeight: 1.1 }}>
-                  Run
-                </p>
-              </div>
-                <p style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(0.7rem, 1vw, 0.9rem)", color: "#f0ead6", opacity: 0.5 }}>
-                 Autonomous everything
-              </p>
-            </div>
-          </Link>
-
-          {products.map((product, i) => {
-            const isComingSoon = product.name === "Coming Soon";
-
-            const content = (
-              <div
-                className="aspect-square flex flex-col items-center justify-center gap-4 transition-all duration-300 hover:bg-[#131310] cursor-pointer p-4 border-b border-r border-[#f0ead6]/[0.04] bg-background"
+      <section id="pricing" className="py-24 px-6 bg-secondary/30">
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold font-display text-center mb-16">Simple, transparent pricing</h2>
+          <div className="grid md:grid-cols-3 gap-6">
+            {pricingTiers.map((tier) => (
+              <Card
+                key={tier.name}
+                className={`bg-card border-border relative ${tier.highlighted ? "border-primary ring-1 ring-primary" : ""}`}
               >
-                {(() => { const Icon = iconMap[product.name]; return Icon ? <Icon size={24} strokeWidth={1.5} style={{ color: "#f0ead6" }} /> : null; })()}
-                <div className="text-center">
-                  <p style={{ fontFamily: "'Dancing Script', cursive", fontSize: "clamp(1.5rem, 3vw, 2.5rem)", color: "#f0ead6", lineHeight: 1.1 }}>
-                    {product.cursive}
-                  </p>
-                  <p style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(1.5rem, 3vw, 2.5rem)", color: "#f0ead6", lineHeight: 1.1 }}>
-                    {product.name}
-                  </p>
-                </div>
-                <p style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(0.7rem, 1vw, 0.9rem)", color: "#f0ead6", opacity: 0.5 }}>
-                  {product.tagline}
-                </p>
-              </div>
-            );
-
-            if (isComingSoon) return <div key={i}>{content}</div>;
-
-            return (
-              <Link key={i} to={product.link} className="block">
-                {content}
-              </Link>
-            );
-          })}
+                {tier.highlighted && (
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground text-xs font-medium px-3 py-1 rounded-full">
+                    Most popular
+                  </div>
+                )}
+                <CardContent className="p-8">
+                  <h3 className="text-lg font-semibold mb-2">{tier.name}</h3>
+                  <div className="mb-6">
+                    <span className="text-3xl font-bold font-display">{tier.price}</span>
+                    <span className="text-muted-foreground text-sm">{tier.period}</span>
+                  </div>
+                  <ul className="space-y-3 mb-8">
+                    {tier.features.map((f) => (
+                      <li key={f} className="flex items-center gap-2 text-sm">
+                        <Check className="h-4 w-4 text-primary shrink-0" />
+                        {f}
+                      </li>
+                    ))}
+                  </ul>
+                  <Link to={tier.name === "Enterprise" ? "#contact" : "/signup"}>
+                    <Button
+                      className="w-full"
+                      variant={tier.highlighted ? "default" : "outline"}
+                    >
+                      {tier.cta}
+                    </Button>
+                  </Link>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
         </div>
       </section>
-      </main>
 
+      {/* Testimonials */}
+      <section className="py-24 px-6">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold font-display text-center mb-16">What our customers say</h2>
+          <div className="grid md:grid-cols-3 gap-6">
+            {testimonials.map((t) => (
+              <Card key={t.name} className="bg-card border-border">
+                <CardContent className="p-6">
+                  <p className="text-sm text-muted-foreground mb-6 leading-relaxed italic">"{t.quote}"</p>
+                  <div>
+                    <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold text-sm mb-2">
+                      {t.name.split(" ").map(n => n[0]).join("")}
+                    </div>
+                    <div className="font-medium text-sm">{t.name}</div>
+                    <div className="text-xs text-muted-foreground">{t.title}, {t.company}</div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="py-24 px-6 bg-primary/5 border-t border-border">
+        <div className="max-w-2xl mx-auto text-center">
+          <h2 className="text-3xl md:text-4xl font-bold font-display mb-4">Ready to unlock your archive?</h2>
+          <p className="text-muted-foreground mb-8">Start your free trial today. No credit card required.</p>
+          <Link to="/signup">
+            <Button size="lg" className="text-base px-8">
+              Start Free Trial <ArrowRight className="ml-2 h-4 w-4" />
+            </Button>
+          </Link>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer id="contact" className="border-t border-border py-12 px-6">
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+          <span className="font-display font-bold">Lazy Cloud</span>
+          <div className="flex flex-wrap items-center gap-6 text-sm text-muted-foreground">
+            <a href="#pricing" className="hover:text-foreground transition-colors">Pricing</a>
+            <a href="#security" className="hover:text-foreground transition-colors">Security</a>
+            <a href="mailto:hello@lazycloud.ai" className="hover:text-foreground transition-colors">Contact</a>
+            <span>Privacy Policy</span>
+            <span>Terms of Service</span>
+          </div>
+          <div className="text-xs text-muted-foreground">© {new Date().getFullYear()} Lazy Cloud</div>
+        </div>
+      </footer>
     </div>
   );
-};
-
-export default Index;
+}
