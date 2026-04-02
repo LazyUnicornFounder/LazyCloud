@@ -6,7 +6,8 @@ import { useRef } from "react";
 import {
   Search, Upload, Brain, MessageSquare, Globe, FileText,
   Bookmark, Shield, Lock, Building2,
-  Scale, Landmark, HardHat, Check, ArrowRight, Sparkles
+  Scale, Landmark, HardHat, Check, ArrowRight, Sparkles,
+  TrendingUp, FileShield
 } from "lucide-react";
 
 /* ── Scroll-triggered wrapper ── */
