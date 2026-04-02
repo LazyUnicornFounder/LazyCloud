@@ -14,6 +14,14 @@ const stats = [
   { value: "EN + AR", label: "bilingual" },
 ];
 
+const techStack = [
+  { name: "Lovable", role: "Frontend" },
+  { name: "Supabase", role: "Database" },
+  { name: "Voyage AI by MongoDB", role: "Semantic Embeddings" },
+  { name: "AWS S3", role: "File Storage" },
+  { name: "Anthropic Claude Code", role: "Pipeline Builder" },
+];
+
 const steps = [
   {
     icon: Upload,
@@ -41,7 +49,7 @@ const useCases = [
 
 const features = [
   { icon: Search, title: "Semantic search", desc: "Understands meaning, not just keywords" },
-  { icon: Globe, title: "Arabic + English", desc: "RTL built in from day one" },
+  { icon: Globe, title: "Multilingual support", desc: "Built for global teams from day one" },
   { icon: FileText, title: "PDF preview", desc: "Highlighting on the exact page" },
   { icon: Bookmark, title: "Bookmarks & collections", desc: "Organise your most-used documents" },
   { icon: MessageSquare, title: "Chat with citations", desc: "AI answers backed by your files" },
@@ -62,7 +70,7 @@ const pricingTiers = [
     price: "$499",
     period: "/month",
     features: ["Up to 50 GB", "50,000 files", "5 users", "Email support"],
-    cta: "Start Free Trial",
+    cta: "Get Early Access",
     highlighted: false,
   },
   {
@@ -70,7 +78,7 @@ const pricingTiers = [
     price: "$999",
     period: "/month",
     features: ["Up to 500 GB", "500,000 files", "25 users", "Priority support", "Custom branding"],
-    cta: "Start Free Trial",
+    cta: "Get Early Access",
     highlighted: true,
   },
   {
@@ -91,7 +99,7 @@ const testimonials = [
     company: "Gulf Construction Co.",
   },
   {
-    quote: "The Arabic support is flawless. Our team finally has a tool that works with our documents natively.",
+    quote: "Our team finally has a tool that works with our documents natively. The search quality is unmatched.",
     name: "Sara Mahmoud",
     title: "Legal Director",
     company: "Al-Nour Law Firm",
@@ -119,10 +127,7 @@ export default function Index() {
           </div>
           <div className="flex items-center gap-3">
             <Link to="/login">
-              <Button variant="ghost" size="sm">Log in</Button>
-            </Link>
-            <Link to="/signup">
-              <Button size="sm">Start Free Trial</Button>
+              <Button variant="ghost" size="sm">Get Early Access</Button>
             </Link>
           </div>
         </div>
@@ -136,21 +141,26 @@ export default function Index() {
             <br />
             <span className="text-primary">One Search.</span>
           </h1>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed">
+          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8 leading-relaxed">
             Turn your company's file archive into an AI-powered search assistant.
-            Ask questions in plain English or Arabic — get the exact file and page number.
+            Ask questions in plain language — get the exact file and page number.
           </p>
+
+          {/* Tech stack pills */}
+          <div className="flex flex-wrap justify-center gap-3 mb-10">
+            {techStack.map((t) => (
+              <div key={t.name} className="text-xs border border-border rounded-full px-4 py-2 text-muted-foreground">
+                <span className="font-medium text-foreground">{t.name}</span> · {t.role}
+              </div>
+            ))}
+          </div>
+
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link to="/signup">
               <Button size="lg" className="text-base px-8">
-                Start Free Trial <ArrowRight className="ml-2 h-4 w-4" />
+                Get Early Access <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </Link>
-            <a href="#demo">
-              <Button variant="outline" size="lg" className="text-base px-8">
-                See Demo
-              </Button>
-            </a>
           </div>
         </div>
       </section>
@@ -208,19 +218,8 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Demo placeholder */}
-      <section id="demo" className="py-24 px-6">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold font-display mb-6">See it in action</h2>
-          <p className="text-muted-foreground mb-10">Watch how Lazy Cloud searches 55,000+ documents in seconds.</p>
-          <div className="aspect-video bg-secondary/50 border border-border rounded-lg flex items-center justify-center">
-            <div className="text-muted-foreground text-sm">Demo video coming soon</div>
-          </div>
-        </div>
-      </section>
-
       {/* Features */}
-      <section className="py-24 px-6 bg-secondary/30">
+      <section className="py-24 px-6">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold font-display text-center mb-16">Everything you need</h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -236,7 +235,7 @@ export default function Index() {
       </section>
 
       {/* Security */}
-      <section id="security" className="py-24 px-6">
+      <section id="security" className="py-24 px-6 bg-secondary/30">
         <div className="max-w-4xl mx-auto text-center">
           <Lock className="h-10 w-10 text-primary mx-auto mb-6" />
           <h2 className="text-3xl md:text-4xl font-bold font-display mb-4">Your data, your servers, your keys.</h2>
@@ -255,7 +254,7 @@ export default function Index() {
       </section>
 
       {/* Pricing */}
-      <section id="pricing" className="py-24 px-6 bg-secondary/30">
+      <section id="pricing" className="py-24 px-6">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold font-display text-center mb-16">Simple, transparent pricing</h2>
           <div className="grid md:grid-cols-3 gap-6">
@@ -299,7 +298,7 @@ export default function Index() {
       </section>
 
       {/* Testimonials */}
-      <section className="py-24 px-6">
+      <section className="py-24 px-6 bg-secondary/30">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold font-display text-center mb-16">What our customers say</h2>
           <div className="grid md:grid-cols-3 gap-6">
@@ -322,13 +321,13 @@ export default function Index() {
       </section>
 
       {/* CTA */}
-      <section className="py-24 px-6 bg-primary/5 border-t border-border">
+      <section className="py-24 px-6 border-t border-border">
         <div className="max-w-2xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold font-display mb-4">Ready to unlock your archive?</h2>
-          <p className="text-muted-foreground mb-8">Start your free trial today. No credit card required.</p>
+          <p className="text-muted-foreground mb-8">Join the early access list. Be the first to try Lazy Cloud.</p>
           <Link to="/signup">
             <Button size="lg" className="text-base px-8">
-              Start Free Trial <ArrowRight className="ml-2 h-4 w-4" />
+              Get Early Access <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
           </Link>
         </div>

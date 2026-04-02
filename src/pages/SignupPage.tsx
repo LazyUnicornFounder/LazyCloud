@@ -90,8 +90,8 @@ export default function SignupPage() {
           <Link to="/" className="font-display text-lg font-bold tracking-tight">
             Lazy Cloud
           </Link>
-          <h1 className="text-2xl font-bold font-display mt-6 mb-2">Start your free trial</h1>
-          <p className="text-sm text-muted-foreground">No credit card required</p>
+          <h1 className="text-2xl font-bold font-display mt-6 mb-2">Get Early Access</h1>
+          <p className="text-sm text-muted-foreground">Be the first to try Lazy Cloud</p>
         </div>
 
         <form onSubmit={handleSignup} className="space-y-4">
@@ -136,7 +136,7 @@ export default function SignupPage() {
             </select>
           </div>
           <Button type="submit" className="w-full" disabled={loading}>
-            {loading ? "Creating account..." : "Start Free Trial"}
+            {loading ? "Creating account..." : "Get Early Access"}
           </Button>
         </form>
 
