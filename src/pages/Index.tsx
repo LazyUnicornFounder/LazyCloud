@@ -233,7 +233,7 @@ export default function Index() {
         <div className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           {stats.map((s, i) => (
             <Reveal key={s.label} delay={i * 0.08}>
-              <div className="text-2xl md:text-3xl font-bold font-display bg-gradient-to-b from-primary to-primary/70 bg-clip-text text-transparent">
+              <div className="text-2xl md:text-3xl font-bold font-display text-primary">
                 {s.value}
               </div>
               <div className="text-xs text-muted-foreground mt-1.5 uppercase tracking-wider">{s.label}</div>
