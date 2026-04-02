@@ -143,8 +143,8 @@ export default function Index() {
       {/* Hero */}
       <section className="relative pt-36 pb-24 px-6">
         {/* Ambient glow */}
-        <div className="absolute top-20 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[160px] pointer-events-none" />
-        <div className="absolute top-40 left-1/4 w-[300px] h-[300px] bg-accent/4 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute top-20 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-primary/8 rounded-full blur-[160px] pointer-events-none" />
+        <div className="absolute top-40 left-1/4 w-[300px] h-[300px] bg-accent/6 rounded-full blur-[120px] pointer-events-none" />
 
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <motion.div
@@ -233,7 +233,7 @@ export default function Index() {
         <div className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           {stats.map((s, i) => (
             <Reveal key={s.label} delay={i * 0.08}>
-              <div className="text-2xl md:text-3xl font-bold font-display text-primary">
+              <div className="text-2xl md:text-3xl font-bold font-display bg-gradient-to-b from-primary to-primary/70 bg-clip-text text-transparent">
                 {s.value}
               </div>
               <div className="text-xs text-muted-foreground mt-1.5 uppercase tracking-wider">{s.label}</div>

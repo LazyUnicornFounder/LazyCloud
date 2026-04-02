@@ -9,7 +9,7 @@ export default function PrivacyPage() {
         </div>
       </nav>
 
-      <article className="max-w-3xl mx-auto px-6 py-16 prose prose-sm">
+      <article className="max-w-3xl mx-auto px-6 py-16 prose prose-invert prose-sm">
         <h1 className="text-3xl font-bold font-display mb-2">Privacy Policy</h1>
         <p className="text-muted-foreground mb-10">Last updated: April 3, 2026</p>
 
