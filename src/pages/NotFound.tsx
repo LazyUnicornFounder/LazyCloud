@@ -1,23 +1,19 @@
-import { useLocation } from "react-router-dom";
-import { useEffect } from "react";
-import SEO from "@/components/SEO";
+import { Link } from "react-router-dom";
+import { Cloud } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const NotFound = () => {
-  const location = useLocation();
-
-  useEffect(() => {
-    console.error("404 Error: User attempted to access non-existent route:", location.pathname);
-  }, [location.pathname]);
-
   return (
-    <main className="flex min-h-screen items-center justify-center bg-background">
-      <SEO title="Page Not Found" description="The page you are looking for does not exist or may have been moved. Head back to the homepage to explore all autonomous agents and features." noindex={true} />
+    <div className="min-h-screen flex items-center justify-center px-6">
       <div className="text-center">
-        <h1 className="mb-4 text-4xl font-display font-bold text-foreground">404</h1>
-        <p className="mb-4 text-xl text-muted-foreground font-body">Page not found</p>
-        <a href="/" className="text-foreground underline hover:opacity-70 font-body">Return to Home</a>
+        <Cloud className="h-12 w-12 text-primary mx-auto mb-6" />
+        <h1 className="text-6xl font-extrabold mb-4">404</h1>
+        <p className="text-xl text-muted-foreground mb-8">Page not found.</p>
+        <Link to="/">
+          <Button>Back to Home</Button>
+        </Link>
       </div>
-    </main>
+    </div>
   );
 };
 
