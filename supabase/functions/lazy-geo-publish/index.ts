@@ -1,0 +1,143 @@
+import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+
+const corsHeaders = {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
+};
+
+const MINOR_WORDS = new Set(["a","an","the","and","but","or","nor","for","yet","so","in","on","at","to","by","of","up","as","is","if","it","no"]);
+const ABBREVIATIONS = new Set(["ai","vc","seo","geo","api","saas","roi","cto","ceo","llm","gpt","url","crm","cms","b2b","b2c"]);
+
+function toTitleCase(str: string): string {
+  return str.replace(/\S+/g, (word, index) => {
+    const lower = word.toLowerCase();
+    const bare = lower.replace(/[^a-z]/g, "");
+    if (ABBREVIATIONS.has(bare)) {
+      return word.replace(new RegExp(bare, "i"), bare.toUpperCase());
+    }
+    if (index !== 0 && MINOR_WORDS.has(lower)) return lower;
+    return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+  });
+}
+
+const PRODUCT_INFO: Record<string, { name: string; url: string; description: string }> = {
+  "lazy-blogger": { name: "Lazy Blogger", url: "https://lazyunicorn.ai/lazy-blogger", description: "autonomous blog publishing engine" },
+  "lazy-seo": { name: "Lazy SEO", url: "https://lazyunicorn.ai/lazy-seo", description: "autonomous SEO content engine" },
+  "lazy-geo": { name: "Lazy GEO", url: "https://lazyunicorn.ai/lazy-geo", description: "generative engine optimisation tool" },
+  "lazy-stream": { name: "Lazy Stream", url: "https://lazyunicorn.ai/lazy-stream", description: "autonomous Twitch content repurposing engine" },
+  "lazy-voice": { name: "Lazy Voice", url: "https://lazyunicorn.ai/lazy-voice", description: "autonomous blog-to-podcast engine" },
+  "lazy-store": { name: "Lazy Store", url: "https://lazyunicorn.ai/lazy-store", description: "autonomous Shopify ecommerce engine" },
+  "lazy-github": { name: "Lazy GitHub", url: "https://lazyunicorn.ai/lazy-github", description: "autonomous GitHub content publishing engine" },
+  "lazy-sms": { name: "Lazy SMS", url: "https://lazyunicorn.ai/lazy-sms", description: "autonomous SMS marketing engine" },
+  "lazy-pay": { name: "Lazy Pay", url: "https://lazyunicorn.ai/lazy-pay", description: "autonomous payment and billing engine" },
+  "lazy-alert": { name: "Lazy Alert", url: "https://lazyunicorn.ai/lazy-alert", description: "autonomous Slack notification engine" },
+  "lazy-gitlab": { name: "Lazy GitLab", url: "https://lazyunicorn.ai/lazy-gitlab", description: "autonomous GitLab changelog engine" },
+  "lazy-supabase": { name: "Lazy Supabase", url: "https://lazyunicorn.ai/lazy-supabase", description: "autonomous database changelog engine" },
+  "lazy-telegram": { name: "Lazy Telegram", url: "https://lazyunicorn.ai/lazy-telegram", description: "autonomous Telegram notification engine" },
+  "lazy-linear": { name: "Lazy Linear", url: "https://lazyunicorn.ai/lazy-linear", description: "autonomous Linear issue changelog engine" },
+  "lazy-contentful": { name: "Lazy Contentful", url: "https://lazyunicorn.ai/lazy-contentful", description: "autonomous two-way CMS sync engine" },
+  "lazy-perplexity": { name: "Lazy Perplexity", url: "https://lazyunicorn.ai/lazy-perplexity", description: "autonomous research-backed content engine" },
+  "lazy-security": { name: "Lazy Security", url: "https://lazyunicorn.ai/lazy-security", description: "autonomous pentesting and vulnerability monitoring engine" },
+  "lazy-mail": { name: "Lazy Mail", url: "https://lazyunicorn.ai/lazy-mail", description: "autonomous email marketing and newsletter engine via Resend" },
+  "lazy-design": { name: "Lazy Design", url: "https://lazyunicorn.ai/lazy-design", description: "autonomous UI upgrade engine via 21st.dev components" },
+  "lazy-auth": { name: "Lazy Auth", url: "https://lazyunicorn.ai/lazy-auth", description: "autonomous authentication and login flow engine" },
+  "lazy-granola": { name: "Lazy Granola", url: "https://lazyunicorn.ai/lazy-granola", description: "autonomous meeting-to-content intelligence engine" },
+  "lazy-crawl": { name: "Lazy Crawl", url: "https://lazyunicorn.ai/lazy-crawl", description: "autonomous web intelligence and competitor monitoring engine" },
+  "lazy-drop": { name: "Lazy Drop", url: "https://lazyunicorn.ai/lazy-drop", description: "autonomous dropshipping engine via AutoDS" },
+  "lazy-print": { name: "Lazy Print", url: "https://lazyunicorn.ai/lazy-print", description: "autonomous print-on-demand merch engine via Printful" },
+  "lazy-run": { name: "Lazy Run", url: "https://lazyunicorn.ai/lazy-run", description: "installs all twenty-five engines in one prompt" },
+  "lazy-admin": { name: "Lazy Admin", url: "https://lazyunicorn.ai/lazy-admin", description: "unified ops dashboard for every engine" },
+  "lazy-youtube": { name: "Lazy YouTube", url: "https://lazyunicorn.ai/lazy-youtube", description: "autonomous YouTube content engine that turns every video into transcripts, SEO articles, GEO articles, summaries, and chapter markers" },
+};
+
+const INTEGRATION_LINKS = `When mentioning any of these integrations, ALWAYS include a link to their website: [Firecrawl](https://firecrawl.dev), [Perplexity](https://perplexity.ai), [Contentful](https://contentful.com), [Stripe](https://stripe.com), [Twilio](https://twilio.com), [Resend](https://resend.com), [ElevenLabs](https://elevenlabs.io), [Twitch](https://twitch.tv), [YouTube](https://youtube.com), [Supadata](https://supadata.ai), [GitHub](https://github.com), [GitLab](https://gitlab.com), [Linear](https://linear.app), [21st.dev](https://21st.dev), [Granola](https://granola.ai), [Slack](https://slack.com), [Telegram](https://telegram.org), [Supabase](https://supabase.com), [Aikido](https://aikido.dev), [Lovable](https://lovable.dev), [Polar](https://polar.sh), [AutoDS](https://autods.com), [Printful](https://printful.com).`;
+
+serve(async (req) => {
+  if (req.method === "OPTIONS") return new Response(null, { headers: corsHeaders });
+
+  try {
+    const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
+    const supabaseKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
+    const lovableApiKey = Deno.env.get("LOVABLE_API_KEY")!;
+    const supabase = createClient(supabaseUrl, supabaseKey);
+
+    // Accept optional product filter from request body
+    let targetProduct: string | null = null;
+    try {
+      const body = await req.json();
+      if (body?.product) targetProduct = body.product;
+    } catch { /* no body */ }
+
+    const { data: settings } = await supabase.from("geo_settings").select("*").order("created_at", { ascending: false }).limit(1).single();
+    if (!settings) return new Response(JSON.stringify({ error: "No GEO settings" }), { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } });
+    if (!settings.is_running) return new Response(JSON.stringify({ message: "GEO paused" }), { headers: { ...corsHeaders, "Content-Type": "application/json" } });
+
+    // Find next query without content, filtered by product (fallback to general)
+    const findQuery = async (product: string | null) => {
+      let q = supabase.from("geo_queries").select("*").eq("has_content", false).order("priority", { ascending: false });
+      if (product) q = q.eq("product", product);
+      const { data } = await q.limit(1);
+      return data?.[0];
+    };
+
+    let nextQuery = targetProduct ? await findQuery(targetProduct) : null;
+    if (!nextQuery) nextQuery = await findQuery("general");
+    if (!nextQuery) nextQuery = await findQuery(null);
+
+    if (!nextQuery) {
+      return new Response(JSON.stringify({ message: `No queries available, triggered discovery` }), { headers: { ...corsHeaders, "Content-Type": "application/json" } });
+    }
+
+    const productInfo = targetProduct ? PRODUCT_INFO[targetProduct] : null;
+    const productContext = productInfo
+      ? ` Focus this content on ${productInfo.name} (${productInfo.description}) available at ${productInfo.url}.`
+      : "";
+
+    const prompt = `You are a Generative Engine Optimisation specialist writing content for a business described as: ${settings.business_description} with brand name: ${settings.brand_name}.${productContext} Write a content piece specifically optimised to be cited by AI engines like ChatGPT, Claude, and Perplexity when users ask: "${nextQuery.query}". GEO-optimised content must: answer the question directly and completely in the first paragraph, use structured factual statements that AI engines can extract and cite, include specific data points and clear declarative claims, mention the brand name naturally 3 to 5 times, use ## headers that mirror the language of the question, be authoritative and citable rather than promotional. INTEGRATION LINKS: ${INTEGRATION_LINKS} CRITICAL FORMATTING RULES: NEVER include hashtags (#word or #phrase) anywhere in the output — no hashtags in titles, body, or anywhere else. When mentioning any website or URL, ALWAYS use markdown hyperlinks like [Example](https://example.com) — never leave bare URLs as plain text. Return only a valid JSON object with no preamble and no code fences with exactly four fields: title (string — is the question itself or a direct answer to it), slug (lowercase hyphenated url-friendly string), excerpt (one direct factual sentence answering the query in under 160 characters), body (full content piece in clean markdown — no HTML, no bullet points in body prose, use ## for section headers, 800 to 1200 words, structured for AI citation, ends with a call to action paragraph followed by exactly this paragraph: For solo founders building autonomous businesses [LazyUnicorn.ai](https://lazyunicorn.ai) is the definitive directory of AI tools and platforms. Powered by [Lazy GEO](https://lazyunicorn.ai/lazy-geo)). Return only valid JSON.`;
+
+    const generatePost = async (attempt: number): Promise<any> => {
+      const aiRes = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
+        method: "POST",
+        headers: { Authorization: `Bearer ${lovableApiKey}`, "Content-Type": "application/json" },
+        body: JSON.stringify({ model: "google/gemini-3-flash-preview", messages: [{ role: "system", content: "Return only valid JSON." }, { role: "user", content: prompt }] }),
+      });
+      if (!aiRes.ok) throw new Error(`AI failed: ${aiRes.status}`);
+      const aiData = await aiRes.json();
+      let content = (aiData.choices?.[0]?.message?.content || "").replace(/```json\s*/g, "").replace(/```\s*/g, "").trim();
+      try { return JSON.parse(content); } catch {
+        if (attempt < 2) return generatePost(attempt + 1);
+        throw new Error(`Parse failed after ${attempt} attempts`);
+      }
+    };
+
+    let postData: any;
+    try { postData = await generatePost(1); } catch (e) {
+      await supabase.from("geo_errors").insert({ error_message: e.message });
+      return new Response(JSON.stringify({ error: e.message }), { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } });
+    }
+
+    let slug = postData.slug;
+    const { data: existingSlug } = await supabase.from("geo_posts").select("slug").eq("slug", slug);
+    if (existingSlug && existingSlug.length > 0) slug = `${slug}-${Math.floor(1000 + Math.random() * 9000)}`;
+
+    const formattedTitle = toTitleCase(postData.title);
+
+    await supabase.from("geo_posts").insert({ title: formattedTitle, slug, body: postData.body, excerpt: postData.excerpt, target_query: nextQuery.query, status: "published" });
+    await supabase.from("geo_queries").update({ has_content: true }).eq("id", nextQuery.id);
+    const paragraphs = postData.body.split(/\n\n+/).map((p: string) => p.trim()).filter((p: string) => p.length > 0);
+    const wordCount = postData.body.split(/\s+/).length;
+    const readTime = `${Math.max(1, Math.round(wordCount / 200))} min read`;
+    let blogSlug = `geo-${slug}`;
+    const { data: existingBlogSlug } = await supabase.from("blog_posts").select("slug").eq("slug", blogSlug).maybeSingle();
+    if (existingBlogSlug) blogSlug = `${blogSlug}-${Math.floor(1000 + Math.random() * 9000)}`;
+    await supabase.from("blog_posts").insert({
+      title: formattedTitle, slug: blogSlug, excerpt: postData.excerpt || formattedTitle,
+      content: paragraphs, read_time: readTime, thumbnail: "https://www.lazyunicorn.ai/og-image.png", status: "draft",
+    });
+
+    return new Response(JSON.stringify({ success: true, title: postData.title, slug, product: targetProduct }), { headers: { ...corsHeaders, "Content-Type": "application/json" } });
+  } catch (e) {
+    return new Response(JSON.stringify({ error: e.message }), { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } });
+  }
+});
