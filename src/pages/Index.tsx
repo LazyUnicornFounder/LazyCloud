@@ -1,11 +1,30 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 import {
   Search, Upload, Brain, MessageSquare, Globe, FileText,
-  Bookmark, Shield, Lock, Eye, FileCheck, Building2,
-  Scale, Landmark, HardHat, Check, ArrowRight
+  Bookmark, Shield, Lock, Building2,
+  Scale, Landmark, HardHat, Check, ArrowRight, Sparkles
 } from "lucide-react";
+
+/* ── Scroll-triggered wrapper ── */
+function Reveal({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-60px" });
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 32 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94], delay }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
+}
 
 const stats = [
   { value: "55,000+", label: "files indexed" },
@@ -17,9 +36,9 @@ const stats = [
 const techStack = [
   { name: "Lovable", role: "Frontend" },
   { name: "Supabase", role: "Database" },
-  { name: "Voyage AI by MongoDB", role: "Semantic Embeddings" },
-  { name: "AWS S3", role: "File Storage" },
-  { name: "Anthropic Claude Code", role: "Pipeline Builder" },
+  { name: "Voyage AI", role: "Embeddings" },
+  { name: "AWS S3", role: "Storage" },
+  { name: "Claude Code", role: "Pipeline" },
 ];
 
 const steps = [
@@ -114,234 +133,364 @@ const testimonials = [
 
 export default function Index() {
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-background text-foreground overflow-hidden">
       {/* Navbar */}
-      <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border bg-background/80 backdrop-blur-md">
+      <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border/50 bg-background/60 backdrop-blur-xl">
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
           <span className="font-display text-lg font-bold tracking-tight">Lazy Cloud</span>
           <div className="hidden md:flex items-center gap-8 text-sm text-muted-foreground">
-            <a href="#how-it-works" className="hover:text-foreground transition-colors">How it works</a>
-            <a href="#use-cases" className="hover:text-foreground transition-colors">Use cases</a>
-            <a href="#pricing" className="hover:text-foreground transition-colors">Pricing</a>
-            <a href="#security" className="hover:text-foreground transition-colors">Security</a>
+            {["How it works", "Use cases", "Pricing", "Security"].map((item) => (
+              <a
+                key={item}
+                href={`#${item.toLowerCase().replace(/ /g, "-")}`}
+                className="hover:text-foreground transition-colors duration-300"
+              >
+                {item}
+              </a>
+            ))}
           </div>
-          <div className="flex items-center gap-3">
-            <Link to="/login">
-              <Button variant="ghost" size="sm">Get Early Access</Button>
-            </Link>
-          </div>
+          <Link to="/login">
+            <Button variant="ghost" size="sm" className="text-sm">
+              Get Early Access
+            </Button>
+          </Link>
         </div>
       </nav>
 
       {/* Hero */}
-      <section className="pt-32 pb-20 px-6">
-        <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-4xl md:text-6xl font-bold font-display tracking-tight leading-tight mb-6">
-            Turn 50,000 documents gathering dust on your server into
-            <br />
-            <span className="text-primary">instant knowledge for your team.</span>
-          </h1>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8 leading-relaxed">
-            Lazy Cloud connects to your file archive, indexes everything with AI, and lets your team search in plain language — getting the exact file, page number, and answer in seconds.
-          </p>
+      <section className="relative pt-36 pb-24 px-6">
+        {/* Ambient glow */}
+        <div className="absolute top-20 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-primary/8 rounded-full blur-[160px] pointer-events-none" />
+        <div className="absolute top-40 left-1/4 w-[300px] h-[300px] bg-accent/6 rounded-full blur-[120px] pointer-events-none" />
+
+        <div className="max-w-4xl mx-auto text-center relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
+          >
+            <div className="inline-flex items-center gap-2 text-xs border border-primary/20 bg-primary/5 rounded-full px-4 py-1.5 text-primary mb-8">
+              <Sparkles className="h-3 w-3" />
+              Now in Early Access
+            </div>
+          </motion.div>
+
+          <motion.h1
+            initial={{ opacity: 0, y: 32 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
+            className="text-4xl md:text-6xl lg:text-7xl font-bold font-display tracking-tight leading-[1.08] mb-8"
+          >
+            Turn 50,000 documents
+            <br className="hidden sm:block" />
+            gathering dust into{" "}
+            <span className="relative">
+              <span className="bg-gradient-to-r from-primary via-primary to-accent bg-clip-text text-transparent">
+                instant knowledge.
+              </span>
+            </span>
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.25, ease: [0.25, 0.46, 0.45, 0.94] }}
+            className="text-base md:text-lg text-muted-foreground max-w-xl mx-auto mb-10 leading-relaxed"
+          >
+            Lazy Cloud indexes your entire file archive with AI and lets your team search in plain language — exact file, page number, answer in seconds.
+          </motion.p>
 
           {/* Tech stack pills */}
-          <div className="flex flex-wrap justify-center gap-3 mb-10">
-            {techStack.map((t) => (
-              <div key={t.name} className="text-xs border border-border rounded-full px-4 py-2 text-muted-foreground">
-                <span className="font-medium text-foreground">{t.name}</span> · {t.role}
-              </div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="flex flex-wrap justify-center gap-2 mb-12"
+          >
+            {techStack.map((t, i) => (
+              <motion.div
+                key={t.name}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.4, delay: 0.45 + i * 0.06 }}
+                className="text-xs border border-border/60 bg-secondary/40 backdrop-blur-sm rounded-full px-3.5 py-1.5 text-muted-foreground hover:border-primary/30 hover:bg-primary/5 transition-all duration-300"
+              >
+                <span className="font-medium text-foreground">{t.name}</span>
+                <span className="mx-1.5 text-border">·</span>
+                {t.role}
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.55 }}
+          >
             <Link to="/signup">
-              <Button size="lg" className="text-base px-8">
+              <Button
+                size="lg"
+                className="text-base px-8 h-12 shadow-[0_0_30px_-5px_hsl(var(--primary)/0.4)] hover:shadow-[0_0_40px_-5px_hsl(var(--primary)/0.6)] transition-all duration-500"
+              >
                 Get Early Access <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </Link>
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Stats */}
-      <section className="border-y border-border py-8 px-6">
-        <div className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-          {stats.map((s) => (
-            <div key={s.label}>
-              <div className="text-2xl md:text-3xl font-bold font-display text-primary">{s.value}</div>
-              <div className="text-sm text-muted-foreground mt-1">{s.label}</div>
-            </div>
+      <section className="border-y border-border/50 py-10 px-6 relative">
+        <div className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          {stats.map((s, i) => (
+            <Reveal key={s.label} delay={i * 0.08}>
+              <div className="text-2xl md:text-3xl font-bold font-display bg-gradient-to-b from-primary to-primary/70 bg-clip-text text-transparent">
+                {s.value}
+              </div>
+              <div className="text-xs text-muted-foreground mt-1.5 uppercase tracking-wider">{s.label}</div>
+            </Reveal>
           ))}
         </div>
       </section>
 
       {/* How it works */}
-      <section id="how-it-works" className="py-24 px-6">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold font-display text-center mb-16">How it works</h2>
-          <div className="grid md:grid-cols-3 gap-8">
+      <section id="how-it-works" className="py-28 px-6 relative">
+        <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-primary/5 rounded-full blur-[140px] pointer-events-none" />
+        <div className="max-w-4xl mx-auto relative z-10">
+          <Reveal>
+            <h2 className="text-3xl md:text-5xl font-bold font-display text-center mb-20">How it works</h2>
+          </Reveal>
+          <div className="grid md:grid-cols-3 gap-12">
             {steps.map((step, i) => (
-              <div key={step.title} className="text-center">
-                <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-5">
-                  <step.icon className="h-6 w-6 text-primary" />
+              <Reveal key={step.title} delay={i * 0.12}>
+                <div className="text-center group">
+                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/15 to-primary/5 border border-primary/10 flex items-center justify-center mx-auto mb-6 group-hover:border-primary/30 group-hover:from-primary/20 transition-all duration-500">
+                    <step.icon className="h-7 w-7 text-primary" />
+                  </div>
+                  <div className="text-[10px] text-primary/60 mb-3 uppercase tracking-[0.2em] font-medium">Step {i + 1}</div>
+                  <h3 className="text-lg font-semibold mb-2.5">{step.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{step.desc}</p>
                 </div>
-                <div className="text-xs text-muted-foreground mb-2 uppercase tracking-wider">Step {i + 1}</div>
-                <h3 className="text-lg font-semibold mb-2">{step.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{step.desc}</p>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
       </section>
 
       {/* Use cases */}
-      <section id="use-cases" className="py-24 px-6 bg-secondary/30">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold font-display text-center mb-16">Built for industries that drown in documents</h2>
-          <div className="grid sm:grid-cols-2 gap-6">
-            {useCases.map((uc) => (
-              <Card key={uc.title} className="bg-card border-border">
-                <CardContent className="p-6 flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
-                    <uc.icon className="h-5 w-5 text-primary" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold mb-1">{uc.title}</h3>
-                    <p className="text-sm text-muted-foreground">{uc.desc}</p>
-                  </div>
-                </CardContent>
-              </Card>
+      <section id="use-cases" className="py-28 px-6 relative">
+        <div className="absolute inset-0 bg-gradient-to-b from-secondary/30 via-secondary/50 to-secondary/30" />
+        <div className="max-w-4xl mx-auto relative z-10">
+          <Reveal>
+            <h2 className="text-3xl md:text-5xl font-bold font-display text-center mb-6">
+              Built for industries that drown in documents
+            </h2>
+            <p className="text-muted-foreground text-center max-w-lg mx-auto mb-16">
+              From construction to government — if your team wastes time searching for files, we built this for you.
+            </p>
+          </Reveal>
+          <div className="grid sm:grid-cols-2 gap-4">
+            {useCases.map((uc, i) => (
+              <Reveal key={uc.title} delay={i * 0.08}>
+                <Card className="bg-card/50 border-border/50 backdrop-blur-sm hover:border-primary/20 transition-all duration-500 group">
+                  <CardContent className="p-6 flex items-start gap-4">
+                    <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/10 flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-primary/15 group-hover:border-primary/20 transition-all duration-500">
+                      <uc.icon className="h-5 w-5 text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold mb-1">{uc.title}</h3>
+                      <p className="text-sm text-muted-foreground">{uc.desc}</p>
+                    </div>
+                  </CardContent>
+                </Card>
+              </Reveal>
             ))}
           </div>
         </div>
       </section>
 
       {/* Features */}
-      <section className="py-24 px-6">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold font-display text-center mb-16">Everything you need</h2>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {features.map((f) => (
-              <div key={f.title} className="p-6 border border-border rounded-lg bg-card">
-                <f.icon className="h-6 w-6 text-primary mb-4" />
-                <h3 className="font-semibold mb-1">{f.title}</h3>
-                <p className="text-sm text-muted-foreground">{f.desc}</p>
-              </div>
+      <section className="py-28 px-6 relative">
+        <div className="absolute left-0 top-1/3 w-[350px] h-[350px] bg-accent/5 rounded-full blur-[130px] pointer-events-none" />
+        <div className="max-w-4xl mx-auto relative z-10">
+          <Reveal>
+            <h2 className="text-3xl md:text-5xl font-bold font-display text-center mb-20">Everything you need</h2>
+          </Reveal>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {features.map((f, i) => (
+              <Reveal key={f.title} delay={i * 0.07}>
+                <div className="p-6 border border-border/50 rounded-xl bg-card/30 backdrop-blur-sm hover:bg-card/60 hover:border-primary/15 transition-all duration-500 group">
+                  <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary/15 group-hover:border-primary/20 transition-all duration-500">
+                    <f.icon className="h-5 w-5 text-primary" />
+                  </div>
+                  <h3 className="font-semibold mb-1.5">{f.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{f.desc}</p>
+                </div>
+              </Reveal>
             ))}
           </div>
         </div>
       </section>
 
       {/* Security */}
-      <section id="security" className="py-24 px-6 bg-secondary/30">
-        <div className="max-w-4xl mx-auto text-center">
-          <Lock className="h-10 w-10 text-primary mx-auto mb-6" />
-          <h2 className="text-3xl md:text-4xl font-bold font-display mb-4">Your data, your servers, your keys.</h2>
-          <p className="text-muted-foreground max-w-xl mx-auto mb-10">
-            We deploy into your own cloud accounts. Your documents never touch our servers.
-          </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            {securityPoints.map((point) => (
-              <div key={point} className="flex items-center gap-2 text-sm border border-border rounded-full px-4 py-2">
-                <Check className="h-4 w-4 text-primary" />
-                {point}
-              </div>
-            ))}
-          </div>
+      <section id="security" className="py-28 px-6 relative">
+        <div className="absolute inset-0 bg-gradient-to-b from-secondary/30 via-secondary/50 to-secondary/30" />
+        <div className="max-w-4xl mx-auto text-center relative z-10">
+          <Reveal>
+            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/15 to-primary/5 border border-primary/10 flex items-center justify-center mx-auto mb-8">
+              <Lock className="h-7 w-7 text-primary" />
+            </div>
+            <h2 className="text-3xl md:text-5xl font-bold font-display mb-5">
+              Your data, your servers,
+              <br className="hidden sm:block" />
+              your keys.
+            </h2>
+            <p className="text-muted-foreground max-w-lg mx-auto mb-12">
+              We deploy into your own cloud accounts. Your documents never touch our servers.
+            </p>
+          </Reveal>
+          <Reveal delay={0.15}>
+            <div className="flex flex-wrap justify-center gap-3">
+              {securityPoints.map((point) => (
+                <div
+                  key={point}
+                  className="flex items-center gap-2 text-sm border border-border/50 bg-card/30 backdrop-blur-sm rounded-full px-4 py-2 hover:border-primary/20 transition-all duration-300"
+                >
+                  <Check className="h-3.5 w-3.5 text-primary" />
+                  {point}
+                </div>
+              ))}
+            </div>
+          </Reveal>
         </div>
       </section>
 
       {/* Pricing */}
-      <section id="pricing" className="py-24 px-6">
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold font-display text-center mb-16">Simple, transparent pricing</h2>
-          <div className="grid md:grid-cols-3 gap-6">
-            {pricingTiers.map((tier) => (
-              <Card
-                key={tier.name}
-                className={`bg-card border-border relative ${tier.highlighted ? "border-primary ring-1 ring-primary" : ""}`}
-              >
-                {tier.highlighted && (
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground text-xs font-medium px-3 py-1 rounded-full">
-                    Most popular
-                  </div>
-                )}
-                <CardContent className="p-8">
-                  <h3 className="text-lg font-semibold mb-2">{tier.name}</h3>
-                  <div className="mb-6">
-                    <span className="text-3xl font-bold font-display">{tier.price}</span>
-                    <span className="text-muted-foreground text-sm">{tier.period}</span>
-                  </div>
-                  <ul className="space-y-3 mb-8">
-                    {tier.features.map((f) => (
-                      <li key={f} className="flex items-center gap-2 text-sm">
-                        <Check className="h-4 w-4 text-primary shrink-0" />
-                        {f}
-                      </li>
-                    ))}
-                  </ul>
-                  <Link to={tier.name === "Enterprise" ? "#contact" : "/signup"}>
-                    <Button
-                      className="w-full"
-                      variant={tier.highlighted ? "default" : "outline"}
-                    >
-                      {tier.cta}
-                    </Button>
-                  </Link>
-                </CardContent>
-              </Card>
+      <section id="pricing" className="py-28 px-6 relative">
+        <div className="absolute right-1/4 top-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-primary/5 rounded-full blur-[140px] pointer-events-none" />
+        <div className="max-w-5xl mx-auto relative z-10">
+          <Reveal>
+            <h2 className="text-3xl md:text-5xl font-bold font-display text-center mb-5">Simple, transparent pricing</h2>
+            <p className="text-muted-foreground text-center max-w-md mx-auto mb-16">
+              Start small, scale as you grow. No hidden fees.
+            </p>
+          </Reveal>
+          <div className="grid md:grid-cols-3 gap-5">
+            {pricingTiers.map((tier, i) => (
+              <Reveal key={tier.name} delay={i * 0.1}>
+                <Card
+                  className={`bg-card/30 backdrop-blur-sm border-border/50 relative hover:border-primary/20 transition-all duration-500 ${
+                    tier.highlighted
+                      ? "border-primary/40 shadow-[0_0_40px_-10px_hsl(var(--primary)/0.2)]"
+                      : ""
+                  }`}
+                >
+                  {tier.highlighted && (
+                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-primary to-accent text-primary-foreground text-[10px] font-semibold uppercase tracking-wider px-4 py-1 rounded-full">
+                      Most popular
+                    </div>
+                  )}
+                  <CardContent className="p-8">
+                    <h3 className="text-sm font-medium text-muted-foreground mb-4 uppercase tracking-wider">{tier.name}</h3>
+                    <div className="mb-8">
+                      <span className="text-4xl font-bold font-display">{tier.price}</span>
+                      <span className="text-muted-foreground text-sm">{tier.period}</span>
+                    </div>
+                    <ul className="space-y-3.5 mb-10">
+                      {tier.features.map((f) => (
+                        <li key={f} className="flex items-center gap-2.5 text-sm">
+                          <Check className="h-4 w-4 text-primary shrink-0" />
+                          {f}
+                        </li>
+                      ))}
+                    </ul>
+                    <Link to={tier.name === "Enterprise" ? "#contact" : "/signup"}>
+                      <Button
+                        className={`w-full ${
+                          tier.highlighted
+                            ? "shadow-[0_0_20px_-5px_hsl(var(--primary)/0.3)]"
+                            : ""
+                        }`}
+                        variant={tier.highlighted ? "default" : "outline"}
+                      >
+                        {tier.cta}
+                      </Button>
+                    </Link>
+                  </CardContent>
+                </Card>
+              </Reveal>
             ))}
           </div>
         </div>
       </section>
 
       {/* Testimonials */}
-      <section className="py-24 px-6 bg-secondary/30">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold font-display text-center mb-16">What our customers say</h2>
-          <div className="grid md:grid-cols-3 gap-6">
-            {testimonials.map((t) => (
-              <Card key={t.name} className="bg-card border-border">
-                <CardContent className="p-6">
-                  <p className="text-sm text-muted-foreground mb-6 leading-relaxed italic">"{t.quote}"</p>
-                  <div>
-                    <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold text-sm mb-2">
-                      {t.name.split(" ").map(n => n[0]).join("")}
+      <section className="py-28 px-6 relative">
+        <div className="absolute inset-0 bg-gradient-to-b from-secondary/30 via-secondary/50 to-secondary/30" />
+        <div className="max-w-4xl mx-auto relative z-10">
+          <Reveal>
+            <h2 className="text-3xl md:text-5xl font-bold font-display text-center mb-20">What our customers say</h2>
+          </Reveal>
+          <div className="grid md:grid-cols-3 gap-5">
+            {testimonials.map((t, i) => (
+              <Reveal key={t.name} delay={i * 0.1}>
+                <Card className="bg-card/30 backdrop-blur-sm border-border/50 hover:border-primary/15 transition-all duration-500">
+                  <CardContent className="p-6">
+                    <p className="text-sm text-muted-foreground mb-8 leading-relaxed">"{t.quote}"</p>
+                    <div className="flex items-center gap-3">
+                      <div className="w-9 h-9 rounded-full bg-gradient-to-br from-primary/30 to-accent/20 flex items-center justify-center text-primary font-semibold text-xs">
+                        {t.name.split(" ").map(n => n[0]).join("")}
+                      </div>
+                      <div>
+                        <div className="font-medium text-sm">{t.name}</div>
+                        <div className="text-xs text-muted-foreground">{t.title}, {t.company}</div>
+                      </div>
                     </div>
-                    <div className="font-medium text-sm">{t.name}</div>
-                    <div className="text-xs text-muted-foreground">{t.title}, {t.company}</div>
-                  </div>
-                </CardContent>
-              </Card>
+                  </CardContent>
+                </Card>
+              </Reveal>
             ))}
           </div>
         </div>
       </section>
 
       {/* CTA */}
-      <section className="py-24 px-6 border-t border-border">
-        <div className="max-w-2xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold font-display mb-4">Ready to unlock your archive?</h2>
-          <p className="text-muted-foreground mb-8">Join the early access list. Be the first to try Lazy Cloud.</p>
-          <Link to="/signup">
-            <Button size="lg" className="text-base px-8">
-              Get Early Access <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
-          </Link>
+      <section className="py-28 px-6 relative">
+        <div className="absolute inset-0">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary/8 rounded-full blur-[160px] pointer-events-none" />
         </div>
+        <Reveal>
+          <div className="max-w-2xl mx-auto text-center relative z-10">
+            <h2 className="text-3xl md:text-5xl font-bold font-display mb-5">Ready to unlock your archive?</h2>
+            <p className="text-muted-foreground mb-10">Join the early access list. Be the first to try Lazy Cloud.</p>
+            <Link to="/signup">
+              <Button
+                size="lg"
+                className="text-base px-8 h-12 shadow-[0_0_30px_-5px_hsl(var(--primary)/0.4)] hover:shadow-[0_0_40px_-5px_hsl(var(--primary)/0.6)] transition-all duration-500"
+              >
+                Get Early Access <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </Link>
+          </div>
+        </Reveal>
       </section>
 
       {/* Footer */}
-      <footer id="contact" className="border-t border-border py-12 px-6">
+      <footer id="contact" className="border-t border-border/50 py-12 px-6">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
-          <span className="font-display font-bold">Lazy Cloud</span>
+          <span className="font-display font-bold tracking-tight">Lazy Cloud</span>
           <div className="flex flex-wrap items-center gap-6 text-sm text-muted-foreground">
-            <a href="#pricing" className="hover:text-foreground transition-colors">Pricing</a>
-            <a href="#security" className="hover:text-foreground transition-colors">Security</a>
-            <a href="mailto:hello@lazycloud.ai" className="hover:text-foreground transition-colors">Contact</a>
-            <span>Privacy Policy</span>
-            <span>Terms of Service</span>
+            {["Pricing", "Security", "Contact"].map((item) => (
+              <a
+                key={item}
+                href={item === "Contact" ? "mailto:hello@lazycloud.ai" : `#${item.toLowerCase()}`}
+                className="hover:text-foreground transition-colors duration-300"
+              >
+                {item}
+              </a>
+            ))}
+            <span className="hover:text-foreground transition-colors duration-300 cursor-pointer">Privacy</span>
+            <span className="hover:text-foreground transition-colors duration-300 cursor-pointer">Terms</span>
           </div>
           <div className="text-xs text-muted-foreground">© {new Date().getFullYear()} Lazy Cloud</div>
         </div>
