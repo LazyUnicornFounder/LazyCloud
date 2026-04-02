@@ -466,8 +466,8 @@ export default function Index() {
                 {item}
               </a>
             ))}
-            <span className="hover:text-foreground transition-colors duration-300 cursor-pointer">Privacy</span>
-            <span className="hover:text-foreground transition-colors duration-300 cursor-pointer">Terms</span>
+            <Link to="/privacy" className="hover:text-foreground transition-colors duration-300">Privacy</Link>
+            <Link to="/terms" className="hover:text-foreground transition-colors duration-300">Terms</Link>
           </div>
           <div className="text-xs text-muted-foreground">© {new Date().getFullYear()} Lazy Cloud</div>
         </div>
