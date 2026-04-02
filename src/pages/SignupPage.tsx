@@ -13,6 +13,7 @@ const industries = ["Construction", "Legal", "Engineering", "Government", "Corpo
 export default function SignupPage() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
+  const [googleLoading, setGoogleLoading] = useState(false);
   const [form, setForm] = useState({
     companyName: "",
     fullName: "",
