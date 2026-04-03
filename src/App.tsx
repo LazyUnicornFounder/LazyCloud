@@ -19,6 +19,7 @@ const DashboardOverview = lazy(() => import("./pages/dashboard/DashboardOverview
 const DashboardFiles = lazy(() => import("./pages/dashboard/DashboardFiles.tsx"));
 const DashboardTeam = lazy(() => import("./pages/dashboard/DashboardTeam.tsx"));
 const DashboardSettings = lazy(() => import("./pages/dashboard/DashboardSettings.tsx"));
+const AdminSignups = lazy(() => import("./pages/AdminSignups.tsx"));
 
 const queryClient = new QueryClient();
 
