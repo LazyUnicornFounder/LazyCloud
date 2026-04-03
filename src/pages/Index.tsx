@@ -301,11 +301,10 @@ export default function Index() {
             </Link>
           </motion.div>
         </div>
-      </section>
 
-      {/* Stats */}
-      <section className="border-y border-border/50 py-10 px-6 relative">
-        <div className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        {/* Stats — pinned to bottom of hero */}
+        <div className="border-t border-border/50 py-10 px-6 relative z-10 mt-auto">
+          <div className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           {stats.map((s, i) => (
             <Reveal key={s.label} delay={i * 0.08}>
               <div className="text-2xl md:text-3xl font-bold font-display bg-gradient-to-b from-primary to-primary/70 bg-clip-text text-transparent">
