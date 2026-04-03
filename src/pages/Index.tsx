@@ -313,6 +313,7 @@ export default function Index() {
               <div className="text-xs text-muted-foreground mt-1.5 uppercase tracking-wider">{s.label}</div>
             </Reveal>
           ))}
+          </div>
         </div>
       </section>
 
