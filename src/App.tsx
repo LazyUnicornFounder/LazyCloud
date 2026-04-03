@@ -63,6 +63,7 @@ const App = () => (
                 <Route path="signups" element={<AdminSignups />} />
               </Route>
               <Route path="/checkout/success" element={<CheckoutSuccess />} />
+              <Route path="/about" element={<AboutPage />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>
