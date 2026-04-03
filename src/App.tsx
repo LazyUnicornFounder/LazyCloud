@@ -22,6 +22,7 @@ const DashboardSettings = lazy(() => import("./pages/dashboard/DashboardSettings
 const DashboardClients = lazy(() => import("./pages/dashboard/DashboardClients.tsx"));
 const DashboardClientDetail = lazy(() => import("./pages/dashboard/DashboardClientDetail.tsx"));
 const AdminLayout = lazy(() => import("./pages/admin/AdminLayout.tsx"));
+const AdminOverview = lazy(() => import("./pages/admin/AdminOverview.tsx"));
 const AdminSignups = lazy(() => import("./pages/AdminSignups.tsx"));
 const CheckoutSuccess = lazy(() => import("./pages/CheckoutSuccess.tsx"));
 
