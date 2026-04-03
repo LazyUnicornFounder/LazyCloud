@@ -298,14 +298,14 @@ export default function Index() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.55 }}
           >
-            <Link to="/#pricing">
+            <a href="#pricing">
               <Button
                 size="lg"
                 className="text-base px-8 h-12 shadow-[0_0_30px_-5px_hsl(var(--primary)/0.4)] hover:shadow-[0_0_40px_-5px_hsl(var(--primary)/0.6)] transition-all duration-500"
               >
                 Get Started <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
-            </Link>
+            </a>
           </motion.div>
         </div>
 
