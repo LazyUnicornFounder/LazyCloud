@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { supabase } from "@/integrations/supabase/client";
+import { Input } from "@/components/ui/input";
 import {
   Search, Upload, Brain, MessageSquare, Globe, FileText,
   Bookmark, Shield, Lock, Building2,
@@ -112,6 +114,57 @@ const pricingTiers = [
     highlighted: false,
   },
 ];
+/* ── Inline early access email form ── */
+function EarlyAccessForm() {
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const trimmed = email.trim().toLowerCase();
+    if (!trimmed || !trimmed.includes("@")) return;
+    setStatus("loading");
+    try {
+      const { error } = await supabase.from("early_access").insert({ email: trimmed, source: "homepage" });
+      if (error && error.code === "23505") {
+        setStatus("success"); // already exists
+        return;
+      }
+      if (error) throw error;
+      setStatus("success");
+    } catch {
+      setStatus("error");
+    }
+  };
+
+  if (status === "success") {
+    return <p className="text-primary font-medium">You're on the list! We'll be in touch soon.</p>;
+  }
+
+  return (
+    <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+      <Input
+        type="email"
+        required
+        maxLength={255}
+        placeholder="you@company.com"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        className="flex-1 h-12 bg-muted/50 border-border"
+      />
+      <Button
+        type="submit"
+        size="lg"
+        disabled={status === "loading"}
+        className="text-base px-8 h-12 shadow-[0_0_30px_-5px_hsl(var(--primary)/0.4)] hover:shadow-[0_0_40px_-5px_hsl(var(--primary)/0.6)] transition-all duration-500"
+      >
+        {status === "loading" ? "Joining…" : "Get Early Access"}
+        {status !== "loading" && <ArrowRight className="ml-2 h-4 w-4" />}
+      </Button>
+      {status === "error" && <p className="text-destructive text-sm">Something went wrong. Try again.</p>}
+    </form>
+  );
+}
 
 
 export default function Index() {
@@ -438,14 +491,7 @@ export default function Index() {
           <div className="max-w-2xl mx-auto text-center relative z-10">
             <h2 className="text-3xl md:text-5xl font-bold font-display mb-5">Ready to unlock your archive?</h2>
             <p className="text-muted-foreground mb-10">Join the early access list. Be the first to try Lazy Cloud.</p>
-            <Link to="/signup">
-              <Button
-                size="lg"
-                className="text-base px-8 h-12 shadow-[0_0_30px_-5px_hsl(var(--primary)/0.4)] hover:shadow-[0_0_40px_-5px_hsl(var(--primary)/0.6)] transition-all duration-500"
-              >
-                Get Early Access <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </Link>
+            <EarlyAccessForm />
           </div>
         </Reveal>
       </section>
