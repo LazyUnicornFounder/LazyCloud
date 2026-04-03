@@ -195,7 +195,7 @@ export default function Index() {
       </nav>
 
       {/* Hero */}
-      <section className="relative pt-36 pb-24 px-6 overflow-hidden">
+      <section className="relative min-h-screen flex flex-col px-6 overflow-hidden">
         {/* Hero background image */}
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat pointer-events-none"
@@ -203,7 +203,7 @@ export default function Index() {
         />
         <div className="absolute inset-0 bg-background/70 pointer-events-none" />
 
-        <div className="max-w-4xl mx-auto text-left relative z-10">
+        <div className="max-w-4xl mx-auto text-left relative z-10 flex-1 flex flex-col justify-center pt-20">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
@@ -301,11 +301,10 @@ export default function Index() {
             </Link>
           </motion.div>
         </div>
-      </section>
 
-      {/* Stats */}
-      <section className="border-y border-border/50 py-10 px-6 relative">
-        <div className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        {/* Stats — pinned to bottom of hero */}
+        <div className="border-t border-border/50 py-10 px-6 relative z-10 mt-auto">
+          <div className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           {stats.map((s, i) => (
             <Reveal key={s.label} delay={i * 0.08}>
               <div className="text-2xl md:text-3xl font-bold font-display bg-gradient-to-b from-primary to-primary/70 bg-clip-text text-transparent">
@@ -314,6 +313,7 @@ export default function Index() {
               <div className="text-xs text-muted-foreground mt-1.5 uppercase tracking-wider">{s.label}</div>
             </Reveal>
           ))}
+          </div>
         </div>
       </section>
 
