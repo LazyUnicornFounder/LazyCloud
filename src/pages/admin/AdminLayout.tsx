@@ -4,7 +4,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { ShieldAlert, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-const ALLOWED_ADMIN_EMAILS = ["f.mardini@gmail.com"];
+const ALLOWED_ADMIN_EMAILS = ["f.mardini@gmail.com", "lazy@lazyunicorn.ai"];
 
 export default function AdminLayout() {
   const { user, loading, signOut } = useAuth();
