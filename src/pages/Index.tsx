@@ -92,22 +92,25 @@ const securityPoints = [
 const pricingTiers = [
   {
     name: "Starter",
+    tier: "starter",
     price: "$499",
-    period: "/month",
+    period: " one-time",
     features: ["Up to 50 GB", "50,000 files", "5 users", "Email support"],
-    cta: "Get Early Access",
+    cta: "Buy Now",
     highlighted: false,
   },
   {
     name: "Professional",
+    tier: "professional",
     price: "$999",
-    period: "/month",
+    period: " one-time",
     features: ["Up to 500 GB", "500,000 files", "25 users", "Priority support", "Custom branding"],
-    cta: "Get Early Access",
+    cta: "Buy Now",
     highlighted: true,
   },
   {
     name: "Enterprise",
+    tier: "enterprise",
     price: "Coming Soon",
     period: "",
     features: ["Unlimited everything", "On-premise option", "Dedicated support", "SLA"],
@@ -472,18 +475,29 @@ export default function Index() {
                         </li>
                       ))}
                     </ul>
-                    <Link to={tier.name === "Enterprise" ? "#contact" : "/signup"}>
-                      <Button
-                        className={`w-full ${
-                          tier.highlighted
-                            ? "shadow-[0_0_20px_-5px_hsl(var(--primary)/0.3)]"
-                            : ""
-                        }`}
-                        variant={tier.highlighted ? "default" : "outline"}
-                      >
-                        {tier.cta}
-                      </Button>
-                    </Link>
+                    <Button
+                      className={`w-full ${
+                        tier.highlighted
+                          ? "shadow-[0_0_20px_-5px_hsl(var(--primary)/0.3)]"
+                          : ""
+                      }`}
+                      variant={tier.highlighted ? "default" : "outline"}
+                      disabled={tier.tier === "enterprise"}
+                      onClick={async () => {
+                        if (tier.tier === "enterprise") return;
+                        try {
+                          const { data, error } = await supabase.functions.invoke("polar-checkout", {
+                            body: { action: "create_checkout", tier: tier.tier },
+                          });
+                          if (error || !data?.url) throw new Error("Checkout failed");
+                          window.location.href = data.url;
+                        } catch {
+                          alert("Could not start checkout. Please try again.");
+                        }
+                      }}
+                    >
+                      {tier.cta}
+                    </Button>
                   </CardContent>
                 </Card>
               </Reveal>

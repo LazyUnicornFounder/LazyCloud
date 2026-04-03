@@ -20,6 +20,7 @@ const DashboardFiles = lazy(() => import("./pages/dashboard/DashboardFiles.tsx")
 const DashboardTeam = lazy(() => import("./pages/dashboard/DashboardTeam.tsx"));
 const DashboardSettings = lazy(() => import("./pages/dashboard/DashboardSettings.tsx"));
 const AdminSignups = lazy(() => import("./pages/AdminSignups.tsx"));
+const CheckoutSuccess = lazy(() => import("./pages/CheckoutSuccess.tsx"));
 
 const queryClient = new QueryClient();
 
@@ -51,6 +52,7 @@ const App = () => (
                 <Route path="settings" element={<DashboardSettings />} />
               </Route>
               <Route path="/admin/signups" element={<AdminSignups />} />
+              <Route path="/checkout/success" element={<CheckoutSuccess />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>
