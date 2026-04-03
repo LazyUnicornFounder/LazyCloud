@@ -193,11 +193,11 @@ export default function Index() {
             <a href="https://x.com/SoloUnicorn" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors duration-300">
               <svg viewBox="0 0 24 24" className="h-4 w-4 fill-current" aria-label="X"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" /></svg>
             </a>
-            <Link to="/#pricing">
+            <a href="#pricing">
               <Button variant="ghost" size="sm" className="text-sm">
                 Get Started
               </Button>
-            </Link>
+            </a>
           </div>
         </div>
       </nav>
@@ -298,14 +298,14 @@ export default function Index() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.55 }}
           >
-            <Link to="/#pricing">
+            <a href="#pricing">
               <Button
                 size="lg"
                 className="text-base px-8 h-12 shadow-[0_0_30px_-5px_hsl(var(--primary)/0.4)] hover:shadow-[0_0_40px_-5px_hsl(var(--primary)/0.6)] transition-all duration-500"
               >
                 Get Started <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
-            </Link>
+            </a>
           </motion.div>
         </div>
 
@@ -536,11 +536,11 @@ export default function Index() {
           <div className="max-w-2xl mx-auto text-center relative z-10">
             <h2 className="text-3xl md:text-5xl font-bold font-display mb-5">Ready to unlock your archive?</h2>
             <p className="text-muted-foreground mb-10">Pick a plan and start searching your documents in minutes.</p>
-            <Link to="/#pricing">
+            <a href="#pricing">
               <Button size="lg" className="text-base px-8 h-12 shadow-[0_0_30px_-5px_hsl(var(--primary)/0.4)] hover:shadow-[0_0_40px_-5px_hsl(var(--primary)/0.6)] transition-all duration-500">
                 Get Started <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
-            </Link>
+            </a>
           </div>
         </Reveal>
       </section>
