@@ -162,7 +162,7 @@ export default function Index() {
             initial={{ opacity: 0, y: 32 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="text-4xl md:text-6xl lg:text-7xl font-bold font-display tracking-tight leading-[1.08] mb-8"
+            className="text-4xl md:text-6xl lg:text-7xl font-semibold font-display tracking-tight leading-[1.08] mb-8"
           >
             Supercharge your on-prem server with the{" "}
             <span className="relative">
