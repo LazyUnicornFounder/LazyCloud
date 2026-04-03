@@ -440,14 +440,7 @@ export default function Index() {
           <div className="max-w-2xl mx-auto text-center relative z-10">
             <h2 className="text-3xl md:text-5xl font-bold font-display mb-5">Ready to unlock your archive?</h2>
             <p className="text-muted-foreground mb-10">Join the early access list. Be the first to try Lazy Cloud.</p>
-            <Link to="/signup">
-              <Button
-                size="lg"
-                className="text-base px-8 h-12 shadow-[0_0_30px_-5px_hsl(var(--primary)/0.4)] hover:shadow-[0_0_40px_-5px_hsl(var(--primary)/0.6)] transition-all duration-500"
-              >
-                Get Early Access <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </Link>
+            <EarlyAccessForm />
           </div>
         </Reveal>
       </section>
